@@ -1,0 +1,43 @@
+table: odds-chart
+lookup: [odds, chaos]
+entries:
+  unlikely:
+    1: {text: "5 / 25 / 85", data: {exceptional_yes: 5, yes: 25, exceptional_no: 85}}
+    2-3: {text: "10 / 50 / 91", data: {exceptional_yes: 10, yes: 50, exceptional_no: 91}}
+  likely:
+    1-2: {text: "15 / 75 / 96", data: {exceptional_yes: 15, yes: 75, exceptional_no: 96}}
+    3: {text: "20 / 99 / X", data: {exceptional_yes: 20, yes: 99, exceptional_no: 101}}
+---
+table: check-odds
+lookup: odds
+entries: {unlikely: -2, likely: 2}
+---
+table: pairs
+dice: d4
+columns: [verb, noun]
+labels: false
+entries:
+  1: [Seek, Gate]
+  2: [Break, Oath]
+  3: [Hide, Crown]
+  4: [Wake, Storm]
+---
+table: twice
+dice: d4
+columns: [first, second]
+entries: [Red, Blue, Green, Gold]
+---
+table: focus
+dice: d4
+entries:
+  1: {text: Someone acts, data: {list: characters}}
+  2: {text: A thread moves, data: {list: threads}}
+  3-4: {text: Something new, data: {list: none}}
+---
+table: answers
+lookup: answer
+entries:
+  yes: It happens.
+  exceptional-yes: It happens, more so.
+  no: Something else happens.
+  exceptional-no: The opposite happens.

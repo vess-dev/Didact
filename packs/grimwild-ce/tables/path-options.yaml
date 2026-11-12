@@ -1,0 +1,194 @@
+# Grimwild: Community Edition (Preview 5.3), Adventurers: the path pages (pp. 54-86). CC0 1.0.
+# The choices each path's page offers at character creation, as tables so that character creation
+# (chargen/pc.yaml) can offer them step by step and `didact table roll` can pick one: they mirror
+# the `options` of the paths in compendium/paths.yaml. Entries whose book text runs on (a rite, a
+# bastion, a school) keep their name as the text and the rest as data.
+---
+table: bard-inspiration-methods
+title: "Inspiration method"
+description: "Where does your power to influence others come from? Choose any 2 from the following that you know, and 1 that you're learning."
+source: "p. 56"
+entries:
+  - "Violin"
+  - "Oratory"
+  - "Martial Ability"
+  - "Panpipes"
+  - "Flute"
+  - "Cutting Wit"
+  - "Lyre"
+  - "Ocarina"
+  - "Accordion"
+  - "Limericks"
+  - "Proverbs"
+  - "Dance"
+  - "Aesops"
+  - "Lute"
+  - "Style"
+  - "Singing"
+  - "Harmonica"
+  - "Drums"
+---
+table: berserker-frenzy-sources
+title: "Frenzy source"
+description: "Where does your wild power and ability to withstand pain come from? Choose 2 and smash them together to form the source, and 1 that you have a disdain for."
+source: "p. 58"
+entries:
+  - "Ritualistic preparation"
+  - "Trained tolerance to pain"
+  - "Long consumption of strange substances"
+  - "Drawing power from ancestral spirits"
+  - "Drawing primal power from the wild"
+  - "Channeling memories you'll never forget"
+  - "Visions of horrific or heroic scenes"
+  - "Deep meditative focus"
+  - "Blood pact with a kindred force"
+  - "Your abilities are a strange mystery"
+  - "Binding your spirit to a physical totem"
+  - "A suppressed entity overtakes you"
+---
+table: berserker-scars
+title: "Scars"
+description: "What scars do you bear that show your reckless nature? Choose 3 that you show off."
+source: "p. 58"
+entries:
+  - "Crookedly broken nose"
+  - "Web of deep cut scars"
+  - "Permanently split knuckles"
+  - "Empty eye socket"
+  - "Smashed teeth"
+  - "Cauliflower ears"
+  - "Wild, ripped hair"
+  - "Muscles knotted like iron"
+  - "Several missing fingers"
+  - "Jagged burn lines"
+  - "Gouged claw marks"
+  - "Runic scarring from magic"
+  - "Torn earlobe or ear tips"
+  - "Deep, cauterized wound"
+  - "Cracked jawline"
+  - "Crushed foot"
+  - "Busted in skull"
+  - "Not even a scratch on you"
+---
+table: cleric-domains
+title: "Your god's domain"
+description: "Name your god and give them an epithet (Zerenda, Goddess of Storms), write down 3 tenets, then choose 1 of the following to create their domain of influence, or make your own."
+source: "p. 60"
+entries:
+  - "Storms"
+  - "Mercy"
+  - "Revelry"
+  - "Justice"
+  - "Trickery"
+  - "Sea"
+  - "Life"
+  - "Radiance"
+  - "Moon"
+  - "Death"
+  - "Travel"
+  - "War"
+  - "Magic"
+  - "Hunt"
+  - "Knowledge"
+  - "Nature"
+  - "Luck"
+  - "Crafting"
+---
+table: cleric-rites
+title: "Rites"
+description: "What rites have you learned to help you achieve your mission? Choose 1 major rite, and 2 minor rites, or make your own. Each entry's data holds its example magic."
+source: "p. 60"
+entries:
+  - {text: "Blessing", data: {magic: "Bless a warhammer. Walk on water. Fill the forlorn duke's heart with hope."}}
+  - {text: "Divination", data: {magic: "Find a safe path. Reveal where the thief is hiding. Know tomorrow's weather."}}
+  - {text: "Dominion", data: {magic: "Convince someone to help. Make someone forget. Calm an angry mob."}}
+  - {text: "Healing", data: {magic: "Heal a broken bone. Relieve someone of stress. Stop the bleeding."}}
+  - {text: "Warding", data: {magic: "Shield an ally from harm. Block a doorway. Create sentries."}}
+  - {text: "Wrath", data: {magic: "Shatter a foe's weapon. Blind a traitor. Curse a heretic with misfortune."}}
+---
+table: psion-bastions
+title: "Bastions"
+description: "Within your mind lie bastions of psionic power; choose two, which act as the touchstone for your psionic magic (Awakened Mind). Each entry's data holds what it is and example powers."
+source: "p. 70"
+entries:
+  - {text: "Biodynamics", data: {about: "Altering and enhancing your own body.", power: "Heal your broken arm,. Hold your breath for hours. Run faster than a horse."}}
+  - {text: "Clairsentience", data: {about: "Gaining knowledge from the collective unconscious.", power: "Sense a hidden truth. See into someone's dreams. Find the way home."}}
+  - {text: "Metacreation", data: {about: "Creating objects from ectoplasm, pure mental energy.", power: "Forge a glowing sword. Build a bridge of thought. Shape armor from pure will."}}
+  - {text: "Psychokinesis", data: {about: "Manipulating energy and force.", power: "Shatter a boulder. Push an enemy back. Lift a heavy object with your mind."}}
+  - {text: "Telepathy", data: {about: "Mind-to-mind communication, manipulation, and control.", power: "Read someone's thoughts. Calm an angry mob. Implant a fleeting suggestion."}}
+  - {text: "Transposition", data: {about: "Movement and manipulation of space.", power: "Teleport across a room. Switch places with an ally. Freeze someone in place."}}
+---
+table: rogue-guild
+title: "Thieves' guild"
+description: "Choose 2 that describe your guild and 1 that really doesn't."
+source: "p. 74"
+entries:
+  - "like family"
+  - "elite training"
+  - "cultish"
+  - "turf-obsessed"
+  - "heroes"
+  - "mercenaries"
+  - "mystics"
+  - "outsiders"
+  - "influential"
+  - "just business"
+  - "in the open"
+  - "follows code"
+---
+table: rogue-crime-reactions
+title: "Criminal history: reaction"
+description: "Your own reaction about the crime."
+source: "p. 74"
+entries:
+  - "I did what I had to do"
+  - "I was set up"
+  - "It was a misunderstanding"
+  - "I'll do it again"
+  - "I completely forgot I did that"
+  - "I've made peace with it"
+  - "Never again"
+---
+table: swashbuckler-creeds
+title: "Creed"
+description: "A code, a rule you never break, a line you will never cross, or a proverb you live your life by. Choose up to 2, or create your own."
+source: "p. 80"
+entries:
+  - "all's fair in love and war"
+  - "wield the sword of justice"
+  - "accept every challenge"
+  - "coin is meant to be spent"
+  - "infamous is still famous"
+  - "gentleman even in dire times"
+  - "honor is only for the dead"
+  - "a good story beats any reward"
+  - "never kill the helpless"
+  - "death before dishonor"
+  - "the best plan is no plan at all"
+  - "only a fair fight measures skill"
+---
+table: witch-afflictions
+title: "Afflictions"
+description: "What is your strange affliction and how did you get it? Choose 1 or make up your own."
+source: "p. 84"
+entries:
+  - "plagued by your own shadow"
+  - "empty eye sockets"
+  - "skeletal body wasting away"
+  - "special diet, such as only raw meat"
+  - "haunted by ancestral ghosts"
+  - "putrid smell that follows everywhere"
+---
+table: wizard-schools
+title: "Schools of magic"
+description: "Pick a magic school for a spell theorem to determine its general function. Each entry's data holds what it does."
+source: "p. 86"
+entries:
+  - {text: "Abjuration", data: {does: "Protects, blocks, dispels, or banishes."}}
+  - {text: "Conjuration", data: {does: "Summons creatures, objects, and portals."}}
+  - {text: "Divination", data: {does: "Reveals information, predicts the future, and reads minds."}}
+  - {text: "Enchantment", data: {does: "Charms, influences, and curses sentient creatures."}}
+  - {text: "Evocation", data: {does: "Creates and controls elemental and magical forces."}}
+  - {text: "Illusion", data: {does: "Generates false images and sensory deceptions."}}
+  - {text: "Necromancy", data: {does: "Manipulates life, death, and the undead."}}
+  - {text: "Transmutation", data: {does: "Transforms matter and alters physical properties."}}

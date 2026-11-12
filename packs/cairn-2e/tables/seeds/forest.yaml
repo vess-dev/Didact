@@ -1,0 +1,441 @@
+# Forest Seeds tables (wardens-guide/forest-seeds), Cairn Second Edition by Yochai Gal, CC-BY-SA 4.0.
+# One table per rolled column. See PROCEDURES.md for the order the book rolls them in.
+table: forest-description-1
+title: "Forest Description (first column)"
+dice: d20
+source: wardens-guide/forest-seeds#forest-description
+entries:
+  1: "Barren"
+  2: "Crystalline"
+  3: "Diseased"
+  4: "Dying"
+  5: "Flowering"
+  6: "Glowing"
+  7: "Hallowed"
+  8: "Mossy"
+  9: "Murky"
+  10: "Perilous"
+  11: "Petrified"
+  12: "Polluted"
+  13: "Primeval"
+  14: "Scorched"
+  15: "Secluded"
+  16: "Suffocating"
+  17: "Timeless"
+  18: "Uncharted"
+  19: "Unspoilt"
+  20: "Winding"
+---
+table: forest-description-2
+title: "Forest Description (second column)"
+dice: d20
+source: wardens-guide/forest-seeds#forest-description
+entries:
+  1: "Ancient"
+  2: "Awakening"
+  3: "Buzzing"
+  4: "Decaying"
+  5: "Flooded"
+  6: "Foggy"
+  7: "Frigid"
+  8: "Frozen"
+  9: "Fungal"
+  10: "Hidden"
+  11: "Infested"
+  12: "Misty"
+  13: "Mossy"
+  14: "Overgrown"
+  15: "Sacred"
+  16: "Secluded"
+  17: "Silent"
+  18: "Smoldering"
+  19: "Sunlit"
+  20: "Wild"
+---
+table: forest-traits-virtue
+title: "Forest Traits: Virtues"
+dice: d20
+source: wardens-guide/forest-seeds#traits
+entries:
+  1: "Adaptive"
+  2: "Balanced"
+  3: "Brave"
+  4: "Clever"
+  5: "Cultivating"
+  6: "Empathic"
+  7: "Enduring"
+  8: "Graceful"
+  9: "Hardy"
+  10: "Harmonious"
+  11: "Independent"
+  12: "Learned"
+  13: "Nurturing"
+  14: "Observant"
+  15: "Purifying"
+  16: "Resolute"
+  17: "Sensible"
+  18: "Sharp"
+  19: "Stable"
+  20: "Trusting"
+---
+table: forest-traits-vice
+title: "Forest Traits: Vices"
+dice: d20
+source: wardens-guide/forest-seeds#traits
+entries:
+  1: "Aggressive"
+  2: "Aloof"
+  3: "Covetous"
+  4: "Detached"
+  5: "Dominating"
+  6: "Doubtful"
+  7: "Invasive"
+  8: "Judgmental"
+  9: "Naive"
+  10: "Obscuring"
+  11: "Overzealous"
+  12: "Parasitic"
+  13: "Passive"
+  14: "Polluting"
+  15: "Predatory"
+  16: "Prideful"
+  17: "Rigid"
+  18: "Scatterbrained"
+  19: "Selfish"
+  20: "Territorial"
+---
+table: forest-agenda-goal
+title: "Forest Agenda: Goal"
+dice: d20
+source: wardens-guide/forest-seeds#forest-agenda
+entries:
+  1: "Abundance"
+  2: "Awakening"
+  3: "Balance"
+  4: "Cleansing"
+  5: "Conservation"
+  6: "Defense"
+  7: "Discovery"
+  8: "Emancipation"
+  9: "Enrichment"
+  10: "Evolution"
+  11: "Expansion"
+  12: "Harmony"
+  13: "Healing"
+  14: "Integration"
+  15: "Justice"
+  16: "Metamorphosis"
+  17: "Purification"
+  18: "Rebirth"
+  19: "Tranquility"
+  20: "Unity"
+---
+table: forest-agenda-obstacle
+title: "Forest Agenda: Obstacle"
+dice: d20
+source: wardens-guide/forest-seeds#forest-agenda
+entries:
+  1: "Agreements"
+  2: "Belief"
+  3: "Contamination"
+  4: "Disease"
+  5: "Exploitation"
+  6: "Fragmentation"
+  7: "Frailty"
+  8: "Greed"
+  9: "Ignorance"
+  10: "Infestation"
+  11: "Invasion"
+  12: "Isolation"
+  13: "Leadership"
+  14: "Oppression"
+  15: "Pollution"
+  16: "Scarcity"
+  17: "Stasis"
+  18: "Turmoil"
+  19: "Vulnerability"
+  20: "Vulnerability"  # sic: the book prints Vulnerability on both 19 and 20
+---
+table: forest-die-drop
+title: "Forest Die Drop Table"
+description: "The face of each POI die dropped on the forest map. Then roll that POI type's two tables."
+dice: d6
+source: wardens-guide/forest-seeds#forest-die-drop-table
+entries:
+  1: {text: "Monster", data: {poi: monster, what: forest-monster, detail: forest-monster-activity}}
+  2-3: {text: "Ruins", data: {poi: ruins, what: forest-ruin, detail: forest-ruin-feature}}
+  4: {text: "Shelter", data: {poi: shelter, what: forest-shelter, detail: forest-shelter-feature}}
+  5-6: {text: "Hazard", data: {poi: hazard, what: forest-hazard, detail: forest-hazard-feature}}
+---
+table: forest-trail-type
+title: "Trail Types: Type"
+dice: d20
+source: wardens-guide/forest-seeds#trail-types-1
+entries:
+  1: "Animal Path"
+  2: "Bandit's Run"
+  3: "Bouldered Way"
+  4: "Cloistered Grove"
+  5: "Deer Crossing"
+  6: "Dry Riverbed"
+  7: "Fae Passage"
+  8: "Farm Trail"
+  9: "Foraging Path"
+  10: "Hunter's Track"
+  11: "King's March"
+  12: "Merchant's Road"
+  13: "Old Logging Road"
+  14: "Orchard Path"
+  15: "Pilgrim's Footpath"
+  16: "Spore Saturated"
+  17: "Sticky Sap Path"
+  18: "Trail Tree"
+  19: "Treeline Heights"
+  20: "War Route"
+---
+table: forest-trail-marker
+title: "Trail Types: Marker"
+dice: d20
+source: wardens-guide/forest-seeds#trail-types-1
+entries:
+  1: "Bear Rubbings"
+  2: "Bent Trees"
+  3: "Claw Marks"
+  4: "Damaged Flora"
+  5: "Deer Tracks"
+  6: "Distant Singing"
+  7: "Faint Laughter"
+  8: "Fox Prints"
+  9: "Fresh Spiderwebs"
+  10: "Giant Feathers"
+  11: "Glowing Toadstools"
+  12: "Muted Bells"
+  13: "Peripheral Images"
+  14: "Rabbit Droppings"
+  15: "Serpent Traces"
+  16: "Smoke"
+  17: "Stillness"
+  18: "Stone Piles"
+  19: "Swaying Plants"
+  20: "Tree Carvings"
+---
+table: forest-monster
+title: "Forest Monster"
+dice: d20
+source: wardens-guide/forest-seeds#monster
+entries:
+  1: "Bandit"
+  2: "Blink Dog"
+  3: "Blood Elk"
+  4: "Centaur"
+  5: "Dryad"
+  6: "Ettin"
+  7: "Gargoyle"
+  8: "Green Dragon"
+  9: "Grizzly Bear"
+  10: "Killer Bees"
+  11: "Naga"
+  12: "Night Cat"
+  13: "Owlbear"
+  14: "Pixie"
+  15: "Skeleton"
+  16: "Treant"
+  17: "Unicorn"
+  18: "Will-o-Wisp"
+  19: "Wolf"
+  20: "Wood Troll"
+---
+table: forest-monster-activity
+title: "Forest Monster: Activity"
+dice: d20
+source: wardens-guide/forest-seeds#monster
+entries:
+  1: "Burrowing"
+  2: "Burying"
+  3: "Destroying"
+  4: "Devouring"
+  5: "Dying"
+  6: "Fighting"
+  7: "Foraging"
+  8: "Guarding"
+  9: "Hiding"
+  10: "Hunting"
+  11: "Killing"
+  12: "Mating"
+  13: "Mourning"
+  14: "Patrolling"
+  15: "Prowling"
+  16: "Recuperating"
+  17: "Scouting"
+  18: "Stalking"
+  19: "Torturing"
+  20: "Trapped"
+---
+table: forest-ruin
+title: "Forest Ruins"
+dice: d20
+source: wardens-guide/forest-seeds#ruins
+entries:
+  1: "Abandoned Manor"
+  2: "Broken Sundial"
+  3: "Chipped Bell Tower"
+  4: "Collapsed Megalith"
+  5: "Crumbled Watchtower"
+  6: "Decomposed Canoes"
+  7: "Entangled Pavilion"
+  8: "Exposed Workshop"
+  9: "Flooded Monastery"
+  10: "Moldering Farmhouse"
+  11: "Neglected Shrine"
+  12: "Overrun Estate"
+  13: "Petrified Campsite"
+  14: "Rotted Mill"
+  15: "Ruined Cloister"
+  16: "Rusted Market"
+  17: "Shattered Bridge"
+  18: "Splintered Obelisk"
+  19: "Sunken Gazebo"
+  20: "Toppled Statue"
+---
+table: forest-ruin-feature
+title: "Forest Ruins: Feature"
+dice: d20
+source: wardens-guide/forest-seeds#ruins
+entries:
+  1: "A Forest Spirit, Ready to Die"
+  2: "A Hag, Foraging for Ingredients"
+  3: "A Mirror of Itself"
+  4: "A Self-Obsessed Sprite"
+  5: "A Silent, Ghostly Concert"
+  6: "A Very Tiny Ruined Village"
+  7: "Bound by an Unbreakable Curse"
+  8: "Bound Creature"
+  9: "Broken Portal"
+  10: "Fresh Corpses"
+  11: "Hidden Cache"
+  12: "Hooded Men Completing a Ritual"
+  13: "Inaudible Whispers from All Directions"
+  14: "Marked by Battles Of Yore"
+  15: "Overrun with Unusual Flora"
+  16: "Realistic Toy Soldiers"
+  17: "Remnants of a Failed Ritual"
+  18: "The Veil Between Worlds Is Thin"
+  19: "Visions of the Past"
+  20: "Warded Grounds"
+---
+table: forest-shelter
+title: "Forest Shelter"
+dice: d20
+source: wardens-guide/forest-seeds#shelter
+entries:
+  1: "Bandit Hideout"
+  2: "Falconer's Tower"
+  3: "Fishing Hut"
+  4: "Forgotten Ruins"
+  5: "Hermit's Cabin"
+  6: "Hidden Village"
+  7: "Hillside Cave"
+  8: "Hollow Tree"
+  9: "Hunter's Lodge"
+  10: "Hut with Legs"
+  11: "Ivy-Wrapped Tower"
+  12: "Lean-To"
+  13: "Lumber Site"
+  14: "Monastic Retreat"
+  15: "Mossy Pool"
+  16: "Night Market"
+  17: "Pale Folk Stable"
+  18: "Ranger's Outpost"
+  19: "Smoky Cabin"
+  20: "Tattered Windmill"
+---
+table: forest-shelter-feature
+title: "Forest Shelter: Feature"
+dice: d20
+source: wardens-guide/forest-seeds#shelter
+entries:
+  1: "Abandoned, for Now"
+  2: "Attracts Wild Beasts"
+  3: "Built in Defiance of Customs"
+  4: "Constructed Within a Giant Tree"
+  5: "Forest-Knight Offers a Challenge"
+  6: "Guarded by Trained Animals"
+  7: "Haunted by Unhelpful Ghosts"
+  8: "Hides a Powerful Artifact"
+  9: "Hunting Is Forbidden"
+  10: "Inhabited by a Supernatural Entity"
+  11: "Occupied by Army Deserters"
+  12: "Overrun with Cultists"
+  13: "Pale Folk Dinner Locale"
+  14: "Parasitic Foliage"
+  15: "Pig Folk Hunting Grounds"
+  16: "Popular with Smugglers"
+  17: "Presents a Ready Meal"
+  18: "Protected by a Playful Spirit"
+  19: "Site of an Ancient Murder"
+  20: "Thieves' Camp"
+---
+table: forest-hazard
+title: "Forest Hazard"
+dice: d20
+source: wardens-guide/forest-seeds#hazard
+entries:
+  1: "Animal Trap"
+  2: "Bog Shadows"
+  3: "Bone Orchard"
+  4: "Bramble Tunnels"
+  5: "Frozen Troll"
+  6: "Giant Spider Nest"
+  7: "Insect Swarm"
+  8: "Moving Thickets"
+  9: "Poisonous Plants"
+  10: "Psychic Fog"
+  11: "Sap Trap"
+  12: "Sleeping Giant"
+  13: "Slippery Moss"
+  14: "Slow Quicksand"
+  15: "Spiked Pit"
+  16: "Stinging Nettles"
+  17: "Thorny Thickets"
+  18: "Toxic Spores"
+  19: "Troll Den"
+  20: "Unstable Ground"
+---
+table: forest-hazard-feature
+title: "Forest Hazard: Feature"
+dice: d20
+source: wardens-guide/forest-seeds#hazard
+entries:
+  1: "A Pet Basilisk"
+  2: "A Spell Gone Wrong"
+  3: "Animated Armor"
+  4: "Bird Spies"
+  5: "Bleeding Trees"
+  6: "Ghosts Trapped in Crystal"
+  7: "Giant Rodent Feeding Grounds"
+  8: "Highly Localized Weather"
+  9: "Howling Stones"
+  10: "Injured Creature"
+  11: "Invisible Webs"
+  12: "Living Scarecrows"
+  13: "Memory Stealers"
+  14: "Mimic Vines"
+  15: "Paths that Change Randomly"
+  16: "Scavengers that Wait"
+  17: "Watchful Dead"
+  18: "Tracks Erased by Mist"
+  19: "Trees that Grow From Bones"
+  20: "Will-o-Wisps Congregate"
+---
+table: forest-example-encounters
+title: "Example Forest: Encounters"
+description: "The encounter table of the book's example forest (the Withering), not a generic table. The book heads it d20 but prints only rows 1-6, so it rolls a d6."
+dice: d6
+source: wardens-guide/forest-seeds#encounters
+entries:
+  1: "A tiny bearded man argues with a squawking raven. It holds something shiny in its beak."
+  2: "A dryad sits atop a stone, a purple fungus lining her arms. There is violence in her eyes."
+  3: "A patch of quicksand is disguised as soft ground. A broken spool of rope lies nearby."
+  4: "A snarling pack of wolves surround a fresh kill. They are not keen to share."
+  5: "Wild berries grow here in abundance. None have been eaten, not even by birds."
+  6: "A trap, hastily set and poorly concealed. It smells strongly of urine."

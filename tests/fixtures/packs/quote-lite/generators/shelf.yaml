@@ -1,0 +1,6 @@
+generator: shelf
+title: A shelf of books
+params:
+  first: {kind: text}
+steps:
+  - prompt: "A shelf that starts with {if('$first' <> '', '$first', 'nothing yet')}."

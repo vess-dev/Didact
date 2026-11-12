@@ -1,0 +1,253 @@
+# The seed procedures (overseers-guide/setting-seeds, wasteland-seeds, vault-seeds,
+# pointcrawls): a region, a stretch of open wastes, a vault or ruin. Every roll can be prefilled
+# by its name or changed in the draft (`gen edit`). The parent's dungeon and forest seeds are
+# replaced by a pointer to the Fallout seed that does their job; its realm, pointcrawl and
+# point-of-interest generators are hidden (pack.yaml `hides`). Hidden and conditional paths: the
+# books say "some paths are"; like the parent, a d6 per path decides (6 hidden; 5 conditional in
+# a vault).
+generator: setting-seed
+title: Setting seed (a region)
+help: >-
+  A region about a week's walk across: its character, its biggest threat and its biggest
+  opportunity; the points the book asks for (a larger and a smaller settlement, an obvious and a
+  hidden ruin, a vault or sealed facility, a wasteland encounter site, a caravan hub, two or three
+  oddities), three factions (identity and agenda), and paths between the points with their watches
+  of distance. Prefill by name: character, threat, opportunity, region_name, …
+source: overseers-guide/setting-seeds
+steps:
+  - table: place-names
+    as: region_name
+  - choose_or_roll: {table: setting-region-character, as: character}
+  - choose_or_roll: {table: setting-threat, as: threat}
+  - choose_or_roll: {table: setting-opportunity, as: opportunity}
+  - entity:
+      key: region
+      type: loc
+      name: "{@region_name}"
+      fields:
+        kind: region
+        culture: "@character"
+        threat: "@threat"
+        opportunity: "@opportunity"
+  # Points of interest (3. Place Points of Interest): at least these; drop more to make a dozen.
+  - table: place-names
+    as: big_town
+  - entity: {key: poi, type: loc, name: "{@big_town}", fields: {kind: poi, poi: settlement, feature: "the larger settlement", region: "@region"}}
+  - table: place-names
+    as: small_town
+  - entity: {key: poi, type: loc, name: "{@small_town}", fields: {kind: poi, poi: settlement, feature: "the smaller settlement", region: "@region"}}
+  - table: poi-names
+    as: ruin_1
+  - entity: {key: poi, type: loc, name: "{@ruin_1}", fields: {kind: poi, poi: ruin, feature: "an obvious ruin", region: "@region"}}
+  - table: poi-names
+    as: ruin_2
+  - entity: {key: poi, type: loc, name: "{@ruin_2}", fields: {kind: poi, poi: ruin, feature: "a hidden ruin", region: "@region", knowledge: secret}}
+  - table: poi-names
+    as: vault_name
+  - entity: {key: poi, type: loc, name: "{@vault_name}", fields: {kind: poi, poi: vault, feature: "a vault or sealed facility", region: "@region"}}
+  - table: poi-names
+    as: site
+  - entity: {key: poi, type: loc, name: "{@site}", fields: {kind: poi, poi: encounter-site, feature: "a wasteland encounter site: a landmark where weird things happen", region: "@region"}}
+  - table: place-names
+    as: hub
+  - entity: {key: poi, type: loc, name: "{@hub}", fields: {kind: poi, poi: caravan-hub, feature: "a caravan hub or crossroads", region: "@region"}}
+  - roll: d2+1
+    as: oddities
+  - repeat: "@oddities"
+    steps:
+      - table: poi-names
+        as: odd
+      - entity: {key: poi, type: loc, name: "{@odd}", fields: {kind: poi, poi: oddity, feature: "a hex-filler oddity (a crashed Vertibird, a standing statue, a lake that glows at night)", region: "@region"}}
+  # 4. Populate with factions: at least three with interests here.
+  - repeat: 3
+    steps:
+      - table: setting-faction-identity
+        as: identity
+      - table: setting-faction-agenda
+        as: agenda
+      - table: faction-names
+        as: faction_name
+      - table: first-names
+        as: agent_name
+      - roll: 3d6
+        as: agent_wil
+      - entity:
+          key: agent
+          type: npc
+          name: "{@agent_name}"
+          fields: {role: "an agent of {@faction_name}", WIL: "@agent_wil"}
+      - entity:
+          key: faction
+          type: faction
+          name: "{@faction_name}"
+          fields:
+            kind: "@identity"
+            agenda: "@agenda"
+            leader: "@agent"
+            agents: ["@agent"]
+            WIL: "@agent_wil"
+  - map:
+      places: poi
+      paths: {max: 4}
+      watches: {short: 1, medium: 2, long: 3}
+      hidden: 6
+  - prompt: "Label each path: old highway (+0, never lost), beaten trail (+1, lost 2-in-6) or open wastes (+2, lost 3-in-6), on top of its distance (short +1, medium +2, long +3). Some paths are hidden: visible only once discovered, learned from a local, or mapped."
+  - prompt: "Drop more points until the region has about a dozen. Which ground holds a hot zone (`gen edit <draft> poi-n.hot_zone=true`)? Stormy weather there is rad-rain."
+  - prompt: "Ruins and factions are named by the book's patterns: fill in each X (and Y) from what the place used to be or became, or what the faction wants (`gen edit <draft> poi-3.name='The Kane Site'`). A settlement name can also be a corrupted pre-war place-name (Hexington, Conquord)."
+  - prompt: "At least two of the three factions disagree: about what, and where?"
+  - prompt: "Hook the party with three open questions: a Job (who is hiring and why), a Rumor (interesting but unverified), a Danger (what everyone fears). Stock the first session where they meet."
+---
+generator: wasteland-seed
+title: Wasteland seed
+help: >-
+  A stretch of the open wastes: its terrain, its defining feature, who lives or passes through
+  (two, as the book's example has a raider warband and a lone prospector), and a rumor or legend.
+  region=<place> puts it inside a place. Prefill by name: terrain, feature, inhabitants, rumor,
+  stretch_name.
+params:
+  region: {kind: text, default: "", help: "The region it lies in, e.g. loc:the-hollows"}
+source: overseers-guide/wasteland-seeds#region-generator
+steps:
+  - table: place-names
+    as: stretch_name
+  - choose_or_roll: {table: wasteland-terrain, as: terrain}
+  - choose_or_roll: {table: wasteland-feature, as: feature}
+  - table: wasteland-inhabitants
+    as: inhabitants
+    times: 2
+    distinct: true
+  - choose_or_roll: {table: wasteland-rumor, as: rumor}
+  - entity:
+      key: stretch
+      type: loc
+      name: "{@stretch_name}"
+      fields:
+        kind: wasteland
+        terrain: "@terrain"
+        feature: "@feature"
+        inhabitants: "@inhabitants"
+        rumor: "@rumor"
+        region: "$region"
+  - prompt: "Stock all four: weather, neighbors, memory, weirdness. Answer the traveler's question — what's out here, and why should I care? — twice per watch."
+  - prompt: "Most of the wasteland is empty, and that's fine. Leave hooks dangling: who wants something here, and what's 300 feet off the road begging to be looted?"
+  - prompt: "Three hooks, as the book's example has: a job, a strange thing someone saw, something missing."
+---
+generator: vault-seed
+title: Vault & ruin seed
+help: >-
+  A vault, ruin or facility: its history (purpose, construction, ruination), its denizens'
+  attitude and a standout NPC, two factions with agendas, and 6–20 rooms (monster, lore, special
+  or trap, each with a detail), numbered from the entrance and joined by paths, some conditional or
+  hidden. region=<place> puts it inside a place. Prefill by name: use, builder, entrance, rooms, …
+params:
+  region: {kind: text, default: "", help: "The place it lies in, e.g. loc:old-concord-stretch"}
+source: overseers-guide/vault-seeds#creating-a-vault-or-ruin
+steps:
+  - table: poi-names
+    as: vault_name
+  - table: dungeon-purpose-original-use
+    as: use
+  - table: dungeon-purpose-built-by
+    as: builder
+  - table: dungeon-construction-entrance
+    as: entrance
+  - table: dungeon-construction-composition
+    as: composition
+  - table: dungeon-ruination-condition
+    as: condition
+  - table: dungeon-ruination-cause
+    as: cause
+  - table: dungeon-traits-virtue
+    as: virtue
+  - table: dungeon-traits-vice
+    as: vice
+  - entity:
+      key: vault
+      type: loc
+      name: "{@vault_name}"
+      fields:
+        kind: vault
+        poi: vault
+        feature: "@use"
+        traits: {virtue: "@virtue", vice: "@vice"}
+        region: "$region"
+      body: |
+        Purpose: {@use}, built by {@builder}.
+        Construction: {@entrance} (the entrance), {@composition}.
+        Ruination: {@condition}, from {@cause}.
+  # Then roll again for any unusual NPCs who actively prefer life in the ruin.
+  - table: dungeon-traits-virtue
+    as: npc_virtue
+  - table: dungeon-traits-vice
+    as: npc_vice
+  - table: first-names
+    as: npc_name
+  - entity:
+      key: npc
+      type: npc
+      name: "{@npc_name}"
+      fields:
+        role: "a denizen of {@vault_name} who prefers life inside"
+        traits: {virtue: "@npc_virtue", vice: "@npc_vice"}
+      links: [{rel: lives in, to: "@vault"}]
+  # Factions: more than one group should want something here, and they should not agree.
+  - repeat: 2
+    steps:
+      - table: dungeon-agenda-goal
+        as: goal
+      - table: dungeon-agenda-obstacle
+        as: obstacle
+      - table: faction-names
+        as: faction_name
+      - entity:
+          key: faction
+          type: faction
+          name: "{@faction_name}"
+          fields: {agenda: "@goal", obstacle: "@obstacle"}
+          links: [{rel: holds, to: "@vault"}]
+  # Build the map: drop 6–20 d6; each face is a room type.
+  - roll: d15+5
+    as: rooms
+  - repeat: "@rooms"
+    steps:
+      - table: dungeon-die-drop
+        as: drop
+      - table: "{@drop.what}"
+        as: what
+      - table: "{@drop.detail}"
+        as: detail
+      - entity:
+          key: room
+          type: loc
+          name: "{@what}"
+          fields:
+            kind: room
+            poi: "@drop.room"
+            feature: "{@what}, {@detail}"
+            region: "@vault"
+  - map:
+      places: room
+      paths: {max: 4}
+      conditional: 5
+      hidden: 6
+      entrance: true
+      number: "{@vault_name}, room {@n}"
+  - prompt: "The name is the book's ruin pattern: fill in the X, or give it a vault number (Vault 97)."
+  - prompt: "What kind of vault is this? What was it built for, and what's it used for now? Show the history through details (dead greenhouses in an agricultural experiment)."
+  - prompt: "Denizens and factions: what does each faction want, what stands in its way, and why don't they agree? Give the NPCs wants and agendas, and let them negotiate, even in combat."
+  - prompt: "Theme: combine history and denizens into a paragraph and filter every room through it. Deeper means more dangerous; give at least one hidden area most parties will miss (nothing load-bearing in it)."
+  - prompt: "Name every room; keep room keys short and specific. Conditional paths need tools, keys, climbing gear, a map or a guide; hidden ones are found at a cost. Hooks: who's paying the party to go in, and what aren't they saying?"
+---
+generator: dungeon-seed
+title: Vault & ruin seed (the parent's dungeon seed)
+help: "In Fallout 2e a dungeon is a vault, a ruin or a facility: `didact gen run fallout-2e.vault-seed`."
+source: overseers-guide/vault-seeds
+steps:
+  - stop: "Fallout 2e's dungeons are vaults and ruins: `didact gen run fallout-2e.vault-seed` (region=<place> puts it inside one)."
+---
+generator: forest-seed
+title: Wasteland seed (the parent's forest seed)
+help: "Fallout 2e has no forestcrawl: its wilds are the wastes. `didact gen run fallout-2e.wasteland-seed`."
+source: overseers-guide/wasteland-seeds
+steps:
+  - stop: "Fallout 2e's wilds are the wastes, not the Wood: `didact gen run fallout-2e.wasteland-seed`."

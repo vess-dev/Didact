@@ -1,0 +1,725 @@
+# The Civil War (campaigns/02-the-civil-war): written by es_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Elder Scrolls 2e's numbers, and Grimscrolls'
+# card where its Bestiary or its Faces has the threat) and clocks.
+id: the-civil-war
+type: quest
+name: The Civil War
+tags: [the-civil-war, frame, main-campaign]
+goal: |-
+  The White-Gold Concordat that ended the Great War bought the Empire peace at a price: the worship of Talos — the Nord hero-emperor turned god — was outlawed across the Empire, to satisfy the elves of the Aldmeri Dominion. To a devout Nord this is the theft of a god. Ulfric Stormcloak, Jarl of Windhelm, made it a war: he challenged High King Torygg to single combat and killed him, and now leads the Stormcloaks — the Sons and Daughters of Skyrim — to throw off the Empire, win the province its independence, and worship Talos in the open.
+
+  Against him stand General Tullius and the Imperial Legion, sent from Cyrodiil to crush the rebellion and hold Skyrim together under one law and one crown. To the Legion, Ulfric is a king-killer and an opportunist whose rising weakens the only power that can stand against the elves when the Concordat's truce inevitably breaks.
+
+  The party joins one side and fights it to the end. The war moves Hold by Hold — fort skirmishes and contested ground, the hinge Battle for Whiterun, then a grinding reconquest, and finally an assault on the enemy's own capital: Solitude for the Stormcloaks, Windhelm for the Legion. When the dust settles, Jarls have fallen and been replaced, a victor sits the throne, and the common folk sing the party's name (or curse it).
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  *Skyrim is two countries wearing one map. In Windhelm a Jarl who killed his king calls himself a liberator; in Solitude a general from the south calls that murder. Between them lie seven more Holds, and every one of them is choosing — or being made to choose. You will ride for one banner, take a fort in the snow, hold the gates of Whiterun while the city burns around you, and at the end you will stand in the enemy's capital and watch a man kneel. Somewhere above Solitude, behind warded glass, a smiling elf reads the casualty lists and is well pleased.*
+
+  ## GM notes
+
+  **Date.** Sundas, 17 Last Seed 4E 201: Out of Helgen, the opening it shares with the Main Quest; or the day the party first enlists. It is the calendar's start: a new campaign opens on it.
+
+  **The frame's text:** `didact rules lookup the civil war pitch` (and `stakes`, `tone touchstones`, `arrival`, `the branch`, `plot beats`, `the place`, `cast`, `clocks`, `threats`, `rewards`, `climax`).
+
+  **Stakes.** Skyrim's future is the prize: an independent kingdom of Nords under Ulfric, or a province held inside a battered Empire under Tullius. Jarls will fall, cities will burn, and whichever banner wins, the losing half of Skyrim will remember who carried the other one. The hidden hand. Neither army is the true winner. The Thalmor — the High Elf supremacists who forced the Concordat — publicly back the Empire and privately want the war to last as long and bleed as freely as possible. A long civil war keeps Men killing Men, weakens whoever wins, and leaves the Dominion stronger for the next war it actually means to fight. The Warden should let this surface slowly: a captured dispatch, a Thalmor "advisor" too pleased by a stalemate, an embassy dossier (see the Main Quest's Diplomatic Immunity) that names Ulfric himself as a Thalmor asset whose rebellion serves their ends whether he knows it or not. Victory for either banner is real — but the elves win something too, and a sharp party will notice.
+
+  **Arrival.** Any one of these puts the party on the road to a recruiter. Pick the one that fits the table, or let a background do it.
+
+  - **Out of Helgen.** The classic opening (shared with the Main Quest): the party are bound prisoners at Helgen when a dragon levels the town. They flee with **Ralof** (a Stormcloak) or **Hadvar** (an Imperial soldier) — and the man they ran beside is the first to ask them to enlist. (This only sets who *asks first*; the party may still choose the other side.)
+  - **A background tie.** A **Stormcloak Soldier** or **Imperial Legionnaire** background starts that faction at **+1** (Trusted) and the opposite at **−1** (Distrusted), and points straight at the muster.
+  - **A Hold under threat.** The party's home or a settlement they've cleared sits in a contested Hold (see *Settlements*). A war-party is coming for the road it stands on; the only protection on offer comes with a banner attached.
+  - **Coin and grievance.** Both armies pay, both are recruiting, and a sellsword party can be talked into a cause over enough mead — or hired by a Jarl to carry a war-message that drags them in.
+
+  **Plot beats.**
+
+  1. **Beat 1 — Joining (the muster).** Run the initiation for the chosen side, above. The point of the beat is the *oath* and the first taste of the other ranks: introduce the recruiter who will assign the party's missions (**Galmar** for the Stormcloaks, **Rikke** for the Legion) and let the party meet a common soldier or two so the later dead have faces.
+  2. **Beat 2 — The Jagged Crown (both sides).** The first true mission, and it is the *same dungeon* for both armies — a race for a relic (its card is in **Relics**: The Jagged Crown). Long ago the High Kings of Skyrim wore the **Jagged Crown**, a circlet of dragon-bone and teeth; whoever recovers it wears the legitimacy of old Skyrim. It lies in the Nordic ruin of **Korvanjund**. - The party rides out with a war-band (**Ralof** is along for the Stormcloaks; **Hadvar** for the Legion) and finds the *enemy* faction already at the ruin. Fight through them and into the barrow.
+  - Inside: a **Hall of Stories** door-puzzle (the claw-door's three rings: Fox, Moth, Dragon), draugr in the dark, and a **Draugr Overlord** crowned and waiting in the crypt.
+  - Take the Crown. Carry it back to **Ulfric** (Stormcloaks) or **Tullius** (Legion). *This is the last moment a party may switch banners.* **Reward:** the army's gratitude (Ulfric's open thanks; from Tullius only a "Good work, soldier"); the Crown itself goes to the war-leader, not the party.
+  3. **Beat 3 — Message to Whiterun (the spark).** Whiterun is the neutral heart of Skyrim, and its Jarl, **Balgruuf the Greater**, has kept his Hold out of the war as long as he can. Both sides need it; the war cannot be won around it. The party carries the demand that ends his neutrality. - **Stormcloaks:** Carry **Ulfric's war axe** to Balgruuf — by old custom, to leave it is peace, to take it back is war. Balgruuf refuses the rebellion and returns the axe; the party brings it back to Ulfric, and the muster for the assault begins.
+  - **Imperials:** Carry **Tullius's** message to Balgruuf. The Jarl, pressed, sides with the Empire and offers his own axe to Ulfric as a last gesture of peace; Ulfric rejects it. Warn Balgruuf the storm is coming, then report to the Legion command (**Legate Cipius**) to prepare the city's defense.
+  - Either way, the courier's errand lights the fuse. **Beat 4 follows immediately.**
+  4. **Beat 4 — The Battle for Whiterun (the hinge).** **This is the war's turning point** and the campaign's centerpiece. Whiterun falls to whoever wins here, and with it the strategic heart of the province. Run it as a proper set-piece: a night assault on a walled city, fire on the thatch, soldiers in the streets, the fight climbing district by district to the great hall of **Dragonsreach**. - **Stormcloak assault.** Orders from **Ulfric**; a briefing with **Galmar** at the Stormcloak camp outside the walls. The party storms the gate, fights through the **Plains** and **Wind** Districts under Imperial arrows, lowers a drawbridge or breaches a barricade, and pushes into Dragonsreach. **Balgruuf** fights to the last of his honor, then yields (he surrenders rather than die). The Stormcloaks install **Vignar Gray-Mane** — an aged ex-Companion and staunch rebel — as the new Jarl. **Reward:** a fine weapon from the quartermaster and the rank of **Ice-Veins**.
+  - **Imperial defense.** Report to **Cipius**, then **Rikke**. The party holds the besieged city — manning barricades, defending the drawbridge, cutting down the Stormcloak detachment as it pours through the gate until the attack breaks. **Balgruuf** gives a speech of thanks; **Whiterun stays with the Empire**, Balgruuf keeps his seat, and the Legion now owns the center of the map. **Reward:** the rank of **Quaestor** and a fine weapon from the quartermaster. > **Renown.** Whichever way it goes, the Battle for Whiterun is *public* and sung about. **Renown +1** (one step, the cap per session) — a band that held or took the Jewel of the North is suddenly **Known**, then **Renowned** as the war goes on. Whiterun folk on the losing side will remember the party's banner.
+  5. **Beat 5 — Reconquest, Hold by Hold (the long campaign).** With Whiterun decided, the war becomes a grind across the remaining Holds. This is the **Liberation of Skyrim** (Stormcloak) or the **Reunification of Skyrim** (Imperial) — the same engine under two names: the war-leader assigns one contested Hold at a time, and the party takes it, usually by storming its **fort** (the *fort skirmish*: a stat-block courtyard battle, a commander to kill, a garrison to break). **Taking the Reach** is the bloodiest of these — Markarth is bitterly contested, riddled with Forsworn, and changes hands hard. Run three to five of these as the table's appetite allows; each is a self-contained fort or field mission paying gear, and the first two a rank-step. Use The Holds as the map and let the party's victories *flip the Jarls*: | Hold (capital) | Early Jarl & lean | Falls to → installs |
+  |---|---|---|
+  | **Whiterun** | Balgruuf (neutral→Imperial) | Stormcloaks → **Vignar Gray-Mane** (decided in Beat 4) |
+  | **Eastmarch** (Windhelm) | **Ulfric** (Stormcloak capital) | Legion → **Brunwulf Free-Winter** (the final assault) |
+  | **Haafingar** (Solitude) | **Elisif the Fair** (Imperial capital) | does not fall unless the rebellion wins all (the final assault) |
+  | **The Reach** (Markarth) | **Igmund** (Imperial) | Stormcloaks → **Thongvor Silver-Blood**; contested, Forsworn-ridden |
+  | **Falkreath** | **Siddgeir** (Imperial) | Stormcloaks → **Dengeir** (his uncle) |
+  | **Hjaalmarch** (Morthal) | **Idgrod Ravencrone** (Imperial, indifferent) | Stormcloaks → **Sorli the Builder** |
+  | **The Pale** (Dawnstar) | **Skald the Elder** (Stormcloak) | Legion → **Brina Merilis** |
+  | **The Rift** (Riften) | **Laila Law-Giver** (Stormcloak) | Legion → **Maven Black-Briar** |
+  | **Winterhold** | **Korir** (Stormcloak) | Legion → **Kraldar** | - **Stormcloak path** ends by taking **Haafingar** — the assault on **Fort Hraggstad** opens the road to Solitude.
+  - **Imperial path** ends by taking **Eastmarch** — the assault on **Fort Amol** opens the road to Windhelm. Each fall is a public deed in that Hold: **Faction Reputation** with the party's army holds at **Trusted (+1)** until the capital falls; a deposed Jarl's loyalists turn cold while the installed Jarl's people turn warm. A **Bounty** the party carried in a flipped Hold may be quietly forgiven by a grateful new Jarl — or pursued harder by a hostile one. > **The optional truce.** If the table is also running the Main Quest, the dragon crisis may force a ceasefire (the *Season Unending* talks at High Hrothgar). The war *pauses* — unless the enemy capital is the last city standing. Use it to complicate the map: a Hold or two may change hands at the negotiating table rather than on the field, and the Thalmor's emissary **Elenwen** may insist on a seat, a small, telling sign of who profits from the bloodletting.
+  6. **Beat 6 — The Final Assault (the enemy capital).** The war ends in the foe's own throne-room. This is a second great set-piece to mirror Whiterun: a charge through a defended city to a last stand in the great hall, the enemy commanders fought in sequence, and the war-leader's foe brought to his knees. - **Battle for Solitude (Stormcloak victory).** After Fort Hraggstad, orders from **Galmar**; the party hears **Ulfric's** speech at the gates, then fights up through Solitude to **Castle Dour**. **Legate Rikke** dies covering the retreat; **General Tullius** is beaten into submission. Ulfric offers the party the killing stroke — *behead Tullius yourself, or let Ulfric do it.* Skyrim is independent. **Elisif** is kept on as Jarl of a now-rebel Solitude (a mercy, and a leash). **Reward:** a sword from Ulfric's own armory; the rank of **Stormblade**; Stormcloaks → **Sworn (+2)**.
+  - **Battle for Windhelm (Imperial victory).** After Fort Amol, **Tullius's** speech; the party charges the gates and fights through the ancient City of Kings to the **Palace of the Kings**. **Galmar Stone-Fist** dies at his Jarl's side; **Ulfric** is forced to his knees. Tullius offers the party the stroke — *behead Ulfric yourself, or let Tullius do it.* The rebellion is broken; the fair-minded **Brunwulf Free-Winter** — a friend to the city's abused Dunmer — is installed as the new Jarl of Eastmarch. **Reward:** an enchanted sword from Tullius; the rank of **Legate**; the party made **Thane of Eastmarch** with property in Windhelm; Legion → **Sworn (+2)**. > **The last beat is a person.** Whoever kneels — Tullius or Ulfric — let the party look him in the eye. Sparing-and-imprisoning is on the table; so is the headsman. **Renown +1** for ending the war in public; and one quiet scene afterward where a Thalmor agent, or a captured dispatch, makes plain that the Dominion counted this war a victory of its own. The cheering crowd does not know that yet.
+
+  **Climax.**
+
+  The enemy capital falls. Two endings, mirror images:
+
+  - **A Free Skyrim (Stormcloak).** The Empire is thrown out; Ulfric rules, the Talos shrines reopen, and the Nords have their independence. The party are heroes of the rebellion — **Stormblade**, **Sworn**, **Renowned**. And in the quiet after, the cost: a Skyrim cut off and exhausted, its Dunmer no freer than before, and a Thalmor dossier that named Ulfric their asset all along. The elves wanted the Empire weakened in the north. They got it.
+  - **A Reunified Skyrim (Imperial).** The rebellion is broken; Ulfric's head rolls or he rots in a cell, Brunwulf rules a kinder Windhelm, and the province is whole under one law. The party are heroes of the Legion — **Legate**, **Sworn**, **Renowned**, **Thane of Eastmarch**. And the cost: the Concordat still stands, Talos is still outlawed, and the elves still smile — for a province held together by the Empire is a province the Empire's masters, the Thalmor, still circle. The war that "ended" only set the table for the next one.
+
+  Either way, a man knelt and the party chose whether he died. Either way, somewhere above Solitude, an emissary closes a dossier, satisfied. The Dragon Crisis is still in the sky — and the truest war, the one the elves are actually fighting, has not yet begun.
+
+  **Also in the frame:** The Branch — Choosing a Side & Joining (`didact rules lookup the civil war …`).
+
+  **The frame's records.** `didact gen run elder-scrolls-skyrim.frame --prefill '{"frame": "The Civil War"}' --auto` drafts the region, 9 places, 20 people, 0 threats, its factions and its clocks, for the world's system; `gen commit` writes them.
+
+  **Bestiary** (Elder Scrolls 2e / Grimscrolls): Draugr → `draugr` / `draugr`; Draugr Overlord → `draugr-overlord` / `draugr`; Ice Wraith → `ice-wraith` / `ice-wraith`; Bandit → `bandit` / `bandits`; Forsworn → `forsworn` / `forsworn`; Forsworn Briarheart → `forsworn-briarheart` / (no Grimscrolls card); Hagraven → `hagraven` / `hagraven`; Dragon → `dragon` / `dragon`.
+source: campaigns/02-the-civil-war#pitch
+---
+id: the-civil-war-region
+type: loc
+name: The Civil War pointcrawl
+tags: [the-civil-war, region]
+mechanics:
+  elder-scrolls-2e: {kind: region}
+body: |-
+  ## GM notes
+
+  Pointcrawl the war across the Hold gazetteer (The Holds); these are the nodes that matter to the campaign.
+source: campaigns/02-the-civil-war#the-place--key-locations
+---
+id: the-civil-war-windhelm-palace-of-the-kings
+type: loc
+name: Windhelm — Palace of the Kings
+tags: [the-civil-war, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  (*Eastmarch*) The black-stone hall of the rebellion; Ulfric and Galmar muster here. Outside it, the **Gray Quarter**, where Dunmer refugees live cramped and despised — the rebellion's conscience and its blind spot. The Stormcloak enlistment node and the Imperial campaign's final battlefield.
+source: campaigns/02-the-civil-war#the-place--key-locations
+---
+id: the-civil-war-solitude-castle-dour
+type: loc
+name: Solitude — Castle Dour
+tags: [the-civil-war, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  (*Haafingar*) The grim Legion fortress under Tullius and Rikke, hard by the **Blue Palace** (Elisif's court). The Imperial enlistment node and the Stormcloak campaign's final battlefield. Above the city broods the **Thalmor Embassy** — Elenwen's poisonous parties, and the dossiers that reveal who really gains from the war.
+source: campaigns/02-the-civil-war#the-place--key-locations
+---
+id: the-civil-war-whiterun-dragonsreach
+type: loc
+name: Whiterun — Dragonsreach
+tags: [the-civil-war, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  (*Whiterun Hold*) Balgruuf's great hall atop the stepped trade-city; the **hinge** of the whole war (Beat 4). Below it, two feuding families — the rebel-leaning **Gray-Manes** and the Empire-loyal **Battle-Borns** — a city's civil war in miniature.
+source: campaigns/02-the-civil-war#the-place--key-locations
+---
+id: the-civil-war-korvanjund
+type: loc
+name: Korvanjund
+tags: [the-civil-war, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  (*a Nordic ruin in the Pale*) The barrow of the **Jagged Crown** (Beat 2): a Hall-of-Stories door-puzzle, draugr, and a crowned Overlord.
+source: campaigns/02-the-civil-war#the-place--key-locations
+---
+id: the-civil-war-serpentstone-isle
+type: loc
+name: Serpentstone Isle
+tags: [the-civil-war, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  (*in the Sea of Ghosts, northeast of Winterhold*) A standing stone on a frozen islet haunted by an **Ice Wraith** — the Stormcloak initiation.
+source: campaigns/02-the-civil-war#the-place--key-locations
+---
+id: the-civil-war-fort-hraggstad
+type: loc
+name: Fort Hraggstad
+tags: [the-civil-war, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  (*Haafingar*) A bandit-held coastal fort: the Imperial initiation, and later the Stormcloak gateway to Solitude.
+source: campaigns/02-the-civil-war#the-place--key-locations
+---
+id: the-civil-war-the-contested-forts
+type: loc
+name: The contested forts
+tags: [the-civil-war, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  **Fort Amol** (Eastmarch, the Imperial gateway to Windhelm), **Fort Sungard** and **Fort Neugrad** (the Reach / Falkreath), **Fort Snowhawk** (Hjaalmarch), **Fort Dunstad** (the Pale), **Fort Greenwall** (the Rift), and the rest — each a fort-skirmish node for the reconquest (Beat 5). Reskin one bandit fort freely into another.
+source: campaigns/02-the-civil-war#the-place--key-locations
+---
+id: the-civil-war-high-hrothgar
+type: loc
+name: High Hrothgar
+tags: [the-civil-war, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  (*the Throat of the World*) Neutral ground; if the optional truce convenes, it convenes here, with Elenwen angling for a chair.
+source: campaigns/02-the-civil-war#the-place--key-locations
+---
+id: the-civil-war-ulfric-stormcloak
+type: monster
+name: Ulfric Stormcloak
+knowledge: secret
+tags: [the-civil-war, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Civil War'
+    hp: 10
+    armor: 2
+    STR: 16
+    DEX: 13
+    WIL: 16
+    attacks:
+    - {name: ornate war axe, damage: d8}
+    abilities:
+    - 'The Voice (creature ability, not for players): once per combat, in place of an attack, Ulfric Shouts
+      a foe off their feet — the target makes a STR save or is hurled back and loses their next turn.
+      (This is the Shout that killed High King Torygg; no PC may learn it.)'
+    - On taking Critical Damage at the campaign's end, he does not die — beaten to his knees, he 
+      meets the headsman with a king's composure, and the choice to strike is the party's.
+  grimscrolls:
+    tier: elite
+    role: brute
+    fact: 'Jarl of Windhelm, schooled by the Greybeards, who challenged the High King to a duel and Shouted
+      him down: his Voice staggers a rank (+1t for a beat). Whether he is a hero or a usurper depends
+      on the hall you ask in. (4E 201)'
+body: |-
+  ## GM notes
+
+  Jarl of Windhelm and leader of the rebellion: charismatic, uncompromising, a true believer in a free Skyrim — and a man whose pride and prejudice the war keeps excusing. A hero to his own, a tyrant-in-waiting to his foes.
+
+  Elder Scrolls 2e: 10 HP, 2 Armor, 16 STR, 13 DEX, 16 WIL, ornate war axe (d8), Stormcloak shield (counted in Armor).
+
+  Grimscrolls: its Face is `grimscrolls.ulfric-stormcloak` (Ulfric Stormcloak), in this record's grimscrolls block.
+source: campaigns/02-the-civil-war#ulfric-stormcloak
+---
+id: the-civil-war-galmar-stone-fist
+type: monster
+name: Galmar Stone-Fist
+knowledge: secret
+tags: [the-civil-war, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Civil War'
+    hp: 10
+    armor: 2
+    STR: 16
+    DEX: 12
+    WIL: 13
+    attacks:
+    - {name: battleaxe, damage: d10}
+    - name: thrown axe
+      damage: d6
+      qualities: [ranged]
+    abilities:
+    - Loyal past reason; he dies at Ulfric's side in the Palace of the Kings if the Legion takes 
+      Windhelm, and will not be talked into surrender.
+body: |-
+  ## GM notes
+
+  Ulfric's gruff housecarl and war-chief, a grizzled bear of a Nord in a bear's-head helm. He runs the rebellion's musters, tests every recruit, and assigns the party's missions through the campaign.
+
+  Elder Scrolls 2e: 10 HP, 2 Armor, 16 STR, 12 DEX, 13 WIL, battleaxe (d10), thrown axe (d6, ranged).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/02-the-civil-war#galmar-stone-fist
+---
+id: the-civil-war-general-tullius
+type: monster
+name: General Tullius
+knowledge: secret
+tags: [the-civil-war, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Civil War'
+    hp: 10
+    armor: 3
+    STR: 16
+    DEX: 13
+    WIL: 14
+    attacks:
+    - {name: Imperial sword, damage: d8}
+    abilities:
+    - 'Veteran command: any Imperial detachment that can see Tullius re-rolls its first failed Morale
+      save.'
+    - On taking Critical Damage in Castle Dour, he yields rather than die raving; like Ulfric, his 
+      end is the party's to give or stay.
+  grimscrolls:
+    tier: elite
+    role: tactician
+    fact: 'Military governor of Skyrim at Castle Dour, sent to end a rebellion with too few legionaries.
+      Nord custom baffles him and the Thalmor disgust him: show him a way to hurt them inside the treaty
+      and he finds the men. (4E 201)'
+body: |-
+  ## GM notes
+
+  The Empire's military governor of Skyrim, sent from Cyrodiil to end the rebellion: a hard, competent soldier with no patience for Nord mysticism and a clear, cold eye on the real enemy — the Thalmor. He thinks Ulfric a useful fool for the elves, and he is not entirely wrong.
+
+  Elder Scrolls 2e: 10 HP, 3 Armor, 16 STR, 13 DEX, 14 WIL, Imperial sword (d8), Legion shield (counted in Armor).
+
+  Grimscrolls: its Face is `grimscrolls.general-tullius` (General Tullius), in this record's grimscrolls block.
+source: campaigns/02-the-civil-war#general-tullius
+---
+id: the-civil-war-legate-rikke
+type: monster
+name: Legate Rikke
+knowledge: secret
+tags: [the-civil-war, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Civil War'
+    hp: 8
+    armor: 2
+    STR: 15
+    DEX: 14
+    WIL: 13
+    attacks:
+    - {name: Imperial sword, damage: d8}
+    - {name: Imperial bow, damage: d6}
+    abilities:
+    - She assigns the party's missions through the Imperial campaign and stands beside them in every
+      great battle.
+  grimscrolls:
+    category: Orders & Armies
+    tier: mook
+    role: tactician
+    sights: red cloth and steel in step
+    sounds: a centurion's cadence
+    smells: oiled leather
+    traits: [fight by the manual, an order outranks a grudge]
+    moves: [Lock Shields and Push, Arrest in the Emperor's Name]
+    wants: the road open and the province quiet — lawful papers make them stand down
+    note: A patrol is a 4d pool under a tough **Tribune**; while a **Legate** stands, it can't drop 
+      below 1d. Its **battlemage** makes open ground +1t. They accept surrender and take prisoners 
+      to trial; the Fourth Era's **Penitus Oculatus**, tough lurkers, do neither.
+body: |-
+  ## GM notes
+
+  Tullius's second and the Legion's recruiter in Skyrim — and a Nord herself, who worships Talos in private and fights for the Empire anyway because she believes a fractured Skyrim cannot survive what is coming. The war's tragedy wears her face: she dies a patriot's death at Solitude if the rebellion wins.
+
+  Elder Scrolls 2e: 8 HP, 2 Armor, 15 STR, 14 DEX, 13 WIL, Imperial sword (d8) or Imperial bow (d6), Legion shield (counted in Armor).
+
+  Grimscrolls: its card is `grimscrolls.imperial-legion-patrol` (Imperial Legion Patrol), in this record's grimscrolls block.
+source: campaigns/02-the-civil-war#legate-rikke
+---
+id: the-civil-war-stormcloak-soldier
+type: monster
+name: Stormcloak Soldier
+knowledge: secret
+tags: [the-civil-war, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Civil War'
+    hp: 5
+    armor: 1
+    STR: 13
+    DEX: 12
+    WIL: 10
+    attacks:
+    - {name: war axe, damage: d8}
+    - {name: hunting bow, damage: d6}
+    abilities:
+    - On home ground (Eastmarch, the Pale, the Rift, Winterhold) they re-roll their first failed 
+      Morale save — they believe.
+  grimscrolls:
+    category: Orders & Armies
+    tier: mook
+    role: brute
+    sights: bear shields in the snow
+    sounds: a war song, chorus shouted
+    smells: mead and wet wool
+    traits: [charge before the order, never yield to an elf]
+    moves: [Shield-Rush Down the Hill, Call You Out by Name]
+    wants: Skyrim free and Talos worshipped openly — a brave foe is a recruit not yet met
+    note: A warband is a 4d pool that fights worst when baited. Its officer, a **Stormblade** at 
+      best, is a tough who will honor a challenge to single combat and its result. Share their mead 
+      or point them at a Thalmor and you have friends. The rising is 4E 201's.
+body: |-
+  ## GM notes
+
+  Fur-and-mail rebels, mostly Nords, fighting for Talos and a free Skyrim. Bands of four or more are a detachment; a unit fields a standard-bearer and an officer in heavier mail (2 Armor, sword d8).
+
+  Elder Scrolls 2e: 5 HP, 1 Armor, 13 STR, 12 DEX, 10 WIL, war axe (d8) or hunting bow (d6).
+
+  Grimscrolls: its card is `grimscrolls.stormcloak-warband` (Stormcloak Warband), in this record's grimscrolls block.
+source: campaigns/02-the-civil-war#stormcloak-soldier
+---
+id: the-civil-war-imperial-soldier
+type: monster
+name: Imperial Soldier
+knowledge: secret
+tags: [the-civil-war, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Civil War'
+    hp: 5
+    armor: 2
+    STR: 13
+    DEX: 12
+    WIL: 10
+    attacks:
+    - {name: Imperial sword, damage: d8}
+    - {name: Imperial bow, damage: d6}
+    abilities:
+    - 'Their discipline tells: a Legion detachment re-rolls a failed Morale save once per combat.'
+  grimscrolls:
+    category: Orders & Armies
+    tier: mook
+    role: tactician
+    sights: red cloth and steel in step
+    sounds: a centurion's cadence
+    smells: oiled leather
+    traits: [fight by the manual, an order outranks a grudge]
+    moves: [Lock Shields and Push, Arrest in the Emperor's Name]
+    wants: the road open and the province quiet — lawful papers make them stand down
+    note: A patrol is a 4d pool under a tough **Tribune**; while a **Legate** stands, it can't drop 
+      below 1d. Its **battlemage** makes open ground +1t. They accept surrender and take prisoners 
+      to trial; the Fourth Era's **Penitus Oculatus**, tough lurkers, do neither.
+body: |-
+  ## GM notes
+
+  Disciplined Legionnaires and auxiliaries (many of them Nords) in segmented armor. Bands of four or more are a detachment; a unit fields an officer (the Imperial Captain, below).
+
+  Elder Scrolls 2e: 5 HP, 2 Armor, 13 STR, 12 DEX, 10 WIL, Imperial sword (d8) or Imperial bow (d6), Legion shield (counted in Armor).
+
+  Grimscrolls: its card is `grimscrolls.imperial-legion-patrol` (Imperial Legion Patrol), in this record's grimscrolls block.
+source: campaigns/02-the-civil-war#imperial-soldier
+---
+id: the-civil-war-imperial-captain
+type: monster
+name: Imperial Captain
+aliases: [Imperial Captain / Stormcloak Officer]
+knowledge: secret
+tags: [the-civil-war, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Civil War'
+    hp: 8
+    armor: 2
+    STR: 14
+    DEX: 13
+    WIL: 12
+    attacks:
+    - {name: sword, damage: d8}
+    - {name: war axe, damage: d8}
+  grimscrolls:
+    category: Orders & Armies
+    tier: mook
+    role: tactician
+    sights: red cloth and steel in step
+    sounds: a centurion's cadence
+    smells: oiled leather
+    traits: [fight by the manual, an order outranks a grudge]
+    moves: [Lock Shields and Push, Arrest in the Emperor's Name]
+    wants: the road open and the province quiet — lawful papers make them stand down
+    note: A patrol is a 4d pool under a tough **Tribune**; while a **Legate** stands, it can't drop 
+      below 1d. Its **battlemage** makes open ground +1t. They accept surrender and take prisoners 
+      to trial; the Fourth Era's **Penitus Oculatus**, tough lurkers, do neither.
+body: |-
+  ## GM notes
+
+  The veteran who holds a fort's gate or anchors a battle-line — the named foe at the end of a fort-skirmish (Beat 5). Tougher commanders climb in HP and Armor (to the cap of 3) and die.
+
+  Elder Scrolls 2e: 8 HP, 2 Armor, 14 STR, 13 DEX, 12 WIL, sword (d8) or war axe (d8), shield (counted in Armor).
+
+  Grimscrolls: its card is `grimscrolls.imperial-legion-patrol` (Imperial Legion Patrol), in this record's grimscrolls block.
+source: campaigns/02-the-civil-war#imperial-captain--stormcloak-officer
+---
+id: the-civil-war-stormcloak-officer
+type: monster
+name: Stormcloak Officer
+aliases: [Imperial Captain / Stormcloak Officer]
+knowledge: secret
+tags: [the-civil-war, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Civil War'
+    hp: 8
+    armor: 2
+    STR: 14
+    DEX: 13
+    WIL: 12
+    attacks:
+    - {name: sword, damage: d8}
+    - {name: war axe, damage: d8}
+  grimscrolls:
+    category: Orders & Armies
+    tier: mook
+    role: brute
+    sights: bear shields in the snow
+    sounds: a war song, chorus shouted
+    smells: mead and wet wool
+    traits: [charge before the order, never yield to an elf]
+    moves: [Shield-Rush Down the Hill, Call You Out by Name]
+    wants: Skyrim free and Talos worshipped openly — a brave foe is a recruit not yet met
+    note: A warband is a 4d pool that fights worst when baited. Its officer, a **Stormblade** at 
+      best, is a tough who will honor a challenge to single combat and its result. Share their mead 
+      or point them at a Thalmor and you have friends. The rising is 4E 201's.
+body: |-
+  ## GM notes
+
+  The veteran who holds a fort's gate or anchors a battle-line — the named foe at the end of a fort-skirmish (Beat 5). Tougher commanders climb in HP and Armor (to the cap of 3) and die.
+
+  Elder Scrolls 2e: 8 HP, 2 Armor, 14 STR, 13 DEX, 12 WIL, sword (d8) or war axe (d8), shield (counted in Armor).
+
+  Grimscrolls: its card is `grimscrolls.stormcloak-warband` (Stormcloak Warband), in this record's grimscrolls block.
+source: campaigns/02-the-civil-war#imperial-captain--stormcloak-officer
+---
+id: the-civil-war-thalmor-justiciar
+type: monster
+name: Thalmor Justiciar
+knowledge: secret
+tags: [the-civil-war, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Civil War'
+    hp: 6
+    armor: 1
+    STR: 10
+    DEX: 13
+    WIL: 14
+    attacks:
+    - {name: elven sword, damage: d8}
+    - name: Destruction bolt
+      damage: d8
+      qualities: [ranged]
+    abilities:
+    - "The long war: the Justiciar is never quite where the party can pin a betrayal on them. A captured
+      dispatch or embassy dossier in their keeping reveals the Dominion's true game — that a Skyrim bled
+      white by its own war is exactly what the elves want."
+  grimscrolls:
+    category: Orders & Armies
+    tier: tough
+    role: tactician
+    sights: spotless black-and-gold robes
+    sounds: a question as if to a child
+    smells: hot lightning
+    traits: [the Concordat shields them, blinded by contempt]
+    moves: [Read the Warrant, Lightning from Behind Shields]
+    wants: heretics in chains, and names — obedience suits them better than a fight
+    note: A patrol is a 6d pool; drop the **Justiciar**, its wizard and mind, and the soldiers 
+      withdraw to report. Answer civilly, deny Talos, and they pass with a sneer. Kill them and a 
+      death squad follows (*6d The Thalmor Find You*). After the Great War only.
+body: |-
+  ## GM notes
+
+  A black-and-gold agent of the Aldmeri Dominion: a hunter of Talos-worshippers who turns up at the edges of the war, "advising" the Empire and quietly pleased by every stalemate. Casts Destruction at range and cuts with an enchanted blade.
+
+  Elder Scrolls 2e: 6 HP, 1 Armor, 10 STR, 13 DEX, 14 WIL, elven sword (d8), Destruction bolt (d8, ranged) (as in the Bestiary).
+
+  Elder Scrolls 2e's Bestiary has the same stat block: `elder-scrolls-2e.thalmor-justiciar`.
+
+  Grimscrolls: its card is `grimscrolls.thalmor-justiciars` (Thalmor Justiciars), in this record's grimscrolls block.
+source: campaigns/02-the-civil-war#thalmor-justiciar
+---
+id: the-civil-war-elenwen
+type: monster
+name: Elenwen
+aliases: ['Elenwen, First Emissary']
+knowledge: secret
+tags: [the-civil-war, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Civil War'
+    hp: 8
+    armor: 1
+    STR: 10
+    DEX: 12
+    WIL: 16
+    attacks:
+    - {name: bound dagger, damage: d6}
+    - name: Destruction bolt
+      damage: d8
+      qualities: [ranged]
+  grimscrolls:
+    tier: elite
+    role: trickster
+    fact: 'First Emissary of the Thalmor in Skyrim: hostess of the best parties in Haafingar and keeper
+      of the cells beneath them. She broke Ulfric Stormcloak under questioning once, and kept the file.
+      (4E 201)'
+body: |-
+  ## GM notes
+
+  The smiling, ruthless head of the Thalmor in Skyrim, mistress of the embassy above Solitude, who keeps a dossier on everyone who matters — Ulfric included. Rarely fought; mostly a voice at a party and a hand behind the war. If the optional truce convenes, she insists on a seat at the table and savors the deadlock.
+
+  Elder Scrolls 2e: 8 HP, 1 Armor, 10 STR, 12 DEX, 16 WIL, bound dagger (d6), Destruction bolt (d8, ranged).
+
+  Grimscrolls: its Face is `grimscrolls.elenwen` (Elenwen), in this record's grimscrolls block.
+source: campaigns/02-the-civil-war#elenwen-first-emissary
+---
+id: the-civil-war-balgruuf-the-greater
+type: npc
+name: Balgruuf the Greater
+knowledge: secret
+tags: [the-civil-war, cast]
+fields: {role: the neutral man forced to choose}
+body: |-
+  ## GM notes
+
+  **Balgruuf the Greater** *(Whiterun)* — the neutral man forced to choose; spared or deposed at the hinge (Beat 4).
+source: campaigns/02-the-civil-war#the-jarls-see-the-holds
+---
+id: the-civil-war-elisif-the-fair
+type: npc
+name: Elisif the Fair
+knowledge: secret
+tags: [the-civil-war, cast]
+fields: {role: young Imperial widow of the slain High King}
+body: |-
+  ## GM notes
+
+  **Elisif the Fair** *(Solitude)* — young Imperial widow of the slain High King; kept on a leash if the rebellion wins.
+source: campaigns/02-the-civil-war#the-jarls-see-the-holds
+---
+id: the-civil-war-vignar-gray-mane
+type: npc
+name: Vignar Gray-Mane
+knowledge: secret
+tags: [the-civil-war, cast]
+fields: {role: 'aged rebel ex-Companion, installed by a Stormcloak victory'}
+body: |-
+  ## GM notes
+
+  **Vignar Gray-Mane** *(Whiterun)* — aged rebel ex-Companion, installed by a Stormcloak victory.
+source: campaigns/02-the-civil-war#the-jarls-see-the-holds
+---
+id: the-civil-war-brunwulf-free-winter
+type: npc
+name: Brunwulf Free-Winter
+knowledge: secret
+tags: [the-civil-war, cast]
+fields: {role: 'the fair-minded Nord, friend to the Dunmer, installed by an Imperial victory'}
+body: |-
+  ## GM notes
+
+  **Brunwulf Free-Winter** *(Windhelm)* — the fair-minded Nord, friend to the Dunmer, installed by an Imperial victory.
+source: campaigns/02-the-civil-war#the-jarls-see-the-holds
+---
+id: the-civil-war-maven-black-briar
+type: npc
+name: Maven Black-Briar
+knowledge: secret
+tags: [the-civil-war, cast]
+fields: {role: the venomous matriarch the Empire openly enthrones if the Rift flips}
+body: |-
+  ## GM notes
+
+  **Maven Black-Briar** *(Riften)* — the venomous matriarch the Empire openly enthrones if the Rift flips.
+source: campaigns/02-the-civil-war#the-jarls-see-the-holds
+---
+id: the-civil-war-igmund
+type: npc
+name: Igmund
+knowledge: secret
+tags: [the-civil-war, cast]
+fields:
+  role: 'with Siddgeir, Idgrod, Skald and Korir: the deposed and installed of the contested Holds'
+body: |-
+  ## GM notes
+
+  Plus the deposed and installed of the contested Holds (**Igmund**, **Siddgeir**, **Idgrod**, **Skald**, **Korir**, and their rivals) — flip them as the forts fall.
+source: campaigns/02-the-civil-war#the-jarls-see-the-holds
+---
+id: the-civil-war-siddgeir
+type: npc
+name: Siddgeir
+knowledge: secret
+tags: [the-civil-war, cast]
+fields:
+  role: 'with Igmund, Idgrod, Skald and Korir: the deposed and installed of the contested Holds'
+body: |-
+  ## GM notes
+
+  Plus the deposed and installed of the contested Holds (**Igmund**, **Siddgeir**, **Idgrod**, **Skald**, **Korir**, and their rivals) — flip them as the forts fall.
+source: campaigns/02-the-civil-war#the-jarls-see-the-holds
+---
+id: the-civil-war-idgrod
+type: npc
+name: Idgrod
+knowledge: secret
+tags: [the-civil-war, cast]
+fields:
+  role: 'with Igmund, Siddgeir, Skald and Korir: the deposed and installed of the contested Holds'
+body: |-
+  ## GM notes
+
+  Plus the deposed and installed of the contested Holds (**Igmund**, **Siddgeir**, **Idgrod**, **Skald**, **Korir**, and their rivals) — flip them as the forts fall.
+source: campaigns/02-the-civil-war#the-jarls-see-the-holds
+---
+id: the-civil-war-skald
+type: npc
+name: Skald
+knowledge: secret
+tags: [the-civil-war, cast]
+fields:
+  role: 'with Igmund, Siddgeir, Idgrod and Korir: the deposed and installed of the contested Holds'
+body: |-
+  ## GM notes
+
+  Plus the deposed and installed of the contested Holds (**Igmund**, **Siddgeir**, **Idgrod**, **Skald**, **Korir**, and their rivals) — flip them as the forts fall.
+source: campaigns/02-the-civil-war#the-jarls-see-the-holds
+---
+id: the-civil-war-korir
+type: npc
+name: Korir
+knowledge: secret
+tags: [the-civil-war, cast]
+fields:
+  role: 'with Igmund, Siddgeir, Idgrod and Skald: the deposed and installed of the contested Holds'
+body: |-
+  ## GM notes
+
+  Plus the deposed and installed of the contested Holds (**Igmund**, **Siddgeir**, **Idgrod**, **Skald**, **Korir**, and their rivals) — flip them as the forts fall.
+source: campaigns/02-the-civil-war#the-jarls-see-the-holds
+---
+id: the-civil-war-the-long-war
+type: track
+name: The Long War
+knowledge: secret
+tags: [the-civil-war, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: "(d6) Ticks each session the war drags on without a Hold changing hands, and whenever a truce stalls.
+  At 4, the Thalmor openly \"advise\": Justiciars ride with the Legion's patrols and hunt Talos-worshippers
+  in every town, whichever side the party serves. At 6, the Dominion has what it wanted — both armies
+  are bled so thin that bandits, Forsworn, and dragons roam the Holds unchecked until the war is ended."
+source: campaigns/02-the-civil-war#clocks
+---
+id: the-civil-war-whiteruns-neutrality
+type: track
+name: Whiterun's Neutrality
+knowledge: secret
+tags: [the-civil-war, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: '(d4) Ticks with each mission the party runs before Beat 3. At 4, the Stormcloaks strike before
+  the Legion can garrison the city: a Legion party finds Whiterun already fallen and runs Beat 4 as the
+  attackers. (A Stormcloak party is the attacker either way — for them the clock only measures how much
+  warning Balgruuf has had.)'
+source: campaigns/02-the-civil-war#clocks

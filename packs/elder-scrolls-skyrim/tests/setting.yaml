@@ -1,0 +1,96 @@
+# The setting's tests: its tables land (each lookup cell once), and it plays under both Elder
+# Scrolls systems: the calendar, lore, the frames as text, one frame started, one Hold visited and
+# one Prince's quest drafted, with each system's numbers and each system's trackers; and a
+# campaign opened later in 4E 201 (a holiday, then the fall), where a frame with no day of its own
+# opens on its today and the Main Quest's own day is set before the first session.
+test: every-table
+table: all
+times: 3
+---
+test: under-elder-scrolls-2e
+help: "An Elder Scrolls 2e world with the setting: the Main Quest started on the calendar's first day, its clocks ticking, a Hold visited, a day passing with its weather."
+script:
+  - world new skyrim --system elder-scrolls-2e --seed smoke
+  - pack enable elder-scrolls-skyrim
+  - campaign new helgen --seed smoke
+  - run: time show
+    expect: "Sundas, 17 Last Seed 4E 201 (summer)"
+  - run: lore scan "Ulfric's men were taken at Helgen under the Thalmor's eyes, and then Alduin came."
+    expect: ["lore:skyrim-tone", "lore:the-civil-war", "lore:the-dragon-crisis"]
+  - run: rules lookup the civil war clocks
+    expect: "The Civil War: Clocks (elder-scrolls-skyrim.the-civil-war-clocks"
+  - run: define dovahkiin
+    expect: "**Dovahkiin** (elder-scrolls-skyrim)"
+  - run: "gen run elder-scrolls-skyrim.frame --prefill '{\"frame\": \"The Main Quest\"}' --auto"
+    expect: ["The Main Quest opens Sundas, 17 Last Seed 4E 201: the campaign's today.", "[clock-2] track The Blades' Patience", "Not trackers: The War in the Way"]
+    expect_not: "neither Elder Scrolls system"
+  - run: gen commit g1
+    expect: "committed: 41 records (quest:the-main-quest"
+  - run: track list --gm
+    expect: ["The World-Eater's Hunger 0/6", "The Blades' Patience 1/4"]
+  - run: show Alduin --gm
+    expect: ["elder-scrolls-2e: HP 18/18 · armor 3 · STR 18 · DEX 14 · WIL 18", "mechanics.grimscrolls.tier: boss"]
+  - run: "gen run elder-scrolls-skyrim.hold --prefill '{\"hold\": \"The Rift\"}' --auto"
+    expect: ["loc Riften [capital-1]", "npc Laila Law-Giver [jarl-1]", "npc Maven Black-Briar [rival-1]", "`didact rules lookup the holds The Rift`"]
+  - run: gen commit g2
+    expect: "committed: 8 records (loc:the-rift"
+  - run: show 'Laila Law-Giver'
+    expect: ["role: Jarl of the Rift", "rules → loc:the-rift"]
+  - run: time advance 1 day
+    expect: ["Morndas, 18 Last Seed 4E 201 (summer)", "weather-summer"]
+---
+test: under-grimscrolls
+help: "A Grimscrolls world with the setting: Dawnguard started, its clock a pool and Serana's Trust a counter, Grimscrolls' card on Harkon, the Dark Brotherhood's not-trackers in Grimscrolls' words, the Daedric Quests' sandbox and one Prince's quest with his Patience."
+script:
+  - world new tamriel --system grimscrolls --seed smoke
+  - pack enable elder-scrolls-skyrim
+  - campaign new volkihar --seed smoke
+  - run: time show
+    expect: "Sundas, 17 Last Seed 4E 201 (summer)"
+  - run: rules lookup dawnguard clocks
+    expect: "Dawnguard: Clocks (elder-scrolls-skyrim.dawnguard-clocks"
+  - run: "gen run elder-scrolls-skyrim.frame --prefill '{\"frame\": \"Dawnguard\"}' --auto"
+    expect: ["Dawnguard opens whenever play reaches it, from Sundas, 17 Last Seed 4E 201: the campaign's today.", "kind: pool, pool: pressure"]
+  - run: gen commit g1
+    expect: "committed: 29 records (quest:dawnguard"
+  - run: track list --gm
+    expect: ["The Tyranny Clock 6d", "Serana's Trust 3"]
+  - run: track list
+    expect_not: ["The Tyranny Clock", "Serana's Trust"]
+  - run: show 'Lord Harkon' --gm
+    expect: ["grimscrolls: category Bosses of Tamriel · tier boss · role skirmisher", "mechanics.elder-scrolls-2e.hp: 18"]
+  - run: track roll the-tyranny-clock
+    expect: "The Tyranny Clock"
+  - run: "gen run elder-scrolls-skyrim.frame --prefill '{\"frame\": \"The Dark Brotherhood\"}' --auto"
+    expect: "Not trackers: The Listener's Standing: ambient, after Beat 5: each clean, signature kill that becomes a rumor feeds the party's fame (Chapter 9)"
+    expect_not: "didact do renown"
+  - run: "gen run elder-scrolls-skyrim.frame --prefill '{\"frame\": \"The Daedric Quests\"}' --auto"
+    expect: ["monster Vigilant of Stendarr [threat-1]", "--prefill '{\"quest\": \"Pieces of the Past\"}' --auto"]
+  - run: "gen run elder-scrolls-skyrim.daedric-quest --prefill '{\"quest\": \"The House of Horrors\"}' --auto"
+    expect: ["npc Vigilant Tyranus [person-1]", "`didact do prince-task who=<pc> prince='Molag Bal'` makes Molag Bal's 8d Patience pool"]
+  - run: gen commit g4
+    expect: "committed: 3 records (quest:the-house-of-horrors"
+---
+test: a-frame-later-on
+help: "A campaign opened later in 4E 201: on a holiday, then moved to the fall before play. A frame with no day of its own opens on its today; the Main Quest's day is set before the first session, and once play has begun it is past."
+script:
+  - world new solstheim --system elder-scrolls-2e --seed later
+  - pack enable elder-scrolls-skyrim
+  - run: campaign new miraak --seed later --date '3 Hearthfire 4E 201'
+    expect: "Middas, 3 Hearthfire 4E 201 (summer) · Tales and Tallows"
+  - run: time set 'Fredas, 3 Frostfall 4E 201'
+    expect: "Fredas, 3 Frostfall 4E 201 (fall)"
+  - run: "gen run elder-scrolls-skyrim.frame --prefill '{\"frame\": \"Dragonborn\"}' --auto"
+    expect: "Dragonborn opens whenever play reaches it, from Sundas, 17 Last Seed 4E 201: the campaign's today will do."
+  - run: gen commit g1
+    expect: "committed: 23 records (quest:dragonborn"
+  - run: "gen run elder-scrolls-skyrim.frame --prefill '{\"frame\": \"The Main Quest\"}' --auto"
+    expect: "Before its first session the campaign moves there: `didact time set 'Sundas, 17 Last Seed 4E 201'`"
+  - session start
+  - run: "gen run elder-scrolls-skyrim.frame --prefill '{\"frame\": \"The Main Quest\"}' --auto"
+    expect: "and the campaign is past it: play has begun, so its date only moves on"
+  - run: time set 'Sundas, 17 Last Seed 4E 201'
+    fails: true
+    expect: "play has begun"
+  - run: time show
+    expect: "Fredas, 3 Frostfall 4E 201 (fall)"

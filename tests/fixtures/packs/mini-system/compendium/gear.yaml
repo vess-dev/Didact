@@ -1,0 +1,18 @@
+id: longsword
+type: item
+name: Longsword
+tags: [weapon]
+damage: d8
+size: bulky
+description: Bulky; two hands.
+---
+id: torch
+type: item
+name: Torch
+uses: 3
+---
+id: chainmail
+type: item
+name: Chainmail
+armor: 2
+size: bulky

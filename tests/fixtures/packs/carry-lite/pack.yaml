@@ -1,0 +1,7 @@
+id: carry-lite
+name: Carry (test pack)
+kind: system
+version: 0.1.0
+description: Rules that change what a character carries, as the inventory commands do.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

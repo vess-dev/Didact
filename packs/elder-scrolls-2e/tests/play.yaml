@@ -1,0 +1,51 @@
+# A smoke play: random characters made and committed, a save, a fight with a Bestiary creature
+# under cairn-2e's attack, a wound that carries a disease, travel, the gathered Rations handed
+# over, camp for every PC, and Downtime Actions ticking a goal's Milestones. Seeded, so it plays
+# the same every time.
+test: smoke-play
+script:
+  - world new holds --system {pack} --seed play
+  - campaign new first --seed play
+  - run: session zero
+    expect: ["standing-stones", "unusual-backgrounds", "tone"]
+  - campaign profile tone=gritty
+  - run: >-
+      char new --mode random --prefill '{"youngest": "yes", "name": "Aldis"}'
+    expect: ["+ thread Omen: "]
+  - run: char commit c1
+    expect: "pc:aldis"
+  - run: >-
+      char new --mode random --prefill '{"youngest": "no", "name": "Brenna"}'
+    expect: "+ thread Bond: "
+  - run: char commit c2
+    expect: "pc:brenna"
+  - run: do save who=aldis attr=DEX
+    expect: ["1d20", "→"]
+  - run: spawn skeever
+    expect: "monster:skeever"
+  - run: do attack attacker=aldis target=skeever weapon=d8
+    expect: ["Aldis deals"]
+  - run: do attack attacker=skeever target=brenna weapon=d4
+    expect: ["Skeever deals", "The blow may carry ataxia"]
+  - run: do travel-time path=wilderness distance=long terrain=tough weather=Unpleasant
+    expect: "The journey takes 7 watches"
+  - run: do watch action=supply helpers=1
+    expect: ["The party gathers", "Who carries them?"]
+  - run: do watch action=supply helpers=1 who=aldis
+    expect: ["The party gathers", "pc:aldis: + Rations ×"]
+  - run: do watch action=make-camp
+    expect: ["pc:aldis uses Rations", "pc:brenna uses Rations", "Aldis sleeps safely", "Brenna sleeps safely", "Each mount eats a Ration too"]
+  - run: do make-camp who=aldis interrupted=true
+    expect: "stop: Aldis's sleep was interrupted"
+  - run: do downtime who=aldis action=training goal='the two-handed parry' gold=0
+    expect: ["spends a Downtime Action on training", "the first action on a goal names how many the Warden sets"]
+  - run: do downtime who=aldis action=training goal='the two-handed parry' gold=0 size=3
+    expect: ["+ track Aldis: the two-handed parry", "A Milestone is complete: 1 of 3"]
+  - run: do downtime who=aldis action=training goal='the two-handed parry' gold=0 size=3
+    expect: ["track Aldis: the two-handed parry [track:aldis-the-two-handed-parry] is here already", "A Milestone is complete: 2 of 3"]
+  - run: do reaction who=skeever toward=aldis
+    expect: "reactions:"
+  - run: rules list
+    expect: ["rules:", "elder-scrolls-2e.disease", "elder-scrolls-2e.drown"]
+  - run: rules show reputation
+    expect: ["Faction Reputation", "paarthurnax"]

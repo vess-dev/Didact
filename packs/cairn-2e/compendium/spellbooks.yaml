@@ -1,0 +1,701 @@
+# Spellbooks (wardens-guide/spellbooks). `spell` is the spell's effect; `description` is the
+# book's unusual property (the italic text in the book).
+id: adhere
+type: spellbook
+name: Adhere
+spell: "An object is covered in extremely sticky slime."
+description: "Adjacent objects stick to the book with great force."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: anchor
+type: spellbook
+name: Anchor
+spell: "A strong wire sprouts from your arms, affixing itself to two points within 50ft on each side."
+description: "If a rope is pulled through the iron loop on its spine, it becomes as heavy as an elephant."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: animate-object
+type: spellbook
+name: Animate Object
+spell: "An object obeys your commands as best it can."
+description: "Moldable like clay. Childish laughter sprouts from its pages."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: anthropomorphize
+type: spellbook
+name: Anthropomorphize
+spell: "An animal either gains human intelligence or human appearance for one day."
+description: "Whimpers, purrs and growls depending on its treatment."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: arcane-eye
+type: spellbook
+name: Arcane Eye
+spell: "You can see through a magical floating eyeball that flies around at your command."
+description: "Needs a spritz of water to open."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: astral-prison
+type: spellbook
+name: Astral Prison
+spell: "An object is frozen in time and space within an invulnerable crystal shell."
+description: "Silent, abstract, faces scream in anguish within."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: attract
+type: spellbook
+name: Attract
+spell: "Two objects are strongly magnetically attracted to each other if they come within 10 feet."
+description: "Nearby compasses spin uselessly."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: auditory-illusion
+type: spellbook
+name: Auditory Illusion
+spell: "You create illusory sounds that seem to come from a direction of your choice."
+description: "Produces random and occasionally inopportune sounds throughout the day."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: babble
+type: spellbook
+name: Babble
+spell: "A creature must loudly and clearly repeat everything you think. It is otherwise mute."
+description: "When the text is read aloud, the words of others become unintelligible."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: bait-flower
+type: spellbook
+name: Bait Flower
+spell: "A plant sprouts from the ground that emanates the smell of decaying flesh."
+description: "Attracts flies."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: beast-form
+type: spellbook
+name: Beast Form
+spell: "You and your possessions transform into a mundane animal."
+description: "Covered in thick fur, its edges lined with small teeth."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: befuddle
+type: spellbook
+name: Befuddle
+spell: "A creature of your choice is unable to form new short-term memories for the duration of the spell."
+description: "Its contents shift and change each time it is opened."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: body-swap
+type: spellbook
+name: Body Swap
+spell: "You switch bodies with a creature you touch. If one body dies, the other dies as well."
+description: "The front cover shows an image of the last creature to read it."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: charm
+type: spellbook
+name: Charm
+spell: "A creature you can see treats you as a friend."
+description: "Warm to the touch, and smells of roses."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: command
+type: spellbook
+name: Command
+spell: "A target obeys a single three-word command that does not cause it harm."
+description: "Grows thinner over time, until finally disappearing forever."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: comprehend
+type: spellbook
+name: Comprehend
+spell: "You become fluent in all languages for a short while."
+description: "Drips letters, staining whatever it touches."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: cone-of-foam
+type: spellbook
+name: Cone of Foam
+spell: "Dense foam sprays from your hand, coating the target."
+description: "Spongy and moist with a soapy residue."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: control-plants
+type: spellbook
+name: Control Plants
+spell: "Nearby plants and trees obey you and gain the ability to move at a slow pace."
+description: "Leaves grow along the spine, and it smells faintly of decay."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: control-weather
+type: spellbook
+name: Control Weather
+spell: "You may alter the type of weather at will, but you do not otherwise control it."
+description: "Highly resistant to fire and water damage."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: cure-wounds
+type: spellbook
+name: Cure Wounds
+spell: "Restore 1d4 STR per day to a creature you can touch."
+description: "Smells of vinegar and thyme. Turns red after use."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: deafen
+type: spellbook
+name: Deafen
+spell: "All nearby creatures are deafened."
+description: "Nearby instruments occasionally sound off, as if in protest."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: detect-magic
+type: spellbook
+name: Detect Magic
+spell: "You can see or hear nearby magical auras."
+description: "Becomes warm to the touch if magic is used nearby."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: disassemble
+type: spellbook
+name: Disassemble
+spell: "Any of your body parts may be detached and reattached at will, without causing pain or damage. You can still control them."
+description: "Regenerates any torn or defaced pages."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: disguise
+type: spellbook
+name: Disguise
+spell: "You may alter the appearance of one character at will as long as they remain humanoid. Attempts to duplicate other characters will seem uncanny."
+description: "The surface makes a perfect mirror."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: displace
+type: spellbook
+name: Displace
+spell: "An object appears to be up to 15ft from its actual position."
+description: "Bits of string, clothing, and leaves are sometimes stuffed inside."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: earthquake
+type: spellbook
+name: Earthquake
+spell: "The ground begins shaking violently. Structures may be damaged or collapse."
+description: "Sand dribbles from the corners, seemingly without stop."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: elasticity
+type: spellbook
+name: Elasticity
+spell: "Your body can stretch up to 10ft."
+description: "Smells of taffy, and is very flexible."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: elemental-wall
+type: spellbook
+name: Elemental Wall
+spell: "A straight wall of ice or fire 50ft long and 10ft high rises from the ground."
+description: "Skin and warmer substances stick to it after use."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: filch
+type: spellbook
+name: Filch
+spell: "A visible item teleports to your hands."
+description: "An ally's prized possession may occasionally be found tucked between its covers."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: fish-lung
+type: spellbook
+name: Fish Lung
+spell: "A target can breathe underwater until they surface again."
+description: "Smells strongly of the sea. Attracts wild animals."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: flare
+type: spellbook
+name: Flare
+spell: "A bright ball of energy fires a trail of light into the sky, revealing your location to friend or foe."
+description: "Faintly glows in complete darkness."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: fog-cloud
+type: spellbook
+name: Fog Cloud
+spell: "A dense fog spreads out from you."
+description: "When submersed in water, the book eventually turns all the liquid to vapor."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: frenzy
+type: spellbook
+name: Frenzy
+spell: "A nearby creature erupts in a frenzy of violence."
+description: "Rough, sandpaper cover that destroys any book it touches."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: gate
+type: spellbook
+name: Gate
+spell: "A portal to a random plane opens."
+description: "A large hole is carved into the center, ending in a void. Items dropped within are never seen again."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: gravity-shift
+type: spellbook
+name: Gravity Shift
+spell: "You can change the direction of gravity, but only for yourself."
+description: "Attaches itself to the largest object nearby."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: greed
+type: spellbook
+name: Greed
+spell: "A creature develops the overwhelming urge to possess a visible item of your choice."
+description: "The cover changes depending on the owner, subtly hinting at their deepest desires."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: haste
+type: spellbook
+name: Haste
+spell: "Your movement speed is tripled."
+description: "Pages flip wildly while open. Can cause paper cuts."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: hatred
+type: spellbook
+name: Hatred
+spell: "A creature develops a deep hatred of another creature or group and wishes to destroy them."
+description: "Long term exposure to the book can cause suspicion, paranoia and distrust of others."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: hear-whispers
+type: spellbook
+name: Hear Whispers
+spell: "You can hear faint sounds clearly."
+description: "The reader's voice is amplified for a short period of time afterwards."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: hover
+type: spellbook
+name: Hover
+spell: "An object hovers, frictionless, 2ft above the ground. It can hold up to one humanoid."
+description: "Floats if dropped."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: hypnotize
+type: spellbook
+name: Hypnotize
+spell: "A creature enters a trance and will truthfully answer one yes or no question you ask it."
+description: "Eye-catching, swirling spirals don its covers."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: icy-touch
+type: spellbook
+name: Icy Touch
+spell: "A thick ice layer spreads across a touched surface, up to 10ft in radius."
+description: "Gloves required. Nonflammable."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: identify-owner
+type: spellbook
+name: Identify Owner
+spell: "Letters appear over the object you touch, spelling out the name of the object’s owners, if there are any."
+description: "The book's interior lists the name of its previous owner."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: illuminate
+type: spellbook
+name: Illuminate
+spell: "A floating light moves as you command."
+description: "When held in light, the pages become a prism of vibrant rainbows."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: invisible-tether
+type: spellbook
+name: Invisible Tether
+spell: "Two objects within 10ft of each other cannot be moved more than 10ft apart."
+description: "Its pages are not attached by glue or thread, yet stay together nonetheless."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: knock
+type: spellbook
+name: Knock
+spell: "A nearby mundane or magical lock unlocks loudly."
+description: "Locked. A new owner \"produces\" the key after their next meal."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: leap
+type: spellbook
+name: Leap
+spell: "You jump up to 10ft high, once."
+description: "When thrown, it just keeps going."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: liquid-air
+type: spellbook
+name: Liquid Air
+spell: "The air around you becomes swimmable."
+description: "Floats of its own volition, bouncing off of whatever it touches."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: magic-dampener
+type: spellbook
+name: Magic Dampener
+spell: "All nearby magical effects have their effectiveness halved."
+description: "Relics within 100ft of the spellbook cannot be recharged."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: manse
+type: spellbook
+name: Manse
+spell: "A sturdy, furnished cottage appears for hours. You can permit and forbid entry to it at will."
+description: "If left inside, both the book and the cottage vanish forever."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: marble-craze
+type: spellbook
+name: Marble Craze
+spell: "Your pockets are full of marbles and will refill every 30 seconds."
+description: "When jostled, makes a playful rattling sound."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: masquerade
+type: spellbook
+name: Masquerade
+spell: "A character's appearance and voice becomes identical to those of a character you touch."
+description: "Extended use causes the owner to develop unconscious yet noticeable tics."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: miniaturize
+type: spellbook
+name: Miniaturize
+spell: "A creature you touch is shrunk down to the size of a mouse."
+description: "The text is ludicrously, comically large."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: mirror-image
+type: spellbook
+name: Mirror Image
+spell: "An illusory duplicate of yourself appears and is under your control."
+description: "Over time, the owner begins to question who is the original, and who is the duplicate."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: mirrorwalk
+type: spellbook
+name: Mirrorwalk
+spell: "A mirror becomes a gateway to another mirror that you looked into today."
+description: "Will not open unless the owner politely knocks on the cover."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: multiarm
+type: spellbook
+name: Multiarm
+spell: "You temporarily gain an extra arm."
+description: "After use, the caster is wracked with phantom limb syndrome for a day."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: night-sphere
+type: spellbook
+name: Night Sphere
+spell: "A 50ft-wide sphere of darkness displaying the night sky appears before you."
+description: "Displays a prominent constellation on its cover."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: objectify
+type: spellbook
+name: Objectify
+spell: "You become any inanimate object between the size of a grand piano and an apple."
+description: "The owner experiences intense pareidolia for days after use."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: ooze-form
+type: spellbook
+name: Ooze Form
+spell: "You become a living jelly."
+description: "Slowly drips an acid that eventually eats away anything it touches."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: pacify
+type: spellbook
+name: Pacify
+spell: "A creature near you has an aversion to violence."
+description: "Smells of jasmine and incense. Attracts children."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: passage
+type: spellbook
+name: Passage
+spell: "Creates a temporary path through wood, stone or brick."
+description: "An object dropped on top of the book inevitably falls through the other side."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: phobia
+type: spellbook
+name: Phobia
+spell: "A nearby creature becomes terrified of an object of your choice."
+description: "Over time, haunting, abstract art begins to fill its pages."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: pit
+type: spellbook
+name: Pit
+spell: "A pit 10ft wide and 10ft deep opens in the ground."
+description: "A standard piton can be safely stored in its spine."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: primal-surge
+type: spellbook
+name: Primal Surge
+spell: "A creature rapidly evolves into a future version of its species."
+description: "The owner is haunted by strange visions of their own ancestors."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: push-pull
+type: spellbook
+name: "Push/Pull"
+spell: "An object of any size is pulled directly towards you or pushed directly away from you with the strength of one man."
+description: "Any force against the book is comically amplified."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: raise-dead
+type: spellbook
+name: Raise Dead
+spell: "A skeleton rises from the ground to serve you. They are incredibly stupid and can only obey simple orders."
+description: "The owner becomes more and more fascinated with bones after each use."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: raise-spirit
+type: spellbook
+name: Raise Spirit
+spell: "The spirit of a nearby corpse manifests and will answer 1 question."
+description: "The answers (but not their questions) are forever inscribed in its pages."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: read-mind
+type: spellbook
+name: Read Mind
+spell: "You can hear the surface thoughts of nearby creatures."
+description: "Long-term possession can cause the reader to mistake the thoughts of others as their own."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: repel
+type: spellbook
+name: Repel
+spell: "Two objects are strongly magnetically repelled from each other within 10 feet."
+description: "Closed by two powerful straps that spring open at inopportune times."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: scry
+type: spellbook
+name: Scry
+spell: "You can see through the eyes of a creature you touched earlier today."
+description: "The owner's eyes turn milky-white for an hour after use."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: sculpt-elements
+type: spellbook
+name: Sculpt Elements
+spell: "Inanimate material behaves like clay in your hands."
+description: "Slowly decays on contact with wood or cloth. Bury in dirt or submerge in water to refresh."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: sense
+type: spellbook
+name: Sense
+spell: "Choose one kind of object (key, gold, arrow, jug, etc). You can sense the nearest example."
+description: "The book's previous owner is always aware of the book's current location."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: shield-spellbook
+type: spellbook
+name: Shield
+spell: "A creature you touch is protected from mundane attacks for one minute."
+description: "Bound in rusty ring-mail and is quite heavy. If held, provides +1 Armor."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: shroud
+type: spellbook
+name: Shroud
+spell: "A creature you touch is invisible until they move."
+description: "Invisible to any but the book's current owner."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: shuffle
+type: spellbook
+name: Shuffle
+spell: "Two creatures you can see instantly switch places."
+description: "If stolen but not yet read, it reappears wherever its owner last left it."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: skillful-repair
+type: spellbook
+name: Skillful Repair
+spell: "You make minor repairs to a nonliving object."
+description: "Sewn from the vellum of one hundred books, no two pages are alike."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: sleep
+type: spellbook
+name: Sleep
+spell: "A creature you can see falls into a light sleep."
+description: "Soft as a pillow, but yields only fitful sleep."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: slick
+type: spellbook
+name: Slick
+spell: "Every surface in a 30ft radius becomes extremely slippery."
+description: "Gloves are required for handling, lest the book is dropped in a most comical fashion."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: smoke-form
+type: spellbook
+name: Smoke Form
+spell: "Your body becomes a living smoke that you can control."
+description: "Smells of campfire. The pages cannot be burnt, but are very sensitive to moisture."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: sniff
+type: spellbook
+name: Sniff
+spell: "You can smell even the faintest traces of scents."
+description: "Expresses a strong odor detectable only by its owner."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: snuff
+type: spellbook
+name: Snuff
+spell: "The source of any mundane light you can see is instantly snuffed out."
+description: "If left in one place for long periods, nearby light sources eventually dim, then finally go out."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: sort
+type: spellbook
+name: Sort
+spell: "Inanimate items sort themselves according to categories you set."
+description: "Rights itself when dropped or thrown."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: spellsaw
+type: spellbook
+name: Spellsaw
+spell: "A whirling blade flies from your chest, clearing any plant material in its way. It is otherwise harmless."
+description: "Wrapped in stained leather, it should be oiled at least once a month."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: spider-climb
+type: spellbook
+name: Spider Climb
+spell: "You can climb surfaces like a spider."
+description: "New cobwebs must be pushed aside prior to each use. They are hard to remove."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: swarm
+type: spellbook
+name: Swarm
+spell: "You become a swarm of crows, rats, or piranhas. You can only be harmed by blast attacks."
+description: "Easily broken into a dozen distinct parts that slowly move towards one another over time."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: target-lure
+type: spellbook
+name: Target Lure
+spell: "An object you touch becomes the target of any nearby spell."
+description: "Attracts all manner of magical creatures, spell leaks, and scrying."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: telekinesis
+type: spellbook
+name: Telekinesis
+spell: "You may mentally 1 move item under 60lbs."
+description: "The owner can summon the book through mental command alone (WIL save or become deprived afterwards)."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: telepathy
+type: spellbook
+name: Telepathy
+spell: "Two creatures can hear each other’s thoughts, no matter how far apart."
+description: "The holder can hear (but not respond) to the thoughts of whoever last possessed it, and vice versa."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: teleport
+type: spellbook
+name: Teleport
+spell: "An object or person you can see is transported from one place to another in a 50ft radius."
+description: "Can be destroyed to create a portal to another dimension."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: thicket
+type: spellbook
+name: Thicket
+spell: "A thicket of trees and dense brush up to 50ft wide suddenly sprouts up."
+description: "Wrapped in vines that must be destroyed again with each use."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: time-control
+type: spellbook
+name: Time Control
+spell: "Time in a 50ft bubble slows down or increases by 10% for 30 seconds."
+description: "Alternates its appearance as either impossibly old or freshly written."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: true-sight
+type: spellbook
+name: True Sight
+spell: "You see through all nearby illusions."
+description: "Cannot be concealed by magic, and sticks out like a sore thumb."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: upwell
+type: spellbook
+name: Upwell
+spell: "A spring of seawater appears."
+description: "Hardened leather bindings caked in salt and living barnacles."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: vision
+type: spellbook
+name: Vision
+spell: "You completely control what a creature sees."
+description: "An unnerving, lidless eye graces the front cover."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: visual-illusion
+type: spellbook
+name: Visual Illusion
+spell: "A silent, immobile, room-sized illusion of your choice appears."
+description: "Filled with rich, colorful pages very much like a children's bedtime story."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: ward
+type: spellbook
+name: Ward
+spell: "A silver circle 50ft across appears on the ground. Choose one species that cannot cross it."
+description: "The covers are decorated with bizarre, otherworldly creatures with thousands of eyes."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: web
+type: spellbook
+name: Web
+spell: "Your wrists shoot thick webbing."
+description: "The text is alien, yet somehow intelligible, for it is the language of dreams."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: widget
+type: spellbook
+name: Widget
+spell: "A primitive version of a drawn tool or item appears before you and disappears after a short time."
+description: "Smells of iron and rust, sweat and effort. Faint sounds of harsh labor emanate from deep within its pages."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: wizard-mark
+type: spellbook
+name: Wizard Mark
+spell: "Your finger can shoot a stream of ulfire-colored paint. This paint is only visible to you and can be seen at any distance, even through solid objects."
+description: "Inside the front cover is a small pocket containing a thin pad of paper, listing the name and date of death of all previous owners."
+source: wardens-guide/spellbooks#spellbooks
+---
+id: x-ray-vision
+type: spellbook
+name: X-Ray Vision
+spell: "You can see through walls, dirt, clothing, etc."
+description: "Long-term exposure can cause hair loss, blurry vision, and fatigue."
+source: wardens-guide/spellbooks#spellbooks

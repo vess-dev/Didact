@@ -1,0 +1,24 @@
+# Bandit (backgrounds/bandit): the background's two d6 tables.
+table: bandit-1
+title: "How did you fall in with the road-gangs?"
+dice: d6
+source: backgrounds/bandit#how-did-you-fall-in-with-the-road-gangs-roll-1d6
+entries:
+  1: "You ran the toll on a mountain pass for years, and you know how to lay an ambush. Given an hour to prepare a stretch of road or pass, you and your allies need not save to act in the first round of any fight you spring there."
+  2: {text: "A caravan job went bad and left you the only one breathing, and the Khajiit caravans still have your description. Take your dead partner's coin stash (2d6 more Septims) and half a map to where the rest of the take is buried. Someone else has the other half.", data: {gold_dice: "2d6", gear: [{name: "Half a map", note: "to where the rest of the take is buried"}]}}
+  3: {text: "You deserted a Hold's guard and kept your kit. Take a guardsman's iron helmet (+1 Armor). You know that Hold's patrol routes, its watchwords, and which sergeants take a bribe.", data: {gear: [{name: "Iron helmet", armor: 1}]}}
+  4: "You bought your way out of a noose once. You know the price of every cell and every jailer in Skyrim: once in each Hold, talk or bribe your way clear of a Bounty for half of what it should cost."
+  5: {text: "The fort took you in when no town would. Take a length of strong rope (40 ft), a set of crude lockpicks, and the knack of slipping a window latch from outside.", data: {gear: [{name: "Strong rope", note: "40 ft"}, {name: "Crude lockpicks"}]}}
+  6: {text: "A chief you served left a knife in your back, so you left one in his. Take the key to his strongbox (petty). His gang still holds an old fort in the Pale: half of them think you should be chief now, and the other half want you dead.", data: {gear: [{name: "Key to his strongbox", size: "petty"}]}}
+---
+table: bandit-2
+title: "What is your trade on the road?"
+dice: d6
+source: backgrounds/bandit#what-is-your-trade-on-the-road-roll-1d6
+entries:
+  1: {text: "The Waylayer: A heavy war axe (d8) and a bag of iron caltrops (3 uses). Scattered across a road or a doorway, they bring down the first rider or runner over them unless it passes a DEX save.", data: {gear: [{name: "Heavy war axe", damage: "d8"}, {name: "Iron caltrops", uses: 3}]}}
+  2: {text: "The Lookout: A cracked spyglass (petty) taken off a Legion scout. From a high place, you always spot a patrol, a caravan, or a war party before it spots you.", data: {gear: [{name: "Cracked spyglass", size: "petty", note: "taken off a Legion scout"}]}}
+  3: "Sharp Nose: You can smell a trap in an offer. Before you walk into a parley, a truce, or a job, the Warden tells you whether it is a setup."
+  4: {text: "The Fence: A ledger of contacts and debts (petty). In any town you can name a buyer for stolen goods and move loot at a fair cut where others cannot.", data: {gear: [{name: "Ledger of contacts and debts", size: "petty"}]}}
+  5: {text: "The Skooma-Runner: A hidden vial of skooma (2 uses). Slip it to someone and they must pass a STR save or be Deprived and pliable. Drink it yourself for a reckless rush, and risk the same crash.", data: {gear: [{name: "Vial of skooma", uses: 2}]}}
+  6: {text: "The Brute: A greatsword (d10, bulky, two-handed) taken off a richer corpse, and a name: folk who have heard of you start one step worse on the Reaction ladder.", data: {gear: [{name: "Greatsword", damage: "d10", size: "bulky", qualities: ["two-handed"], note: "taken off a richer corpse"}]}}

@@ -1,0 +1,176 @@
+# Settlements and homesteads (wardens-guide/settlements): raising and losing buildings, the
+# season's upkeep and raid roll, and a raid's outcome. Population, Defense and Prosperity are
+# computed on the settlement's sheet from its buildings (and what raids did to them).
+action: build
+title: Raise a building
+help: >-
+  Filling a building slot costs a Downtime Action and a sum in Septims the Warden sets from the
+  fiction (a watchtower is dearer than a chicken coop), or the like in goods, timber and labor.
+  Petty comforts (Apothecary's Garden, Bard's Hearth, Stable & Paddock, a well, a garden patch,
+  a roadside shrine) cost coin and effort but no slot (petty=true for others). Only Cottages may
+  be built more than once. A Steward's House raises one building a season without a PC's
+  Downtime Action (steward=true; the Septims are still paid). Each building that raises an
+  attribute adds 1 to it, to 5; more filled slots than Population × 2 and the place decays.
+params:
+  who: ref
+  building: {kind: text, help: "e.g. 'Palisade & Gate', 'Smithy', 'Cottages', 'Longhouse / Mead Hall'"}
+  cost: {kind: int, default: 0, help: "Septims the Warden set"}
+  by: {kind: ref, optional: true, help: "The PC who pays (and spends the Downtime Action)"}
+  petty: {kind: flag, default: false, help: "A petty comfort: no slot"}
+  steward: {kind: flag, default: false, help: "Raised by the Steward's House this season"}
+steps:
+  - if: "@who.type <> 'settlement'"
+    then:
+      - stop: "{@who.name} isn't a settlement (`didact new settlement '…' --set hold=…`, or `didact gen run elder-scrolls-2e.homestead`)."
+  - let:
+      is_petty: >-
+        @petty or @building == "Apothecary's Garden" or @building == "Bard's Hearth"
+        or @building == "Stable & Paddock"
+  - if: >-
+      not @is_petty and @building in @who.buildings and @building <> "Cottages"
+    then:
+      - stop: "{@who.name} already has $building: only Cottages may be built more than once (each fills a slot)."
+  - if: '@is_petty and @building in @who.comforts'
+    then:
+      - stop: "{@who.name} already has $building."
+  - if: "not @is_petty and @who.slots_used >= @who.building_slots"
+    then:
+      - stop: "All {@who.building_slots} of {@who.name}'s building slots are filled: tear something down (`didact do raze`) or find room to grow."
+  - if: >-
+      @steward and not ("Steward's House" in @who.buildings)
+    then:
+      - stop: "Without a Steward's House, a building needs a PC's Downtime Action."
+  - if: "@cost > 0 and default(@by, '') <> ''"
+    then:
+      - if: "@cost > @by.gold"
+        then:
+          - stop: "$building costs {@cost} Septims; {@by.name} has {@by.gold}."
+      - set: by.gold
+        op: "-="
+        value: "@cost"
+  - if: "@is_petty"
+    then:
+      - set: who.comforts
+        op: "+="
+        value: "$building"
+      - message: "{@who.name} gains $building: a petty comfort, no slot."
+    else:
+      - set: who.buildings
+        op: "+="
+        value: "$building"
+      - message: "{@who.name} raises $building ({@who.slots_used} of {@who.building_slots} slots): Pop {@who.population} / Def {@who.defense} / Prosperity {@who.prosperity}."
+  - if: "@who.slots_used > @who.population * 2"
+    then: ["Upkeep: {@who.slots_used} filled slots outrun Population {@who.population} × 2. Each season one building falls into disrepair until the balance is restored (raise Population, or tear down what can't be kept)."]
+  - if: '@building == "Palisade & Gate" or @building == "Watchtower"'
+    then: ["A Watchtower adds Defense only with a Palisade & Gate, and any Defense above 2 needs the Palisade."]
+  - if: "not @steward and not @is_petty"
+    then:
+      - reminder: "Raising it is a Downtime Action{if(default(@by, '') == '', '', ' for ')}{if(default(@by, '') == '', '', @by.name)} (`didact do downtime …`), plus the Septims and gathered materials."
+  - if: "default(@by, '') <> '' and @cost > 0"
+    then:
+      - do: coins
+        with: {who: "@by"}
+        go_on: true
+source: wardens-guide/settlements#building-slots
+---
+action: raze
+title: A building lost
+help: "A building torn down, repurposed, destroyed in a raid or fallen into disrepair frees its slot, and the attribute it raised loses its bonus."
+params:
+  who: ref
+  building: {kind: text}
+steps:
+  - if: '@building in @who.buildings'
+    then:
+      - set: who.buildings
+        op: "-="
+        value: "$building"
+    else:
+      - if: '@building in @who.comforts'
+        then:
+          - set: who.comforts
+            op: "-="
+            value: "$building"
+        else:
+          - stop: "{@who.name} has no $building (it has: {@who.buildings}; comforts: {@who.comforts})."
+  - message: "{@who.name} loses $building: Pop {@who.population} / Def {@who.defense} / Prosperity {@who.prosperity}, {@who.slots_used} of {@who.building_slots} slots filled."
+source: wardens-guide/settlements#attributes
+---
+procedure: settlement-season
+title: A settlement's season
+help: >-
+  Each season: if filled slots exceed Population × 2, one building falls into disrepair (the
+  Warden's pick); then roll a d6, and if it's higher than Defense, a raid comes (bandits, a
+  Forsworn band, a giant, a vampire pack, a Civil War war-party). A Defense 3+ settlement with a
+  Barracks or a Watch-beacon can turn back an ordinary raid without the party, if the Warden
+  judges it has the numbers and the warning. Crops on Farm Plots fail in an Extreme weather
+  week or a hard winter; a Steward's House may raise one building without a PC.
+params:
+  who: ref
+steps:
+  - if: "@who.type <> 'settlement'"
+    then:
+      - stop: "{@who.name} isn't a settlement."
+  - if: "@who.slots_used > @who.population * 2"
+    then: ["Upkeep: {@who.slots_used} filled slots outrun Population {@who.population} × 2. One building falls into disrepair this season (the Warden's pick: boards rot, a roof caves, a watchtower stands empty): `didact do raze who={@who.id} building=…`."]
+  - roll: d6
+    as: raid
+  - if: "@raid > @who.defense"
+    then:
+      - message: "A raid comes ({@raid} over Defense {@who.defense}): a combat scene around what stalks this corner of Skyrim."
+      - if: >-
+          @who.defense >= 3 and ("Barracks" in @who.buildings or "Standing Watch-beacon" in @who.buildings)
+        then: ["With Defense {@who.defense} and a {if('Barracks' in @who.buildings, 'Barracks', 'Watch-beacon')}, {@who.name} can turn back an ordinary raid without the party, if the Warden judges it has the numbers and the warning."]
+      - if: '"Watchtower" in @who.buildings and "Palisade & Gate" in @who.buildings'
+        then: ["The Watchtower spots the raid one watch early."]
+      - if: '"Standing Watch-beacon" in @who.buildings'
+        then: ["The Watch-beacon spots it a full day early."]
+      - reminder: "After the raid: `didact do raid-outcome who={@who.id} outcome=won|lost building=<the one destroyed>`."
+    else: ["No raid this season ({@raid}, against Defense {@who.defense})."]
+  - if: '"Farm Plots" in @who.buildings'
+    then: ["Farm Plots: the crops fail in an Extreme weather week or a hard winter."]
+  - if: >-
+      "Steward's House" in @who.buildings
+    then: ["The Steward's House: one new building may be raised this season without a PC's Downtime Action (`didact do build … steward=true`, Septims still paid)."]
+  - reminder: "A season has passed for {@who.name} (`didact time advance …` if the party waited it out)."
+source: wardens-guide/settlements#raids
+---
+action: raid-outcome
+title: After a raid
+help: >-
+  If the party wins (or a forewarned, well-defended town wins alone), there's no loss, and a
+  hard-won victory may raise Defense by one, at the Warden's call (hardwon=true). If the party
+  loses or is absent: Population −1 and one building destroyed (the Warden's pick, usually what
+  stood nearest the breach). No attribute falls below 1: a steading that would is abandoned or
+  burned, at the Warden's call.
+params:
+  who: ref
+  outcome: {enum: [won, lost]}
+  building: {kind: text, optional: true, help: "The building destroyed"}
+  hardwon: {kind: flag, default: false, help: "A hard-won victory the Warden rewards with +1 Defense"}
+steps:
+  - if: "@outcome == 'won'"
+    then:
+      - message: "{@who.name} holds: no loss."
+      - if: "@hardwon"
+        then:
+          - set: who.defense_shift
+            op: "+="
+            value: 1
+          - message: "The settlers learned to fight: Defense {@who.defense}."
+    else:
+      - let: {pop: "@who.population"}
+      - if: "@pop > 1"
+        then:
+          - set: who.population_shift
+            op: "-="
+            value: 1
+        else: ["Population can't fall below 1: a steading that would is abandoned or burned, at the Warden's call."]
+      - if: "default(@building, '') <> ''"
+        then:
+          - do: raze
+            with: {who: "@who", building: "$building"}
+            go_on: true
+        else: ["One building is destroyed (the Warden's pick, usually whatever stood nearest the breach): `didact do raze who={@who.id} building=…`."]
+      - message: "{@who.name} after the raid: Pop {@who.population} / Def {@who.defense} / Prosperity {@who.prosperity}. A catastrophic loss can put the whole settlement to the torch."
+source: wardens-guide/settlements#raids

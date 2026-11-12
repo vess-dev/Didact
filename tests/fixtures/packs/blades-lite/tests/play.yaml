@@ -1,0 +1,12 @@
+test: zero-dice
+expr: "min(2d6kl1, 6)"
+got: "5,2"
+expect: 2
+---
+test: play
+script:
+  - world new t --system {pack}
+  - do action dice=0
+  - do action dice=3
+  - new clock "Guards alerted" --set segments=0/4
+  - do tick clock=guards-alerted ticks=4

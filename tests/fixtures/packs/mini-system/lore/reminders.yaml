@@ -1,0 +1,4 @@
+lore: torch-uses
+keys: [torch, lantern]
+kind: rule-reminder
+content: "Torches burn for 3 uses; an oil can relights a lantern 6 times."

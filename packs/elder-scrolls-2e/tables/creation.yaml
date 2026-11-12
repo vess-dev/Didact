@@ -1,0 +1,240 @@
+# Character creation (players-guide/character-creation): the eight trait tables, bonds and
+# omens (each with a short name for its thread), the races and their traits, and the
+# Standing Stones (the standing-stones option).
+table: physique
+title: "Physique"
+dice: d10
+source: players-guide/character-creation#physique
+entries:
+  1: "Athletic"
+  2: "Brawny"
+  3: "Flabby"
+  4: "Lanky"
+  5: "Rugged"
+  6: "Scrawny"
+  7: "Short"
+  8: "Statuesque"
+  9: "Stout"
+  10: "Towering"
+---
+table: skin
+title: "Skin"
+dice: d10
+source: players-guide/character-creation#skin
+entries:
+  1: "Birthmarked"
+  2: "Marked"
+  3: "Oily"
+  4: "Rosy"
+  5: "Scarred"
+  6: "Soft"
+  7: "Tanned"
+  8: "Tattooed"
+  9: "Weathered"
+  10: "Painted"
+---
+table: hair
+title: "Hair"
+dice: d10
+source: players-guide/character-creation#hair
+entries:
+  1: "Bald"
+  2: "Braided"
+  3: "Curly"
+  4: "Filthy"
+  5: "Frizzy"
+  6: "Long"
+  7: "Luxurious"
+  8: "Oily"
+  9: "Wavy"
+  10: "Wispy"
+---
+table: face
+title: "Face"
+dice: d10
+source: players-guide/character-creation#face
+entries:
+  1: "Bony"
+  2: "Broken"
+  3: "Chiseled"
+  4: "Elongated"
+  5: "Pale"
+  6: "Perfect"
+  7: "Rakish"
+  8: "Sharp"
+  9: "Square"
+  10: "Sunken"
+---
+table: speech
+title: "Speech"
+dice: d10
+source: players-guide/character-creation#speech
+entries:
+  1: "Blunt"
+  2: "Booming"
+  3: "Cryptic"
+  4: "Droning"
+  5: "Formal"
+  6: "Gravelly"
+  7: "Precise"
+  8: "Squeaky"
+  9: "Stuttering"
+  10: "Whispery"
+---
+table: clothing
+title: "Clothing"
+dice: d10
+source: players-guide/character-creation#clothing
+entries:
+  1: "Antique"
+  2: "Bloody"
+  3: "Elegant"
+  4: "Filthy"
+  5: "Foreign"
+  6: "Frayed"
+  7: "Furred"
+  8: "Livery"
+  9: "Rancid"
+  10: "Worn"
+---
+table: virtue
+title: "Virtue"
+dice: d10
+source: players-guide/character-creation#virtue
+entries:
+  1: "Ambitious"
+  2: "Cautious"
+  3: "Courageous"
+  4: "Disciplined"
+  5: "Gregarious"
+  6: "Honorable"
+  7: "Humble"
+  8: "Merciful"
+  9: "Serene"
+  10: "Tolerant"
+---
+table: vice
+title: "Vice"
+dice: d10
+source: players-guide/character-creation#vice
+entries:
+  1: "Aggressive"
+  2: "Bitter"
+  3: "Craven"
+  4: "Deceitful"
+  5: "Greedy"
+  6: "Lazy"
+  7: "Nervous"
+  8: "Rude"
+  9: "Vain"
+  10: "Vengeful"
+---
+table: bonds
+title: "Bonds"
+dice: d20
+source: players-guide/character-creation#bonds
+entries:
+  1: {text: "You carry a soul gem (petty) holding the trapped soul of someone you loved. A necromancer in the Reach claims he can free them — for a price you do not want to pay.", data: {name: "Soul Gem of a Loved One", gear: [{name: "Soul gem", size: "petty", note: "holds the trapped soul of someone you loved"}]}}
+  2: {text: "A dying Imperial courier pressed a sealed, ciphered dispatch (petty) into your hands, meant for General Tullius. You cannot read it, but men have already died for it.", data: {name: "Ciphered Dispatch", gear: [{name: "Sealed dispatch", size: "petty", note: "ciphered; meant for General Tullius"}]}}
+  3: {text: "You owe a blood-debt to the Companions of Jorrvaskr. Take a shield-brother's iron ring (petty); any Companion will know you by it, for good or ill.", data: {name: "Blood-Debt to the Companions", gear: [{name: "Iron ring", size: "petty", note: "a shield-brother's; any Companion will know you by it"}]}}
+  4: {text: "You found a warm dragon's scale (petty) in the ash of a burned village. It grows warmer the farther north you carry it.", data: {name: "Warm Dragon's Scale", gear: [{name: "Dragon's scale", size: "petty", note: "warm; it grows warmer the farther north you carry it"}]}}
+  5: {text: "You escaped a Thalmor cell with a dead Justiciar's signet (petty). It opens doors among the Aldmeri Dominion — and marks you for death if the wrong elf recognizes it.", data: {name: "Justiciar's Signet", gear: [{name: "Signet", size: "petty", note: "a dead Justiciar's; it opens doors among the Aldmeri Dominion"}]}}
+  6: {text: "A Khajiit caravan master once saved your life. Take a pouch of Moon Sugar (petty) and a debt of hospitality: any caravan will shelter you once, no questions asked.", data: {name: "Debt of Hospitality", gear: [{name: "Moon Sugar", size: "petty", note: "a pouch"}]}}
+  7: {text: "You wear a bear-claw amulet of the Old Gods (petty). Kyne's hunters treat you as kin; the priests of the Divines eye you with suspicion.", data: {name: "Bear-Claw Amulet", gear: [{name: "Bear-claw amulet", size: "petty", note: "of the Old Gods"}]}}
+  8: {text: "You woke in a Nordic barrow with no memory of how you came there, clutching an ancient iron key (petty) that fits no lock you have ever found.", data: {name: "Ancient Iron Key", gear: [{name: "Ancient iron key", size: "petty", note: "fits no lock you have ever found"}]}}
+  9: {text: "You were once a slave in Morrowind. You still bear the brand, and a hidden shiv (d6), and a hatred of chains that has never cooled.", data: {name: "The Brand", gear: [{name: "Shiv", damage: "d6", note: "hidden"}]}}
+  10: {text: "A College mage entrusted you with a warded journal (petty) before she vanished into Blackreach. It writes back, in a hand that is not your own.", data: {name: "Warded Journal", gear: [{name: "Warded journal", size: "petty", note: "it writes back, in a hand that is not your own"}]}}
+  11: {text: "You carry the knucklebones of a murdered friend (petty). The Dark Brotherhood believes a death is owed for it. They have not yet decided whether it is yours.", data: {name: "Knucklebones of a Murdered Friend", gear: [{name: "Knucklebones of a murdered friend", size: "petty"}]}}
+  12: {text: "A Daedric Prince marked you in a dream. Once per session, you may ask the Warden one yes-or-no question about what a Daedra desires. The answer is always true — and the Prince always wants something back.", data: {name: "Marked in a Dream"}}
+  13: {text: "A Greybeard once breathed a single Word into your ear. You do not understand it — but animals fall silent and still when you draw near.", data: {name: "A Greybeard's Word"}}
+  14: {text: "You hold the deed to a ruined homestead in a Hold of your choice, burned in the war. Rebuilding it would cost a fortune and stir up old enemies.", data: {name: "Deed to a Ruined Homestead", gear: [{name: "Deed", note: "to a ruined homestead in a Hold of your choice"}]}}
+  15: {text: "You pried a frostbitten ring (petty) from a frozen corpse high on the Throat of the World. It will not come off, and your fingers no longer feel the cold.", data: {name: "Frostbitten Ring", gear: [{name: "Frostbitten ring", size: "petty", note: "it will not come off"}]}}
+  16: {text: "A Volkihar vampire spared you and called you \"useful.\" Take a blood-red phial (petty); shatter it and one of Harkon's court will come, once, to collect what you owe.", data: {name: "Blood-Red Phial", gear: [{name: "Blood-red phial", size: "petty", note: "shatter it and one of Harkon's court will come, once"}]}}
+  17: {text: "You carry a volume of the Mythic Dawn Commentaries (petty), Mankar Camoran's scripture from the Oblivion Crisis. The Vigil of Stendarr would burn you with it, and something in the margins keeps rewriting itself.", data: {name: "Mythic Dawn Commentaries", gear: [{name: "Mythic Dawn Commentaries", size: "petty", note: "something in the margins keeps rewriting itself"}]}}
+  18: {text: "You served a Jarl who is now dead. Take their housecarl's axe (d8) and a duty: their heir is hidden somewhere in Skyrim, and you swore on your life to find them.", data: {name: "A Dead Jarl's Heir", gear: [{name: "Axe", damage: "d8", note: "your dead Jarl's housecarl's"}]}}
+  19: {text: "A Forsworn hagraven cursed your bloodline: mirrors crack at your reflection. But in the shards, you can see the briar-hearts hidden in the breasts of men.", data: {name: "A Cursed Bloodline"}}
+  20: {text: "You traded something to a Daedra and cannot recall what. You sleep without dreams, cast no shadow at dusk, and the black soul gem (petty) in your pack refuses to stay empty.", data: {name: "A Debt to a Daedra", gear: [{name: "Black soul gem", size: "petty", note: "it refuses to stay empty"}]}}
+---
+table: omens
+title: "Omens"
+dice: d20
+source: players-guide/character-creation#omens
+entries:
+  1: {text: "Dragons — long thought a myth of the elder days — are seen again in the skies. Where one passes, it is said, the dead claw their way out of their barrows.", data: {name: "The Dragons Return"}}
+  2: {text: "The aurora burns an unnatural green every night over Winterhold, and the College's ruined tower hums like a struck bell.", data: {name: "The Green Aurora"}}
+  3: {text: "A Hold's Jarl has not been seen in weeks. His steward speaks for him now — and the steward's eyes are the wrong color.", data: {name: "The Steward's Eyes"}}
+  4: {text: "Wolves and bears come down from the peaks in unnatural numbers, fleeing something deeper in the Wilds. Hunters whisper of a great Hunt, and of antlered shapes moving among the pines.", data: {name: "Beasts Down from the Peaks"}}
+  5: {text: "Whole caravans vanish on the road to Markarth. The only thing left behind: heart-shaped stones carved from briar.", data: {name: "Stones Carved from Briar"}}
+  6: {text: "The mead in an entire town soured to blood overnight. The priest of Mara blames the Daedra; the elders blame the new Jarl.", data: {name: "Mead Soured to Blood"}}
+  7: {text: "Gray ash falls like snow on the eastern coast, and those who breathe it too long mutter the same name in their sleep: Miraak.", data: {name: "Ash on the Eastern Coast"}}
+  8: {text: "The Civil War is turning bloody near here. Both Stormcloak and Legion banners have been sighted, and the village must choose a side before the armies arrive to choose for them.", data: {name: "The Armies Are Coming"}}
+  9: {text: "A star has gone out. The astronomers at the College say it is a wound in Aetherius closing — and that magicka has felt thin ever since.", data: {name: "A Star Gone Out"}}
+  10: {text: "Children across the Hold dream the same dream: a black door, a whispered question, and a woman who smells of nightshade.", data: {name: "The Black Door"}}
+  11: {text: "The Vigil of Stendarr has gone silent. Their hall stands open and empty, the hearth cold, a Daedric sigil scorched black into the floor.", data: {name: "The Vigil Gone Silent"}}
+  12: {text: "An early frost has come and will not lift; crops freeze in a single night. The Greybeards do not answer the village's prayers, and the high passes are buried.", data: {name: "The Frost That Will Not Lift"}}
+  13: {text: "The dead of a nearby battlefield will not stay buried. By night they form ranks and drill, commanded by a wight wearing a dead king's crown.", data: {name: "The Dead Drill by Night"}}
+  14: {text: "A Dwemer ruin has begun to hum and glow after an age of silence. Its automatons march out at dusk, gathering the living and carrying them down into the dark.", data: {name: "The Humming Ruin"}}
+  15: {text: "Every lock in the city sprang open on the same night, and every key turned to lead. The Thieves Guild swears it was not them — and, for once, they sound afraid.", data: {name: "Every Lock Sprang Open"}}
+  16: {text: "A white stag has been seen, a streak of frost down its flank. Those who hunt it are found days later, far from home, with no memory and no shadow.", data: {name: "The White Stag"}}
+  17: {text: "A shrine of Talos was thrown down by Thalmor decree. Now the soldiers who did it are dying one by one, each with a Word carved into their chest.", data: {name: "A Word Carved in Each Chest"}}
+  18: {text: "Skooma flows through the Hold cheaper than mead. Those who drink deeply do not wake — and do not die — but lie smiling and cold as the grave.", data: {name: "Skooma Cheaper Than Mead"}}
+  19: {text: "A spriggan-haunted grove swallowed a logging camp whole overnight. The trees bleed sap that smells of memory, and the loggers wander among them, rooted and weeping.", data: {name: "The Grove That Swallowed a Camp"}}
+  20: {text: "An Elder Scroll has surfaced in the local market, and every power in Skyrim — Thalmor, College, Brotherhood, the vampire courts — is converging to claim it. They say reading it brings blindness. Or worse: clarity.", data: {name: "An Elder Scroll at Market"}}
+---
+table: races
+title: "Races"
+description: "Choose one of the ten races, or roll 1d10 down the list. Each has one minor trait. A background that names its people fixes the race (character creation takes it)."
+about: "{trait}"
+dice: d10
+source: players-guide/character-creation#races
+entries:
+  1: {text: "Nord", data: {race: "Nord", trait_name: "Frost-Hardy", trait: "Frost-Hardy: frost attacks against you are Impaired, and cold and snow alone never leave you Deprived.", epithet: "Children of the Sky.", impaired_by: ["frost"]}}
+  2: {text: "Imperial", data: {race: "Imperial", trait_name: "Voice of the Emperor", trait: "Voice of the Emperor: once per day, re-roll a failed WIL save made to calm, persuade, or bargain.", epithet: "Citizens of Cyrodiil."}}
+  3: {text: "Breton", data: {race: "Breton", trait_name: "Dragonskin", trait: "Dragonskin: once per day, a spell or magical effect that targets you fizzles harmlessly.", epithet: "the Manmer of High Rock."}}
+  4: {text: "Redguard", data: {race: "Redguard", trait_name: "Adrenaline Rush", trait: "Adrenaline Rush: once per day, clear a Fatigue in the heat of action.", epithet: "the Warriors of Hammerfell."}}
+  5: {text: "Altmer", data: {race: "Altmer", trait_name: "Highborn", trait: "Highborn: once per day, channel a Spell Tome without adding Fatigue.", epithet: "the Cultured People of Summerset."}}
+  6: {text: "Bosmer", data: {race: "Bosmer", trait_name: "Command Animal", trait: "Command Animal: once per day, a natural beast that can see you makes a WIL save or treats you as a friend for the rest of the scene.", epithet: "the Tree-Sap People of Valenwood."}}
+  7: {text: "Dunmer", data: {race: "Dunmer", trait_name: "Ancestor's Blood", trait: "Ancestor's Blood: fire attacks against you are Impaired, and heat, smoke, and ash alone never leave you Deprived.", epithet: "the Ash-Folk of Morrowind.", impaired_by: ["fire"]}}
+  8: {text: "Orsimer", data: {race: "Orsimer", trait_name: "Berserker Rage", trait: "Berserker Rage: once per day, make one attack Enhanced.", epithet: "the Pariah Folk of the strongholds."}}
+  9: {text: "Khajiit", data: {race: "Khajiit", trait_name: "Claws and Night-Eye", trait: "Claws and Night-Eye: your unarmed claws deal d6 damage, and you see in dim light as others do by day (utter darkness still needs a flame).", epithet: "the Cat-Folk of Elsweyr."}}
+  10: {text: "Argonian", data: {race: "Argonian", trait_name: "Hist-Blooded", trait: "Hist-Blooded: you breathe water as easily as air, and ordinary disease never takes hold in you.", epithet: "the Saxhleel of Black Marsh."}}
+---
+table: standing-stones
+title: "Standing Stones"
+description: "Optional (the standing-stones option): roll 1d12 or choose. The Serpent is never rolled: a character must seek it out (`didact do visit-stone`)."
+about: "{blessing}"
+dice: d12
+source: players-guide/character-creation#standing-stones
+entries:
+  1: {text: "The Warrior", data: {stone: "The Warrior", blessing: "Once per day, one of your attacks is Enhanced."}}
+  2: {text: "The Mage", data: {stone: "The Mage", blessing: "Once per day, channel a Spell Tome without adding Fatigue."}}
+  3: {text: "The Thief", data: {stone: "The Thief", blessing: "Once per day, re-roll a failed DEX save."}}
+  4: {text: "The Lord", data: {stone: "The Lord", blessing: "Once per day, one attack against you is Impaired."}}
+  5: {text: "The Lady", data: {stone: "The Lady", blessing: "Once per day, a short rest also clears one Fatigue."}}
+  6: {text: "The Steed", data: {stone: "The Steed", blessing: "Ignore the bulky tag on one worn suit of armor."}}
+  7: {text: "The Apprentice", data: {stone: "The Apprentice", blessing: "Twice per day, channel a Spell Tome without adding Fatigue — but magical attacks against you are Enhanced."}}
+  8: {text: "The Atronach", data: {stone: "The Atronach", blessing: "Once per day, a spell that targets you is absorbed: it fizzles, and you clear one Fatigue. But healing spells cast on you fizzle too."}}
+  9: {text: "The Ritual", data: {stone: "The Ritual", blessing: "Once per day, raise a nearby corpse as a mindless servant (3 HP, its own weapon or d4). It crumbles at the scene's end."}}
+  10: {text: "The Lover", data: {stone: "The Lover", blessing: "Once per day, shift one person's Reaction toward you one step better."}}
+  11: {text: "The Shadow", data: {stone: "The Shadow", blessing: "Once per day, become invisible until the end of your next turn, or until you attack or cast."}}
+  12: {text: "The Tower", data: {stone: "The Tower", blessing: "Once per day, open one mundane lock without tools or a save."}}
+---
+table: standing-stone
+title: "A Standing Stone's blessing"
+description: "Each Stone's blessing, by name (the thirteen, the Serpent among them)."
+lookup: stone
+source: players-guide/character-creation#standing-stones
+entries:
+  "The Warrior": {text: "Once per day, one of your attacks is Enhanced."}
+  "The Mage": {text: "Once per day, channel a Spell Tome without adding Fatigue."}
+  "The Thief": {text: "Once per day, re-roll a failed DEX save."}
+  "The Lord": {text: "Once per day, one attack against you is Impaired."}
+  "The Lady": {text: "Once per day, a short rest also clears one Fatigue."}
+  "The Steed": {text: "Ignore the bulky tag on one worn suit of armor."}
+  "The Apprentice": {text: "Twice per day, channel a Spell Tome without adding Fatigue — but magical attacks against you are Enhanced."}
+  "The Atronach": {text: "Once per day, a spell that targets you is absorbed: it fizzles, and you clear one Fatigue. But healing spells cast on you fizzle too."}
+  "The Ritual": {text: "Once per day, raise a nearby corpse as a mindless servant (3 HP, its own weapon or d4). It crumbles at the scene's end."}
+  "The Lover": {text: "Once per day, shift one person's Reaction toward you one step better."}
+  "The Shadow": {text: "Once per day, become invisible until the end of your next turn, or until you attack or cast."}
+  "The Tower": {text: "Once per day, open one mundane lock without tools or a save."}
+  "The Serpent": {text: "Once per day, spit venom at a foe you can see: it takes d6 damage and must pass a STR save or lose its next turn, paralyzed."}

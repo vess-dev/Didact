@@ -1,0 +1,21 @@
+table: stags
+title: Stags
+dice: d1
+entries:
+  1: "A stag {{the white one}}, {1d1} of them"
+---
+table: quarries
+title: Quarries
+dice: d2
+about: "Costs {cost} {{coins}}."
+entries:
+  1: {text: A stag, data: {cost: 2}}
+  2: {text: A boar, data: {cost: 3}}
+---
+table: pairs
+title: Pairs
+dice: d1
+columns: [first, second]
+read: "{first} {{and}} {second}"
+entries:
+  1: [Ash, Oak]

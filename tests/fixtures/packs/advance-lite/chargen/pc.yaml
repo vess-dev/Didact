@@ -1,0 +1,10 @@
+chargen: pc
+title: A hero
+creates: pc
+modes: [random, guided]
+steps:
+  - apply: {level: 1, xp: 0}
+  - choose_or_roll: {table: callings, as: calling, field: calling}
+  - choose: {from: "@calling.gifts", as: gift}
+  - add: {field: gifts, value: "@gift"}
+  - name: {from: [Wren, Ash]}

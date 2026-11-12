@@ -1,0 +1,86 @@
+# Rads as the book counts them: they fill slots, each one calls for a Rad Scar save (the sheet's
+# hook), they clear only through the right things and never while Deprived, NPCs lose STR
+# instead, robots and super mutants take none, ghouls roll no Rad Scars, gear halves or negates,
+# Rad-X negates the next; ghoulification and ferality. Seeded.
+test: rads
+help: >-
+  Each part plays in a world of its own: rads-and-rad-scars, who-takes-rads, ghoulification. NPCs
+  lose 1 STR instead (rad-immune ones ignore it); robots and super mutants take none; a ghoul's
+  Rads fill slots without a Rad Scar save; a Radiant ghoul takes none from the environment. Three
+  Rad Scars bring the ghoulification roll at the long rest; two allow choosing it; a resisted
+  roll sticks the next time; a ghoul at six Rads risks ferality.
+script:
+  - world new rads-and-rad-scars --system {pack} --seed rads
+  - campaign new rads-and-rad-scars --seed rads
+  - new pc Tess --set STR=12 --set DEX=12 --set WIL=12 --set hp=4
+  - run: do rad who=tess amount=2 source=hot-zone
+    expect: ["rads += 2", "rads reached 1: runs rad-scar-save", "rads reached 2: runs rad-scar-save", "1d20", "(needed 18 or under)"]
+  - run: set tess rads+=1
+    expect: ["rads reached 3: runs rad-scar-save"]
+  - run: show tess
+    expect: "rads 3"
+  - run: do clear-rads who=tess amount=1
+    expect: ["rads -= 1", "RadAway clears 1 Rad(s) from Tess (2 left)"]
+  - set tess conditions+=deprived
+  - run: do clear-rads who=tess
+    expect: "stop: Tess is Deprived: no Rads clear"
+  - set tess conditions-=deprived
+  - run: do rad who=tess gear=negates source=ambient
+    expect: "stop: Tess's gear negates the exposure"
+  - run: do rad who=tess gear=halves amount=2 source=ambient
+    expect: "ignores every second ambient Rad (2 → 1)"
+  - run: do rad who=tess gear=halves source=hot-zone
+    expect: ["rad_halved += hot-zone", "(1 → 1)"]
+  - run: do rad who=tess gear=halves source=hot-zone
+    expect: ["rad_halved -= hot-zone", "(1 → 0)", "stop: No Rad gets through."]
+  - run: do rad who=tess gear=halves source=ambient
+    expect: ["ignores every second ambient Rad (1 → 1)", "rad_halved += ambient"]
+  - set tess rad_x=true
+  - run: do rad who=tess source=weapon
+    expect: ["Rad-X negates the next Rad", "stop: No Rad gets through."]
+  - run: do rad-zone who=tess zone=hot watches=1 scenes=2
+    expect: ["3 Rad(s) of exposure before protection", "rads += 3"]
+  - set tess conditions+=deprived
+  - run: do clinic who=tess cost=0
+    expect: "stop: Tess is Deprived: no STR comes back and no Rad is flushed"
+  - set tess conditions-=deprived
+  - run: do clinic who=tess cost=0
+    expect: ["rads = 0", "flushes every Rad"]
+  - world new who-takes-rads --system {pack} --seed who
+  - campaign new who-takes-rads --seed who
+  - spawn bloatfly
+  - run: do rad who=bloatfly
+    expect: ["monster:bloatfly: STR -= 1", "loses 1 STR instead"]
+  - run: spawn feral-ghoul
+    expect: "monster:feral-ghoul"
+  - run: do rad who=feral-ghoul
+    expect: "stop: Feral Ghoul is rad-immune"
+  - new pc Codsworth --set STR=10 --set DEX=10 --set WIL=10 --set hp=4 --set kind=robot
+  - run: do rad who=codsworth
+    expect: "stop: Codsworth takes no Rads from any source"
+  - new pc Hap --set STR=10 --set DEX=10 --set WIL=10 --set hp=4 --set kind=ghoul
+  - set hap immunities+=rad-scars immunities+=ambient-rads
+  - run: do rad who=hap source=water
+    expect: "stop: Hap absorbs environmental radiation"
+  - run: do rad who=hap source=weapon
+    expect: ["rads += 1", "Hap is a ghoul: no Rad Scar save"]
+  - world new ghoulification --system {pack} --seed ghoul
+  - campaign new ghoulification --seed ghoul
+  - new pc Vera --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set background=Wastelander
+  - set vera rad_scar_count=2
+  - run: do ghoulify who=vera
+    expect: "the roll comes with the third (or choose=true from the second)"
+  - run: do ghoulify who=vera choose=true
+    expect: ["background = Ghoul", "kind = ghoul", "immunities += rad-scars", "Vera ghoulifies"]
+  - run: do ghoulify who=vera
+    expect: "stop: Vera is already a ghoul"
+  - run: do rad who=vera amount=6 source=weapon
+    expect: ["rads reached 6", "A ghoul who spends a full day at six or more Rads"]
+  - run: do feral-check who=vera
+    expect: ["check fallout-2e.feral-check", "1d20"]
+  - new pc Ned --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set background=Courier --set rad_scar_count=3
+  - run: do recover who=ned
+    expect: ["three Rad Scars: the long rest brings the ghoulification roll", "ghoulification"]
+  - new pc Mae --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set rad_scar_count=3 --set ghoul_flag=true
+  - run: do ghoulify who=mae
+    expect: ["resisted once already: this time it sticks", "Mae ghoulifies"]

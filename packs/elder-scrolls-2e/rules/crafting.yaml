@@ -1,0 +1,326 @@
+# Skill Books (wardens-guide/skill-books) and the three crafting trades (players-guide/crafting):
+# Smithing (tempering), Alchemy (brewing), Enchanting (learning an effect, binding it into a
+# Relic, recharging it). Each trade is a Downtime Action at the right station: the work succeeds
+# unless it's rushed or improvised, and the numbers never pass the caps (Armor 3, d12).
+action: read-book
+title: Read a Skill Book
+help: >-
+  Reading a Skill Book takes one turn in a safe, quiet place, never in combat or while
+  Deprived. The book is consumed and its small, permanent perk fills one of the five Skill-Book
+  slots; only the first reader of a given copy gains it. With all five full, the reader must
+  forget one perk (forget='<its book>'): it's gone until they read a fresh copy. A character may
+  refuse to read a book: then it isn't consumed. A book the Warden made: perk='…'.
+params:
+  who: ref
+  book: {kind: text, help: "The Skill Book's title, e.g. 'Mace Etiquette'"}
+  forget: {kind: text, optional: true, help: "With five perks already: the book whose perk is forgotten"}
+  perk: {kind: text, optional: true, help: "A book not in the catalog: its perk"}
+steps:
+  - if: "default(@combat.round, 0) > 0"
+    then:
+      - stop: "Reading a Skill Book takes a turn in a safe, quiet place: not in combat."
+  - if: "'deprived' in @who.conditions"
+    then:
+      - stop: "{@who.name} is Deprived: no reading a Skill Book until the need is met."
+  - if: "@book in @who.skill_books"
+    then:
+      - stop: "{@who.name} already carries the perk of $book: a second copy is worth trading, selling or handing to another character."
+  - let: {full: "count(@who.skill_books) >= 5", dropping: "default(@forget, '')"}
+  - if: "@full and @dropping == ''"
+    then:
+      - stop: "All five of {@who.name}'s Skill-Book slots are full ({@who.skill_books}): to read $book they must forget one (`forget='…'`), chosen now, at the moment of reading."
+  - if: "@dropping <> '' and not (@dropping in @who.skill_books)"
+    then:
+      - stop: "{@who.name} has no perk from {@dropping} to forget (they carry: {@who.skill_books})."
+  - if: "default(@perk, '') == ''"
+    then:
+      - table: skill-book-perks
+        with: {book: "$book"}
+        as: learned
+    else:
+      - let: {learned: "$perk"}
+  - if: "@dropping <> ''"
+    then:
+      - set: who.skill_books
+        op: "-="
+        value: "{@dropping}"
+      - if: "@dropping == 'Aevar Stone-Singer'"
+        then:
+          - set: who.hp
+            value: "min(@who.hp, max(0, @who.hp.max - 1))"
+          - set: who.hp.max
+            op: "-="
+            value: 1
+      - message: "{@who.name} lets go of what {@dropping} taught them: that perk is gone until they read a fresh copy."
+  - set: who.skill_books
+    op: "+="
+    value: "$book"
+  - if: "@book == 'Aevar Stone-Singer'"
+    then:
+      - set: who.hp.max
+        op: "+="
+        value: 1
+      - set: who.hp
+        op: "+="
+        value: 1
+  - message: "{@who.name} reads $book: {@learned}"
+  - message: "The book is consumed: dog-eared, annotated to death, gifted to a college, or memorized and discarded."
+  - if: "@book in @who.inventory"
+    then:
+      - take: $book
+        from: "@who"
+        count: 1
+    else: ["Someone else's copy? It's consumed all the same: drop it from whoever carried it (`didact inv drop <them> '$book'`)."]
+  - reminder: "A turn of study in a safe, quiet place: `didact time advance 1 turn`."
+source: wardens-guide/skill-books#rules
+---
+action: temper
+title: Temper a weapon or armor
+help: >-
+  One Downtime Action at a forge, plus a unit of the right material (the piece's own make or
+  finer), tempers a piece once, for good: a weapon's die steps up one rung (d6 → d8 → d10 →
+  d12, the cap), a suit of body armor gains +1 Armor (light 1 → 2, mail 2 → 3; plate is at the
+  cap, and a shield or helmet never gives more than +1). Masterwork gear comes already
+  tempered. A unit of material costs about the piece's Marketplace price, ×5 for Dwarven,
+  Elven and Orcish, ×20 for Glass, Ebony, Nordic and Stalhrim, ×50 for Dragonbone and Daedric
+  (price=n pays it). A rushed or improvised job (no proper forge, between watches, a tier beyond
+  the smith's skill) calls for a STR save: on a failure the material is wasted and the piece
+  stays untempered. A piece the smith carries is read from their sheet (its die, its Armor and
+  whether it's a suit, whether it's tempered or masterwork) and marked there; for one no sheet
+  of theirs holds, say what it is (die=, armor=, tempered=).
+params:
+  who: ref
+  item: {kind: text, help: "The piece, as the inventory names it"}
+  die: {kind: text, optional: true, help: "A piece the smith doesn't carry: a weapon's damage die now (d6, d8, d10)"}
+  armor: {kind: int, optional: true, help: "A piece the smith doesn't carry: a suit of body armor's Armor now (1 light, 2 mail)"}
+  tempered: {kind: flag, default: false, help: "A piece the smith doesn't carry: it has been tempered already (or is masterwork)"}
+  material: {enum: [Iron, Steel, Dwarven, Elven, Orcish, Glass, Ebony, Nordic / Stalhrim, Dragonbone, Daedric], default: Iron, help: "The piece's make"}
+  price: {kind: int, default: 0, help: "The piece's Marketplace price, to pay for the material (0: already in hand)"}
+  rushed: {kind: flag, default: false, help: "A rushed or improvised job"}
+steps:
+  - let:
+      own_die: "default(@{who.inventory.$item.damage}, '')"
+      own_armor: "default(@{who.inventory.$item.armor}, 0)"
+      own_suit: "default(@{who.inventory.$item.suit}, 0)"
+  - let:
+      carried: "@item in @who.inventory or @own_die <> '' or @own_armor > 0"
+      die_now: "if(@own_die <> '', @own_die, default(@die, ''))"
+      armor_now: "if(@own_suit > 0, @own_armor, default(@armor, 0))"
+  - if: "@tempered or default(@{who.inventory.$item.tempered}, false)"
+    then:
+      - stop: "A piece can be tempered only once (masterwork gear has used its step): more work only deepens its fiction, its edge, its polish, its resale."
+  - if: "@own_die == '' and @own_armor > 0 and @own_suit == 0"
+    then:
+      - stop: "$item is a shield or helmet: it never gives more than +1, so no tempering raises it (more work only deepens its fiction)."
+  - let: {weapon: "@die_now <> ''", suit: "@armor_now > 0"}
+  - if: "not @weapon and not @suit"
+    then:
+      - stop: "Say what it is: a weapon's die (`die=d8`) or a suit of body armor's Armor (`armor=2`), or put the piece on the smith's sheet (`didact inv add {@who.id} '$item' --data …`)."
+  - if: "@weapon and (@die_now == 'd12' or @die_now == '1d12')"
+    then:
+      - stop: "$item is already d12, the cap: the cap is the cap."
+  - if: "@weapon and not (@die_now == 'd6' or @die_now == 'd8' or @die_now == 'd10' or @die_now == '1d6' or @die_now == '1d8' or @die_now == '1d10')"
+    then:
+      - stop: "The book's steps run d6 → d8 → d10 → d12: a {@die_now} weapon is the Warden's call."
+  - if: "@suit and @armor_now >= 3"
+    then:
+      - stop: "Plate is already at the cap of 3 Armor; a shield or helmet never gives more than +1."
+  - table: material-tiers
+    with: {material: "$material"}
+    as: tier
+  - let: {worth: "default(@tier.worth, 0)"}
+  - if: "@price > 0 and @worth == 0"
+    then:
+      - stop: "The book gives no worth for $material: the Warden sets the cost (then `price=0` once it's paid)."
+  - let: {cost: "@price * @worth"}
+  - if: "@cost > @who.gold"
+    then:
+      - stop: "A unit of $material for $item costs about {@cost} Septims; {@who.name} has {@who.gold}."
+  - if: "@cost > 0"
+    then:
+      - set: who.gold
+        op: "-="
+        value: "@cost"
+      - message: "{@who.name} pays {@cost} Septims for a unit of $material (×{@worth} the piece's price)."
+  - if: "@rushed"
+    then:
+      - check: save
+        with: {who: "@who", attr: STR}
+        as: forge
+      - if: "@forge == 'failure'"
+        then:
+          - stop: "The rushed work goes wrong: the material is wasted, and $item survives untempered (the Warden may rule it nicked or dulled until reworked)."
+  - let:
+      new_die: "if(@weapon, if('10' in @die_now, 'd12', if('8' in @die_now, 'd10', 'd8')), '')"
+      new_armor: "if(@suit, @armor_now + 1, 0)"
+  - if: "@weapon"
+    then: ["$item is tempered: {@die_now} → {@new_die}, for good."]
+    else: ["$item is tempered: {@armor_now} → {@new_armor} Armor, for good."]
+  - if: "@carried"
+    then:
+      - if: "@weapon"
+        then:
+          - set: who.inventory.$item.damage
+            value: "@new_die"
+        else:
+          - set: who.inventory.$item.armor
+            value: "@new_armor"
+          - set: who.inventory.$item.suit
+            value: "@new_armor"
+      - set: who.inventory.$item.tempered
+        value: true
+    else: ["Mark it on whoever carries it: `didact set <them> \"inventory.$item.{if(@weapon, 'damage', 'armor')}={if(@weapon, @new_die, @new_armor)}\"`{if(@weapon, '', ' (and its suit)')}, and `\"inventory.$item.tempered=true\"`."]
+  - reminder: "A Downtime Action is spent; the material is the piece's own make or finer."
+  - do: coins
+    with: {who: "@who"}
+    go_on: true
+source: players-guide/crafting#tempering-improving-gear
+---
+action: brew
+title: Brew potions or poisons
+help: >-
+  At an alchemy lab, combine two or three ingredients that share a property and brew them as
+  one Downtime Action: it yields 1d4 potions or poisons of the recipe, each petty, single-use,
+  no Fatigue. A rushed or improvised batch (no proper lab, brewing under threat) calls for a WIL
+  save; on a failure the Warden picks an unhappy result: the ingredients wasted, or the dose a
+  weak poison instead.
+params:
+  who: ref
+  brew: {kind: text, help: "The recipe: Potion of Healing, Potion of Cure Disease, Damage Health (poison), … (the brews table is a menu, not a limit)"}
+  rushed: {kind: flag, default: false, help: "No proper lab, or brewing under threat"}
+steps:
+  - if: "@rushed"
+    then:
+      - check: save
+        with: {who: "@who", attr: WIL}
+        as: batch
+      - if: "@batch == 'failure'"
+        then:
+          - stop: "The batch goes wrong: the Warden picks the unhappy result (the ingredients wasted, or the dose turned to a weak poison)."
+  - roll: 1d4
+    as: doses
+  - message: "{@who.name} brews {@doses} × $brew (petty, single-use, no Fatigue)."
+  - give: $brew
+    to: "@who"
+    count: "@doses"
+    data: {size: petty, uses: 1}
+  - reminder: "A Downtime Action is spent; the ingredients are used up. Each dose is one use (`didact inv use {@who.id} '$brew'`); a healing draught is magical healing (`didact do heal`)."
+source: players-guide/crafting#how-it-works
+---
+action: learn-effect
+title: Learn an enchantment
+help: >-
+  A PC learns an effect by destroying a magic item that already carries it, unbinding it at an
+  arcane enchanter to study how it was made. The item is consumed for good; the most storied
+  Relics and Daedric Artifacts resist being unmade and can't be learned from. Once learned, the
+  effect is the PC's to bind again and again, soul gems permitting.
+params:
+  who: ref
+  item: {kind: text, help: "The magic item unbound"}
+  effect: {kind: text, help: "The effect it carries, e.g. 'Fire damage', 'Muffle', 'Absorb Health'"}
+steps:
+  - if: "@effect in @who.effects_known"
+    then:
+      - stop: "{@who.name} already knows $effect."
+  - prompt: "Is $item a storied Relic or a Daedric Artifact? Those resist being unmade."
+  - if: "@item in @who.inventory"
+    then:
+      - take: $item
+        from: "@who"
+        count: 1
+    else: ["Unbinding destroys it: drop it from whoever carried it (`didact inv drop <them> '$item'`)."]
+  - set: who.effects_known
+    op: "+="
+    value: "$effect"
+  - message: "{@who.name} unbinds $item at the enchanter and learns $effect: theirs to bind again and again."
+source: players-guide/crafting#learning-effects
+---
+action: enchant
+title: Bind an enchantment
+help: >-
+  At an arcane enchanter, a Downtime Action binds a learned effect into a weapon, armor or worn
+  item, consuming a filled soul gem: the item becomes a Relic, its charges set by the soul
+  (petty or lesser 1, common or greater 2, grand or black 3). A weapon's enchantment spends a
+  charge when called on; a worn one spends a charge each use, or, powered by a greater, grand
+  or black soul, may be made constant (constant=true): always working while worn. Each item
+  holds one enchantment; a person draws on at most one enchanted ring and one amulet at a time.
+params:
+  who: ref
+  item: {kind: text, help: "The item that takes the enchantment"}
+  effect: {kind: text, help: "A learned effect (`didact do learn-effect`)"}
+  gem: {enum: [petty, lesser, common, greater, grand, black], help: "The filled soul gem spent"}
+  worn: {kind: flag, default: false, help: "A worn item (armor, apparel, a ring, an amulet), not a weapon"}
+  constant: {kind: flag, default: false, help: "A worn enchantment made constant (greater, grand or black soul)"}
+steps:
+  - if: "not (@effect in @who.effects_known)"
+    then:
+      - stop: "{@who.name} can only bind an effect they understand: learn $effect by destroying a magic item that carries it (`didact do learn-effect`)."
+  - if: "@constant and not @worn"
+    then:
+      - stop: "Only a worn enchantment can be made constant; a weapon's spends a charge when called on."
+  - table: soul-gems
+    with: {gem: "$gem"}
+    as: soul
+  - if: "@constant and not @soul.constant"
+    then:
+      - stop: "A $gem soul can't power a constant enchantment: only a greater, grand or black one."
+  - let: {gem_name: "if('$gem' == 'petty', 'Petty soul gem', if('$gem' == 'lesser', 'Lesser soul gem', if('$gem' == 'common', 'Common soul gem', if('$gem' == 'greater', 'Greater soul gem', if('$gem' == 'grand', 'Grand soul gem', 'Black soul gem')))))"}
+  - if: "@gem_name in @who.inventory"
+    then:
+      - take: "{@gem_name}"
+        from: "@who"
+        count: 1
+    else: ["Spend the filled {@gem_name} (`didact inv drop <who has it> '{@gem_name}'`)."]
+  - if: "@constant"
+    then: ["$item is a Relic now: $effect, constant while worn, no charges to spend."]
+    else: ["$item is a Relic now: $effect, {@soul.charges} charge(s); Recharge: feed it another filled soul gem (`didact do recharge`)."]
+  - if: "@item in @who.inventory"
+    then:
+      - set: who.inventory.$item.enchantment
+        value: "$effect{if(@constant, ' (constant while worn)', '')}"
+      - if: "not @constant"
+        then:
+          - set: who.inventory.$item.charges
+            value: "@soul.charges"
+          - set: who.inventory.$item.recharge
+            value: "{'Feed it another filled soul gem (didact do recharge).'}"
+    else: ["Mark it on whoever carries it: `didact set <them> \"inventory.$item.enchantment=$effect\"`{if(@constant, '', ', and its charges: ')}{if(@constant, '', @soul.charges)}."]
+  - if: "'$gem' == 'black'"
+    then: ["A black soul: a thinking being's, taboo across Skyrim. Using one marks {@who.name} worse than carrying it (the temples and the Vigil of Stendarr abhor it)."]
+  - reminder: "Each item holds one enchantment; one enchanted ring and one amulet at a time."
+source: players-guide/crafting#enchanting
+---
+action: recharge
+title: Recharge a Relic
+help: >-
+  A Relic made at the enchanter is recharged by feeding it another filled soul gem at any time:
+  as many charges as that soul would grant (1, 2 or 3), up to its maximum. A found Relic (from
+  the Warden's catalogs) recharges only as its own Recharge line says; a soul gem serves only
+  where that line names one (found=true).
+params:
+  who: ref
+  item: {kind: text, help: "The Relic"}
+  gem: {enum: [petty, lesser, common, greater, grand, black]}
+  found: {kind: flag, default: false, help: "A found Relic: its own Recharge line decides"}
+steps:
+  - if: "@found"
+    then:
+      - stop: "A found Relic recharges only as its own Recharge line says; a soul gem serves only where that line names one."
+  - table: soul-gems
+    with: {gem: "$gem"}
+    as: soul
+  - let: {gem_name: "if('$gem' == 'petty', 'Petty soul gem', if('$gem' == 'lesser', 'Lesser soul gem', if('$gem' == 'common', 'Common soul gem', if('$gem' == 'greater', 'Greater soul gem', if('$gem' == 'grand', 'Grand soul gem', 'Black soul gem')))))"}
+  - if: "@gem_name in @who.inventory"
+    then:
+      - take: "{@gem_name}"
+        from: "@who"
+        count: 1
+    else: ["Spend the filled {@gem_name} (`didact inv drop <who has it> '{@gem_name}'`)."]
+  - message: "The {@gem_name}'s soul pours into $item: {@soul.charges} charge(s) back, up to its maximum."
+  - if: "@item in @who.inventory"
+    then:
+      - set: who.inventory.$item.charges
+        op: "+="
+        value: "@soul.charges"
+    else: ["Add them on whoever carries it: `didact set <them> \"inventory.$item.charges+={@soul.charges}\"` (it stops at its maximum)."]
+source: players-guide/crafting#recharge

@@ -1,0 +1,293 @@
+# Standing in the world (wardens-guide/faction-reputation, renown-and-infamy): Faction
+# Reputation (−2 Hunted to +2 Sworn, with the opposed pairs), Renown & Infamy (−3 Reviled to +3
+# Hero of Skyrim, one step per session, setting where a stranger's Reaction starts), and Bounty,
+# per Hold, in Septims. The three tracks stay separate. Renown is the party's one dial, on the
+# party record; Reputation and Bounty are on each PC's sheet (a background's tie, a curse's
+# enemies and a crime are the character's own).
+action: reputation
+title: Faction Reputation
+help: >-
+  Nudge a faction's standing one rung, on a witnessed or reported action (one step per beat, not
+  per kill; if no one survives to tell it, nothing moves): −2 Hunted (attacked on sight), −1
+  Distrusted, 0 Unknown, +1 Trusted, +2 Sworn (one meaningful favor per session). Rising with a
+  faction drops the party a step with its opposite if word would reach it (opposed=false if it
+  wouldn't): Stormcloaks ↔ Legion, Dawnguard ↔ Volkihar, Vigil of Stendarr ↔ Daedric cults,
+  Thieves Guild ↔ city guards, and Greybeards ↔ Blades once the Blades have demanded
+  Paarthurnax's death (paarthurnax=true). A character who betrays the faction their background
+  ties them to drops two rungs on the first real treachery (betrayal=true).
+params:
+  who: ref
+  faction: {enum: [companions, college, thieves_guild, dark_brotherhood, stormcloaks, legion, greybeards, blades, dawnguard, volkihar, vigil, bards_college, forsworn, thalmor, skaal, guards, daedric_cults]}
+  step: {enum: [up, down]}
+  betrayal: {kind: flag, default: false, help: "The first real treachery against the faction their background ties them to: two rungs"}
+  opposed: {kind: flag, default: true, help: "Would word reach the faction's sworn enemy?"}
+  paarthurnax: {kind: flag, default: false, help: "The Blades have demanded Paarthurnax's death: Greybeards and Blades are opposed"}
+  why: {kind: text, optional: true, help: "The deed that moved it"}
+steps:
+  - if: "@who.type <> 'pc'"
+    then:
+      - stop: "Faction Reputation is tracked on the PCs' sheets."
+  - let: {was: "default(@who.rep_$faction, 0)", by: "if(@betrayal and @step == 'down', 2, 1)"}
+  - let:
+      fname: >-
+        if('$faction' == 'companions', 'the Companions', if('$faction' == 'college', 'the College of Winterhold', if('$faction' == 'thieves_guild', 'the Thieves Guild', if('$faction' == 'dark_brotherhood', 'the Dark Brotherhood', if('$faction' == 'stormcloaks', 'the Stormcloaks', if('$faction' == 'legion', 'the Imperial Legion', if('$faction' == 'greybeards', 'the Greybeards', if('$faction' == 'blades', 'the Blades', if('$faction' == 'dawnguard', 'the Dawnguard', if('$faction' == 'volkihar', 'the Volkihar', if('$faction' == 'vigil', 'the Vigil of Stendarr', if('$faction' == 'bards_college', 'the Bards College', if('$faction' == 'forsworn', 'the Forsworn', if('$faction' == 'thalmor', 'the Thalmor', if('$faction' == 'skaal', 'the Skaal', if('$faction' == 'guards', 'the city guards', if('$faction' == 'daedric_cults', 'the Daedric cults', '$faction')))))))))))))))))
+  - if: "(@step == 'up' and @was >= 2) or (@step == 'down' and @was <= -2)"
+    then:
+      - stop: "The ladder clamps at its ends: {@who.name} is already {if(@was >= 2, 'Sworn', 'Hunted')} with {@fname} (pushing on may shift the flavor: a Sworn member groomed for leadership, a Hunted enemy earning a named bounty)."
+  - if: "@step == 'up'"
+    then:
+      - set: who.rep_$faction
+        op: "+="
+        value: 1
+    else:
+      - set: who.rep_$faction
+        op: "-="
+        value: "@by"
+  - let: {now: "default(@who.rep_$faction, 0)"}
+  - let: {rung: "if(@now >= 2, 'Sworn', if(@now == 1, 'Trusted', if(@now == 0, 'Unknown', if(@now == -1, 'Distrusted', 'Hunted'))))"}
+  - message: "{@who.name}'s standing with {@fname}: {@was} → {@now}, {@rung}{if(default(@why, '') == '', '', ': ')}{default(@why, '')}."
+  - if: "@now == 2 and @was < 2"
+    then: ["Sworn: treated as one of their own. Once per session, the faction grants one meaningful favor (a safe house, a debt forgiven, a hard door unlocked, a hireling lent for free)."]
+  - if: "@now == -2 and @was > -2"
+    then: ["Hunted: the faction attacks {@who.name} on sight."]
+  - if: "@step == 'up' and @opposed"
+    then:
+      - let:
+          opposite: >-
+            if('$faction' == 'stormcloaks', 'legion', if('$faction' == 'legion', 'stormcloaks',
+            if('$faction' == 'dawnguard', 'volkihar', if('$faction' == 'volkihar', 'dawnguard',
+            if('$faction' == 'vigil', 'daedric_cults', if('$faction' == 'daedric_cults', 'vigil',
+            if('$faction' == 'thieves_guild', 'guards', if('$faction' == 'guards', 'thieves_guild',
+            if('$faction' == 'greybeards' and @paarthurnax, 'blades', if('$faction' == 'blades' and @paarthurnax, 'greybeards', ''))))))))))
+      - if: "@opposite <> ''"
+        then:
+          - message: "Climbing with {@fname} shoves {@who.name} down its sworn enemy's ladder:"
+          - do: reputation
+            with: {who: "@who", faction: "@opposite", step: down, opposed: "false"}
+            go_on: true
+  - if: "'$faction' == 'thalmor' and @step == 'up'"
+    then:
+      - prompt: "The Thalmor distrust nearly everyone: pleasing them almost always costs the party somewhere else (Talos-worshippers, the Stormcloaks, the Blades, the Forsworn are all the Dominion's enemies)."
+source: wardens-guide/faction-reputation#how-the-warden-moves-it
+---
+action: renown
+title: Renown & Infamy
+help: >-
+  The common folk's opinion of the party, one dial on the party record (`didact new party "The
+  Company"`): −3 Reviled, −2 Infamous, −1 Suspect, 0 Unknown, +1 Known, +2 Renowned, +3 Hero of
+  Skyrim. One step per session at most (the rule keeps count while a session is open), and
+  only for public deeds (witnessed, sung, or seen in the aftermath); even a world-shaking act
+  moves it one rung. Killing bandits, Forsworn raiders, draugr, vampires or the plainly
+  monstrous never lowers it (monstrous=true). A witnessed crime is Bounty, not Renown, unless it's
+  open enough to be sung about too. One who earned fame entirely alone may carry a personal
+  score: a party record of their own.
+params:
+  party: {kind: ref, help: "The party record"}
+  step: {enum: [up, down]}
+  deed: {kind: text, optional: true, help: "The public deed"}
+  public: {kind: flag, default: true, help: "Witnessed, sung, or seen in the aftermath"}
+  monstrous: {kind: flag, default: false, help: "The deed was cutting down what everyone agrees should be cut down"}
+steps:
+  - if: "@party.type <> 'party'"
+    then:
+      - stop: "Renown is the party's: `didact new party \"The Company\"`, then party=<it>."
+  - if: "not @public"
+    then:
+      - stop: "What no one witnessed and no one can trace does not touch Renown at all: that is the province of Faction Reputation and Bounty."
+  - if: "@step == 'down' and @monstrous"
+    then:
+      - stop: "Killing bandits, Forsworn raiders, draugr, vampires or the plainly monstrous is a public good: it never drags the party down the ladder, however bloody."
+  - if: "default(@session, 0) > 0 and default(@party.renown_session, 0) == @session"
+    then:
+      - stop: "Renown moves one step per session at most, and it moved this session (session {@session}): fame builds and tarnishes by accumulation, arc over arc."
+  - let: {was: "default(@party.renown, 0)"}
+  - if: "(@step == 'up' and @was >= 3) or (@step == 'down' and @was <= -3)"
+    then:
+      - stop: "The ladder clamps at ±3: {@party.name} is already {if(@was >= 3, 'a Hero of Skyrim', 'Reviled')}."
+  - if: "@step == 'up'"
+    then:
+      - set: party.renown
+        op: "+="
+        value: 1
+    else:
+      - set: party.renown
+        op: "-="
+        value: 1
+  - if: "default(@session, 0) > 0"
+    then:
+      - set: party.renown_session
+        value: "@session"
+  - let: {now: "default(@party.renown, 0)"}
+  - let: {rung: "if(@now == 3, 'Hero of Skyrim', if(@now == 2, 'Renowned', if(@now == 1, 'Known', if(@now == 0, 'Unknown', if(@now == -1, 'Suspect', if(@now == -2, 'Infamous', 'Reviled'))))))"}
+  - message: "{@party.name}'s Renown: {@was} → {@now}, {@rung}{if(default(@deed, '') == '', '', ' (')}{default(@deed, '')}{if(default(@deed, '') == '', '', ')')}."
+  - if: "default(@session, 0) == 0"
+    then: ["One step per session: with no session started, don't move it again until the next one (`didact session start` lets the rule keep count)."]
+source: wardens-guide/renown-and-infamy#how-public-deeds-move-it
+---
+action: renown-drift
+title: Fame fades
+help: >-
+  Between arcs, Renown drifts one step toward 0 unless the party keeps feeding it (fed=true): a
+  vanished Hero comes back merely Renowned, an Infamous band that lies low becomes only Suspect.
+  Drift never carries the party past Unknown.
+params:
+  party: {kind: ref, help: "The party record"}
+  fed: {kind: flag, default: false, help: "The party kept feeding its fame (or infamy) this arc"}
+steps:
+  - let: {was: "default(@party.renown, 0)"}
+  - if: "@was == 0"
+    then:
+      - stop: "{@party.name} is Unknown: nothing to drift."
+  - if: "@fed"
+    then:
+      - stop: "The party kept its name in the songs: no drift this arc."
+  - if: "@was > 0"
+    then:
+      - set: party.renown
+        op: "-="
+        value: 1
+    else:
+      - set: party.renown
+        op: "+="
+        value: 1
+  - message: "Between arcs, {@party.name}'s Renown drifts toward Unknown: {@was} → {default(@party.renown, 0)}."
+source: wardens-guide/renown-and-infamy#drift-toward-zero
+---
+action: reaction
+title: Reaction
+help: >-
+  Roll 2d6 for an NPC whose reaction to the party isn't obvious (Hostile, Wary, Curious, Kind,
+  Helpful), and keep it on their sheet. party=<the party record>: its Renown sets where a
+  stranger's Reaction starts (Known: roll, and on Curious or better a small favor; Renowned:
+  Kind; Hero of Skyrim: Helpful; Suspect: Wary; Infamous: Hostile; Reviled: flight or a weapon
+  before a word). toward=<the PC> the stranger meets: then shifts, from there: a Dremora or
+  draugr revenant starts one step worse; a
+  vampire, the beast-blooded or a Briarheart one worse where their nature is known (known=true);
+  Greenspore one worse; anything else (a faction's standing, the Lover stone, a gift, an obvious
+  threat, a Longhouse or Inn on a first visit) as shift=±n.
+params:
+  who: ref
+  party: {kind: ref, optional: true, help: "The party record, for its Renown"}
+  toward: {kind: ref, optional: true, help: "The PC the stranger meets, for their nature and Greenspore"}
+  known: {kind: flag, default: false, help: "The PC's unusual nature is known or revealed"}
+  shift: {kind: int, default: 0, help: "Other steps better (+) or worse (−)"}
+steps:
+  - let: {renown: "if(default(@party, '') == '', 0, default(@party.renown, 0))"}
+  - if: "@renown <= -3"
+    then:
+      - set: who.disposition
+        value: Hostile
+      - message: "Reviled: {@who.name} flees or reaches for a weapon before a word is spoken."
+    else:
+      - if: "@renown >= 2 or @renown <= -1"
+        then:
+          - let: {start: "if(@renown >= 3, 4, if(@renown == 2, 3, if(@renown == -1, 1, 0)))"}
+          - message: "The party's name precedes them ({if(@renown >= 3, 'Hero of Skyrim', if(@renown == 2, 'Renowned', if(@renown == -1, 'Suspect', 'Infamous')))}): no roll."
+        else:
+          - table: reactions
+            as: rolled
+          - let: {start: "if(@rolled == 'Hostile', 0, if(@rolled == 'Wary', 1, if(@rolled == 'Curious', 2, if(@rolled == 'Kind', 3, 4))))"}
+      - let:
+          nature: "if(default(@toward, '') == '', 'mortal', default(@toward.nature, 'mortal'))"
+          sick: "if(default(@toward, '') == '', false, 'greenspore' in default(@toward.diseases, ''))"
+      - let:
+          worse: >-
+            if(@nature == 'dremora' or @nature == 'draugr-revenant', 1, 0)
+            + if(@known and (@nature == 'vampire' or @nature == 'werewolf' or @nature == 'werebear' or @nature == 'briarheart'), 1, 0)
+            + if(@sick, 1, 0)
+      - let: {final: "max(0, min(4, @start + @shift - @worse))"}
+      - let: {reaction: "if(@final == 0, 'Hostile', if(@final == 1, 'Wary', if(@final == 2, 'Curious', if(@final == 3, 'Kind', 'Helpful'))))"}
+      - set: who.disposition
+        value: "@reaction"
+      - if: "@worse > 0 or @shift <> 0"
+        then: ["Shifted {@shift - @worse} step(s) from where it started."]
+      - message: "{@who.name} is {@reaction}."
+      - if: "@renown == 1 and @final >= 2"
+        then: ["Known: the stranger offers some small favor (a drink, a warning, a better price)."]
+source: wardens-guide/renown-and-infamy#how-it-shapes-stranger-reactions
+---
+action: bounty
+title: A bounty in a Hold
+help: >-
+  A witnessed crime against a Hold's peace (theft, assault, trespass, murder) adds Septims to
+  the bounty in that Hold, scaled to the offense (a lifted apple is a pittance, a murder in the
+  street a fortune: the Warden sets it). No witness and no trail, no bounty. While it stands,
+  that Hold's guards confront the PC on sight, and it bars them from the Hold's lawful comforts.
+params:
+  who: ref
+  hold: {enum: [whiterun, haafingar, eastmarch, the_rift, the_reach, falkreath, hjaalmarch, the_pale, winterhold, raven_rock]}
+  amount: {kind: int, help: "Septims added"}
+  witnessed: {kind: flag, default: true, help: "A guard saw it, a victim lived to report it, or evidence points back"}
+  crime: {kind: text, optional: true}
+steps:
+  - let:
+      hname: >-
+        if('$hold' == 'whiterun', 'Whiterun Hold', if('$hold' == 'haafingar', 'Haafingar', if('$hold' == 'eastmarch', 'Eastmarch', if('$hold' == 'the_rift', 'the Rift', if('$hold' == 'the_reach', 'the Reach', if('$hold' == 'falkreath', 'Falkreath Hold', if('$hold' == 'hjaalmarch', 'Hjaalmarch', if('$hold' == 'the_pale', 'the Pale', if('$hold' == 'winterhold', 'Winterhold', if('$hold' == 'raven_rock', 'Raven Rock', '$hold'))))))))))
+  - if: "@who.type <> 'pc'"
+    then:
+      - stop: "Bounty is tracked on the PCs' sheets."
+  - if: "not @witnessed"
+    then:
+      - stop: "A crime with no witness and no trail adds no bounty, however grave."
+  - set: who.bounty_$hold
+    op: "+="
+    value: "@amount"
+  - message: "{@who.name}'s bounty in {@hname}: {default(@who.bounty_$hold, 0)} Septims{if(default(@crime, '') == '', '', ' (')}{default(@crime, '')}{if(default(@crime, '') == '', '', ')')}."
+  - reminder: "Its guards confront {@who.name} on sight: demanding payment, ordering surrender, turning Hostile if they refuse or run (a large enough bounty means arrest or death, not talk). The market, the inn and the Jarl's hall are barred. Pay it (`didact do pay-bounty`), serve the time or leave the Hold (`didact do clear-bounty`)."
+source: wardens-guide/renown-and-infamy#bounty
+---
+action: pay-bounty
+title: Pay a bounty
+help: "Hand the full sum to a guard or the steward: the bounty in that Hold is cleared and the Septims are gone."
+params:
+  who: ref
+  hold: {enum: [whiterun, haafingar, eastmarch, the_rift, the_reach, falkreath, hjaalmarch, the_pale, winterhold, raven_rock]}
+steps:
+  - let:
+      hname: >-
+        if('$hold' == 'whiterun', 'Whiterun Hold', if('$hold' == 'haafingar', 'Haafingar', if('$hold' == 'eastmarch', 'Eastmarch', if('$hold' == 'the_rift', 'the Rift', if('$hold' == 'the_reach', 'the Reach', if('$hold' == 'falkreath', 'Falkreath Hold', if('$hold' == 'hjaalmarch', 'Hjaalmarch', if('$hold' == 'the_pale', 'the Pale', if('$hold' == 'winterhold', 'Winterhold', if('$hold' == 'raven_rock', 'Raven Rock', '$hold'))))))))))
+  - let: {owed: "default(@who.bounty_$hold, 0)"}
+  - if: "@owed == 0"
+    then:
+      - stop: "{@who.name} has no bounty in {@hname}."
+  - if: "@owed > @who.gold"
+    then:
+      - stop: "The bounty in {@hname} is {@owed} Septims; {@who.name} has {@who.gold}. Serve the time or leave the Hold (`didact do clear-bounty`)."
+  - set: who.gold
+    op: "-="
+    value: "@owed"
+  - set: who.bounty_$hold
+    value: 0
+  - message: "{@who.name} pays {@owed} Septims: the slate is clean in {@hname}."
+  - do: coins
+    with: {who: "@who"}
+    go_on: true
+source: wardens-guide/renown-and-infamy#bounty
+---
+action: clear-bounty
+title: Serve the time, or leave the Hold
+help: >-
+  Two other ways to wipe the slate in a Hold: surrender and sit in its jail (Cidhna Mine, the
+  Chill, Mistveil's cells), a stretch of days that passes like a Downtime block, with its
+  indignities and the chance of a desperate escape (how=jail); or get out and stay out: given
+  enough time away and no fresh offenses, the guards stop hunting (how=left).
+params:
+  who: ref
+  hold: {enum: [whiterun, haafingar, eastmarch, the_rift, the_reach, falkreath, hjaalmarch, the_pale, winterhold, raven_rock]}
+  how: {enum: [jail, left]}
+steps:
+  - let:
+      hname: >-
+        if('$hold' == 'whiterun', 'Whiterun Hold', if('$hold' == 'haafingar', 'Haafingar', if('$hold' == 'eastmarch', 'Eastmarch', if('$hold' == 'the_rift', 'the Rift', if('$hold' == 'the_reach', 'the Reach', if('$hold' == 'falkreath', 'Falkreath Hold', if('$hold' == 'hjaalmarch', 'Hjaalmarch', if('$hold' == 'the_pale', 'the Pale', if('$hold' == 'winterhold', 'Winterhold', if('$hold' == 'raven_rock', 'Raven Rock', '$hold'))))))))))
+  - let: {owed: "default(@who.bounty_$hold, 0)"}
+  - if: "@owed == 0"
+    then:
+      - stop: "{@who.name} has no bounty in {@hname}."
+  - set: who.bounty_$hold
+    value: 0
+  - if: "@how == 'jail'"
+    then:
+      - message: "{@who.name} serves the time in {@hname}'s jail: the bounty of {@owed} is cleared."
+      - reminder: "A stretch of days passes like a Downtime block (`didact time advance <days>`), with its indignities and the chance of a desperate escape."
+    else: ["{@who.name} stayed out of {@hname} long enough, with no fresh offenses: its guards have stopped hunting, and the bounty of {@owed} is cleared."]
+source: wardens-guide/renown-and-infamy#bounty

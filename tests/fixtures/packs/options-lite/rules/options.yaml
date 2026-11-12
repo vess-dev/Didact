@@ -1,0 +1,28 @@
+# The variant rules: a choice (replacing Didact's own lethality question), a flag, and a flavor
+# that implies both.
+option: lethality
+title: Lethality
+ask: How deadly should it be?
+choices:
+  gentle: "Gentle: a fall is a 3d roll."
+  standard: "As the book has it: a 2d roll."
+  deadly: "Deadly: a fall is a 1d roll."
+default: standard
+source: "p. 7"
+---
+option: torches
+title: Torches (optional rule)
+kind: flag
+ask: Do torches burn out?
+help: "Each torch burns for an hour, then it's gone."
+source: "p. 8"
+---
+option: flavor
+title: Flavor
+ask: Bright or grim?
+choices:
+  bright: "Bright: the book as written."
+  grim: "Grim: deadly, and the torches run out."
+default: bright
+implies:
+  grim: {lethality: deadly, torches: true}

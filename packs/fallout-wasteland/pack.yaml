@@ -1,0 +1,110 @@
+id: fallout-wasteland
+name: The Wasteland (Fallout 2e's campaigns and vaults)
+kind: setting
+version: 0.1.0
+description: >-
+  The setting of the Fallout 2e book, for either Fallout system (fallout-2e or grimfall): its
+  21 campaign frames from the Capital Wasteland to Atlantic City, the vault catalog, and the canon
+  they stand on. The real calendar from the book's own default moment, two centuries after the
+  war; canon that comes up in play as lore; the frames' places, people, threats (each system's
+  numbers) and clocks, ready to start with one generator; the vaults; the factions; and the frames
+  and vaults as searchable text.
+# Only core: a setting enabled in a world whose system is fallout-2e or grimfall (or any other).
+# Each system's numbers ride in the entries' `mechanics.<system>` blocks (GUIDE.md).
+requires: {packs: [core]}
+license:
+  spdx: CC-BY-SA-4.0 AND LicenseRef-Grimfall
+  redistributable: true
+  attribution: >-
+    Fallout 2e, a wasteland hack of Cairn Second Edition by Yochai Gal (cairnrpg.com), which is
+    released under CC BY-SA 4.0; Fallout 2e is likewise released under CC BY-SA 4.0. Rules
+    chassis: Yochai Gal, Cairn Second Edition (CC BY-SA 4.0). Conversion, tables, and setting
+    text: fan work, CC BY-SA 4.0. This is an unofficial, non-commercial fan work. "Fallout" is a
+    trademark of Bethesda Softworks / ZeniMax; this hack uses the Fallout milieu as generic
+    post-apocalyptic flavor for home play only. This pack adapts the book's campaign frames and
+    vault catalog to Didact's format and is shared under the same license; the threat cards it
+    carries for Grimfall are Grimfall's (an unofficial fan work adapted from Grimwild by J. D.
+    Maxwell, CC BY 4.0, by way of Grimwild: Community Edition) and keep Grimfall's own terms:
+    play them at your table, change them, pass them on — just don't sell them.
+source:
+  title: Fallout 2e (Campaigns, The Vaults)
+  sections:
+    - campaigns/00-intro
+    - campaigns/01-fallout-3
+    - campaigns/02-fallout-new-vegas
+    - campaigns/03-fallout-4
+    - campaigns/04-operation-anchorage
+    - campaigns/05-the-pitt
+    - campaigns/06-broken-steel
+    - campaigns/07-point-lookout
+    - campaigns/08-mothership-zeta
+    - campaigns/09-dead-money
+    - campaigns/10-honest-hearts
+    - campaigns/11-old-world-blues
+    - campaigns/12-lonesome-road
+    - campaigns/13-automatron
+    - campaigns/14-far-harbor
+    - campaigns/15-vault-tec-workshop
+    - campaigns/16-nuka-world
+    - campaigns/17-fallout-76
+    - campaigns/18-wastelanders
+    - campaigns/19-steel-dawn
+    - campaigns/20-skyline-valley
+    - campaigns/21-atlantic-city
+    - vaults/00-intro
+    - vaults/01-fallout-1-and-2
+    - vaults/02-fallout-3
+    - vaults/03-fallout-new-vegas
+    - vaults/04-fallout-4
+    - vaults/05-fallout-76
+    - vaults/06-classified-experiments
+    # The canon the lore and factions also draw on (the chapters themselves are fallout-2e's).
+    - players-guide/the-wasteland
+    - overseers-guide/the-commonwealth
+    - overseers-guide/bibliography
+    - overseers-guide/relics
+    - backgrounds/atom-cultist
+    - backgrounds/brotherhood-outcast
+    - backgrounds/followers-scholar
+    - backgrounds/ghoul
+    - backgrounds/great-khan
+    - backgrounds/institute-scientist
+    - backgrounds/minuteman
+    - backgrounds/powder-ganger
+    - backgrounds/railroad-agent
+    - backgrounds/rust-devil
+settings:
+  # The real calendar: the real week, the real months, February's leap day every 4th year (not
+  # every 100th, but every 400th). It starts at the book's own default moment: the implied
+  # setting is "two centuries after the war that ended the old world" (Player's Guide, The
+  # Commonwealth of Ashes), and the war was 23 October 2077, so 23 October 2277, a Tuesday. A
+  # frame on another date opens on it (`campaign new --date`, `time set`): GUIDE.md, "The
+  # calendar". The seasons are the real ones, by name as Fallout 2e's weather tables read them, so
+  # its new-day trigger rolls the day's weather. The holidays are the two the book names with a
+  # date of their own; it also names Thanksgiving and Fasnacht, which move from year to year
+  # (GUIDE.md).
+  calendar:
+    hours: 24
+    week: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
+    months:
+      - {name: January, days: 31}
+      - {name: February, days: 28, leap: [4, 100, 400]}
+      - {name: March, days: 31}
+      - {name: April, days: 30}
+      - {name: May, days: 31}
+      - {name: June, days: 30}
+      - {name: July, days: 31}
+      - {name: August, days: 31}
+      - {name: September, days: 30}
+      - {name: October, days: 31}
+      - {name: November, days: 30}
+      - {name: December, days: 31}
+    start: {year: 2277, month: 10, day: 23, weekday: Tuesday}
+    seasons:
+      - {name: spring, month: 3, day: 20}
+      - {name: summer, month: 6, day: 21}
+      - {name: fall, month: 9, day: 22}
+      - {name: winter, month: 12, day: 21}
+    holidays:
+      - {name: Christmas Eve, month: 12, day: 24, text: "The night the Responders took Rosalynn Jeffries alive and let David Thorpe believe she was dead (Fallout 76, 2082)."}
+      - {name: Christmas, month: 12, day: 25, text: "Christmas morning, 2082: David Thorpe blew the Summersville Dam and drowned Charleston (Fallout 76). Pre-war broadcasts promised victory by Christmas."}

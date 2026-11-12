@@ -1,0 +1,790 @@
+# Character creation (Building a Hero: Creation, Step by Step; the classes of Chapter 4; Blood,
+# Stars & Stones) and leveling up (the Core Engine: Experience; Options & Dials), random or
+# guided. Both share their steps through YAML anchors, so they can't drift apart:
+# - `&core-choices`: what the Core Talent has you choose (made at creation, or at level 1 for a
+#   level 0 hero), and `&core-pools`: the pools it gives, sized for the level;
+# - `&talent-picks`: what a talent brings with it (a Novice talent's spellbook, a pool, a Shout);
+# - `&gain-a-level`: a level's talent (or stat, or the gift by the book holds back, or a curse
+#   taken in play) and the Core Talent's growth. A hero who starts above level 1 (the larger
+#   scale: level 3) gains each level at creation with the very steps leveling up uses.
+# The wells' sizes follow from the class and the level (base + 1 at each growth level); the
+# spellbooks' spells, potent spells and potent spells before strain are kept in the draft
+# (`w_spells`, `w_potent`, `w_unstrained`), since Novice talents add to them.
+- chargen: pc
+  title: A hero of Tamriel
+  help: >-
+    Chapter 3, step by step: a race (your first background: three wises and a racial talent), a
+    background (three more wises), a birthsign (chosen, or a month rolled) and its talent, a class
+    and its Core Talent, stats (1 each plus 4 points, at most 3), two traits and one not, two
+    desires and one not, a name, what the Core Talent has you choose and its well or pool, three
+    features, one or two arcs, a bond to each hero, and the kit: a 3d Potions pool and a 4d Coin
+    pool. The options add an oath, a standing stone, armor, supplies, and the levels a campaign
+    starts above 1 with.
+  creates: pc
+  modes: [random, guided]
+  steps:
+    - let:
+        creating: true
+        from_zero: false
+        start: "if(@option.level_zero, 0, if(@option.scale == 'larger', 3, 1))"
+        w_spells: 0
+        w_potent: 0
+        w_unstrained: 0
+    - apply: {level: 1, xp: 0}
+    # 1. Race: your first background, three wises, and the racial talent.
+    - choose_or_roll: {table: races, as: race, field: race, prompt: "your race, one of the ten: your first background (three wises: swap any that don't fit how you were raised) and your racial talent"}
+    - add: {field: backgrounds, value: "@race"}
+    - add: {field: wises, value: "@race.wises"}
+    # 2. Background: the trade you followed before the adventure found you.
+    - choose_or_roll: {table: backgrounds, as: background, field: background, prompt: "your background, one of the twenty-one: the trade you followed before the adventure found you (three more wises; rename it freely)"}
+    - add: {field: backgrounds, value: "@background"}
+    - add: {field: wises, value: "@background.wises"}
+    # 3. Birthsign: chosen, or a month rolled (the Serpent belongs to no month).
+    - choose: {from: [roll a month, choose a sign], as: sign_way, prompt: "your birthsign: choose one of the thirteen, or roll a month and take what the calendar gives you"}
+    - if: "@sign_way == 'roll a month'"
+      then:
+        - table: months
+          as: month
+        - let: {sign_id: "@month.id", sign_name: "@month.sign"}
+        - apply: {born: "@month.month"}
+      else:
+        - choose_or_roll: {table: birthsigns, as: sign, prompt: "your birthsign"}
+        - let: {sign_id: "@sign.id", sign_name: "@sign"}
+    - apply: {birthsign: "@sign_name"}
+    # 4. Class: its Core Talent (level 0: it comes at level 1).
+    - choose_or_roll: {table: classes, as: class, field: class, prompt: "your class, one of the twenty-three: the engine you want to run every session (its Core Talent is yours alone){if(@option.register_training, '; register training: your talents come from the seven skills of your background until level 4', '')}"}
+    - if: "not @option.level_zero"
+      then:
+        - add: {field: talents, value: "@class.core"}
+    # The racial and birthsign talents (by the book: one now, the other at level 2).
+    - if: "@option.by_the_book"
+      then:
+        - choose: {from: [racial talent, birthsign talent], as: first_gift, prompt: "by the book: begin with your racial talent or your birthsign's; the other comes at level 2, in place of that level's talent"}
+        - if: "@first_gift == 'racial talent'"
+          then:
+            - add: {field: talents, value: "@race.talent"}
+          else:
+            - add: {field: talents, value: "@sign_id"}
+      else:
+        - add: {field: talents, value: "@race.talent"}
+        - add: {field: talents, value: "@sign_id"}
+    - if: "@sign_id == 'the-apprentice' and not (@class.key == 'alteration' or @class.key == 'illusion' or @class.key == 'mysticism' or @class.key == 'destruction' or @class.key == 'restoration' or @class.key == 'conjuration')"
+      then:
+        - prompt: "The Apprentice needs magic to regain (a spell, an illusion, a magic pool, strain, or a potent Destruction spell): if {@class}'s Core Talent gives none, its gift waits until a school's talent does."
+    # 5. Stats: 1 in each, then 4 more points (3 at level 0), at most 3 in any.
+    - if: "@option.level_zero"
+      then:
+        - point_buy:
+            fields: [brawn, agility, wits, presence]
+            budget: 3
+            costs: {1: 0, 2: 1, 3: 2}
+            default: random
+            as: stats
+      else:
+        - point_buy:
+            fields: [brawn, agility, wits, presence]
+            budget: 4
+            costs: {1: 0, 2: 1, 3: 2}
+            default: random
+            as: stats
+    # 6-7. Traits and desires: two you are and one you're not, two you want and one you don't.
+    - choose: {from: [brave, caring, confident, curious, gentle, honest, honorable, persistent, protective, quiet, rash, stubborn], as: traits, count: 2, field: traits, prompt: "two traits you are"}
+    - choose: {from: [brave, caring, confident, curious, gentle, honest, honorable, persistent, protective, quiet, rash, stubborn], as: not_trait, exclude: "@traits", prompt: "one you're not"}
+    - add: {field: traits, value: "not {@not_trait}"}
+    - choose: {from: [belonging, glory, harmony, honor, justice, knowledge, love, power, renown, thrills, wealth, wisdom], as: desires, count: 2, field: desires, prompt: "two desires you want"}
+    - choose: {from: [belonging, glory, harmony, honor, justice, knowledge, love, power, renown, thrills, wealth, wisdom], as: not_desire, exclude: "@desires", prompt: "one you don't"}
+    - add: {field: desires, value: "not {@not_desire}"}
+    - name: {from: "@race.names", prompt: "a name for your hero (the crucibles offer, for the {@race}: {@race.names}; or give your own)"}
+    - let: {pc_name: "@name"}
+    # What the Core Talent has you choose (level 0: at level 1).
+    - if: "not @option.level_zero"
+      then: &core-choices
+        - if: "@class.key == 'armorer'"
+          then: [apply: {temper: "5/5"}]
+        - if: "@class.key == 'athletics'"
+          then: [apply: {wind: "6/6"}]
+        - if: "@class.key == 'blade'"
+          then: [apply: {edge: "2/2"}]
+        - if: "@class.key == 'block'"
+          then: [apply: {guard: "3/3"}]
+        - if: "@class.key == 'blunt'"
+          then: [apply: {might: "3/3"}]
+        - if: "@class.key == 'hand-to-hand'"
+          then:
+            - apply: {focus: "4/4"}
+            - add: {field: class_notes, value: "The Open Hand: once per session, interrupt an impact move (+1 at levels 3 and 6)"}
+        - if: "@class.key == 'acrobatics'"
+          then:
+            - apply: {momentum: "2/2"}
+            - add: {field: class_notes, value: "Dodge: once per session, interrupt an impact move with a roll under it, a leap over it, a kick off the wall"}
+        - if: "@class.key == 'light-armor'"
+          then: [apply: {evasion: "2/2"}]
+        - if: "@class.key == 'marksman'"
+          then: [apply: {quarries: "1/1"}]
+        - if: "@class.key == 'mercantile'"
+          then: [apply: {favors: "3/3"}]
+        - if: "@class.key == 'speechcraft'"
+          then: [apply: {sway: "3/3"}]
+        - if: "@class.key == 'werewolf'"
+          then: [apply: {changes: "1/1"}]
+        - if: "@class.key == 'alchemy'"
+          then:
+            - apply: {draughts: "5/5"}
+            - choose_or_roll: {table: alchemy-recipe-book, as: recipes, count: 4, prompt: "The Satchel: you know 4 recipes, each a single effect, potion or poison (from the Recipe Book, or write one with the GM)"}
+            - add: {field: recipes, value: "@recipes"}
+        - if: "@class.key == 'alteration'"
+          then:
+            - let: {w_spells: "@w_spells + 4", w_potent: "@w_potent + 2"}
+            - apply: {spells: "{@w_spells}/{@w_spells}", potent: "{@w_potent}/{@w_potent}"}
+            - choose_or_roll: {table: alteration-formulary, as: formulae, count: 4, exclude: "{default(@character.formulae, '')}", prompt: "Formulae: you know 4 formulae from the Formulary, kept in a spellbook"}
+            - add: {field: formulae, value: "@formulae"}
+        - if: "@class.key == 'conjuration'"
+          then:
+            - choose_or_roll: {table: conjuration-build-your-thrall, as: thrall_kind, prompt: "The Binding: your thrall, a Daedra called out of Oblivion or one of the dead called back to work (choose a kind, or roll a thorn); name it"}
+            - add: {field: class_notes, value: "thrall: {@thrall_kind} (name it); it can take 1 mark and 1 harm, and any more breaks the binding"}
+            - repeat: 1
+              steps: &thrall-aspect
+                - choose_or_roll: {table: conjuration-aspects, as: aspect, exclude: "{default(@character.aspects, '')}", prompt: "your thrall's aspect"}
+                - if: "'fitting talent' in @aspect"
+                  then:
+                    - choose_or_roll: {table: talent-lists, as: aspect_list, exclude: [Vampire, Werewolf, "The Voice (optional: ask your table)"], prompt: "the list its talent comes from"}
+                    - choose: {from: "@aspect_list.talents", records: talent, as: aspect_talent, prompt: "the thrall's talent (never its \"one time only\" part)"}
+                    - add: {field: aspects, value: "a fitting talent: {@aspect_talent}"}
+                  else:
+                    - add: {field: aspects, value: "@aspect"}
+        - if: "@class.key == 'destruction'"
+          then:
+            - choose_or_roll: {table: destruction-elements, as: element, prompt: "The Elements: your touchstones, any 4 with at least one of each kind; first an element"}
+            - choose_or_roll: {table: destruction-forms, as: form, prompt: "then a form"}
+            - choose_or_roll: {from: [fire, frost, shock, bolt, burst, cloak, rune, stream, touch, wall], as: more_touchstones, count: 2, exclude: ["@element", "@form"], prompt: "and 2 more, elements or forms"}
+            - add: {field: touchstones, value: "@element"}
+            - add: {field: touchstones, value: "@form"}
+            - add: {field: touchstones, value: "@more_touchstones"}
+            - choose_or_roll: {table: destruction-backlash, as: backlash, field: backlash, prompt: "Backlash: two or more 1s when you cast (thorns included) sets it off; choose how yours shows"}
+        - if: "@class.key == 'illusion'"
+          then:
+            - choose_or_roll: {table: illusion-the-twelve, as: illusions, count: 5, exclude: "{default(@character.illusions, '')}", prompt: "Glamour: you know 5 illusions of the Twelve"}
+            - add: {field: illusions, value: "@illusions"}
+        - if: "@class.key == 'mysticism'"
+          then:
+            - let: {w_unstrained: "@w_unstrained + 1"}
+            - apply: {unstrained: "{@w_unstrained}/{@w_unstrained}"}
+            - choose_or_roll: {table: mysticism-disciplines, as: disciplines, count: 2, exclude: "{default(@character.disciplines, '')}", prompt: "The Old Way: your touchstones are 2 disciplines of the five"}
+            - add: {field: disciplines, value: "@disciplines"}
+        - if: "@class.key == 'restoration'"
+          then:
+            - choose_or_roll: {table: restoration-rites, as: major_rite, prompt: "The Rites: 1 major rite (6d)"}
+            - choose_or_roll: {table: restoration-rites, as: minor_rite_1, exclude: "@major_rite", prompt: "and 2 minor rites (4d): the first"}
+            - choose_or_roll: {table: restoration-rites, as: minor_rite_2, exclude: ["@major_rite", "@minor_rite_1"], prompt: "the second"}
+            - add: {field: rites, value: "{@major_rite} (major)"}
+            - add: {field: rites, value: "@minor_rite_1"}
+            - add: {field: rites, value: "@minor_rite_2"}
+        - if: "@class.key == 'vampire'"
+          then:
+            - table: vampire-your-bloodline
+              as: bloodline
+            - add: {field: class_notes, value: "bloodline (optional): {@bloodline}"}
+        - if: "@class.key == 'werewolf'"
+          then:
+            - table: werewolf-your-other-shape
+              as: other_shape
+            - add: {field: class_notes, value: "other shape (optional): {@other_shape}"}
+    # 8. Features: what people notice (the hero crucibles offer ideas).
+    - table: hero-wearing
+      as: wearing
+    - table: hero-never-trade
+      as: never_trade
+    - table: hero-road-took
+      as: road_took
+    - prompt: "Three features, what people notice (a Legion brand on the forearm, ash-grey skin and a soft voice, a tail that gives every lie away): `didact set <hero> features+='…'`. The hero crucibles offer: wearing {@wearing}; would never trade {@never_trade}; the road already took {@road_took}."
+    # The options at creation.
+    - if: "@option.oaths"
+      then:
+        - choose: {from: [take an oath, no oath], as: oath_way, prompt: "Oaths & tenets (an option): each hero may take one oath, an edge and a flaw welded together"}
+        - if: "@oath_way == 'take an oath'"
+          then:
+            - choose_or_roll: {table: oaths, as: oath, field: oath, prompt: "your oath"}
+    - if: "@option.stones_from_the_start"
+      then:
+        - choose_or_roll: {table: standing-stones, as: stone, prompt: "Stones from the start (an option): the standing stone you've already laid a hand on (one blessing at a time)"}
+        - add: {field: talents, value: "@stone.id"}
+        - apply: {stone: "@stone.id"}
+    # A campaign that starts above level 1 (the larger scale: level 3) gains each level after
+    # the first here, as leveling up gains it.
+    - repeat: "max(0, @start - 1)"
+      as: gained
+      steps:
+        - let: {next: "@gained + 1"}
+        - repeat: 1
+          steps: &gain-a-level
+            - let: {growth: talent}
+            - if: "@from_zero"
+              then:
+                # Level 0 reaches level 1: the Core Talent, its choices and pools, the last point.
+                - add: {field: talents, value: "@class.core"}
+                - repeat: 1
+                  steps: *core-choices
+                - let: {growth: stat}
+              else:
+                - if: "@option.by_the_book and @next == 2"
+                  then:
+                    - let: {growth: gift}
+                  else:
+                    - if: "default(@who.turned, '') <> '' and not ('vampire-sanguinare-vampiris' in default(@character.talents, '') or 'werewolf-lycanthropy' in default(@character.talents, '') or 'vampire-the-blood' in default(@character.talents, '') or 'werewolf-beast-blood' in default(@character.talents, ''))"
+                      then:
+                        - choose: {from: [the curse's talent, a new talent], as: curse_way, prompt: "turned in play: take the curse's talent at this level (its gifts as well as its price), or a new talent"}
+                        - if: "'curse' in @curse_way"
+                          then:
+                            - let: {growth: curse}
+                    - if: "@growth == 'talent'"
+                      then:
+                        - choose: {from: [talent, stat], as: growth, answer: "{if(@option.stat_progression and not default(@character.stat_raised, false), '', 'talent')}", prompt: "stat progression (an option): a new talent, or +1 to a stat instead (your one lifetime bump)"}
+            - if: "@growth == 'stat'"
+              then:
+                - choose: {from: [brawn, agility, wits, presence], as: stat, exclude: ["{if(@character.brawn >= 3, 'brawn', '')}", "{if(@character.agility >= 3, 'agility', '')}", "{if(@character.wits >= 3, 'wits', '')}", "{if(@character.presence >= 3, 'presence', '')}"], prompt: "{if(@from_zero, 'the last stat point (level 0 reaches level 1)', 'the stat to raise by 1')}: at most 3"}
+                - if: "@stat == 'brawn'"
+                  then: [apply: {brawn: "{@character.brawn + 1}"}]
+                - if: "@stat == 'agility'"
+                  then: [apply: {agility: "{@character.agility + 1}"}]
+                - if: "@stat == 'wits'"
+                  then: [apply: {wits: "{@character.wits + 1}"}]
+                - if: "@stat == 'presence'"
+                  then: [apply: {presence: "{@character.presence + 1}"}]
+                - if: "not @from_zero"
+                  then: [apply: {stat_raised: true}]
+            - if: "@growth == 'gift'"
+              then:
+                - if: "@race.talent in default(@character.talents, '')"
+                  then:
+                    - add: {field: talents, value: "@sign_id"}
+                    - message: "By the book: the birthsign's talent comes at level 2, in place of the level's talent."
+                  else:
+                    - add: {field: talents, value: "@race.talent"}
+                    - message: "By the book: the racial talent comes at level 2, in place of the level's talent."
+            - if: "@growth == 'curse'"
+              then:
+                - if: "@who.turned == 'vampire'"
+                  then:
+                    - add: {field: talents, value: vampire-sanguinare-vampiris}
+                    - entity:
+                        key: pool
+                        type: track
+                        name: "{@pc_name}'s Blood"
+                        fields: {kind: pool, pool: power, value: {value: 3, max: 3}, note: "Sanguinare Vampiris: The Blood at 3d, never grows; it comes back only by feeding (`didact do feed`)."}
+                        links: [{rel: of, to: character}]
+                    - apply: {blood: "@pool"}
+                  else:
+                    - add: {field: talents, value: werewolf-lycanthropy}
+                    - apply: {changes: "1/1"}
+                    - entity:
+                        key: pool
+                        type: track
+                        name: "{@pc_name}'s Bloodlust"
+                        fields: {kind: pool, pool: timer, value: {value: 3, max: 3}, note: "Lycanthropy: the Bloodlust timer starts at 3d, and you never gain more changes per session (`didact do change`)."}
+                        links: [{rel: of, to: character}]
+                    - apply: {bloodlust: "@pool"}
+                - message: "The curse's talent: its rules and its price at pocket size; its list is open now."
+            - if: "@growth == 'talent'"
+              then:
+                # Every talent but the Core Talents is open to every hero; the curses' lists need
+                # the blood; register training keeps a hero to their background's seven skills
+                # until level 4; a tagged talent needs what its tag names.
+                - choose_or_roll:
+                    table: talent-lists
+                    as: talent_list
+                    exclude: &list-out
+                      - "{if('vampire-the-blood' in default(@character.talents, '') or 'vampire-sanguinare-vampiris' in default(@character.talents, ''), '', 'Vampire')}"
+                      - "{if('werewolf-beast-blood' in default(@character.talents, '') or 'werewolf-lycanthropy' in default(@character.talents, ''), '', 'Werewolf')}"
+                      - "{if(@option.register_training and @next < 4 and not ('armorer' in @background.skills), 'Armorer', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('athletics' in @background.skills), 'Athletics', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('blade' in @background.skills), 'Blade', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('block' in @background.skills), 'Block', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('blunt' in @background.skills), 'Blunt', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('hand-to-hand' in @background.skills), 'Hand to Hand', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('heavy-armor' in @background.skills), 'Heavy Armor', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('alchemy' in @background.skills), 'Alchemy', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('alteration' in @background.skills), 'Alteration', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('conjuration' in @background.skills), 'Conjuration', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('destruction' in @background.skills), 'Destruction', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('illusion' in @background.skills), 'Illusion', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('mysticism' in @background.skills), 'Mysticism', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('restoration' in @background.skills), 'Restoration', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('acrobatics' in @background.skills), 'Acrobatics', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('light-armor' in @background.skills), 'Light Armor', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('marksman' in @background.skills), 'Marksman', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('mercantile' in @background.skills), 'Mercantile', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('security' in @background.skills), 'Security', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('sneak' in @background.skills), 'Sneak', '')}"
+                      - "{if(@option.register_training and @next < 4 and not ('speechcraft' in @background.skills), 'Speechcraft', '')}"
+                      - "{if(@option.register_training and @next < 4, 'The Voice (optional: ask your table)', '')}"
+                    prompt: "level {@next}: the list your new talent comes from (any class's: every talent but the Core Talents is open to every hero; the curses' need the blood; The Voice is optional, ask your table{if(@option.register_training and @next < 4, '; register training: the seven skills of your background until level 4', '')})"
+                - choose:
+                    from: "@talent_list.talents"
+                    records: talent
+                    as: talent
+                    exclude: &talent-out
+                      - "{default(@character.talents, '')}"
+                      - "{if('alteration-formulae' in default(@character.talents, '') or 'alteration-novice-alteration' in default(@character.talents, ''), '', 'alteration-master-alteration')}"
+                      - "{if('destruction-the-elements' in default(@character.talents, '') or 'destruction-novice-destruction' in default(@character.talents, ''), '', 'destruction-master-destruction')}"
+                      - "{if('illusion-glamour' in default(@character.talents, '') or 'illusion-novice-illusion' in default(@character.talents, ''), '', 'illusion-master-of-the-mind')}"
+                      - "{if('conjuration-the-binding' in default(@character.talents, ''), '', 'conjuration-twin-souls')}"
+                      - "{if('conjuration-the-binding' in default(@character.talents, '') or 'conjuration-novice-conjuration' in default(@character.talents, ''), '', 'conjuration-atromancy')}"
+                      - "{if('conjuration-the-binding' in default(@character.talents, '') or 'conjuration-novice-conjuration' in default(@character.talents, '') or 'speechcraft-allure' in default(@character.talents, ''), '', 'conjuration-summoner')}"
+                      - "{if('heavy-armor-plate' in default(@character.talents, '') or 'heavy-armor-juggernaut' in default(@character.talents, '') or 'light-armor-unhindered' in default(@character.talents, '') or 'alteration-mage-armor' in default(@character.talents, '') or 'werewolf-animal-vigor' in default(@character.talents, '') or @option.armor, '', 'heavy-armor-reflect-blows')}"
+                      - >-
+                        {if('alteration-formulae' in default(@character.talents, '') or 'alteration-novice-alteration' in default(@character.talents, '')
+                        or 'illusion-glamour' in default(@character.talents, '') or 'illusion-novice-illusion' in default(@character.talents, '')
+                        or 'mysticism-the-old-way' in default(@character.talents, '') or 'destruction-the-elements' in default(@character.talents, '')
+                        or 'restoration-the-rites' in default(@character.talents, '') or 'restoration-novice-restoration' in default(@character.talents, '')
+                        or 'conjuration-the-binding' in default(@character.talents, '') or 'conjuration-novice-conjuration' in default(@character.talents, '')
+                        or 'conjuration-necromancy' in default(@character.talents, '') or 'conjuration-oblivion-binding' in default(@character.talents, '')
+                        or 'mysticism-reflect-spell' in default(@character.talents, '') or 'restoration-ward-absorb' in default(@character.talents, '')
+                        or 'alteration-magic-resistance' in default(@character.talents, '') or 'alteration-mage-armor' in default(@character.talents, ''),
+                        '', 'restoration-recovery')}
+                    prompt: "level {@next}: the new talent, from {@talent_list} (a talent's tag says who can take it: Needs … and … only)"
+                - add: {field: talents, value: "@talent"}
+                - if: "@talent == 'the-voice'"
+                  then:
+                    - prompt: "The Voice is optional: ask your table before you take it; it tends to become what the campaign is about."
+                - repeat: 1
+                  steps: &talent-picks
+                    # Talents that bring choices or a pool of their own.
+                    - if: "@talent == 'alteration-novice-alteration'"
+                      then:
+                        - if: "@class.key == 'alteration'"
+                          then:
+                            - let: {w_spells: "@w_spells + 1"}
+                            - choose_or_roll: {table: alteration-formulary, as: novice_formula, exclude: "{default(@character.formulae, '')}", prompt: "Novice Alteration (Alteration your class): 1 more formula, and 1 more spell per session"}
+                            - add: {field: formulae, value: "@novice_formula"}
+                          else:
+                            - let: {w_spells: "@w_spells + 3", w_potent: "@w_potent + 1"}
+                            - choose_or_roll: {table: alteration-formulary, as: novice_formulae, count: 2, exclude: "{default(@character.formulae, '')}", prompt: "Novice Alteration: 2 formulae from the Formulary (3 spells and 1 potent spell per session, rolling Wits)"}
+                            - add: {field: formulae, value: "@novice_formulae"}
+                        - apply: {spells: "{@w_spells}/{@w_spells}"}
+                        - if: "@w_potent > 0"
+                          then: [apply: {potent: "{@w_potent}/{@w_potent}"}]
+                    - if: "@talent == 'alteration-master-alteration'"
+                      then:
+                        - choose: {from: "@character.formulae", as: master_formula, prompt: "Master Alteration: one formula you know (+1d when you cast it, and once more potent per session)"}
+                        - let: {w_potent: "@w_potent + 1"}
+                        - apply: {potent: "{@w_potent}/{@w_potent}"}
+                        - add: {field: class_notes, value: "Master Alteration: {@master_formula} (+1d; one time only, as a ritual)"}
+                    - if: "@talent == 'illusion-novice-illusion'"
+                      then:
+                        - if: "@class.key == 'illusion'"
+                          then:
+                            - choose_or_roll: {table: illusion-the-twelve, as: novice_illusion, exclude: "{default(@character.illusions, '')}", prompt: "Novice Illusion (Illusion your class): 1 more illusion of the Twelve"}
+                            - add: {field: illusions, value: "@novice_illusion"}
+                          else:
+                            - choose_or_roll: {table: illusion-the-twelve, as: novice_illusions, count: 2, exclude: "{default(@character.illusions, '')}", prompt: "Novice Illusion: 2 illusions of the Twelve, each cast once per session, rolling Presence"}
+                            - add: {field: illusions, value: "@novice_illusions"}
+                    - if: "@talent == 'destruction-novice-destruction'"
+                      then:
+                        - if: "@class.key == 'destruction'"
+                          then:
+                            - choose_or_roll: {from: [fire, frost, shock, bolt, burst, cloak, rune, stream, touch, wall], as: novice_touchstone, exclude: "{default(@character.touchstones, '')}", prompt: "Novice Destruction (Destruction your class): 1 more touchstone"}
+                            - add: {field: touchstones, value: "@novice_touchstone"}
+                          else:
+                            - choose_or_roll: {table: destruction-elements, as: novice_element, exclude: "{default(@character.touchstones, '')}", prompt: "Novice Destruction: one element"}
+                            - choose_or_roll: {table: destruction-forms, as: novice_form, exclude: "{default(@character.touchstones, '')}", prompt: "and one form (always at risk, never potent, no backlash)"}
+                            - add: {field: touchstones, value: "@novice_element"}
+                            - add: {field: touchstones, value: "@novice_form"}
+                    - if: "@talent == 'mysticism-novice-mysticism'"
+                      then:
+                        - if: "@class.key == 'mysticism'"
+                          then:
+                            - let: {w_unstrained: "@w_unstrained + 1"}
+                            - apply: {unstrained: "{@w_unstrained}/{@w_unstrained}"}
+                          else:
+                            - choose_or_roll: {table: mysticism-disciplines, as: novice_discipline, exclude: "{default(@character.disciplines, '')}", prompt: "Novice Mysticism: 1 discipline (never potent)"}
+                            - add: {field: disciplines, value: "@novice_discipline"}
+                    - if: "@talent == 'restoration-novice-restoration'"
+                      then:
+                        - if: "@class.key == 'restoration'"
+                          then:
+                            - if: "not @creating"
+                              then:
+                                - prompt: "Novice Restoration (Restoration your class): the major rite gains +1d: `didact do grow-pool pool={default(@who.rite_1, '<major rite>')}`, once this level is committed."
+                          else:
+                            - choose_or_roll: {table: restoration-rites, as: novice_rite, prompt: "Novice Restoration: 1 rite, a 4d power pool each session (drop 1d to cast a potent spell)"}
+                            - add: {field: rites, value: "@novice_rite"}
+                            - entity:
+                                key: pool
+                                type: track
+                                name: "{@pc_name}'s {@novice_rite} rite"
+                                fields: {kind: pool, pool: power, value: {value: 4, max: 4}, note: "Novice Restoration: a rite, rolled in place of a stat to cast (drop 1d first for a potent spell); it refills each session."}
+                                links: [{rel: of, to: character}]
+                            - apply: {rite_1: "@pool"}
+                    - if: "@talent == 'conjuration-novice-conjuration'"
+                      then:
+                        - add: {field: class_notes, value: "Novice Conjuration: a bound weapon to hand, and a familiar (a scamp, a ghostly wolf, a skull that mutters): push yourself to have it fight or work for a scene as a 2d Familiar power pool"}
+                    - if: "@talent == 'conjuration-twin-souls'"
+                      then:
+                        - if: "not @creating"
+                          then:
+                            - prompt: "Twin Souls: the Thrall pool is 6d from now on: `didact do grow-pool pool={default(@who.thrall, '<thrall>')} by=2`, once this level is committed."
+                    - if: "@talent == 'speechcraft-rumors'"
+                      then:
+                        - prompt: "Rumors: you gain any 3 wises (`didact set <hero> wises+='…'`)."
+                    - if: "@talent == 'alchemy-green-thumb'"
+                      then:
+                        - prompt: "Green Thumb: gain a wise about growing things (`didact set <hero> wises+='…'`)."
+                    - if: "@talent == 'light-armor-matching-set'"
+                      then:
+                        - choose_or_roll: {from: [boots, gloves, hood, cuirass, cloak, bracers], as: set_pieces, count: 3, prompt: "Matching Set: three pieces (once per session each, +1d on a roll that piece helps)"}
+                        - add: {field: class_notes, value: "Matching Set: {@set_pieces}"}
+                    - if: "@talent == 'speechcraft-allure'"
+                      then:
+                        - prompt: "Allure: someone stayed (a housecarl, a hired blade, a devoted admirer, a hound that chose you): `didact gen run grimscrolls.follower` makes them, with 3 tricks and 2 flaws."
+                    - if: "@talent == 'armorer-daedric-smithing'"
+                      then:
+                        - prompt: "Daedric Smithing: you have forged one major relic and two minor ones (arms or armor): design them with the GM (`didact gen run grimscrolls.arcana`), then `didact set <hero> arcana+=…`."
+                    - if: "@talent == 'armorer-dragon-armor'"
+                      then:
+                        - prompt: "Dragon Armor: you begin with one major expendable relic already made from a powerful monster you helped slay: say what it was (its touchstones: the monster's name, its power, and what you made of it)."
+                    - if: "@talent == 'conjuration-atromancy'"
+                      then:
+                        - add: {field: class_notes, value: "Atromancy: three bindings (flame, frost and storm is the classic set), each with its own form and aspects"}
+                    - if: "@talent == 'the-voice'"
+                      then:
+                        - choose_or_roll: {table: shouts, as: shout, exclude: "{default(@character.shouts, '')}", prompt: "The Voice: your one Shout (its name is its touchstone), or another the table agrees on"}
+                        - add: {field: shouts, value: "@shout"}
+                    - let: {tp_dice: 0}
+                    - if: "@talent == 'heavy-armor-juggernaut'"
+                      then: [let: {tp_name: Armor, tp_dice: 2, tp_kind: resource}]
+                    - if: "@talent == 'alchemy-poisoner'"
+                      then: [let: {tp_name: Poisons, tp_dice: 4, tp_kind: resource}]
+                    - if: "@talent == 'alteration-mage-armor'"
+                      then: [let: {tp_name: Flesh, tp_dice: 2, tp_kind: resource}]
+                    - if: "@talent == 'alteration-magic-resistance'"
+                      then: [let: {tp_name: Resistance, tp_dice: 2, tp_kind: resource}]
+                    - if: "@talent == 'conjuration-oblivion-binding'"
+                      then: [let: {tp_name: Unbinding, tp_dice: 2, tp_kind: power}]
+                    - if: "@talent == 'mysticism-reflect-spell'"
+                      then: [let: {tp_name: Reflection, tp_dice: 2, tp_kind: power}]
+                    - if: "@talent == 'restoration-ward-absorb'"
+                      then: [let: {tp_name: Ward, tp_dice: 2, tp_kind: resource}]
+                    - if: "@talent == 'light-armor-unhindered'"
+                      then: [let: {tp_name: Leathers, tp_dice: 2, tp_kind: resource}]
+                    - if: "@talent == 'light-armor-shrouded'"
+                      then: [let: {tp_name: Disguise, tp_dice: 2, tp_kind: resource}]
+                    - if: "@talent == 'mercantile-investor'"
+                      then: [let: {tp_name: Credit, tp_dice: 3, tp_kind: resource}]
+                    - if: "@talent == 'vampire-unearthly-will'"
+                      then: [let: {tp_name: Will, tp_dice: 2, tp_kind: resource}]
+                    - if: "@talent == 'werewolf-animal-vigor'"
+                      then: [let: {tp_name: Hide, tp_dice: 2, tp_kind: resource}]
+                    - if: "@tp_dice > 0"
+                      then:
+                        - entity:
+                            key: talent_track
+                            type: track
+                            name: "{@pc_name}'s {@tp_name}"
+                            fields: {kind: pool, pool: "@tp_kind", value: {value: "@tp_dice", max: "@tp_dice"}, note: "{@tp_name} ({@talent}): a {@tp_dice}d {@tp_kind} pool; it comes back {if(@talent == 'werewolf-animal-vigor', 'each time you change', 'each session')}."}
+                            links: [{rel: of, to: character}]
+                        # The sheet points at it: the session's reset refreshes it (Hide: each change).
+                        - if: "@talent == 'heavy-armor-juggernaut'"
+                          then: [apply: {juggernaut: "@talent_track"}]
+                        - if: "@talent == 'alchemy-poisoner'"
+                          then: [apply: {poisons: "@talent_track"}]
+                        - if: "@talent == 'alteration-mage-armor'"
+                          then: [apply: {flesh: "@talent_track"}]
+                        - if: "@talent == 'alteration-magic-resistance'"
+                          then: [apply: {resistance: "@talent_track"}]
+                        - if: "@talent == 'conjuration-oblivion-binding'"
+                          then: [apply: {unbinding: "@talent_track"}]
+                        - if: "@talent == 'mysticism-reflect-spell'"
+                          then: [apply: {reflection: "@talent_track"}]
+                        - if: "@talent == 'restoration-ward-absorb'"
+                          then: [apply: {ward: "@talent_track"}]
+                        - if: "@talent == 'light-armor-unhindered'"
+                          then: [apply: {leathers: "@talent_track"}]
+                        - if: "@talent == 'light-armor-shrouded'"
+                          then: [apply: {disguise: "@talent_track"}]
+                        - if: "@talent == 'mercantile-investor'"
+                          then: [apply: {credit: "@talent_track"}]
+                        - if: "@talent == 'vampire-unearthly-will'"
+                          then: [apply: {will: "@talent_track"}]
+                        - if: "@talent == 'werewolf-animal-vigor'"
+                          then: [apply: {hide: "@talent_track"}]
+            # The Core Talent's Growth at its levels (2, 4 and 6, or 3 and 6).
+            - if: "@next in @class.growth and not @from_zero"
+              then:
+                - add: {field: class_notes, value: "level {@next}: {@class.core} grows ({@class.grows})"}
+                - let: {grow: "if(@creating, 0, 1)"}
+                - if: "@class.key == 'armorer'"
+                  then: [apply: {temper: "{if(@creating, 5 + if(@next >= 3, 1, 0) + if(@next >= 6, 1, 0), @who.temper + 1)}/{5 + if(@next >= 3, 1, 0) + if(@next >= 6, 1, 0)}"}]
+                - if: "@class.key == 'athletics'"
+                  then: [apply: {wind: "{if(@creating, 6 + if(@next >= 2, 1, 0) + if(@next >= 4, 1, 0) + if(@next >= 6, 1, 0), @who.wind + 1)}/{6 + if(@next >= 2, 1, 0) + if(@next >= 4, 1, 0) + if(@next >= 6, 1, 0)}"}]
+                - if: "@class.key == 'blade'"
+                  then: [apply: {edge: "{if(@creating, 2 + if(@next >= 3, 1, 0) + if(@next >= 6, 1, 0), @who.edge + 1)}/{2 + if(@next >= 3, 1, 0) + if(@next >= 6, 1, 0)}"}]
+                - if: "@class.key == 'block'"
+                  then: [apply: {guard: "{if(@creating, 3 + if(@next >= 3, 1, 0) + if(@next >= 6, 1, 0), @who.guard + 1)}/{3 + if(@next >= 3, 1, 0) + if(@next >= 6, 1, 0)}"}]
+                - if: "@class.key == 'blunt'"
+                  then: [apply: {might: "{if(@creating, 3 + if(@next >= 2, 1, 0) + if(@next >= 4, 1, 0) + if(@next >= 6, 1, 0), @who.might + 1)}/{3 + if(@next >= 2, 1, 0) + if(@next >= 4, 1, 0) + if(@next >= 6, 1, 0)}"}]
+                - if: "@class.key == 'hand-to-hand'"
+                  then: [apply: {focus: "{if(@creating, 4 + if(@next >= 3, 1, 0) + if(@next >= 6, 1, 0), @who.focus + 1)}/{4 + if(@next >= 3, 1, 0) + if(@next >= 6, 1, 0)}"}]
+                - if: "@class.key == 'acrobatics'"
+                  then: [apply: {momentum: "{if(@creating, 2 + if(@next >= 2, 1, 0) + if(@next >= 4, 1, 0) + if(@next >= 6, 1, 0), @who.momentum + 1)}/{2 + if(@next >= 2, 1, 0) + if(@next >= 4, 1, 0) + if(@next >= 6, 1, 0)}"}]
+                - if: "@class.key == 'light-armor'"
+                  then: [apply: {evasion: "{if(@creating, 2 + if(@next >= 3, 1, 0) + if(@next >= 6, 1, 0), @who.evasion + 1)}/{2 + if(@next >= 3, 1, 0) + if(@next >= 6, 1, 0)}"}]
+                - if: "@class.key == 'marksman'"
+                  then: [apply: {quarries: "{if(@creating, 1 + if(@next >= 3, 1, 0) + if(@next >= 6, 1, 0), @who.quarries + 1)}/{1 + if(@next >= 3, 1, 0) + if(@next >= 6, 1, 0)}"}]
+                - if: "@class.key == 'mercantile'"
+                  then: [apply: {favors: "{if(@creating, 3 + if(@next >= 2, 1, 0) + if(@next >= 4, 1, 0) + if(@next >= 6, 1, 0), @who.favors + 1)}/{3 + if(@next >= 2, 1, 0) + if(@next >= 4, 1, 0) + if(@next >= 6, 1, 0)}"}]
+                - if: "@class.key == 'speechcraft'"
+                  then: [apply: {sway: "{if(@creating, 3 + if(@next >= 2, 1, 0) + if(@next >= 4, 1, 0) + if(@next >= 6, 1, 0), @who.sway + 1)}/{3 + if(@next >= 2, 1, 0) + if(@next >= 4, 1, 0) + if(@next >= 6, 1, 0)}"}]
+                - if: "@class.key == 'werewolf'"
+                  then: [apply: {changes: "{if(@creating, 1 + if(@next >= 3, 1, 0) + if(@next >= 6, 1, 0), @who.changes + 1)}/{1 + if(@next >= 3, 1, 0) + if(@next >= 6, 1, 0)}"}]
+                - if: "@class.key == 'alchemy'"
+                  then:
+                    - apply: {draughts: "{if(@creating, 5 + if(@next >= 2, 1, 0) + if(@next >= 4, 1, 0) + if(@next >= 6, 1, 0), @who.draughts + 1)}/{5 + if(@next >= 2, 1, 0) + if(@next >= 4, 1, 0) + if(@next >= 6, 1, 0)}"}
+                    - choose_or_roll: {table: alchemy-recipe-book, as: new_recipe, exclude: "{default(@character.recipes, '')}", prompt: "The Satchel grows: 1 new recipe"}
+                    - add: {field: recipes, value: "@new_recipe"}
+                - if: "@class.key == 'alteration'"
+                  then:
+                    - let: {w_spells: "@w_spells + 1", w_potent: "@w_potent + 1"}
+                    - apply: {spells: "{@w_spells}/{@w_spells}", potent: "{@w_potent}/{@w_potent}"}
+                    - choose_or_roll: {table: alteration-formulary, as: new_formula, exclude: "{default(@character.formulae, '')}", prompt: "Formulae grows: 1 new formula"}
+                    - add: {field: formulae, value: "@new_formula"}
+                - if: "@class.key == 'conjuration'"
+                  then:
+                    - repeat: 1
+                      steps: *thrall-aspect
+                - if: "@class.key == 'destruction'"
+                  then:
+                    - choose_or_roll: {from: [fire, frost, shock, bolt, burst, cloak, rune, stream, touch, wall], as: new_touchstone, exclude: "{default(@character.touchstones, '')}", prompt: "The Elements grows: 1 new touchstone"}
+                    - add: {field: touchstones, value: "@new_touchstone"}
+                - if: "@class.key == 'illusion'"
+                  then:
+                    - choose_or_roll: {table: illusion-the-twelve, as: new_illusion, exclude: "{default(@character.illusions, '')}", prompt: "Glamour grows: 1 new illusion"}
+                    - add: {field: illusions, value: "@new_illusion"}
+                - if: "@class.key == 'mysticism'"
+                  then:
+                    - let: {w_unstrained: "@w_unstrained + 1"}
+                    - apply: {unstrained: "{@w_unstrained}/{@w_unstrained}"}
+                    - choose_or_roll: {table: mysticism-disciplines, as: new_discipline, exclude: "{default(@character.disciplines, '')}", prompt: "The Old Way grows: 1 new discipline"}
+                    - add: {field: disciplines, value: "@new_discipline"}
+                - if: "not @creating and (@class.key == 'restoration' or @class.key == 'heavy-armor' or @class.key == 'security' or @class.key == 'sneak' or @class.key == 'vampire')"
+                  then:
+                    - let:
+                        grown: >-
+                          if(@class.key == 'heavy-armor', default(@who.plate, '<plate>'), if(@class.key == 'security', default(@who.picks, '<picks>'),
+                          if(@class.key == 'sneak', default(@who.shadow, '<shadow>'), if(@class.key == 'vampire', default(@who.blood, '<blood>'),
+                          default(@who.rite_1, '<major rite>')))))
+                    - if: "@class.key == 'restoration'"
+                      then:
+                        - prompt: "{@class.core} grows: +1d to each rite, once this level is committed: `didact do grow-pool pool={@grown}`, `pool={default(@who.rite_2, '<rite>')}`, `pool={default(@who.rite_3, '<rite>')}`."
+                      else:
+                        - prompt: "{@class.core} grows: +1d to its pool, once this level is committed: `didact do grow-pool pool={@grown}`."
+    # The pools the Core Talent gives, sized for the level the hero starts at (the pools grow
+    # +1d at levels 3 and 6); a level 0 hero makes them at level 1.
+    - if: "not @option.level_zero"
+      then: &core-pools
+        - let: {pool_growth: "if(@start >= 3, 1, 0) + if(@start >= 6, 1, 0)"}
+        - if: "@class.key == 'heavy-armor'"
+          then:
+            - entity:
+                key: pool
+                type: track
+                name: "{@pc_name}'s Plate"
+                fields: {kind: pool, pool: resource, value: {value: "{4 + @pool_growth}", max: "{4 + @pool_growth}"}, note: "Plate: in heavy armor, roll it when physical harm would land (the armor eats the blow), or drop 1d (don't roll it) to ignore every thorn from blades, arrows, claws or numbers; each session."}
+                links: [{rel: of, to: character}]
+            - apply: {plate: "@pool"}
+        - if: "@class.key == 'security'"
+          then:
+            - entity:
+                key: pool
+                type: track
+                name: "{@pc_name}'s Picks"
+                fields: {kind: pool, pool: resource, value: {value: "{4 + @pool_growth}", max: "{4 + @pool_growth}"}, note: "Picks: roll it to do the job now (in a breath, without a sound) or beat an extraordinary lock, trap or mechanism outright; drop 1d first for a potent feat of the craft; each session."}
+                links: [{rel: of, to: character}]
+            - apply: {picks: "@pool"}
+        - if: "@class.key == 'sneak'"
+          then:
+            - entity:
+                key: pool
+                type: track
+                name: "{@pc_name}'s Shadow"
+                fields: {kind: pool, pool: resource, value: {value: "{3 + @pool_growth}", max: "{3 + @pool_growth}"}, note: "Shadow: roll it to be unseen, or unexpected (a strike on an unaware foe that succeeds adds a critical effect); each scene."}
+                links: [{rel: of, to: character}]
+            - apply: {shadow: "@pool"}
+        - if: "@class.key == 'vampire'"
+          then:
+            - entity:
+                key: pool
+                type: track
+                name: "{@pc_name}'s Blood"
+                fields: {kind: pool, pool: power, value: {value: "{4 + @pool_growth}", max: "{4 + @pool_growth}"}, note: "The Blood: roll it in place of a stat for the gifts (the strength and speed of the grave, the Seduction, the Drain); it comes back only by feeding (`didact do feed`); not under the open sun."}
+                links: [{rel: of, to: character}]
+            - apply: {blood: "@pool"}
+        - if: "@class.key == 'werewolf'"
+          then:
+            - entity:
+                key: pool
+                type: track
+                name: "{@pc_name}'s Bloodlust"
+                fields: {kind: pool, pool: timer, value: {value: 4, max: 4}, note: "Beast Blood: the change runs on it, rolled when you change (that first roll never empties it) and after each potent feat; feeding puts back 1d; at 0d you change back (`didact do change`)."}
+                links: [{rel: of, to: character}]
+            - apply: {bloodlust: "@pool"}
+        - if: "@class.key == 'conjuration'"
+          then:
+            - entity:
+                key: pool
+                type: track
+                name: "{@pc_name}'s Thrall"
+                fields: {kind: pool, pool: power, value: {value: "{4 + if('conjuration-twin-souls' in default(@character.talents, ''), 2, 0)}", max: "{4 + if('conjuration-twin-souls' in default(@character.talents, ''), 2, 0)}"}, note: "The Binding: roll it in place of a stat for whatever the thrall does (Twin Souls: 6d); it returns to full once it hits 0d, or when you push yourself (`didact do refresh`)."}
+                links: [{rel: of, to: character}]
+            - apply: {thrall: "@pool"}
+        - if: "@class.key == 'restoration'"
+          then:
+            - entity:
+                key: pool
+                type: track
+                name: "{@pc_name}'s {@major_rite} rite"
+                fields: {kind: pool, pool: power, value: {value: "{6 + @pool_growth + if('restoration-novice-restoration' in default(@character.talents, ''), 1, 0)}", max: "{6 + @pool_growth + if('restoration-novice-restoration' in default(@character.talents, ''), 1, 0)}"}, note: "The Rites: the major rite, rolled in place of a stat to cast (drop 1d first for a potent spell); every casting rolls it (Novice Restoration: +1d); it refills each session."}
+                links: [{rel: of, to: character}]
+            - apply: {rite_1: "@pool"}
+            - entity:
+                key: pool
+                type: track
+                name: "{@pc_name}'s {@minor_rite_1} rite"
+                fields: {kind: pool, pool: power, value: {value: "{4 + @pool_growth}", max: "{4 + @pool_growth}"}, note: "The Rites: a minor rite, rolled in place of a stat to cast (drop 1d first for a potent spell); it refills each session."}
+                links: [{rel: of, to: character}]
+            - apply: {rite_2: "@pool"}
+            - entity:
+                key: pool
+                type: track
+                name: "{@pc_name}'s {@minor_rite_2} rite"
+                fields: {kind: pool, pool: power, value: {value: "{4 + @pool_growth}", max: "{4 + @pool_growth}"}, note: "The Rites: a minor rite, rolled in place of a stat to cast (drop 1d first for a potent spell); it refills each session."}
+                links: [{rel: of, to: character}]
+            - apply: {rite_3: "@pool"}
+    - apply: {level: "@start"}
+    - apply:
+        thread: >-
+          {2 + if('illusion-kindred-mage' in default(@character.talents, ''), 1, 0) + if('marksman-ranger' in default(@character.talents, ''), 1, 0)
+          + if('mercantile-master-trader' in default(@character.talents, ''), 1, 0) + if('speechcraft-rumors' in default(@character.talents, ''), 1, 0)}
+    - if: "@start > 1"
+      then:
+        - prompt: "This campaign starts heroes at level {@start} (the larger scale): the levels above 1 are gained above, as leveling up gains them."
+    - if: "@option.level_zero"
+      then:
+        - prompt: "Level 0: the prisoner (an option): no Core Talent yet, and 3 stat points; after the first session (1 XP) your hero reaches level 1 (`didact char advance <hero>`), with the Core Talent, its choices and pools, and the last stat point."
+    # 11. Kit: the tools of your trade, a 3d Potions pool and a 4d Coin pool (the dials).
+    - if: "@option.potions <> 'shared'"
+      then:
+        - let: {potion_dice: "if(@option.potions == 'grimmer', 2, if(@option.potions == 'softer', 4, 3))"}
+        - entity:
+            key: pool
+            type: track
+            name: "{@pc_name}'s Potions"
+            fields: {kind: pool, pool: resource, value: {value: "@potion_dice", max: "@potion_dice"}, note: "Potions: given a breather, drink one or hand it to an ally to clear one harm, then roll the pool (`didact do potion`); it refills after a night somewhere safe or in downtime."}
+            links: [{rel: of, to: character}]
+        - apply: {potions: "@pool"}
+      else:
+        - prompt: "Grimmer potions (the dial): a single 3d pool the whole party shares, in place of each hero's: it's made, and every hero's sheet pointed at it, when the next session starts (or now: `didact do party-potions`)."
+    - if: "@option.coin"
+      then:
+        - entity:
+            key: pool
+            type: track
+            name: "{@pc_name}'s Coin"
+            fields: {kind: pool, pool: power, value: {value: 4, max: 4}, note: "Coin: roll it when you spend big, dropping 1d first for the huge asks (`didact do spend-coin`); at 0d, you're broke; selling off a minor haul adds +2d (max 8d)."}
+            links: [{rel: of, to: character}]
+        - apply: {coin: "@pool"}
+    - if: "@option.supplies"
+      then:
+        - entity:
+            key: pool
+            type: track
+            name: "{@pc_name}'s Supplies"
+            fields: {kind: pool, pool: resource, value: {value: 4, max: 4}, note: "Supplies (an option): arrows, rations, torches, the little things; roll it after heavy use, and as time passes away from towns (`didact do supplies`); at 0d, hunger and cold start writing the thorns."}
+            links: [{rel: of, to: character}]
+        - apply: {supplies: "@pool"}
+    - if: "@option.armor"
+      then:
+        - choose_or_roll: {from: [none, light, heavy], as: armor, prompt: "Armor for everyone (an option): what you wear (light gives a 1d Armor pool each session and Lightly Armored; heavy 2d and Heavily Armored)"}
+        - if: "@armor == 'light'"
+          then: [add: {field: conditions, value: Lightly Armored}]
+        - if: "@armor == 'heavy'"
+          then: [add: {field: conditions, value: Heavily Armored}]
+        - if: "@armor <> 'none' and not ('heavy-armor-plate' in default(@character.talents, '') or 'light-armor-unhindered' in default(@character.talents, '') or 'heavy-armor-juggernaut' in default(@character.talents, ''))"
+          then:
+            - entity:
+                key: pool
+                type: track
+                name: "{@pc_name}'s Armor"
+                fields: {kind: pool, pool: resource, value: {value: "{if(@armor == 'heavy', 2, 1)}", max: "{if(@armor == 'heavy', 2, 1)}"}, note: "Armor for everyone (an option): after a physical consequence lands, roll it to lessen it, as a messy defense would (`didact do armor`); each session."}
+                links: [{rel: of, to: character}]
+            - apply: {armor_pool: "@pool"}
+    - if: "@option.encumbrance"
+      then:
+        - prompt: "Encumbrance (an option): {@pc_name} carries 2 + Brawn ({2 + @character.brawn}) slots of gear beyond armor and main weapons: most gear a slot, small items half, large or bulky ones two or more."
+    - if: "@option.weapon_styles"
+      then:
+        - prompt: "Weapon styles (an option): give each signature weapon two descriptors (`didact gen run grimscrolls.weapon`)."
+    # 9-10, 12. Arcs, bonds, and the montage of the last job (the table's).
+    - prompt: "One or two character arcs (earn my stronghold's forgiveness, find the mage who took my name): `didact set <hero> arcs+='…'`. Optional, the Prisoner: why were you in somebody's chains, and how did it end? (`didact table roll prisoner-why`, `prisoner-and-then`)."
+    - prompt: "As the others introduce themselves, set one bond toward each hero, an intensity and a nature (growing curiosity, complicated camaraderie, tense rivalry): `didact set <hero> bonds+='… with <hero>'`."
+    - prompt: "The tools of the trade go unrecorded (nobody counts lockpicks or arrows). Then check the party concept, the era and the group arc still fit, and run the last job you pulled together as a group montage roll (`didact do montage who=<hero>`, 2d each)."
+  source: "building-a-hero/creation-step-by-step; building-a-hero/the-party; the-classes/introduction; blood-stars-and-stones/introduction; options-and-dials/pacing-and-growth; options-and-dials/gear-and-survival"
+
+- chargen: level-up
+  title: Level up
+  help: >-
+    When your XP boxes equal the next level (level 4 to 5: 5 boxes; twice that on the slower road
+    or with focused growth), you gain it and clear them: a new talent from any class's list (not
+    another class's Core Talent; the curses' lists need the blood; a tagged talent needs what its
+    tag names), and your Core Talent's Growth at the listed levels. Stat progression trades the
+    talent for +1 to a stat, once in a lifetime; by the book, level 2 brings the gift held back at
+    creation; a hero turned in play can take the curse's talent; register training keeps talents
+    to the background's seven skills until level 4; milestone levels come with a group arc's end.
+    A level 0 hero reaching level 1 gains the Core Talent, its choices and pools, and the last
+    stat point. Cap is level 7 (3 at the smaller scale). Side characters don't advance.
+  advances: pc
+  modes: [guided, random]
+  params:
+    who: ref
+  steps:
+    - if: "@who.side"
+      then:
+        - stop: "{@who.name} is a side character: side characters don't earn XP or advance."
+    - let:
+        cap: "if(@option.scale == 'smaller', 3, 7)"
+        boxes: "if(@who.level == 0, 1, @who.level + 1)"
+        next: "@who.level + 1"
+        from_zero: "@who.level == 0"
+        creating: false
+        start: 1
+        pc_name: "@who.name"
+        w_spells: "default(@who.spells.max, 0)"
+        w_potent: "default(@who.potent.max, 0)"
+        w_unstrained: "default(@who.unstrained.max, 0)"
+    - let: {need: "@boxes * if(@option.slow_progression or @option.focused_growth, 2, 1)"}
+    - if: "@who.level >= @cap"
+      then:
+        - stop: "{@who.name} is at the highest level this game allows ({@cap}){if(@cap == 3, ': swap talents at story milestones instead (`didact do switch-talent`)', '')}."
+    - if: "not @option.milestone_levels and @who.xp < @need"
+      then:
+        - stop: "{@who.name} has {@who.xp} of {@need} XP: the next level comes when the boxes filled equal it{if(@option.slow_progression or @option.focused_growth, ', each slashed before it is filled', '')}."
+    - if: "not @option.milestone_levels"
+      then:
+        - apply: {xp: "{@who.xp - @need}"}
+    - apply: {level: "@next"}
+    - choose: {table: classes, as: class, answer: "@who.class", prompt: "the hero's class"}
+    - choose: {table: races, as: race, answer: "@who.race", prompt: "the hero's race"}
+    - choose: {table: backgrounds, as: background, answer: "@who.background", prompt: "the hero's background"}
+    - choose: {table: birthsigns, as: sign, answer: "@who.birthsign", prompt: "the hero's birthsign"}
+    - let: {sign_id: "@sign.id"}
+    - repeat: 1
+      steps: *gain-a-level  # defined in character creation above
+    - if: "@from_zero"
+      then:
+        - repeat: 1
+          steps: *core-pools
+    - apply:
+        thread: >-
+          {2 + if('illusion-kindred-mage' in default(@character.talents, ''), 1, 0) + if('marksman-ranger' in default(@character.talents, ''), 1, 0)
+          + if('mercantile-master-trader' in default(@character.talents, ''), 1, 0) + if('speechcraft-rumors' in default(@character.talents, ''), 1, 0)}
+    - message: "{@who.name} reaches level {@next}: {if(@next >= 7, 'Master', if(@next >= 6, 'Expert', if(@next >= 4, 'Journeyman', if(@next >= 2, 'Apprentice', 'Novice'))))}."
+  source: "the-core-engine/experience; the-classes/introduction; options-and-dials/pacing-and-growth"

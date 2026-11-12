@@ -1,0 +1,28 @@
+type: character
+label: Character
+fields:
+  STR: {kind: stat, range: [0, 18], roll: 3d6, on_zero: {trigger: death}}
+  DEX: {kind: stat, range: [0, 18], roll: 3d6}
+  WIL: {kind: stat, range: [0, 18], roll: 3d6}
+  hp: {kind: resource, min: 0, roll: 1d6}
+  armor: {kind: derived, expr: "min(3, sum(@inventory.armor))"}
+  inventory: {kind: slots, capacity: 10, sizes: {petty: 0, normal: 1, bulky: 2},
+              when_full: {set: {hp: 0}}}
+  fatigue: {kind: counter, min: 0, occupies: inventory}
+  conditions: {kind: conditions, allowed: [deprived, panicked]}
+  background: {kind: enum, values: [aurifex, bonekeeper, cutpurse]}
+  torch: {kind: uses, max: 3}
+  weapon: {kind: dice, default: d6}
+guidance: "A starting character has three 3d6 attributes and 1d6 HP."
+---
+type: pc
+extends: character
+---
+type: npc
+extends: character
+---
+type: mule
+label: Pack animal
+fields:
+  hp: {kind: resource, min: 0}
+  packs: {kind: slots, capacity: 8, groups: {left: 4, right: 4}}

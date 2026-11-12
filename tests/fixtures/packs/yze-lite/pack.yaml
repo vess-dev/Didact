@@ -1,0 +1,7 @@
+id: yze-lite
+name: yze paper test
+kind: system
+version: 0.1.0
+description: A paper test proving the pack format can express yze's core mechanics.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

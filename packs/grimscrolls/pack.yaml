@@ -1,0 +1,160 @@
+id: grimscrolls
+name: Grimscrolls
+kind: system
+version: 0.1.0
+description: >-
+  Grimscrolls, an Elder Scrolls hack of Grimwild by way of Grimwild: Community Edition: heroes in
+  Tamriel on the Grimwild engine (the highest d6, thorns that cut, diminishing pools, marks and
+  harm, suspense), with Tamriel's own classes (the twenty-one skills and the two curses, each a
+  Core Talent with its well or pool), races, birthsigns and standing stones, the Voice, potions
+  and coin, disease and the curses, crime, shrines and the long road; the Bestiary, the
+  Reliquary, the Daedric Princes and the Greywatch sandbox. Built on the grimwild-ce pack.
+requires: {packs: [core, grimwild-ce]}
+extends: [grimwild-ce]
+# What grimwild-ce has that Grimscrolls drops: its paths, talents, backgrounds, monsters, arcana
+# and every table (Grimscrolls has its own, under the parent's ids where the procedure is the
+# same); Grimwild's rules text and glossary (the ten chapters are this pack's reference); the
+# sorcerer's twist, the vigor pool, the narrative-break reset, the random potion, the flavors'
+# scene-end riders, and the options with no place here (Grimscrolls' coin, potions and wild
+# magic dials have their own ids). Kept from the parent: the story oracle, story rolls,
+# quarrels, spark, bonds and arcs, suspense, sessions starting warm, pools (refresh, grow,
+# tick), exploration tokens, the end of a story, the faction turn, the party's reset suspense,
+# and their triggers. The suspense moves and supplies are this pack's (they loop over the
+# party). What this pack replaces by id is never hidden.
+hides:
+  type: [path]
+  table: ["*"]
+  entry: ["*"]
+  generator: [potion]
+  action: [reset, vigor]
+  procedure: [twist]
+  trigger: [scene-end-noblebright, scene-end-sword-and-sorcery]
+  option: [magic, wealth, vigor-pool, lasting-marks, random-vex, random-bonds, expanded-downtime]
+  reference: ["*"]
+  term: ["*"]
+license:
+  spdx: LicenseRef-Grimscrolls
+  redistributable: true
+  attribution: >-
+    CREDITS & LICENSE. Grimscrolls is an unofficial, non-commercial fan work, adapted from
+    Grimwild by J. D. Maxwell (Oddity Press), used under the Creative Commons Attribution 4.0
+    International license (CC BY 4.0 — creativecommons.org/licenses/by/4.0), by way of Grimwild:
+    Community Edition (lead developer Chancey Scott, Groov Games). The Elder Scrolls and its
+    settings, creatures, and trademarks belong to Bethesda Softworks and ZeniMax Media; setting
+    details were checked against the Unofficial Elder Scrolls Pages (uesp.net). Grimscrolls is not
+    endorsed by or affiliated with Bethesda Softworks, ZeniMax Media, Oddity Press, the Community
+    Edition team, or UESP. Play it at your table, change it, pass it on — just don't sell it.
+source:
+  title: Grimscrolls
+  # Every chapter's opening and each of its `##` sections (the book is ten Markdown chapters,
+  # unpaginated): `didact pack coverage grimscrolls` counts which ones the pack cites.
+  sections:
+    - unbound/introduction
+    - unbound/whats-in-this-book
+    - unbound/what-you-need
+    - unbound/how-to-read-this
+    - the-core-engine/introduction
+    - the-core-engine/rolls
+    - the-core-engine/stats
+    - the-core-engine/spark
+    - the-core-engine/vantage
+    - the-core-engine/working-together
+    - the-core-engine/pools
+    - the-core-engine/thread-and-tangles
+    - the-core-engine/damage-and-recovery
+    - the-core-engine/experience
+    - the-core-engine/magicka
+    - the-core-engine/stakes
+    - the-core-engine/the-engine-at-the-table
+    - building-a-hero/introduction
+    - building-a-hero/the-party
+    - building-a-hero/creation-step-by-step
+    - building-a-hero/stats-and-the-three-arts
+    - building-a-hero/the-twenty-one-backgrounds
+    - the-classes/introduction
+    - the-classes/armorer
+    - the-classes/athletics
+    - the-classes/blade
+    - the-classes/block
+    - the-classes/blunt
+    - the-classes/hand-to-hand
+    - the-classes/heavy-armor
+    - the-classes/alchemy
+    - the-classes/alteration
+    - the-classes/conjuration
+    - the-classes/destruction
+    - the-classes/illusion
+    - the-classes/mysticism
+    - the-classes/restoration
+    - the-classes/acrobatics
+    - the-classes/light-armor
+    - the-classes/marksman
+    - the-classes/mercantile
+    - the-classes/security
+    - the-classes/sneak
+    - the-classes/speechcraft
+    - the-classes/vampire
+    - the-classes/werewolf
+    - blood-stars-and-stones/introduction
+    - blood-stars-and-stones/blood-the-ten-races
+    - blood-stars-and-stones/stars-the-thirteen-signs
+    - blood-stars-and-stones/stones-the-standing-stones
+    - blood-stars-and-stones/the-voice
+    - surviving-tamriel/introduction
+    - surviving-tamriel/potions
+    - surviving-tamriel/disease
+    - surviving-tamriel/the-two-curses
+    - surviving-tamriel/cold-ash-and-hard-country
+    - surviving-tamriel/coin-and-barter
+    - surviving-tamriel/crime-and-bounty
+    - surviving-tamriel/shrines-and-blessings
+    - surviving-tamriel/the-long-road
+    - surviving-tamriel/downtime
+    - the-bestiary/introduction
+    - the-bestiary/beasts-and-wild-things
+    - the-bestiary/the-dead-the-daedra-and-the-deep
+    - the-bestiary/folk-under-arms
+    - the-bestiary/bosses-and-legends
+    - the-reliquary/introduction
+    - the-reliquary/relics-and-wonders
+    - the-reliquary/arms-of-renown
+    - the-reliquary/armor-raiment-and-rings
+    - running-tamriel/introduction
+    - running-tamriel/the-gms-half-of-the-engine
+    - running-tamriel/combat-rulings
+    - running-tamriel/vigilance
+    - running-tamriel/running-solo-and-duet
+    - running-tamriel/challenges
+    - running-tamriel/the-greywatch-powderkeg
+    - running-tamriel/barrows-ruins-and-gates
+    - running-tamriel/homes-worth-keeping
+    - running-tamriel/the-daedric-princes
+    - running-tamriel/the-gms-prep-kit
+    - running-tamriel/sheogoraths-dial
+    - options-and-dials/introduction
+    - options-and-dials/gear-and-survival
+    - options-and-dials/pacing-and-growth
+    - options-and-dials/table-tools
+    - options-and-dials/oaths-and-tenets
+    - options-and-dials/tone-dials
+    - options-and-dials/watching-the-stacks
+    - options-and-dials/building-your-own
+# Settings are read from the world's system pack, not inherited from the parent: grimwild-ce's
+# are restated here in Grimscrolls's words, with what Grimscrolls adds.
+# On top of grimwild-ce's, key by key: its `factions` (the faction turn) is inherited as it is.
+settings:
+  combat:
+    mode: popcorn
+    round_one: >-
+      There are no turns in Grimscrolls: the spotlight moves like a bard's attention, not a queue.
+      Enemies never roll: describe the danger and ask how the heroes respond; the world hits back
+      through impact moves (on messy and grim rolls, and whenever the GM spends suspense), and a
+      move a hero didn't invite gets a defense roll (`didact do defense`).
+  names:
+    npc: hero-names
+  session_zero:
+    - key: era
+      ask: >-
+        Which Tamriel, and when? Vvardenfell under the Blight (3E 427), Cyrodiil with the gates of
+        Oblivion opening (3E 433), Skyrim with dragons in the sky and a civil war on the ground
+        (4E 201), or a quiet decade between them; and where the story starts.

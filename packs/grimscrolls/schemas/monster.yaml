@@ -1,0 +1,28 @@
+# Threats (Chapter 7, The Bestiary): enemies never roll and have no hit points. A threat is a
+# tier and a role, two or three traits, two or three moves, what it wants, and a Note with its
+# pool sizes and variants; a boss is often a linked challenge whose parts each carry a pool,
+# traits and moves, with a fail state. This replaces grimwild-ce's monster type (whose monsters
+# are hidden: the Bestiary's are Grimscrolls' own).
+type: monster
+label: Threat
+fields:
+  category: {kind: text, help: "The Bestiary's group: Beasts & Vermin, Daedra, Outlaws & Cults, Faces of Tamriel, …"}
+  tier: {kind: enum, values: [mook, tough, elite, boss, "mook–tough", "mook–elite"], help: "Its presence (Chapter 7): a mook is fodder (a pack is one pool, usually 4d), a tough falls one at a time (a knot is a pool, usually 6d), an elite is a challenge alone (usually 6d), a boss owns the scene (8d, or a linked challenge). A range covers a family."}
+  role: {kind: text, help: "How it fights and what makes it falter: blaster, brute, lurker, marksman, predator, protector, skirmisher, swarmer, tactician, trickster (`didact compendium show grimscrolls.<role>`)."}
+  traits: {kind: list, help: "Standing facts that bend what heroes can try."}
+  moves: {kind: list, help: "What the GM does with it (impact moves); a pool or condition a move inflicts is in parentheses."}
+  wants: {kind: text, label: Wants, help: "What it wants, with a turn: what it doesn't, or what would make it stop."}
+  note: {kind: text, help: "The numbers and the family: pool sizes, variants, the trick that beats it, a disease it carries, how the fight really ends."}
+  fail: {kind: text, help: "A linked challenge's fail state: what ends the fight the bad way."}
+  fact: {kind: text, help: "Statted light (Oddities of the Provinces, Faces of Tamriel): the one fact that matters."}
+  carries: {kind: list, help: "The diseases its card says it can pass on (Chapter 6): `didact do disease`."}
+  sights: {kind: text, help: "Senses: something seen."}
+  sounds: {kind: text, help: "Senses: something heard."}
+  smells: {kind: text, help: "Senses: something smelled."}
+  pools: {kind: list, help: "A linked challenge's parts: [{name, dice, traits, moves}], each its own task pool (`didact track new`)."}
+guidance: >-
+  A threat is a tier and a role (Chapter 7) plus what makes it vivid: senses (seen, heard,
+  smelled), two or three traits, two or three moves (Capitalized Like Titles), what it wants with
+  a turn, and a Note with its pool. Mooks are fodder (a pack is a 4d pool), toughs fall one at a
+  time (a knot is 6d), elites are 6d challenges, bosses 8d or a linked challenge with a fail
+  state. Its danger reaches the table as thorns, stakes, suspense and the size of its pool.

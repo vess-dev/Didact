@@ -1,0 +1,618 @@
+# Fallout 3 Main Campaign (campaigns/01-fallout-3): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: fallout-3
+type: quest
+name: Fallout 3
+aliases: [Fallout 3 Main Campaign]
+tags: [fallout-3, frame, main-campaign]
+goal: |-
+  Vault 101 has been sealed since the bombs fell. You grew up inside, ran the G.O.A.T., stood in the schoolroom under fluorescents that have never been off in your lifetime. One night your father James slipped out the front door. The Overseer's guards hunt for him, then for you, and by dawn you are standing on a hillside under a sky you have never seen, blinking.
+
+  James has gone to finish something he started before you were born: Project Purity, an attempt to scrub the Potomac basin clean of radiation and pour that water across the ruined Capital Wasteland. He cannot do it alone. Neither can you. And the Enclave — a pre-war remnant whose hidden bunker has watched the Wastes since 2077 — will move to seize the purifier the moment it comes online. What you do inside the Jefferson Memorial rotunda decides whether the Capital Wasteland drinks clean water or coughs up FEV-poisoned blood.
+date: Tuesday, 23 October 2277
+body: |-
+  *You grew up in Vault 101 and you thought the door would never open. Then your father walked out, and you had to follow him into the ruined Capital Wasteland to find out why. The reason he left will decide whether the water of the Potomac runs clean or poisoned — and whether you walk out of the Jefferson Memorial alive.*
+
+  ## GM notes
+
+  **Date.** Tuesday, 23 October 2277: two centuries after the war, the book's own default moment (Player's Guide, The Commonwealth of Ashes); Vault 112 has dreamed for 200 years. It is the calendar's start: a new campaign opens on it.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup Fallout 3 tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** The Vault 101 door opens at 0300 hours. Vault-Tec klaxons, Amata's scared voice over the PA begging you to leave, and the Overseer's guards closing from both corridors. You step out of the vault into the unblinking light of the Capital Wasteland. Down the hill is Megaton — a settlement built around an unexploded pre-war nuclear bomb. James passed through hours ago. Someone at Moriarty's Saloon remembers him.
+
+  **Plot beats.**
+
+  1. The Escape. Radroaches and vault security in the upper corridors. Amata begs the party to run, not fight — her father, the Overseer, will execute any vault dweller caught abetting you. Getting out without killing vault security sets up a return arc that rewards a peaceable player late. The last door opens onto a hillside and a horizon that keeps going.
+  2. Megaton and the Bomb. Descend into the crater. Mister Burke, a lean man in a suit at Moriarty's Saloon, offers the party 500 caps to arm the undetonated bomb at the town's center. Sheriff Lucas Simms asks the party to disarm it instead. Whatever the party does becomes their reputation on the radio, read aloud by a DJ who was not there.
+  3. Following the Trail. Moriarty remembers James. James asked about Galaxy News Radio, looking for Three Dog, looking for a working piece of pre-war comms hardware. The trail runs through a bombed-out DC, super mutants in the Metro tunnels, and the GNR plaza where a Brotherhood of Steel squad is pinned down by a Super Mutant Behemoth. Help them and Three Dog will hear about it before you reach the door.
+  4. Three Dog's Request. Three Dog will share what he knows about James if the party repairs the Galaxy News Radio dish — mounted atop the Washington Monument, guarded by a super mutant sniper. Completing the repair makes the party's deeds audible across the Wasteland. Karma from here on is amplified — Three Dog will either call them saints or monsters, and strangers will react accordingly.
+  5. Rivet City and Dr. Li. The trail leads to a pre-war aircraft carrier beached on the Potomac. Dr. Madison Li, James's old colleague, reluctantly confirms James returned to the Jefferson Memorial — the original Purity site. She thinks it's a mistake. She's about to be proven right.
+  6. The Jefferson Memorial. The party reaches the rotunda and finds James. They also find Colonel Augustus Autumn already on approach with an Enclave strike team. Autumn demands the activation codes. James refuses — and dies flooding the control chamber with radiation to deny the Enclave the purifier. The party escapes through a flooded maintenance tunnel, emerging, half-drowned, in the Taft Tunnel.
+  7. The Citadel. The Brotherhood of Steel has taken the Pentagon ruins. Elder Owyn Lyons offers an alliance: find a Garden of Eden Creation Kit — a pre-war terraforming device — and bring it back to finish what James started. The G.E.C.K. is in Vault 87, overrun by super mutants, accessible only through the long caverns behind Little Lamplight — the vault's own front door sits in the Glowing Zone's lethal radiation. The party can also rescue a captive Fawkes from Vault 87 — a lucid super mutant who can walk through the Rad field of the purifier chamber and help them.
+  8. Raven Rock and Eden. Captured, interrogated by President John Henry Eden — a pre-war ZAX AI that has convinced itself it is the last legitimate American government. Eden hands the party a vial of modified FEV and explains its purpose: released into the purifier, the water itself will kill every mutant, ghoul, and "impure" wastelander who drinks. The party can accept the vial, refuse it, or talk Eden into his own self-destruction — a WIL save the party can only attempt with transcripts mined from Raven Rock's terminals.
+  9. Liberty Prime and the Final Push. Brotherhood and Enclave meet on the broken tidal basin. Liberty Prime — a forty-foot pre-war combat robot — leads the charge. "Democracy is non-negotiable." The party fights their way toward the control room where Colonel Autumn has begun a final activation countdown.
+  10. The Activation Chamber. Three hundred rads in the rotunda. Someone has to step into the radiation and enter the code. See Climax below.
+
+  **Climax.**
+
+  Three hundred rads in the Project Purity control chamber. Someone has to step into the radiation and enter the activation code. Resolutions:
+
+  - **Purify.** A PC enters the chamber and activates the purifier clean. The PC instantly fills all ten Rad slots (dropping to 0 HP) and resolves a Rad Scar save for each Rad as it lands; a PC already carrying Rad Scars almost certainly reaches a third. Any PC who does faces the ghoulification roll at the next long rest. The water runs clean. The Capital Wasteland is saved. The PC may return as a ghoul or as a face in a mural above the rotunda.
+  - **Send a ghoul or Super Mutant.** Fawkes, if recruited, walks into the chamber without harm. So can a ghoul PC — the Rads still fill their slots, but no Rad Scars follow. The purifier runs clean. The party stands in the rotunda and watches the water run blue for the first time in two centuries.
+  - **Poison.** If the party accepted Eden's vial and drops it into the purifier, the water kills every ghoul, super mutant, and "impure" being who drinks. The party's Karma slides toward −3 (Hated), one step per session as word spreads. The Enclave salutes. The Wasteland is cleaner, and much smaller.
+  - **Walk away.** The party refuses to activate. Autumn dies in the firefight regardless, but the dream dies with James. Brotherhood occupies the Memorial. The party is not welcome back to the Citadel. Leave the DC ruins behind.
+
+  Whichever ending the party picks, **Broken Steel** picks up the story two weeks later. A survivor crawls out of the rotunda with a limp and a half-remembered name, and the Enclave is not done.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "Fallout 3"}' --auto` drafts the region, 16 places, 14 people, 4 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Not trackers.** Karma Clock: under Fallout 2e, the party record's karma ladder: `didact do karma party=<it> shift=±1 why='…'`; under Grimfall, no ladder: karma is what the radio says about them, and it decides who holds their warrant (Chapter 9).
+
+  **Bestiary** (Fallout 2e / Grimfall): Super Mutant, Grunt → `super-mutant-grunt` / `super-mutant`; Super Mutant, Brute → `super-mutant-brute` / `super-mutant`; Super Mutant, Master → `super-mutant-master` / `super-mutant`; Behemoth (Super Mutant) → `behemoth-super-mutant` / `super-mutant-behemoth`; Feral Ghoul → `feral-ghoul` / `feral-ghoul`; Glowing One → `glowing-one` / `feral-ghoul`; Enclave Trooper → `enclave-trooper` / `enclave-patrol`; Enclave Officer → `enclave-officer` / `enclave-patrol`; Brotherhood Knight → `brotherhood-knight` / `brotherhood-patrol`; Brotherhood Paladin → `brotherhood-paladin` / `power-armored-trooper`; Thug → `thug` / `raider`; Talon Company Merc → `talon-company-merc` / `gunners`; Regulator → `regulator` / `bounty-crews`.
+
+  **Rewards in each system's catalog:** Lincoln's Repeater (fallout-2e.lincolns-repeater · grimfall.lincolns-repeater); The Shocker (fallout-2e.the-shocker · grimfall.the-shocker); A3-21's Rifle (fallout-2e.a3-21s-rifle · grimfall.a3-21s-plasma-rifle); Colonel Autumn's 10mm Pistol (fallout-2e.colonel-autumns-10mm-pistol · grimfall.colonel-autumns-10mm); Laser Pistol (fallout-2e.colonel-autumns-laser-pistol · grimfall.autumns-laser-pistol); James's Wedding Ring (grimfall.jamess-wedding-ring); Project Purity Flask (grimfall.project-purity-flask); Pip-Boy 3000 (fallout-2e.pip-boy-3000-functional · grimfall.pip-boy-3000); Virtual Reality Goggles (grimfall.virtual-reality-goggles-v112).
+source: campaigns/01-fallout-3#pitch
+---
+id: fallout-3-region
+type: loc
+name: Capital Wasteland
+tags: [fallout-3, region]
+mechanics:
+  fallout-2e: {kind: region}
+  grimfall: {kind: region}
+body: |-
+  ## GM notes
+
+  A sprawling ruin, as big as the party lets it be.
+source: campaigns/01-fallout-3#the-place--capital-wasteland
+---
+id: fallout-3-megaton
+type: loc
+name: Megaton
+tags: [fallout-3, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Settlement built around a dud bomb. Moriarty's Saloon, Sheriff Simms, the Children of Atom's small congregation, Doc Church's clinic.
+source: campaigns/01-fallout-3#the-place--capital-wasteland
+---
+id: fallout-3-galaxy-news-radio
+type: loc
+name: Galaxy News Radio
+tags: [fallout-3, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Three Dog's broadcast tower. The only good news in the Wasteland.
+source: campaigns/01-fallout-3#the-place--capital-wasteland
+---
+id: fallout-3-the-mall
+type: loc
+name: The Mall
+tags: [fallout-3, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Super mutants and Brotherhood patrols fight over the museums. The Museum of History holds Lincoln's repeater and the ghoul city of Underworld in its lower halls; escaped slaves dream of resettling the Lincoln Memorial nearby.
+source: campaigns/01-fallout-3#the-place--capital-wasteland
+---
+id: fallout-3-rivet-city
+type: loc
+name: Rivet City
+tags: [fallout-3, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A beached aircraft carrier. Dr. Madison Li, Father Clifford's congregation, a science lab running hydroponics.
+source: campaigns/01-fallout-3#the-place--capital-wasteland
+---
+id: fallout-3-tenpenny-tower
+type: loc
+name: Tenpenny Tower
+tags: [fallout-3, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A pre-war luxury tower run by a senile plutocrat. Ghouls from Warrington Station want a share; the tenants want them gone. Mr. Burke lives on an upper floor.
+source: campaigns/01-fallout-3#the-place--capital-wasteland
+---
+id: fallout-3-paradise-falls
+type: loc
+name: Paradise Falls
+tags: [fallout-3, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Slaver encampment. Eulogy Jones runs the roster. Burning the place down or being recruited into the crew — karma consequences in both directions.
+source: campaigns/01-fallout-3#the-place--capital-wasteland
+---
+id: fallout-3-big-town
+type: loc
+name: Big Town
+tags: [fallout-3, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A settlement of former Little Lamplight children trying not to get eaten by super mutants from Germantown.
+source: campaigns/01-fallout-3#the-place--capital-wasteland
+---
+id: fallout-3-little-lamplight
+type: loc
+name: Little Lamplight
+tags: [fallout-3, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A cave settlement run entirely by children. Adults are not welcome past the gate, and the children will back that up.
+source: campaigns/01-fallout-3#the-place--capital-wasteland
+---
+id: fallout-3-the-pitt-entrance
+type: loc
+name: The Pitt entrance
+tags: [fallout-3, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A rail tunnel to Pittsburgh (links to The Pitt campaign — one-way and trog-infested).
+source: campaigns/01-fallout-3#the-place--capital-wasteland
+---
+id: fallout-3-the-jefferson-memorial
+type: loc
+name: The Jefferson Memorial
+tags: [fallout-3, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Project Purity's home. Super mutants patrol the exterior. The rotunda hides James's work.
+source: campaigns/01-fallout-3#the-place--capital-wasteland
+---
+id: fallout-3-the-citadel
+type: loc
+name: The Citadel
+tags: [fallout-3, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Brotherhood of Steel HQ in the Pentagon ruins. Elder Lyons, Sarah Lyons, Scribe Rothchild, Liberty Prime in a pit.
+source: campaigns/01-fallout-3#the-place--capital-wasteland
+---
+id: fallout-3-raven-rock
+type: loc
+name: Raven Rock
+tags: [fallout-3, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Enclave stronghold — miles of pre-war mountain bunker. President Eden's home terminal lives here.
+source: campaigns/01-fallout-3#the-place--capital-wasteland
+---
+id: fallout-3-the-glowing-zone
+type: loc
+name: The Glowing Zone
+tags: [fallout-3, place]
+mechanics:
+  fallout-2e: {kind: poi, rad_zone: hot}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A crater where a pre-war bomb went critical. A hot zone: 1 Rad every scene without sealed armor.
+source: campaigns/01-fallout-3#the-place--capital-wasteland
+---
+id: fallout-3-liberty-prime
+type: monster
+name: Liberty Prime
+knowledge: secret
+tags: [fallout-3, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout 3'
+    hp: 60
+    armor: 3
+    STR: 18
+    DEX: 8
+    WIL: 10
+    rad_immune: true
+    attacks:
+    - name: twin-laser
+      damage: d12
+      qualities: [blast]
+    - name: stomp
+      damage: d10
+      qualities: [blast]
+    abilities:
+    - "Siege Engine: Prime's attacks ignore up to 2 Armor. He is not intended as a survivable target —
+      the Enclave's orbital countermeasure eventually downs him, but not until Broken Steel opens."
+  grimfall:
+    tier: boss
+    role: blaster
+    category: Named Threats & Legends
+    senses:
+    - towering blue-and-steel bulk
+    - a patriotic broadcast and a crackling eye-laser
+    - ozone and pulverized concrete
+    pools:
+    - name: The Core
+      dice: 8
+      traits: near-invulnerable; reach it only once Prime is toppled or shut down
+      moves: Eye-Laser Sweep, Hurl a Nuke
+    - name: Leg Servos
+      dice: 6
+      traits: cripple them to topple the colossus and expose the Core
+      moves: Crushing Stride
+    - name: Reactor Housing
+      dice: 6
+      traits: overload or vent it to shut Prime down
+      moves: (sabotage to win)
+    fail: It reaches and razes whatever it was marching on.
+    wants: to advance and annihilate its designated enemy — it wants nothing else and cannot be 
+      reasoned with
+    note: A linked challenge — you don't "damage" Prime, you topple it (Legs) or kill its power 
+      (Reactor) to get at the locked Core.
+body: |-
+  ## GM notes
+
+  A pre-war combat robot forty feet tall. "Democracy is non-negotiable." Allied asset, not a combat encounter for the party — a moving battlefield advantage. All enemies within thirty feet of Prime take blast damage (d12) from his cover fire at the start of each combat round.
+
+  Fallout 2e: 60 HP, 3 Armor, 18 STR, 8 DEX, 10 WIL, twin-laser (d12, blast), stomp (d10, blast).
+
+  Fallout 2e's Bestiary has the same stat block: `fallout-2e.liberty-prime`.
+
+  Grimfall: its card is `grimfall.liberty-prime` (Liberty Prime), in this record's grimfall block.
+source: campaigns/01-fallout-3#liberty-prime
+---
+id: fallout-3-colonel-augustus-autumn
+type: monster
+name: Colonel Augustus Autumn
+aliases: [Colonel Autumn]
+knowledge: secret
+tags: [fallout-3, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout 3'
+    hp: 10
+    armor: 2
+    STR: 14
+    DEX: 15
+    WIL: 14
+    attacks:
+    - {name: Colonel Autumn's 10mm Pistol, damage: d8}
+    - {name: combat knife, damage: d6}
+    abilities:
+    - "Officer's Calm: Morale saves for Enclave troops in his line of sight auto-pass, until he falls."
+  grimfall:
+    tier: elite
+    role: tactician
+    category: Faces of the Wasteland
+    fact: Calm, principled, wrong; while he stands, his troopers' pool can't drop below 1d. Carries 
+      the engraved 10mm.
+body: |-
+  ## GM notes
+
+  **Colonel Augustus Autumn** — Enclave field commander. Competent, ruthless, believes in what he does.
+
+  Enclave field commander. Confident, principled in his own way, does not bluster. See Unique Weapons → Colonel Autumn's 10mm Pistol.
+
+  Fallout 2e: 10 HP, 2 Armor, 14 STR, 15 DEX, 14 WIL, Colonel Autumn's 10mm Pistol (d8), combat knife (d6).
+
+  Grimfall: its card is `grimfall.colonel-autumn` (Colonel Autumn), in this record's grimfall block.
+source: campaigns/01-fallout-3#colonel-autumn
+---
+id: fallout-3-president-john-henry-eden
+type: monster
+name: President John Henry Eden
+knowledge: secret
+tags: [fallout-3, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout 3'
+    abilities: ['Not a combat encounter (— HP, — combat): Voice only.']
+  grimfall:
+    tier: elite
+    role: tactician
+    category: Named Threats & Legends
+    senses:
+    - blinking mainframe banks and a glowing console
+    - a folksy, reassuring radio drawl
+    - hot electronics and recycled air
+    pools:
+    - name: The Enclave Bunker
+      dice: 6
+      traits: turrets, troops, blast doors; shields the core
+      moves: Order an Execution, Seal the Bulkheads
+    - name: Eden's Core
+      dice: 4
+      traits: locked behind the bunker; out-argue it, don't shoot it
+      moves: Address the Nation, Plead Its Case
+    fail: 8d "Purge Protocol" — a timer; when it runs dry, Eden releases the modified FEV and damns 
+      the wasteland.
+    wants: to "purify" America by cold logic — not to face a contradiction it cannot resolve
+    note: 'An elite as a social-siege linked challenge (6d + 4d). The classic win: reach the Core and
+      talk it into self-destruction.'
+body: |-
+  ## GM notes
+
+  **President John Henry Eden** — a pre-war ZAX AI that believes he is the United States government. Articulate, paternal, genocidal.
+
+  A ZAX-class pre-war AI. Not a combat threat. A WIL-save encounter: the party may talk him into self-destruction if they can pass a WIL save backed by evidence gathered in Raven Rock's terminals — no evidence, no save. Success: no final battle needed; Raven Rock self-destructs with Eden inside. Failure: the Enclave assault goes full force at Purity.
+
+  Fallout 2e: — HP, — combat. Voice only.
+
+  Grimfall: its card is `grimfall.president-john-henry-eden` (President John Henry Eden), in this record's grimfall block.
+source: campaigns/01-fallout-3#president-john-henry-eden
+---
+id: fallout-3-dr-stanislaus-braun
+type: monster
+name: Dr. Stanislaus Braun
+aliases: ['Dr. Stanislaus Braun (Vault 112, optional side arc)']
+knowledge: secret
+tags: [fallout-3, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout 3'
+    abilities:
+    - 'Not a combat encounter (— HP, — combat): An old man in a Tranquility Lounger — unremovable without
+      killing him.'
+body: |-
+  ## GM notes
+
+  A pre-war monster who has been god of a simulated Tranquility Lane for 200 years. Running his simulation "correctly" to earn his aid — or murdering his neighbors to force him out — is a side arc that nets the party Virtual Reality Goggles and one of the strongest karma swings in the campaign.
+
+  Fallout 2e: — HP, — combat. An old man in a Tranquility Lounger — unremovable without killing him.
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/01-fallout-3#dr-stanislaus-braun-vault-112-optional-side-arc
+---
+id: fallout-3-james
+type: npc
+name: James
+knowledge: secret
+tags: [fallout-3, cast]
+fields: {role: your father}
+body: |-
+  ## GM notes
+
+  **James** — your father. Doctor and scientist. Kind, distracted, in a hurry. Dies in Beat 6.
+source: campaigns/01-fallout-3#cast
+---
+id: fallout-3-catherine
+type: npc
+name: Catherine
+knowledge: secret
+tags: [fallout-3, cast]
+fields: {role: your mother}
+body: |-
+  ## GM notes
+
+  **Catherine** — your mother. Died giving birth to you. Her favorite Bible verse — "I will give unto him that is athirst of the fountain of the water of life freely" — is the key to James's final voice terminal.
+source: campaigns/01-fallout-3#cast
+---
+id: fallout-3-amata-almodovar
+type: npc
+name: Amata Almodovar
+knowledge: secret
+tags: [fallout-3, cast]
+fields: {role: Vault 101 childhood friend turned dissident}
+body: |-
+  ## GM notes
+
+  **Amata Almodovar** — Vault 101 childhood friend turned dissident. Potential companion or recurring contact depending on how the escape went.
+source: campaigns/01-fallout-3#cast
+---
+id: fallout-3-the-overseer
+type: npc
+name: The Overseer
+aliases: [Alphonse Almodovar]
+knowledge: secret
+tags: [fallout-3, cast]
+fields: {role: Amata's father}
+body: |-
+  ## GM notes
+
+  **The Overseer** — Alphonse Almodovar. Amata's father. Fears the outside more than he hates the party.
+source: campaigns/01-fallout-3#cast
+---
+id: fallout-3-three-dog
+type: npc
+name: Three Dog
+knowledge: secret
+tags: [fallout-3, cast]
+fields: {role: Galaxy News Radio host}
+body: |-
+  ## GM notes
+
+  **Three Dog** — Galaxy News Radio host. Loud, good-hearted, fights the good fight. Writes the party's ballad from his broadcast booth.
+source: campaigns/01-fallout-3#cast
+---
+id: fallout-3-mister-burke
+type: npc
+name: Mister Burke
+knowledge: secret
+tags: [fallout-3, cast]
+fields: {role: Tenpenny Tower's representative in Megaton}
+body: |-
+  ## GM notes
+
+  **Mister Burke** — Tenpenny Tower's representative in Megaton. Smooth, lethal, in a tan suit.
+source: campaigns/01-fallout-3#cast
+---
+id: fallout-3-sheriff-lucas-simms
+type: npc
+name: Sheriff Lucas Simms
+knowledge: secret
+tags: [fallout-3, cast]
+fields: {role: Megaton's lawman}
+body: |-
+  ## GM notes
+
+  **Sheriff Lucas Simms** — Megaton's lawman. Will deputize a decent party.
+source: campaigns/01-fallout-3#cast
+---
+id: fallout-3-elder-owyn-lyons
+type: npc
+name: Elder Owyn Lyons
+knowledge: secret
+tags: [fallout-3, cast]
+fields:
+  role: Brotherhood of Steel elder; an old-line commander cut loose by the West Coast for choosing 
+    to help the Wasteland
+body: |-
+  ## GM notes
+
+  **Elder Owyn Lyons** — Brotherhood of Steel elder; an old-line commander cut loose by the West Coast for choosing to help the Wasteland. Dying, but not yet.
+source: campaigns/01-fallout-3#cast
+---
+id: fallout-3-sarah-lyons
+type: npc
+name: Sarah Lyons
+knowledge: secret
+tags: [fallout-3, cast]
+fields: {role: his daughter}
+body: |-
+  ## GM notes
+
+  **Sarah Lyons** — his daughter. Commands the Lyons' Pride squad. Will lead the final charge.
+source: campaigns/01-fallout-3#cast
+---
+id: fallout-3-star-paladin-cross
+type: npc
+name: Star Paladin Cross
+knowledge: secret
+tags: [fallout-3, cast]
+fields: {role: 'veteran Brotherhood paladin, Lyons-loyal to the bone'}
+body: |-
+  ## GM notes
+
+  **Star Paladin Cross** — veteran Brotherhood paladin, Lyons-loyal to the bone. Was part of the escort that saw James and his infant child to Vault 101 years ago. Potential companion.
+source: campaigns/01-fallout-3#cast
+---
+id: fallout-3-scribe-rothchild
+type: npc
+name: Scribe Rothchild
+knowledge: secret
+tags: [fallout-3, cast]
+fields: {role: engineer}
+body: |-
+  ## GM notes
+
+  **Scribe Rothchild** — engineer. Brought Liberty Prime back to life; the Tesla coil under Old Olney is his next obsession (see Broken Steel).
+source: campaigns/01-fallout-3#cast
+---
+id: fallout-3-dr-madison-li
+type: npc
+name: Dr. Madison Li
+knowledge: secret
+tags: [fallout-3, cast]
+fields: {role: chief scientist at Rivet City; James's old collaborator}
+body: |-
+  ## GM notes
+
+  **Dr. Madison Li** — chief scientist at Rivet City; James's old collaborator. Reluctant to return to Purity, but will if the party proves it.
+source: campaigns/01-fallout-3#cast
+---
+id: fallout-3-fawkes
+type: npc
+name: Fawkes
+knowledge: secret
+tags: [fallout-3, cast]
+fields: {role: a lucid super mutant trapped in a Vault 87 observation cell}
+body: |-
+  ## GM notes
+
+  **Fawkes** — a lucid super mutant trapped in a Vault 87 observation cell. If the party frees him, he can enter the purifier chamber without taking Rads. Potential companion.
+source: campaigns/01-fallout-3#cast
+---
+id: fallout-3-dogmeat
+type: npc
+name: Dogmeat
+knowledge: secret
+tags: [fallout-3, cast]
+fields: {role: a stray mongrel at the Scrapyard outside Minefield}
+body: |-
+  ## GM notes
+
+  **Dogmeat** — a stray mongrel at the Scrapyard outside Minefield. Sees a kindred spirit in the party. Potential companion (see Companions).
+source: campaigns/01-fallout-3#cast
+---
+id: fallout-3-purity-clock
+type: track
+name: Purity Clock
+knowledge: secret
+tags: [fallout-3, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: (d6) The Enclave's approach. Ticks when the party first reaches the Memorial, when James is 
+  named on open radio, when Dr. Li is recruited, and at each subsequent plot beat toward activation.
+  At 1–3 the Enclave is distant; at 4–5 they have scouts in the Wasteland; at 6 they assault the 
+  Memorial.
+source: campaigns/01-fallout-3#clocks
+---
+id: fallout-3-eden-clock
+type: track
+name: Eden Clock
+knowledge: secret
+tags: [fallout-3, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4) President Eden's awareness of the party. Ticks when the party passes through an Enclave 
+  checkpoint, when a named Enclave officer survives and returns a report, and when Three Dog 
+  broadcasts a deed Eden would care about. At 4, Enclave strike teams hunt them on sight.
+source: campaigns/01-fallout-3#clocks
+---
+id: fallout-3-karma-clock
+type: track
+name: Karma Clock
+knowledge: secret
+tags: [fallout-3, clock]
+kind: counter
+min: -3
+max: 3
+value: 0
+note: "(Party Karma ladder; see Overseer's Guide → Party Karma) Ticks when the party makes a major public
+  choice — the bomb, the slavers, Tenpenny, Paradise Falls — shifting karma ±1, at most one step per session.
+  Three Dog's broadcasts amplify the effect for first-meeting reactions — for as long as he is talking
+  about the party, treat their Karma as one step further from 0 (to the ladder's ends) on Reaction rolls
+  in the Capital Wasteland. [under Fallout 2e, the party record's karma ladder: `didact do karma party=<it>
+  shift=±1 why='…'`; under Grimfall, no ladder: karma is what the radio says about them, and it decides
+  who holds their warrant (Chapter 9)]"
+source: campaigns/01-fallout-3#clocks

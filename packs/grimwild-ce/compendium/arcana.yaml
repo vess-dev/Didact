@@ -1,0 +1,655 @@
+# Grimwild: Community Edition (Preview 5.3), Chapter 7: Extras: List of Arcana (pp. 196-201) and
+# Potions and Other Expendables (p. 203). CC0 1.0.
+# The 40 example arcana (12 minor, 14 major and 14 mythic) and then the 8 example expendables
+# (`expendable: true`: single-use items with an effect one tier higher, p. 40), in book order. Two
+# expendables are trivial, a tier exclusive to expendable arcana (p. 40). Each block's palette colors
+# (printed in capitals, given here in title case), its details (`body`; power pools refresh every
+# session unless otherwise stated), its touchstones (a function and two themed words; mythic arcana
+# count as having all functions and list 3-5), its sensories (`sensories`: the swirl line, how it
+# looks, feels or sounds, then the hand line, actions to bring it into the scene; not `details`,
+# which is the GM's notes on any record) and its activation. `pool` is the power pool its details name, when they
+# name one (timers and story rolls are not pools). Text is as printed, typos included (see the notes
+# by the entries). "Created by Matthew Andre" is printed under the Mirror Gaol block (p. 201); Matthew
+# Andre is one of the Community Edition's writers (credits, p. 217).
+id: everflame-glove
+type: arcana
+name: "Everflame Glove"
+tier: minor
+palette: ["Dark Leather", "Fiery Core", "Yellow Wisps"]
+touchstones: ["fire", "orb", "summon"]
+sensories: ["charred leather, slow bobbing, streaks of fire", "orb dances on fingers, floats overhead"]
+activation: "Activated by snapping your fingers, palm up."
+source: "p. 196"
+body: |
+  The wearer can produce and hold an orb of flame in their palm. It illuminates and burns others as normal.
+---
+id: axe-of-the-silent-grave
+type: arcana
+name: "Axe of the Silent Grave"
+tier: minor
+palette: ["Dark Obsidian", "Ruby Eyes", "Bone White"]
+touchstones: ["death", "eternal", "attack"]
+sensories:
+  - "dull glint, piercing eyes, worn carving"
+  - "urge to destroy undead, reverse two-handed grip"
+activation: "Activated by striking down a living foe."
+source: "p. 196"
+body: |
+  This heavy, obsidian axe has a skull chiseled into the head. Those slain by it can't be raised as undead.
+---
+id: chitterfang-pendant
+type: arcana
+name: "Chitterfang Pendant"
+tier: minor
+palette: ["Chitin Green", "Carapace Black", "Iridescent Purple"]
+touchstones: ["insect", "annoying", "summon"]
+sensories:
+  - "clicking mandibles, buzzing wings, iridescent sheen"
+  - "twitching legs, beetle drifts aimlessly"
+activation: "Activated by tapping on the beetle."
+source: "p. 196"
+body: |
+  The beetle in this pendant can be sent to buzz around and distract others for a few moments before returning.
+---
+id: loyal-spear
+type: arcana
+name: "Loyal Spear"
+tier: minor
+palette: ["Weathered Ash", "Honor Brass", "Bloodied Steel"]
+touchstones: ["fling", "return", "summon"]
+sensories: ["polished shine, dried blood", "white knuckled grip, acts with owner as one"]
+activation: "Activated by giving a sharp whistle after thrown."
+source: "p. 196"
+body: |
+  After being thrown, this spear can be recalled. It disappears in a puff of arcane mist and reappears in your hand.
+---
+id: magebane-shield
+type: arcana
+name: "Magebane Shield"
+tier: minor
+palette: ["Cold Iron", "Null Silver", "Arcane Violet"]
+touchstones: ["anti-magic", "sense", "protect"]
+sensories: ["violet fractures, faint purple pulse, magic buzz", "numb fingers, static raised hair"]
+activation: "Activated by tightening your grip."
+source: "p. 197"
+body: |
+  This shield faintly glows in the presence of magic, and can stop magic just as mundane weapons.
+---
+id: mask-of-the-changeling
+type: arcana
+name: "Mask of the Changeling"
+tier: minor
+palette: ["Blank Ivory", "Shadowy Gray", "Shifting Gray"]
+touchstones: ["face", "thief", "transform"]
+sensories: ["eerie glance, surreal features", "shifting face, features soften like wax"]
+activation: "Activated by dragging your palm over your face."
+source: "p. 197"
+body: |
+  Once per session, you can have this mask take the form of a face you've seen recently, and meld with your own.
+---
+# "through you remain unaffected" is as printed (though).
+id: poisonheart-choker
+type: arcana
+name: "Poisonheart Choker"
+tier: minor
+palette: ["Venomous Purple", "Nightshade", "Bruised Black"]
+touchstones: ["acid", "blood", "attack"]
+sensories:
+  - "acrid smell masked by lavender and rose"
+  - "subtle tightening around throat, acid dripping"
+activation: "Activated by pinching the charm."
+source: "p. 197"
+body: |
+  While wearing this necklace, you can spit acid that slowly melts everything it touches, through you remain unaffected.
+---
+# "with those boots" is as printed.
+id: springheel-jumpers
+type: arcana
+name: "Springheel Jumpers"
+tier: minor
+palette: ["Deerskin", "Worked Brass", "Sky Blue"]
+touchstones: ["grace", "jump", "traverse"]
+sensories:
+  - "leather squeaks, blurred speed, rush of wind"
+  - "vibrating calves, ground cracked where you leap"
+activation: "Activated by tightening the straps."
+source: "p. 197"
+body: |
+  Leap twice as high with those boots, and fall any distance unharmed as long as you land on your feet.
+---
+id: starlight-flask
+type: arcana
+name: "Starlight Flask"
+tier: minor
+palette: ["Cosmic Indigo", "Silver Glint", "Shining Light"]
+touchstones: ["light", "curious", "summon"]
+sensories:
+  - "swirling mist, burst of light, shadows scatter"
+  - "mote hops to get your attention, sudden vertigo"
+activation: "Activated by shaking and uncorking the flask."
+source: "p. 197"
+body: |
+  Once per session, you can unstopper this flask to have motes of light scatter, illuminating the nearby areas.
+---
+id: lupine-cloak
+type: arcana
+name: "Lupine Cloak"
+tier: minor
+palette: ["Wolfen Gray", "Carved Bone", "Wild Brown"]
+touchstones: ["wolf", "instinct", "transform"]
+sensories:
+  - "dripping saliva, glowing eyes, bristling fur"
+  - "craving for meat, subtle instinct to hunt"
+activation: "Activated by feeling the thrill of the hunt."
+source: "p. 197"
+body: |
+  You turn into a normal wolf, and follow your instincts. You transform back after a few hours, or after you push yourself.
+---
+id: cozy-ring
+type: arcana
+name: "Cozy Ring"
+tier: minor
+palette: ["Warm Copper", "Autumn Glow", "Soft Emerald"]
+touchstones: ["comfort", "home", "enhance"]
+sensories: ["woven copper, well-loved shine, gentle warmth", "remember a fond memory, smile wistfully"]
+activation: "Activated by slipping it on your finger."
+source: "p. 197"
+body: |
+  Those that wear this ring are protected from uncomfortable temperatures, as if staying inside, bundled up in their own home.
+---
+id: whisperknife
+type: arcana
+name: "Whisperknife"
+tier: minor
+palette: ["Night Black", "Murky Gray", "Enchanted Steel"]
+touchstones: ["silence", "voice", "hinder"]
+sensories: ["absorbs light, tightening shadow", "faint echoes of the dead in your mind"]
+activation: "Activated by being plunged into flesh."
+source: "p. 197"
+body: |
+  When this knife is in flesh, the victim can't speak or otherwise make noise. No more last words.
+---
+id: "1000-eye-circlet"
+type: arcana
+name: "1000 Eye Circlet"
+tier: major
+palette: ["Delicate Gold", "Obsidian Veil", "Purple Iris"]
+pool: 4
+touchstones: ["scout", "eyes", "reveal"]
+sensories: ["blinking and looking eyes, wet organic matter", "vision shatters like glass, bobbing eye"]
+activation: "Activated by plucking the eye from the center."
+source: "p. 198"
+body: |
+  You can mentally control a floating magical eye (4d power pool), seeing what it sees. If destroyed, make a defense roll against rattled.
+---
+# The activation line has no closing period in the book.
+id: basilisk-eye-charm
+type: arcana
+name: "Basilisk Eye Charm"
+tier: major
+palette: ["Jade Scales", "Stone Gray", "Yellow Eye"]
+touchstones: ["stone", "flesh", "hinder"]
+sensories: ["dull yellow pulse, creeping stone on flesh", "limbs feel heavy"]
+activation: "Activated by holding the charm aloft"
+source: "p. 198"
+body: |
+  Once per session, you can turn a creature that sees it to stone, returning with a 6d timer.
+---
+id: coin-of-the-roads
+type: arcana
+name: "Coin of the Roads"
+tier: major
+palette: ["Travelled Bronze", "Dusty Gold", "Worn Gray"]
+touchstones: ["solitary", "teleport", "traverse"]
+sensories: ["worn metal, static charge", "subtle urge to travel, changing image of landscape"]
+activation: "Activated by flipping a different coin in the air."
+source: "p. 198"
+body: |
+  Once per session, you can make a story roll to teleport to this coin, appearing holding it between your fingers.
+---
+id: crystalshard-sprig
+type: arcana
+name: "Crystalshard Sprig"
+tier: major
+palette: ["Uncut Amethyst", "Prism White", "Raw Quartz"]
+pool: 4
+touchstones: ["crystal", "grow", "hinder"]
+sensories: ["cracking quartz, deep earthen movement", "fingers turn cold, crystal grows nearby"]
+activation: "Activated by using the primordial command word."
+source: "p. 198"
+body: |
+  You can brandish this rod (4d power pool) at a foe to freeze them in place in crystal for a few moments.
+---
+id: emberfang
+type: arcana
+name: "Emberfang"
+tier: major
+palette: ["Forged Metal", "Red Hot", "Flaming Yellow"]
+touchstones: ["burn", "flame", "attack"]
+sensories:
+  - "smoldering core, heat waves, flying sparks"
+  - "smoke rising from grip, hand glows as if hot"
+activation: "Activated by striking it on a rough surface."
+source: "p. 198"
+body: |
+  A curved sword that wreathes itself in flames when held. Once per session, add a fire-based secondary effect.
+---
+id: hovelsack
+type: arcana
+name: "Hovelsack"
+tier: major
+palette: ["Burlap", "Brown Twine", "Dark Void"]
+touchstones: ["space", "room", "summon"]
+sensories: ["unfolding landscape, faint jingle from bag", "urge to live simply"]
+activation: "Activated by untying the twine."
+source: "p. 198"
+body: |
+  A bound fabric bag. When the twine is removed, it opens a portal leading into a cozy, but sparsely-furnished room.
+---
+# Its touchstones are as printed: "create" is not one of the ten functions.
+id: robe-of-pockets
+type: arcana
+name: "Robe of Pockets"
+tier: major
+palette: ["Velvet", "Old Ash", "Aged Gold"]
+pool: 4
+touchstones: ["pocket", "trinket", "create"]
+sensories: ["mismatched patches, shifting folds", "endless hidden pockets with wrong items"]
+activation: "Activated by thrusting a hand deep into a pocket."
+source: "p. 199"
+body: |
+  This patchwork robe produces a small, but useful object from its pockets after the wearer closes their eyes and wishes for it. (4d power pool)
+---
+id: seekers-compass
+type: arcana
+name: "Seeker's Compass"
+tier: major
+palette: ["Navy Enamel", "Brass", "Faint Blue"]
+touchstones: ["guidance", "direction", "reveal"]
+sensories: ["spinning brass bezel, reflection of the sky", "sudden directional sense, magnetic tug"]
+activation: "Activated by flicking the glass lens."
+source: "p. 199"
+body: |
+  The holder can ask for the location of someone or something they've seen before, and be shown its direction.
+---
+# Its touchstones are as printed: none of the three is one of the ten functions.
+id: siphon-whip
+type: arcana
+name: "Siphon Whip"
+tier: major
+palette: ["Blood Red", "Black Leather", "Rose Energy"]
+touchstones: ["bind", "drain", "lifeforce"]
+sensories: ["dried blood, pulsing crimson veins", "twitches like snake, throbs with energy"]
+activation: "Activated by wrapping up a living foe."
+source: "p. 199"
+body: |
+  Once per session, you can wrap a foe with this whip and clear bloodied on yourself.
+---
+id: spiderfriend-wand
+type: arcana
+name: "Spiderfriend Wand"
+tier: major
+palette: ["Web White", "Ebony", "Poison Green"]
+pool: 4
+touchstones: ["spider", "ally", "summon"]
+sensories: ["sticky strands, acrid odor, faint vibration", "fondness for anything with 8 legs"]
+activation: "Activated by tracing a web pattern in the air."
+source: "p. 199"
+body: |
+  Once per session, a flick and uttered word summon a loyal spider (a 4d power pool) that's about the size of a large dog to your side.
+---
+id: shimmershot-bow
+type: arcana
+name: "Shimmershot Bow"
+tier: major
+palette: ["Ashen Wood", "Teal Carving", "Sunlight"]
+touchstones: ["light", "arrow", "summon"]
+sensories: ["glowing carvings, light pulsing", "lighter than expected, arrows wink out"]
+activation: "Activated by drawing the empty string back."
+source: "p. 199"
+body: |
+  This bow creates an arrow of condensed light when pulled back. Things struck by these arrows glow brightly.
+---
+id: verdant-shield
+type: arcana
+name: "Verdant Shield"
+tier: major
+palette: ["Mossy Green", "Oak Wood", "Sap Green"]
+touchstones: ["entangle", "roots", "hinder"]
+sensories:
+  - "overgrown vines, thorns and flowers grow"
+  - "plants grow with a deeper green, slow wrapping"
+activation: "Activated by slamming it into soft earth."
+source: "p. 199"
+body: |
+  You can use this wooden kite shield to command roots and vines to bind foes, holding them in place with a 2d timer.
+---
+id: wavewalkers
+type: arcana
+name: "Wavewalkers"
+tier: major
+palette: ["Driftwood", "Foamy White", "Aqua Surf"]
+touchstones: ["water", "momentum", "traverse"]
+sensories: ["wet wood, spray of ocean foam", "like walking on rubber, moving with waves"]
+activation: "Activated by taking a running leap directly on water."
+source: "p. 199"
+body: |
+  These shoes let you walk across water, as long as you keep moving. Once you stop, the effect ends.
+---
+id: knockers
+type: arcana
+name: "Knockers"
+tier: major
+palette: ["Heavy Metal", "Leather Straps", "Polished Steel"]
+touchstones: ["open", "conspicuous", "reveal"]
+sensories: ["jangling metal clasps, heavy stomping", "lumbering gait, urge to keep them shiny"]
+activation: "Activated by kicking the item you want to unlock."
+source: "p. 199"
+body: |
+  These heavy steel boots can be used to unlock doors and other safeguarded items.
+---
+id: bracelet-of-blasting
+type: arcana
+name: "Bracelet of Blasting"
+tier: mythic
+palette: ["Scorched Brass", "Powder Gray", "Orange Flare"]
+touchstones: ["lights", "blind", "flare", "explosion"]
+sensories: ["golden sparks, burnt hair and sulfur", "soot spots, sudden intense vibration"]
+activation: "Activated by holding your wrist with your other hand."
+source: "p. 200"
+body: |
+  You can send searing beams of prismatic light from your hand while wearing this bracelet.
+---
+id: bugsnax
+type: arcana
+name: "Bugsnax"
+tier: mythic
+palette: ["Yellow Scales", "Dirty Moss", "Fey Pink"]
+pool: 12
+touchstones: ["smoke", "shimmer", "bugs", "glow", "magic"]
+sensories:
+  - "soft scales, squeaky chatter, buzz of insects"
+  - "rooting through belongings, camouflages to hide"
+activation: "Activated by whistling sharply."
+source: "p. 200"
+body: |
+  A small, talking pseudodragon (12d power pool) that likes to eat bugs and mostly obeys your commands. Refresh the pool by giving him a treat.
+---
+id: crown-of-stars
+type: arcana
+name: "Crown of Stars"
+tier: mythic
+palette: ["Black Void", "Meteorite", "Twinkle White"]
+touchstones: ["star", "meteor", "night", "sight", "obey"]
+sensories:
+  - "chill in the air, silence, absorb light"
+  - "stars in the sky change, slight upward gravity"
+activation: "Activated by beseeching the heavens."
+source: "p. 200"
+body: |
+  While wearing this crown, you can ask favors of the stars themselves, and they’re inclined to hear you out. (3d story roll)
+---
+# "impuse" is as printed (impulse).
+id: discordant-flute
+type: arcana
+name: "Discordant Flute"
+tier: mythic
+palette: ["Cherrywood", "Old Brass", "Enchanting Blue"]
+pool: 8
+touchstones: ["confusion", "melody", "compel", "jig"]
+sensories: ["dull shine, off-kilter tune", "impuse to add a little chaos"]
+activation: "Activated by blowing a single breath into it."
+source: "p. 200"
+body: |
+  The haunting melodies that come from this flute (8d power pool) can unnerve others, and influence their actions.
+---
+id: fortune-ring
+type: arcana
+name: "Fortune Ring"
+tier: mythic
+palette: ["Lucky Green", "Spun Gold", "Shining Jade"]
+pool: 8
+touchstones: ["luck", "balance", "fate"]
+sensories: ["unnatural shine, sparkles brightly when used", "reckless confidence, constant fiddling"]
+activation: "Activated by kissing the ring."
+source: "p. 200"
+body: |
+  Close your eyes and trust in your fortune to roll a 8d power pool instead of any roll you make. Refresh the pool by losing a game of luck.
+---
+# "wearing this gauntlets" is as printed.
+id: gauntlets-of-the-storm
+type: arcana
+name: "Gauntlets of the Storm"
+tier: mythic
+palette: ["Dark Hide", "Copper", "Storm Blue"]
+touchstones: ["thunder", "lightning", "arc", "fear", "fist"]
+sensories: ["static humming, smell of ozone", "lightning jumps between fists"]
+activation: "Activated by punching your own palm."
+source: "p. 200"
+body: |
+  You can call lightning into your hands while wearing this gauntlets, lashing out with bursts of energy.
+---
+# "ridgid" is as printed (rigid).
+id: gnarlstaff
+type: arcana
+name: "Gnarlstaff"
+tier: mythic
+palette: ["Twisted Root", "Bog Green", "Wild Amber"]
+pool: 8
+touchstones: ["tangle", "plant", "regrow", "root"]
+sensories: ["damp wood, seeping sap, wet moss", "ridgid joints, vines burst from staff"]
+activation: "Activated by calling for aid from nature."
+source: "p. 201"
+body: |
+  This staff (8d power pool) allows you to control trees and other plants in the area. You’re never impeded by natural growth.
+---
+id: kaleidoscope-rod
+type: arcana
+name: "Kaleidoscope Rod"
+tier: mythic
+palette: ["Mirrored Lead", "Bewitched Teal", "Arcane Magenta"]
+pool: 8
+touchstones: ["wonder", "prismatic", "sleep", "dream"]
+sensories:
+  - "fractured light, prism burst, stretched mirrors"
+  - "ground tilts away, dizzying visual distortion"
+activation: "Activated by rotating the stone at the top."
+source: "p. 201"
+body: |
+  This beautifully carved, bright wooden rod (8d power pool) can put others in a serene trance, as they’re pulled into their own dreams.
+---
+id: lich-skull
+type: arcana
+name: "Lich Skull"
+tier: mythic
+palette: ["Old Bone", "Grave Dust", "Necrotic Glow"]
+touchstones: ["undead", "command", "raise", "drain"]
+sensories:
+  - "glowing eye sockets, ghostly glow of purple fire"
+  - "Unique personality, subtle manipulation"
+activation: "Activated by holding it aloft."
+source: "p. 201"
+body: |
+  The skull of a still-living lich that can be used to control and raise undead (2d story roll). Empower them further by taking harm.
+---
+# "Activated by uncork the bottle" is as printed.
+id: ship-in-a-bottle
+type: arcana
+name: "Ship in a Bottle"
+tier: mythic
+palette: ["Sloshing Blue", "Old Oak", "Sails White"]
+touchstones: ["voyage", "ship", "hearty", "crew", "song"]
+sensories: ["sloshing water, salty sea spray, friendly chorus", "Feeling of responsibility for crew"]
+activation: "Activated by uncork the bottle and turn it upside-down."
+source: "p. 201"
+body: |
+  Uncork the bottle to grow the ship to full size, complete with jolly crew that follow your lead as their captain.
+---
+id: spiritbinding-box
+type: arcana
+name: "Spiritbinding Box"
+tier: mythic
+palette: ["Wrought Iron", "Walnut", "Spirit Blue"]
+pool: 3
+touchstones: ["ghost", "leash", "haunt"]
+sensories: ["leaking smoke, chill in the air, faint echoes", "urge to open the box and join spirit"]
+activation: "Activated by turning the dial on top."
+source: "p. 201"
+body: |
+  This box has an angry bound spirit inside. It can be released and will follow your commands as best as it can. (3d power pool)
+---
+# "even places them" is as printed.
+id: staff-of-mischief
+type: arcana
+name: "Staff of Mischief"
+tier: mythic
+palette: ["Jester Purple", "Gold Bells", "Funhouse Red"]
+pool: 6
+touchstones: ["false", "image", "trigger", "speech"]
+sensories:
+  - "melodic tinkle of bells, echoing giggles"
+  - "colorful ribbon bursts forth, explode into confetti"
+activation: "Activated by twirling the staff like a baton."
+source: "p. 201"
+body: |
+  This staff (6d power pool) can produce any manner of illusions, even places them as traps or triggered messages for others later.
+---
+# "the owners command" is as printed.
+id: angelblade
+type: arcana
+name: "Angelblade"
+tier: mythic
+palette: ["Light Steel", "Sky Blue", "Golden Filigree"]
+pool: 4
+touchstones: ["gust", "leap", "wing", "speed", "cut"]
+sensories: ["rush of wind, perfect reflection", "upward draft, agile movement, sword bobs in air"]
+activation: "Activated by tossing it high into the air."
+source: "p. 201"
+body: |
+  This blade can fly through the air and attack on its own. It follows the owners command with a 4d power pool, refreshed when it drops to 0d.
+---
+# Printed under this block: "Created by Matthew Andre".
+id: mirror-gaol
+type: arcana
+name: "Mirror Gaol"
+tier: mythic
+palette: ["Deep Trench", "Bruised Plum", "Sickly Green"]
+touchstones: ["identity", "reflect", "prison", "sleep"]
+sensories: ["rippling glass, shifting geometry", "dizzying vertigo, a sense of being pulled in"]
+activation: "Activated by pulling off its velvet cover."
+source: "p. 201"
+body: |
+  Reflected creatures are jailed inside. The surface cracks after a 3d timer pool, and the creatures are released. The cracks heal after a day.
+---
+# Trivial (expendables only, p. 40). Its touchstones are as printed: "unknown function" stands for its function, which "depends on the wild magic".
+id: jar-of-mischief
+type: arcana
+name: "Jar of Mischief"
+tier: trivial
+expendable: true
+palette: ["Wildflower Pink", "Sly Purple", "Joyous Teal"]
+touchstones: ["chaos", "random", "unknown function"]
+sensories:
+  - "pink vapors, sparks fly, strong berry scent"
+  - "butterfly flutters inside, loud pop as lid comes off"
+activation: "Activated by wrenching the heavy seal off."
+source: "p. 203"
+body: |
+  Opening this jar causes immediate chaos, as a wild magic surge (3d story roll). The function depends on the wild magic.
+---
+# Trivial (expendables only, p. 40).
+id: twilight-candle
+type: arcana
+name: "Twilight Candle"
+tier: trivial
+expendable: true
+palette: ["Gloomy Indigo", "Dusk Purple", "Black Wick"]
+touchstones: ["darkness", "quiet", "summon"]
+sensories: ["deadened air, feeling of pressure on skull", "shadows expand outward"]
+activation: "Activated by lighting the wick."
+source: "p. 203"
+body: |
+  This pitch black candle deadens light and sound in the area that would normally be in its light.
+---
+id: healing-potion
+type: arcana
+name: "Healing Potion"
+tier: minor
+expendable: true
+palette: ["Sloshing Red", "Gold Flecks", "Clear Bottle"]
+touchstones: ["wound", "refresh", "restore"]
+sensories: ["viscous liquid", "burst of energy, everything comes into focus"]
+activation: "Activated by swallowing the last drop."
+source: "p. 203"
+body: |
+  When you drink this potion, clear physical harm as your wounds are healed, and you get a second wind.
+---
+id: portalscope
+type: arcana
+name: "Portalscope"
+tier: minor
+expendable: true
+palette: ["Brass Tube", "Warped Blue", "Void Black"]
+touchstones: ["vision", "space", "traverse"]
+sensories: ["smudged brass, fuzzy view", "lens shatters, scope prone to sticking"]
+activation: "Activated by focusing on a distant location."
+source: "p. 203"
+body: |
+  You can peer into the distance and instantly teleport to the location you see, bringing along those you’re touching.
+---
+id: aetheric-elixir
+type: arcana
+name: "Aetheric Elixir"
+tier: major
+expendable: true
+palette: ["Phantom Mist", "Ectoplasm", "Shadowy Gray"]
+touchstones: ["ghost", "freedom", "transform"]
+sensories: ["freezing cold, swirling ectoplasm", "vial drops as it passes through your hand"]
+activation: "Activated by drinking it, and exhaling a held breath."
+source: "p. 203"
+body: |
+  Once consumed, you become intangible and can fly for a few hours. Push yourself to interact with the physical world.
+---
+id: simulacrum-seed
+type: arcana
+name: "Simulacrum Seed"
+tier: major
+expendable: true
+palette: ["Sinuous Muscle", "Fibrous Flesh", "Soul Lavender"]
+touchstones: ["life", "replicate", "summon"]
+sensories:
+  - "soft flesh-like texture, unnervingly heavy, warm"
+  - "splits like egg, missing memories of last year"
+activation: "Activated by burying the seed."
+source: "p. 203"
+body: |
+  Grow a replica of someone over the course of a year and a day. They have the same memory and ability as they did when you started the process.
+---
+# Five touchstones, as printed, though it is a major arcana.
+id: rune-of-destruction
+type: arcana
+name: "Rune of Destruction"
+tier: major
+expendable: true
+palette: ["Pulsing Red", "Ashen Stone", "Brimstone Yellow"]
+touchstones: ["ruin", "disaster", "explosion", "fire", "consume"]
+sensories: ["low rumbling thunder, cold stone", "violent earthquake, stone shatters"]
+activation: "Activated by snapping it cleanly in half."
+source: "p. 203"
+body: |
+  Given time, place and activate this rune to bring ruin to the area when a set trigger is met, or an 8d timer completes.
+---
+id: bottled-wish
+type: arcana
+name: "Bottled Wish"
+tier: mythic
+expendable: true
+palette: ["Pure Gold", "Celestial Blue", "Eternal White"]
+touchstones: ["single", "wish", "granted"]
+sensories:
+  - "hypnotic cosmic swirl, unintelligible whispers"
+  - "glow beneath skin, sense of being overwhelmed"
+activation: "Activated by closing your eyes and making your wish."
+source: "p. 203"
+body: |
+  The drinker of this world-altering elixir is granted a single wish. Trying to gain more wishes, directly or indirectly, invites the magic to twist your intent...

@@ -1,0 +1,113 @@
+# Character creation applies every background result: the race a background names, a race's
+# trait (a Dremora's suppressed), extra Septims, +1 max HP, a masterwork piece in place of the
+# starting one, a Spell Tome of three, 20 Septims of Marketplace gear, the companions, mount
+# and hireling some backgrounds bring, the Housecarl's chosen result, faction ties, an unusual
+# background's nature, and a Standing Stone with the option; and the two ways to make hirelings.
+test: random-characters
+help: Random characters, committed as they come.
+script:
+  - world new holds --system {pack} --seed chargen
+  - campaign new first --seed chargen
+  - run: >-
+      char new --mode random --prefill '{"youngest": "yes"}'
+    expect: ["backgrounds-mortal", "races", "3d6", "physique", "bonds", "+ thread Bond: ", "+ thread Omen: "]
+  - run: char commit c1
+    expect: "committed"
+  - run: >-
+      char new --mode random --prefill '{"youngest": "no"}'
+    expect: ["backgrounds-mortal", "+ thread Bond: "]
+  - run: char commit c2
+    expect: "committed"
+  - run: >-
+      char new --mode random --prefill '{"youngest": "no"}'
+    expect: "backgrounds-mortal"
+  - run: char commit c3
+    expect: "committed"
+  - run: party show
+    expect: "pc:"
+---
+test: background-results
+script:
+  - world new holds --system {pack} --seed backgrounds
+  - campaign new first --seed backgrounds
+  - run: >-
+      char new --mode random --prefill '{"background": "Merchant", "name": "Osvald", "youngest": "no", "merchant_1": "An outfitter for caravans and delvers: picks, rope, lantern oil, the lot. Take 20 Septims'"'"' worth of gear from the Marketplace, and wherever you go you can lay hands on ordinary supplies a day faster than most.", "merchant_2": "Caravan Guard: A surly Nord who walks beside the mule: a hireling with a spear (d8) and leather armor (1 Armor). His wages are paid through the end of the week; after that it is 10 Septims a day, and he fights for you exactly as long as the pay keeps coming."}'
+    expect: ["Merchant (given)", "gear-over-budget", "Gear costing more than the 20-24 Septims left", "marketplace-gear:", "+ companion Pack Mule [companion-1]", "+ hireling Caravan Guard [hireling-1]", "owner: character", "role: Sellsword (bodyguard), wage: 10"]
+  - run: char commit c1
+    expect: ["pc:osvald", "companion:pack-mule", "hireling:caravan-guard"]
+  - run: show caravan-guard
+    expect: ["Sellsword (bodyguard)", "Spear", "Leather armor"]
+  - run: >-
+      char new --mode random --prefill '{"background": "Companion", "name": "Brandr", "youngest": "no", "companion_1": "Eorlund Gray-Mane took your measure at the Skyforge and judged you true. Your sword was tempered on the Skyforge itself: it is masterwork (d10)."}'
+    expect: ["rep_companions: 1", "Steel sword"]
+  - run: char commit c2
+    expect: "pc:brandr"
+  - run: inv show brandr
+    expect: ["Steel sword", "d10", "masterwork"]
+  - run: >-
+      char new --mode random --prefill '{"background": "Housecarl", "name": "Sigrid", "youngest": "no", "housecarl_1": "No one — yet. Your oath is unspoken, your shield unbloodied, and you are hungry to prove it. Your maximum HP is 1 higher, and you choose your result on the table below rather than rolling it.", "housecarl_2": "Blade of Office: A heavy greatsword (d10, bulky, two-handed) lent from your lord'"'"'s own armory, the blade that once stood behind the high seat. Drawn in a Jarl'"'"'s hall, it silences the room. Lose it, and you lose your lord'"'"'s good word."}'
+    expect: ["housecarl_2: Blade of Office", "The background raises maximum HP by 1", "Blade of Office"]
+  - run: char commit c3
+    expect: "pc:sigrid"
+  - run: >-
+      char new --mode random --prefill '{"background": "Bosmer Hunter", "name": "Ranglas", "youngest": "no", "bosmer_hunter_1": "To hunt with a hawk. A Greenspeaker taught you to bind a willing beast to your hunt. Treat your hunting hawk as your companion (see Companions): talons (d6), no Armor, and one trick — it scouts ahead and returns with what it saw."}'
+    expect: ["race: Bosmer", "Command Animal", "+ companion Hunting Hawk [companion-1]", "loyalty: 3", "trick: It scouts ahead"]
+  - run: char commit c4
+    expect: ["pc:ranglas", "companion:hunting-hawk"]
+  - run: >-
+      char new --mode random --prefill '{"background": "College Apprentice", "name": "Merilwen", "youngest": "no", "college_apprentice_1": "Faralda, of Destruction. Take a Spell Tome: Flames, Frostbite, or Sparks — your choice — and her first and only rule: never cast into the wind.", "tome": "Sparks"}'
+    expect: ["tome: Sparks (given)", "gear: Spell Tome: Sparks", "rep_college: 1"]
+  - run: char commit c5
+    expect: "pc:merilwen"
+  - run: >-
+      char new --mode random --prefill '{"background": "Farmhand", "name": "Hod", "youngest": "no", "farmhand_1": "A dream you could not shake: a Thane'"'"'s hall, a name worth singing, being more than the mud you were born to. You sold what little you had for a road-stake. Take 2d6 × 10 extra Septims.", "more_gold": 30}'
+    expect: ["more_gold: 30 (given)", "gold: "]
+  - run: char commit c6
+    expect: "pc:hod"
+  - run: >-
+      char new --mode random --prefill '{"background": "Sellsword", "name": "Uthgerd", "youngest": "no", "sellsword_1": "Both sides of this war, in turn. You wore blue, then red, then neither. Start at Stormcloaks −1 and Imperial Legion −1 — but every quartermaster in Skyrim knows your face, and you can buy or sell arms anywhere."}'
+    expect: ["rep_stormcloaks: -1", "rep_legion: -1"]
+  - run: char commit c7
+    expect: "pc:uthgerd"
+---
+test: unusual-and-stones
+help: With the options on, the full d50 and a Standing Stone; an unusual background's nature, the Dremora's trait suppressed.
+script:
+  - world new holds --system {pack} --seed unusual
+  - campaign new first --seed unusual
+  - campaign profile unusual-backgrounds=on standing-stones=on
+  - run: >-
+      char new --mode random --prefill '{"background": "Dremora", "name": "Xivkyn", "youngest": "no", "race": "Imperial"}'
+    expect: ["trait: Suppressed: the Daedric nature overrides the Imperial trait.", "nature: dremora", "rep_vigil: -1", "standing-stones", "standing_stone: ", "An unusual background"]
+  - run: char commit c1
+    expect: "pc:xivkyn"
+  - run: >-
+      char new --mode random --prefill '{"background": "Draugr Revenant", "name": "Hrodulf", "youngest": "no", "race": "Nord"}'
+    expect: ["nature: draugr-revenant", "natural_armor: 1", "enhanced_by: [fire, sun]", "impaired_by: [frost]"]
+  - run: char commit c2
+    expect: "pc:hrodulf"
+  - run: show hrodulf
+    expect: ["nature draugr-revenant", "Natural armor 1"]
+  - run: >-
+      char new --mode random --prefill '{"background": "Vampire Fledgling", "name": "Movarth", "youngest": "no", "race": "Breton", "stone": "The Apprentice"}'
+    expect: ["nature: vampire", "enhanced_by: [fire, magic]", "rep_volkihar: 1", "standing_stone: The Apprentice"]
+  - run: char commit c3
+    expect: "pc:movarth"
+  - run: >-
+      char new --mode random --prefill '{"youngest": "no"}'
+    expect: "backgrounds:"
+---
+test: hirelings
+script:
+  - world new holds --system {pack} --seed hirelings
+  - campaign new first --seed hirelings
+  - run: >-
+      char new {pack}.hireling --mode random --prefill '{"role": "Alchemist", "name": "Arcadia"}'
+    expect: ["hireling Arcadia: role: Alchemist, wage: 30", "physique", "vice", "30 Septims a day"]
+  - run: char commit c1
+    expect: "hireling:arcadia"
+  - run: >-
+      char new {pack}.hireling-background --mode random --prefill '{"background": "Telvanni Mage", "name": "Talvas"}'
+    expect: ["hireling Talvas: background: Telvanni Mage", "race: Dunmer", "Rations", "age: "]
+  - run: char commit c2
+    expect: "hireling:talvas"

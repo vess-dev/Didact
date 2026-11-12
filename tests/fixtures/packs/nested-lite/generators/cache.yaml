@@ -1,0 +1,9 @@
+# A rolled entry read by a template and by a value, then a choice: the draft waits, and
+# replays the roll (its data too) when the choice is made.
+generator: cache
+title: A cache
+steps:
+  - table: hoards
+    as: row
+  - choose: {from: [hidden, open], as: where}
+  - entity: {key: cache, type: note, name: "{@row} ({@where}), {@row.pool.dice}d", fields: {pool: "@row.pool.dice", kind: "@row.pool.kind"}}

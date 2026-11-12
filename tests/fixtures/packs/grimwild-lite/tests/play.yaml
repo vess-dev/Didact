@@ -1,0 +1,11 @@
+test: story
+table: story-roll
+times: 20
+---
+test: play
+script:
+  - world new t --system {pack}
+  - do action pool=3 thorns=1
+  - new pool "Bleeding out" --set dice=4
+  - do pool-roll pool=bleeding-out
+  - do pool-roll pool=bleeding-out

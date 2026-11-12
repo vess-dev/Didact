@@ -1,0 +1,708 @@
+# Wastelanders (campaigns/18-wastelanders): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: wastelanders
+type: quest
+name: Wastelanders
+tags: [wastelanders, frame, side-arc]
+goal: |-
+  It is 2103. The Vault 76 dwellers have beaten the Scorched back. The plague is not gone, but it is no longer the end of the world, and word has spread. The first living strangers in a quarter-century are walking into Appalachia, and they are all here for the same thing.
+
+  Two factions have planted flags. The Settlers of Foundation, a log-walled town on Spruce Knob, came south from the ruins of Pittsburgh under a builder named Paige. The Crater Raiders, led by Meg Groberg, are old Appalachian gangs come home. They have fortified the wreck of the pre-war space station Valiant-1 where it fell in the Toxic Valley. Between them are treasure hunters, ex-convict Free Radicals, the vicious Blood Eagles, and a bar called the Wayward that is trying hard to stay neutral.
+
+  Then the Overseer comes home. She has two goals. The first is to inoculate every newcomer against the Scorched Plague before it starts over. The second is to open Vault 79 — the rumor's vault, built in secret to hold America's gold reserve — and use that gold to found a currency, an economy, and a peace. She cannot do it without a crew, and she cannot have both crews. The party will have to choose.
+date: Tuesday, 23 October 2103
+body: |-
+  *A year after Reclamation Day, people come back to Appalachia: settlers out of Pittsburgh, raiders who fled the plague, treasure hunters chasing a radio rumor. The rumor is true. A secret vault in the Savage Divide holds the gold of Fort Knox, and everyone who wants it needs the one group of people who know these hills — the dwellers of Vault 76.*
+
+  ## GM notes
+
+  **Date.** Tuesday, 23 October 2103: 'a year after Reclamation Day', 'It is 2103' (the frame). Open a campaign on it with `didact campaign new <id> --date 'Tuesday, 23 October 2103'`, or move one there with `didact time set 'Tuesday, 23 October 2103'` before its first session.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup Wastelanders tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** Pennington reports "non-Vault types" in the courtyard below Vault 76. Two travelers, Lacey Drummond and Isela Mejia, have come up the hill on a rumor from a new tavern called the Wayward. The party walks down to see it and finds the owner, Duchess, held at gunpoint by a Free Radical named Batter, who wants to know where a treasure hunter called Crane went. Her regular, a ghoul named Mort, settles the question with a 10mm pistol. Duchess needs help keeping her bar alive, and she is willing to pay.
+
+  **Plot beats.**
+
+  1. The Wayward. Duchess hires the party to stop the gang harassing her bar. The trick is to impersonate Crane: build a "Crane Treasure Hunting" beacon, broadcast it from relay tower EM-B1-27, and see who comes calling. The trail leads to the Free Radicals' lumber yard on the Ohio River and their leader, Roper, the former head guard of a Maryland prison who freed its convicts and made himself their boss. He can be killed, bargained with, or talked into leaving the Wayward alone.
+  2. The Elusive Crane. Duchess shows the party what is in her locked upstairs room: Crane himself, caught by the plague in Gauley Mine and Scorched on her front porch, kept alive behind a door she could not bring herself to open. Kill him or let him be — either way, his map and keycard lead to RobCo Auto-Cache 001 deep in Gauley Mine. Crane never got in: the cache only opens for a registered Pip-Boy, and hardly anyone outside Vault 76 wears one. Down there they also find Duchess's friend Sol, wounded among the Scorched, with his Assaultron Polly headless beside him.
+  3. The Overseer Comes Home. A new station crackles on the Pip-Boy: the Overseer, alive, calling her dwellers to her house on the hill above Sutton. She keeps a Mister Handy named Davenport and a year of secrets. She wants to know whether the party finished what she started, and she wants the newcomers inoculated against the plague with the vaccine the party can synthesize at the AVR Medical Center.
+  4. Foundation and the Crater. Paige will listen, but he wants his co-founder and doctor, Aubrie Willem, to confirm it. Aubrie's camp near Vault 96 has been overrun by Scorched, and he is hiding in a cave, terrified the party are Scorched themselves. The raiders are harder. Rose vouches for the party to Meg, and Meg lets them into the Crater's Core on sufferance.
+  5. Overseer, Overseen. The files on Vault 79 are in the secret wing of Vault-Tec University, and Professor-bot, the Protectron who runs the empty campus, will only open it for a graduate. The party is fast-tracked to the final exam: an overseer test in a vault simulation, refereeing a feud between Mister Handy engineers and medics over a sealed reactor and a missing assistant. Pass it, and the truth is in the wing: all the gold from the Fort Knox depository was moved into Vault 79 before the war.
+  6. Choosing a Crew. Both factions want in, and neither will share a plan with the other. The choice is final. Foundation's job: Dr. Penelope "Penny" Hornwright, a ghoul who once ran automation for Hornwright Industrial, can wake the Motherlode, her family's giant mining robot, to drill straight into the vault. Young Jen has an answer for the laser grids. Captain Oliver Fields and his Army team — the men who moved the gold in the first place — can walk the party through the turret gauntlet called the Grim Reaper's Hallway. Then a Crater raider named Hijack kidnaps Penny and wrecks the Motherlode's brain. The Crater's job: Lucky Lou, a hundred-year-old ghoul engineer, is the demolitions expert, and he has gone missing. Gail, a super mutant, needs help first: Ra-Ra, the child she has raised as her own, chased a thief into the Grafton Steel works to get back her stuffed rabbit, Bunnabun, and has not come out. Gentleman Johnny "Two-Guns" Weston will join only if the party frees his old partner, Hal Gleeson, from the slave arena at the Watoga Civic Center. Then a raider named Lev steals Lou's detonator and leaves him tied up for a yao guai.
+  7. The Heist. Vault 79: turrets, robots, laser grids, the Hallway. Behind the barracks door, the party finds survivors: Secret Service agents AC, Slick, Regs, and Mercy, sealed inside since the war. Their reactor tech, Digger, turned ghoul in the reactor accident that trapped them; he is the only one of the reactor crew who did not go feral. The agents will trade the gold for their freedom. Venting the reactor restarts the vault, sets its security booting back up, and lifts their lockdown. Then Regs and Mercy want Digger shot, and AC asks the party whether a ghoul can be trusted.
+  8. Division of Wealth. The gold processing room holds 1,000 bars of bullion — a suspiciously small share of a national reserve. The main vaults are still sealed. The party must decide who gets what. See Climax.
+
+  **Climax.**
+
+  **Division of Wealth.** The vault is open, the bullion is stacked on the processing-room floor, and Paige or Meg is walking in to collect. Three resolutions:
+
+  - **Keep the Deal.** The allied faction gets its promised half. It becomes the power in Appalachia, and the other side does not forget. If the party rode with the Crater and Johnny Weston still lives, he makes a play for all of it; reminding him of the Watoga arena, or of what Hal would say, can talk him down.
+  - **Split It.** Half to Foundation, half to the Crater. Neither faction is satisfied, and both have something to lose. For the first time, the Settlers and Raiders share an interest in Appalachia's peace — and in the Overseer's currency working.
+  - **Keep It.** The party walks out with all of it. The Overseer's economy starts in their pockets. Their allies call them traitors, and every gold bar they spend is proof.
+
+  Whatever the party decides, the Secret Service agents settle into the vault's Gold Operations Center and open for business. Digger keeps the reactor running from its control room — if the party vouched for him. And the main vaults of Vault 79 are still sealed. Somewhere below the processing room is the rest of America's gold.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "Wastelanders"}' --auto` drafts the region, 13 places, 23 people, 5 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Bestiary** (Fallout 2e / Grimfall): Scorched → `scorched` / `scorchbeast`; Scorched Officer → `scorched-officer` / `scorchbeast`; Scorchbeast → `scorchbeast` / `scorchbeast`; Feral Ghoul → `feral-ghoul` / `feral-ghoul`; Glowing One → `glowing-one` / `feral-ghoul`; Super Mutant, Grunt → `super-mutant-grunt` / `super-mutant`; Deathclaw → `deathclaw` / `deathclaw`; Yao Guai → `yao-guai` / `yao-guai`; Bloodbug → `bloodbug` / `bloodbug`; Mole Miner → `mole-miner` / `mole-miner`; Thug → `thug` / `raider`; Crew Boss → `crew-boss` / `raider`; Psycho → `psycho-creature` / `raider-psycho`; Protectron → `protectron` / `protectron`; Mister Gutsy → `mister-gutsy` / `mister-gutsy`; Assaultron → `assaultron` / `assaultron`; Eyebot → `eyebot` / `eyebot`; Turret, Laser → `turret-laser` / `automated-turrets`.
+
+  **Rewards in each system's catalog:** Secret Service Armor (fallout-2e.secret-service-armor); T-65 Power Armor (fallout-2e.t-65-power-armor).
+source: campaigns/18-wastelanders#pitch
+---
+id: wastelanders-region
+type: loc
+name: Resettled Appalachia
+tags: [wastelanders, region]
+mechanics:
+  fallout-2e: {kind: region}
+  grimfall: {kind: region}
+body: |-
+  ## GM notes
+
+  The main campaign's map, now with people on it.
+source: campaigns/18-wastelanders#the-place--resettled-appalachia
+---
+id: wastelanders-the-wayward
+type: loc
+name: The Wayward
+tags: [wastelanders, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A dram shop Duchess built from scratch where Routes 86 and 88 cross, below Vault 76 and across from the Overseer's old C.A.M.P. The closest thing Appalachia has to a town square.
+source: campaigns/18-wastelanders#the-place--resettled-appalachia
+---
+id: wastelanders-wv-lumber-co
+type: loc
+name: WV Lumber Co
+tags: [wastelanders, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The Free Radicals' fortified lumber yard on the Ohio River, taken from super mutants.
+source: campaigns/18-wastelanders#the-place--resettled-appalachia
+---
+id: wastelanders-gauley-mine
+type: loc
+name: Gauley Mine
+tags: [wastelanders, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Scorched, a wounded roboticist, and RobCo Auto-Cache 001 behind a keypad gate.
+source: campaigns/18-wastelanders#the-place--resettled-appalachia
+---
+id: wastelanders-the-overseers-house
+type: loc
+name: The Overseer's House
+tags: [wastelanders, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A pre-war home on the hill east of Sutton, with a battered flag out front and Davenport in the basement.
+source: campaigns/18-wastelanders#the-place--resettled-appalachia
+---
+id: wastelanders-avr-medical-center
+type: loc
+name: AVR Medical Center
+tags: [wastelanders, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Charleston's hospital, where the vaccine is made.
+source: campaigns/18-wastelanders#the-place--resettled-appalachia
+---
+id: wastelanders-foundation
+type: loc
+name: Foundation
+tags: [wastelanders, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Log walls and a fusion generator on the site of the old Spruce Knob visitor attraction. A barracks, a boarding house, the Sunnys' shops, and Paige's Founder's Hall underground.
+source: campaigns/18-wastelanders#the-place--resettled-appalachia
+---
+id: wastelanders-the-crater
+type: loc
+name: The Crater
+tags: [wastelanders, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The crashed Valiant-1 space station in the Toxic Valley, fortified with scrap. Its heart is the Core, where Meg holds court.
+source: campaigns/18-wastelanders#the-place--resettled-appalachia
+---
+id: wastelanders-vault-tec-university
+type: loc
+name: Vault-Tec University
+tags: [wastelanders, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Morgantown. Professor-bot, an empty campus, a secret wing, and a vault simulator.
+source: campaigns/18-wastelanders#the-place--resettled-appalachia
+---
+id: wastelanders-hornwright-industrial
+type: loc
+name: Hornwright Industrial
+tags: [wastelanders, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Corporate headquarters in Charleston, with the Motherlode's egress pit beneath it, and the Hornwright Mega-Mansion where Penny's keycard codes are hidden.
+source: campaigns/18-wastelanders#the-place--resettled-appalachia
+---
+id: wastelanders-captain-fields-bunker
+type: loc
+name: Captain Fields' Bunker
+tags: [wastelanders, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Across the river from the Valley Galleria. Signal from the dock by waving the flag.
+source: campaigns/18-wastelanders#the-place--resettled-appalachia
+---
+id: wastelanders-grafton-steel
+type: loc
+name: Grafton Steel
+tags: [wastelanders, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A poisoned steelworks in the Toxic Valley, full of security Protectrons and one small girl in the ducts.
+source: campaigns/18-wastelanders#the-place--resettled-appalachia
+---
+id: wastelanders-the-watoga-civic-center
+type: loc
+name: The Watoga Civic Center
+tags: [wastelanders, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  An arena where slaves fight for raider crowds.
+source: campaigns/18-wastelanders#the-place--resettled-appalachia
+---
+id: wastelanders-blood-eagle
+type: monster
+name: Blood Eagle
+knowledge: secret
+tags: [wastelanders, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Wastelanders'
+    hp: 6
+    armor: 1
+    STR: 13
+    DEX: 13
+    WIL: 8
+    attacks:
+    - name: handmade rifle
+      damage: d8
+      qualities: [bulky]
+    - {name: serrated machete, damage: d6}
+    abilities:
+    - Groups of four or more are a detachment.
+    - 'No Quarter: Blood Eagles never surrender, and attacks against a downed or fleeing target are Enhanced.'
+body: |-
+  ## GM notes
+
+  A raider from the gang too cruel for Meg's coalition. Mixed scrap armor, trophies of the last people they robbed, and a pecking order enforced by murder.
+
+  Fallout 2e: 6 HP, 1 Armor, 13 STR, 13 DEX, 8 WIL, handmade rifle (d8, bulky), serrated machete (d6).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/18-wastelanders#blood-eagle
+---
+id: wastelanders-hijack
+type: monster
+name: Hijack
+knowledge: secret
+tags: [wastelanders, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Wastelanders'
+    hp: 8
+    armor: 1
+    STR: 14
+    DEX: 13
+    WIL: 10
+    attacks:
+    - name: sledgehammer
+      damage: d10
+      qualities: [bulky]
+    - {name: pipe revolver, damage: d6}
+    abilities:
+    - 'All or Nothing: Hijack can be talked down with a promised share of the gold and a clever argument,
+      but he will not hear a second offer. If the first fails, he fights.'
+body: |-
+  ## GM notes
+
+  **Hijack** — raiders who want the gold without the party.
+
+  A Crater raider who wants to be one of Meg's top men. Holds Penny Hornwright hostage in the Cave beneath Hornwright Industrial.
+
+  Fallout 2e: 8 HP, 1 Armor, 14 STR, 13 DEX, 10 WIL, sledgehammer (d10, bulky), pipe revolver (d6).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/18-wastelanders#hijack
+---
+id: wastelanders-the-motherlode
+type: monster
+name: The Motherlode
+knowledge: secret
+tags: [wastelanders, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Wastelanders'
+    hp: 16
+    armor: 3
+    STR: 18
+    DEX: 6
+    WIL: 8
+    rad_immune: true
+    attacks:
+    - {name: drill head, damage: d12}
+    - name: rock crusher
+      damage: d10
+      qualities: [blast]
+    abilities:
+    - 'Burrow: The Motherlode moves through rock as easily as air. It cannot be engaged in melee while
+      tunneling.'
+    - "Open Core Bay: Seating Penny's replacement core in the open brain housing (an action within reach
+      of the drill head, and a DEX save) shuts the Motherlode down at once."
+    critical: The target is buried in rubble and takes d6 STR each round until dug out.
+body: |-
+  ## GM notes
+
+  Hornwright Industrial's giant autonomous mining robot, built to chew through mountains. Its intelligence core is damaged. Until it is replaced, the Motherlode treats anything in its tunnel as ore.
+
+  Fallout 2e: 16 HP, 3 Armor, 18 STR, 6 DEX, 8 WIL, drill head (d12), rock crusher (d10, blast).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/18-wastelanders#the-motherlode
+---
+id: wastelanders-secret-service-agent
+type: monster
+name: Secret Service Agent
+knowledge: secret
+tags: [wastelanders, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Wastelanders'
+    hp: 7
+    armor: 2
+    STR: 12
+    DEX: 14
+    WIL: 14
+    attacks:
+    - {name: 10mm pistol, damage: d8}
+    - {name: police baton, damage: d6}
+    abilities:
+    - 'Protective Detail: When an agent is attacked, another agent within reach may take the hit instead.'
+body: |-
+  ## GM notes
+
+  One of the agents sealed in Vault 79's barracks since 2077. Disciplined, suspicious of everyone, and still under orders to treat intruders as hostile.
+
+  Fallout 2e: 7 HP, 2 Armor, 12 STR, 14 DEX, 14 WIL, 10mm pistol (d8), police baton (d6).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/18-wastelanders#secret-service-agent
+---
+id: wastelanders-the-grim-reapers-hallway
+type: monster
+name: The Grim Reaper's Hallway
+knowledge: secret
+tags: [wastelanders, threat]
+mechanics:
+  fallout-2e: {category: 'Campaign: Wastelanders', rad_immune: true}
+  grimfall:
+    tier: mook
+    upto: elite
+    role: marksman
+    category: Machines of the Old World
+    senses: [a servo whine tracking your steps, a red acquisition chirp, cordite and dust]
+    traits: ['never sleeps, never moves', dumb as its last order]
+    moves: [Interlocking Fire, Missile Salvo (the big ones)]
+    wants: the corridor denied — it has no other opinions
+    note: A gun nest is a 4d pool; laser mounts put +1t on anything you try in their open field of 
+      fire, and missile pods strike at high stakes. The terminal down the hall is worth more than 
+      any grenade. Zetan wall-pods play the same, but track motion and never face away. Vault 
+      networks (like 79's) run on an IFF grid — the right keycard shuts the whole grid off politely.
+body: |-
+  ## GM notes
+
+  Not a creature — a corridor of military laser turrets inside Vault 79. Each round in the Hallway, every PC makes a DEX save or takes d10 damage. Captain Fields' codes, Jen's grid trick, or a well-thrown pulse grenade shuts it down for a scene.
+
+  Grimfall: its card is `grimfall.automated-turrets` (Automated Turrets), in this record's grimfall block.
+source: campaigns/18-wastelanders#the-grim-reapers-hallway
+---
+id: wastelanders-the-overseer
+type: npc
+name: The Overseer
+knowledge: secret
+tags: [wastelanders, cast]
+fields: {role: 'home at last, older, hopeful'}
+body: |-
+  ## GM notes
+
+  **The Overseer** — home at last, older, hopeful. Her vision: a vaccinated Appalachia and a currency backed by real gold. She will ask the party to trust her after a year of silence.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-davenport
+type: npc
+name: Davenport
+knowledge: secret
+tags: [wastelanders, cast]
+fields: {role: "the Overseer's Mister Handy, her scout and confidant for the lost year"}
+body: |-
+  ## GM notes
+
+  **Davenport** — the Overseer's Mister Handy, her scout and confidant for the lost year.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-duchess
+type: npc
+name: Duchess
+knowledge: secret
+tags: [wastelanders, cast]
+fields: {role: owner of the Wayward}
+body: |-
+  ## GM notes
+
+  **Duchess** — owner of the Wayward. A former ER nurse and pre-war chem kingpin out of Welch. Hard, funny, and the only person in Appalachia who pays on time.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-mort
+type: npc
+name: Mort
+knowledge: secret
+tags: [wastelanders, cast]
+fields: {role: a ghoul regular at the Wayward who shoots first}
+body: |-
+  ## GM notes
+
+  **Mort** — a ghoul regular at the Wayward who shoots first.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-sol
+type: npc
+name: Sol
+knowledge: secret
+tags: [wastelanders, cast]
+fields: {role: 'with Polly: a roboticist and his Assaultron "bot-sis"'}
+body: |-
+  ## GM notes
+
+  **Sol and Polly** — a roboticist and his Assaultron "bot-sis."
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-polly
+type: npc
+name: Polly
+knowledge: secret
+tags: [wastelanders, cast]
+fields: {role: 'with Sol: a roboticist and his Assaultron "bot-sis"'}
+body: |-
+  ## GM notes
+
+  **Sol and Polly** — a roboticist and his Assaultron "bot-sis."
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-paige
+type: npc
+name: Paige
+knowledge: secret
+tags: [wastelanders, cast]
+fields: {role: Foundation's builder and reluctant leader}
+body: |-
+  ## GM notes
+
+  **Paige** — Foundation's builder and reluctant leader. Rode the last train out of Union Station in Washington after the bombs, then led his people out of Pittsburgh.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-aubrie-willem
+type: npc
+name: Aubrie Willem
+knowledge: secret
+tags: [wastelanders, cast]
+fields: {role: Foundation's co-founder and doctor}
+body: |-
+  ## GM notes
+
+  **Aubrie Willem** — Foundation's co-founder and doctor. Frightened, brilliant, the key to the Settlers' trust.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-penelope-penny-hornwright
+type: npc
+name: Penelope "Penny" Hornwright
+knowledge: secret
+tags: [wastelanders, cast]
+fields:
+  role: a ghoul scientist who spent her pre-war career replacing miners with robots, and knows it
+body: |-
+  ## GM notes
+
+  **Penelope "Penny" Hornwright** — a ghoul scientist who spent her pre-war career replacing miners with robots, and knows it.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-captain-oliver-fields
+type: npc
+name: Captain Oliver Fields
+knowledge: secret
+tags: [wastelanders, cast]
+fields: {role: a U.S. Army officer who never accepted that America died}
+body: |-
+  ## GM notes
+
+  **Captain Oliver Fields** — a U.S. Army officer who never accepted that America died. With Sergeant Fred Radcliff, Sergeant Thompson, and Private Lucky, a dog.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-meg-groberg
+type: npc
+name: Meg Groberg
+knowledge: secret
+tags: [wastelanders, cast]
+fields:
+  role: Crater's leader, a former Diehard who led her people out of Appalachia when the plague came,
+    and back in when they heard it was being resettled
+body: |-
+  ## GM notes
+
+  **Meg Groberg** — Crater's leader, a former Diehard who led her people out of Appalachia when the plague came, and back in when they heard it was being resettled.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-rose
+type: npc
+name: Rose
+knowledge: secret
+tags: [wastelanders, cast]
+fields:
+  role: still at the Top of the World, still Meg's old headache, still the party's way in
+body: |-
+  ## GM notes
+
+  **Rose** — still at the Top of the World, still Meg's old headache, still the party's way in.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-lucky-lou
+type: npc
+name: Lucky Lou
+knowledge: secret
+tags: [wastelanders, cast]
+fields: {role: a nearly hundred-year-old ghoul engineer from Pittsburgh}
+body: |-
+  ## GM notes
+
+  **Lucky Lou** — a nearly hundred-year-old ghoul engineer from Pittsburgh. The Crater swears a dud nuke once fell through his living room.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-gail
+type: npc
+name: Gail
+knowledge: secret
+tags: [wastelanders, cast]
+fields: {role: 'with Ra-Ra: a gentle super mutant and the abandoned child she took in'}
+body: |-
+  ## GM notes
+
+  **Gail and Ra-Ra** — a gentle super mutant and the abandoned child she took in. Meg accepted them both when no one else would.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-ra-ra
+type: npc
+name: Ra-Ra
+knowledge: secret
+tags: [wastelanders, cast]
+fields: {role: 'with Gail: a gentle super mutant and the abandoned child she took in'}
+body: |-
+  ## GM notes
+
+  **Gail and Ra-Ra** — a gentle super mutant and the abandoned child she took in. Meg accepted them both when no one else would.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-gentleman-johnny-two-guns-weston
+type: npc
+name: Gentleman Johnny "Two-Guns" Weston
+knowledge: secret
+tags: [wastelanders, cast]
+fields: {role: a failed pre-war actor turned raider}
+details: {wants: Wants a bigger cut.}
+body: |-
+  ## GM notes
+
+  **Gentleman Johnny "Two-Guns" Weston** — a failed pre-war actor turned raider. Charming. Wants a bigger cut.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-lev
+type: npc
+name: Lev
+knowledge: secret
+tags: [wastelanders, cast]
+fields: {role: 'with Hijack: raiders who want the gold without the party'}
+body: |-
+  ## GM notes
+
+  **Hijack and Lev** — raiders who want the gold without the party.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-roper
+type: npc
+name: Roper
+knowledge: secret
+tags: [wastelanders, cast]
+fields: {role: the Free Radicals' leader}
+body: |-
+  ## GM notes
+
+  **Roper** — the Free Radicals' leader.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-ac
+type: npc
+name: AC
+knowledge: secret
+tags: [wastelanders, cast]
+fields:
+  role: 'with Slick, Regs, Mercy and Digger: the Secret Service of Vault 79, a quarter-century late for
+    their shift change'
+body: |-
+  ## GM notes
+
+  **AC, Slick, Regs, Mercy, and Digger** — the Secret Service of Vault 79, a quarter-century late for their shift change.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-slick
+type: npc
+name: Slick
+knowledge: secret
+tags: [wastelanders, cast]
+fields:
+  role: 'with AC, Regs, Mercy and Digger: the Secret Service of Vault 79, a quarter-century late for their
+    shift change'
+body: |-
+  ## GM notes
+
+  **AC, Slick, Regs, Mercy, and Digger** — the Secret Service of Vault 79, a quarter-century late for their shift change.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-regs
+type: npc
+name: Regs
+knowledge: secret
+tags: [wastelanders, cast]
+fields:
+  role: 'with AC, Slick, Mercy and Digger: the Secret Service of Vault 79, a quarter-century late for
+    their shift change'
+body: |-
+  ## GM notes
+
+  **AC, Slick, Regs, Mercy, and Digger** — the Secret Service of Vault 79, a quarter-century late for their shift change.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-mercy
+type: npc
+name: Mercy
+knowledge: secret
+tags: [wastelanders, cast]
+fields:
+  role: 'with AC, Slick, Regs and Digger: the Secret Service of Vault 79, a quarter-century late for their
+    shift change'
+body: |-
+  ## GM notes
+
+  **AC, Slick, Regs, Mercy, and Digger** — the Secret Service of Vault 79, a quarter-century late for their shift change.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-digger
+type: npc
+name: Digger
+knowledge: secret
+tags: [wastelanders, cast]
+fields:
+  role: 'with AC, Slick, Regs and Mercy: the Secret Service of Vault 79, a quarter-century late for their
+    shift change'
+body: |-
+  ## GM notes
+
+  **AC, Slick, Regs, Mercy, and Digger** — the Secret Service of Vault 79, a quarter-century late for their shift change.
+source: campaigns/18-wastelanders#cast
+---
+id: wastelanders-gold-fever-clock
+type: track
+name: Gold Fever Clock
+knowledge: secret
+tags: [wastelanders, clock]
+kind: clock
+size: 8
+value: {value: 0, size: 8}
+note: (d8) How far the rumor spreads. Ticks when the party talks about Vault 79 in the Wayward, 
+  travels with a treasure hunter, lets a Free Radical or Blood Eagle escape a fight, or approaches 
+  the vault's cave openly. At 8, a Blood Eagle war band reaches the vault the same day the party 
+  does.
+source: campaigns/18-wastelanders#clocks
+---
+id: wastelanders-rivalry-clock
+type: track
+name: Rivalry Clock
+knowledge: secret
+tags: [wastelanders, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: "(d6) Foundation and the Crater edging toward war. Ticks when the party works openly for one faction
+  in the other's territory, when either side's caravan is hit, or when Hijack or Lev acts. At 6, the feud
+  goes hot: Crater raiders burn a Foundation outpost, the Settlers answer in kind, and the faction the
+  party has not chosen treats them as enemies."
+source: campaigns/18-wastelanders#clocks
+---
+id: wastelanders-lockdown-clock
+type: track
+name: Lockdown Clock
+knowledge: secret
+tags: [wastelanders, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4, hidden; ticks only inside Vault 79) Ticks when a laser grid is tripped, a power line 
+  fluctuates, or a turret alarm sounds. At 4, the vault seals every bulkhead and the Grim Reaper's 
+  Hallway goes live behind the party.
+source: campaigns/18-wastelanders#clocks

@@ -1,0 +1,16 @@
+id: ghost
+type: npc
+name: Ghost
+role: haunt
+body: It remembers the house.
+---
+id: wolf
+type: npc
+name: Wolf
+role: hunter
+body: A grey wolf.
+---
+id: rope
+type: item
+name: Rope
+body: Fifty feet of it.

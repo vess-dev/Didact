@@ -1,0 +1,5 @@
+dice:
+  ability: [blank, success, success, success+success, advantage, advantage, success+advantage, advantage+advantage]
+  difficulty: [blank, failure, failure+failure, threat, threat, threat, threat+threat, failure+threat]
+  boost: [blank, blank, success, success+advantage, advantage+advantage, advantage]
+  setback: [blank, blank, failure, failure, threat, threat]

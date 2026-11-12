@@ -1,0 +1,7 @@
+table: names
+dice: d2
+entries: {1: Rust, 2: Slag}
+---
+table: weather
+dice: d2
+entries: {1: dust, 2: glow}

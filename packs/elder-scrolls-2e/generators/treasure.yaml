@@ -1,0 +1,116 @@
+# Named treasure from the roll tables (roll-tables/relics, spell-tomes, skill-books,
+# unique-weapons, unique-armors), as each compendium entry has it. The relic and spellbook
+# generators replace cairn-2e's (same ids). The book's own tables go on by themselves: a kind,
+# a school or a series, chosen or rolled, rolls the item, and an item can be named outright.
+generator: relic
+title: A Relic
+help: >-
+  A Relic (roll-tables/relics): what kind (d6: an amulet, a ring, a staff or oddment, or
+  something greater), then that kind's table, as its compendium entry has it (effect, charges
+  and Recharge). daedric=true takes one of the four wondrous Daedric Artifacts instead: they
+  are never rolled into a cache, only seated deliberately. At most one Relic per session under
+  normal circumstances; if the party already holds the one rolled, take the next one down.
+  Prefill by name: relic (a kind, which then rolls its relic, or the relic itself).
+params:
+  daedric: {kind: flag, default: false, help: "One of the wondrous Daedric Artifacts, placed deliberately"}
+source: roll-tables/relics#what-kind-of-relic-d6
+steps:
+  - if: "@daedric"
+    then:
+      - choose_or_roll: {table: relics-daedric, as: relic}
+    else:
+      - choose_or_roll: {table: relics, as: relic}
+  - entity:
+      key: relic
+      from: "@relic.id"
+  - prompt: "Who made it, who carried it last, and who would want it back? A storied find should leave a mark on the world: an old owner, a debt, a curse that follows the prize."
+  - prompt: "Where is it found: in whose hands, in which place (`didact inv add <holder> '<its name>'` once it's written)?"
+---
+generator: spellbook
+title: A Spell Tome
+help: >-
+  A Spell Tome (roll-tables/spell-tomes): the school (d6; 6 is the Warden's pick, and better
+  still choose the school that fits the place), which rolls on by itself: Destruction's element
+  (d6), then the tome; a Scroll row rolls again for the Scroll's spell, and Conjuration's 19–20
+  rolls on Binding. As its compendium entry has it: the spell, its school and rank, and the
+  book's quirk. The Master tomes are on no table. Prefill by name: spell (a school, a tome or a
+  row, at any depth: what it names rolls on from there), picked (the Warden's pick). A Scroll of
+  one chosen spell, as the book places them (a seed's Scroll of Ice Storm, a background's Scroll
+  of Oakflesh): scroll=true with the spell prefilled.
+params:
+  scroll: {kind: flag, default: false, help: "A Scroll of the spell (prefill it by name) rather than its tome"}
+source: roll-tables/spell-tomes#which-school-d6
+steps:
+  - choose_or_roll: {table: spellbooks, as: spell}
+  - if: "default(@spell.pick, false)"
+    then:
+      - choose: {table: spellbooks, as: picked, exclude: "The Warden's pick, to suit the place", prompt: "The Warden's pick, to suit the place (a necromancer hoards Conjuration, a Dwemer vault old Destruction)"}
+      - message: "The Warden's pick: {@picked} (a draft that rolls itself picks for the Warden)."
+      - let: {tome_id: "{default(@picked.id, '')}", tome: "{default(@picked.name, '')}", as_scroll: "@scroll or default(@picked.scroll, false)"}
+    else:
+      - let: {tome_id: "{default(@spell.id, '')}", tome: "{default(@spell.name, '')}", as_scroll: "@scroll or default(@spell.scroll, false)"}
+  - if: "@as_scroll"
+    then:
+      - entity:
+          key: spellbook
+          from: "{@tome_id}"
+          name: "Scroll of {@tome}"
+          fields: {size: petty, uses: 1, note: "A Scroll: petty, no Fatigue, gone after one use."}
+    else:
+      - entity:
+          key: spellbook
+          from: "{@tome_id}"
+  - prompt: "Where does it wait to be found: a barrow shelf, a mage's study, a College alcove? Each tome fills one slot and is worth a small fortune in Septims to the right buyer: treasure, not shop-stock."
+---
+generator: skill-book
+title: A Skill Book
+help: >-
+  A Skill Book (roll-tables/skill-books): the series (d6: Steel, the Arcane, Shadow; or choose
+  the one that suits the owner), then the title (d20), as its compendium entry has it: its one
+  small, permanent perk. Titles marked rare are placed deliberately; if one comes up where it
+  doesn't belong, take the next title down. Reading it: `didact do read-book`. Prefill by
+  name: book (a series, which then rolls its title, or the title itself).
+source: roll-tables/skill-books#what-kind-of-book-d6
+steps:
+  - choose_or_roll: {table: skill-books, as: book}
+  - entity:
+      key: book
+      from: "@book.id"
+  - if: "default(@book.rare, false)"
+    then: ["A rare title: the reward for real risk (a locked room, a named NPC's possessions, the deep end of a dungeon)."]
+  - prompt: "Whose was it, and what does finding it here say about them (a copy of Mace Etiquette on a brawler's table)? Only the first reader of this copy gains its perk: `didact do read-book who=<pc> book='…'`."
+---
+generator: unique-weapon
+title: A unique weapon
+help: >-
+  A named weapon (roll-tables/unique-weapons), as its compendium entry has it. The book leaves
+  the table to the Warden: the Daedric Artifacts (d10, almost always earned through a quest),
+  the named weapons of Skyrim (d20), or of the Dawnguard and Dragonborn (d10). If the party
+  already holds the one rolled, take the next one down, or let it be a rumor. Prefill by
+  name: kind, weapon.
+source: roll-tables/unique-weapons#unique-weapons-roll-tables
+steps:
+  - choose: {from: [unique-weapons-skyrim, unique-weapons-solstheim, unique-weapons-daedric], as: kind, prompt: "Which table: the named weapons of Skyrim, of the Dawnguard and Dragonborn, or the Daedric Artifacts (a Prince taking an interest)?"}
+  - message: "The table: {@kind} (the Warden's pick; a draft that rolls itself picks for the Warden)."
+  - choose_or_roll: {table: "{@kind}", as: weapon}
+  - entity:
+      key: weapon
+      from: "@weapon.id"
+  - prompt: "A named blade leaves a mark on the world: who wants it back, what debt or curse follows it? Who carries it now (a Draugr Overlord, a dragon's hoard, the end of a deep delve)?"
+---
+generator: unique-armor
+title: A unique armor
+help: >-
+  A named armor, mask, shield or wearable (roll-tables/unique-armors), as its compendium entry
+  has it. The book leaves the table to the Warden: the Daedric Artifacts (d6), the Dragon Priest
+  masks of Skyrim (d8) or Solstheim (d4), named armor and shields (d12), or wearables (d6).
+  Prefill by name: kind, armor.
+source: roll-tables/unique-armors#unique-armors-roll-tables
+steps:
+  - choose: {from: [unique-armors-named, unique-armors-wearables, unique-armors-masks, unique-armors-masks-solstheim, unique-armors-daedric], as: kind, prompt: "Which table: named armor and shields, wearables, Dragon Priest masks (Skyrim or Solstheim), or the Daedric Artifacts?"}
+  - message: "The table: {@kind} (the Warden's pick; a draft that rolls itself picks for the Warden)."
+  - choose_or_roll: {table: "{@kind}", as: armor}
+  - entity:
+      key: armor
+      from: "@armor.id"
+  - prompt: "Who wore it last, and who is still looking for it? Place it by hand when you can: handed to a Draugr Overlord, sealed in a barrow, worn by a foe worth remembering."

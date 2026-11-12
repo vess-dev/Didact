@@ -1,0 +1,279 @@
+# Every generator the book's procedures make, all the way to records; the Canyon Junction
+# Powderkeg with its factions, standing and a community's Stockpile; and the options as session
+# zero asks them. Seeded, so each plays the same every time.
+test: every-generator
+help: "Each generator runs with the dice deciding what the prefill doesn't, then commits: people, threats, challenges, quests on the book's ladder, rituals, places, vaults, communities, arcana, chems, hauls, weapons, vehicles and perks."
+script:
+  - world new wastes --system {pack} --seed generators
+  - campaign new first --seed generators
+  - run: gen run grimfall.npc --auto
+    expect: ["npc ", "backgrounds: [", "tier: ", "role: "]
+  - run: gen commit g1
+    expect: "1 record (npc:"
+  - run: gen run grimfall.companion --auto
+    expect: ["companion ", "tricks: [", "flaws: ["]
+  - run: gen commit g2
+    expect: "companion:"
+  - run: >-
+      gen run grimfall.monster --auto --prefill '{"name": "Glow Hound"}'
+    expect: "monster Glow Hound: tier: "
+  - run: gen commit g3
+    expect: "monster:glow-hound"
+  - run: >-
+      gen run grimfall.faction --auto --prefill '{"name": "The Rust Kings", "resources": "a scrapyard", "goal_1": "Take the bridge", "goal_2": "-"}'
+    expect: ["faction The Rust Kings: resources: a scrapyard, standing: Neutral, pool_1: goal-1", "track Take the bridge: kind: pool, pool: campaign"]
+  - run: gen commit g4
+    expect: "track:take-the-bridge"
+  - run: >-
+      gen run grimfall.gang --auto --prefill '{"name": "The Rad Saints"}'
+    expect: ["faction The Rad Saints: colors: ", "cruelty: "]
+  - run: gen commit g5
+    expect: "faction:the-rad-saints"
+  - run: gen run grimfall.party --auto
+    expect: ["lore The crew: keys: [party", "constant: true", "Group-building questions"]
+  - run: gen commit g6
+    expect: "lore:the-crew"
+  - run: >-
+      gen run grimfall.challenge --auto --prefill '{"name": "Outrun the Storm", "dice": 6}'
+    expect: "track Outrun the Storm: kind: pool, pool: task, value: {…}, suspense: 2"
+  - run: gen commit g7
+    expect: "track:outrun-the-storm"
+  - run: >-
+      gen run grimfall.linked-challenge --auto --prefill '{"whole": "Liberty Prime", "parts": 2, "part": ["Leg Servos", "The Core"]}'
+    expect: ["track Liberty Prime: Leg Servos: kind: pool, pool: task", "track Liberty Prime: The Core"]
+  - run: gen commit g8
+    expect: "2 records"
+  - run: >-
+      gen run grimfall.battleground --auto --prefill '{"name": "The Irradiated Overpass"}'
+    expect: "loc The Irradiated Overpass: kind: battleground, threats: ["
+  - run: gen commit g9
+    expect: "loc:the-irradiated-overpass"
+  - run: >-
+      gen run grimfall.quest --auto --prefill '{"difficulty": "daunting", "name": "Take the Dam"}'
+    expect: ["phases: [4, 4, 6]", "track Take the Dam: peril: kind: pool, pool: pressure, phases: [4, 4]"]
+  - run: gen commit g10
+    expect: "track:take-the-dam-peril"
+  - run: >-
+      gen run grimfall.ritual --auto --prefill '{"intent": "Reboot the reactor", "source": "a schematic", "anchors": 2, "anchor": ["a fusion core", "somebody who was there"], "name": "Wake the Reactor"}'
+    expect: ["track Wake the Reactor: intent: Reboot the reactor", "anchor_list: [a fusion core, somebody who was there]", "kind: pool, pool: task"]
+  - run: gen commit g11
+    expect: "track:wake-the-reactor"
+  - run: gen run grimfall.region --auto
+    expect: ["loc The Wasteland: kind: region", "region: region-1"]
+  - run: gen commit g12
+    expect: "7 records"
+  - run: gen run grimfall.settlement buildings=3 --auto
+    expect: ["kind: settlement", "kind: building"]
+  - run: gen commit g13
+    expect: "4 records"
+  - run: >-
+      gen run grimfall.vault --auto --prefill '{"number": "113"}'
+    expect: ["loc Vault 113: kind: vault, testing: ", "loc Vault 113: The Door: kind: point, point: entrance", "loc Vault 113: What Vault-Tec Left: kind: point, point: reward"]
+  - run: gen commit g14
+    expect: "6 records"
+  - run: >-
+      gen run grimfall.community --auto --prefill '{"name": "Fort Diner", "haul": "major", "asset": "a wall", "tier": "minor"}'
+    expect: ["loc Fort Diner: kind: community", "next_asset: a wall, asset_tier: minor", "track Fort Diner's Stockpile: kind: pool, pool: resource"]
+  - run: gen commit g15
+    expect: "track:fort-diner-s-stockpile"
+  - run: >-
+      gen run grimfall.community-asset --auto --prefill '{"name": "The Glowing Bar", "job": "barkeep"}'
+    expect: ["loc The Glowing Bar: kind: asset", "role: barkeep"]
+  - run: gen commit g16
+    expect: "loc:the-glowing-bar"
+  - run: >-
+      gen run grimfall.arcana --auto --prefill '{"name": "Lure Beacon", "tier": "minor"}'
+    expect: ["arcana Lure Beacon: tier: minor, touchstones: [", "A minor item is a narrow edge"]
+  - run: gen commit g17
+    expect: "arcana:lure-beacon"
+  - run: >-
+      gen run grimfall.chem-recipe --auto --prefill '{"name": "Ragejet", "effect": "rage", "base": "-jet"}'
+    expect: "arcana Ragejet: tier: trivial, expendable: true, touchstones: [Ragejet]"
+  - run: gen commit g18
+    expect: "arcana:ragejet"
+  - run: >-
+      gen run grimfall.treasure --auto --prefill '{"name": "The Caravan Cargo", "tier": "major", "what": "an arcana"}'
+    expect: ["item The Caravan Cargo: kind: haul, tier: major", "arcana "]
+  - run: gen commit g19
+    expect: "2 records"
+  - run: >-
+      gen run grimfall.weapon --auto --prefill '{"name": "Old Reliable"}'
+    expect: "item Old Reliable: styles: ["
+  - run: gen commit g20
+    expect: "item:old-reliable"
+  - run: >-
+      gen run grimfall.vehicle --auto --prefill '{"name": "The Hauler"}'
+    expect: "item The Hauler: styles: ["
+  - run: gen commit g21
+    expect: "item:the-hauler"
+  - run: >-
+      gen run grimfall.perk --prefill '{"class": "The Inventor", "gives": "one good trick a session", "body": "Once per session, a rigged lock opens for anyone you name.", "repeatable": "no", "name": "Open House"}'
+    expect: "perk Open House: class: inventor, body: Once per session"
+  - run: gen commit g22
+    expect: "perk:open-house"
+  - run: gen run grimfall.site --auto
+    fails: true
+    expect: "didact gen run grimfall.vault"
+---
+test: the-powderkeg
+help: "The Canyon Junction Powderkeg: six factions with their pools listed for the faction turn; standing moving down to Vilified; a community's Stockpile trading a haul, paying toward an asset and repairing it; the story kit The Door Under Junction."
+script:
+  - world new wastes --system {pack} --seed keg
+  - campaign new first --seed keg
+  - run: gen run grimfall.powderkeg --auto
+    expect: ["faction Junction Town Council: resources: [the only clean well for miles, a militia of shopkeeps]", "pool_1: goal-1, pool_2: goal-2", "track Mark the Town for Caesar: kind: pool, pool: campaign"]
+  - run: gen commit g1
+    expect: "18 records"
+  - run: faction turn
+    expect: ["## Junction Town Council", "pool Hire Guns", "pool The Door Opens"]
+  - run: do standing who=ncr-garrison shift=-1 why='shot a trooper at the crossing'
+    expect: ["NCR Garrison's standing: Neutral → Shunned.", "Prices double and eyes follow you: +1t on every dealing."]
+  - run: do standing who=ncr-garrison shift=-1
+    expect: ["Shunned → Vilified", "+ track NCR Garrison: They Find You [track:ncr-garrison-they-find-you]", "faction:ncr-garrison: pool_3 = track:ncr-garrison-they-find-you"]
+  - run: faction turn
+    expect: ["## NCR Garrison", "pool NCR Garrison: They Find You"]
+  - run: do standing who=ncr-garrison shift=-1
+    expect: "Vilified → Vilified"
+    expect_not: "+ track"
+  - run: do standing who=junction-town-council shift=2
+    expect: "Neutral → Idolized"
+  - run: >-
+      gen run grimfall.community --auto --prefill '{"name": "Fort Diner", "haul": "major", "asset": "a clinic", "tier": "minor"}'
+    expect: "track Fort Diner's Stockpile"
+  - run: gen commit g2
+    expect: "loc:fort-diner"
+  - run: do stockpile community=fort-diner act=trade haul=minor
+    expect: "Fort Diner's Stockpile grows: 6d of 6d."
+  - run: do stockpile community=fort-diner pool=fort-diner-s-stockpile act=repair dice=1
+    expect: "costs 1d of stockpile to fix (5d left)"
+  - run: do stockpile community=fort-diner act=plan asset="Mama Dolce's kitchen" tier=minor
+    expect: ["loc:fort-diner: next_asset = Mama Dolce's kitchen", "Fort Diner's Stockpile now pays toward Mama Dolce's kitchen (minor: 4)."]
+  - run: do stockpile community=fort-diner act=roll leader
+    expect: ["pool Fort Diner's Stockpile", "Local Leader: the community pays one extra die toward its next asset."]
+  - run: gen run grimfall.door-under-junction --auto
+    expect: ["track The Well Runs Dry: kind: pool, pool: pressure", "npc Mayor Odalys Reyes", "track Crack Vault 113: kind: pool, pool: task", "who gets the water?"]
+  - run: gen commit g3
+    expect: "9 records"
+---
+test: session-zero
+help: "Session zero asks Grimfall's options, not the parent's it lacks; a flavor of the wasteland implies its dials, and what they imply (grim survival's deadlier lethality brings 2d stimpaks, pulp heroics' softer lethality softer ones); a new survivor's sheet points at the pools the options bring; deadlier lethality's Bleeding Out comes with desperate; every survivor's Supplies roll at once; a dose comes out of a Chem Stash; the grimmer dial's shared 3d pool is made once and every sheet pointed at it."
+script:
+  - world new wastes --system {pack} --seed options
+  - campaign new first --seed options
+  - run: session zero
+    expect: ["- lethality: How lethal should the wasteland be: softer, standard, or deadlier?", "- caps: Does every survivor carry a personal 4d Caps pool? (on / off)", "- wild-wasteland: Does the wasteland get weird (Wild Wasteland)? (on / off)", "- stimpaks: Stimpaks: standard (a 3d pool each), grimmer (pick one: 2d; only yourself; or a single 3d pool the whole party shares), or softer?"]
+    expect_not: ["- magic:", "- wealth:", "- vigor-pool:", "- expanded-downtime:", "- lasting-marks:", "- random-vex:", "- random-bonds:"]
+  - run: campaign profile flavor=pulp-heroics
+    expect: "flavor: pulp-heroics"
+  - run: brief
+    expect: ["Option lethality=softer: Softer:", "Option stimpaks=softer: Softer: 4d", "Option scale=larger: Larger:"]
+  - run: campaign profile flavor=grim-survival quirks=on armor=on
+    expect: "flavor: grim-survival"
+  - run: brief
+    expect: ["Option lethality=deadlier: Deadlier:", "Option supplies=on: Each survivor has a 4d Supplies resource pool", "Option focused-growth=on: Slash XP boxes", "Option stimpaks=grimmer-2d: Grimmer: 2d Stimpaks pools."]
+  - run: >-
+      char new --mode random --prefill '{"name": "Rook", "class": "The Ace", "armor": "heavy"}'
+    expect: ["track Rook's Stimpaks: kind: pool, pool: resource", "track Rook's Supplies: kind: pool, pool: resource", "track Rook's Armor: kind: pool, pool: resource", "conditions: [Heavily Armored]", "quirk: "]
+  - run: char commit c1
+    expect: ["track:rook-s-supplies", "track:rook-s-armor"]
+  - run: show rook
+    expect: ["stimpaks track:rook-s-stimpaks", "caps track:rook-s-caps", "supplies track:rook-s-supplies", "armor_pool track:rook-s-armor"]
+  - run: show track:rook-s-stimpaks
+    expect: ["value.value: 2", "value.max: 2"]
+  - run: do harm who=rook kind=bloodied
+    expect: "Rook is bloodied"
+  - run: do harm who=rook kind=bloodied
+    expect: ["Rook is bloodied again: desperate", "+ track Rook: Bleeding Out [track:rook-bleeding-out]", "pc:rook: conditions += 4d Bleeding Out"]
+  - run: do dropped who=rook
+    expect: "1d6 → "
+  - run: do armor who=rook
+    expect: "Rook's armor lessens the physical consequence, as a messy defense would"
+  - run: do supplies
+    expect: ["pool Rook's Supplies", "Rook's Supplies: "]
+  - run: do treat who=rook condition='4d Bleeding Out'
+    expect: ["Treatment clears Rook's 4d Bleeding Out.", "`didact rm track:rook-bleeding-out` deletes the record", "pc:rook: unset bleeding_out"]
+  - run: campaign profile caps=off chem-stash=on
+    expect: "caps off"
+  - run: >-
+      char new --mode random --prefill '{"name": "Wren", "class": "The Charmer", "armor": "none"}'
+    expect: "track Wren's Chem Stash: kind: pool, pool: resource"
+  - char commit c2
+  - run: do chem who=wren chem=jet from=stash
+    expect: ["pool Wren's Chem Stash", "A dose out of Wren's Chem Stash", "Jet: +1d on anything that needs speed"]
+  - run: campaign profile flavor=weird-science
+    expect: "flavor: weird-science"
+  - run: brief
+    expect: ["Option dangerous-tech=on", "Option wild-wasteland=on"]
+  - run: campaign profile stimpaks=grimmer-shared
+    expect: "stimpaks: grimmer-shared"
+  - run: >-
+      char new --mode random --prefill '{"name": "Moss", "class": "The Everlast", "armor": "none"}'
+    expect: "Grimmer stimpaks: a single 3d pool the whole party shares, in place of each survivor's"
+    expect_not: "track Moss's Stimpaks"
+  - char commit c3
+  - run: do party-stimpaks
+    expect: ["+ track Party Stimpaks [track:party-stimpaks]", "Moss jabs from the party's Stimpaks now.", "Rook jabs from the party's Stimpaks now."]
+  - run: session start
+    expect: ["trigger grimfall.party-stimpaks-each-session", "track Party Stimpaks [track:party-stimpaks] is here already"]
+    expect_not: "jabs from the party's Stimpaks now"
+  - set moss 'harm=["rattled"]'
+  - run: do stimpak who=moss
+    expect: ["A stimpak clears Moss's rattled.", "pool Party Stimpaks"]
+---
+test: the-parent-hidden
+help: "A Grimfall world shows Grimfall, not Grimwild: the parent's monsters, paths, arcana and backgrounds are gone from the compendium, its tables (all but bonds) from the table list, its rules text from lookup; what Grimfall inherits still runs: exploration tokens, tick pools, a faction's turn and goal, the story oracle, rest resets' suspense and the bonds table."
+script:
+  - world new wastes --system {pack} --seed hidden
+  - campaign new first --seed hidden
+  - new pc Scout --set wits=2
+  - run: compendium find basilisk
+    expect: "nothing in the compendium matches"
+    expect_not: grimwild-ce.basilisk
+  - run: compendium find wizard
+    expect_not: grimwild-ce.wizard
+  - run: compendium find everflame glove
+    expect_not: grimwild-ce.everflame-glove
+  - run: compendium find charlatan
+    expect_not: grimwild-ce.charlatan
+  - run: compendium find deathclaw
+    expect: "grimfall.deathclaw · Deathclaw (monster)"
+  - run: table list
+    expect: ["grimwild-ce.bonds · Bonds (d6)", "grimfall.quest-difficulty · Quest difficulty"]
+    expect_not: ["grimwild-ce.paths", "grimwild-ce.heritage-folk", "grimwild-ce.quest-difficulty", "grimwild-ce.solo-consequences"]
+  - run: rules list --detail full
+    expect: ["grimwild-ce.faction-turn", "grimwild-ce.tokens", "grimwild-ce.tick"]
+    expect_not: ["grimwild-ce.carouse", "grimwild-ce.switch-talent", "grimwild-ce.vigor", "grimwild-ce.twist"]
+  - run: do carouse who=scout
+    fails: true
+  - run: gen run grimwild-ce.potion --auto
+    fails: true
+  - run: rules lookup spellcasting
+    expect: "no rules text about 'spellcasting'"
+  - run: define talent
+    fails: true
+    expect: "no glossary term 'talent'"
+  - run: define stimpak
+    expect: "Every survivor's 3d Stimpaks resource pool"
+  - run: table roll bonds
+    expect: "grimwild-ce.bonds (d6 → "
+  - run: do tokens who=scout take=3
+    expect: "Scout's exploration tokens: 3."
+  - run: campaign profile tick-pools=on rest-resets=on
+    expect: "tick-pools on · rest-resets on"
+  - track new 'The Reactor' --kind pool --size 3 --pool timer
+  - run: do tick pool=the-reactor
+    expect: "The Reactor ticks down 1d (2d left)."
+  - new faction 'The Rust Kings'
+  - track new 'Take the Bridge' --kind pool --size 4 --pool campaign
+  - set the-rust-kings pool_1=track:take-the-bridge
+  - run: faction turn
+    expect: ["## The Rust Kings", "pool Take the Bridge"]
+  - run: do faction-goal who=the-rust-kings pool=take-the-bridge
+    expect: ["The Rust Kings's goal comes to pass", "How does it play out, for The Rust Kings?"]
+  - run: ask 'Is the bridge guarded?' --odds good
+    expect: "3d6 → "
+  - session start
+  - run: do rest who=scout
+    expect: ["Rest resets (an option): Scout takes spark", "GM suspense: 2.", "the party's reset"]
+  - run: scene new 'The ford'
+    expect: "trigger grimwild-ce.reset-over: oracle:grimwild-ce-story: reset_taken = false"

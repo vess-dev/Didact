@@ -1,0 +1,24 @@
+# Skaal Hunter (backgrounds/skaal-hunter): the background's two d6 tables.
+table: skaal-hunter-1
+title: "What did the All-Maker grant you?"
+dice: d6
+source: backgrounds/skaal-hunter#what-did-the-all-maker-grant-you-roll-1d6
+entries:
+  1: "The Wind Stone's reading. The shaman read your birth at the Wind Stone and named you a tracker. You can follow a trail across snow, scree, or bare rock by signs others miss, and you always know which way leads home."
+  2: {text: "A wolf-brother. A great ice wolf chose to den near you and never left. Treat it as your companion (see Companions): bite (d6), no Armor, and one trick — it smells danger on the wind long before you see it.", data: {companion: "ice-wolf"}}
+  3: "A winter alone. A storm took your kin and left you alone on the ice until spring. You learned to live on what the ice gives: when you take the Supply action on snow, ice, or shore, you never come back empty-handed."
+  4: "The old smithing. You sat at Baldor Iron-Shaper's forge as a child. You know the secret the Skaal guard: how Stalhrim, the ice that never melts, is worked into blades and armor."
+  5: {text: "Frost-fletched arrows (3 uses), fletched with snow-owl feathers and blessed at the Water Stone. A creature one strikes is slowed.", data: {gear: [{name: "Frost-fletched arrows", uses: 3, note: "a creature one strikes is slowed"}]}}
+  6: "The sleepwalking. Last season you woke on your feet at the All-Maker's stone, hauling rock for a temple you had never seen, a stranger's voice in your head. You broke free when the others did not. You can always tell when someone's will is not their own."
+---
+table: skaal-hunter-2
+title: "What does the village know you for?"
+dice: d6
+source: backgrounds/skaal-hunter#what-does-the-village-know-you-for-roll-1d6
+entries:
+  1: "Beast-Speaker: You read the moods of wild things. A lone beast that has not been wronged will not attack you first unless it is starving or cornered, and you can calm a frightened animal with a word."
+  2: {text: "Stalhrim Spear: A hunting spear (d8) tipped with Stalhrim, frost-cold always. Worth a fortune off Solstheim — and the Skaal would grieve to see it sold.", data: {gear: [{name: "Stalhrim Spear", damage: "d8"}]}}
+  3: "The Long Watch: You learned the patience of the snow. While you keep still in cover, you need not save to stay hidden, however long the wait."
+  4: {text: "Bear-Brother: A bear's-tooth token (petty) blessed at the Beast Stone. Once per day, loose a great hunting cry: a foe who hears it must pass a WIL save or flee from you on its next turn.", data: {gear: [{name: "Bear's-tooth token", size: "petty"}]}}
+  5: {text: "Snow-Walker: Light boots of cured hide. You cross fresh snow and thin ice without sinking or slipping, and your trail is so faint the wind soon hides it.", data: {gear: [{name: "Snow-Walker boots", note: "light boots of cured hide"}]}}
+  6: "The Shaman's Ward: You know the rites that keep the Adversary at bay. Once per day, speak them at a Daedra or a servant of Hermaeus Mora — a Seeker, a Lurker: it must pass a WIL save or be unable to harm you until the end of its next turn."

@@ -1,0 +1,24 @@
+# Forsworn (backgrounds/forsworn): the background's two d6 tables.
+table: forsworn-1
+title: "What did the Old Gods give you?"
+dice: d6
+source: backgrounds/forsworn#what-did-the-old-gods-give-you-roll-1d6
+entries:
+  1: "Old Elk-Eye, the Hunt-Father, took notice of you on your first hunt. Once per day, name a creature you have wounded as your prey: until the next sunset, you always know which way it went."
+  2: "You were raised among the briar and the crags. In the hills of the Reach, you need not save to hide, stalk, or lay an ambush."
+  3: {text: "The shamans taught you their poisons. Take a vial of nightshade poison (3 uses): coat a blade, and the next creature it wounds must pass a STR save or take 1d6 STR.", data: {gear: [{name: "Nightshade poison", uses: 3}]}}
+  4: {text: "Silver-Blood sellswords burned your redoubt, and you carry the hate. Take the Silver-Blood signet (petty) you cut from their captain's hand. Pressed into a seal, it opens doors in Markarth; worn openly, it gets you killed.", data: {gear: [{name: "Silver-Blood signet", size: "petty"}]}}
+  5: "You lived two lives: a quiet laborer in Markarth by day, an agent of the King in Rags by night. You know the Warrens and the Smelter, and in Markarth you can always find a bed, a hiding place, or a way to get a message into Cidhna Mine."
+  6: "You bear the half-mark of the Briarheart rite, refused at the very last. Once per day, re-roll any one failed save — but each time you do, a black feather pushes through your skin, and every hagraven in the Reach feels it."
+---
+table: forsworn-2
+title: "What marks you as a child of the Reach?"
+dice: d6
+source: backgrounds/forsworn#what-marks-you-as-a-child-of-the-reach-roll-1d6
+entries:
+  1: {text: "Briar Heart: A briar heart cut from a fallen Briarheart (petty, 1 use). Chewed raw, it restores 1d6 STR — then the eater's limbs lock for a round, no move or action, as the briars take hold.", data: {gear: [{name: "Briar Heart", size: "petty", uses: 1}]}}
+  2: {text: "Crag-Stalker: A Forsworn bow (d6, bulky) strung with sinew, and a quiver of fire-arrows wrapped in pitch-soaked moss (3 uses). A creature struck by one is set Ablaze. The redoubts made them for burning Nord farms.", data: {gear: [{name: "Forsworn bow", damage: "d6", size: "bulky"}, {name: "Fire-arrows", uses: 3, note: "a creature struck by one is set Ablaze"}]}}
+  3: "The Matron's Debt: You once saved a hagraven's life, and she owes you a rite. Seek her out and she will work one: raise a slain friend as a Briarheart for a single season, lift a curse, or lay one."
+  4: {text: "Twin Briars: A jagged Forsworn axe (d8) to pair with your sword, its antler haft carved with the names of your redoubt's dead. Fight with both as the Forsworn do (d8+d8, keep the higher).", data: {gear: [{name: "Forsworn axe", damage: "d8", note: "with your sword, d8+d8: keep the higher"}]}}
+  5: {text: "Red Eagle's Road: A battered copy of The Legend of Red Eagle (petty), its margins scratched with redoubt-marks. You know the hidden paths between Red Eagle, Druadach, Lost Valley, and Deepwood, and never lose your way in the Reach.", data: {gear: [{name: "The Legend of Red Eagle", size: "petty", note: "its margins scratched with redoubt-marks"}]}}
+  6: {text: "Shaman's Staff: A crooked Forsworn staff of bone and antler (d6, 2 charges). Spend a charge to hurl a bolt of fire (d8) at a foe you can see. Recharge: a filled soul gem, or a night in the smoke of a hagraven's fire.", data: {gear: [{name: "Shaman's Staff", damage: "d6", charges: 2, recharge: "a filled soul gem, or a night in the smoke of a hagraven's fire", note: "spend a charge to hurl a bolt of fire (d8) at a foe you can see"}]}}

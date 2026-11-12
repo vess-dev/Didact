@@ -1,0 +1,1034 @@
+# The Holds (wardens-guide/the-holds): written by es_compendium.py, don't edit by hand. Each Hold
+# a region (the gazetteer's text in its GM notes), its capital and key locations as places, its Jarl and
+# the rival the war may seat as people. A frame's place that is one of these is this record.
+id: hold-whiterun
+type: loc
+name: Whiterun Hold
+tags: [hold, hold-whiterun]
+mechanics:
+  elder-scrolls-2e: {kind: region}
+body: |-
+  ## GM notes
+
+  The breadbasket at Skyrim's heart: a windswept tundra plain ringed by mountains, its farms feeding much of the province. **Whiterun**, the trade-city they call the Jewel of the North, rises in stepped districts to the great hall of **Dragonsreach**, and it is here — in the skies over the Hold — that a dragon is first fought and felled, days after Helgen burns.
+
+  - **Jarl:** **Balgruuf the Greater**, who labors to keep his Hold neutral while both armies court him and the war closes in. He is a Greybeard-admiring descendant of old Nord kings and a longtime rival of Ulfric. Should the Stormcloaks take the city, the aged ex-Companion **Vignar Gray-Mane** is installed in his place.
+  - **The barrow:** *Bleak Falls Barrow* looms above Riverwood — a classic Nordic tomb of draugr, traps, and a sealed inner chamber, the sort of first delve that makes or buries an adventuring band. (It sits on the Hold's southern marches, shared with Falkreath country.)
+  - **The notable site:** *Jorrvaskr*, the overturned-longship mead hall of the Companions in the Wind District, with the **Skyforge** above it and the secret **Underforge** below; nearby stand the **Temple of Kynareth** and the great withered tree, the **Gildergreen**.
+  - **Other corners:** *Riverwood* (a sleepy lumber village under Bleak Falls), *Rorikstead* (a too-prosperous farm hamlet with old secrets), *Fort Greymoor* and the *Valtheim Towers* (held by whoever the war favors, or by bandits between times). High above the Hold's southeastern corner rise the *Throat of the World* and **High Hrothgar**, monastery of the Greybeards.
+  - **Troubles:** a dragon attacks a watchtower and the Jarl needs proof of what is loose in his skies. A bandit lord has seized Valtheim Towers and taxes the river road. The Gray-Manes and the Battle-Borns, two great Whiterun families split by the war, edge toward bloodshed in the streets.
+  - **Faces:** *Kodlak Whitemane*, the wise and weary Harbinger of the Companions, who carries a curse he longs to be free of. *Aela the Huntress*, fierce huntress of the Companions' inner Circle, who runs with the wolf and hunts the Silver Hand.
+source: wardens-guide/the-holds#whiterun-hold--capital-whiterun
+---
+id: hold-whiterun-whiterun
+type: loc
+name: Whiterun
+tags: [hold, hold-whiterun, capital]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: settlement, heart: true}
+body: |-
+  ## GM notes
+
+  **The capital of Whiterun Hold.** **Whiterun**, the trade-city they call the Jewel of the North, rises in stepped districts to the great hall of **Dragonsreach**, and it is here — in the skies over the Hold — that a dragon is first fought and felled, days after Helgen burns.
+source: wardens-guide/the-holds#whiterun-hold--capital-whiterun
+---
+id: hold-whiterun-bleak-falls-barrow
+type: loc
+name: Bleak Falls Barrow
+tags: [hold, hold-whiterun, barrow, place, the-main-quest]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Barrow of Whiterun Hold.** *Bleak Falls Barrow* looms above Riverwood — a classic Nordic tomb of draugr, traps, and a sealed inner chamber, the sort of first delve that makes or buries an adventuring band. (It sits on the Hold's southern marches, shared with Falkreath country.)
+
+  **In the Main Quest frame.** A Nordic tomb above Riverwood: bandits up top, the pillar-puzzle, the webbed spider hall, the Draugr Overlord and the **Dragonstone** in the deep (Beat 2).
+source: wardens-guide/the-holds#whiterun-hold--capital-whiterun
+---
+id: hold-whiterun-jorrvaskr
+type: loc
+name: Jorrvaskr
+tags: [hold, hold-whiterun, notable-site, place, the-companions]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  **Notable site of Whiterun Hold.** *Jorrvaskr*, the overturned-longship mead hall of the Companions in the Wind District, with the **Skyforge** above it and the secret **Underforge** below.
+
+  **In the Companions frame.** (*Whiterun, Wind District*) The mead hall — an overturned longship hull, nearly five thousand years old, loud with feasting and brawling. The Companions' home and the party's. Living quarters below; the training yard out back. **Kodlak's** quarters are here; so is the moment of his death.
+source: wardens-guide/the-holds#whiterun-hold--capital-whiterun
+---
+id: hold-whiterun-balgruuf-the-greater
+type: npc
+name: Balgruuf the Greater
+tags: [hold, hold-whiterun, jarl]
+fields: {role: Jarl of Whiterun Hold}
+body: |-
+  ## GM notes
+
+  **Jarl:** **Balgruuf the Greater**, who labors to keep his Hold neutral while both armies court him and the war closes in. He is a Greybeard-admiring descendant of old Nord kings and a longtime rival of Ulfric. Should the Stormcloaks take the city, the aged ex-Companion **Vignar Gray-Mane** is installed in his place.
+source: wardens-guide/the-holds#whiterun-hold--capital-whiterun
+---
+id: hold-whiterun-vignar-gray-mane
+type: npc
+name: Vignar Gray-Mane
+tags: [hold, hold-whiterun, rival]
+fields: {role: installed as Jarl of Whiterun Hold if the Stormcloaks take it}
+body: |-
+  ## GM notes
+
+  **Jarl:** **Balgruuf the Greater**, who labors to keep his Hold neutral while both armies court him and the war closes in. He is a Greybeard-admiring descendant of old Nord kings and a longtime rival of Ulfric. Should the Stormcloaks take the city, the aged ex-Companion **Vignar Gray-Mane** is installed in his place.
+source: wardens-guide/the-holds#whiterun-hold--capital-whiterun
+---
+id: hold-haafingar
+type: loc
+name: Haafingar
+tags: [hold, hold-haafingar]
+mechanics:
+  elder-scrolls-2e: {kind: region}
+body: |-
+  ## GM notes
+
+  A small, sheer coastal Hold of sea-cliffs and salt wind in the far northwest, and the seat of Imperial power in Skyrim. **Solitude** straddles a colossal natural arch of stone above the Karth delta — the largest city in the province and the home of the High King's court.
+
+  - **Jarl:** **Elisif the Fair**, young widow of the slain High King Torygg and figurehead of the Imperial cause. As the seat of the Legion, Haafingar does not change hands unless the rebellion wins the entire war.
+  - **The barrow:** the Hold's Nordic dead lie in the highlands and along the coast, *Volskygge* in the far western mountains the greatest of their tombs; the great holy site here is *Mount Kilkreath*, where the shrine and statue of the Daedric Prince Meridia crown a Nordic ruin — light against the necromancer Malkoran, who has fouled her temple with the war's dead.
+  - **The notable site:** the *Thalmor Embassy*, a fortified manor in the mountains above the city where First Emissary Elenwen hosts her glittering, poisonous parties; and *Castle Dour*, the grim fortress that is the Imperial Legion's headquarters under General Tullius.
+  - **Other corners:** the *Blue Palace* (Elisif's court), the *Bards College* and the *Temple of the Divines* within the walls, the *East Empire Company* warehouse on the docks; *Dragon Bridge* (a village over the Karth, with the Penitus Oculatus' lone Skyrim outpost), *Fort Hraggstad*, and the Thalmor prison of *Northwatch Keep* on the coast.
+  - **Troubles:** a captive languishes in Northwatch Keep and someone wants them freed. The Bards College needs a lost verse recovered to reinstate a banned festival. A masked ball at the Thalmor Embassy is the perfect cover for a theft, a rescue, or a murder — if the party can talk their way past Elenwen's wards.
+  - **Faces:** *Elisif the Fair*, grieving and uncertain, leaning on Imperial advisors she does not entirely trust. *Elenwen*, the smiling, ruthless First Emissary of the Thalmor, who keeps a dossier on everyone who matters.
+source: wardens-guide/the-holds#haafingar--capital-solitude
+---
+id: hold-haafingar-solitude
+type: loc
+name: Solitude
+tags: [hold, hold-haafingar, capital]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: settlement, heart: true}
+body: |-
+  ## GM notes
+
+  **The capital of Haafingar.** **Solitude** straddles a colossal natural arch of stone above the Karth delta — the largest city in the province and the home of the High King's court.
+source: wardens-guide/the-holds#haafingar--capital-solitude
+---
+id: hold-haafingar-volskygge
+type: loc
+name: Volskygge
+tags: [hold, hold-haafingar, barrow]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Barrow of Haafingar.** The Hold's Nordic dead lie in the highlands and along the coast, *Volskygge* in the far western mountains the greatest of their tombs.
+source: wardens-guide/the-holds#haafingar--capital-solitude
+---
+id: hold-haafingar-mount-kilkreath
+type: loc
+name: Mount Kilkreath
+tags: [hold, hold-haafingar, barrow]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Barrow of Haafingar.** The great holy site here is *Mount Kilkreath*, where the shrine and statue of the Daedric Prince Meridia crown a Nordic ruin — light against the necromancer Malkoran, who has fouled her temple with the war's dead.
+source: wardens-guide/the-holds#haafingar--capital-solitude
+---
+id: hold-haafingar-thalmor-embassy
+type: loc
+name: Thalmor Embassy
+tags: [hold, hold-haafingar, notable-site]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  **Notable site of Haafingar.** The *Thalmor Embassy*, a fortified manor in the mountains above the city where First Emissary Elenwen hosts her glittering, poisonous parties.
+source: wardens-guide/the-holds#haafingar--capital-solitude
+---
+id: hold-haafingar-castle-dour
+type: loc
+name: Castle Dour
+tags: [hold, hold-haafingar, notable-site]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  **Notable site of Haafingar.** And *Castle Dour*, the grim fortress that is the Imperial Legion's headquarters under General Tullius.
+source: wardens-guide/the-holds#haafingar--capital-solitude
+---
+id: hold-haafingar-elisif-the-fair
+type: npc
+name: Elisif the Fair
+tags: [hold, hold-haafingar, jarl]
+fields: {role: Jarl of Haafingar}
+body: |-
+  ## GM notes
+
+  **Jarl:** **Elisif the Fair**, young widow of the slain High King Torygg and figurehead of the Imperial cause. As the seat of the Legion, Haafingar does not change hands unless the rebellion wins the entire war.
+source: wardens-guide/the-holds#haafingar--capital-solitude
+---
+id: hold-eastmarch
+type: loc
+name: Eastmarch
+tags: [hold, hold-eastmarch]
+mechanics:
+  elder-scrolls-2e: {kind: region}
+body: |-
+  ## GM notes
+
+  A northeastern Hold where snowfields steam over sulfur hot springs. **Windhelm**, the ancient City of Kings, is the oldest settlement in Skyrim — black stone and bitter cold — and the beating heart of the rebellion. It also shelters a crowded, resentful quarter of Dunmer refugees who are given little welcome.
+
+  - **Jarl:** **Ulfric Stormcloak**, leader of the uprising, who slew the High King and now rules from the *Palace of the Kings*. Should the Legion win the Hold, the fair-minded **Brunwulf Free-Winter** — a friend to the city's outcast Dunmer — takes his seat.
+  - **The barrow:** *Ansilvund*, an excavated Nordic crypt in the Velothi Mountains at the Hold's far southeastern edge, where a widowed conjurer who could not raise her husband raises the tomb's draugr instead.
+  - **The Dwemer ruin:** *Mzulft*, in the mountains southeast of Windhelm — a Dwarven observatory the Synod's mages went into and did not come out of.
+  - **The notable site:** the *Palace of the Kings* itself, seat of the rebellion and the oldest hall in Skyrim; and the *Gray Quarter*, where Dunmer refugees live cramped and unwelcome — a tinderbox of grievance the war keeps stoking.
+  - **Other corners:** the *Temple of Talos* (where the banned god is still openly honored), the *Stone Quarter* and the noble street of *Valunstrad*, the city docks (departure point for the boat to Solstheim); out in the Hold, *Kynesgrove* (where a dragon is seen rising from its mound), *Darkwater Crossing* (a mining camp), *Fort Amol*, and *Mistwatch* (a ruined keep turned bandit lair with a bitter story inside).
+  - **Troubles:** a string of murders stalks the Gray Quarter, and the guard will not trouble themselves over dead Dunmer. A dragon is raised from the burial mound at Kynesgrove before the party's eyes. A man hires the party to bring his wife home from the bandits of Mistwatch — and the truth is uglier than a kidnapping.
+  - **Faces:** *Ulfric Stormcloak*, charismatic and uncompromising, a hero to his own and a tyrant-in-waiting to his foes. *Galmar Stone-Fist*, Ulfric's gruff housecarl and war-chief, who runs the rebellion's musters and tests every would-be recruit.
+source: wardens-guide/the-holds#eastmarch--capital-windhelm
+---
+id: hold-eastmarch-windhelm
+type: loc
+name: Windhelm
+tags: [hold, hold-eastmarch, capital]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: settlement, heart: true}
+body: |-
+  ## GM notes
+
+  **The capital of Eastmarch.** **Windhelm**, the ancient City of Kings, is the oldest settlement in Skyrim — black stone and bitter cold — and the beating heart of the rebellion.
+source: wardens-guide/the-holds#eastmarch--capital-windhelm
+---
+id: hold-eastmarch-ansilvund
+type: loc
+name: Ansilvund
+tags: [hold, hold-eastmarch, barrow]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Barrow of Eastmarch.** *Ansilvund*, an excavated Nordic crypt in the Velothi Mountains at the Hold's far southeastern edge, where a widowed conjurer who could not raise her husband raises the tomb's draugr instead.
+source: wardens-guide/the-holds#eastmarch--capital-windhelm
+---
+id: hold-eastmarch-mzulft
+type: loc
+name: Mzulft
+tags: [hold, hold-eastmarch, dwemer-ruin, place, college-of-winterhold]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Dwemer ruin of Eastmarch.** *Mzulft*, in the mountains southeast of Windhelm — a Dwarven observatory the Synod's mages went into and did not come out of.
+
+  **In the College of Winterhold frame.** (*Eastmarch*) A sprawling Dwemer ruin in the eastern hills, claimed by the **Synod**. Steam-pipes, brass guardians, and a **Falmer** infestation in the lower deeps. At its crown is the **Oculory**, a great Dwarven light-engine the Synod cannot work.
+source: wardens-guide/the-holds#eastmarch--capital-windhelm
+---
+id: hold-eastmarch-palace-of-the-kings
+type: loc
+name: Palace of the Kings
+tags: [hold, hold-eastmarch, notable-site]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  **Notable site of Eastmarch.** The *Palace of the Kings* itself, seat of the rebellion and the oldest hall in Skyrim.
+source: wardens-guide/the-holds#eastmarch--capital-windhelm
+---
+id: hold-eastmarch-gray-quarter
+type: loc
+name: Gray Quarter
+tags: [hold, hold-eastmarch, notable-site]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  **Notable site of Eastmarch.** And the *Gray Quarter*, where Dunmer refugees live cramped and unwelcome — a tinderbox of grievance the war keeps stoking.
+source: wardens-guide/the-holds#eastmarch--capital-windhelm
+---
+id: hold-eastmarch-ulfric-stormcloak
+type: npc
+name: Ulfric Stormcloak
+tags: [hold, hold-eastmarch, jarl]
+fields: {role: Jarl of Eastmarch}
+body: |-
+  ## GM notes
+
+  **Jarl:** **Ulfric Stormcloak**, leader of the uprising, who slew the High King and now rules from the *Palace of the Kings*. Should the Legion win the Hold, the fair-minded **Brunwulf Free-Winter** — a friend to the city's outcast Dunmer — takes his seat.
+source: wardens-guide/the-holds#eastmarch--capital-windhelm
+---
+id: hold-eastmarch-brunwulf-free-winter
+type: npc
+name: Brunwulf Free-Winter
+tags: [hold, hold-eastmarch, rival]
+fields: {role: installed as Jarl of Eastmarch if the Legion take it}
+body: |-
+  ## GM notes
+
+  **Jarl:** **Ulfric Stormcloak**, leader of the uprising, who slew the High King and now rules from the *Palace of the Kings*. Should the Legion win the Hold, the fair-minded **Brunwulf Free-Winter** — a friend to the city's outcast Dunmer — takes his seat.
+source: wardens-guide/the-holds#eastmarch--capital-windhelm
+---
+id: hold-the-rift
+type: loc
+name: The Rift
+tags: [hold, hold-the-rift]
+mechanics:
+  elder-scrolls-2e: {kind: region}
+body: |-
+  ## GM notes
+
+  A temperate southeastern Hold of golden autumn forests and still lakes — and the most corrupt corner of Skyrim. **Riften** is a canal-laced town of creaking wooden walkways on the shore of Lake Honrich, ruled in name by its Jarl and in truth by the Black-Briar family and the Thieves Guild hidden in the sewers beneath it.
+
+  - **Jarl:** **Laila Law-Giver**, a Stormcloak sympathizer with little real grip on her own city, quietly managed by the Black-Briars. If the Imperials take the Rift, the cold matriarch **Maven Black-Briar** — with her Guild and Brotherhood ties — is installed openly as Jarl.
+  - **The barrow:** *Shroud Hearth Barrow*, above Ivarstead, which the villagers swear is haunted — and they are not wrong. More crypts dot the Velothi foothills, and in the hills near the Shadow Stone the Nightingales keep a hidden hall of their own.
+  - **The Dwemer ruin:** *Avanchnzel*, a Dwarven ruin high in the Jerall Mountains at the Hold's southwestern edge, whose sealed halls hold a secret the Dwemer meant to keep sleeping.
+  - **The notable site:** the *Ragged Flagon* and its **Cistern**, the Thieves Guild's lair beneath the city, reached through the rat-warren of the **Ratway**; and the *Temple of Mara*, Skyrim's center for the goddess of love, where pilgrims come to be wed.
+  - **Other corners:** *Mistveil Keep* (the Jarl's seat), the *Black-Briar Meadery*, and the inn called *The Bee and Barb*; out in the Hold, *Ivarstead* (the village at the foot of the seven thousand steps to High Hrothgar), *Shor's Stone* (a mining hamlet plagued by spiders), and *Fort Greenwall*. In the Velothi Mountains hides **Fort Dawnguard**, the vampire-hunters' stronghold.
+  - **Troubles:** a newcomer is approached in the marketplace with an offer to do "a little job." A mining village begs for help clearing the spiders — or worse — from its only shaft. Fort Dawnguard sends word of an Elder Scroll and a sleeping woman sealed in a crypt far off in the Pale — and a vampire court wants them first.
+  - **Faces:** *Maven Black-Briar*, the venomous matriarch who owns Riften in all but name and forgets no slight. *Brynjolf*, the silver-tongued thief who works the market crowd and recruits likely talent into the Guild.
+source: wardens-guide/the-holds#the-rift--capital-riften
+---
+id: hold-the-rift-riften
+type: loc
+name: Riften
+tags: [hold, hold-the-rift, capital]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: settlement, heart: true}
+body: |-
+  ## GM notes
+
+  **The capital of the Rift.** **Riften** is a canal-laced town of creaking wooden walkways on the shore of Lake Honrich, ruled in name by its Jarl and in truth by the Black-Briar family and the Thieves Guild hidden in the sewers beneath it.
+source: wardens-guide/the-holds#the-rift--capital-riften
+---
+id: hold-the-rift-shroud-hearth-barrow
+type: loc
+name: Shroud Hearth Barrow
+tags: [hold, hold-the-rift, barrow]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Barrow of the Rift.** *Shroud Hearth Barrow*, above Ivarstead, which the villagers swear is haunted — and they are not wrong. More crypts dot the Velothi foothills, and in the hills near the Shadow Stone the Nightingales keep a hidden hall of their own.
+source: wardens-guide/the-holds#the-rift--capital-riften
+---
+id: hold-the-rift-avanchnzel
+type: loc
+name: Avanchnzel
+tags: [hold, hold-the-rift, dwemer-ruin]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Dwemer ruin of the Rift.** *Avanchnzel*, a Dwarven ruin high in the Jerall Mountains at the Hold's southwestern edge, whose sealed halls hold a secret the Dwemer meant to keep sleeping.
+source: wardens-guide/the-holds#the-rift--capital-riften
+---
+id: hold-the-rift-ragged-flagon
+type: loc
+name: Ragged Flagon
+tags: [hold, hold-the-rift, notable-site, place, the-thieves-guild]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  **Notable site of the Rift.** The *Ragged Flagon* and its **Cistern**, the Thieves Guild's lair beneath the city, reached through the rat-warren of the **Ratway**.
+
+  **In the Thieves Guild frame.** A dingy bar at the bottom of the Ratway, run by **Vekel the Man**, where the Guild drinks and fences. The fence **Tonilia** works a corner.
+source: wardens-guide/the-holds#the-rift--capital-riften
+---
+id: hold-the-rift-temple-of-mara
+type: loc
+name: Temple of Mara
+tags: [hold, hold-the-rift, notable-site]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  **Notable site of the Rift.** And the *Temple of Mara*, Skyrim's center for the goddess of love, where pilgrims come to be wed.
+source: wardens-guide/the-holds#the-rift--capital-riften
+---
+id: hold-the-rift-laila-law-giver
+type: npc
+name: Laila Law-Giver
+tags: [hold, hold-the-rift, jarl]
+fields: {role: Jarl of the Rift}
+body: |-
+  ## GM notes
+
+  **Jarl:** **Laila Law-Giver**, a Stormcloak sympathizer with little real grip on her own city, quietly managed by the Black-Briars. If the Imperials take the Rift, the cold matriarch **Maven Black-Briar** — with her Guild and Brotherhood ties — is installed openly as Jarl.
+source: wardens-guide/the-holds#the-rift--capital-riften
+---
+id: hold-the-rift-maven-black-briar
+type: npc
+name: Maven Black-Briar
+tags: [hold, hold-the-rift, rival]
+fields: {role: installed as Jarl of the Rift if the Legion take it}
+body: |-
+  ## GM notes
+
+  **Jarl:** **Laila Law-Giver**, a Stormcloak sympathizer with little real grip on her own city, quietly managed by the Black-Briars. If the Imperials take the Rift, the cold matriarch **Maven Black-Briar** — with her Guild and Brotherhood ties — is installed openly as Jarl.
+source: wardens-guide/the-holds#the-rift--capital-riften
+---
+id: hold-the-reach
+type: loc
+name: The Reach
+tags: [hold, hold-the-reach]
+mechanics:
+  elder-scrolls-2e: {kind: region}
+body: |-
+  ## GM notes
+
+  A harsh, vertical country of gorges and crags in the southwest — the ancestral land of the Reachfolk, and the native ground of the Forsworn. **Markarth**, the City of Stone, is built *into* a cliff atop the bones of a vast Dwemer city, all carved stone and rushing falls, dominated by the silver-rich Silver-Blood clan and the mine that feeds them.
+
+  - **Jarl:** **Igmund**, an Imperial loyalist whose father hired Ulfric's militia to win the city back from the Reachmen, then gave Ulfric up to the Empire when the Thalmor objected to the Talos worship he had been promised. The Reach is bitterly contested and can fall to the Stormcloaks in the war, who seat **Thongvor Silver-Blood**.
+  - **The barrow:** *Valthume*, in the mountains on the Hold's southeastern edge, where a ghost keeps watch over the dragon priest **Hevnoraak** and begs help to stop him rising.
+  - **The Dwemer ruin:** Markarth itself sits over **Nchuand-Zel**, the Dwarven ruin beneath the city; deeper in the Hold lie **Bthardamz** (a vast Dwemer complex now a den of the diseased and the Daedric) and **Arkngthamz** (a collapsed ruin holding a legendary Dwarven secret). The Reach is the richest Dwemer country in Skyrim.
+  - **The notable site:** *Cidhna Mine*, the brutal silver mine that doubles as Markarth's prison — and the secret cell of **Madanach, the King in Rags**, leader of the Forsworn, who runs his rebellion from inside the rock; and the *Temple of Dibella*, center of the goddess of beauty's worship.
+  - **Other corners:** *Understone Keep* (the Jarl's seat, built among the Dwarven halls), the *Silver-Blood Inn*, and the slum called *The Warrens*; out in the Hold, *Karthwasten* (a contested silver village), *Old Hroldan*, *Fort Sungard*, and the Forsworn redoubts scattered through the crags.
+  - **Troubles:** a public murder in the Markarth market drags the party into a conspiracy that runs from the Silver-Bloods to the imprisoned Forsworn king. A Forsworn redoubt is raiding the silver road and the Jarl wants it cleared. A Dwemer ruin has gone silent — its automatons stirred, or worse.
+  - **Faces:** *Madanach, the King in Rags*, the imprisoned Forsworn leader, equal parts freedom-fighter and butcher, who will test any newcomer thrown into his mine. *Ondolemar*, the haughty Thalmor Justiciar stationed in Markarth, forever sniffing out Talos-worship.
+source: wardens-guide/the-holds#the-reach--capital-markarth
+---
+id: hold-the-reach-markarth
+type: loc
+name: Markarth
+tags: [hold, hold-the-reach, capital, place, the-civil-war]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: settlement, heart: true}
+body: |-
+  ## GM notes
+
+  **The capital of the Reach.** **Markarth**, the City of Stone, is built *into* a cliff atop the bones of a vast Dwemer city, all carved stone and rushing falls, dominated by the silver-rich Silver-Blood clan and the mine that feeds them.
+
+  **In the Civil War frame.** (*the Reach*) The City of Stone over its Dwemer bones — *taking the Reach* is the campaign's hardest ground, contested between Legion, Stormcloak, and the ever-present Forsworn.
+source: wardens-guide/the-holds#the-reach--capital-markarth
+---
+id: hold-the-reach-valthume
+type: loc
+name: Valthume
+tags: [hold, hold-the-reach, barrow]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Barrow of the Reach.** *Valthume*, in the mountains on the Hold's southeastern edge, where a ghost keeps watch over the dragon priest **Hevnoraak** and begs help to stop him rising.
+source: wardens-guide/the-holds#the-reach--capital-markarth
+---
+id: hold-the-reach-nchuand-zel
+type: loc
+name: Nchuand-Zel
+tags: [hold, hold-the-reach, dwemer-ruin]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Dwemer ruin of the Reach.** Markarth itself sits over **Nchuand-Zel**, the Dwarven ruin beneath the city.
+source: wardens-guide/the-holds#the-reach--capital-markarth
+---
+id: hold-the-reach-bthardamz
+type: loc
+name: Bthardamz
+tags: [hold, hold-the-reach, dwemer-ruin]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Dwemer ruin of the Reach.** Deeper in the Hold lie **Bthardamz** (a vast Dwemer complex now a den of the diseased and the Daedric) and **Arkngthamz** (a collapsed ruin holding a legendary Dwarven secret). The Reach is the richest Dwemer country in Skyrim.
+source: wardens-guide/the-holds#the-reach--capital-markarth
+---
+id: hold-the-reach-arkngthamz
+type: loc
+name: Arkngthamz
+tags: [hold, hold-the-reach, dwemer-ruin]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Dwemer ruin of the Reach.** Deeper in the Hold lie **Bthardamz** (a vast Dwemer complex now a den of the diseased and the Daedric) and **Arkngthamz** (a collapsed ruin holding a legendary Dwarven secret). The Reach is the richest Dwemer country in Skyrim.
+source: wardens-guide/the-holds#the-reach--capital-markarth
+---
+id: hold-the-reach-cidhna-mine
+type: loc
+name: Cidhna Mine
+tags: [hold, hold-the-reach, notable-site]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  **Notable site of the Reach.** *Cidhna Mine*, the brutal silver mine that doubles as Markarth's prison — and the secret cell of **Madanach, the King in Rags**, leader of the Forsworn, who runs his rebellion from inside the rock.
+source: wardens-guide/the-holds#the-reach--capital-markarth
+---
+id: hold-the-reach-temple-of-dibella
+type: loc
+name: Temple of Dibella
+tags: [hold, hold-the-reach, notable-site]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  **Notable site of the Reach.** And the *Temple of Dibella*, center of the goddess of beauty's worship.
+source: wardens-guide/the-holds#the-reach--capital-markarth
+---
+id: hold-the-reach-igmund
+type: npc
+name: Igmund
+tags: [hold, hold-the-reach, jarl]
+fields: {role: Jarl of the Reach}
+body: |-
+  ## GM notes
+
+  **Jarl:** **Igmund**, an Imperial loyalist whose father hired Ulfric's militia to win the city back from the Reachmen, then gave Ulfric up to the Empire when the Thalmor objected to the Talos worship he had been promised. The Reach is bitterly contested and can fall to the Stormcloaks in the war, who seat **Thongvor Silver-Blood**.
+source: wardens-guide/the-holds#the-reach--capital-markarth
+---
+id: hold-the-reach-thongvor-silver-blood
+type: npc
+name: Thongvor Silver-Blood
+tags: [hold, hold-the-reach, rival]
+fields: {role: installed as Jarl of the Reach if the Stormcloaks take it}
+body: |-
+  ## GM notes
+
+  **Jarl:** **Igmund**, an Imperial loyalist whose father hired Ulfric's militia to win the city back from the Reachmen, then gave Ulfric up to the Empire when the Thalmor objected to the Talos worship he had been promised. The Reach is bitterly contested and can fall to the Stormcloaks in the war, who seat **Thongvor Silver-Blood**.
+source: wardens-guide/the-holds#the-reach--capital-markarth
+---
+id: hold-falkreath
+type: loc
+name: Falkreath Hold
+tags: [hold, hold-falkreath]
+mechanics:
+  elder-scrolls-2e: {kind: region}
+body: |-
+  ## GM notes
+
+  A quiet, mournful land of dense pine forest on the southern border, where Skyrim meets Cyrodiil and Hammerfell. Its economy is timber, and **Falkreath** is best known for one thing: its enormous graveyard, the largest in Skyrim, where heroes and commoners alike are laid to rest beneath the pines.
+
+  - **Jarl:** **Siddgeir**, young, idle, and pro-Imperial — a venal lordling who took the seat from his uncle and keeps low company. The Hold can fall to the Stormcloaks in the war, which restores his uncle, **Dengeir of Stuhn**.
+  - **The barrow:** the Hold's defining ground is the *Hall of the Dead* and its vast **cemetery**; deeper still, on the western marches, lies the *Twilight Sepulcher*, Nocturnal's shadow-tomb. Many a Nordic crypt hides among the trees.
+  - **The notable site:** the *Dark Brotherhood Sanctuary*, hidden in the pine woods — the assassins' last active chapter in Skyrim, sealed behind a door that answers only the right black words.
+  - **Other corners:** the *Jarl's Longhouse* in Falkreath; *Helgen*, the walled town near the Cyrodiil road (and, in the campaign's opening, the site of a catastrophe that lights the whole story); *Lake Ilinalta* with its sunken ruins; and the wooded plot of *Lakeview Manor*, land a party may buy to raise a home.
+  - **Troubles:** a grieving family seeks justice — or a grieving family seeks something far darker, and a child has begun the Black Sacrament. A creature out of the lake or the deep woods is taking woodsmen. The graveyard is being robbed, and the dead are not staying put.
+  - **Faces:** *Astrid*, the cool, commanding mistress of the Dark Brotherhood's last Sanctuary, who recruits with a knife to the throat. *Siddgeir*, the spoiled young Jarl, ever ready to farm out his dirty work to anyone who will take the coin.
+source: wardens-guide/the-holds#falkreath-hold--capital-falkreath
+---
+id: hold-falkreath-falkreath
+type: loc
+name: Falkreath
+tags: [hold, hold-falkreath, capital]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: settlement, heart: true}
+body: |-
+  ## GM notes
+
+  **The capital of Falkreath Hold.** Its economy is timber, and **Falkreath** is best known for one thing: its enormous graveyard, the largest in Skyrim, where heroes and commoners alike are laid to rest beneath the pines.
+source: wardens-guide/the-holds#falkreath-hold--capital-falkreath
+---
+id: hold-falkreath-hall-of-the-dead
+type: loc
+name: Hall of the Dead
+tags: [hold, hold-falkreath, barrow]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Barrow of Falkreath Hold.** The Hold's defining ground is the *Hall of the Dead* and its vast **cemetery**.
+source: wardens-guide/the-holds#falkreath-hold--capital-falkreath
+---
+id: hold-falkreath-twilight-sepulcher
+type: loc
+name: Twilight Sepulcher
+tags: [hold, hold-falkreath, barrow]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Barrow of Falkreath Hold.** Deeper still, on the western marches, lies the *Twilight Sepulcher*, Nocturnal's shadow-tomb. Many a Nordic crypt hides among the trees.
+source: wardens-guide/the-holds#falkreath-hold--capital-falkreath
+---
+id: hold-falkreath-the-falkreath-sanctuary
+type: loc
+name: The Falkreath Sanctuary
+tags: [hold, hold-falkreath, notable-site, place, the-dark-brotherhood]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  **Notable site of Falkreath Hold.** The *Dark Brotherhood Sanctuary*, hidden in the pine woods — the assassins' last active chapter in Skyrim, sealed behind a door that answers only the right black words.
+
+  **In the Dark Brotherhood frame.** (*the pine forest*) the family's home in the cliffs behind a **Black Door** that asks a riddle and punishes the wrong answer. Inside: a central hearth, sleeping alcoves, an alchemy nook (Babette's), a training room, the Night Mother's standing coffin. Warm, lived-in, doomed. Burns in Beat 8.
+source: wardens-guide/the-holds#falkreath-hold--capital-falkreath
+---
+id: hold-falkreath-siddgeir
+type: npc
+name: Siddgeir
+tags: [hold, hold-falkreath, jarl]
+fields: {role: Jarl of Falkreath Hold}
+body: |-
+  ## GM notes
+
+  **Jarl:** **Siddgeir**, young, idle, and pro-Imperial — a venal lordling who took the seat from his uncle and keeps low company. The Hold can fall to the Stormcloaks in the war, which restores his uncle, **Dengeir of Stuhn**.
+source: wardens-guide/the-holds#falkreath-hold--capital-falkreath
+---
+id: hold-falkreath-dengeir-of-stuhn
+type: npc
+name: Dengeir of Stuhn
+tags: [hold, hold-falkreath, rival]
+fields: {role: installed as Jarl of Falkreath Hold if the Stormcloaks take it}
+body: |-
+  ## GM notes
+
+  **Jarl:** **Siddgeir**, young, idle, and pro-Imperial — a venal lordling who took the seat from his uncle and keeps low company. The Hold can fall to the Stormcloaks in the war, which restores his uncle, **Dengeir of Stuhn**.
+source: wardens-guide/the-holds#falkreath-hold--capital-falkreath
+---
+id: hold-hjaalmarch
+type: loc
+name: Hjaalmarch
+tags: [hold, hold-hjaalmarch]
+mechanics:
+  elder-scrolls-2e: {kind: region}
+body: |-
+  ## GM notes
+
+  A poor, isolated Hold of fog-bound marshland — the Drajkmyr — in the north, of little strategic worth and less comfort. **Morthal** is a small, eerie lumber village wrapped in mist, governed by a Jarl who rules less by decree than by the visions that come to her.
+
+  - **Jarl:** **Idgrod Ravencrone**, a riddling mystic and seer who governs by prophecy and keeps Hjaalmarch nominally with the Empire while caring little for the war. The Hold can fall to the Stormcloaks, who seat **Sorli the Builder** of Stonehills.
+  - **The barrow:** *Ustengrav*, a great Nordic tomb sunk in the marsh, where Jurgen Windcaller, founder of the Greybeards, was laid to rest with his horn — draugr-haunted, flooded, and far older than the village above it.
+  - **The Dwemer ruin:** *Mzinchaleft*, in the snows east of Morthal — bandits camp in its upper halls, and its lowest gate opens on **Blackreach**.
+  - **The great ruin:** *Labyrinthian*, on the Hold's southern edge — a sprawling, fallen Nordic city and dragon-priest stronghold, one of the deadliest ruins in Skyrim, layered with traps, draugr, and an ancient masked lord.
+  - **The notable site:** *Movarth's Lair*, a cave near Morthal where a master vampire and his thralls prey on the isolated village from the dark.
+  - **Other corners:** the Morthal lumber mill, apothecary, and inn; *Stonehills* (a mining settlement at Rockwallow); *Fort Snowhawk* on the marsh road; and the cold, defensible plot of *Windstad Manor*, land a party may buy to build upon.
+  - **Troubles:** a house burns with a family inside, the townsfolk whisper of a ghost-child, and the Jarl wants the truth teased out of a frightened village. The vampire Movarth schemes to make all of Morthal his cattle. Idgrod has seen something coming in a dream and needs a stranger to go where her own people fear to.
+  - **Faces:** *Idgrod Ravencrone*, the unsettling seer-Jarl who speaks in portents and is rarely wrong. *Movarth Piquine*, the ancient master vampire in the marsh, patiently weaving a plan to devour a whole town.
+source: wardens-guide/the-holds#hjaalmarch--capital-morthal
+---
+id: hold-hjaalmarch-morthal
+type: loc
+name: Morthal
+tags: [hold, hold-hjaalmarch, capital]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: settlement, heart: true}
+body: |-
+  ## GM notes
+
+  **The capital of Hjaalmarch.** **Morthal** is a small, eerie lumber village wrapped in mist, governed by a Jarl who rules less by decree than by the visions that come to her.
+source: wardens-guide/the-holds#hjaalmarch--capital-morthal
+---
+id: hold-hjaalmarch-ustengrav
+type: loc
+name: Ustengrav
+tags: [hold, hold-hjaalmarch, barrow, place, the-main-quest]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Barrow of Hjaalmarch.** *Ustengrav*, a great Nordic tomb sunk in the marsh, where Jurgen Windcaller, founder of the Greybeards, was laid to rest with his horn — draugr-haunted, flooded, and far older than the village above it.
+
+  **In the Main Quest frame.** A Nordic barrow in the Hjaalmarch marsh; the Horn that isn't there (Beat 5).
+source: wardens-guide/the-holds#hjaalmarch--capital-morthal
+---
+id: hold-hjaalmarch-mzinchaleft
+type: loc
+name: Mzinchaleft
+tags: [hold, hold-hjaalmarch, dwemer-ruin]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Dwemer ruin of Hjaalmarch.** *Mzinchaleft*, in the snows east of Morthal — bandits camp in its upper halls, and its lowest gate opens on **Blackreach**.
+source: wardens-guide/the-holds#hjaalmarch--capital-morthal
+---
+id: hold-hjaalmarch-labyrinthian
+type: loc
+name: Labyrinthian
+tags: [hold, hold-hjaalmarch, great-ruin, place, college-of-winterhold]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Great ruin of Hjaalmarch.** *Labyrinthian*, on the Hold's southern edge — a sprawling, fallen Nordic city and dragon-priest stronghold, one of the deadliest ruins in Skyrim, layered with traps, draugr, and an ancient masked lord.
+
+  **In the College of Winterhold frame.** (*Hjaalmarch*) An immense, half-buried Nordic city in the snowy hills of southern Hjaalmarch, the seat of an ancient dragon cult and the worst dungeon in the campaign. At its heart, behind a shield of light, waits **Morokei** and the **Staff of Magnus**.
+source: wardens-guide/the-holds#hjaalmarch--capital-morthal
+---
+id: hold-hjaalmarch-movarths-lair
+type: loc
+name: Movarth's Lair
+tags: [hold, hold-hjaalmarch, notable-site]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  **Notable site of Hjaalmarch.** *Movarth's Lair*, a cave near Morthal where a master vampire and his thralls prey on the isolated village from the dark.
+source: wardens-guide/the-holds#hjaalmarch--capital-morthal
+---
+id: hold-hjaalmarch-idgrod-ravencrone
+type: npc
+name: Idgrod Ravencrone
+tags: [hold, hold-hjaalmarch, jarl]
+fields: {role: Jarl of Hjaalmarch}
+body: |-
+  ## GM notes
+
+  **Jarl:** **Idgrod Ravencrone**, a riddling mystic and seer who governs by prophecy and keeps Hjaalmarch nominally with the Empire while caring little for the war. The Hold can fall to the Stormcloaks, who seat **Sorli the Builder** of Stonehills.
+source: wardens-guide/the-holds#hjaalmarch--capital-morthal
+---
+id: hold-hjaalmarch-sorli-the-builder
+type: npc
+name: Sorli the Builder
+tags: [hold, hold-hjaalmarch, rival]
+fields: {role: installed as Jarl of Hjaalmarch if the Stormcloaks take it}
+body: |-
+  ## GM notes
+
+  **Jarl:** **Idgrod Ravencrone**, a riddling mystic and seer who governs by prophecy and keeps Hjaalmarch nominally with the Empire while caring little for the war. The Hold can fall to the Stormcloaks, who seat **Sorli the Builder** of Stonehills.
+source: wardens-guide/the-holds#hjaalmarch--capital-morthal
+---
+id: hold-the-pale
+type: loc
+name: The Pale
+tags: [hold, hold-the-pale]
+mechanics:
+  elder-scrolls-2e: {kind: region}
+body: |-
+  ## GM notes
+
+  A frigid north-central Hold of windswept tundra along the icy shore of the Sea of Ghosts. **Dawnstar** is a small mining-and-fishing port, and lately a town that cannot sleep, for every soul in it is gripped by relentless nightmares.
+
+  - **Jarl:** **Skald the Elder**, an aged, fervent Stormcloak loyalist so overzealous that his own court thinks him a fool. The Pale can fall to the Imperials in the war, who seat the retired Legion officer **Brina Merilis**.
+  - **The barrow:** the Hold is studded with Nordic crypts in the snow, *Volunruud* on its western marches the oldest of them; its standout holy ruin is *Nightcaller Temple* above the town — once a temple of Vaermina, Daedric Prince of nightmares, now the dark source of the curse that plagues Dawnstar's dreams.
+  - **The Dwemer ruin:** *Raldbthar*, a Dwarven city-state high in the southern mountains — one of the three ways down into **Blackreach**, the vast cavern-realm beneath Skyrim (*Mzinchaleft*, another, lies just over the line in Hjaalmarch). Close by, on the shore of Lake Yorgrim, *Irkngthand* hides a great statue of a Snow Elf, carved in secret by the Falmer's ancestors when they were slaves.
+  - **The notable site:** the *Dark Brotherhood Sanctuary* beneath Dawnstar (the order's fallback refuge, opened late in their story), and the town's *lighthouse* on the freezing shore.
+  - **Other corners:** *The White Hall* (the Jarl's seat), the *Iron-Breaker* and *Quicksilver* mines that keep the town alive, the inn; out in the Hold, *Fort Dunstad* on the tundra road and *Lake Yorgrim*.
+  - **Troubles:** the whole town is wracked by nightmares and an old priest of Mara offers a desperate remedy at Nightcaller Temple — where the cure is worse than the curse. Bandits or worse have taken Fort Dunstad astride the Pale's main road. A miner has broken through into something Dwarven, and into the endless night of Blackreach below.
+  - **Faces:** *Skald the Elder*, the cantankerous old Jarl who would sooner lose the Pale than bend a knee to the Empire. *Erandur*, a gentle, haunted priest of Mara who knows the secret of the nightmares and the price of ending them.
+source: wardens-guide/the-holds#the-pale--capital-dawnstar
+---
+id: hold-the-pale-dawnstar
+type: loc
+name: Dawnstar
+tags: [hold, hold-the-pale, capital]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: settlement, heart: true}
+body: |-
+  ## GM notes
+
+  **The capital of the Pale.** **Dawnstar** is a small mining-and-fishing port, and lately a town that cannot sleep, for every soul in it is gripped by relentless nightmares.
+source: wardens-guide/the-holds#the-pale--capital-dawnstar
+---
+id: hold-the-pale-volunruud
+type: loc
+name: Volunruud
+tags: [hold, hold-the-pale, barrow, place, the-dark-brotherhood]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Barrow of the Pale.** The Hold is studded with Nordic crypts in the snow, *Volunruud* on its western marches the oldest of them.
+
+  **In the Dark Brotherhood frame.** (*the Pale*) an ancient, half-collapsed Nordic tomb where the conspiracy is hatched and, later, where the blood-money urn is hidden at the dead-drop. Cold stone and old draugr; a place for whispered treason.
+source: wardens-guide/the-holds#the-pale--capital-dawnstar
+---
+id: hold-the-pale-nightcaller-temple
+type: loc
+name: Nightcaller Temple
+tags: [hold, hold-the-pale, barrow]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Barrow of the Pale.** Its standout holy ruin is *Nightcaller Temple* above the town — once a temple of Vaermina, Daedric Prince of nightmares, now the dark source of the curse that plagues Dawnstar's dreams.
+source: wardens-guide/the-holds#the-pale--capital-dawnstar
+---
+id: hold-the-pale-raldbthar
+type: loc
+name: Raldbthar
+tags: [hold, hold-the-pale, dwemer-ruin]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Dwemer ruin of the Pale.** *Raldbthar*, a Dwarven city-state high in the southern mountains — one of the three ways down into **Blackreach**, the vast cavern-realm beneath Skyrim (*Mzinchaleft*, another, lies just over the line in Hjaalmarch). Close by, on the shore of Lake Yorgrim, *Irkngthand* hides a great statue of a Snow Elf, carved in secret by the Falmer's ancestors when they were slaves.
+source: wardens-guide/the-holds#the-pale--capital-dawnstar
+---
+id: hold-the-pale-irkngthand
+type: loc
+name: Irkngthand
+tags: [hold, hold-the-pale, dwemer-ruin]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Dwemer ruin of the Pale.** *Raldbthar*, a Dwarven city-state high in the southern mountains — one of the three ways down into **Blackreach**, the vast cavern-realm beneath Skyrim (*Mzinchaleft*, another, lies just over the line in Hjaalmarch). Close by, on the shore of Lake Yorgrim, *Irkngthand* hides a great statue of a Snow Elf, carved in secret by the Falmer's ancestors when they were slaves.
+source: wardens-guide/the-holds#the-pale--capital-dawnstar
+---
+id: hold-the-pale-the-dawnstar-sanctuary
+type: loc
+name: The Dawnstar Sanctuary
+tags: [hold, hold-the-pale, notable-site, place, the-dark-brotherhood]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  **Notable site of the Pale.** The *Dark Brotherhood Sanctuary* beneath Dawnstar (the order's fallback refuge, opened late in their story), and the town's *lighthouse* on the freezing shore.
+
+  **In the Dark Brotherhood frame.** (*the Pale, on the coast*) a long-sealed older Sanctuary, its Black Door asking *"What is life's greatest illusion?"* (the answer: *"Innocence, my brother."*) Cicero flees here; the family rebuilds here. It begins ruined and ends restored — a visual rhyme for the campaign.
+source: wardens-guide/the-holds#the-pale--capital-dawnstar
+---
+id: hold-the-pale-dawnstar-lighthouse
+type: loc
+name: Dawnstar lighthouse
+tags: [hold, hold-the-pale, notable-site]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  **Notable site of the Pale.** The *Dark Brotherhood Sanctuary* beneath Dawnstar (the order's fallback refuge, opened late in their story), and the town's *lighthouse* on the freezing shore.
+source: wardens-guide/the-holds#the-pale--capital-dawnstar
+---
+id: hold-the-pale-skald-the-elder
+type: npc
+name: Skald the Elder
+tags: [hold, hold-the-pale, jarl]
+fields: {role: Jarl of the Pale}
+body: |-
+  ## GM notes
+
+  **Jarl:** **Skald the Elder**, an aged, fervent Stormcloak loyalist so overzealous that his own court thinks him a fool. The Pale can fall to the Imperials in the war, who seat the retired Legion officer **Brina Merilis**.
+source: wardens-guide/the-holds#the-pale--capital-dawnstar
+---
+id: hold-the-pale-brina-merilis
+type: npc
+name: Brina Merilis
+tags: [hold, hold-the-pale, rival]
+fields: {role: installed as Jarl of the Pale if the Legion take it}
+body: |-
+  ## GM notes
+
+  **Jarl:** **Skald the Elder**, an aged, fervent Stormcloak loyalist so overzealous that his own court thinks him a fool. The Pale can fall to the Imperials in the war, who seat the retired Legion officer **Brina Merilis**.
+source: wardens-guide/the-holds#the-pale--capital-dawnstar
+---
+id: hold-winterhold
+type: loc
+name: Winterhold Hold
+aliases: [Winterhold]
+tags: [hold, hold-winterhold]
+mechanics:
+  elder-scrolls-2e: {kind: region}
+body: |-
+  ## GM notes
+
+  The northernmost and bleakest Hold of all: a thin coast of ice, snow, and hardy fisherfolk facing the Sea of Ghosts. **Winterhold** was once a great city and a seat of kings — until the **Great Collapse** swept most of it into the sea, leaving a windblown handful of buildings, a bitter Jarl, and the one thing that did not fall: the **College of Winterhold**, perched alone on its sea-cliff pillar.
+
+  - **Jarl:** **Korir**, embittered by the ruin of his city, who blames the College for the Collapse and wishes the mages gone. Stormcloak-aligned, the Hold can fall to the Imperials, who seat the College-friendly **Kraldar**.
+  - **The barrow:** *Saarthal*, one of the oldest Nordic sites in all Tamriel — an ancient excavated city beneath the snow where the College digs, and where something the First Men buried was never meant to be unearthed. To the north lies *Ysgramor's Tomb*, resting place of the legendary founder of the Companions.
+  - **The Dwemer ruin:** *Alftand*, a great spiraling Dwarven ruin half-swallowed by a glacier, another of the descents into **Blackreach** and the deep dark beneath the world.
+  - **The notable site:** the *College of Winterhold* itself — the Hall of the Elements with its **Arcanaeum** library, the Arch-Mage's quarters, the mage-halls, and the strange **Midden** beneath — Skyrim's only refuge for the practice of magic, and an island of cold tolerance in a hostile Hold.
+  - **Other corners:** the *Jarl's Longhouse*, the inn called *The Frozen Hearth*, and the prison called *The Chill*; out in the Hold, *Mount Anthor* (a dragon's roost in the peaks).
+  - **Troubles:** the College's dig at Saarthal turns up a buried power, and a Thalmor agent within the walls means to seize it. A dragon has taken Mount Anthor and harries the coast. The townsfolk's hatred of the College threatens to boil over into violence against the mages.
+  - **Faces:** *Tolfdir*, the kindly, absent-minded master mage who teaches the College's newcomers and stands by them when crisis comes. *Korir*, the resentful Jarl of a drowned city, who sees enemies in every robe.
+source: wardens-guide/the-holds#winterhold--capital-winterhold
+---
+id: hold-winterhold-winterhold
+type: loc
+name: Winterhold
+tags: [hold, hold-winterhold, capital]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: settlement, heart: true}
+body: |-
+  ## GM notes
+
+  **The capital of Winterhold Hold.** **Winterhold** was once a great city and a seat of kings — until the **Great Collapse** swept most of it into the sea, leaving a windblown handful of buildings, a bitter Jarl, and the one thing that did not fall: the **College of Winterhold**, perched alone on its sea-cliff pillar.
+source: wardens-guide/the-holds#winterhold--capital-winterhold
+---
+id: hold-winterhold-saarthal
+type: loc
+name: Saarthal
+tags: [hold, hold-winterhold, barrow, place, college-of-winterhold]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Barrow of Winterhold Hold.** *Saarthal*, one of the oldest Nordic sites in all Tamriel — an ancient excavated city beneath the snow where the College digs, and where something the First Men buried was never meant to be unearthed. To the north lies *Ysgramor's Tomb*, resting place of the legendary founder of the Companions.
+
+  **In the College of Winterhold frame.** (*Winterhold*) One of the oldest cities of Men in Skyrim, sacked by the elves in the dawn of history, now a buried barrow of ice-slick halls and draugr in their alcoves. The College has an active dig here. Past a hall that seals shut as a trap lies the chamber of the **Eye of Magnus**.
+source: wardens-guide/the-holds#winterhold--capital-winterhold
+---
+id: hold-winterhold-ysgramors-tomb
+type: loc
+name: Ysgramor's Tomb
+tags: [hold, hold-winterhold, barrow, place, the-companions]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Barrow of Winterhold Hold.** *Saarthal*, one of the oldest Nordic sites in all Tamriel — an ancient excavated city beneath the snow where the College digs, and where something the First Men buried was never meant to be unearthed. To the north lies *Ysgramor's Tomb*, resting place of the legendary founder of the Companions.
+
+  **In the Companions frame.** (*Winterhold*) The frozen resting place of the founder of the Companions, far in the north. Sealed by the statue of Ysgramor, which only the reforged Wuuthrad can open. Within: Companion ghosts, frostbite spiders, and the **Flame of the Harbinger**, where souls are judged and cleansed.
+source: wardens-guide/the-holds#winterhold--capital-winterhold
+---
+id: hold-winterhold-alftand
+type: loc
+name: Alftand
+tags: [hold, hold-winterhold, dwemer-ruin]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: dungeon}
+body: |-
+  ## GM notes
+
+  **Dwemer ruin of Winterhold Hold.** *Alftand*, a great spiraling Dwarven ruin half-swallowed by a glacier, another of the descents into **Blackreach** and the deep dark beneath the world.
+source: wardens-guide/the-holds#winterhold--capital-winterhold
+---
+id: hold-winterhold-college-of-winterhold
+type: loc
+name: College of Winterhold
+tags: [hold, hold-winterhold, notable-site]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  **Notable site of Winterhold Hold.** The *College of Winterhold* itself — the Hall of the Elements with its **Arcanaeum** library, the Arch-Mage's quarters, the mage-halls, and the strange **Midden** beneath — Skyrim's only refuge for the practice of magic, and an island of cold tolerance in a hostile Hold.
+source: wardens-guide/the-holds#winterhold--capital-winterhold
+---
+id: hold-winterhold-korir
+type: npc
+name: Korir
+tags: [hold, hold-winterhold, jarl]
+fields: {role: Jarl of Winterhold Hold}
+body: |-
+  ## GM notes
+
+  **Jarl:** **Korir**, embittered by the ruin of his city, who blames the College for the Collapse and wishes the mages gone. Stormcloak-aligned, the Hold can fall to the Imperials, who seat the College-friendly **Kraldar**.
+source: wardens-guide/the-holds#winterhold--capital-winterhold
+---
+id: hold-winterhold-kraldar
+type: npc
+name: Kraldar
+tags: [hold, hold-winterhold, rival]
+fields: {role: installed as Jarl of Winterhold Hold if the Legion take it}
+body: |-
+  ## GM notes
+
+  **Jarl:** **Korir**, embittered by the ruin of his city, who blames the College for the Collapse and wishes the mages gone. Stormcloak-aligned, the Hold can fall to the Imperials, who seat the College-friendly **Kraldar**.
+source: wardens-guide/the-holds#winterhold--capital-winterhold
+---
+id: hold-solstheim
+type: loc
+name: Solstheim
+tags: [hold, hold-solstheim]
+mechanics:
+  elder-scrolls-2e: {kind: region}
+body: |-
+  ## GM notes
+
+  A windswept island in the Sea of Ghosts between Skyrim and Morrowind, reached by the boat *Northern Maiden* out of Windhelm. Solstheim is a land divided against itself: ash-choked and gray in the south beneath the shadow of distant Red Mountain, snow-bound and forested in the north, peopled by Dunmer colonists, isolationist Telvanni wizards, and the All-Maker-worshipping Skaal. Lately a dread power stirs at its center, and the very stones of the island bend to a long-dead will.
+
+  - **Ruler (Raven Rock):** **Councilor Lleril Morvayn** of House Redoran, who governs the Dunmer colony of **Raven Rock** — once an Imperial ebony-mining outpost, now a forgotten Redoran town on the south coast, shielded from Red Mountain's ash by the great wall called the **Bulwark**. There is no Civil War here; Solstheim answers to Morrowind and to House Redoran, not to a Skyrim Jarl.
+  - **The Skaal:** **Skaal Village** on the northern Felsaad Coast — the northernmost settlement in all Tamriel — home to the Skaal tribe under **Chief Fanari Strong-Voice** and the shaman **Storn Crag-Strider**. They worship the All-Maker, live in harmony with the land, and alone know the secret of forging **Stalhrim**, the enchanted ice.
+  - **The Telvanni:** **Tel Mithryn**, a cluster of titanic living mushroom-towers on the southeastern river, grown from Vvardenfell cuttings by the brilliant, insufferable Master **Neloth** of House Telvanni to study Red Mountain — reached by a levitation shaft and steeped in arcane research.
+  - **The notable site:** the *Temple of Miraak* at the island's heart, rising over a corrupted All-Maker Stone — the stronghold of a cult enthralled to a will reaching out from beyond the world, drawing Solstheim's folk to build and to forget.
+  - **Other corners:** the *Bulwark* and the Redoran garrison at Raven Rock, *Raven Rock Mine* (its ebony long thought spent), *Severin Manor*, and the scattered *All-Maker Stones* the cult has begun to foul.
+  - **Troubles:** the islanders fall under a strange compulsion, building at the Temple of Miraak with no memory of why, and the Skaal shaman begs a free mind to break the spell. Raven Rock Mine may hold ebony yet — and a deadly secret with it. A conspiracy threatens Councilor Morvayn's life behind the Bulwark's safety.
+  - **Faces:** *Neloth*, the ancient, gloriously self-absorbed Telvanni wizard of Tel Mithryn, who treats every visitor as a potential apprentice or test subject. *Storn Crag-Strider*, the steadfast Skaal shaman who guards the knowledge his people need to be free, and will pay any price to keep them so.
+
+  > *Solstheim belongs to the Dragonborn DLC; drop it in only when the party takes ship for the ash-island. The nine Holds are Skyrim enough for most campaigns.*
+source: wardens-guide/the-holds#solstheim--raven-rock-skaal-village--beyond
+---
+id: hold-solstheim-raven-rock
+type: loc
+name: Raven Rock
+tags: [hold, hold-solstheim, capital, place, dragonborn]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: settlement, heart: true}
+body: |-
+  ## GM notes
+
+  **The capital of Solstheim.** **Councilor Lleril Morvayn** of House Redoran, who governs the Dunmer colony of **Raven Rock** — once an Imperial ebony-mining outpost, now a forgotten Redoran town on the south coast, shielded from Red Mountain's ash by the great wall called the **Bulwark**.
+
+  **In the Dragonborn frame.** A weathered House Redoran mining colony on the south coast, ringed by the great **Bulwark** against Red Mountain's ash. Councilor **Lleril Morvayn** rules; the ebony mine that was its lifeblood is thought played out. The **Earth Stone** stands just outside the walls, thick with entranced laborers. Inns, a smith (**Glover Mallory**), a temple, and the party's reachable hub.
+source: wardens-guide/the-holds#solstheim--raven-rock-skaal-village--beyond
+---
+id: hold-solstheim-temple-of-miraak
+type: loc
+name: Temple of Miraak
+tags: [hold, hold-solstheim, notable-site, place, dragonborn]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  **Notable site of Solstheim.** The *Temple of Miraak* at the island's heart, rising over a corrupted All-Maker Stone — the stronghold of a cult enthralled to a will reaching out from beyond the world, drawing Solstheim's folk to build and to forget.
+
+  **In the Dragonborn frame.** A buried dragon-cult temple at the island's heart, over the Tree Stone, where enthralled Skaal raise Miraak's shrine. Below it: the Black Book *Waking Dreams*, and the first window into Apocrypha.
+source: wardens-guide/the-holds#solstheim--raven-rock-skaal-village--beyond
+---
+id: hold-solstheim-skaal-village
+type: loc
+name: Skaal Village
+tags: [hold, hold-solstheim, notable-site, place, dragonborn]
+mechanics:
+  elder-scrolls-2e: {kind: poi, poi: settlement}
+body: |-
+  ## GM notes
+
+  **Settlement of Solstheim.** **Skaal Village** on the northern Felsaad Coast — the northernmost settlement in all Tamriel — home to the Skaal tribe under **Chief Fanari Strong-Voice** and the shaman **Storn Crag-Strider**. They worship the All-Maker, live in harmony with the land, and alone know the secret of forging **Stalhrim**, the enchanted ice.
+
+  **In the Dragonborn frame.** The northernmost settlement in Tamriel, on the snowbound north coast — a Greathall and a clutch of homes around a sacred well. Home of the **Skaal**, a Nord tribe who worship the All-Maker, live in harmony with the land, and alone know the forging of **Stalhrim**. Chief **Fanari Strong-Voice** leads; **Storn Crag-Strider** is shaman, his daughter **Frea** his heir.
+source: wardens-guide/the-holds#solstheim--raven-rock-skaal-village--beyond
+---
+id: hold-solstheim-tel-mithryn
+type: loc
+name: Tel Mithryn
+tags: [hold, hold-solstheim, notable-site, place, dragonborn]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  **Tower of Solstheim.** **Tel Mithryn**, a cluster of titanic living mushroom-towers on the southeastern river, grown from Vvardenfell cuttings by the brilliant, insufferable Master **Neloth** of House Telvanni to study Red Mountain — reached by a levitation shaft and steeped in arcane research.
+
+  **In the Dragonborn frame.** A cluster of living giant mushroom-towers on the southeast coast, where **Neloth** of House Telvanni studies Red Mountain and the heart stones from on high. Reached by the levitating shaft inside the great trunk.
+source: wardens-guide/the-holds#solstheim--raven-rock-skaal-village--beyond
+---
+id: hold-solstheim-lleril-morvayn
+type: npc
+name: Lleril Morvayn
+aliases: [Councilor Lleril Morvayn]
+tags: [hold, hold-solstheim, ruler]
+fields: {role: 'Councilor of House Redoran, ruler of Raven Rock'}
+body: |-
+  ## GM notes
+
+  **Ruler:** **Councilor Lleril Morvayn** of House Redoran, who governs the Dunmer colony of **Raven Rock** — once an Imperial ebony-mining outpost, now a forgotten Redoran town on the south coast, shielded from Red Mountain's ash by the great wall called the **Bulwark**. There is no Civil War here; Solstheim answers to Morrowind and to House Redoran, not to a Skyrim Jarl.
+source: wardens-guide/the-holds#solstheim--raven-rock-skaal-village--beyond

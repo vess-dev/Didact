@@ -1,0 +1,27 @@
+# A treasure (p. 39): its tier (minor, major or mythic), what exactly it is when that matters
+# (the treasure crucible), and what it might fetch in trade. Treasures are the party's, shared
+# unless chosen otherwise; a treasure is only truly as valuable as what someone will give for it.
+generator: treasure
+title: A treasure
+help: >-
+  A treasure, step by step: its tier, what it is from the treasure crucible (choose, or let the
+  dice), what it might fetch in trade, and a name. Prefill by name: tier, what, name.
+source: "p. 39"
+creates: item
+steps:
+  - choose_or_roll: {from: [minor, major, mythic], as: tier, prompt: "its tier: what it's worth"}
+  - if: "@option.magic == 'none'"
+    then:
+      - choose_or_roll: {table: treasure-crucible, as: what, exclude: [arcana, spell cast], prompt: "what it is, when that matters (no magic: no arcana, no spells)"}
+    else:
+      - choose_or_roll: {table: treasure-crucible, as: what, prompt: "what it is, when that matters"}
+  - table: treasure-tiers
+    with: {tier: "@tier"}
+    as: trade
+  - apply: {kind: treasure, tier: "@tier", treasure: "@what", worth: "@trade"}
+  - name: {prompt: "a name for this {@tier} {@what}: say what it is exactly"}
+  - prompt: "In trade, a {@tier} treasure might fetch: {@trade} What would someone give for this one?"
+  - if: "@what == 'arcana'"
+    then:
+      - prompt: "Make the arcana itself: `didact gen run grimwild-ce.arcana --prefill '{\"tier\": \"{@tier}\"}'`."
+  - prompt: "Treasures are the party's, shared unless chosen otherwise: `didact inv add <holder> <treasure>`. Traded to a community, a minor treasure adds 2 stockpile, a major 4, a mythic 8."

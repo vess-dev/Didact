@@ -1,0 +1,62 @@
+# Foundling (backgrounds/foundling): the background's two d6 tables.
+table: foundling-1
+title: Who took you in?
+dice: d6
+source: backgrounds/foundling
+entries:
+  1:
+    text: "An old hunter. You were both quite happy, until it all ended. Take a Weathered Longbow (d8, bulky) and a Leather Jerkin (1 Armor)."
+    data:
+      gear: [{name: Weathered Longbow, damage: d8, size: bulky}, {name: Leather Jerkin, armor: 1}]
+  2:
+    text: "A wizened apothecary, who taught you the healing arts but maintained a clinical detachment. Take a Healing Unguent (restores d4 STR, 1 use)."
+    data:
+      gear: [{name: Healing Unguent, uses: 1, note: restores d4 STR}]
+  3:
+    text: "A druid, who taught you the language of trees. When it came time to , you took with you only a Gnarled Staff (d8) and left a promise that one day you would return."
+    data:
+      gear: [{name: Gnarled Staff, damage: d8}]
+  4:
+    text: "A gruff blacksmith from a sleepy river town. You were always kept at arm's length. Now the forge is cold, and you've moved on. Take a Smith's Apron (petty) and a set of Oft-mended Chain Mail (2 Armor, bulky)."
+    data:
+      gear:
+        - {name: Smith's Apron, size: petty}
+        - {name: Oft-mended Chain Mail, armor: 2, size: bulky}
+  5:
+    text: "A troupe of traveling entertainers. For a time, they were like family to you. One day you woke up and they were gone with no explanation. Take a Storybook, a Dagger (d6), and some burning questions."
+    data:
+      gear: [Storybook, {name: Dagger, damage: d6}]
+  6:
+    text: "The monks of a secluded forest monastery. When their rules became too strict, and you snuck away. Take a Monk's Habit (warm, petty) and a Spellbook of Control Plants. Control Plants: Nearby plants and trees obey you and gain the ability to move at a slow pace. Leaves grow along the spine, and it smells faintly of decay."
+    data:
+      gear: [{name: Monk's Habit, size: petty, note: warm}, Control Plants Spellbook]
+---
+table: foundling-2
+title: What keeps bad tidings at bay?
+dice: d6
+source: backgrounds/foundling
+entries:
+  1:
+    text: "Pipeweed: Your good luck charm. Conversations tend to flow more easily after a smoke. 6 uses."
+    data:
+      gear: [{name: Pipeweed, uses: 6}]
+  2:
+    text: "Stink Jar: Shattering this jar releases an odor so foul all nearby must make a STR save or immediately vomit. 1 use."
+    data:
+      gear: [{name: Stink Jar, uses: 1}]
+  3:
+    text: "Ivy Worm: A green worm often mistaken for a weed. Swallowed whole, it absorbs any toxins or rot in the body before exiting through the usual way."
+    data:
+      gear: [Ivy Worm]
+  4:
+    text: "Dream Stone: A smooth blue stone that helps recall dreams more clearly. Overuse can cause dream-addiction."
+    data:
+      gear: [Dream Stone]
+  5:
+    text: "Drowning Rod: A finger-sized wooden stick that doubles in size each time it is fully submerged in water. It does not shrink down again."
+    data:
+      gear: [Drowning Rod]
+  6:
+    text: "Rabbit's Foot: You were wearing it when they found you. They say it is the foot of she who left you and that it protects you from witch magic. Petty."
+    data:
+      gear: [{name: Rabbit's Foot, size: petty}]

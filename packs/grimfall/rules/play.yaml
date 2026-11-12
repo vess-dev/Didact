@@ -1,0 +1,925 @@
+# The rest of play (The Core Engine; Surviving the Wasteland; Running the Wasteland; Options &
+# Dials): suspense and the GM's moves, quarrels, vex, bonds and arcs, perks swapped, downtime,
+# armor, vigilance, the weather's drift, and what scenes bring by themselves. Each replaces the
+# parent's rule of the same id; the parent's `tokens`, `tick`, the faction rules and the
+# pre-session and reset triggers are inherited as they are (they read the same in Grimfall), and
+# its talent switch, carousing, vigor and flavor triggers are hidden (pack.yaml).
+action: suspense
+title: GM suspense
+help: >-
+  Suspense is the GM's currency of dramatic timing (kept on the story oracle's state: `didact
+  oracle show`). Earn it by skipping a prompted impact move or by making suspense moves (Build Up,
+  Clue In, Resolve), before each session, for the party's rest with rest resets, an interrupt's
+  messy, a dark omen, a perk that says so (Cannibal, Sneering Imperialist, Devil's Highway; the
+  flashbacks of Explorer and Covert Ops, in place of an impact move). Spend it to strike at any
+  moment (impact moves aimed at a PC who didn't invite them grant a defense roll), or to drop 1d
+  from a pool that refuses to budge (`pool=`). Every challenge brings 2 bonus suspense of its own
+  (`challenge=`). With no numbers, it shows the suspense.
+params:
+  take: {kind: int, default: 0, help: "Suspense the GM takes"}
+  spend: {kind: int, default: 0, help: "Suspense the GM spends"}
+  why: {kind: text, optional: true}
+  pool: {kind: ref, to: track, optional: true, help: "A pool that refuses to budge: each suspense spent drops 1d anyway"}
+  challenge: {kind: ref, to: track, optional: true, help: "A challenge whose own bonus suspense is taken or spent"}
+  oracle: {kind: ref, optional: true, help: "The story oracle's state (supplied)"}
+steps:
+  - if: "default(@oracle, '') == ''"
+    then:
+      - message: "The GM's suspense lives on the story oracle, which hasn't started here yet (a dry run starts nothing): the GM would take {@take} and spend {@spend}."
+    else:
+      - if: "default(@challenge, '') <> ''"
+        then:
+          - let: {own: "default(@challenge.suspense, 0)"}
+          - if: "@spend > @own"
+            then:
+              - stop: "{@challenge.name} has {@own} bonus suspense left, not {@spend}: spend the GM's own instead (`didact do suspense spend={@spend}`)."
+          - set: challenge.suspense
+            value: "@own + @take - @spend"
+          - message: "{@challenge.name}'s bonus suspense: {@challenge.suspense}."
+        else:
+          - if: "@spend > @oracle.suspense"
+            then:
+              - stop: "The GM has {@oracle.suspense} suspense, not {@spend}: take some first (skip a prompted impact move, or make a suspense move)."
+          - if: "@take > 0 or @spend > 0"
+            then:
+              - set: oracle.suspense
+                op: "+="
+                value: "@take - @spend"
+          - message: "GM suspense: {@oracle.suspense}."
+      - if: "default(@why, '') <> ''"
+        then: ["Why: {@why}."]
+      - if: "default(@pool, '') <> '' and @spend > 0"
+        then:
+          - if: "@pool.value <= 0"
+            then: ["{@pool.name} is already empty."]
+            else:
+              - pool: "@pool"
+                mode: drop
+                drop: "@spend"
+                as: dropped
+              - message: "The GM spends suspense: {@pool.name} drops {@spend}d anyway ({@dropped.left}d left)."
+      - if: "@spend > 0 and default(@pool, '') == ''"
+        then:
+          - message: "Spent suspense strikes: an impact move, now or later; a PC it hits who didn't invite it gets a defense roll (`didact do defense`)."
+source: "running-the-wasteland/the-gms-half-of-the-engine; the-core-engine/pools#push-or-pivot; running-the-wasteland/challenges"
+---
+action: suspense-move
+title: A suspense move
+help: >-
+  The GM's suspense moves: Build Up (a vignette before the storm: every PC adds a detail and takes
+  spark, you take suspense), Clue In (cut away to show the players what their characters can't
+  see; take suspense), Foreshadow (telegraph danger for free; if it goes unaddressed, it lands),
+  Resolve (hand the party a way out and take suspense).
+params:
+  move: {enum: [build-up, clue-in, foreshadow, resolve]}
+steps:
+  - if: "'$move' == 'foreshadow'"
+    then: ["Foreshadow: telegraph the danger for free (the floor tiles here are strangely clean; a red dot wanders across your chest); if it goes unaddressed, it lands."]
+    else:
+      - if: "'$move' == 'build-up'"
+        then:
+          - prompt: "Build Up: a vignette before the storm (the horde's dust cloud on the horizon: how do you spend the last hour?): every PC adds a detail, and takes spark."
+          - for: pcs
+            as: member
+            steps:
+              - do: take-spark
+                with: {who: "@member", why: "build up"}
+                go_on: true
+      - if: "'$move' == 'clue-in'"
+        then:
+          - prompt: "Clue In: cut away to show the players what their characters can't see (we see the Legion scout snap his spyglass shut and ride east)."
+      - if: "'$move' == 'resolve'"
+        then:
+          - prompt: "Resolve: hand the party a way out (the Protectron mistakes you for its shift supervisor and waves you all through)."
+      - do: suspense
+        with: {take: 1, why: "$move"}
+source: running-the-wasteland/the-gms-half-of-the-engine
+---
+check: quarrel
+title: Quarrel
+help: >-
+  When two survivors are at genuine cross-purposes and both players agree to settle it, name the
+  stakes (dramatic, not deadly: bruises, not bloodied), then both roll 2d; highest wins. No perks
+  apply; others can assist (1d to a side: `helps_first`, `helps_second`) or pile in at 2d with
+  their own agenda (`third`); spark adds dice. A tie means compromise or another round. The winner
+  narrates how it goes their way; the loser narrates how they take it. The result is final, and
+  everyone involved takes spark.
+params:
+  first: ref
+  second: ref
+  third: {kind: ref, optional: true, help: "A PC piling in at 2d with their own agenda"}
+  helps_first: {kind: ref, optional: true, help: "A PC assisting the first (1d)"}
+  helps_second: {kind: ref, optional: true, help: "A PC assisting the second (1d)"}
+  spark_first: {kind: int, default: 0, help: "Spark the first spends: +1d each"}
+  spark_second: {kind: int, default: 0, help: "Spark the second spends: +1d each"}
+  stakes: {kind: text, optional: true, help: "What winning and losing mean"}
+before:
+  - if: "@spark_first > @first.spark or @spark_second > @second.spark"
+    then:
+      - stop: "Each can spend only the spark they have ({@first.name} {@first.spark}, {@second.name} {@second.spark})."
+  - if: "default(@stakes, '') <> ''"
+    then: ["At stake: {@stakes}."]
+  - if: "@spark_first > 0"
+    then:
+      - set: first.spark
+        op: "-="
+        value: "@spark_first"
+  - if: "@spark_second > 0"
+    then:
+      - set: second.spark
+        op: "-="
+        value: "@spark_second"
+  - roll: "(2 + @spark_first)d6"
+    as: side_a
+  - if: "default(@helps_first, '') <> ''"
+    then:
+      - roll: 1d6
+        as: help_a
+  - roll: "(2 + @spark_second)d6"
+    as: side_b
+  - if: "default(@helps_second, '') <> ''"
+    then:
+      - roll: 1d6
+        as: help_b
+  - if: "default(@third, '') <> ''"
+    then:
+      - roll: 2d6
+        as: side_c
+  - let:
+      best_a: "max(max(@side_a.dice), if(default(@helps_first, '') <> '', max(@help_a.dice), 0))"
+      best_b: "max(max(@side_b.dice), if(default(@helps_second, '') <> '', max(@help_b.dice), 0))"
+      best_c: "if(default(@third, '') <> '', max(@side_c.dice), 0)"
+  - message: "{@first.name} {@best_a} · {@second.name} {@best_b}"
+  - if: "@best_c > 0"
+    then: ["{@third.name} {@best_c}"]
+  - do: take-spark  # a side character takes none: carry on
+    with: {who: "@first"}
+    go_on: true
+  - do: take-spark
+    with: {who: "@second"}
+    go_on: true
+  - if: "default(@third, '') <> ''"
+    then:
+      - do: take-spark
+        with: {who: "@third"}
+        go_on: true
+  - if: "default(@helps_first, '') <> ''"
+    then:
+      - do: take-spark
+        with: {who: "@helps_first"}
+        go_on: true
+  - if: "default(@helps_second, '') <> ''"
+    then:
+      - do: take-spark
+        with: {who: "@helps_second"}
+        go_on: true
+bands:
+  first: "@best_a > @best_b and @best_a > @best_c"
+  second: "@best_b > @best_a and @best_b > @best_c"
+  third: "@best_c > @best_a and @best_c > @best_b"
+  tie: else
+on:
+  first: ["{@first.name} wins: they narrate how it goes their way, then the others how they take it. The result is final."]
+  second: ["{@second.name} wins: they narrate how it goes their way, then the others how they take it. The result is final."]
+  third: ["{@third.name} wins: they narrate how it goes their way, then the others how they take it. The result is final."]
+  tie: ["A tie: compromise, or another round (roll again)."]
+source: the-core-engine/thread-and-tangles#quarrels
+---
+action: vex
+title: Vex
+help: >-
+  A flash of hot emotion: fight, flight, freeze, freak out. You pick how it plays; it lasts a beat
+  or two. It comes as an impact move (Hit Hard), a chem's kick (Psycho's anger) or a horror's first
+  sight; a Charmer's Sway can calm or provoke it.
+params:
+  who: ref
+  response: {enum: [fight, flight, freeze, freak-out], optional: true, help: "How it plays, once picked"}
+steps:
+  - if: "'$response' == ''"
+    then:
+      - prompt: "{@who.name} takes vex, a flash of hot emotion: pick how it plays (fight, flight, freeze, freak out); it lasts a beat or two (`didact do vex who={@who.id} response=…`)."
+    else: ["{@who.name} takes vex: {if('$response' == 'freak-out', 'freak out', '$response')}, for a beat or two."]
+  - if: "'quiet-reflection' in @who.perks"
+    then: ["Quiet Reflection: once per session, {@who.name} can shake off vex entirely."]
+source: the-core-engine/damage-and-recovery#vex
+---
+action: change-bond
+title: Change a bond
+help: >-
+  Toward each other PC, hold one bond: an intensity plus a nature (lowkey doubts, tense rivalry,
+  deep affection). Change it when something lands: give a short vignette, and the other player
+  takes spark.
+params:
+  who: ref
+  toward: ref
+  bond: {kind: text, help: "The new bond, an intensity and a nature: 'growing curiosity'"}
+  old: {kind: text, optional: true, help: "The bond it replaces, as written on the sheet"}
+steps:
+  - if: "default(@old, '') <> ''"
+    then:
+      - if: "not (@old in @who.bonds)"
+        then:
+          - stop: "{@who.name} has no bond written '{@old}' (bonds: {@who.bonds})."
+      - set: who.bonds
+        op: "-="
+        value: $old
+  - set: who.bonds
+    op: "+="
+    value: "$bond with {@toward.name}"
+  - message: "{@who.name}'s bond with {@toward.name} is now {@bond}: give a short vignette."
+  - do: take-spark
+    with: {who: "@toward"}
+    go_on: true
+source: the-core-engine/thread-and-tangles#bonds
+---
+action: resolve-arc
+title: Resolve a story arc
+help: >-
+  One group arc, one or two character arcs: short, evocative directions. Resolving one with a real
+  moment earns spark; the next stretch of road can follow.
+params:
+  who: ref
+  arc: {kind: text, optional: true, help: "The arc resolved, as written on the sheet"}
+  next: {kind: text, optional: true, help: "Where it goes next, if it continues"}
+steps:
+  - if: "default(@arc, '') <> ''"
+    then:
+      - set: who.arcs
+        op: "-="
+        value: $arc
+  - if: "default(@next, '') <> ''"
+    then:
+      - set: who.arcs
+        op: "+="
+        value: $next
+  - message: "{@who.name} resolves a story arc with a real moment."
+  - do: take-spark
+    with: {who: "@who"}
+    go_on: true
+source: the-core-engine/thread-and-tangles#story-arcs
+---
+procedure: perk-pool
+title: The pool a perk brings
+help: >-
+  A perk with a per-session pool of its own, made at once and the sheet pointed at it: Power Armor
+  Training's 3d Plating, Pack Rat's 3d Pack, Chemist's 4d Chems (5d with Quantum Chemist), Idiot
+  Savant's 3d Winging It (a power pool), Serendipity's 2d, Wasteland Warlord's 3d Standing. The
+  same pools character creation and leveling up make (chargen/pc.yaml, `&perk-pool`).
+params:
+  who: ref
+  perk: {kind: text}
+steps:
+  - if: "@perk == 'power-armor-training'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}'s Plating"
+          fields: {kind: pool, pool: resource, value: {value: 3, max: 3}, note: "Spent until the next session (breached, until it's repaired). Plating (Power Armor Training): suited up, when physical harm would land on you, roll it and the frame eats the hit (`didact do plating`); a disaster while suited breaches it."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.plating
+        value: "@made"
+  - if: "@perk == 'pack-rat'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}'s Pack"
+          fields: {kind: pool, pool: resource, value: {value: 3, max: 3}, note: "Empty until the next session. Pack (Pack Rat): roll it to produce the ordinary gear the moment needs (never chems, stimpaks, or relics)."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.pack
+        value: "@made"
+  - if: "@perk == 'idiot-savant'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}'s Winging It"
+          fields: {kind: pool, pool: power, value: {value: 3, max: 3}, note: "Spent until the next session. Winging It (Idiot Savant): roll it in place of a stat when you attempt something you've no business knowing how to do (`didact do pool-action`)."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.winging_it
+        value: "@made"
+  - if: "@perk == 'serendipity'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}'s Serendipity"
+          fields: {kind: pool, pool: resource, value: {value: 2, max: 2}, note: "Luck's spent until the next session. Serendipity: when you would take harm while already carrying harm, roll it, and the blow just misses (`didact do harm … serendipity=<this>`)."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.serendipity
+        value: "@made"
+  - if: "@perk == 'wasteland-warlord'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}'s Standing"
+          fields: {kind: pool, pool: resource, value: {value: 3, max: 3}, note: "You've asked too much, until the next session. Standing (Wasteland Warlord): your raider standing; roll it when you call on muscle, tribute, or an audience."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.standing_pool
+        value: "@made"
+  - if: "@perk == 'chemist'"
+    then:
+      - let: {chems_dice: "4 + if('quantum-chemist' in @who.perks, 1, 0)"}
+      - entity:
+          type: track
+          name: "{@who.name}'s Chems"
+          fields: {kind: pool, pool: resource, value: {value: "@chems_dice", max: "@chems_dice"}, note: "No more doses until the next session's batch. Chems (Chemist): roll it to hand over a dose of any standard chem or a signature recipe (`didact do chem … from=chems`); drop 1d first for a potent dose."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.chems_pool
+        value: "@made"
+source: "the-classes/the-sledge#power-armor-training; the-classes/the-everlast#pack-rat; the-classes/the-inventor#chemist; the-classes/the-longshot#idiot-savant; the-classes/the-longshot#serendipity; the-perk-compendium/charmer-perks#wasteland-warlord"
+---
+procedure: pool-gone
+title: A pool no longer needed
+help: "The sheet stops pointing at a pool it no longer needs (the one a swapped-out perk gave, a cured timer to worse), so no rule finds or refreshes it; its record can go too, by hand (no rule deletes one: `didact rm`)."
+params:
+  who: ref
+  field: {kind: text}
+steps:
+  - if: "default(@who.$field, '') <> ''"
+    then:
+      - prompt: "No longer needed: `didact rm {@who.$field}` deletes the record ({@who.name}'s sheet stops pointing at it now)."
+      - unset: who.$field
+source: "options-and-dials/tone-dials#scale; surviving-the-wasteland/downtime"
+---
+action: switch-perk
+title: Swap a perk
+help: >-
+  Swap a perk for another: at the smaller scale's cap (level 3), at story milestones; after
+  retraining it in downtime (pursue a goal); or as the GM allows. Never another class's Core Perk;
+  a perk once, unless it's repeatable.
+params:
+  who: ref
+  drop: {kind: text, help: "The perk given up (its id)"}
+  take: {kind: text, help: "The new perk (its id)"}
+  why: {kind: text, optional: true}
+steps:
+  - if: "not (@drop in @who.perks)"
+    then:
+      - stop: "{@who.name} has no perk {@drop} (perks: {@who.perks})."
+  - if: "@take in @who.perks"
+    then:
+      - stop: "{@who.name} already has {@take} (a repeatable perk taken again is a level's new perk: `didact char advance`)."
+  - if: "@take == 'unstoppable-force' or @take == 'awareness' or @take == 'toughness' or @take == 'gift-of-gab' or @take == 'science' or @take == 'the-professional' or @take == 'luck-of-the-draw'"
+    then:
+      - stop: "{@take} is a Core Perk: its class's alone."
+  - set: who.perks
+    op: "-="
+    value: $drop
+  - set: who.perks
+    op: "+="
+    value: $take
+  - message: "{@who.name} swaps {@drop} for {@take}."
+  - do: perk-pool
+    with: {who: "@who", perk: $take}
+  - let:
+      gone: >-
+        if(@drop == 'power-armor-training', 'plating', if(@drop == 'pack-rat', 'pack', if(@drop == 'chemist',
+        'chems_pool', if(@drop == 'idiot-savant', 'winging_it', if(@drop == 'serendipity', 'serendipity',
+        if(@drop == 'wasteland-warlord', 'standing_pool', ''))))))
+  - if: "@gone <> ''"
+    then:
+      - do: pool-gone
+        with: {who: "@who", field: "@gone"}
+  - if: "default(@why, '') <> ''"
+    then: ["Why: {@why}."]
+source: "options-and-dials/tone-dials#scale; surviving-the-wasteland/downtime"
+---
+action: downtime
+title: Downtime
+help: >-
+  When time passes (a month behind settlement walls, a season in a bunker), per-session perks
+  refresh, stimpaks refill, and each survivor picks one downtime action, or two different ones if
+  they sold off a haul (`also`): rest (shake every non-permanent condition; marks and harm already
+  clear with any real rest), venture (a story roll), blow off steam (a vignette and spark), pursue a
+  goal (a task pool: `goal`), or plan ahead (`plan`: a special thread). A plan ahead is lost when
+  time passes again. Meanwhile the GM rolls the faction pools, then picks one and runs it dry.
+params:
+  who: ref
+  act: {enum: [rest, venture, steam, pursue, plan], optional: true, help: "The downtime action"}
+  also: {enum: [rest, venture, steam, pursue, plan], optional: true, help: "A second, different one, when a haul was sold off"}
+  plan: {kind: text, optional: true, help: "Plan ahead: a few words on the preparation"}
+  goal: {kind: ref, to: track, optional: true, help: "Pursue a goal: its task pool"}
+  project: {kind: text, optional: true, help: "Pursue a goal: the project, by name (its task pool is made the first time)"}
+  dice: {kind: int, default: 4, help: "Pursue a goal: a new project's task pool (2d short, 4d medium, 8d long, 6d between)"}
+  stimpaks: {kind: ref, to: track, optional: true, help: "The survivor's Stimpaks pool, refilled in downtime (left out: the sheet's own)"}
+steps:
+  - if: "'$act' == ''"
+    then:
+      - stop: "Pick {@who.name}'s downtime action: act=rest, venture, steam (blow off steam), pursue or plan (and also=… for a second, different one if they sold off a haul). `didact table show downtime-actions` says what each does."
+  - if: "'$also' <> '' and '$also' == '$act'"
+    then:
+      - stop: "Selling off a haul earns a second, different downtime action, not {@act} twice."
+  - if: "default(@who.plan, '') <> ''"
+    then:
+      - unset: who.plan
+      - message: "Time passes: {@who.name}'s plan-ahead thread is lost."
+  - set: who.marks
+    value: []
+  - set: who.harm
+    value: []
+  - set: who.rad_marks
+    value: []
+  - message: "{@who.name}'s marks and harm clear (any real rest clears them)."
+  - if: "default(@goal, '') <> ''"
+    then:
+      - do: downtime-action
+        with: {who: "@who", act: $act, plan: $plan, goal: "@goal"}
+    else:
+      - do: downtime-action
+        with: {who: "@who", act: $act, plan: $plan, project: $project, dice: "@dice"}
+  - if: "'$also' <> ''"
+    then:
+      - if: "default(@goal, '') <> ''"
+        then:
+          - do: downtime-action
+            with: {who: "@who", act: $also, plan: $plan, goal: "@goal"}
+        else:
+          - do: downtime-action
+            with: {who: "@who", act: $also, plan: $plan, project: $project, dice: "@dice"}
+  - do: perk-resets
+    with: {who: "@who"}
+  - if: "default(@stimpaks, '') <> ''"
+    then:
+      - do: refresh
+        with: {pool: "@stimpaks"}
+    else:
+      - if: "default(@who.stimpaks, '') <> ''"
+        then:
+          - do: refresh
+            with: {pool: "@who.stimpaks"}
+        else:
+          - prompt: "Stimpaks refill in downtime: `didact do refresh pool=<{@who.name}'s stimpaks>` (or point the sheet at them: `didact set {@who.id} stimpaks=<track>`)."
+  - prompt: "The GM, once for the whole downtime: roll the faction pools (`didact faction turn`), then pick one and run it dry (`didact do faction-goal who=<faction> pool=<pool>`). The wasteland moves too."
+source: "surviving-the-wasteland/downtime; the-core-engine/damage-and-recovery#downtime"
+---
+procedure: pursue-roll
+title: "Pursue a goal: its pool, rolled"
+help: "Pursue a goal: the project's task pool is rolled each time it's picked; at 0d it's done."
+params:
+  who: ref
+  goal: {kind: ref, to: track}
+steps:
+  - if: "@goal.value <= 0"
+    then: ["{@goal.name} is already done."]
+    else:
+      - pool: "@goal"
+        as: progress
+      - message: "Pursue a goal: {@who.name} works on {@goal.name} ({@progress.left}d left)."
+      - if: "@progress.empty"
+        then:
+          - prompt: "{@goal.name} is done (a perk retrained: `didact do switch-perk who={@who.id} drop=… take=…`; a wise: `didact set {@who.id} wises-='…' wises+='…'`)."
+source: surviving-the-wasteland/downtime
+---
+procedure: downtime-action
+title: A downtime action
+help: "One of the downtime actions: rest, venture, blow off steam, pursue a goal, plan ahead."
+params:
+  who: ref
+  act: {enum: [rest, venture, steam, pursue, plan]}
+  plan: {kind: text, optional: true}
+  goal: {kind: ref, to: track, optional: true}
+  project: {kind: text, optional: true}
+  dice: {kind: int, default: 4}
+steps:
+  - if: "'$act' == 'rest'"
+    then:
+      - prompt: "Rest: {@who.name} shakes every non-permanent condition ({@who.conditions}); the GM may rule that a long-term one lingers (`didact set {@who.id} conditions-='…'`)."
+  - if: "'$act' == 'venture'"
+    then:
+      - check: story-roll
+        with: {question: "How does {@who.name}'s venture go?"}
+        as: venture
+      - prompt: "Venture: odd jobs, courier runs, a solo score. On a perfect, a minor haul, a rumor, or a new ally; on a messy or worse, it's complicated."
+  - if: "'$act' == 'steam'"
+    then:
+      - prompt: "Blow off steam: give a vignette of how {@who.name} unwinds (the bar, the fights, the chapel, the jukebox)."
+      - do: take-spark
+        with: {who: "@who", why: "blow off steam"}
+        go_on: true
+  - if: "'$act' == 'pursue'"
+    then:
+      - if: "default(@goal, '') <> ''"
+        then:
+          - do: pursue-roll
+            with: {who: "@who", goal: "@goal"}
+        else:
+          - if: "default(@project, '') <> ''"
+            then:
+              - entity:
+                  type: track
+                  name: "{@who.name}: {@project}"
+                  fields: {kind: pool, pool: task, value: {value: "@dice", max: "@dice"}, note: done}
+                  links: [{rel: of, to: "@who"}]
+                as: project_pool
+              - do: pursue-roll
+                with: {who: "@who", goal: "@project_pool"}
+            else:
+              - prompt: "Pursue a goal: a project with a task pool, rolled each time {@who.name} picks this (build the still, mod the rifle, retrain a wise or a perk, cook a legend-grade batch): `didact do downtime who={@who.id} act=pursue project='<the project>'` (`dice=` for its pool, 4d unless said: 2d short, 8d long, 6d between); the same name rolls the same pool the next time."
+  - if: "'$act' == 'plan'"
+    then:
+      - if: "default(@plan, '') <> ''"
+        then:
+          - set: who.plan
+            value: $plan
+          - message: "Plan ahead: {@who.name} prepares ({@plan}): a special thread, on top of their usual two, usable only on details from that preparation; lost when time passes again."
+        else:
+          - prompt: "Plan ahead: write a few words about how {@who.name} prepares: `didact set {@who.id} plan='…'`."
+source: surviving-the-wasteland/downtime
+---
+action: armor
+title: Armor pool
+help: >-
+  An Armor pool (the armor option: light armor 1d each session, heavy 2d; and the Armory's heavy
+  suits, which carry their own): after a physical consequence lands, roll it to lessen the
+  consequence, as a messy defense would. Grit and Plating still avoid harm outright; Armor only
+  lessens it. It comes back each session (`didact do refresh`).
+params:
+  who: ref
+  pool: {kind: ref, to: track, optional: true, help: "The Armor pool (left out: the sheet's own; a heavy suit's own, named)"}
+steps:
+  - if: "default(@pool, '') <> ''"
+    then:
+      - do: armor-roll
+        with: {who: "@who", pool: "@pool"}
+    else:
+      - if: "default(@who.armor_pool, '') == ''"
+        then:
+          - stop: "Name the Armor pool (`pool=<track>`: a heavy suit carries its own), or point {@who.name}'s sheet at it: `didact set {@who.id} armor_pool=<track>`."
+      - do: armor-roll
+        with: {who: "@who", pool: "@who.armor_pool"}
+source: "options-and-dials/gear-and-survival#armor; the-armory/unique-armors"
+---
+procedure: armor-roll
+title: An Armor pool, rolled
+help: "After a physical consequence lands, roll the Armor pool to lessen it, as a messy defense would."
+params:
+  who: ref
+  pool: {kind: ref, to: track}
+steps:
+  - if: "@pool.value <= 0"
+    then:
+      - stop: "{@pool.name} is spent until the next session."
+  - pool: "@pool"
+    as: rolled
+  - message: "{@who.name}'s armor lessens the physical consequence, as a messy defense would ({@pool.name}: {@rolled.left}d left)."
+source: "options-and-dials/gear-and-survival#armor; the-armory/unique-armors"
+---
+check: vigilance
+title: Vigilance
+help: >-
+  Nobody rolls to notice: against a hidden danger, the GM spotlights the survivor it matters to and,
+  by their vantage, gives a reveal (they see it plainly), a hint (one shot at intuition) or a strike
+  (it lands: the GM spends suspense, and they get a defense roll). With active vigilance (an
+  option), the spotlighted PC makes a story roll shaped by their vantage (`dice`, `thorns`):
+  perfect = reveal, messy = hint, grim = the strike lands. A perk that guarantees a hint (the
+  Pathfinder's Keen eye) turns a grim into a hint; one that guarantees more (Light Step against
+  traps: a reveal; Hacker with technology: a hint or reveal) sets `floor`.
+params:
+  who: ref
+  dice: {kind: int, default: 2}
+  thorns: {kind: int, default: 0}
+  floor: {enum: [hint, reveal], optional: true, help: "What a perk guarantees here (Keen eye's hint is read from the sheet)"}
+before:
+  - let: {floor_now: "if('$floor' <> '', '$floor', if('awareness' in @who.perks, 'hint', ''))"}
+  - if: "not @option.active_vigilance and @floor_now <> ''"
+    then:
+      - stop: "Without active vigilance (an option), the GM picks a reveal, a hint or a strike by {@who.name}'s vantage (`didact table show vigilance`), and {@who.name} always gets at least a {@floor_now}."
+  - if: "not @option.active_vigilance"
+    then:
+      - stop: "Without active vigilance (an option), the GM picks a reveal, a hint or a strike by {@who.name}'s vantage (`didact table show vigilance`)."
+  - roll: "(@dice)d6"
+    as: roll
+  - if: "@thorns > 0"
+    then:
+      - roll: "(@thorns)d8"
+        as: thorn
+  - let: {cuts: "if(@thorns > 0, count(@thorn.dice, 7) + count(@thorn.dice, 8), 0)"}
+  - let: {level: "if(max(@roll.dice) == 6, 3, if(max(@roll.dice) >= 4, 2, 1)) - @cuts"}
+bands:
+  reveal: "@level >= 3 or count(@roll.dice, 6) >= 2 or @floor_now == 'reveal'"
+  hint: "@level == 2 or @floor_now == 'hint'"
+  strike: else
+on:
+  reveal: ["Reveal: {@who.name} sees it plainly (the tripwire glints)."]
+  hint:
+    - message: "Hint: one shot at intuition (the street is too quiet)."
+    - if: "@level < 2 and @floor_now == 'hint'"
+      then: ["(The grim turns into a hint: {@who.name}'s perk guarantees one.)"]
+  strike: ["Strike: it lands. The GM spends suspense (`didact do suspense spend=1`), and {@who.name} gets a defense roll."]
+source: "running-the-wasteland/vigilance; the-core-engine/vantage#vigilance; options-and-dials/table-tools#active-vigilance; the-classes/the-pathfinder#awareness"
+---
+action: grow-pool
+title: Grow a pool
+help: >-
+  More dice for a pool, in its size and in what's left: a sold haul's +2d to a Caps pool (at most
+  8d; Cap Collector 1d more), a haul traded into a community's Stockpile (+2d minor, +4d major,
+  +8d mythic), Quantum Chemist's larger Chems pool.
+params:
+  pool: {kind: ref, to: track}
+  by: {kind: int, default: 1}
+  most: {kind: int, default: 0, help: "The most it can hold (0: no limit); Caps: 8"}
+steps:
+  - let:
+      size: "if(@most > 0, min(@most, @pool.value.max + @by), @pool.value.max + @by)"
+      left: "if(@most > 0, min(@most, @pool.value + @by), @pool.value + @by)"
+  - set: pool.value.max
+    value: "max(@size, @left)"
+  - set: pool.value.value
+    value: "@left"
+  - set: pool.fields.status
+    value: active
+  - message: "{@pool.name} grows: {@left}d of {@pool.value.max}d."
+source: "surviving-the-wasteland/caps-and-barter; running-the-wasteland/settlements-worth-saving"
+---
+action: drift
+title: Weather & drift
+help: >-
+  Track drifting conditions (weather, rad-storms, the mood of an occupying army) as a wandering
+  step: each downtime or dawn, roll a d6: 1-2, a step toward calm; 3-4, hold; 5-6, a step toward
+  the green, along calm, wind, dust, rad-storm, the sky goes green. It wanders back the way weather
+  does. `at=<place>` keeps the step on a place (its `drift`).
+params:
+  at: {kind: ref, to: loc, optional: true, help: "The place whose drift it is (kept as its drift)"}
+  from: {enum: [calm, wind, dust, rad-storm, the-sky-goes-green], optional: true, help: "The step it's at, without a place"}
+steps:
+  - let:
+      now: "if(default(@at, '') <> '', default(@at.drift, 'calm'), if('$from' <> '', '$from', 'calm'))"
+  - let:
+      step: "if(@now == 'wind', 2, if(@now == 'dust', 3, if(@now == 'rad-storm', 4, if(@now == 'the sky goes green' or @now == 'the-sky-goes-green', 5, 1))))"
+  - table: drift
+    as: move
+  - let: {next: "max(1, min(5, @step + @move.step))"}
+  - let: {name: "if(@next == 1, 'calm', if(@next == 2, 'wind', if(@next == 3, 'dust', if(@next == 4, 'rad-storm', 'the sky goes green'))))"}
+  - if: "default(@at, '') <> ''"
+    then:
+      - set: at.drift
+        value: "@name"
+  - message: "The drift: {@now} → {@name}."
+source: running-the-wasteland/the-overseers-prep-kit#weather-and-drift
+---
+action: supplies
+title: "Supplies: every survivor's, rolled"
+help: >-
+  With the supplies option, each survivor has a 4d Supplies resource pool (ammunition, rations, the
+  little things): roll it after heavy use, and as time passes away from settlements; at 0d, hunger
+  and thirst start writing the thorns. This rolls every survivor's at once (their sheets'
+  `supplies`); `who=` rolls one survivor's, after heavy use.
+params:
+  who: {kind: ref, optional: true, help: "Only this survivor's (after heavy use)"}
+steps:
+  - if: "not @option.supplies"
+    then:
+      - stop: "Supplies are an option (`didact campaign profile supplies=on`)."
+  - if: "default(@who, '') <> ''"
+    then:
+      - if: "default(@who.supplies, '') == ''"
+        then:
+          - stop: "{@who.name}'s sheet points at no Supplies pool: `didact set {@who.id} supplies=<track>`."
+      - do: supplies-roll
+        with: {who: "@who", pool: "@who.supplies"}
+    else:
+      - for: pcs
+        as: member
+        steps:
+          - if: "default(@member.supplies, '') <> ''"
+            then:
+              - do: supplies-roll
+                with: {who: "@member", pool: "@member.supplies"}
+                go_on: true
+source: options-and-dials/gear-and-survival#supplies
+---
+procedure: supplies-roll
+title: A Supplies pool, rolled
+help: "Use it, then roll it: the use always works, and the roll only shows how much is left; at 0d, hunger and thirst start writing the thorns."
+params:
+  who: ref
+  pool: {kind: ref, to: track}
+steps:
+  - if: "@pool.value <= 0"
+    then: ["{@who.name}'s {@pool.name} is out: hunger and thirst write the thorns."]
+    else:
+      - pool: "@pool"
+        as: used
+      - message: "{@pool.name}: {@used.left}d left{if(@used.empty, ': hunger and thirst start writing the thorns', '')}."
+source: options-and-dials/gear-and-survival#supplies
+---
+trigger: supplies-day
+title: "Supplies: time passes away from settlements"
+help: "With the supplies option, roll each survivor's 4d Supplies pool after heavy use, and as time passes away from settlements; at 0d, hunger and thirst start writing the thorns."
+on: time
+when: "@option.supplies and @time.passed >= 86400"
+steps:
+  - prompt: "Supplies (an option): time passes; away from settlements, roll every survivor's Supplies pool: `didact do supplies`. At 0d, hunger and thirst start writing the thorns."
+source: options-and-dials/gear-and-survival#supplies
+---
+trigger: scene-end-dropped
+title: Back after being dropped
+help: "A dropped survivor is out of the scene: resolve it by its end, and they're back afterwards (on a perfect, just out until the scene ends)."
+on: scene_end
+for: pcs
+when: "'dropped' in @who.harm"
+params:
+  who: ref
+steps:
+  - prompt: "{@who.name} was dropped this scene: make the story roll now if it isn't made yet (`didact do dropped who={@who.id}`); unless their story ended, they're back once the scene is over (`didact set {@who.id} harm-=dropped`)."
+source: the-core-engine/damage-and-recovery#dropped
+---
+action: end-story
+title: The end of their story
+help: >-
+  When a dropped survivor's story roll comes up grim, it's dire: a permanent condition, or the end
+  of their story: sacrifice (one last automatic action, then the credits), retirement (bow out
+  soon: if you're dropped again first, you die), or another end you choose. Long-term and
+  permanent changes to your survivor, death included, are always yours to call.
+params:
+  who: ref
+  end: {enum: [sacrifice, retirement, another]}
+steps:
+  - if: "'$end' == 'sacrifice'"
+    then:
+      - prompt: "Sacrifice: {@who.name} takes one last automatic action, then the credits. Make it count."
+  - if: "'$end' == 'retirement'"
+    then:
+      - set: who.retiring
+        value: true
+      - message: "Retirement: {@who.name} bows out soon; if they're dropped again first, they die."
+  - if: "'$end' == 'another'"
+    then:
+      - prompt: "Another end: the player chooses how {@who.name}'s story ends."
+source: the-core-engine/damage-and-recovery#dropped
+---
+action: refresh
+title: Refresh a pool
+help: >-
+  A pool back to its full size: per-session perk and arcana pools when a new session starts
+  (Plating, Pack, Chems, Winging It, Serendipity, Standing, an Armor pool, a relic's Aid or Cells;
+  never a pool with a unique reset, which only its own named reset refills), Stimpaks after a night
+  somewhere safe or in downtime (or a restock, a looted stash), a pool a perfect scavenge refills.
+params:
+  pool: {kind: ref, to: track}
+steps:
+  - set: pool.value.value
+    value: "@pool.value.max"
+  - set: pool.fields.status
+    value: active
+  - message: "{@pool.name} is back to {@pool.value}d."
+source: "the-classes/introduction#wells-and-dice; the-armory/introduction; surviving-the-wasteland/stimpaks"
+---
+trigger: pre-session-gm
+title: Before a session, for the GM
+help: "Before each session after the first, the GM takes suspense and stitches the survivors' best moments into the \"Previously, on…\" that opens the night."
+on: session_start
+when: "@session > 1"
+params:
+  oracle: ref
+steps:
+  - do: suspense
+    with: {take: 1, why: "before the session"}
+  - prompt: "Before the session: once every player has shared their survivor's best moment, stitch the moments into the \"Previously, on…\" that opens the night."
+source: the-core-engine/experience#sessions-start-warm
+---
+action: thread
+title: Spend thread
+help: >-
+  Thread is authorship: 2 per session. Spend 1 to add a story detail beyond set dressing (gear
+  you'd plausibly have, a contact in this town, a rumor that pans out): it must fit your vantage
+  (at least doubtfully) or tie to a story arc; the GM can call for a story roll on the bold ones,
+  add nuance, or veto what breaks the story. A detail can't override a roll or contradict what's
+  already established, and details that touch another PC need their okay. `plan`: the special
+  thread of a plan ahead, only for details from that preparation. `flashback`: Explorer's or Covert
+  Ops' flashback (a 3d montage roll; the GM always takes suspense in place of an impact move);
+  `find`: Fortune Finder's find (a 2d story roll; the better it goes, the better the find).
+params:
+  who: ref
+  detail: {kind: text, optional: true, help: "The story detail"}
+  plan: {kind: flag, default: false, help: "Spend the plan-ahead thread (downtime) instead"}
+  flashback: {kind: flag, default: false, help: "Explorer or Covert Ops: flash back to the prep (a 3d montage roll)"}
+  find: {kind: flag, default: false, help: "Fortune Finder: turn up exactly what you need right now (a 2d story roll)"}
+steps:
+  - if: "@who.side"
+    then:
+      - stop: "{@who.name} is a side character: no spark or thread."
+  - if: "@plan"
+    then:
+      - if: "default(@who.plan, '') == ''"
+        then:
+          - stop: "{@who.name} has no plan-ahead thread (a downtime action: `didact do downtime who={@who.id} act=plan plan='…'`)."
+      - unset: who.plan
+      - message: "{@who.name} spends the plan-ahead thread, on a detail from that preparation."
+    else:
+      - if: "@who.thread < 1"
+        then:
+          - stop: "{@who.name} has no thread left this session."
+      - set: who.thread
+        op: "-="
+        value: 1
+      - message: "{@who.name} spends a thread ({@who.thread} left): a story detail beyond set dressing, fitting their vantage or tied to a story arc."
+  - if: "default(@detail, '') <> ''"
+    then: ["The detail: {@detail}. The GM can call for a story roll on a bold one, add nuance, or veto what breaks the story."]
+  - if: "@flashback"
+    then:
+      - if: "not ('explorer' in @who.perks or 'covert-ops' in @who.perks)"
+        then:
+          - stop: "A flashback is Explorer's or Covert Ops'."
+      - check: montage
+        with: {who: "@who", dice: 3}
+      - message: "The GM always takes suspense in place of an impact move on this flashback (`didact do suspense take=1`)."
+  - if: "@find"
+    then:
+      - if: "not ('fortune-finder' in @who.perks)"
+        then:
+          - stop: "Turning up what you need is Fortune Finder's."
+      - check: story-roll
+        with: {dice: 2, question: "How good is the find?"}
+      - message: "Fortune Finder: the better it goes, the better the find; it's always a little improbable."
+source: "the-core-engine/thread-and-tangles#thread; surviving-the-wasteland/downtime; the-classes/the-pathfinder#explorer; the-classes/the-ace#covert-ops; the-classes/the-longshot#fortune-finder"
+---
+action: treat
+title: Treatment
+help: >-
+  Treatment takes time, tools, and know-how (a doctor's table, a med-kit, steady hands). It nearly
+  always works; the drama is what it costs. Marks are too light to bother treating; harm clears
+  with treatment (`heal`, else desperate first), and conditions clear when the fiction says so
+  (`condition`). Mid-firefight, treating a wound under fire is a risky action roll (the Inventor's
+  Field Surgeon is built for it: +1d).
+params:
+  who: ref
+  heal: {enum: [bloodied, rattled, desperate], optional: true, help: "The harm treated (left out: desperate first)"}
+  condition: {kind: text, optional: true, help: "A condition the treatment clears, as written on the sheet"}
+steps:
+  - if: "default(@condition, '') <> ''"
+    then:
+      - if: "not (@condition in @who.conditions)"
+        then:
+          - stop: "{@who.name} has no condition written '{@condition}' (conditions: {@who.conditions})."
+      - set: who.conditions
+        op: "-="
+        value: $condition
+      - message: "Treatment clears {@who.name}'s {@condition}."
+      - if: "'Lethal Dose' in @condition"
+        then:
+          - do: pool-gone
+            with: {who: "@who", field: lethal_dose}
+      - if: "'Bleeding Out' in @condition"
+        then:
+          - do: pool-gone
+            with: {who: "@who", field: bleeding_out}
+    else:
+      - let:
+          healed: >-
+            if('$heal' <> '' and '$heal' in @who.harm, '$heal', if('desperate' in @who.harm, 'desperate',
+            if('bloodied' in @who.harm, 'bloodied', if('rattled' in @who.harm, 'rattled', ''))))
+      - if: "@healed == ''"
+        then:
+          - stop: "{@who.name} carries no harm to treat (marks are too light to bother: they clear themselves)."
+      - set: who.harm
+        op: "-="
+        value: "@healed"
+      - message: "Treatment clears {@who.name}'s {@healed}."
+  - prompt: "It nearly always works; the drama is what it costs: the time, the tools, the doctor's price (a Caps roll: `didact do spend`), what the wait lets close in."
+source: the-core-engine/damage-and-recovery#healing
+---
+# Fights (combat_start and combat_end): what the book counts per fight, said when a fight is run
+# with `didact combat start` and `combat end`. Nothing depends on the tracker: a table that plays its
+# fights without it loses only these reminders.
+trigger: fight-starts
+title: A fight starts
+help: >-
+  What comes back with every fight: the per-fight edges of the Armory's named weapons and armors
+  (the first shot, cut, swing or punch of a fight at +1d, a once-per-fight trick), and a foe's own
+  once-per-fight moves (its card's note).
+on: combat_start
+steps:
+  - prompt: "A fight starts: per-fight edges come back (the first shot, cut, swing or punch of any fight at +1d on the named weapons that say so; a once-per-fight trick), and so do a foe's once-per-fight moves (its card's note). Enemies never roll: a dangerous foe is its pool (`didact gen run grimfall.foe`)."
+source: "running-the-wasteland/combat-rulings; the-armory/unique-weapons"
+---
+trigger: fight-starts-for-each
+title: A fight starts, for each survivor in it
+help: "Kamikaze (a quirk): the first impact move of any fight finds you, if it can. United We Stand: while the party fights a larger force, each ally shrugs off the first vex that lands on them in that fight."
+on: combat_start
+for: pcs
+when: "@who.id in @combat.fighters and ('Kamikaze' in default(@who.quirk, '') or 'united-we-stand' in @who.perks)"
+params:
+  who: ref
+steps:
+  - if: "'Kamikaze' in default(@who.quirk, '')"
+    then: ["Kamikaze: the first impact move of this fight finds {@who.name}, if it can."]
+  - if: "'united-we-stand' in @who.perks"
+    then: ["United We Stand: while the party fights a larger force, each of {@who.name}'s allies shrugs off the first vex that lands on them in this fight."]
+source: "options-and-dials/quirks; the-perk-compendium/sledge-perks#united-we-stand"
+---
+trigger: fight-ends-for-each
+title: A fight ends, for each survivor in it
+help: "Adrenaline: a survivor's blood stays up until no threat remains, they're dropped, or they push themselves to stand down."
+on: combat_end
+for: pcs
+when: "@who.id in @combat.fighters and 'adrenaline' in @who.perks"
+params:
+  who: ref
+steps:
+  - prompt: "Adrenaline: if {@who.name}'s blood was up, it ends now that no threat remains."
+source: the-classes/the-sledge#adrenaline

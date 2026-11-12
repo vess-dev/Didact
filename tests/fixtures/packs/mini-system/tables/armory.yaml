@@ -1,0 +1,15 @@
+# Kinds of gear, then each kind's gear, whose `data.id` is its compendium entry: for the armory
+# generator (a table chosen by an earlier pick, a record started from an entry).
+table: armory
+dice: d2
+entries:
+  1: {text: Weapons, data: {kind: weapons}}
+  2: {text: Armor, data: {kind: armor}}
+---
+table: armory-weapons
+entries:
+  - {text: Longsword, data: {id: longsword}}
+---
+table: armory-armor
+entries:
+  - {text: Chainmail, data: {id: chainmail}}

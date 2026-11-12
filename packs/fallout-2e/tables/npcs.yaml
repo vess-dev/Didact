@@ -1,0 +1,204 @@
+# Fallout 2e, Overseer's Guide: NPC Tables (CC BY-SA 4.0). npc-background (Occupation),
+# npc-goal (What They Want), npc-name-1 … npc-name-3 and first-names replace Cairn's tables
+# of those ids; first-names is what `didact name npc` rolls. Cairn's npc-quirk, npc-virtue
+# and npc-vice have no Fallout counterpart: pack.yaml hides them.
+table: npc-appearance
+title: NPC Appearance
+dice: d10
+source: overseers-guide/npc-tables#appearance-roll-1d10
+entries:
+  1: Scarred and weary
+  2: Meticulously kept
+  3: Bone-thin, wide-eyed
+  4: Ruddy, hearty
+  5: Limping, favoring a side
+  6: Burn-marked along one cheek
+  7: Tattooed with pre-war iconography
+  8: Bandaged where a hand should be
+  9: Dressed in salvaged military gear
+  10: Unsettlingly clean
+---
+table: npc-demeanor
+title: NPC Demeanor
+dice: d10
+source: overseers-guide/npc-tables#demeanor-roll-1d10
+entries:
+  1: Suspicious, slow to speak
+  2: Warm, overly friendly
+  3: Distracted — watching something over your shoulder
+  4: Polite, formal, pre-war-sounding
+  5: Brusque, impatient
+  6: Nervous, checking exits
+  7: Calm, amused by everything
+  8: Drunk but not unwell
+  9: Quiet, speaks only when asked
+  10: Aggressive, testing for weakness
+---
+table: npc-background
+title: NPC Occupation
+dice: d20
+source: overseers-guide/npc-tables#occupation-roll-1d20
+entries:
+  1: Farmer
+  2: Brahmin-herder
+  3: Tinker
+  4: Trader
+  5: Clinic doctor
+  6: Bouncer
+  7: Still-runner
+  8: Chem dealer
+  9: Mercenary
+  10: Scavver
+  11: Courier
+  12: Preacher of a strange faith
+  13: Caravan guard
+  14: Settlement sheriff
+  15: Failed prospector
+  16: Pipe-fitter
+  17: Radio operator
+  18: Bartender
+  19: Cook
+  20: Guide
+---
+table: npc-goal
+title: What They Want
+dice: d10
+source: overseers-guide/npc-tables#what-they-want-d10
+entries:
+  1: Caps — straightforward
+  2: A specific person found
+  3: A specific person dead
+  4: Protection for one journey
+  5: A pre-war artifact recovered
+  6: News of a distant settlement
+  7: Safe passage out of the region
+  8: A cure for something
+  9: To keep a secret buried
+  10: To finally tell someone the truth
+---
+table: npc-fear
+title: What They Fear
+dice: d10
+source: overseers-guide/npc-tables#what-they-fear-d10
+entries:
+  1: The raiders at the overpass
+  2: Something in their own settlement
+  3: Being recognized from before
+  4: Their own children
+  5: The dark
+  6: A specific pre-war ruin
+  7: Becoming a ghoul
+  8: A cult that has noticed them
+  9: Being found out as a synth
+  10: That the war isn't over
+---
+table: npc-name
+title: NPC Name
+description: Wasteland names are short, blunt, pre-war leftovers, or earned by what someone does or 
+  survived. Roll the row, then a name from it (each row's own table).
+dice: d10
+source: overseers-guide/npc-tables#name-d10
+entries:
+  1: {text: 'Preston, Nora, Nick, Moe, Lucy, Piper', table: npc-name-1}
+  2: {text: 'Boone, Cass, Veronica, Arcade, Raul, Sulik', table: npc-name-2}
+  3: {text: 'Butch, Amata, Sarah, Charon, Clover, Fawkes', table: npc-name-3}
+  4: {text: 'Dust, Salt, Ash, Rust, Grit, Tailings', table: npc-name-4}
+  5: {text: 'Mother Cupper, Uncle Barney, Old Longfellow', table: npc-name-5}
+  6: {text: 'Vault-suit nickname: Blue, Tunnel Snake, 101, 111', table: npc-name-6}
+  7:
+    text: 'Faction rank + name: Paladin Danse, Ranger Boone, Sister Mary, Overseer Dane, Scribe Pell'
+    table: npc-name-7
+  8:
+    text: 'Ghoul who kept their pre-war name: Desmond, Carol, Daisy, Kent'
+    table: npc-name-8
+  9:
+    text: 'A pre-war title the owner clings to: Colonel, Doctor, Reverend, Foreman'
+    table: npc-name-9
+  10: {text: 'A single initial or number (J, K, V, Ten, 87, Six)', table: npc-name-10}
+---
+table: npc-name-1
+title: NPC names, row 1
+description: 'Row 1 of the d10 Name table, one name picked from it: Preston, Nora, Nick, Moe, Lucy, Piper'
+source: overseers-guide/npc-tables#name-d10
+entries: [Preston, Nora, Nick, Moe, Lucy, Piper]
+---
+table: npc-name-2
+title: NPC names, row 2
+description: 'Row 2 of the d10 Name table, one name picked from it: Boone, Cass, Veronica, Arcade, Raul,
+  Sulik'
+source: overseers-guide/npc-tables#name-d10
+entries: [Boone, Cass, Veronica, Arcade, Raul, Sulik]
+---
+table: npc-name-3
+title: NPC names, row 3
+description: 'Row 3 of the d10 Name table, one name picked from it: Butch, Amata, Sarah, Charon, Clover,
+  Fawkes'
+source: overseers-guide/npc-tables#name-d10
+entries: [Butch, Amata, Sarah, Charon, Clover, Fawkes]
+---
+table: npc-name-4
+title: NPC names, row 4
+description: 'Row 4 of the d10 Name table, one name picked from it: Dust, Salt, Ash, Rust, Grit, Tailings'
+source: overseers-guide/npc-tables#name-d10
+entries: [Dust, Salt, Ash, Rust, Grit, Tailings]
+---
+table: npc-name-5
+title: NPC names, row 5
+description: 'Row 5 of the d10 Name table, one name picked from it: Mother Cupper, Uncle Barney, Old Longfellow'
+source: overseers-guide/npc-tables#name-d10
+entries: [Mother Cupper, Uncle Barney, Old Longfellow]
+---
+table: npc-name-6
+title: 'NPC names, row 6: Vault-suit nickname'
+description: 'Row 6 of the d10 Name table, one name picked from it: Vault-suit nickname: Blue, Tunnel
+  Snake, 101, 111'
+source: overseers-guide/npc-tables#name-d10
+entries: [Blue, Tunnel Snake, '101', '111']
+---
+table: npc-name-7
+title: 'NPC names, row 7: Faction rank + name'
+description: 'Row 7 of the d10 Name table, one name picked from it: Faction rank + name: Paladin Danse,
+  Ranger Boone, Sister Mary, Overseer Dane, Scribe Pell'
+source: overseers-guide/npc-tables#name-d10
+entries: [Paladin Danse, Ranger Boone, Sister Mary, Overseer Dane, Scribe Pell]
+---
+table: npc-name-8
+title: 'NPC names, row 8: Ghoul who kept their pre-war name'
+description: 'Row 8 of the d10 Name table, one name picked from it: Ghoul who kept their pre-war name:
+  Desmond, Carol, Daisy, Kent'
+source: overseers-guide/npc-tables#name-d10
+entries: [Desmond, Carol, Daisy, Kent]
+---
+table: npc-name-9
+title: 'NPC names, row 9: A pre-war title the owner clings to'
+description: 'Row 9 of the d10 Name table, one name picked from it: A pre-war title the owner clings to:
+  Colonel, Doctor, Reverend, Foreman'
+source: overseers-guide/npc-tables#name-d10
+entries: [Colonel, Doctor, Reverend, Foreman]
+---
+table: npc-name-10
+title: 'NPC names, row 10: A single initial or number'
+description: 'Row 10 of the d10 Name table, one name picked from it: A single initial or number (J, K,
+  V, Ten, 87, Six)'
+source: overseers-guide/npc-tables#name-d10
+entries: [J, K, V, Ten, '87', Six]
+---
+table: first-names
+title: NPC names
+description: "What `didact name npc` rolls: a row of the d10 Name table, then one name from that row,
+  ready to use (a pre-war leftover, an earned name, an epithet, a vault-suit nickname, a faction rank
+  and name, a ghoul's pre-war name, a pre-war title, an initial or a number). Wasteland NPCs go by one
+  name."
+dice: d10
+source: overseers-guide/npc-tables#name-d10
+entries:
+  1: {table: npc-name-1}
+  2: {table: npc-name-2}
+  3: {table: npc-name-3}
+  4: {table: npc-name-4}
+  5: {table: npc-name-5}
+  6: {table: npc-name-6}
+  7: {table: npc-name-7}
+  8: {table: npc-name-8}
+  9: {table: npc-name-9}
+  10: {table: npc-name-10}

@@ -1,0 +1,9 @@
+chargen: pc
+title: Apocalypse character (playbook)
+creates: pc
+modes: [random, guided]
+steps:
+  - choose_or_roll: {table: playbooks, as: playbook, field: playbook}
+  - apply: {cool: "@playbook.cool", hard: "@playbook.hard", hot: "@playbook.hot", sharp: "@playbook.sharp", weird: "@playbook.weird"}
+  - choose: {from: "@playbook.moves", as: moves, count: 2, field: moves}
+  - name: {from: [Kick, Rolfball, Snow, Toyota, Dremmer]}

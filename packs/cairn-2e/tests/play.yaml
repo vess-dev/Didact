@@ -1,0 +1,57 @@
+# The smoke play: from an empty home, a PC, a region, a forest, a
+# dungeon, a monster, a dungeon cycle, a wilderness day, and a fight to a scar and critical
+# damage. Seeded, so it plays the same every time.
+test: smoke-play
+script:
+  - world new vale --system {pack} --seed smoke
+  - campaign new first --seed smoke
+  - run: >-
+      char new --mode random
+      --prefill '{"name": "Wren", "background": "Cutpurse", "hp": 3, "STR": 3}'
+    expect: "pc Wren: background: Cutpurse"
+  - run: char commit c1
+    expect: "pc:wren"
+  - run: gen run cairn-2e.setting-seed --auto
+    expect: ["map:", "What would draw people to this region?"]
+  - run: gen commit g2
+    expect: committed
+  - run: gen run cairn-2e.forest-seed --auto
+    expect: "(entrance)"
+  - run: gen commit g3
+    expect: committed
+  - run: gen run cairn-2e.dungeon-seed --auto
+    expect: ", room 1"
+  - run: gen commit g4
+    expect: committed
+  - run: >-
+      gen run cairn-2e.monster --auto
+      --prefill '{"name": "Thunder Snail", "hp": 6, "armor": 2, "STR": 14, "DEX": 6, "WIL": 4, "damage": "d10"}'
+    expect: "monster Thunder Snail"
+  - run: gen commit g5
+    expect: "monster:thunder-snail"
+  - session start
+  - run: do dungeon-turn trigger=new-area
+    expect: "dungeon-events:"
+  - time advance 1 turn
+  - run: do weather season=spring
+    expect: "Weather:"
+  - run: do watch action=travel path=trail
+    expect: "wilderness-events:"
+  - time advance 1 watch
+  - run: do watch action=make-camp night=true
+    expect: "At night, the Warden rolls twice"
+  - do make-camp who=wren
+  - run: spawn wolf
+    expect: "monster:wolf"
+  - run: combat start --party wolf
+    expect: "round 1"
+  - run: do attack attacker=wolf target=wren weapon=4
+    expect: "Wren gets a scar"
+  - run: do attack attacker=wolf target=wren weapon=3
+    expect: "Wren takes critical damage"
+  - run: show wren
+    expect: ["STR 1/3", "HP 0/3", "critical"]
+  - combat end
+  - run: faction turn
+    expect: "the factions moved"
+  - session end --summary 'Wren survived the wolf, barely.'

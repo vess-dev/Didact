@@ -1,0 +1,66 @@
+id: cairn-2e-vald
+name: Vald (Cairn's implied setting)
+kind: setting
+version: 1.0.0
+description: >-
+  Vald, the implied setting of Cairn 2e: the Wood, the Roots, the Neighbors, its faiths and
+  factions, its calendar of holidays and its seasonal weather.
+requires: {packs: [core, cairn-2e]}
+license:
+  spdx: CC-BY-SA-4.0
+  redistributable: true
+  attribution: >-
+    From Cairn Second Edition by Yochai Gal (with Adam Hensley and Derek B.), cairnrpg.com,
+    licensed under CC-BY-SA 4.0. Adapted to Didact's format under the same license.
+source:
+  title: Cairn Second Edition (Vald)
+  url: https://cairnrpg.com/second-edition/
+  sections: [players-guide/vald, wardens-guide/vald]
+settings:
+  calendar:
+    hours: 24
+    week: [Market Day, Garden Day, Song Day, Tithe Day, Bathing Day, Resting Day]
+    months:
+      - {name: Mourning, days: 24}
+      - {name: Silence, days: 24}
+      - {name: Veil, days: 24}
+      - {name: Sunrise, days: 24}
+      - {name: Bright, days: 24}
+      - {name: Ashfall, days: 24}
+      - {name: Flood, days: 24}
+      - {name: Highwater, days: 24}
+      - {name: Rise, days: 24}
+      - {name: Quell, days: 24}
+      - {name: Bane, days: 24}
+      - {name: Sunset, days: 24}
+    start: {year: 7728, month: 1, day: 1}
+    seasons:
+      - {name: Dead, month: 1, day: 4}
+      - {name: Dry, month: 4, day: 4}
+      - {name: Wet, month: 7, day: 4}
+      - {name: Harvest, month: 10, day: 1}
+    holidays:
+      - {name: First Light, month: 1, day: 24, text: "At dusk: the end of the new year's first month. Torches and fire burn all night, turning night to day."}
+      - {name: Dead Solstice, month: 2, day: 10, text: "At midnight: the shortest day of the year, the midpoint of the Dead season."}
+      - {name: Whisper, month: 2, day: 11, text: "Dawn to dusk: speaking above a whisper is taboo. Silent auctions are common."}
+      - {name: Lift the Veil, month: 3, day: 9, text: "At midnight: the end of the Dead season, celebrated through solemn vows and humble gestures."}
+      - {name: "Veil's Edge", month: 3, day: 17, text: "Afternoon to twilight: honoring ancestors with offerings and prayers at family altars."}
+      - {name: Bartermoot, month: 4, day: 14, text: "Morning: the smaller towns and villages trade steel for lumber in ritual arrangement with the denizens of the Wood."}
+      - {name: Dustset, month: 5, day: 9, text: "Afternoon until midnight: a carnival of parades and masquerades, masks against dust and wind."}
+      - {name: Dry Equinox, month: 5, day: 10, text: "At midnight: the midpoint of the Dry season."}
+      - {name: Boughmeal, month: 6, day: 16, text: "Dawn until afternoon: a market held only within the Wood, where artisans and merchants from all over the realm trade."}
+      - {name: Parade of Ash, month: 6, day: 24, text: "Afternoon: the Dry season's last day. Faces marked with ash, music, and most labor frowned upon."}
+      - {name: Splash Festival, month: 7, day: 5, text: "Three days: boat races, contests, gifts and water blessings, celebrating the abundance of water."}
+      - {name: Float, month: 7, day: 14, text: "All day: communities build and decorate enormous boats or rafts to float down rivers."}
+      - {name: Highwater Fair, month: 8, day: 1, text: "Dawn until midnight: a great trade fair when the waters are highest, in every major town and city."}
+      - {name: Wet Solstice, month: 8, day: 10, text: "At midnight: the longest day of the year, the midpoint of the Wet season."}
+      - {name: First Plant, month: 8, day: 18, text: "Afternoon: communities gather to plant the first seeds of the year together."}
+      - {name: Waterwish, month: 9, day: 14, text: "Lunchtime: wishes written on scrolls are pushed into a boulder rolled downhill; those left when it stops will come true."}
+      - {name: Storm Dance, month: 9, day: 19, text: "Five days: dances and betrothals to please the masters of storm and rain for a fruitful Harvest."}
+      - {name: Harvest Festival, month: 10, day: 4, text: "Afternoon: feasting and communal gatherings to begin harvesting crops."}
+      - {name: Gathering Night, month: 10, day: 24, text: "Dusk: the harvest is collected and stored, followed by a night of storytelling and music."}
+      - {name: Harvest Equinox, month: 11, day: 10, text: "At midnight: the midpoint of the Harvest season."}
+      - {name: The Golden Hind, month: 11, day: 12, text: "Daylight: hunters from far and wide join a great hunt for a mythical stag, amid great revelry."}
+      - {name: Firelight, month: 11, day: 18, text: "All day: kites, wind chimes and noisemakers; at night great bonfires and fire dances."}
+      - {name: Ember, month: 12, day: 11, text: "Evening: homage to the setting sun before the Dead season; lanterns are released."}
+      - {name: Gloam, month: 12, day: 24, text: "Evening: the year's last grand feast, in gratitude for the harvest, with the sun as centerpiece."}

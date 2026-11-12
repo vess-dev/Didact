@@ -1,0 +1,33 @@
+# The options (setting dials, flavors of fantasy, optional rules) as a campaign chooses them at
+# session zero, and what they change in play. Seeded, so it plays the same every time.
+test: options
+script:
+  - world new wild --system {pack} --seed options
+  - campaign new first --seed options
+  - new pc Kestrel --set brawn=2 --set agility=3 --set wits=1 --set presence=2
+  - run: session zero
+    expect: ["- magic: ", "- lethality: How deadly should it be", "- supplies: Can the PCs run out of supplies? (on / off)"]
+  - run: campaign profile flavor=grimdark rest-resets=on
+    expect: "flavor: grimdark"
+  - run: brief
+    expect: ["Option lethality=deadly: More lethal", "Option supplies=on: Each PC has a 4d Supplies"]
+  - run: do dropped who=kestrel
+    expect: "1d6"
+  - run: do pre-session who=kestrel
+    expect: "Rest resets (an option)"
+  - run: do rest who=kestrel
+    expect: "Rest resets (an option): Kestrel takes spark"
+  - run: >-
+      char new --mode random --prefill '{"name": "Wren"}'
+    expect: "track Wren's supplies: kind: pool, pool: resource"
+  - run: campaign profile scale=smaller milestone-levels=on
+    expect: "scale: smaller"
+  - run: do experience who=kestrel
+    expect: "Milestone levels (an option)"
+  - run: campaign profile stat-progression=on
+    expect: "stat-progression on"
+  - run: >-
+      char advance kestrel --prefill '{"path": "Fighter", "growth": "stat", "stat": "wits"}'
+    expect: ["level: 1 → 2", "wits: 1 → 2", "stat_raised: false → true"]
+  - run: char commit c2
+    expect: ["pc:kestrel advanced: ", "level 1 → 2", "wits 1 → 2"]

@@ -1,0 +1,138 @@
+# Companions and mounts (players-guide/companions, players-guide/mounts): Loyalty and the Command
+# action; a mount startled in a fight, left at the threshold of a crypt, and fighting from the
+# saddle. A mount's road relief is in `travel-time` (mount=horse or skyrim-horse).
+action: loyalty
+title: Loyalty shifts
+help: >-
+  The Warden raises or lowers a companion's Loyalty one step at a time (1 Wary, 2 Tested, 3
+  Trusting, 4 Devoted, 5 Sworn), usually after a meaningful choice. It rises when the party
+  keeps a promise, fights for the companion's cause, risks itself for them, honors their dead,
+  kin, gods or oath, heeds their advice; it falls when the party breaks its word, acts against
+  their faith or people, abandons allies, robs the helpless, takes the murderer's path, or
+  leaves them idle (a season's silence costs a step). A companion sworn to a faction falls a
+  step faster when betrayed — two steps on the first real betrayal (betrayed=true).
+params:
+  who: ref
+  step: {enum: [up, down]}
+  betrayed: {kind: flag, default: false, help: "The first real betrayal of a companion sworn to a faction: it falls two steps"}
+  why: {kind: text, optional: true, help: "The choice that moved it"}
+steps:
+  - if: "@who.type <> 'companion'"
+    then:
+      - stop: "Only companions have Loyalty: a hireling works for pay and saves morale; the summoned and the raised have none."
+  - let: {was: "default(@who.loyalty, 3)", steps: "if(@betrayed and @step == 'down', 2, 1)"}
+  - if: "(@step == 'up' and @was >= 5) or (@step == 'down' and @was <= 1)"
+    then:
+      - stop: "{@who.name}'s Loyalty is already {if(@was >= 5, '5, Sworn', '1, Wary')}: it can't go {if(@was >= 5, 'higher', 'lower')}."
+  - if: "@step == 'up'"
+    then:
+      - set: who.loyalty
+        op: "+="
+        value: "@steps"
+    else:
+      - set: who.loyalty
+        op: "-="
+        value: "@steps"
+  - table: loyalty
+    with: {loyalty: "@who.loyalty"}
+    as: rung
+  - message: "{@who.name}'s Loyalty {if(@step == 'up', 'rises', 'falls')}: {@was} → {@who.loyalty}, {@rung.name}{if(default(@why, '') == '', '', ' (')}{default(@why, '')}{if(default(@why, '') == '', '', ')')}. {@rung}"
+  - if: "@who.loyalty == 1"
+    then: ["At Loyalty 1, a companion who watches the party do something they cannot stomach leaves at the next settlement; they may turn up again later, in a story."]
+  - if: "@who.loyalty == 5"
+    then: ["Sworn: once per day, {@who.name} may take a hit meant for their PC and suffer that damage instead."]
+source: players-guide/companions#loyalty
+---
+action: command
+title: Command a companion
+help: >-
+  Once per combat, the PC whose companion it is may spend their own action to direct it: the
+  companion takes a single clean action (strike a foe, drag a fallen ally clear, hold a doorway,
+  read a Spell Tome, loose an arrow) with Enhanced damage or a re-rolled save, as the fiction
+  fits; the two don't stack. Without a Command, companions act on their own under the Warden's
+  control. Animal companions are commanded by tone and gesture. In a fight the table runs with
+  `combat start`, a second command is refused until the fight ends.
+params:
+  who: ref
+  companion: ref
+  boost: {enum: [enhanced, reroll], default: enhanced, help: "Enhanced damage, or a re-rolled save"}
+  target: {kind: ref, optional: true, help: "The foe it strikes"}
+  weapon: {kind: dice, default: d6, help: "Its weapon's die"}
+steps:
+  - if: "@companion.type <> 'companion'"
+    then:
+      - stop: "Only a companion takes the Command action (hirelings, conjured and raised servants don't)."
+  - if: "default(@companion.owner, '') <> '' and default(@companion.owner, '') <> @who.id"
+    then:
+      - stop: "{@companion.name} is {@companion.owner}'s companion: only their own PC can command them."
+  - if: "default(@combat.round, 0) > 0 and 'command' in default(@who.once_per_combat, '')"
+    then:
+      - stop: "{@who.name} has commanded {@companion.name} once this fight already: the Command action is once per combat."
+  - if: "default(@combat.round, 0) > 0"
+    then:
+      - set: who.once_per_combat
+        op: "+="
+        value: command
+  - message: "{@who.name} spends their action to command {@companion.name} (once per combat)."
+  - if: "@boost == 'enhanced' and default(@target, '') <> ''"
+    then:
+      - do: attack
+        with: {attacker: "@companion", target: "@target", weapon: "$weapon", mode: enhanced}
+    else:
+      - if: "@boost == 'enhanced'"
+        then: ["{@companion.name} takes one clean action with Enhanced damage: `didact do attack attacker={@companion.id} target=… weapon=… mode=enhanced`."]
+        else: ["{@companion.name} takes one clean action and may re-roll its save: `didact do save who={@companion.id} attr=…` again if the first fails."]
+source: players-guide/companions#the-command-action
+---
+check: startled-mount
+title: A startled mount
+help: >-
+  At the start of combat a mounted rider saves WIL to keep an untrained mount steady (as well as
+  the usual DEX save to act); loud noise, fire, the undead and a dragon's roar are reasons for a
+  fresh save. On a failure the mount shies, bucks or bolts: the rider loses the turn wrestling
+  it, or is thrown (a short fall) at the Warden's call. A trained warhorse, a Skyrim-bred mount
+  used to wolves, or a special steed may ignore the save (trained=true). A rider who isn't
+  trained, or who fights while fighting the animal, attacks Impaired.
+params:
+  who: ref
+  trained: {kind: flag, default: false, help: "A trained or special mount: no save"}
+before:
+  - if: "@trained"
+    then:
+      - stop: "{@who.name}'s mount is trained to the fight: it holds steady, no save."
+roll: d20
+success: "@roll <= @who.WIL"
+auto: {1: success, 20: failure}
+on:
+  success: ["{@who.name} keeps the mount steady."]
+  failure:
+    - message: "The mount shies, bucks or bolts: {@who.name} loses the turn wrestling it, or is thrown (a short fall, at the Warden's call: under 10 ft it costs nothing but pride; from higher, `didact do fall who={@who.id} feet=…`)."
+    - reminder: "While fighting to control a panicking animal, {@who.name}'s attacks are Impaired (`mode=impaired`)."
+source: players-guide/mounts#a-startled-mount
+---
+action: mount-left
+title: A mount left behind
+help: >-
+  A horse can't follow into a crypt, a Dwemer stairwell or a Falmer warren: it waits at the
+  threshold. Left at a stable or with a trusted keeper, it's simply there later. Left tied in
+  the wild, when the party returns the Warden may roll the Die of Fate: on a 3 or under it has
+  wandered, been stolen, been eaten by a sabre cat, or run from a dragon's shadow. A loyal or
+  exceptional steed is far more forgiving (loyal=true: the Warden's call). Its carry slots, and
+  whatever was stowed in them, stay with it.
+params:
+  mount: {kind: text, default: the mount, help: "Which mount"}
+  where: {enum: [stable, keeper, wild], default: wild}
+  loyal: {kind: flag, default: false, help: "A loyal or exceptional steed"}
+steps:
+  - if: "@where <> 'wild'"
+    then:
+      - stop: "$mount was left {if(@where == 'stable', 'at a stable (5 Septims a night for stabling and feed)', 'with a trusted keeper')}: it's simply there, fed and waiting."
+  - if: "@loyal"
+    then:
+      - stop: "$mount is a loyal or exceptional steed: far more forgiving of a night tied in the wild (the Warden's call, no roll by the book)."
+  - check: fate
+    as: fate
+  - if: "@fate == 'failure'"
+    then: ["$mount is gone: wandered, stolen, eaten by a sabre cat, or run off from a dragon's shadow. Whatever was stowed in its slots went with it."]
+    else: ["$mount is still there, where the party tied it."]
+source: players-guide/mounts#leaving-a-mount-behind

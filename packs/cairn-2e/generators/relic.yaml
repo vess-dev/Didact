@@ -1,0 +1,19 @@
+# A relic from the Reliquary (wardens-guide/reliquary): chosen or rolled, as its compendium entry
+# has it (its effect, uses or charges, and damage or armor). Name it anew if its story calls
+# for it. To make one of your own, see the relic type's guidance: `didact template relic`.
+generator: relic
+title: A relic
+help: >-
+  A relic from the Reliquary (choose it, or let the dice): its effect, its uses, or its charges
+  and what recharges them, and damage or armor if it's a weapon or worn. Prefill by name: relic,
+  name.
+source: wardens-guide/reliquary#reliquary
+steps:
+  - choose_or_roll: {table: relics, as: relic}
+  - let: {name: "@relic"}
+  - entity:
+      key: relic
+      from: "@relic.id"
+      name: "{@name}"
+  - prompt: "Who made it, who carried it last, and who would want it back?"
+  - prompt: "Where is it found: in whose hands, in which place (`didact inv add <holder> <relic>` once it's written)?"

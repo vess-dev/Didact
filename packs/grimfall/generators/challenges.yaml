@@ -1,0 +1,129 @@
+# Challenges, battlegrounds, quests and rituals (Running the Wasteland; Science, Not Sorcery). Each
+# replaces the parent's generator of the same id, in Grimfall's words and examples.
+generator: challenge
+title: A challenge
+help: >-
+  Frame anything worth screen time as a challenge: a task pool (2d-8d), one or two traits, two or
+  three moves, and, when failure has a shape, a fail state (6d Outrun the Storm: trait
+  static-blind; moves Wall of Dust, Buried Alive; fail 4d The Caravan Is Lost). Every challenge you
+  frame brings 2 bonus suspense of its own, kept on it. The dice give the pool and an idea from the
+  GM crucible. Prefill by name: dice, idea, name.
+source: "running-the-wasteland/challenges; running-the-wasteland/the-gms-half-of-the-engine"
+creates: track
+steps:
+  - choose_or_roll: {from: [2, 3, 4, 5, 6, 7, 8], as: dice, prompt: "its task pool (2d-8d): 2d short, 4d medium, 8d long, 6d for stubborn problems"}
+  - table: gm-crucible
+    as: idea
+  - name: {prompt: "what it is: Outrun the Storm, Crack the Vault Door (the GM crucible offers {@idea})"}
+  - apply: {kind: pool, pool: task, value: {value: "@dice", max: "@dice"}, suspense: 2}
+  - prompt: "It brings 2 bonus suspense of its own, spent on moves relating to it: `didact do suspense spend=1 challenge=<challenge>`."
+  - prompt: "One or two traits (static-blind): `didact set <challenge> traits+='…'`; two or three moves (Wall of Dust, Buried Alive): `moves+='…'`; and, when failure has a shape, a fail state (`fail='…'`; a timer of its own: `didact track new '<fail state>' --kind pool --size 4 --pool timer`)."
+---
+generator: linked-challenge
+title: A linked challenge
+help: >-
+  A boss as a linked challenge, or any whole too big for one pool: each part carries its own
+  task pool, traits and moves (and 2 bonus suspense), with a fail state that ends it the bad way
+  (the Deathclaw: 8d The Deathclaw, 6d Slashing Claws, 6d Charging Legs). Beat the parts that lock
+  the whole to reach it. The Bestiary's bosses come ready: `didact gen run grimfall.foe`. Prefill
+  by name: whole, parts, part (a list, one name each), dice.
+source: "the-bestiary/introduction; running-the-wasteland/challenges"
+steps:
+  - ask: {as: whole, prompt: "what the whole is: Liberty Prime, Mr. House's Strip"}
+  - choose_or_roll: {from: [2, 3, 4], as: parts, prompt: "how many parts, each with its own pool, traits and moves"}
+  - repeat: "@parts"
+    as: n
+    steps:
+      - ask: {as: part, prompt: "part {@n}: its name (Leg Servos, The Network)"}
+      - choose_or_roll: {from: [2, 3, 4, 5, 6, 7, 8], as: dice, prompt: "{@part}'s task pool (2d-8d)"}
+      - entity:
+          key: part
+          type: track
+          name: "{@whole}: {@part}"
+          fields: {kind: pool, pool: task, value: {value: "@dice", max: "@dice"}, suspense: 2, linked: "{@whole}"}
+  - prompt: "Each part keeps 2 bonus suspense for moves relating to it: `didact do suspense spend=1 challenge=<part>`. Give each traits and moves (`didact set <part> traits+='…' moves+='…'`), say which parts lock the whole, and give the whole a fail state (a competing timer: `didact track new '<fail>' --kind pool --size 8 --pool timer`)."
+---
+generator: battleground
+title: A battleground
+help: >-
+  When the place itself fights, list its features (they bend vantage and thorns) and threats (each
+  carries 2 suspense of its own, or a timer): the Irradiated Overpass, the Vault Atrium Lockdown
+  (`didact compendium show grimfall.the-irradiated-overpass`). The dice give an idea from the GM
+  crucible, each threat's kind, and the threats who fight there. threats=<n> sets how many (3).
+  Prefill by name: name, idea, threat, creature.
+source: running-the-wasteland/battlegrounds
+creates: loc
+params:
+  threats: {kind: int, default: 3, help: "How many threats"}
+steps:
+  - name: {prompt: "the battleground: The Irradiated Overpass, Vault Atrium Lockdown"}
+  - table: gm-crucible
+    as: idea
+  - apply: {kind: battleground}
+  - repeat: "$threats"
+    steps:
+      - choose_or_roll: {from: ["a 4d timer", "a 6d timer", "2 suspense of its own", "foes who fight there"], as: threat, prompt: "a threat: a timer, 2 suspense of its own, or foes"}
+      - if: "@threat == 'foes who fight there'"
+        then:
+          - choose_or_roll: {table: bestiary, as: creature, prompt: "who fights there"}
+          - add: {field: threats, value: "{@creature} ({@creature.tier} · {@creature.role})"}
+        else:
+          - add: {field: threats, value: "@threat"}
+  - prompt: "Its features: what bends vantage and thorns (collapsed lanes and dead cars, cover that crumples; catwalks over the atrium floor; the GM crucible offers {@idea}): `didact set <battleground> features+='…'`."
+  - prompt: "Name each threat (4d Glowing Runoff, pooling rads; 6d The Span Groans, a collapse timer; a raider nest at the far ramp): `didact set <battleground> threats='…'`. A timer is a pool of its own (`didact track new '<threat>' --kind pool --size 4 --pool timer`); foes come in with `didact gen run grimfall.foe`."
+---
+generator: quest
+title: A quest
+help: >-
+  Frame goals at the weight they deserve: an errand is a montage, a job is a session with a task
+  pool, and a quest (cure the plague, take the dam) is a chain of linked task pools (4d + 4d for a
+  moderate one, 4d + 4d + 6d daunting, 4d + 4d + 6d + 6d epic, 4d + 4d + 6d + 6d + 8d legendary)
+  racing linked peril pools, one fewer than the quest has, sized like its first links, that the
+  whole table can see. Reward tiers follow the hauls. Prefill by name: difficulty, name.
+source: running-the-wasteland/the-overseers-prep-kit#quests
+creates: quest
+steps:
+  - choose_or_roll: {table: quest-difficulty, as: difficulty, prompt: "its weight: the number and size of its linked pools (moderate, daunting, epic, legendary)"}
+  - name: {prompt: "the quest: Cure the Plague, Take the Dam"}
+  - apply: {difficulty: "@difficulty.id"}
+  - entity:
+      key: arcs
+      type: track
+      name: "{@name}"
+      fields: {kind: pool, pool: task, phases: "@difficulty.pools", phase: 1, value: {value: "@difficulty.first", max: "@difficulty.first"}}
+      links: [{rel: of, to: character}]
+  - if: "@difficulty.peril_first > 0"
+    then:
+      - entity:
+          key: peril
+          type: track
+          name: "{@name}: peril"
+          fields: {kind: pool, pool: pressure, phases: "@difficulty.peril", phase: 1, value: {value: "@difficulty.peril_first", max: "@difficulty.peril_first"}}
+          links: [{rel: of, to: character}]
+  - prompt: "Name its linked task pools, one for each stretch ({@difficulty}), and its peril, the linked pressure pools racing them (one fewer), where the whole table can see them."
+  - prompt: "The reward follows the hauls: a minor, major or mythic haul (`didact table show treasure-tiers`). In solo play, a disaster or dire stakes rolls the quest's peril pool too."
+---
+generator: ritual
+title: A ritual
+help: >-
+  A ritual is an engineering feat that changes the map: reboot the reactor, launch the rocket, wake
+  the AI, cure the plague. It takes three things: a source (a schematic, a lab, a mind that can
+  hold the math), anchors (two or three concrete requirements the GM and table set: the original
+  blueprints, a fusion core, somebody who was there), and the invocation, a task pool worked down
+  over time, usually under fire. Missing anchors make the pool bigger or the whole thing
+  impossible. Prefill by name: intent, source, anchors (how many), anchor (a list), dice, name.
+source: the-core-engine/science-not-sorcery#the-three-magnitudes
+creates: track
+steps:
+  - ask: {as: intent, field: intent, prompt: "what it changes on the map: reboot the reactor, launch the rocket, wake the AI, cure the plague"}
+  - ask: {as: source, field: source, prompt: "its source: a schematic, a lab, a mind that can hold the math"}
+  - choose_or_roll: {from: [2, 3], as: anchors, prompt: "how many anchors: two or three concrete requirements"}
+  - repeat: "@anchors"
+    as: n
+    steps:
+      - ask: {as: anchor, prompt: "anchor {@n}, set by the GM and table: the original blueprints, a fusion core, somebody who was there"}
+      - add: {field: anchor_list, value: "@anchor"}
+  - choose_or_roll: {from: [2, 4, 6, 8], as: dice, prompt: "the invocation's task pool, worked down over time: 2d short, 4d medium, 8d long, 6d for stubborn problems"}
+  - apply: {kind: pool, pool: task, value: {value: "@dice", max: "@dice"}, note: "the ritual is done: the map changes"}
+  - name: {prompt: "the ritual's name: {@intent}"}
+  - prompt: "The invocation is worked down over time, usually under fire: roll it as it goes (`didact track roll <ritual>`). A missing anchor makes the pool bigger (`didact do grow-pool pool=<ritual>`), or the whole thing impossible. A mythic relic counts as its own ritual anchors."

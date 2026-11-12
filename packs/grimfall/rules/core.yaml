@@ -1,0 +1,1204 @@
+# The Core Engine (Chapter 2), with what Chapters 4, 6 and 10 change in it: action, defense, story,
+# montage and power pool rolls, damage and being dropped, spark, the session's rhythm and
+# experience. Each replaces the parent's rule of the same id (a hack's item replaces its base's):
+# Grimfall reads them the same way, with its own dice kinds (perk dice don't stack: one die each
+# for perks, a setup, a chem, a relic), rad marks, the Weak Point die, Grit, a Flesh Wound,
+# going all in, and no magic. The parent's `reset-suspense` is inherited as it is; its magical
+# twist, narrative-break reset and per-session talents are hidden (pack.yaml).
+check: action
+title: Action roll
+help: >-
+  When you try something risky, say your goal and your approach; the GM picks the stat: roll
+  that many d6 and read the highest (6 perfect, 4-5 messy, 1-3 grim). Each thorn (d8) landing 7-8
+  cuts the result a step (to disaster); more than one 6 is a critical, which thorns can't cut.
+  Spark adds +1d each (spent). Perk dice don't stack: perks add +1d in total (`perk`), and the same
+  goes for a setup, a chem and a relic, one die of each kind; assists are 1d each, rolled apart
+  (they share the risk); outside help is the GM's 1d; the Weak Point die (a Pathfinder's quarry) is
+  a special d6 whose 6 adds a critical bonus. A mark on the stat, a rad mark on it, bloodied or
+  rattled on a related stat, desperate and a Flesh Wound each add a thorn (a used mark clears; a rad
+  mark lingers). A bonus-dice pool (`bonus=`) rolls alongside and drops its 1-3s. `all_in` (Rooted,
+  Better Criticals): 5s count as 6s, but 4s count as 1s. `stakes` weighs the impact move;
+  `interrupt` is a perk's roll to stop one; a `device` with two or more 1s, thorns included,
+  misfires under dangerous tech. `finesse` (Finesse, Isodoped): a 5 alongside a 6 counts as a second
+  6; `instead=3`: dice rolled in place of the stat (a companion's tricks, Almost Perfect). Going all
+  in reads only your own dice (never an assist, outside help, the Weak Point die or a pool), and a
+  bonus-dice pool counts only its best die. A disaster gives spark.
+params:
+  who: ref
+  stat: {enum: [brawn, agility, wits, presence]}
+  thorns: {kind: int, default: 0, help: "The situation's thorns (vantage: reasonable 0-1, doubtful 2+)"}
+  spark: {kind: int, default: 0, help: "Spark to spend: +1d each"}
+  perk: {kind: flag, default: false, help: "A perk applies: +1d in total, however many apply (Core Perks included)"}
+  setup: {kind: flag, default: false, help: "A setup: +1d (one, however many)"}
+  chem: {kind: flag, default: false, help: "A chem's buff: +1d (one, however many)"}
+  relic: {kind: flag, default: false, help: "A relic (an arcana): +1d (one, however many)"}
+  assist: {kind: int, default: 0, help: "Helpers, 1d each, rolled apart; they share the risk"}
+  outside: {kind: flag, default: false, help: "Outside help (a reprogrammed turret, a friendly settler): the GM rolls 1d and folds it in"}
+  weak_point: {kind: flag, default: false, help: "Researching, tracking or striking a Pathfinder's quarry: the Weak Point die, a special d6 (a 6 adds a critical bonus)"}
+  bonus: {kind: ref, to: track, optional: true, help: "A bonus-dice pool rolled alongside (3d Covering Fire): its best die counts with yours, then its 1-3s drop"}
+  all_in: {kind: flag, default: false, help: "Rooted or Better Criticals: 5s count as 6s, but 4s count as 1s, on your own dice (your stat's, spark, and a perk, setup, chem or relic die)"}
+  finesse: {kind: flag, default: false, help: "Finesse or Isodoped: a 5 alongside a 6 counts as a second 6"}
+  instead: {kind: int, default: 0, help: "Dice rolled in place of the stat: a companion's tricks 3d (1d otherwise), Almost Perfect's 3d"}
+  stakes: {enum: [low, regular, high, dire], optional: true, help: "The scene's stakes: regular unless said otherwise"}
+  interrupt: {kind: flag, default: false, help: "A perk's roll to stop an impact move as it happens (only with a perk that says so)"}
+  device: {kind: flag, default: false, help: "A device roll: two or more 1s (thorns included) misfire under dangerous tech (an option)"}
+before:
+  - if: "@spark > @who.spark"
+    then:
+      - stop: "{@who.name} has {@who.spark} spark to spend, not {@spark}."
+  - let:
+      has_bonus: "default(@bonus, '') <> ''"
+  - if: "@has_bonus"
+    then:
+      - if: "@bonus.value <= 0"
+        then:
+          - stop: "{@bonus.name} is empty: it can't be rolled until it comes back."
+  - let:
+      marked: "if('$stat' in @who.marks, 1, 0)"
+      rad: "if('$stat' in @who.rad_marks, 1, 0)"
+      hurt: >-
+        if('desperate' in @who.harm, 1, 0)
+        + if('bloodied' in @who.harm and ('$stat' == 'brawn' or '$stat' == 'agility'), 1, 0)
+        + if('rattled' in @who.harm and ('$stat' == 'wits' or '$stat' == 'presence'), 1, 0)
+      flesh: "if('Flesh Wound' in @who.conditions, 1, 0)"
+      extra: "if(@perk, 1, 0) + if(@setup, 1, 0) + if(@chem, 1, 0) + if(@relic, 1, 0)"
+      stakes_now: "if('$stakes' <> '', '$stakes', 'regular')"
+  - let: {total_thorns: "@thorns + @marked + @rad + @hurt + @flesh"}
+  - if: "@marked > 0"
+    then:
+      - set: who.marks
+        op: "-="
+        value: $stat
+      - message: "The mark on $stat adds a thorn and clears: marking $stat again as this roll's consequence is harm (`do harm`)."
+  - if: "@rad > 0"
+    then: ["The rad mark on $stat adds a thorn, and lingers: only RadAway, a real rest, or a perk that sheds it clears it."]
+  - if: "@flesh > 0"
+    then: ["The Flesh Wound adds a thorn (it clears when the scene ends)."]
+  - if: "@spark > 0"
+    then:
+      - set: who.spark
+        op: "-="
+        value: "@spark"
+  - roll: "(if(@instead > 0, @instead, @who.$stat) + @spark + @extra)d6"
+    as: roll
+  - if: "@assist > 0"
+    then:
+      - roll: "(@assist)d6"
+        as: help
+  - if: "@outside"
+    then:
+      - roll: 1d6
+        as: outside_help
+  - if: "@weak_point"
+    then:
+      - roll: 1d6
+        as: weak
+  - if: "@has_bonus"
+    then:
+      - pool: "@bonus"
+        as: bonus_roll
+  - if: "@total_thorns > 0"
+    then:
+      - roll: "(@total_thorns)d8"
+        as: thorn
+  # Going all in reads your own dice only (Reading a perk): never an assist, outside help, the Weak
+  # Point die or a pool. A bonus-dice pool counts its best die with yours, so only that die can be
+  # a 6 (or a 1) of the roll. Finesse and Isodoped read the roll's counted dice: a 5 alongside a 6.
+  - let:
+      own_six: "count(@roll.dice, 6) + if(@all_in, count(@roll.dice, 5), 0)"
+      own_five: "if(@all_in, 0, count(@roll.dice, 5))"
+      own_high: >-
+        if(@all_in, if(count(@roll.dice, 6) + count(@roll.dice, 5) > 0, 6, if(count(@roll.dice, 3) > 0, 3,
+        if(count(@roll.dice, 2) > 0, 2, 1))), max(@roll.dice))
+      own_ones: "count(@roll.dice, 1) + if(@all_in, count(@roll.dice, 4), 0)"
+  - let:
+      highest: >-
+        max(@own_high, if(@assist > 0, max(@help.dice), 0), if(@outside, max(@outside_help.dice), 0),
+        if(@weak_point, max(@weak.dice), 0), if(@has_bonus, @bonus_roll.highest, 0))
+      rolled_six: >-
+        @own_six + if(@assist > 0, count(@help.dice, 6), 0) + if(@outside, count(@outside_help.dice, 6), 0)
+        + if(@weak_point, count(@weak.dice, 6), 0) + if(@has_bonus, if(@bonus_roll.highest == 6, 1, 0), 0)
+      fives: >-
+        @own_five + if(@assist > 0, count(@help.dice, 5), 0) + if(@outside, count(@outside_help.dice, 5), 0)
+        + if(@weak_point, count(@weak.dice, 5), 0) + if(@has_bonus, if(@bonus_roll.highest == 5, 1, 0), 0)
+      cuts: "if(@total_thorns > 0, count(@thorn.dice, 7) + count(@thorn.dice, 8), 0)"
+      ones: >-
+        @own_ones + if(@assist > 0, count(@help.dice, 1), 0) + if(@outside, count(@outside_help.dice, 1), 0)
+        + if(@weak_point, count(@weak.dice, 1), 0) + if(@has_bonus, if(@bonus_roll.highest == 1, 1, 0), 0)
+        + if(@total_thorns > 0, count(@thorn.dice, 1), 0)
+      weak_six: "if(@weak_point, count(@weak.dice, 6), 0)"
+  - let:
+      finessed: "@finesse and @rolled_six == 1 and @fives >= 1"
+  - let:
+      sixes: "@rolled_six + if(@finessed, 1, 0)"
+  - if: "@finessed"
+    then: ["Finesse: a 5 alongside the 6 counts as a second 6 (once per session; Isodoped, while carrying a rad mark: the same, pick one per roll)."]
+  - let: {level: "if(@highest == 6, 3, if(@highest >= 4, 2, 1)) - @cuts"}
+  - message: "highest {@highest} · sixes {@sixes} · thorns {@total_thorns}, cutting {@cuts}{if(@all_in, ' · all in: 5s count as 6s, 4s as 1s', '')}"
+  - if: "@has_bonus"
+    then: ["{@bonus.name} rolls alongside: its best die counts, and it drops {@bonus_roll.dropped}d ({@bonus_roll.left}d left)."]
+  - if: "@weak_six > 0"
+    then: ["The Weak Point die lands a 6: add a critical bonus, the weakness tears wider."]
+  - if: "@device and @ones >= 2 and @option.dangerous_tech"
+    then:
+      - do: misfire
+        with: {who: "@who"}
+bands:
+  critical: "@sixes >= 2"
+  perfect: "@level >= 3"
+  messy: "@level == 2"
+  grim: "@level == 1"
+  disaster: else
+on:
+  critical:
+    - if: "@interrupt"
+      then: ["Critical: the impact move is stopped (thorns can't cut a critical), and {@who.name} now shares the risk."]
+    - message: "Critical: you get it (thorns can't cut it), and pick a bonus: greater effect (drop 1d from the related task pool before rolling it), a secondary effect (the effects of a related perfect, too), or setup (a benefit to a follow-up roll, usually an assist without risk). If nothing fits, take spark: `didact do take-spark who={@who.id}`."
+    - if: "@all_in and 'better-criticals' in @who.perks"
+      then: ["Better Criticals: you crit while all in, so take an extra critical bonus."]
+  perfect:
+    - if: "@interrupt"
+      then: ["Perfect: the impact move is stopped, and {@who.name} now shares the risk."]
+      else: ["Perfect: you get it, clean."]
+  messy:
+    - if: "@interrupt"
+      then:
+        - message: "Messy: the move stops, and the GM banks the suspense instead; {@who.name} now shares the risk."
+        - do: suspense
+          with: {take: 1, why: "an interrupt's messy"}
+      else:
+        - message: "Messy: you get it, and the GM makes an impact move."
+        - do: impact
+          with: {who: "@who", stakes: "@stakes_now", result: messy}
+  grim:
+    - if: "@interrupt"
+      then: ["Grim: the move lands anyway, and {@who.name} now shares the risk."]
+      else: ["Grim: you don't get it, and the GM makes an impact move."]
+    - do: impact
+      with: {who: "@who", stakes: "@stakes_now", result: grim}
+    - if: "count(@who.chems) > 0 and not ('chem-resistant' in @who.perks)"
+      then:
+        - prompt: "Addiction: {@who.name} rode {@who.chems} through a grim. The GM may hand them a long-term condition, Hooked: [chem] (+1t when craving and dry): `didact set {@who.id} conditions+='Hooked: <chem>'`."
+  disaster:
+    - set: who.spark
+      value: "min(2, @who.spark + 1)"
+    - if: "@interrupt"
+      then: ["Disaster: the move lands, worse, and {@who.name} shares it. {@who.name} takes spark as consolation."]
+      else: ["Disaster: the worst case. {@who.name} takes spark as consolation."]
+    - do: impact
+      with: {who: "@who", stakes: "@stakes_now", result: disaster}
+    - do: disaster-riders
+      with: {who: "@who"}
+source: "the-core-engine/rolls; the-core-engine/working-together; the-core-engine/pools; the-classes/introduction#wells-and-dice"
+---
+procedure: disaster-riders
+title: What a disaster also brings
+help: >-
+  The rules that ride a survivor's disaster: the Longshot's wheel turns (a fresh Luck die, if
+  short of the full count), a suited frame is breached (Power Armor Training), riding chems may
+  hook them (addiction), and with Wild Wasteland on, a disaster in the middle of nowhere goes
+  strange.
+params:
+  who: ref
+steps:
+  - if: "'luck-of-the-draw' in @who.perks"
+    then:
+      - do: luck-die
+        with: {who: "@who"}
+        go_on: true
+  - if: "@who.suited and 'power-armor-training' in @who.perks"
+    then:
+      - message: "Power Armor Training: {@who.name} rolled a disaster while suited, and the frame is breached."
+      - if: "default(@who.plating, '') <> ''"
+        then:
+          - do: breach-fix
+            with: {pool: "@who.plating", fix: breach}
+        else:
+          - prompt: "Plating is 0d until it's repaired with parts and a day's work, or a device patches it back to 1d (`didact do breach pool=<plating>`)."
+  - if: "count(@who.chems) > 0"
+    then:
+      - prompt: "Addiction: {@who.name} rode {@who.chems} through a disaster. The GM may hand them a long-term condition, Hooked: [chem] (+1t when craving and dry): `didact set {@who.id} conditions+='Hooked: <chem>'`."
+  - if: "@option.wild_wasteland"
+    then:
+      - prompt: "Wild Wasteland: if this disaster came in the middle of nowhere, things go strange: `didact table roll wild-wasteland` (or choose), and play it absolutely straight."
+source: "the-classes/the-longshot#luck-of-the-draw; the-classes/the-sledge#power-armor-training; surviving-the-wasteland/chems#addiction; running-the-wasteland/wild-wasteland"
+---
+check: defense
+title: Defense roll
+help: >-
+  When trouble comes at you that your own roll didn't invite (the GM spends suspense, a mine
+  clicks), the GM picks the stat that fits the danger and your likely reaction (you can pitch
+  one); never against the consequences of your own action roll (dodging was already priced in).
+  Perfect: you're clear. Messy: the GM lessens it. Grim: you take it all. Disaster: worse,
+  and you take spark. Same dice, thorns and criticals as an action roll. `protect`: throwing
+  yourself in front of an ally about to eat the consequences of their own roll is a 1d defense
+  roll (perfect, you both avoid it; messy, the GM lightens it for you both or hits only you; grim,
+  you both take it). Quick Draw ignores the thorns on an Agility defense roll, except those from
+  damage; No Weaknesses keeps conditions from adding any. Going all in (Rooted) reads only your own
+  dice; a bonus-dice pool counts only its best die; `finesse`: a 5 alongside a 6 is a second 6.
+params:
+  who: ref
+  stat: {enum: [brawn, agility, wits, presence]}
+  thorns: {kind: int, default: 0, help: "The danger's thorns"}
+  spark: {kind: int, default: 0, help: "Spark to spend: +1d each"}
+  perk: {kind: flag, default: false, help: "A perk applies: +1d in total (Superior Defender, Hit the Deck, …)"}
+  setup: {kind: flag, default: false, help: "A setup: +1d"}
+  chem: {kind: flag, default: false, help: "A chem's buff: +1d"}
+  relic: {kind: flag, default: false, help: "A relic (an arcana): +1d"}
+  assist: {kind: int, default: 0, help: "Helpers, 1d each, rolled apart; they share the risk"}
+  outside: {kind: flag, default: false, help: "Outside help: the GM rolls 1d and folds it in"}
+  bonus: {kind: ref, to: track, optional: true, help: "A bonus-dice pool rolled alongside: its best die counts, then its 1-3s drop"}
+  all_in: {kind: flag, default: false, help: "Rooted: 5s count as 6s, but 4s count as 1s, on your own dice"}
+  finesse: {kind: flag, default: false, help: "Finesse or Isodoped: a 5 alongside a 6 counts as a second 6"}
+  protect: {kind: flag, default: false, help: "Protecting an ally: 1d instead of the stat"}
+  stakes: {enum: [low, regular, high, dire], optional: true, help: "The scene's stakes: regular unless said otherwise"}
+before:
+  - if: "@spark > @who.spark"
+    then:
+      - stop: "{@who.name} has {@who.spark} spark to spend, not {@spark}."
+  - let:
+      has_bonus: "default(@bonus, '') <> ''"
+  - if: "@has_bonus"
+    then:
+      - if: "@bonus.value <= 0"
+        then:
+          - stop: "{@bonus.name} is empty: it can't be rolled until it comes back."
+  - let:
+      marked: "if('$stat' in @who.marks, 1, 0)"
+      rad: "if('$stat' in @who.rad_marks, 1, 0)"
+      hurt: >-
+        if('desperate' in @who.harm, 1, 0)
+        + if('bloodied' in @who.harm and ('$stat' == 'brawn' or '$stat' == 'agility'), 1, 0)
+        + if('rattled' in @who.harm and ('$stat' == 'wits' or '$stat' == 'presence'), 1, 0)
+      flesh: "if('Flesh Wound' in @who.conditions and not ('no-weaknesses' in @who.perks), 1, 0)"
+      quick: "'quick-draw' in @who.perks and '$stat' == 'agility' and @thorns > 0"
+      extra: "if(@perk, 1, 0) + if(@setup, 1, 0) + if(@chem, 1, 0) + if(@relic, 1, 0)"
+      stakes_now: "if('$stakes' <> '', '$stakes', 'regular')"
+  - let: {total_thorns: "if(@quick, 0, @thorns) + @marked + @rad + @hurt + @flesh"}
+  - if: "@quick"
+    then: ["Quick Draw: no thorns on an Agility defense roll, except those from damage."]
+  - if: "@marked > 0"
+    then:
+      - set: who.marks
+        op: "-="
+        value: $stat
+  - if: "@spark > 0"
+    then:
+      - set: who.spark
+        op: "-="
+        value: "@spark"
+  - roll: "(if(@protect, 1, @who.$stat) + @spark + @extra)d6"
+    as: roll
+  - if: "@assist > 0"
+    then:
+      - roll: "(@assist)d6"
+        as: help
+  - if: "@outside"
+    then:
+      - roll: 1d6
+        as: outside_help
+  - if: "@has_bonus"
+    then:
+      - pool: "@bonus"
+        as: bonus_roll
+  - if: "@total_thorns > 0"
+    then:
+      - roll: "(@total_thorns)d8"
+        as: thorn
+  - let:
+      own_six: "count(@roll.dice, 6) + if(@all_in, count(@roll.dice, 5), 0)"
+      own_five: "if(@all_in, 0, count(@roll.dice, 5))"
+      own_high: >-
+        if(@all_in, if(count(@roll.dice, 6) + count(@roll.dice, 5) > 0, 6, if(count(@roll.dice, 3) > 0, 3,
+        if(count(@roll.dice, 2) > 0, 2, 1))), max(@roll.dice))
+  - let:
+      highest: >-
+        max(@own_high, if(@assist > 0, max(@help.dice), 0), if(@outside, max(@outside_help.dice), 0),
+        if(@has_bonus, @bonus_roll.highest, 0))
+      rolled_six: >-
+        @own_six + if(@assist > 0, count(@help.dice, 6), 0) + if(@outside, count(@outside_help.dice, 6), 0)
+        + if(@has_bonus, if(@bonus_roll.highest == 6, 1, 0), 0)
+      fives: >-
+        @own_five + if(@assist > 0, count(@help.dice, 5), 0) + if(@outside, count(@outside_help.dice, 5), 0)
+        + if(@has_bonus, if(@bonus_roll.highest == 5, 1, 0), 0)
+      cuts: "if(@total_thorns > 0, count(@thorn.dice, 7) + count(@thorn.dice, 8), 0)"
+  - let:
+      finessed: "@finesse and @rolled_six == 1 and @fives >= 1"
+  - let:
+      sixes: "@rolled_six + if(@finessed, 1, 0)"
+      level: "if(@highest == 6, 3, if(@highest >= 4, 2, 1)) - @cuts"
+  - if: "@finessed"
+    then: ["Finesse: a 5 alongside the 6 counts as a second 6."]
+  - message: "highest {@highest} · sixes {@sixes} · thorns {@total_thorns}, cutting {@cuts}{if(@all_in, ' · all in: 5s count as 6s, 4s as 1s', '')}"
+bands:
+  critical: "@sixes >= 2"
+  perfect: "@level >= 3"
+  messy: "@level == 2"
+  grim: "@level == 1"
+  disaster: else
+on:
+  critical:
+    - if: "@protect"
+      then: ["Critical: {@who.name} and the ally both avoid it (thorns can't cut a critical); pick a critical bonus (greater effect, a secondary effect, setup) or take spark."]
+      else: ["Critical: {@who.name} is clear (thorns can't cut a critical), and picks a critical bonus (greater effect, a secondary effect, setup), or takes spark (`didact do take-spark who={@who.id}`)."]
+    - if: "'ricochet' in @who.perks"
+      then: ["Ricochet: against an attack, {@who.name} can push their luck (push yourself: `didact do mark who={@who.id} stat=…`) to send it home: a lesser foe drops; anything bigger rolls its pool."]
+  perfect:
+    - if: "@protect"
+      then: ["Perfect: {@who.name} and the ally both avoid it."]
+      else: ["Perfect: {@who.name} is clear."]
+    - if: "'ricochet' in @who.perks"
+      then: ["Ricochet: against an attack, {@who.name} can push their luck (push yourself: `didact do mark who={@who.id} stat=…`) to send it home: a lesser foe drops; anything bigger rolls its pool."]
+  messy:
+    - if: "@protect"
+      then: ["Messy: the GM lightens it for you both, or hits only {@who.name}."]
+      else: ["Messy: the GM lessens it (a lessened mark becomes set dressing)."]
+    - do: impact
+      with: {who: "@who", stakes: "@stakes_now", result: reduced}
+  grim:
+    - if: "@protect"
+      then: ["Grim: you both take it."]
+      else: ["Grim: {@who.name} takes it all."]
+    - do: impact
+      with: {who: "@who", stakes: "@stakes_now", result: full}
+  disaster:
+    - set: who.spark
+      value: "min(2, @who.spark + 1)"
+    - message: "Disaster: worse, and {@who.name} takes spark."
+    - do: impact
+      with: {who: "@who", stakes: "@stakes_now", result: worse}
+    - do: disaster-riders
+      with: {who: "@who"}
+source: "the-core-engine/rolls#defense-rolls; the-core-engine/working-together#protect; the-classes/the-ace#quick-draw"
+---
+procedure: impact
+title: The impact move
+help: >-
+  What a prompted impact move weighs at the scene's stakes (Stakes; Running the Wasteland): low, a
+  mark at most; regular (the default), one harm; high, impact moves land double, and a disaster
+  can drop you on the spot; dire, any impact move drops you. The GM can skip a prompted move and
+  take suspense instead. Solo play's guardrails: on a messy, make an impact move only in a
+  challenge, in a quest's last task pool, or holding 3+ suspense (otherwise take suspense); on a
+  disaster or at dire stakes, the usual consequences and the quest's peril pool too.
+params:
+  who: ref
+  stakes: {enum: [low, regular, high, dire], default: regular}
+  oracle: {kind: ref, optional: true, help: "The story oracle's state, for the GM's suspense (supplied)"}
+  result: {enum: [messy, grim, disaster, reduced, full, worse], default: grim, help: "What prompted it: an action roll's messy, grim or disaster; or what a defense roll lets through: reduced (messy), full (grim), worse (disaster)"}
+steps:
+  - if: "@option.solo and '$result' == 'messy'"
+    then:
+      - if: "default(@oracle.suspense, 0) >= 3"
+        then:
+          - message: "Solo, on a messy: you hold {@oracle.suspense} suspense, 3 or more: make an impact move."
+        else:
+          - prompt: "Solo, on a messy (you hold {default(@oracle.suspense, 0)} suspense): are you in a challenge, or in a quest's last task pool? If so, make an impact move; if not, take suspense instead (`didact do suspense take=1`)."
+  - if: "'$stakes' == 'low'"
+    then: ["Low stakes: the impact move weighs a mark at most."]
+  - if: "'$stakes' == 'regular'"
+    then: ["Regular stakes: the impact move weighs one harm (or split it into smaller cuts: a mark and the rifle skitters away; spread it across several PCs; or land it off-screen)."]
+  - if: "'$stakes' == 'high'"
+    then:
+      - message: "High stakes: the impact move lands double."
+      - if: "'$result' == 'disaster' or '$result' == 'worse'"
+        then:
+          - prompt: "High stakes: a disaster can drop {@who.name} on the spot (`didact do dropped who={@who.id}`)."
+  - if: "'$stakes' == 'dire' and '$result' <> 'reduced'"
+    then:
+      - prompt: "Dire stakes: any impact move drops {@who.name} (`didact do dropped who={@who.id}`), unless the GM skips it for suspense."
+  - if: "'$stakes' == 'dire' and '$result' == 'reduced'"
+    then: ["Dire stakes: the GM lessens what would have dropped {@who.name}."]
+  - if: "'$result' == 'disaster' or '$result' == 'worse'"
+    then: ["Make it the worst case: worse than a grim's."]
+  - if: "@option.solo and ('$result' == 'disaster' or '$result' == 'worse' or ('$stakes' == 'dire' and '$result' <> 'reduced'))"
+    then:
+      - prompt: "Solo: {if('$result' == 'disaster' or '$result' == 'worse', 'on a disaster', 'at dire stakes')}, take the usual consequences and roll your quest's peril pool too (`didact track roll <peril>`)."
+  - if: "('$result' == 'grim' or '$result' == 'disaster') or ('$result' == 'messy' and not @option.solo)"
+    then: ["The GM can skip a prompted impact move and take suspense instead (`didact do suspense take=1`); when a messy has no natural on-screen bite, bank suspense and hit later with better timing."]
+source: "the-core-engine/stakes; running-the-wasteland/the-gms-half-of-the-engine#stakes; running-the-wasteland/running-solo-and-duet"
+---
+procedure: misfire
+title: A device misfires (dangerous tech)
+help: >-
+  With dangerous tech (an option), any device roll with two or more 1s, thorns included, misfires:
+  a 1d story roll for the collateral, a dark omen (the GM takes suspense), or a roll of a 6d
+  Corruption pool (at 0d, a trait, desire, bond, or look turns for the worse).
+params:
+  who: ref
+steps:
+  - prompt: "Dangerous tech: {@who.name}'s device misfires (two or more 1s, thorns included). Pick one: a 1d story roll for the collateral (`didact do story-roll dice=1 question='What else does it hit?'`), a dark omen (the GM takes suspense: `didact do suspense take=1 why='dark omen'`), or a roll of a 6d Corruption pool (at 0d, a trait, desire, bond, or look turns for the worse: `didact track new 'Corruption' --kind pool --size 6 --pool pressure --for {@who.id} --note 'a trait, desire, bond, or look turns for the worse'`, then `didact track roll corruption`)."
+source: options-and-dials/tone-dials#dangerous-tech
+---
+check: story-roll
+title: Story roll
+help: >-
+  For luck and off-screen fact (is the terminal still powered? does the caravan have Rad-X?):
+  roll 1d (bad odds), 2d (even) or 3d (good). Perfect: ideal. Messy: yes, with a catch. Grim: it's
+  a problem now. Thorns are rare, but allowed, and two 6s are a critical no thorn can cut. When a
+  story roll stands in for an action, a messy or grim can prompt an impact move. The GM rolls to
+  disclaim any decision they'd rather the dice make. `perk` adds a perk's +1d (the Longshot's
+  Charmed life on a story roll that tests their own luck; Educated on science, history, tech).
+  With Wild Wasteland on, a critical on a story roll goes strange.
+params:
+  question: {kind: text, optional: true}
+  dice: {kind: int, default: 2, help: "1 for bad odds, 3 for good"}
+  odds: {enum: [bad, even, good], optional: true, help: "The odds, in place of dice: bad 1d, even 2d, good 3d"}
+  thorns: {kind: int, default: 0}
+  spark: {kind: int, default: 0, help: "Spark to spend: +1d each (with who=)"}
+  perk: {kind: flag, default: false, help: "A perk applies: +1d"}
+  who: {kind: ref, optional: true, help: "Whose spark is spent"}
+before:
+  - if: "default(@question, '') <> ''"
+    then: ["The question: {@question}"]
+  - if: "@spark > default(@who.spark, 0)"
+    then:
+      - stop: "Spending spark needs who= and that much spark ({@spark})."
+  - if: "@spark > 0"
+    then:
+      - set: who.spark
+        op: "-="
+        value: "@spark"
+  - let: {base: "if('$odds' == 'bad', 1, if('$odds' == 'good', 3, if('$odds' == 'even', 2, @dice))) + if(@perk, 1, 0)"}
+  - roll: "(@base + @spark)d6"
+    as: roll
+  - if: "@thorns > 0"
+    then:
+      - roll: "(@thorns)d8"
+        as: thorn
+  - let: {cuts: "if(@thorns > 0, count(@thorn.dice, 7) + count(@thorn.dice, 8), 0)"}
+  - let: {level: "if(max(@roll.dice) == 6, 3, if(max(@roll.dice) >= 4, 2, 1)) - @cuts"}
+bands:
+  perfect: "@level >= 3 or count(@roll.dice, 6) >= 2"
+  messy: "@level == 2"
+  grim: "@level == 1"
+  disaster: else
+on:
+  perfect:
+    - if: "count(@roll.dice, 6) >= 2 and @option.wild_wasteland"
+      then:
+        - message: "Wild Wasteland: a critical on a story roll, and things go strange. Play it absolutely straight."
+        - table: wild-wasteland
+prompt: Interpret the answer from positive (perfect, ideal) to negative (grim or disaster, a problem now), for the side you rolled for.
+source: "the-core-engine/rolls#story-rolls; running-the-wasteland/the-gms-half-of-the-engine#story-rolls-and-the-gm-crucible"
+---
+check: montage
+title: Montage roll
+help: >-
+  To cross a stretch of time or wasteland in one shot, everyone makes a 2d action roll (roll once
+  for each survivor) and the table keeps the highest result; narrate the trip together, and zoom in
+  wherever it gets interesting. Spark adds dice, and a perk +1d (Idiot Savant, Swift Learner, Lone
+  Wanderer); weather, hunger and terrain are thorns or marks; desperate, a Flesh Wound, and a mark,
+  rad mark, bloodied or rattled on the `stat` the effort leans on add thorns (a used mark clears).
+params:
+  who: ref
+  stat: {enum: [brawn, agility, wits, presence], optional: true, help: "What the effort leans on (for a mark, rad mark, bloodied or rattled)"}
+  thorns: {kind: int, default: 0}
+  spark: {kind: int, default: 0}
+  perk: {kind: flag, default: false, help: "A perk applies: +1d"}
+  dice: {kind: int, default: 2, help: "The montage's dice: 2 (Explorer's and Covert Ops' flashbacks are 3d montage rolls)"}
+before:
+  - if: "@spark > @who.spark"
+    then:
+      - stop: "{@who.name} has {@who.spark} spark to spend, not {@spark}."
+  - let:
+      marked: "if('$stat' <> '' and '$stat' in @who.marks, 1, 0)"
+      rad: "if('$stat' <> '' and '$stat' in @who.rad_marks, 1, 0)"
+      hurt: >-
+        if('desperate' in @who.harm, 1, 0)
+        + if('bloodied' in @who.harm and ('$stat' == 'brawn' or '$stat' == 'agility'), 1, 0)
+        + if('rattled' in @who.harm and ('$stat' == 'wits' or '$stat' == 'presence'), 1, 0)
+      flesh: "if('Flesh Wound' in @who.conditions, 1, 0)"
+  - let: {total_thorns: "@thorns + @marked + @rad + @hurt + @flesh"}
+  - if: "@marked > 0"
+    then:
+      - set: who.marks
+        op: "-="
+        value: $stat
+  - if: "@spark > 0"
+    then:
+      - set: who.spark
+        op: "-="
+        value: "@spark"
+  - roll: "(@dice + @spark + if(@perk, 1, 0))d6"
+    as: roll
+  - if: "@total_thorns > 0"
+    then:
+      - roll: "(@total_thorns)d8"
+        as: thorn
+  - let:
+      highest: "max(@roll.dice)"
+      sixes: "count(@roll.dice, 6)"
+      cuts: "if(@total_thorns > 0, count(@thorn.dice, 7) + count(@thorn.dice, 8), 0)"
+  - let: {level: "if(@highest == 6, 3, if(@highest >= 4, 2, 1)) - @cuts"}
+  - message: "{@who.name}: highest {@highest} · thorns {@total_thorns}, cutting {@cuts}"
+bands:
+  critical: "@sixes >= 2"
+  perfect: "@level >= 3"
+  messy: "@level == 2"
+  grim: "@level == 1"
+  disaster: else
+on:
+  disaster:
+    - set: who.spark
+      value: "min(2, @who.spark + 1)"
+    - message: "Disaster for {@who.name}, who takes spark."
+prompt: "Roll for each survivor taking part; the table keeps the highest result. Narrate the trip together, and zoom in wherever it gets interesting."
+source: "the-core-engine/rolls#montage-rolls; surviving-the-wasteland/the-long-road"
+---
+check: pool-action
+title: A power pool, rolled in place of a stat
+help: >-
+  A power pool (4d Alien Blaster Cells, 3d Winging It, a 4d Caps pool) is rolled in place of a
+  stat: take the highest die as your result, then drop the 1-3s. Spark or assist dice rolled
+  alongside stay separate: they never drop and never join the pool; so do a perk's, a setup's, a
+  chem's and a relic's (+1d each kind). If a use isn't risky, it simply succeeds, but you still roll
+  the pool (`didact track roll`). `drop` drops dice first (a potent use: a mythic's pools go potent
+  by dropping 1d; the huge asks of a Caps pool). Thorns, criticals and a disaster's spark as any
+  action roll; a `stat` the action leans on brings its mark, rad mark, bloodied or rattled.
+params:
+  who: ref
+  pool: {kind: ref, to: track, help: "The power pool (a tracker)"}
+  stat: {enum: [brawn, agility, wits, presence], optional: true, help: "What the action leans on (for a mark, rad mark, bloodied or rattled)"}
+  thorns: {kind: int, default: 0}
+  spark: {kind: int, default: 0, help: "Spark to spend: +1d each, rolled alongside"}
+  perk: {kind: flag, default: false, help: "A perk applies: +1d, rolled alongside"}
+  setup: {kind: flag, default: false, help: "A setup: +1d, rolled alongside"}
+  chem: {kind: flag, default: false, help: "A chem's buff: +1d, rolled alongside"}
+  relic: {kind: flag, default: false, help: "A relic: +1d, rolled alongside"}
+  assist: {kind: int, default: 0, help: "Helpers, 1d each, rolled apart; they share the risk"}
+  drop: {kind: int, default: 0, help: "Dice dropped from the pool before rolling (a potent use, a huge ask)"}
+  device: {kind: flag, default: false, help: "A device: two or more 1s (thorns included) misfire under dangerous tech"}
+  stakes: {enum: [low, regular, high, dire], optional: true}
+before:
+  - if: "@spark > @who.spark"
+    then:
+      - stop: "{@who.name} has {@who.spark} spark to spend, not {@spark}."
+  - if: "@pool.value <= 0"
+    then:
+      - stop: "{@pool.name} is empty (0d): it ran dry."
+  - let:
+      marked: "if('$stat' <> '' and '$stat' in @who.marks, 1, 0)"
+      rad: "if('$stat' <> '' and '$stat' in @who.rad_marks, 1, 0)"
+      hurt: >-
+        if('desperate' in @who.harm, 1, 0)
+        + if('bloodied' in @who.harm and ('$stat' == 'brawn' or '$stat' == 'agility'), 1, 0)
+        + if('rattled' in @who.harm and ('$stat' == 'wits' or '$stat' == 'presence'), 1, 0)
+      flesh: "if('Flesh Wound' in @who.conditions, 1, 0)"
+      extra: "@spark + if(@perk, 1, 0) + if(@setup, 1, 0) + if(@chem, 1, 0) + if(@relic, 1, 0)"
+      stakes_now: "if('$stakes' <> '', '$stakes', 'regular')"
+  - let: {total_thorns: "@thorns + @marked + @rad + @hurt + @flesh"}
+  - if: "@marked > 0"
+    then:
+      - set: who.marks
+        op: "-="
+        value: $stat
+  - if: "@spark > 0"
+    then:
+      - set: who.spark
+        op: "-="
+        value: "@spark"
+  - pool: "@pool"
+    drop: "@drop"
+    as: rolled
+  - if: "@extra > 0"
+    then:
+      - roll: "(@extra)d6"
+        as: along
+  - if: "@assist > 0"
+    then:
+      - roll: "(@assist)d6"
+        as: help
+  - if: "@total_thorns > 0"
+    then:
+      - roll: "(@total_thorns)d8"
+        as: thorn
+  - let:
+      highest: "max(@rolled.highest, if(@extra > 0, max(@along.dice), 0), if(@assist > 0, max(@help.dice), 0))"
+      sixes: "count(@rolled.faces, 6) + if(@extra > 0, count(@along.dice, 6), 0) + if(@assist > 0, count(@help.dice, 6), 0)"
+      cuts: "if(@total_thorns > 0, count(@thorn.dice, 7) + count(@thorn.dice, 8), 0)"
+      ones: "count(@rolled.faces, 1) + if(@extra > 0, count(@along.dice, 1), 0) + if(@assist > 0, count(@help.dice, 1), 0) + if(@total_thorns > 0, count(@thorn.dice, 1), 0)"
+  - let: {level: "if(@highest == 6, 3, if(@highest >= 4, 2, 1)) - @cuts"}
+  - message: "highest {@highest} · sixes {@sixes} · thorns {@total_thorns}, cutting {@cuts} · {@pool.name} drops {@rolled.dropped}d, {@rolled.left}d left"
+  - if: "@device and @ones >= 2 and @option.dangerous_tech"
+    then:
+      - do: misfire
+        with: {who: "@who"}
+bands:
+  critical: "@sixes >= 2"
+  perfect: "@level >= 3"
+  messy: "@level == 2"
+  grim: "@level == 1"
+  disaster: else
+on:
+  critical: ["Critical: you get it (thorns can't cut it), and pick a bonus: greater effect, a secondary effect, or setup; or take spark."]
+  perfect: ["Perfect: you get it, clean."]
+  messy:
+    - message: "Messy: you get it, and the GM makes an impact move."
+    - do: impact
+      with: {who: "@who", stakes: "@stakes_now", result: messy}
+  grim:
+    - message: "Grim: you don't get it, and the GM makes an impact move."
+    - do: impact
+      with: {who: "@who", stakes: "@stakes_now", result: grim}
+  disaster:
+    - set: who.spark
+      value: "min(2, @who.spark + 1)"
+    - message: "Disaster: the worst case. {@who.name} takes spark as consolation."
+    - do: impact
+      with: {who: "@who", stakes: "@stakes_now", result: disaster}
+    - do: disaster-riders
+      with: {who: "@who"}
+source: "the-core-engine/pools; the-armory/introduction#the-tier-gate"
+---
+action: mark
+title: Take a mark
+help: >-
+  Light damage to a stat: +1t on your next roll with it, then it clears. Marking an already-marked
+  stat (a rad mark included) inflicts harm instead: bloodied for Brawn or Agility, rattled for Wits
+  or Presence. Pushing yourself costs a mark. A side character takes harm instead of any mark.
+  `grit`: the Everlast's Dig deep, 1 Grit instead of the mark, even one that would have stacked
+  into harm.
+params:
+  who: ref
+  stat: {enum: [brawn, agility, wits, presence]}
+  grit: {kind: flag, default: false, help: "Dig deep (Toughness): spend 1 Grit instead"}
+steps:
+  - if: "@grit"
+    then:
+      - if: "@who.grit < 1"
+        then:
+          - stop: "{@who.name} has no Grit left to dig deep with."
+      - set: who.grit
+        op: "-="
+        value: 1
+      - message: "Dig deep: {@who.name} spends 1 Grit instead of the mark on $stat ({@who.grit} Grit left). Is that all? If a foe did it, {@who.name} is set up against that foe: +1d on the next roll against them."
+    else:
+      - if: "@who.side or '$stat' in @who.marks or '$stat' in @who.rad_marks"
+        then:
+          - if: "@who.side"
+            then: ["{@who.name} is a side character: they never take marks, so that's harm instead."]
+            else: ["{@who.name}'s $stat is already marked: that's harm instead."]
+          - do: harm
+            with: {who: "@who", kind: "if('$stat' == 'brawn' or '$stat' == 'agility', 'bloodied', 'rattled')"}
+        else:
+          - set: who.marks
+            op: "+="
+            value: $stat
+          - message: "{@who.name} takes a mark on $stat: +1t on the next $stat roll, then it clears."
+source: "the-core-engine/damage-and-recovery#marks; the-classes/the-everlast#toughness; running-the-wasteland/running-solo-and-duet#side-characters"
+---
+action: harm
+title: Take harm
+help: >-
+  The serious ladder: bloodied (pressing physical damage: +1t on physical rolls) or rattled
+  (pressing mental damage: +1t on mental rolls). A second bloodied, or a second rattled, puts you
+  at desperate (+1t on everything); once you're desperate, a bloodied or rattled you already carry
+  drops you, and one you don't carry yet just fills its box. What can stand in for it: `grit` (Walk
+  it off: 2 Grit, even harm that would drop you), `flesh_wound` (Life Giver: a Flesh Wound instead
+  of getting bloodied, never on a disaster), `serendipity=<pool>` (when you'd take harm while
+  already carrying harm, roll it: the blow just misses). Pain is fuel: a Sledge left bloodied or
+  worse gains 1 Might.
+params:
+  who: ref
+  kind: {enum: [bloodied, rattled]}
+  grit: {kind: flag, default: false, help: "Walk it off (Toughness): spend 2 Grit and shrug it off entirely"}
+  flesh_wound: {kind: flag, default: false, help: "Life Giver: a Flesh Wound instead of getting bloodied (not on a disaster)"}
+  serendipity: {kind: ref, to: track, optional: true, help: "The Serendipity pool: when you'd take harm while already carrying harm, roll it and the blow misses"}
+steps:
+  - if: "'dropped' in @who.harm"
+    then:
+      - stop: "{@who.name} is already dropped."
+  - if: "@grit"
+    then:
+      - if: "@who.grit < 2"
+        then:
+          - stop: "Walk it off takes 2 Grit; {@who.name} has {@who.grit}."
+      - set: who.grit
+        op: "-="
+        value: 2
+      - message: "Walk it off: {@who.name} spends 2 Grit and shrugs off the $kind entirely ({@who.grit} Grit left). Is that all? If a foe did it, {@who.name} is set up against that foe: +1d on the next roll against them."
+    else:
+      - if: "@flesh_wound"
+        then:
+          - if: "'$kind' <> 'bloodied'"
+            then:
+              - stop: "A Flesh Wound (Life Giver) stands in for getting bloodied only."
+          - if: "'Flesh Wound' in @who.conditions"
+            then:
+              - stop: "{@who.name} already carries a Flesh Wound: only one at a time."
+          - set: who.conditions
+            op: "+="
+            value: Flesh Wound
+          - message: "Life Giver: {@who.name} takes a Flesh Wound instead of getting bloodied: +1t on all their rolls, and it clears when the scene ends."
+        else:
+          - if: "default(@serendipity, '') <> ''"
+            then:
+              - if: "count(@who.harm) == 0"
+                then:
+                  - stop: "Serendipity rolls only when {@who.name} would take harm while already carrying harm."
+              - if: "@serendipity.value <= 0"
+                then:
+                  - stop: "{@serendipity.name} is empty (0d)."
+              - pool: "@serendipity"
+                as: luck_out
+              - message: "Serendipity: the blow just... misses ({@serendipity.name}: {@luck_out.left}d left)."
+            else:
+              - do: harm-ladder
+                with: {who: "@who", kind: $kind}
+source: "the-core-engine/damage-and-recovery#harm; the-classes/the-everlast#toughness; the-classes/the-everlast#life-giver; the-classes/the-longshot#serendipity"
+---
+procedure: harm-ladder
+title: The harm ladder
+help: "Bloodied or rattled fills its box; a second of the same is desperate; once desperate, one more you already carry drops you."
+params:
+  who: ref
+  kind: {enum: [bloodied, rattled]}
+steps:
+  - if: "not ('$kind' in @who.harm)"
+    then:
+      - set: who.harm
+        op: "+="
+        value: $kind
+      - message: "{@who.name} is $kind: +1t on {if('$kind' == 'bloodied', 'physical', 'mental')} rolls until it's treated."
+    else:
+      - if: "'desperate' in @who.harm"
+        then:
+          - set: who.harm
+            op: "+="
+            value: dropped
+          - message: "{@who.name} is already $kind and desperate: dropped, out of the scene."
+          - prompt: "Make the story roll: `didact do dropped who={@who.id}` (usually 2d)."
+        else:
+          - set: who.harm
+            op: "+="
+            value: desperate
+          - message: "{@who.name} is $kind again: desperate, +1t on everything. Running on fumes: the next harm they already carry drops them."
+          - if: "@option.lethality == 'deadlier'"
+            then:
+              - message: "Deadlier lethality: a desperate survivor also carries an urgent condition, 4d Bleeding Out (→ dropped)."
+              - do: bleeding-out
+                with: {who: "@who"}
+  - if: "'$kind' == 'bloodied' and 'unstoppable-force' in @who.perks"
+    then:
+      - set: who.might
+        op: "+="
+        value: 1
+      - message: "Pain is fuel: the blow leaves {@who.name} bloodied or worse: +1 Might ({@who.might}), even past the limit."
+  - if: "'$kind' == 'bloodied' and 'adrenaline' in @who.perks"
+    then: ["Adrenaline: {@who.name} got bloodied, and can let their blood come up for the rest of the scene: only aggressive, forward actions; no thorns from their harm; set up after each foe taken out or pool emptied."]
+source: "the-core-engine/damage-and-recovery#harm; building-a-survivor/stats-and-special; the-classes/the-sledge#unstoppable-force; options-and-dials/tone-dials#lethality"
+---
+action: bleeding-out
+title: Bleeding Out
+help: >-
+  An urgent condition, a timer to worse: 4d Bleeding Out → dropped (deadlier lethality's for a
+  desperate survivor; a dropped roll's messy can cost it too). Made at once, on the sheet and as its
+  timer, rolled as time passes or whenever the GM says it ticks (`didact track roll <it>`);
+  treatment clears it (`didact do treat … condition='4d Bleeding Out'`, and its timer).
+params:
+  who: ref
+steps:
+  - entity:
+      type: track
+      name: "{@who.name}: Bleeding Out"
+      fields: {kind: pool, pool: timer, value: {value: 4, max: 4}, note: dropped}
+      links: [{rel: of, to: "@who"}]
+    as: bleeding
+  - if: "not ('4d Bleeding Out' in @who.conditions)"
+    then:
+      - set: who.conditions
+        op: "+="
+        value: "'4d Bleeding Out'"
+      - do: refresh
+        with: {pool: "@bleeding"}
+      - set: who.bleeding_out
+        value: "@bleeding"
+  - message: "{@who.name} carries 4d Bleeding Out ({@bleeding.id}): at 0d, dropped. Roll it as time passes (`didact track roll {@bleeding.id}`); treatment stops it (`didact do treat who={@who.id} condition='4d Bleeding Out'`)."
+source: "the-core-engine/damage-and-recovery#harm; options-and-dials/tone-dials#lethality"
+---
+check: dropped
+title: Dropped
+help: >-
+  Harm that would make you desperate a second time takes you out of the scene: make a story roll,
+  usually 2d (lethality: deadlier 1d, softer 3d), +1d for each spark spent. Perfect: you're just
+  out until the scene ends. Messy: it costs you, a condition (4d Bleeding Out, a broken arm,
+  trauma). Grim: it's dire, a permanent condition or the end of your story (sacrifice,
+  retirement, or another end you choose: `didact do end-story`). Long-term and permanent changes,
+  death included, are always the player's to call. A perk adds +1d in total (the Longshot's
+  Charmed life, a Medic tending them, a Field Surgeon reaching them: on a perfect they're back in
+  the scene, desperate but standing), a relic +1d (a Healing Cross), and with softer stimpaks a jab
+  +1d. Rooted (`all_in`): 5s count as 6s, 4s as 1s. A retiring survivor dropped again dies.
+params:
+  who: ref
+  dice: {kind: int, default: 0, help: "The story roll's dice (left out: 2, or as the lethality dial has it)"}
+  spark: {kind: int, default: 0, help: "Spark to spend: +1d each"}
+  perk: {kind: flag, default: false, help: "A perk applies: +1d in total (Charmed life, Medic)"}
+  surgeon: {kind: flag, default: false, help: "A Field Surgeon pushed to reach them before the roll: +1d (a perk's), and on a perfect they're back in the scene, desperate but standing"}
+  relic: {kind: flag, default: false, help: "A relic: +1d (a Healing Cross, a suit's auto-injector)"}
+  stimpak: {kind: flag, default: false, help: "Softer stimpaks: a jab into the dropped ally adds +1d"}
+  all_in: {kind: flag, default: false, help: "Rooted: 5s count as 6s, but 4s count as 1s"}
+before:
+  - if: "@spark > @who.spark"
+    then:
+      - stop: "{@who.name} has {@who.spark} spark to spend, not {@spark}."
+  - if: "@stimpak and @option.stimpaks <> 'softer'"
+    then:
+      - stop: "A jab into a dropped ally adds +1d with softer stimpaks (`didact campaign profile stimpaks=softer`)."
+  - if: "not ('dropped' in @who.harm)"
+    then:
+      - set: who.harm
+        op: "+="
+        value: dropped
+  - if: "'nuclear-anomaly' in @who.perks"
+    then: ["Nuclear Anomaly (once ever): when dropped, {@who.name} can erupt in a ritual-level blast: lesser foes nearby are simply gone, bigger ones lose 2d from their pools, allies get one defense roll to clear it; they wake in the crater, breathing."]
+  - let:
+      story: >-
+        if(@dice > 0, @dice, if(@option.lethality == 'softer', 3, if(@option.lethality == 'deadlier', 1, 2)))
+        + @spark + if(@perk or @surgeon, 1, 0) + if(@relic, 1, 0) + if(@stimpak, 1, 0)
+  - if: "@spark > 0"
+    then:
+      - set: who.spark
+        op: "-="
+        value: "@spark"
+  - if: "not @who.retiring"
+    then:
+      - roll: "(@story)d6"
+        as: roll
+      - let:
+          top: >-
+            if(@all_in, if(count(@roll.dice, 6) + count(@roll.dice, 5) > 0, 6, if(count(@roll.dice, 3) > 0, 3,
+            if(count(@roll.dice, 2) > 0, 2, 1))), max(@roll.dice))
+bands:
+  perished: "@who.retiring"
+  perfect: "@top == 6"
+  messy: "@top >= 4"
+  grim: else
+on:
+  perished: ["{@who.name} was retiring, and is dropped again first: they die. Work with the GM on a fitting end."]
+  perfect:
+    - if: "@surgeon"
+      then:
+        - set: who.harm
+          op: "-="
+          value: dropped
+        - if: "not ('desperate' in @who.harm)"
+          then:
+            - set: who.harm
+              op: "+="
+              value: desperate
+        - message: "Field Surgeon: on a perfect, {@who.name} is back in the scene, desperate but standing."
+      else: ["{@who.name} is just out until the scene ends."]
+  messy:
+    - message: "It costs {@who.name}: a condition (4d Bleeding Out, a broken arm, trauma)."
+    - prompt: "An urgent one is a timer to worse: `didact do bleeding-out who={@who.id}` makes the 4d Bleeding Out; others go on the sheet: `didact set {@who.id} conditions+='broken arm'`."
+  grim:
+    - message: "It's dire: a permanent condition, or the end of {@who.name}'s story. Long-term and permanent changes, death included, are the player's to call."
+    - prompt: "If it's the end: `didact do end-story who={@who.id} end=sacrifice|retirement|another` (sacrifice: one last automatic action, then the credits; retirement: bow out soon, for if they're dropped again first, they die)."
+source: "the-core-engine/damage-and-recovery#dropped; the-classes/the-inventor#field-surgeon; the-classes/the-everlast#rooted; options-and-dials/tone-dials#lethality; options-and-dials/gear-and-survival#stimpaks"
+---
+action: take-spark
+title: Take spark
+help: >-
+  Pure protagonist energy: hold up to 2. Take spark when you introduce a tangle, roll a disaster,
+  resolve a story arc, settle a quarrel, or an ally changes their bond with you; and whenever a rule
+  says so: your best moment before a session, a Build Up, wonder in the wastes, blowing off steam,
+  a quirk's flaw biting, a perk (Light Step's perfect, Local Leader's promise). Side characters
+  have none.
+params:
+  who: ref
+  why: {kind: text, optional: true}
+steps:
+  - if: "@who.side"
+    then:
+      - stop: "{@who.name} is a side character: no spark or thread."
+  - let: {had: "@who.spark"}
+  - set: who.spark
+    value: "min(2, @who.spark + 1)"
+  - message: "{@who.name} has {@who.spark} spark{if(@had >= 2, ' (2 at most)', '')}."
+source: "the-core-engine/spark; surviving-the-wasteland/the-long-road#wonder-in-the-wastes; options-and-dials/quirks"
+---
+procedure: renew
+title: Spark and thread come back
+help: >-
+  Sessions start warm: every survivor shares their best moment from the last one and takes spark
+  for it, and thread resets: 2, +1 each for Explorer, Covert Ops, Fortune Finder and Educated.
+  With rest resets, at each real rest instead. Side characters have neither.
+params:
+  who: ref
+steps:
+  - if: "not @who.side"
+    then:
+      - let:
+          thread_now: >-
+            2 + if('explorer' in @who.perks, 1, 0) + if('covert-ops' in @who.perks, 1, 0)
+            + if('fortune-finder' in @who.perks, 1, 0) + if('educated' in @who.perks, 1, 0)
+      - set: who.spark
+        value: "min(2, @who.spark + 1)"
+      - set: who.thread
+        value: "@thread_now"
+      - message: "{@who.name}: spark {@who.spark}, thread {@thread_now}."
+source: "the-core-engine/experience#sessions-start-warm; the-core-engine/thread-and-tangles#thread; the-classes/the-pathfinder#explorer; the-classes/the-ace#covert-ops; the-classes/the-longshot#fortune-finder; the-classes/the-inventor#educated"
+---
+procedure: plating-refresh
+title: Plating comes back (unless breached)
+help: "Each session the frame's Plating comes back to full, unless it's breached: then it waits for a repair with parts and a day's work (`didact do breach … fix=repair`)."
+params:
+  pool: {kind: ref, to: track}
+steps:
+  - if: "default(@pool.status, '') == 'breached'"
+    then: ["{@pool.name} is still breached: it stays at {@pool.value}d until it's repaired with parts and a day's work (`didact do breach pool={@pool.id} fix=repair`)."]
+    else:
+      - do: refresh
+        with: {pool: "@pool"}
+source: the-classes/the-sledge#power-armor-training
+---
+procedure: perk-resets
+title: Per-session perks reset
+help: >-
+  Per-session wells and perks refill when a new session starts (in downtime too; with rest
+  resets, on a real rest): the Everlast's Grit, the Charmer's Sway, the Inventor's devices and
+  potent devices, the Ace's Cool, the Pathfinder's studies (and a new quarry), the Longshot's Luck
+  rolled anew, and the perks' pools the sheet points at (Plating, unless breached; Pack, Chems,
+  Winging It, Serendipity, Standing) and an Armor pool, refreshed by themselves; the arcana's (but
+  not a pool with a unique reset) by hand. Frayed Genes rolls its mutation; Know Your Enemy and
+  SCAV! Lessons pick theirs.
+params:
+  who: ref
+steps:
+  - let:
+      g246: "if(@who.level >= 2, 1, 0) + if(@who.level >= 4, 1, 0) + if(@who.level >= 6, 1, 0)"
+      g36: "if(@who.level >= 3, 1, 0) + if(@who.level >= 6, 1, 0)"
+  - message: "{@who.name}'s per-session perks reset."
+  - if: "'toughness' in @who.perks"
+    then:
+      - set: who.grit
+        value: "6 + @g246"
+      - message: "Toughness: {@who.grit} Grit this session."
+  - if: "'gift-of-gab' in @who.perks"
+    then:
+      - set: who.sway
+        value: "3 + @g246"
+      - message: "Gift of Gab: {@who.sway} Sway this session."
+  - if: "'science' in @who.perks"
+    then:
+      - set: who.devices
+        value: "4 + @g246"
+      - set: who.potent_devices
+        value: "2 + @g246"
+      - message: "Science!: {@who.devices} devices and {@who.potent_devices} potent devices this session."
+  - if: "'the-professional' in @who.perks"
+    then:
+      - set: who.cool
+        value: "2 + @g36"
+      - message: "The Professional: {@who.cool} Cool this session."
+  - if: "'awareness' in @who.perks"
+    then:
+      - set: who.studies
+        value: "1 + @g36"
+      - if: "default(@who.quarry, '') <> ''"
+        then:
+          - unset: who.quarry
+      - message: "Awareness: {@who.name} can study {@who.studies} foe{if(@who.studies > 1, 's', '')} this session (`didact do study`)."
+  - if: "'luck-of-the-draw' in @who.perks"
+    then:
+      - do: luck-roll
+        with: {who: "@who"}
+  - if: "'frayed-genes' in @who.perks"
+    then:
+      - check: story-roll
+        with: {dice: 2, question: "What do {@who.name}'s frayed genes do today?"}
+        as: genes
+      - prompt: "Frayed Genes: perfect grants a helpful mutation for the day, messy one of each, grim an inconvenient one (you and the GM pick). Whatever you get, take spark: `didact do take-spark who={@who.id} why='frayed genes'`."
+  - if: "'know-your-enemy' in @who.perks"
+    then:
+      - prompt: "Know Your Enemy: pick ferals, mutants, or synths for this session: the party reads that enemy's moves before they land (a standing hint in fights against them)."
+  - if: "'scav-lessons' in @who.perks"
+    then:
+      - prompt: "SCAV! Lessons: pick this session's lesson (`didact table show scav-lessons`)."
+  # The perks' pools and an Armor pool come back each session, from the sheet's refs (a breached
+  # frame stays breached until it's repaired); an arcana's pools, by hand.
+  - if: "'power-armor-training' in @who.perks and default(@who.plating, '') <> ''"
+    then:
+      - do: plating-refresh
+        with: {pool: "@who.plating"}
+  - if: "'pack-rat' in @who.perks and default(@who.pack, '') <> ''"
+    then:
+      - do: refresh
+        with: {pool: "@who.pack"}
+  - if: "'chemist' in @who.perks and default(@who.chems_pool, '') <> ''"
+    then:
+      - do: refresh
+        with: {pool: "@who.chems_pool"}
+  - if: "'idiot-savant' in @who.perks and default(@who.winging_it, '') <> ''"
+    then:
+      - do: refresh
+        with: {pool: "@who.winging_it"}
+  - if: "'serendipity' in @who.perks and default(@who.serendipity, '') <> ''"
+    then:
+      - do: refresh
+        with: {pool: "@who.serendipity"}
+  - if: "'wasteland-warlord' in @who.perks and default(@who.standing_pool, '') <> ''"
+    then:
+      - do: refresh
+        with: {pool: "@who.standing_pool"}
+  - if: "default(@who.armor_pool, '') <> ''"
+    then:
+      - do: refresh
+        with: {pool: "@who.armor_pool"}
+  - prompt: "Refresh {@who.name}'s arcana pools (a relic's Aid or Cells; a named suit's Plating on its own record), but not one with a unique reset: `didact do refresh pool=<track>` for each (`didact track list`). Stimpaks refill after a night somewhere safe or in downtime, not each session."
+source: "the-classes/introduction#wells-and-dice; the-classes/the-everlast#toughness; the-classes/the-charmer#gift-of-gab; the-classes/the-inventor#science; the-classes/the-ace#the-professional; the-classes/the-pathfinder#awareness; the-classes/the-longshot#luck-of-the-draw; the-armory/introduction"
+---
+action: pre-session
+title: Before a session
+help: >-
+  Sessions start warm. Before each session (after the first), look back at the last one together:
+  every player shares their survivor's best moment and takes spark for it, thread and per-session
+  perks reset, and the GM takes suspense and stitches the moments into the "Previously, on…" that
+  opens the night. Didact runs it for every survivor when a session after the first starts. With
+  rest resets, spark, thread and perks come with real rests instead.
+params: {who: ref}
+steps:
+  - if: "@option.rest_resets"
+    then:
+      - stop: "Rest resets (an option): {@who.name}'s spark, thread and per-session perks come back on a real rest (`didact do rest who={@who.id}`), not before sessions."
+  - message: "Before the session: look back at the last one, and share {@who.name}'s best moment."
+  - do: renew
+    with: {who: "@who"}
+  - do: perk-resets
+    with: {who: "@who"}
+source: "the-core-engine/experience#sessions-start-warm; war-never-changes/what-you-need"
+---
+action: rest
+title: A real rest
+help: >-
+  Any real rest (a night's camp, a quiet week on the road) clears all marks and harm, rad marks
+  included; conditions clear when the fiction says so (treatment, time, or a task pool). A night
+  somewhere safe (behind walls, in a secured camp: `safe`) also refills stimpaks (the sheet's own,
+  or `stimpaks=<pool>`; softer stimpaks refill with any real rest). With rest resets (an option) it's also
+  the reset: everyone takes spark, per-session perks and thread reset, some conditions fade, and
+  the GM takes 2 suspense (once for the party's rest).
+params:
+  who: ref
+  safe: {kind: flag, default: false, help: "A night somewhere safe: behind walls, in a secured camp"}
+  stimpaks: {kind: ref, to: track, optional: true, help: "The survivor's Stimpaks pool (a robot's Repair Kit), refilled by a night somewhere safe"}
+steps:
+  - if: "'rad-regeneration' in @who.perks and count(@who.rad_marks) > 0"
+    then: ["Rad Regeneration: {@who.name} carries a rad mark, so their crippling conditions knit: downgrade one physical condition a step at this rest."]
+  - set: who.marks
+    value: []
+  - set: who.harm
+    value: []
+  - set: who.rad_marks
+    value: []
+  - message: "{@who.name} rests: all marks and harm clear, rad marks too. Conditions clear when the fiction says so (treatment, time, or a task pool)."
+  - let:
+      refill: "@safe or @option.stimpaks == 'softer'"
+  - if: "@refill"
+    then:
+      - if: "default(@stimpaks, '') <> ''"
+        then:
+          - do: refresh
+            with: {pool: "@stimpaks"}
+        else:
+          - if: "default(@who.stimpaks, '') <> ''"
+            then:
+              - do: refresh
+                with: {pool: "@who.stimpaks"}
+            else:
+              - prompt: "{if(@safe, 'A night somewhere safe', 'Softer stimpaks: any real rest')} refills {@who.name}'s Stimpaks: `didact do refresh pool=<stimpaks>` (or point the sheet at them: `didact set {@who.id} stimpaks=<track>`)."
+    else:
+      - if: "'roughin-it' in @who.perks"
+        then: ["Roughin' It: once per session, a night in a rough camp counts as a night somewhere safe for {@who.name} (their Stimpaks refill: `do rest … safe`)."]
+  - if: "@option.rest_resets"
+    then:
+      - do: renew
+        with: {who: "@who"}
+      - do: perk-resets
+        with: {who: "@who"}
+      - message: "Rest resets (an option): {@who.name} takes spark, and their per-session perks and thread reset. Some conditions fade."
+      - do: reset-suspense
+source: "the-core-engine/damage-and-recovery#healing; surviving-the-wasteland/rads; surviving-the-wasteland/stimpaks; options-and-dials/pacing-and-growth#rest-resets"
+---
+action: experience
+title: Experience
+help: >-
+  After each session, take 1 XP (Didact gives it when the session ends); the GM adds a bonus XP
+  for a standout one, about one session in four (`bonus`, or `why=standout`); with focused growth,
+  a bonus XP when the session hits the party concept dead-on (`why=theme`). Level up when your XP
+  boxes equal the next level (level 4 to 5: 5 boxes), then clear them; for a slower road (slow
+  progression, focused growth) slash each box before filling it: `didact char advance`. Cap is
+  level 7 (3 at the smaller scale). Milestone levels have no XP; side characters earn none.
+params:
+  who: ref
+  bonus: {kind: flag, default: false, help: "The GM's bonus XP for a standout session (why=standout)"}
+  why: {enum: [session, standout, theme], default: session}
+steps:
+  - if: "@who.side"
+    then:
+      - stop: "{@who.name} is a side character: they don't earn XP."
+  - if: "@option.milestone_levels"
+    then:
+      - stop: "Milestone levels (an option): no XP; the crew levels when a group arc resolves meaningfully (`didact char advance {@who.id}`)."
+  - let: {reason: "if(@bonus, 'standout', '$why')"}
+  - if: "@reason == 'theme' and not @option.focused_growth"
+    then:
+      - stop: "A themed bonus XP comes with focused growth (an option); the GM's bonus for a standout session is why=standout."
+  - let:
+      cap: "if(@option.scale == 'smaller', 3, 7)"
+      boxes: "if(@who.level == 0, 1, @who.level + 1)"
+  - let: {need: "@boxes * if(@option.slow_progression or @option.focused_growth, 2, 1)"}
+  - set: who.xp
+    op: "+="
+    value: 1
+  - if: "@reason == 'standout'"
+    then: ["{@who.name} takes a bonus XP for a standout session."]
+  - if: "@reason == 'theme'"
+    then: ["Focused growth: the session hit the party concept dead-on, and {@who.name} takes a bonus XP."]
+  - if: "@who.level >= @cap"
+    then: ["{@who.name} is at the cap ({@cap}){if(@option.scale == 'smaller', ': swap perks at story milestones instead (`didact do switch-perk`)', '')}."]
+    else:
+      - if: "@who.xp >= @need"
+        then:
+          - message: "{@who.name} has {@who.xp} XP: level {@who.level + 1} is ready (`didact char advance {@who.id}`)."
+        else: ["{@who.name}: {@who.xp} of {@need} XP to the next level."]
+source: "the-core-engine/experience; options-and-dials/pacing-and-growth; options-and-dials/tone-dials#scale"
+---
+trigger: session-experience
+title: Experience after the session
+help: "After each session, each survivor takes 1 XP; with focused growth, a chance at a bonus XP. Side characters earn none."
+on: session_end
+for: pcs
+when: "not @option.milestone_levels and not @who.side"
+params:
+  who: ref
+steps:
+  - do: experience
+    with: {who: "@who"}
+    go_on: true
+  - if: "@option.focused_growth"
+    then:
+      - prompt: "Focused growth: did the session hit the party concept dead-on for {@who.name}? A bonus XP: `didact do experience who={@who.id} why=theme`."
+source: "the-core-engine/experience; options-and-dials/pacing-and-growth#focused-growth"
+---
+action: push
+title: Push a task pool
+help: >-
+  If a task pool roll drops nothing, you can push yourself (mark a stat) to drop 1d anyway, or
+  pivot to take a secondary effect instead. At 0d the thing happens or runs dry, or a linked
+  pool's next phase begins. `grit`: the Everlast digs deep, 1 Grit instead of the mark.
+params:
+  who: ref
+  pool: {kind: ref, to: track, help: "The pool (a tracker)"}
+  stat: {enum: [brawn, agility, wits, presence]}
+  grit: {kind: flag, default: false, help: "Dig deep: 1 Grit instead of the mark"}
+steps:
+  - if: "@pool.value <= 0"
+    then:
+      - stop: "{@pool.name} is already empty."
+  - do: mark
+    with: {who: "@who", stat: $stat, grit: "@grit"}
+  - pool: "@pool"
+    mode: drop
+    as: pushed
+  - message: "{@who.name} pushes: {@pool.name} drops 1d ({@pushed.left}d left)."
+source: "the-core-engine/pools#push-or-pivot"

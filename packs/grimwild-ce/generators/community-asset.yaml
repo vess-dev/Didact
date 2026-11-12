@@ -1,0 +1,31 @@
+# A community asset (Communities, pp. 142-143): a newly built structure, a hosted event or
+# trained underlings, paid for from the party's stockpile. A minor asset costs 4 and has a modest
+# impact (usually vantage); a major one costs 8, expanding vantage and giving another bonus. When
+# it's finished, the party decides on an NPC representative of it with a few traits.
+generator: community-asset
+title: A community asset
+help: >-
+  A community asset, step by step: minor (cost 4) or major (cost 8), an idea from the building
+  crucible, a name, and its NPC representative (a name, what they are to it, and two traits
+  from the personality crucible). Then its two traits and what it does. Prefill by name: tier,
+  idea, name, representative, job, traits.
+source: "p. 142"
+creates: loc
+steps:
+  - choose_or_roll: {from: [minor, major], as: tier, prompt: "minor (costs 4 stockpile, a modest impact) or major (costs 8, a greater one)"}
+  - table: building-crucible
+    as: idea
+  - name: {prompt: "what it is: a structure, a hosted event or trained underlings, like the Twin-Sails Tavern (the building crucible offers {@idea})"}
+  - apply: {kind: asset, tier: "@tier", cost: "{if(@tier == 'major', 8, 4)}"}
+  - ask: {as: representative, prompt: "the name of its NPC representative (Vella Mouser)"}
+  - ask: {as: job, prompt: "what they are to it: a barkeep for a new tavern, a leader for a gang of knuckleheads"}
+  - choose_or_roll: {table: character-personality, as: traits, count: 2, prompt: "a few traits to describe them"}
+  - entity:
+      key: representative
+      type: npc
+      name: "{@representative}"
+      fields: {role: "@job", traits: "@traits"}
+      links: [{rel: represents, to: character}]
+  - prompt: "Two traits for the asset itself (✱ rough and tumble sailor bar, ✱ lots of interesting rumors): `didact set <asset> traits+='…'`."
+  - prompt: "What it does when finished: a minor asset usually just gives vantage; a major one expands vantage and has another bonus, opening new opportunities, or perhaps even producing stockpile of its own."
+  - prompt: "Paying for it: roll the stockpile when time passes (`didact track roll stockpile`); dropped dice go toward its cost."

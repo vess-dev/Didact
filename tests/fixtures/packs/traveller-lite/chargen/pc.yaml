@@ -1,0 +1,21 @@
+chargen: pc
+title: Traveller (lifepath)
+creates: pc
+modes: [random, guided]
+steps:
+  - roll: {each: [STR, DEX, END], dice: 2d6}
+  - choose_or_roll: {table: careers, as: career, field: career}
+  - apply: {age: 18, credits: 0, skills: []}
+  - roll: 1d3+1
+    as: terms
+  - repeat: "@terms"
+    as: term
+    steps:
+      - table: skills
+        as: skill
+      - apply:
+          skills: ["{@skill}"]
+          terms: "@term"
+          age: "{@character.age + 4}"
+          credits: "{@character.credits + @career.pay}"
+  - name: {from: [Alexi, Jamison, Kiranka, Marc, Varra]}

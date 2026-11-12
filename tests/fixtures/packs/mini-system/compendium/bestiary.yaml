@@ -1,0 +1,21 @@
+id: troll
+type: npc
+name: Troll
+tags: [giant, bridge]
+hp: 12
+STR: 16
+DEX: 8
+WIL: 6
+weapon: d10
+body: |
+  Stone-skinned and patient. Regrows unless burned.
+---
+id: wolf
+type: npc
+name: Wolf
+tags: [beast, pack]
+hp: roll 1d6+2
+STR: 10
+DEX: 14
+WIL: 6
+weapon: d6

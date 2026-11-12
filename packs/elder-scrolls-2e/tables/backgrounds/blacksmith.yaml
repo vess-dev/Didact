@@ -1,0 +1,24 @@
+# Blacksmith (backgrounds/blacksmith): the background's two d6 tables.
+table: blacksmith-1
+title: "What did the forge make of you?"
+dice: d6
+source: backgrounds/blacksmith#what-did-the-forge-make-of-you-roll-1d6
+entries:
+  1: "A master's hands. You never need a STR save to temper gear, even when the work is rushed, improvised, or done far from a proper forge."
+  2: "An ear for metal. Heft any weapon or armor and you know its make — iron to Daedric — its worth to the Septim, and whether it is sound or near to breaking."
+  3: {text: "Dwemer salvage. A delver paid you to smelt ruin-metal, and you kept some back. Take a Dwarven metal ingot (petty), worth 1d6 × 50 Septims, and the know-how to work the old golden alloy.", data: {gear: [{name: "Dwarven metal ingot", size: "petty", note: "worth 1d6 × 50 Septims"}]}}
+  4: {text: "The war's armorer. You forged arms for one side of the Civil War until the work soured you. Take a steel war axe (d8) and a steel helmet (+1 Armor), both your own work.", data: {gear: [{name: "Steel war axe", damage: "d8"}, {name: "Steel helmet", armor: 1}]}}
+  5: {text: "Arms like cabled rope. Your maximum HP is 1 higher, and you can swing a two-handed hammer or axe in one hand, leaving the other free for a shield.", data: {extra_hp: true}}
+  6: "The dread rite. An ill-bought Daedra heart and one black night taught you how Daedric gear is quenched. Give you ebony, a heart, and a forge, and you can make it — but the making leaves you Deprived until you next sleep somewhere safe."
+---
+table: blacksmith-2
+title: "What hangs over your anvil?"
+dice: d6
+source: backgrounds/blacksmith#what-hangs-over-your-anvil-roll-1d6
+entries:
+  1: {text: "The Folded Blade: Your masterwork and your pride: a sword (d10) you folded a hundred times. It is masterwork, so it has already been tempered.", data: {gear: [{name: "The Folded Blade", damage: "d10", qualities: ["masterwork"], tempered: true, note: "a sword you folded a hundred times"}]}}
+  2: {text: "Smelter's Maul: A long-hafted forge hammer (d10, bulky, two-handed) for breaking ingots and, once, a man who would not pay. You need not save to smash a lock, a door-bar, or a strongbox with it.", data: {gear: [{name: "Smelter's Maul", damage: "d10", size: "bulky", qualities: ["two-handed"]}]}}
+  3: {text: "Tongs and Truing-File: The tools you cannot work without (petty). Given an hour, you can free a stuck mechanism, file a rough key to fit a lock you have studied, or true a bent blade.", data: {gear: [{name: "Tongs and Truing-File", size: "petty"}]}}
+  4: "Maker's Mark: A stamp known the length of the road. Smiths, caravans, and Hold armorers treat you as a fellow of the trade: they will buy and sell fairly with you, and lend you a forge for the cost of the fuel."
+  5: {text: "Quench-Trough Charm: A horseshoe and three nails worked into a bracer (petty). Once per day, when you would be set Ablaze, you are not: the flames gutter out against your skin like a hot blade in the trough.", data: {gear: [{name: "Quench-Trough Charm", size: "petty"}]}}
+  6: "The Skyforge: Eorlund Gray-Mane once let you pump the bellows at the Skyforge above Whiterun, and he would have you back. With his leave, gear you forge there comes out masterwork, already tempered."

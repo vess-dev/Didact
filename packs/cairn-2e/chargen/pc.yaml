@@ -1,0 +1,195 @@
+# Character creation (players-guide/character-creation), random or step by step, with every
+# background result applied: a second bond, a private omen, extra HP, gear bought from the
+# Marketplace, and the companions and vehicles some backgrounds bring.
+chargen: pc
+title: A Cairn character
+help: >-
+  A background (a name from it, its gear and its two tables), 3d6 STR, DEX and WIL in order with
+  one optional swap, 1d6 HP, the eight traits, a bond (also a thread to resolve), an age of
+  2d20+10, and an omen for the party's youngest (read aloud, and a thread). The background's
+  results apply: a second bond (Fieldwarden, an Outrider who pays their debts), a private omen
+  (Foundling, a Mountebank's true prophecy), +d4 HP, gear bought from the Marketplace, and the
+  companions and vehicles it brings (an Outrider's horse, a falcon, a familiar).
+creates: pc
+modes: [random, guided, template]
+steps:
+  - choose_or_roll: {table: backgrounds, as: background, field: background}
+  - apply: "@background.gear"
+  - roll: {gold: 3d6}
+  - roll_tables: "@background.tables"
+  # What the two background tables asked for (each flag lives on the result that gives it).
+  - let:
+      extra_bond: "default(@background.extra_bond, false) or default(@outrider_1.extra_bond, false)"
+      private_omen: "default(@background.private_omen, false) or default(@mountebank_1.private_omen, false)"
+      extra_hp: "default(@fieldwarden_1.extra_hp, false) or default(@kettlewright_1.extra_hp, false)"
+      budget: "default(@kettlewright_1.gear_budget, 0)"
+      single: "default(@rill_runner_2.gear_single, 0)"
+      companion: "default(@fletchwind_1.companion, default(@half_witch_1.companion, default(@prowler_1.companion, default(@aurifex_2.companion, default(@fieldwarden_1.companion, default(@kettlewright_1.companion, default(@bonekeeper_1.companion, default(@outrider_2.companion, ''))))))))"
+      vehicle: "default(@bonekeeper_1.vehicle, '')"
+  # "Take 20gp worth of items from the gear table" (Kettlewright): gear that fits what's left.
+  - repeat: 20
+    as: pick
+    steps:
+      - if: "@budget > 0"
+        then:
+          - table: gear-over-budget
+            with: {budget: "@budget"}
+            as: over
+          - choose: {table: marketplace-gear, as: bought, exclude: "@over.names", prompt: "20gp worth of items from the gear table: {@budget}gp left"}
+          - apply: "@bought.gear"
+          - let: {budget: "@budget - @bought.price"}
+  # "Take a single item worth 20gp (or less) from the gear table" (Rill Runner).
+  - if: "@single > 0"
+    then:
+      - table: gear-over-budget
+        with: {budget: "@single"}
+        as: over
+      - choose: {table: marketplace-gear, as: ware, exclude: "@over.names", prompt: "a single item worth {@single}gp or less from the gear table"}
+      - apply: "@ware.gear"
+  - roll: {each: [STR, DEX, WIL], dice: 3d6}
+  - swap: {among: [STR, DEX, WIL], optional: true}
+  - roll: {hp: 1d6}
+  - if: "@extra_hp"
+    then:
+      - roll: d4
+        as: more_hp
+      - apply: {hp: "{@character.hp + @more_hp}"}
+      - message: "The background adds {@more_hp} HP: {@character.hp}."
+  - roll_tables: [physique, skin, hair, face, speech, clothing, virtue, vice]
+  # Bonds: each one on the sheet and a thread to resolve (wardens-guide/bonds-and-omens).
+  - choose_or_roll: {table: bonds, as: bond}
+  - add: {field: bond, value: "@bond"}
+  - apply: "@bond.gear"
+  - add: {field: gold, value: "@bond.gold"}
+  - add: {field: burden, value: "@bond.burden"}
+  - entity: {key: bond, type: thread, name: "Bond: {@bond.name}", fields: {goal: "@bond"}, links: [{rel: of, to: character}]}
+    as: bond_thread
+  - if: "@extra_bond"
+    then:
+      - choose_or_roll: {table: bonds, as: second_bond, exclude: "@bond"}
+      - add: {field: bond, value: "@second_bond"}
+      - apply: "@second_bond.gear"
+      - add: {field: gold, value: "@second_bond.gold"}
+      - add: {field: burden, value: "@second_bond.burden"}
+      - entity: {key: bond, type: thread, name: "Bond: {@second_bond.name}", fields: {goal: "@second_bond"}, links: [{rel: of, to: character}]}
+        as: second_bond_thread
+  - roll: {age: 2d20+10}
+  # Omens: the youngest reads theirs aloud; a Foundling (or a Mountebank whose prophecy came
+  # true) keeps one private for now. Each is a thread (a secret one for the private omen).
+  - choose: {from: ["yes", "no"], as: youngest, prompt: "Is this the party's youngest character? The youngest rolls an omen and reads it aloud."}
+  - if: "@youngest == 'yes'"
+    then:
+      - choose_or_roll: {table: omens, as: omen, field: omen}
+      - entity: {key: omen, type: thread, name: "Omen: {@omen.name}", fields: {goal: "@omen"}}
+        as: omen_thread
+      - prompt: "Read the omen aloud to the other players; the Warden weaves it into the setting (`didact do resolve-omen` when it's resolved)."
+  - if: "@private_omen"
+    then:
+      - choose_or_roll: {table: omens, as: private_omen, exclude: "{default(@omen, '')}"}
+      - entity: {key: omen, type: thread, name: "Omen: {@private_omen.name}", fields: {goal: "@private_omen", knowledge: secret}}
+        as: private_omen_thread
+      - prompt: "Keep this omen private for now: it's a secret thread until revealed (`didact reveal`)."
+  - name: {from: "@background.names"}
+  # Companions and vehicles: records of their own, beside the character.
+  - if: "@companion == 'living-nightmare'"
+    then:
+      - entity: {key: companion, from: "@companion", scope: campaign, fields: {owner: character, STR: "@character.STR", DEX: "@character.DEX", WIL: "@character.WIL", hp: "@character.hp"}}
+        as: made_companion
+  - if: "@companion == 'werewolf-form'"
+    then:
+      - entity: {key: companion, from: "@companion", scope: campaign, fields: {owner: character, WIL: "@character.WIL"}}
+        as: made_companion
+  - if: "@companion <> '' and @companion <> 'living-nightmare' and @companion <> 'werewolf-form'"
+    then:
+      - entity: {key: companion, from: "@companion", scope: campaign, fields: {owner: character}}
+        as: made_companion
+  - if: "@vehicle <> ''"
+    then:
+      - entity: {key: vehicle, from: "@vehicle", scope: campaign}
+        as: made_vehicle
+  - if: "@companion <> '' or @vehicle <> ''"
+    then:
+      - prompt: "{@name} doesn't travel alone: once committed, `didact party add <it> --as companion` brings a companion along; a mount or wagon carries its own load (`didact inv add <it> …`)."
+  - prompt: "Describe the character in a sentence or two, from their traits, background and bond."
+source: players-guide/character-creation#character-creation
+---
+chargen: hireling
+title: A hireling
+help: >-
+  A role from the Marketplace's hirelings (with its daily wage), 3d6 for each attribute and 1d6
+  HP, gear fit for their station, and all the Character Traits tables.
+creates: hireling
+modes: [random, guided]
+steps:
+  - choose_or_roll: {table: hireling-roles, as: role, field: role}
+  - apply: {wage: "@role.wage"}
+  - roll: {each: [STR, DEX, WIL], dice: 3d6}
+  - roll: {hp: 1d6}
+  - roll_tables: [physique, skin, hair, face, speech, clothing, virtue, vice]
+  - name: {table: first-names}
+  - prompt: "Give them gear fit for a {@role} (their station), and pay their wage ({@character.wage}gp a day)."
+source: players-guide/core-rules#hirelings
+---
+chargen: hireling-background
+title: A hireling from a background
+help: >-
+  The book's other way: a background and a name from it, its two tables, then Rations, gold,
+  attributes, HP and age. The wage is the Warden's call.
+creates: hireling
+modes: [random, guided]
+steps:
+  - choose_or_roll: {table: backgrounds, as: background, field: background}
+  - name: {from: "@background.names"}
+  - roll_tables: "@background.tables"
+  - let:
+      extra_hp: "default(@fieldwarden_1.extra_hp, false) or default(@kettlewright_1.extra_hp, false)"
+      budget: "default(@kettlewright_1.gear_budget, 0)"
+      single: "default(@rill_runner_2.gear_single, 0)"
+      companion: "default(@fletchwind_1.companion, default(@half_witch_1.companion, default(@prowler_1.companion, default(@aurifex_2.companion, default(@fieldwarden_1.companion, default(@kettlewright_1.companion, default(@bonekeeper_1.companion, default(@outrider_2.companion, ''))))))))"
+      vehicle: "default(@bonekeeper_1.vehicle, '')"
+  - repeat: 20
+    as: pick
+    steps:
+      - if: "@budget > 0"
+        then:
+          - table: gear-over-budget
+            with: {budget: "@budget"}
+            as: over
+          - choose: {table: marketplace-gear, as: bought, exclude: "@over.names", prompt: "20gp worth of items from the gear table: {@budget}gp left"}
+          - apply: "@bought.gear"
+          - let: {budget: "@budget - @bought.price"}
+  - if: "@single > 0"
+    then:
+      - table: gear-over-budget
+        with: {budget: "@single"}
+        as: over
+      - choose: {table: marketplace-gear, as: ware, exclude: "@over.names", prompt: "a single item worth {@single}gp or less from the gear table"}
+      - apply: "@ware.gear"
+  - apply: [{name: Rations, uses: 3}]
+  - roll: {gold: 3d6}
+  - roll: {each: [STR, DEX, WIL], dice: 3d6}
+  - roll: {hp: 1d6}
+  - if: "@extra_hp"
+    then:
+      - roll: d4
+        as: more_hp
+      - apply: {hp: "{@character.hp + @more_hp}"}
+  - roll: {age: 2d20+10}
+  - if: "@companion == 'living-nightmare'"
+    then:
+      - entity: {key: companion, from: "@companion", scope: campaign, fields: {owner: character, STR: "@character.STR", DEX: "@character.DEX", WIL: "@character.WIL", hp: "@character.hp"}}
+        as: made_companion
+  - if: "@companion == 'werewolf-form'"
+    then:
+      - entity: {key: companion, from: "@companion", scope: campaign, fields: {owner: character, WIL: "@character.WIL"}}
+        as: made_companion
+  - if: "@companion <> '' and @companion <> 'living-nightmare' and @companion <> 'werewolf-form'"
+    then:
+      - entity: {key: companion, from: "@companion", scope: campaign, fields: {owner: character}}
+        as: made_companion
+  - if: "@vehicle <> ''"
+    then:
+      - entity: {key: vehicle, from: "@vehicle", scope: campaign}
+        as: made_vehicle
+  - prompt: "Give them the rest of what their station calls for, and set their daily wage (the Marketplace's hirelings take 5–30gp a day): `didact set <them> wage=…`."
+source: players-guide/core-rules#hirelings

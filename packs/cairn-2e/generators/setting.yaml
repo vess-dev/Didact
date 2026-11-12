@@ -1,0 +1,185 @@
+# Setting seed (wardens-guide/setting-seeds): a region with its people, factions, terrain,
+# weather, points of interest and paths. Every roll can be prefilled by its name, or changed in
+# the draft (`gen edit`): the book says to reroll or tweak any result you don't like.
+generator: setting-seed
+title: Setting seed
+help: >-
+  A region: its culture and resources; 1d6 terrain dice, each a terrain of some difficulty with
+  its landmark (and Unusual Weather, with the unusual-weather option); seasonal weather; the
+  Heart plus 3–8 points of interest (type and feature), each in the terrain it lands in;
+  factions (type, agent, traits, advantages, agenda and obstacle); and 1–4 paths from each
+  point, some conditional or hidden, each with a feature, a condition and travel watches.
+  Prefill by name: terrains, pois, heart, factions, …
+source: wardens-guide/setting-seeds
+steps:
+  - table: place-names
+    as: region_name
+  - table: setting-culture-character
+    as: character
+  - table: setting-culture-ambition
+    as: ambition
+  - table: setting-resources-abundance
+    as: abundance
+  - table: setting-resources-scarcity
+    as: scarcity
+  - table: setting-seasonal-weather-spring
+    as: spring
+  - table: setting-seasonal-weather-summer
+    as: summer
+  - table: setting-seasonal-weather-fall
+    as: fall
+  - table: setting-seasonal-weather-winter
+    as: winter
+  - entity:
+      key: region
+      type: loc
+      name: "{@region_name}"
+      fields:
+        kind: region
+        culture: "{@character}, {@ambition}"
+        abundance: "@abundance"
+        scarcity: "@scarcity"
+        weather: {spring: "@spring", summer: "@summer", fall: "@fall", winter: "@winter"}
+
+  # Terrain: 1d6 dice. Each lands as a terrain of some difficulty; its landmark replaces the die.
+  - roll: d6
+    as: terrains
+  - repeat: "@terrains"
+    steps:
+      - table: setting-terrain-die-drop
+        as: ground
+      - table: "{@ground.what}"
+        as: terrain
+      - table: "{@ground.detail}"
+        as: landmark
+      # "Optionally, you may also roll on the Unusual Weather table around particular landmarks
+      # or terrain" (setting-seeds#weather): the unusual-weather option.
+      - if: "@option.unusual_weather"
+        then:
+          - table: setting-unusual-weather
+            as: oddity
+        else:
+          - let: {oddity: "{''}"}
+      - entity:
+          key: terrain
+          type: loc
+          name: "{@terrain}"
+          fields:
+            kind: terrain
+            terrain: "@terrain"
+            difficulty: "@ground.difficulty"
+            landmark: "@landmark"
+            unusual_weather: "@oddity"
+            region: "@region"
+
+  # Points of interest: the Heart (1), then 3–8 dice on the POI die drop.
+  - roll: d6+2
+    as: pois
+  - repeat: "@pois + 1"
+    as: i
+    steps:
+      - if: "@i == 1"
+        then:
+          - choose: {from: [settlement, waypoint], as: heart, prompt: "the Heart: the region's primary settlement, close to its water"}
+          - let: {kind: "@heart"}
+          - table: "setting-{@kind}"
+            as: what
+          - table: "setting-{@kind}-feature"
+            as: detail
+        else:
+          - table: setting-poi-die-drop
+            as: drop
+          - if: "@drop.poi == 'waypoint-or-settlement'"
+            then:
+              - choose: {from: [waypoint, settlement], as: either, prompt: "the die says Waypoint or Settlement"}
+              - let: {kind: "@either"}
+              - table: "setting-{@kind}"
+                as: what
+              - table: "setting-{@kind}-feature"
+                as: detail
+            else:
+              - let: {kind: "@drop.poi"}
+              - table: "{@drop.what}"
+                as: what
+              - table: "{@drop.detail}"
+                as: detail
+      - table: poi-names
+        with: {poi: "@what"}
+        as: poi_name
+      - entity:
+          key: poi
+          type: loc
+          name: "{@poi_name}"
+          fields:
+            kind: poi
+            poi: "@kind"
+            feature: "{@what}, {@detail}"
+            heart: "{if(@i == 1, true, '')}"
+            region: "@region"
+
+  # Factions: 1–2 for a small region, more for a large one.
+  - let: {factions: "max(1, (@pois + 1) // 3)"}
+  - repeat: "@factions"
+    steps:
+      - table: setting-faction-type
+        as: faction_type
+      - table: setting-faction-agent
+        as: agent_role
+      - table: setting-faction-trait-1
+        as: trait_1
+      - table: setting-faction-trait-2
+        as: trait_2
+      - table: setting-faction-advantage-count
+        as: advantage_count
+      - table: setting-faction-advantage
+        as: advantage
+        times: "@advantage_count.count"
+        distinct: true
+      - table: setting-faction-agenda
+        as: agenda
+      - table: setting-faction-obstacle
+        as: obstacle
+      - table: faction-names
+        as: faction_name
+      - table: first-names
+        as: agent_name
+      - roll: 3d6
+        as: agent_wil
+      - entity:
+          key: agent
+          type: npc
+          name: "{@agent_name}"
+          fields: {role: "@agent_role", WIL: "@agent_wil"}
+          body: "The {@agent_role} of {@faction_name}, in charge of one or more of its goals. They may have motives of their own."
+      - entity:
+          key: faction
+          type: faction
+          name: "{@faction_name}"
+          fields:
+            kind: "@faction_type"
+            traits: ["@trait_1", "@trait_2"]
+            advantages: "@advantage"
+            agenda: "@agenda"
+            obstacle: "@obstacle"
+            leader: "@agent"
+            agents: ["@agent"]
+            WIL: "@agent_wil"
+
+  # Paths: from the Heart, 1–4 per point. A d6 each: 5 conditional, 6 hidden.
+  - map:
+      places: poi
+      regions: terrain
+      paths: {max: 4}
+      watches: {short: 1, medium: 2, long: 3}
+      conditional: 5
+      hidden: 6
+      describe: [setting-path-feature, setting-path-condition]
+
+  - prompt: "Water: run a river from the highest ground to the lowest, ending in a lake, the sea or off the map."
+  - prompt: "Each path is a road, a trail (+1 watch) or a wilderness route (+2). Conditional paths need something (a boat, climbing gear, a guide); finding a hidden one always costs something."
+  - prompt: "Give each faction 3–5 progressive goals toward its agenda, one of them dealing with its obstacle (`gen edit <draft> faction-1.goals=…`). Place an agent somewhere important, like the Heart."
+  - prompt: "What would draw people to this region? What keeps them here?"
+  - prompt: "How do the people here think of outsiders? How do outsiders think of them?"
+  - prompt: "What power do the factions have over the people who live here? Who or what threatens their agendas?"
+  - prompt: "How would a faction deal with newcomers, like an adventuring party?"
+  - prompt: "How do the region's terrain and weather affect the people who live here?"

@@ -1,0 +1,1528 @@
+# The Elder Scrolls 2e bestiary (wardens-guide/bestiary). `impaired_by` and `enhanced_by` are the
+# attack kinds its entry (or its group's) says are Impaired or Enhanced against it; `disease` and
+# `venom` what its blows carry. Creatures the book runs as a detachment are `type: detachment`.
+id: "draugr"
+type: "monster"
+name: "Draugr"
+hp: 6
+armor: 1
+STR: 12
+DEX: 10
+WIL: 8
+category: "Draugr"
+attacks:
+  - {name: "ancient axe", damage: "d8"}
+  - {name: "ancient bow", damage: "d6"}
+abilities:
+  - "Variants: the Restless Draugr is a weaker husk (4 HP); the Draugr Wight and Draugr Scourge are the barrow's sergeants (8 HP, 2 Armor, ancient greatsword d10)."
+impaired_by:
+  - "frost"
+disease: "brown-rot"
+critical: "the grave-cold sets into the wound; the target is Deprived until they have spent a night warm beside a fire."
+source: "wardens-guide/bestiary#draugr"
+body: |
+  Reanimated Nord warriors with piercing blue eyes, slumbering in alcoves and coffins until disturbed. Four or more fight as a detachment. Their blows may carry Brown Rot (STR save or contract the disease).
+
+  Draugr & Dragon Priests: The dragon cult buried its honored dead in the deep barrows of Skyrim, bound to wake and slay anything that disturbs their rest. Draugr are immune to poison and disease, and frost damage against them is Impaired — most wield it themselves. None can attack in the round it breaks free of its sarcophagus.
+---
+id: "draugr-overlord"
+type: "monster"
+name: "Draugr Overlord"
+hp: 10
+armor: 2
+STR: 14
+DEX: 10
+WIL: 12
+category: "Draugr"
+attacks:
+  - {name: "ancient greatsword", damage: "d10"}
+  - {name: "Unrelenting Force", damage: "d6", qualities: ["blast"]}
+abilities:
+  - "Unrelenting Force: its Shout hurls everything before it backward; each target must pass a STR save or drop what it holds."
+impaired_by:
+  - "frost"
+critical: "hurls the target across the chamber into stone for 1d6 more STR."
+source: "wardens-guide/bestiary#draugr-overlord"
+body: |
+  A barrow's first true guardian, robed in the trappings of the dragon cult and crowned in rusted steel. Usually the master of a lesser tomb.
+
+  Draugr & Dragon Priests: The dragon cult buried its honored dead in the deep barrows of Skyrim, bound to wake and slay anything that disturbs their rest. Draugr are immune to poison and disease, and frost damage against them is Impaired — most wield it themselves. None can attack in the round it breaks free of its sarcophagus.
+---
+id: "draugr-deathlord"
+type: "monster"
+name: "Draugr Deathlord"
+hp: 12
+armor: 3
+STR: 16
+DEX: 11
+WIL: 14
+category: "Draugr"
+attacks:
+  - {name: "ebony greatsword", damage: "d10"}
+  - {name: "ebony bow", damage: "d6"}
+  - {name: "Frost Breath", damage: "d8", qualities: ["blast"]}
+abilities:
+  - "Disarm: its Shout tears the weapon from one target's hands unless it passes a DEX save. It also knows Unrelenting Force (as the Overlord)."
+impaired_by:
+  - "frost"
+critical: "the Frost Breath freezes the target solid; any STR the blow cost is lost for good."
+source: "wardens-guide/bestiary#draugr-deathlord"
+body: |
+  The mightiest of the restless dead, clad in ancient ebony, ruling the deepest barrows. A serious threat even to a seasoned party.
+
+  Draugr & Dragon Priests: The dragon cult buried its honored dead in the deep barrows of Skyrim, bound to wake and slay anything that disturbs their rest. Draugr are immune to poison and disease, and frost damage against them is Impaired — most wield it themselves. None can attack in the round it breaks free of its sarcophagus.
+---
+id: "dragon-priest"
+type: "monster"
+name: "Dragon Priest"
+hp: 12
+armor: 1
+STR: 8
+DEX: 13
+WIL: 18
+category: "Draugr"
+attacks:
+  - {name: "life-draining touch", damage: "d8"}
+  - {name: "elemental bolt", damage: "d8", qualities: ["blast"]}
+abilities:
+  - "Magic against it is Impaired; immune to poison. When it falls it turns to dust, leaving its enchanted mask — a treasure worth a campaign (see Unique Armors)."
+impaired_by:
+  - "magic"
+critical: "a death-curse strikes the target for 1d6 WIL."
+source: "wardens-guide/bestiary#dragon-priest"
+body: |
+  A masked, mummified servant of the old dragons, sealed in a coffin and woken in fury. It hovers, keeps its distance, and casts: bolts of fire, frost, and lightning, wards, and the raising of nearby corpses.
+
+  Draugr & Dragon Priests: The dragon cult buried its honored dead in the deep barrows of Skyrim, bound to wake and slay anything that disturbs their rest. Draugr are immune to poison and disease, and frost damage against them is Impaired — most wield it themselves. None can attack in the round it breaks free of its sarcophagus.
+---
+id: "skeleton"
+type: "monster"
+name: "Skeleton"
+hp: 5
+armor: 1
+STR: 8
+DEX: 13
+WIL: 0
+category: "Undead"
+attacks:
+  - {name: "rusty sword", damage: "d6"}
+  - {name: "bow", damage: "d6"}
+abilities:
+  - "Immune to poison; frost damage against it is Impaired. If its bones are not scattered, it knits itself back together by the next nightfall."
+  - "Skeleton Warlocks cast frost in place of a weapon (d6, or d8 at range)."
+impaired_by:
+  - "frost"
+source: "wardens-guide/bestiary#skeleton"
+body: |
+  Bare reanimated bones found among draugr or raised by necromancers. Four or more fight as a detachment.
+---
+id: "boneman"
+type: "monster"
+name: "Boneman"
+hp: 4
+armor: 1
+STR: 10
+DEX: 12
+WIL: 0
+category: "Undead"
+attacks:
+  - {name: "spectral bow", damage: "d6"}
+  - {name: "bone blade", damage: "d6"}
+abilities:
+  - "Immune to poison. Variants: the Mistman, a drifting shape of violet fog (mundane attacks against it are Impaired); the Wrathman, a hulking black warrior of the Cairn (8 HP, 2 Armor, spectral greatsword d10)."
+critical: "the target's soul flickers; they lose 1d4 WIL."
+source: "wardens-guide/bestiary#boneman"
+body: |
+  A blackened skeleton of the Soul Cairn, the plane of Ideal Masters where trapped souls go. Summoned by conjurers and by the undead dragon Durnehviir; its remains crumble to soul ash.
+---
+id: "ghost"
+type: "monster"
+name: "Ghost"
+hp: 8
+STR: 14
+DEX: 12
+WIL: 15
+category: "Undead"
+attacks:
+  - {name: "life drain", damage: "d6"}
+abilities:
+  - "Mundane attacks against it are Impaired; spells, silver, and bound or enchanted weapons strike it normally. Unharmed by cold."
+impaired_by:
+  - "mundane"
+critical: "the target must pass a WIL save or be possessed, acting only on the ghost's whims until it is driven out."
+source: "wardens-guide/bestiary#ghost"
+body: |
+  An incorporeal spirit of the restless dead, often bound against its will to haunt a ruin or to fight a trespasser.
+---
+id: "wispmother"
+type: "monster"
+name: "Wispmother"
+hp: 12
+STR: 13
+DEX: 14
+WIL: 16
+category: "Undead"
+attacks:
+  - {name: "frost touch", damage: "d8"}
+  - {name: "ice spike", damage: "d8"}
+abilities:
+  - "Fire damage against it is Enhanced; frost damage is Impaired. While she lives she calls up Shades (run as Ghosts with 3 HP) to swarm intruders."
+impaired_by:
+  - "frost"
+enhanced_by:
+  - "fire"
+critical: "a lance of cold roots the target to the ground in ice; they must be chipped free."
+source: "wardens-guide/bestiary#wispmother"
+body: |
+  A pale, spectral hag drifting through snowfields and high passes, trailing glowing wisps. Extremely dangerous to the unprepared, and her keen senses defeat most stealth.
+---
+id: "bonewolf"
+type: "monster"
+name: "Bonewolf"
+hp: 4
+STR: 12
+DEX: 13
+WIL: 0
+category: "Undead"
+attacks:
+  - {name: "bite", damage: "d6"}
+abilities:
+  - "Immune to poison; frost damage against it is Impaired. It feels neither fear nor pain and never tests Morale."
+impaired_by:
+  - "frost"
+critical: "the bite snaps the target's leg; they cannot run until it is set."
+source: "wardens-guide/bestiary#bonewolf"
+body: |
+  The reanimated skeleton of a wolf, kept by necromancers as a tireless guard hound. Hunts in packs of two or three.
+---
+id: "wight"
+type: "monster"
+name: "Wight"
+hp: 12
+armor: 3
+STR: 16
+DEX: 8
+WIL: 12
+category: "Undead"
+attacks:
+  - {name: "ancient greatsword", damage: "d10"}
+abilities:
+  - "Immune to poison. Often leads a detachment of skeletons or draugr."
+critical: "any STR the blow cost is lost for good."
+source: "wardens-guide/bestiary#wight"
+body: |
+  A fallen champion raised for a dark purpose, leading lesser undead into battle. The Gauldur brothers and similar named dead are run as Wights.
+---
+id: "dragon"
+type: "detachment"
+name: "Dragon"
+hp: 12
+armor: 2
+STR: 16
+DEX: 13
+WIL: 16
+category: "Dragon"
+attacks:
+  - {name: "bite", damage: "d10"}
+  - {name: "breath", damage: "d8", qualities: ["blast"]}
+abilities:
+  - "A detachment: individuals' attacks on it are Impaired (unless blast); its attacks on individuals are Enhanced and blast."
+  - "A sweep of its tail knocks those behind it flat unless they pass a STR save."
+  - "Variants: the Blood Dragon, green-finned and hardier (14 HP), which also Shouts Unrelenting Force; the Skeletal Dragon of Labyrinthian, all bone and no soul, which cannot fly and against which magic is Enhanced."
+critical: "the breath engulfs the target; they are set ablaze or frozen fast, and must be dragged clear."
+source: "wardens-guide/bestiary#dragon"
+body: |
+  The common dovah — brown, bronze, or green — that began descending on Skyrim after the World-Eater's return. Breathes fire or frost.
+
+  Dragons: Dragons are the children of Akatosh, ancient and proud, returned to the world with the World-Eater. Every dragon is a detachment: one great foe that shrugs off lone attackers (their attacks are Impaired unless they are blast) and savages whatever it strikes. All are immune to paralysis and cannot be soul-trapped; each breathes either fire or frost, and frost-breathers shrug off frost (fire-breathers, fire). A flying dragon lands to fight once it has lost half its HP — or when something forces it down.
+---
+id: "frost-dragon"
+type: "detachment"
+name: "Frost Dragon"
+hp: 14
+armor: 2
+STR: 16
+DEX: 13
+WIL: 16
+category: "Dragon"
+attacks:
+  - {name: "bite", damage: "d10"}
+  - {name: "Frost Breath", damage: "d10", qualities: ["blast"]}
+abilities:
+  - "A detachment: individuals' attacks on it are Impaired (unless blast); its attacks on individuals are Enhanced and blast."
+  - "Frost damage against it is Impaired. Whatever its breath strikes is slowed (on its next turn it can move or act, not both)."
+impaired_by:
+  - "frost"
+critical: "the target is frozen solid; any STR the blow cost is lost for good."
+source: "wardens-guide/bestiary#frost-dragon"
+body: |
+  A white, black-spiked dragon of the high peaks, far hardier than the common sort. Frost Breath only.
+
+  Dragons: Dragons are the children of Akatosh, ancient and proud, returned to the world with the World-Eater. Every dragon is a detachment: one great foe that shrugs off lone attackers (their attacks are Impaired unless they are blast) and savages whatever it strikes. All are immune to paralysis and cannot be soul-trapped; each breathes either fire or frost, and frost-breathers shrug off frost (fire-breathers, fire). A flying dragon lands to fight once it has lost half its HP — or when something forces it down.
+---
+id: "elder-dragon"
+type: "detachment"
+name: "Elder Dragon"
+hp: 16
+armor: 3
+STR: 16
+DEX: 13
+WIL: 18
+category: "Dragon"
+attacks:
+  - {name: "bite", damage: "d10"}
+  - {name: "breath", damage: "d10", qualities: ["blast"]}
+abilities:
+  - "A detachment: individuals' attacks on it are Impaired (unless blast); its attacks on individuals are Enhanced and blast."
+  - "Breathes fire or frost; a tail sweep knocks those behind it flat (STR save)."
+critical: "the target is left burning or frozen, and loses 1d6 more STR before anyone can reach them."
+source: "wardens-guide/bestiary#elder-dragon"
+body: |
+  A bronze, two-toned ancient grown vast with centuries. A grave threat to any party.
+
+  Dragons: Dragons are the children of Akatosh, ancient and proud, returned to the world with the World-Eater. Every dragon is a detachment: one great foe that shrugs off lone attackers (their attacks are Impaired unless they are blast) and savages whatever it strikes. All are immune to paralysis and cannot be soul-trapped; each breathes either fire or frost, and frost-breathers shrug off frost (fire-breathers, fire). A flying dragon lands to fight once it has lost half its HP — or when something forces it down.
+---
+id: "ancient-dragon"
+type: "detachment"
+name: "Ancient Dragon"
+hp: 18
+armor: 3
+STR: 18
+DEX: 13
+WIL: 18
+category: "Dragon"
+attacks:
+  - {name: "bite", damage: "d12"}
+  - {name: "breath", damage: "d10", qualities: ["blast"]}
+abilities:
+  - "A detachment: individuals' attacks on it are Impaired (unless blast); its attacks on individuals are Enhanced and blast."
+  - "Variants: the Revered and Legendary Dragons of the later days, and Solstheim's blue Serpentine Dragons, fight as Ancient Dragons; the first two also Shout Drain Vitality, leaving every target it strikes slowed."
+critical: "the jaws close on the target and shake it apart."
+source: "wardens-guide/bestiary#ancient-dragon"
+body: |
+  A coppery red-black titan, the deadliest dragon short of the World-Eater himself. Its bite alone has felled heroes.
+
+  Dragons: Dragons are the children of Akatosh, ancient and proud, returned to the world with the World-Eater. Every dragon is a detachment: one great foe that shrugs off lone attackers (their attacks are Impaired unless they are blast) and savages whatever it strikes. All are immune to paralysis and cannot be soul-trapped; each breathes either fire or frost, and frost-breathers shrug off frost (fire-breathers, fire). A flying dragon lands to fight once it has lost half its HP — or when something forces it down.
+---
+id: "alduin"
+type: "detachment"
+name: "Alduin"
+hp: 18
+armor: 3
+STR: 18
+DEX: 14
+WIL: 18
+category: "Dragon"
+attacks:
+  - {name: "bite", damage: "d12"}
+  - {name: "breath", damage: "d10", qualities: ["blast"]}
+  - {name: "meteor storm", damage: "d8", qualities: ["blast"]}
+abilities:
+  - "A detachment: individuals' attacks on it are Impaired (unless blast); its attacks on individuals are Enhanced and blast."
+  - "Beyond reach: until the Shout called Dragonrend forces him to earth — a story, not a spell (see the Main Quest) — nothing mortal can harm him; he wheels overhead and the fight is for survival. Grounded, he fights as the mightiest dragon alive."
+  - "Fire and frost damage against him are Impaired. He breathes both, calls down a storm of burning stones, and can raise a slain dragon to fight beside him."
+impaired_by:
+  - "fire"
+  - "frost"
+critical: "he devours the target's soul. They die, and their soul is his."
+source: "wardens-guide/bestiary#alduin"
+body: |
+  The World-Eater, firstborn of Akatosh, devourer of the world at the end of each kalpa. The campaign's final dragon.
+
+  Dragons: Dragons are the children of Akatosh, ancient and proud, returned to the world with the World-Eater. Every dragon is a detachment: one great foe that shrugs off lone attackers (their attacks are Impaired unless they are blast) and savages whatever it strikes. All are immune to paralysis and cannot be soul-trapped; each breathes either fire or frost, and frost-breathers shrug off frost (fire-breathers, fire). A flying dragon lands to fight once it has lost half its HP — or when something forces it down.
+---
+id: "dwarven-spider"
+type: "monster"
+name: "Dwarven Spider"
+hp: 4
+armor: 2
+STR: 12
+DEX: 13
+WIL: 0
+category: "Automaton"
+attacks:
+  - {name: "leg-blade", damage: "d6"}
+abilities:
+  - "Larger models spit a short-range shock jolt (d6) and explode when destroyed: everyone beside one takes 1d6 shock unless they pass a DEX save."
+impaired_by:
+  - "frost"
+critical: "the blade finds a tendon; the target cannot use one arm until it is healed."
+source: "wardens-guide/bestiary#dwarven-spider"
+body: |
+  A small brass arachnid, the most common Dwemer guardian, lurking in pipe-ports to ambush. Skitters and leaps. Four or more fight as a detachment.
+
+  Dwarven Automatons: The vanished Dwemer left their ruins guarded by clockwork sentinels of brass and steam. All automatons are non-living: immune to poison, disease, paralysis, and magic that sways the mind; frost damage against them is Impaired. They cannot be raised or soul-trapped, and Detect Life and Detect Dead pass over them. Their remains yield Dwarven metal, and sometimes a soul gem that powered them.
+---
+id: "dwarven-sphere"
+type: "monster"
+name: "Dwarven Sphere"
+hp: 8
+armor: 2
+STR: 14
+DEX: 12
+WIL: 0
+category: "Automaton"
+attacks:
+  - {name: "blade-arm", damage: "d8"}
+  - {name: "wrist crossbow", damage: "d6"}
+abilities:
+  - "It always acts first in the opening round of a fight it began from hiding."
+impaired_by:
+  - "frost"
+critical: "the whirling blade-arm takes the target's hand."
+source: "wardens-guide/bestiary#dwarven-sphere"
+body: |
+  A combat construct that rolls along as a brass ball, then unfurls into a one-legged swordsman. It hides in wall-pipes and lunges with startling speed.
+
+  Dwarven Automatons: The vanished Dwemer left their ruins guarded by clockwork sentinels of brass and steam. All automatons are non-living: immune to poison, disease, paralysis, and magic that sways the mind; frost damage against them is Impaired. They cannot be raised or soul-trapped, and Detect Life and Detect Dead pass over them. Their remains yield Dwarven metal, and sometimes a soul gem that powered them.
+---
+id: "dwarven-centurion"
+type: "detachment"
+name: "Dwarven Centurion"
+hp: 16
+armor: 3
+STR: 18
+DEX: 8
+WIL: 0
+category: "Automaton"
+attacks:
+  - {name: "hammer and axe", damage: "{d10, d10}kh1"}
+  - {name: "Steam Breath", damage: "d8", qualities: ["blast"]}
+abilities:
+  - "A detachment: individuals' attacks on it are Impaired (unless blast); its attacks on individuals are Enhanced and blast."
+  - "Slow to turn: it cannot strike a foe pressed close behind its legs. Its remains yield a Centurion Dynamo Core and a grand soul gem."
+impaired_by:
+  - "frost"
+critical: "a jet of scalding steam blinds the target until they are healed."
+source: "wardens-guide/bestiary#dwarven-centurion"
+body: |
+  The largest Dwemer construct: a towering brazen giant with a hammer arm and an axe arm, usually a ruin's final guardian, standing dormant in a gantry until triggered.
+
+  Dwarven Automatons: The vanished Dwemer left their ruins guarded by clockwork sentinels of brass and steam. All automatons are non-living: immune to poison, disease, paralysis, and magic that sways the mind; frost damage against them is Impaired. They cannot be raised or soul-trapped, and Detect Life and Detect Dead pass over them. Their remains yield Dwarven metal, and sometimes a soul gem that powered them.
+---
+id: "dwarven-ballista"
+type: "monster"
+name: "Dwarven Ballista"
+hp: 10
+armor: 3
+STR: 14
+DEX: 11
+WIL: 0
+category: "Automaton"
+attacks:
+  - {name: "heavy bolt", damage: "d10", qualities: ["ranged"]}
+abilities:
+  - "Its bolts ignore 1 Armor, and a struck target must pass a STR save or be knocked flat. It cannot fight at close quarters; rush it while it reloads."
+impaired_by:
+  - "frost"
+critical: "the bolt pins the target to the floor or wall."
+source: "wardens-guide/bestiary#dwarven-ballista"
+body: |
+  A spider-legged siege engine of Solstheim's Dwemer ruins, all crossbow and legs. It holds its distance and snipes.
+
+  Dwarven Automatons: The vanished Dwemer left their ruins guarded by clockwork sentinels of brass and steam. All automatons are non-living: immune to poison, disease, paralysis, and magic that sways the mind; frost damage against them is Impaired. They cannot be raised or soul-trapped, and Detect Life and Detect Dead pass over them. Their remains yield Dwarven metal, and sometimes a soul gem that powered them.
+---
+id: "falmer"
+type: "monster"
+name: "Falmer"
+hp: 6
+armor: 1
+STR: 12
+DEX: 12
+WIL: 8
+category: "Falmer"
+attacks:
+  - {name: "Falmer sword", damage: "d8"}
+  - {name: "Falmer bow", damage: "d6"}
+abilities:
+  - "Blind: it hunts by ear. While you move silently, its attacks against you are Impaired. Its weapons are coated with Falmer poison: the first time it hits a creature in a fight, that creature must pass a STR save or lose 1d4 STR."
+  - "Falmer Shamans cast frost and healing spells and carry a staff; the Gloomlurkers and Skulkers of the deepest warrens fight as Nightprowlers."
+venom: "1d4"
+source: "wardens-guide/bestiary#falmer"
+body: |
+  A blind, ashen-skinned former Snow Elf of the deep dark, hunting by sound from hidden hive-traps. Four or more fight as a detachment.
+
+  Falmer & Chaurus: The Falmer are the degenerate remnants of the Snow Elves, blinded and twisted by long servitude to the Dwemer beneath the earth. They herd insectoid chaurus and ambush all who enter their warrens.
+---
+id: "falmer-nightprowler"
+type: "monster"
+name: "Falmer Nightprowler"
+hp: 8
+armor: 2
+STR: 13
+DEX: 13
+WIL: 10
+category: "Falmer"
+attacks:
+  - {name: "Falmer war axe", damage: "d8"}
+  - {name: "chaurus-venom bow", damage: "d6"}
+abilities:
+  - "Blind (as the Falmer). Its poison is stronger: the first time it hits a creature in a fight, that creature must pass a STR save or lose 1d6 STR."
+venom: "1d6"
+critical: "the venom seizes the target's muscles; they lie paralyzed for an hour."
+source: "wardens-guide/bestiary#falmer-nightprowler"
+body: |
+  A hardened Falmer hunter of the deeper warrens, scarred and armored in chitin.
+
+  Falmer & Chaurus: The Falmer are the degenerate remnants of the Snow Elves, blinded and twisted by long servitude to the Dwemer beneath the earth. They herd insectoid chaurus and ambush all who enter their warrens.
+---
+id: "falmer-warmonger"
+type: "monster"
+name: "Falmer Warmonger"
+hp: 10
+armor: 3
+STR: 14
+DEX: 13
+WIL: 12
+category: "Falmer"
+attacks:
+  - {name: "Falmer greatsword", damage: "d10"}
+abilities:
+  - "Blind (as the Falmer). Its strikes carry virulent poison: the first time it hits a creature in a fight, that creature must pass a STR save or lose 1d6 STR. Its remains yield a grand soul gem."
+venom: "1d6"
+critical: "the poison takes the target's sight; they are blind until cured."
+source: "wardens-guide/bestiary#falmer-warmonger"
+body: |
+  The mightiest of the Betrayed, armored head to foot in chitin plate, as often a war-shaman as a champion.
+
+  Falmer & Chaurus: The Falmer are the degenerate remnants of the Snow Elves, blinded and twisted by long servitude to the Dwemer beneath the earth. They herd insectoid chaurus and ambush all who enter their warrens.
+---
+id: "chaurus"
+type: "monster"
+name: "Chaurus"
+hp: 6
+armor: 1
+STR: 14
+DEX: 11
+WIL: 4
+category: "Chaurus"
+attacks:
+  - {name: "mandible bite", damage: "d8"}
+  - {name: "acid spit", damage: "d6", qualities: ["ranged"]}
+abilities:
+  - "Immune to poison. Its acid spit ignores Armor."
+critical: "the acid eats through a piece of the target's armor, destroying it."
+source: "wardens-guide/bestiary#chaurus"
+body: |
+  A black, earwig-like insect the size of a dog, kept by the Falmer as livestock and war-beast. It clings to walls and cavern ceilings and dislikes crossing water.
+
+  Falmer & Chaurus: The Falmer are the degenerate remnants of the Snow Elves, blinded and twisted by long servitude to the Dwemer beneath the earth. They herd insectoid chaurus and ambush all who enter their warrens.
+---
+id: "chaurus-reaper"
+type: "monster"
+name: "Chaurus Reaper"
+hp: 10
+armor: 2
+STR: 16
+DEX: 11
+WIL: 6
+category: "Chaurus"
+attacks:
+  - {name: "mandible bite", damage: "d8"}
+  - {name: "acid spit", damage: "d8", qualities: ["ranged"]}
+abilities:
+  - "Immune to poison. Its acid spit ignores Armor, and its bite may carry Rattles (STR save or contract the disease)."
+disease: "rattles"
+critical: "the acid eats through a piece of the target's armor, destroying it."
+source: "wardens-guide/bestiary#chaurus-reaper"
+body: |
+  A grown chaurus, larger and far tougher, its carapace thick as plate.
+
+  Falmer & Chaurus: The Falmer are the degenerate remnants of the Snow Elves, blinded and twisted by long servitude to the Dwemer beneath the earth. They herd insectoid chaurus and ambush all who enter their warrens.
+---
+id: "chaurus-hunter"
+type: "monster"
+name: "Chaurus Hunter"
+hp: 8
+armor: 1
+STR: 14
+DEX: 14
+WIL: 6
+category: "Chaurus"
+attacks:
+  - {name: "stinger", damage: "d8"}
+  - {name: "acid spit", damage: "d8", qualities: ["ranged"]}
+abilities:
+  - "Immune to poison. It hovers out of reach of ground-bound blades; its acid ignores Armor, and its sting may carry Rattles (STR save or contract the disease)."
+disease: "rattles"
+critical: "the venom takes hold; the target loses 1d4 more STR."
+source: "wardens-guide/bestiary#chaurus-hunter"
+body: |
+  A winged chaurus hatched from a cocoon, hovering above the swarm and spitting from afar.
+
+  Falmer & Chaurus: The Falmer are the degenerate remnants of the Snow Elves, blinded and twisted by long servitude to the Dwemer beneath the earth. They herd insectoid chaurus and ambush all who enter their warrens.
+---
+id: "sabre-cat"
+type: "monster"
+name: "Sabre Cat"
+hp: 6
+STR: 14
+DEX: 14
+WIL: 5
+category: "Predator"
+attacks:
+  - {name: "claws", damage: "{d8, d8}kh1"}
+abilities:
+  - "Its bite may carry Witbane (STR save or contract the disease). Variant: the white Snowy Sabre Cat (8 HP; frost damage against it is Impaired)."
+disease: "witbane"
+critical: "it bites down and shakes the target for 1d6 more STR."
+source: "wardens-guide/bestiary#sabre-cat"
+body: |
+  A huge fanged cat of the tundra, fast and stealthy, attacking the instant it is seen. It turns slowly — circle it — and dislikes water.
+---
+id: "bear"
+type: "monster"
+name: "Bear"
+hp: 8
+STR: 15
+DEX: 12
+WIL: 5
+category: "Predator"
+attacks:
+  - {name: "claws", damage: "{d8, d8}kh1"}
+  - {name: "bite", damage: "d8"}
+abilities:
+  - "Its wounds may carry Bone Break Fever (STR save or contract the disease). Variants: Cave Bear (10 HP); Snow Bear (12 HP; frost damage against it is Impaired)."
+disease: "bone-break-fever"
+critical: "a swat breaks the target's ribs; they cannot run or carry a bulky load until they mend."
+source: "wardens-guide/bestiary#bear"
+body: |
+  A massive territorial bruin that roars before it charges, giving fair warning. Slow to rear up for a power blow.
+---
+id: "wolf"
+type: "monster"
+name: "Wolf"
+hp: 6
+STR: 12
+DEX: 14
+WIL: 8
+category: "Predator"
+attacks:
+  - {name: "bite", damage: "d8"}
+abilities:
+  - "Its bite may carry Rockjoint (STR save or contract the disease). Variant: the Ice Wolf, a white northern wolf (frost damage against it is Impaired). Wolves will not attack a werewolf in Beast Form unless provoked."
+disease: "rockjoint"
+critical: "the pack drags the target down and away into the brush."
+source: "wardens-guide/bestiary#wolf"
+body: |
+  A lean gray hunter of forest and tundra, running in packs and circling its prey; four or more fight as a detachment.
+---
+id: "skeever"
+type: "monster"
+name: "Skeever"
+hp: 3
+STR: 8
+DEX: 12
+WIL: 3
+category: "Predator"
+attacks:
+  - {name: "bite", damage: "d6"}
+abilities:
+  - "Its bite may carry Ataxia (STR save or contract the disease; see Diseases & Afflictions). Its tail is an alchemist's ingredient."
+disease: "ataxia"
+source: "wardens-guide/bestiary#skeever"
+body: |
+  An overgrown, mangy rat — the feeblest threat in Skyrim — infesting sewers, caves, and cellars. It comes in numbers.
+---
+id: "mudcrab"
+type: "monster"
+name: "Mudcrab"
+hp: 4
+armor: 1
+STR: 10
+DEX: 10
+WIL: 3
+category: "Coastal"
+attacks:
+  - {name: "pincer", damage: "d6"}
+abilities:
+  - "Variant: the Giant Mudcrab (8 HP, 2 Armor, pincer d8). Its remains yield chitin and crab meat."
+source: "wardens-guide/bestiary#mudcrab"
+body: |
+  A skittering shore crab, sometimes mistaken for a rock until it lunges. Largely harmless alone; a nuisance in numbers. Slaughterfish are its natural enemy.
+---
+id: "horker"
+type: "monster"
+name: "Horker"
+hp: 8
+armor: 1
+STR: 14
+DEX: 8
+WIL: 4
+category: "Coastal"
+attacks:
+  - {name: "tusk gore", damage: "d8"}
+abilities:
+  - "Hostile only if approached too closely. Its remains yield horker meat and tusks."
+source: "wardens-guide/bestiary#horker"
+body: |
+  A blubbery, tusked sea-beast lounging on the ice in herds of three or four. Slow and clumsy ashore, swift in the water.
+---
+id: "slaughterfish"
+type: "monster"
+name: "Slaughterfish"
+hp: 3
+STR: 10
+DEX: 13
+WIL: 4
+category: "Coastal"
+attacks:
+  - {name: "razor bite", damage: "d6"}
+abilities:
+  - "It fights only in deep water, where a swimmer's own attacks are Impaired. Its bite may carry Greenspore (STR save or contract the disease)."
+disease: "greenspore"
+critical: "the school tears into the target for 1d4 more STR and drags them under."
+source: "wardens-guide/bestiary#slaughterfish"
+body: |
+  A small, razor-toothed fish that schools in lakes and along the coast, drawn to blood. Four or more fight as a detachment.
+---
+id: "frostbite-spider"
+type: "monster"
+name: "Frostbite Spider"
+hp: 6
+armor: 1
+STR: 13
+DEX: 12
+WIL: 4
+category: "Vermin"
+attacks:
+  - {name: "venomous bite", damage: "d8"}
+  - {name: "poison spit", damage: "d6", qualities: ["ranged"]}
+abilities:
+  - "Its venom lingers: the first time it hits a creature in a fight, that creature must pass a STR save or lose 1d4 STR, and the venom keeps working for up to three rounds more (see Hazards). Variant: Giant Frostbite Spider (10 HP, bite d10)."
+venom: "1d4, lingering"
+critical: "the venom locks the target's limbs; they are wrapped in web and hauled into the nest."
+source: "wardens-guide/bestiary#frostbite-spider"
+body: |
+  A hairy, eight-eyed spider — some no bigger than a dog, some larger than a horse — lairing in webbed caves. It drops from above and spits even when facing away.
+---
+id: "mammoth"
+type: "detachment"
+name: "Mammoth"
+hp: 16
+STR: 18
+DEX: 8
+WIL: 6
+category: "Megafauna"
+attacks:
+  - {name: "tusk gore", damage: "d10"}
+  - {name: "stomp", damage: "d10"}
+abilities:
+  - "A detachment: individuals' attacks on it are Impaired (unless blast); its attacks on individuals are Enhanced and blast."
+  - "It cannot be knocked down, only staggered. Its soul is grand, and its remains yield tusks and a great deal of meat."
+critical: "a tusk or foot crushes the target, and flings them aside for 1d6 more STR."
+source: "wardens-guide/bestiary#mammoth"
+body: |
+  A colossal, shaggy, tusked beast roaming the tundra near the giants' camps, which herd them. Passive unless provoked — then unstoppable.
+---
+id: "giant"
+type: "detachment"
+name: "Giant"
+hp: 18
+armor: 1
+STR: 18
+DEX: 12
+WIL: 8
+category: "Megafauna"
+attacks:
+  - {name: "club", damage: "d12"}
+abilities:
+  - "A detachment: individuals' attacks on it are Impaired (unless blast); its attacks on individuals are Enhanced and blast."
+  - "It will not wade into deep water, and it warns trespassers first — a stamp, a bellow, a raised club."
+critical: "the club launches the target into the sky. They do not survive the landing."
+source: "wardens-guide/bestiary#giant"
+body: |
+  A towering, primitive herdsman of the mammoths, daubed in war-paint, peaceful until disturbed. Then deadly.
+---
+id: "bristleback"
+type: "monster"
+name: "Bristleback"
+hp: 8
+armor: 1
+STR: 14
+DEX: 12
+WIL: 5
+category: "Megafauna"
+attacks:
+  - {name: "tusk charge", damage: "d8"}
+  - {name: "gore", damage: "d6"}
+abilities:
+  - "A charge from a distance knocks the target flat unless it passes a STR save. Its remains yield boar meat and tusks."
+source: "wardens-guide/bestiary#bristleback"
+body: |
+  A large, foul-tempered tusked boar of Solstheim, ridden by Rieklings. It charges anyone who comes near.
+---
+id: "spriggan"
+type: "monster"
+name: "Spriggan"
+hp: 8
+STR: 12
+DEX: 14
+WIL: 14
+category: "Wild Spirit"
+attacks:
+  - {name: "thorned arms", damage: "d8"}
+  - {name: "spore burst", damage: "d6", qualities: ["blast"]}
+abilities:
+  - "Fire damage against it is Enhanced. Once per combat it heals itself of all its hurts, and it can call nearby beasts to its aid. Variant: the Burnt Spriggan of the Rift and Solstheim — fire damage against it is Impaired, and it hurls flame (d8)."
+enhanced_by:
+  - "fire"
+critical: "a cloud of spores fills the target's lungs; they lose 1d4 more STR and cannot speak above a whisper for a day."
+source: "wardens-guide/bestiary#spriggan"
+body: |
+  A glowing green spirit of wood and bark in the shape of a woman, blending into the forest until it strikes.
+---
+id: "spriggan-matron"
+type: "monster"
+name: "Spriggan Matron"
+hp: 12
+STR: 13
+DEX: 14
+WIL: 16
+category: "Wild Spirit"
+attacks:
+  - {name: "thorned arms", damage: "{d8, d8}kh1"}
+  - {name: "spore burst", damage: "d8", qualities: ["blast"]}
+abilities:
+  - "Fire damage against it is Enhanced. Once per combat it heals itself of all its hurts, and it looses a swarm of stinging insects (d6, blast, each round) and woodland beasts to defend it."
+enhanced_by:
+  - "fire"
+critical: "creeping roots bind the target fast; they must be cut free."
+source: "wardens-guide/bestiary#spriggan-matron"
+body: |
+  An elder spriggan, queen of a sacred grove, wreathed in swarming insects.
+---
+id: "troll"
+type: "monster"
+name: "Troll"
+hp: 14
+armor: 1
+STR: 14
+DEX: 12
+WIL: 4
+category: "Troll"
+attacks:
+  - {name: "claws", damage: "{d8, d8}kh1"}
+  - {name: "bite", damage: "d8"}
+abilities:
+  - "Regeneration: it regains 1d4 HP each round — unless fire has touched it since its last turn. Fire damage against it is Enhanced. A troll brought down without fire rises again within days."
+enhanced_by:
+  - "fire"
+critical: "it tears off one of the target's limbs (the Warden decides which)."
+source: "wardens-guide/bestiary#troll"
+body: |
+  A shaggy, three-eyed ape-thing of the mountains and caves, with claws that rend and flesh that knits before your eyes.
+---
+id: "frost-troll"
+type: "monster"
+name: "Frost Troll"
+hp: 16
+armor: 1
+STR: 16
+DEX: 12
+WIL: 4
+category: "Troll"
+attacks:
+  - {name: "claws", damage: "{d8, d8}kh1"}
+  - {name: "bite", damage: "d8"}
+abilities:
+  - "Regeneration (as the Troll). Fire damage against it is Enhanced; frost damage is Impaired."
+impaired_by:
+  - "frost"
+enhanced_by:
+  - "fire"
+critical: "it tears off one of the target's limbs (the Warden decides which)."
+source: "wardens-guide/bestiary#frost-troll"
+body: |
+  A white-furred troll of the highest snows, larger and meaner than its lowland kin.
+---
+id: "werewolf"
+type: "monster"
+name: "Werewolf"
+hp: 8
+STR: 15
+DEX: 14
+WIL: 6
+category: "Shapeshifter"
+attacks:
+  - {name: "claws", damage: "{d6, d6}kh1"}
+  - {name: "bite", damage: "d8"}
+abilities:
+  - "Mundane attacks against it are Impaired; silver weapons are Enhanced. Immune to disease and paralysis. Its Howl of Terror sends anyone who fails a WIL save fleeing for a round."
+impaired_by:
+  - "mundane"
+enhanced_by:
+  - "silver"
+critical: "it drags the target off into the dark to feed; recovering them means following the blood."
+source: "wardens-guide/bestiary#werewolf"
+body: |
+  A towering wolf-man of immense strength and speed, servant of Hircine; the Companions' Circle and the wild places both harbor them.
+---
+id: "werebear"
+type: "monster"
+name: "Werebear"
+hp: 10
+STR: 15
+DEX: 13
+WIL: 6
+category: "Shapeshifter"
+attacks:
+  - {name: "claws", damage: "{d8, d8}kh1"}
+  - {name: "bite", damage: "d8"}
+abilities:
+  - "Mundane attacks against it are Impaired; silver weapons are Enhanced. Immune to disease and paralysis."
+impaired_by:
+  - "mundane"
+enhanced_by:
+  - "silver"
+critical: "a swat hurls the target against rock for 1d6 more STR."
+source: "wardens-guide/bestiary#werebear"
+body: |
+  A hulking bear-man of cold Solstheim, roaming in twos and threes. Werebears and werewolves are sworn enemies.
+---
+id: "netch"
+type: "monster"
+name: "Netch"
+hp: 10
+STR: 15
+DEX: 8
+WIL: 6
+category: "Coastal"
+attacks:
+  - {name: "tentacle lash", damage: "d8"}
+  - {name: "shock touch", damage: "d6"}
+abilities:
+  - "Shock damage against it is Impaired. Its tentacles strike with surprising reach."
+impaired_by:
+  - "shock"
+critical: "a tentacle wraps the target and slams them down; they are left stunned and stung, and lose 1d4 more STR."
+source: "wardens-guide/bestiary#netch"
+body: |
+  A great floating, jellyfish-like creature drifting over the ash of Solstheim in family pods. Docile unless attacked; the bull netch is larger and far more aggressive than the betty.
+---
+id: "ice-wraith"
+type: "monster"
+name: "Ice Wraith"
+hp: 8
+STR: 6
+DEX: 14
+WIL: 12
+category: "Vermin"
+attacks:
+  - {name: "freezing bite", damage: "d8"}
+abilities:
+  - "Frost damage against it is Impaired; fire damage is Enhanced. Immune to paralysis. Whatever it bites is slowed."
+impaired_by:
+  - "frost"
+enhanced_by:
+  - "fire"
+critical: "the cold sinks bone-deep; the target loses 1d4 more STR."
+source: "wardens-guide/bestiary#ice-wraith"
+body: |
+  A serpent of living frost, weaving through the air over snowfields and clinging to old ruins and standing stones.
+---
+id: "ash-hopper"
+type: "monster"
+name: "Ash Hopper"
+hp: 4
+STR: 10
+DEX: 13
+WIL: 4
+category: "Vermin"
+attacks:
+  - {name: "leaping bite", damage: "d6"}
+abilities:
+  - "A leaping ambush knocks the target flat unless it passes a DEX save, and its bite may carry Droops (STR save or contract the disease). Its remains yield ash hopper jelly and meat."
+disease: "droops"
+source: "wardens-guide/bestiary#ash-hopper"
+body: |
+  A scrib-like insect of Solstheim's southern ash wastes, burrowing in the dust to ambush and circling its prey like a wolf.
+---
+id: "flame-atronach"
+type: "monster"
+name: "Flame Atronach"
+hp: 6
+STR: 8
+DEX: 13
+WIL: 12
+category: "Atronach"
+attacks:
+  - {name: "fiery claws", damage: "d6"}
+  - {name: "firebolt", damage: "d8", qualities: ["ranged"]}
+abilities:
+  - "Fire damage against it is Impaired; frost is Enhanced. Anyone who strikes it in melee takes 1d4 fire. It bursts when destroyed: everyone beside it takes 1d6 fire unless they pass a DEX save."
+impaired_by:
+  - "fire"
+enhanced_by:
+  - "frost"
+critical: "sets the target ablaze."
+source: "wardens-guide/bestiary#flame-atronach"
+body: |
+  A burning elemental woman from the Plane of Fire, wreathed in a cloak of flame.
+
+  Daedra & Magical: The Daedra of the planes of Oblivion come to Nirn by summoning, by a Prince's command, or through a thinning of the barrier between worlds. They are immune to disease, and a Daedra "slain" in Mundus is only banished home. A Banish or Expel spell hurls a summoned one back to Oblivion.
+---
+id: "frost-atronach"
+type: "monster"
+name: "Frost Atronach"
+hp: 12
+armor: 1
+STR: 16
+DEX: 8
+WIL: 6
+category: "Atronach"
+attacks:
+  - {name: "ice fists", damage: "{d8, d8}kh1"}
+abilities:
+  - "Frost damage against it is Impaired; fire is Enhanced. Anyone who strikes it in melee takes 1d4 frost."
+impaired_by:
+  - "frost"
+enhanced_by:
+  - "fire"
+critical: "a frozen fist shatters bone; the struck limb is useless until it mends."
+source: "wardens-guide/bestiary#frost-atronach"
+body: |
+  A lumbering giant of jagged ice from the Plane of Frost, slow but immensely strong.
+
+  Daedra & Magical: The Daedra of the planes of Oblivion come to Nirn by summoning, by a Prince's command, or through a thinning of the barrier between worlds. They are immune to disease, and a Daedra "slain" in Mundus is only banished home. A Banish or Expel spell hurls a summoned one back to Oblivion.
+---
+id: "storm-atronach"
+type: "monster"
+name: "Storm Atronach"
+hp: 12
+armor: 2
+STR: 16
+DEX: 12
+WIL: 12
+category: "Atronach"
+attacks:
+  - {name: "stone fist", damage: "d8"}
+  - {name: "lightning", damage: "d8", qualities: ["blast", "ranged"]}
+abilities:
+  - "Shock damage against it is Impaired. Anyone who strikes it in melee takes 1d4 shock; metal armor does not help (see Hazards)."
+impaired_by:
+  - "shock"
+critical: "a bolt arcs through the target; they drop whatever they hold and are blinded by the flash for a day."
+source: "wardens-guide/bestiary#storm-atronach"
+body: |
+  A whirling pillar of stone shards bound around a heart of lightning, from the storms of Oblivion.
+
+  Daedra & Magical: The Daedra of the planes of Oblivion come to Nirn by summoning, by a Prince's command, or through a thinning of the barrier between worlds. They are immune to disease, and a Daedra "slain" in Mundus is only banished home. A Banish or Expel spell hurls a summoned one back to Oblivion.
+---
+id: "dremora"
+type: "monster"
+name: "Dremora"
+hp: 8
+armor: 1
+STR: 14
+DEX: 13
+WIL: 13
+category: "Daedra"
+attacks:
+  - {name: "flaming sword", damage: "d8"}
+  - {name: "flaming bow", damage: "d6"}
+abilities:
+  - "Higher castes — the Kynval, the Kynreeve, the Valkynaz, and the dreaded Dremora Lord (12 HP, 2 Armor, 16 STR, enchanted greatsword d10) — climb in HP, Armor, and die. Its remains yield a Daedra heart."
+critical: "the burning blade sears the wound shut around the steel; the scar never fades."
+source: "wardens-guide/bestiary#dremora"
+body: |
+  A proud, horned warrior-Daedra of Mehrunes Dagon's legions, summoned to serve or set to guard a shrine. It disdains all lesser beings and bargains only on its own terms.
+
+  Daedra & Magical: The Daedra of the planes of Oblivion come to Nirn by summoning, by a Prince's command, or through a thinning of the barrier between worlds. They are immune to disease, and a Daedra "slain" in Mundus is only banished home. A Banish or Expel spell hurls a summoned one back to Oblivion.
+---
+id: "scamp"
+type: "monster"
+name: "Scamp"
+hp: 3
+STR: 8
+DEX: 14
+WIL: 8
+category: "Daedra"
+attacks:
+  - {name: "claws", damage: "d4"}
+  - {name: "spat fire", damage: "d6", qualities: ["ranged"]}
+abilities:
+  - "It bolts at the first real wound (it tests Morale at the first hit it takes), cackling all the way."
+source: "wardens-guide/bestiary#scamp"
+body: |
+  A small, grinning, gray-skinned Daedra of Dagon's Deadlands, cowardly and spiteful, all ears and teeth. Once a common sight in the Crisis years; now a conjurer's first summons.
+
+  Daedra & Magical: The Daedra of the planes of Oblivion come to Nirn by summoning, by a Prince's command, or through a thinning of the barrier between worlds. They are immune to disease, and a Daedra "slain" in Mundus is only banished home. A Banish or Expel spell hurls a summoned one back to Oblivion.
+---
+id: "clannfear"
+type: "monster"
+name: "Clannfear"
+hp: 5
+armor: 1
+STR: 12
+DEX: 15
+WIL: 5
+category: "Daedra"
+attacks:
+  - {name: "claws", damage: "{d6, d6}kh1"}
+abilities:
+  - "It charges and headbutts: the first strike of a charge knocks the target flat unless it passes a STR save."
+critical: "it guts the target where they fall."
+source: "wardens-guide/bestiary#clannfear"
+body: |
+  A scaled, frilled, two-legged Daedra built like a hunting lizard, loosed from the Deadlands in packs during the Oblivion Crisis.
+
+  Daedra & Magical: The Daedra of the planes of Oblivion come to Nirn by summoning, by a Prince's command, or through a thinning of the barrier between worlds. They are immune to disease, and a Daedra "slain" in Mundus is only banished home. A Banish or Expel spell hurls a summoned one back to Oblivion.
+---
+id: "daedroth"
+type: "monster"
+name: "Daedroth"
+hp: 10
+armor: 2
+STR: 16
+DEX: 10
+WIL: 10
+category: "Daedra"
+attacks:
+  - {name: "jaws", damage: "d10"}
+  - {name: "fire breath", damage: "d8", qualities: ["blast"]}
+abilities:
+  - "Fire damage against it is Impaired. It breathes flame once, then again only after a round of rest."
+impaired_by:
+  - "fire"
+critical: "the jaws close and do not open; the target is dragged off and shaken like prey."
+source: "wardens-guide/bestiary#daedroth"
+body: |
+  A hulking, crocodile-headed Daedra of the Deadlands, barely leashed even by those who summon it. Its heart is prized by alchemists.
+
+  Daedra & Magical: The Daedra of the planes of Oblivion come to Nirn by summoning, by a Prince's command, or through a thinning of the barrier between worlds. They are immune to disease, and a Daedra "slain" in Mundus is only banished home. A Banish or Expel spell hurls a summoned one back to Oblivion.
+---
+id: "spider-daedra"
+type: "monster"
+name: "Spider Daedra"
+hp: 10
+armor: 1
+STR: 12
+DEX: 14
+WIL: 16
+category: "Daedra"
+attacks:
+  - {name: "poisoned claws", damage: "d8"}
+  - {name: "lightning", damage: "d8", qualities: ["ranged"]}
+abilities:
+  - "The first time its claws strike a creature in a fight, that creature must pass a STR save or lose 1d4 STR. It fills its surroundings with small biting spiderlings (d4, blast, each round) until destroyed."
+venom: "1d4"
+critical: "the poison paralyzes the target, and the spiderlings begin to feed."
+source: "wardens-guide/bestiary#spider-daedra"
+body: |
+  A pale, many-legged horror with a woman's upper body, one of Mephala's servants, casting lightning and birthing little spiderlings to swarm the unwary. Only the strongest conjurers dare call one, and it obeys no one for long.
+
+  Daedra & Magical: The Daedra of the planes of Oblivion come to Nirn by summoning, by a Prince's command, or through a thinning of the barrier between worlds. They are immune to disease, and a Daedra "slain" in Mundus is only banished home. A Banish or Expel spell hurls a summoned one back to Oblivion.
+---
+id: "xivilai"
+type: "monster"
+name: "Xivilai"
+hp: 12
+armor: 2
+STR: 16
+DEX: 12
+WIL: 14
+category: "Daedra"
+attacks:
+  - {name: "greatsword or battleaxe", damage: "d10"}
+  - {name: "shock", damage: "d8", qualities: ["ranged"]}
+abilities:
+  - "It can call a Clannfear or a Scamp to fight at its side. Shock damage against it is Impaired."
+impaired_by:
+  - "shock"
+critical: "the great blade takes the target's arm."
+source: "wardens-guide/bestiary#xivilai"
+body: |
+  A tall, blue-gray warrior-Daedra of the Deadlands, arrogant and cruel, that hates being summoned more than anything — and turns on a weak master at the first chance.
+
+  Daedra & Magical: The Daedra of the planes of Oblivion come to Nirn by summoning, by a Prince's command, or through a thinning of the barrier between worlds. They are immune to disease, and a Daedra "slain" in Mundus is only banished home. A Banish or Expel spell hurls a summoned one back to Oblivion.
+---
+id: "gargoyle"
+type: "monster"
+name: "Gargoyle"
+hp: 8
+armor: 3
+STR: 14
+DEX: 4
+WIL: 12
+category: "Daedra"
+attacks:
+  - {name: "claws", damage: "{d8, d8}kh1"}
+abilities:
+  - "Immune to poison and paralysis, and unharmed while posed as a statue. Its claws drain life: when it deals STR damage, it regains that much HP. Vampire Lords can summon one to their side."
+critical: "it lifts the target and dashes them against stone."
+source: "wardens-guide/bestiary#gargoyle"
+body: |
+  A stone-skinned Daedric beast that crouches as a statue, then bursts to life among vampires and their kennels. Slow but punishing.
+
+  Daedra & Magical: The Daedra of the planes of Oblivion come to Nirn by summoning, by a Prince's command, or through a thinning of the barrier between worlds. They are immune to disease, and a Daedra "slain" in Mundus is only banished home. A Banish or Expel spell hurls a summoned one back to Oblivion.
+---
+id: "seeker"
+type: "monster"
+name: "Seeker"
+hp: 8
+STR: 8
+DEX: 13
+WIL: 16
+category: "Apocrypha & Ash"
+attacks:
+  - {name: "warping blast", damage: "d8", qualities: ["ranged"]}
+abilities:
+  - "Immune to paralysis; mundane attacks and shock damage against it are Impaired. It can vanish and reappear a short distance away, and it calls a weaker copy of itself to fight beside it."
+impaired_by:
+  - "mundane"
+  - "shock"
+critical: "it drains the target's mind for 1d4 WIL; they forget something they knew."
+source: "wardens-guide/bestiary#seeker"
+body: |
+  A floating, tentacled horror of Apocrypha, guardian of Hermaeus Mora's forbidden tomes, flickering half-invisible through the air.
+
+  Daedra & Magical: The Daedra of the planes of Oblivion come to Nirn by summoning, by a Prince's command, or through a thinning of the barrier between worlds. They are immune to disease, and a Daedra "slain" in Mundus is only banished home. A Banish or Expel spell hurls a summoned one back to Oblivion.
+---
+id: "lurker"
+type: "monster"
+name: "Lurker"
+hp: 16
+armor: 1
+STR: 16
+DEX: 8
+WIL: 12
+category: "Apocrypha & Ash"
+attacks:
+  - {name: "hand swipe", damage: "{d8, d8}kh1"}
+  - {name: "tentacle spray", damage: "d8", qualities: ["blast", "ranged"]}
+abilities:
+  - "Frost and shock damage against it are Impaired; mundane attacks against it are Impaired. Its stomp knocks everyone near it flat unless they pass a STR save."
+impaired_by:
+  - "frost"
+  - "mundane"
+  - "shock"
+critical: "a gout of acid from its maw eats through the target's armor, destroying it."
+source: "wardens-guide/bestiary#lurker"
+body: |
+  A vast, amphibious horror that rises from the black waters of Apocrypha — towering, slow, and terrible. Fight only one at a time.
+
+  Daedra & Magical: The Daedra of the planes of Oblivion come to Nirn by summoning, by a Prince's command, or through a thinning of the barrier between worlds. They are immune to disease, and a Daedra "slain" in Mundus is only banished home. A Banish or Expel spell hurls a summoned one back to Oblivion.
+---
+id: "ash-spawn"
+type: "monster"
+name: "Ash Spawn"
+hp: 8
+armor: 1
+STR: 14
+DEX: 10
+WIL: 8
+category: "Apocrypha & Ash"
+attacks:
+  - {name: "ash blade", damage: "d8"}
+  - {name: "firebolt", damage: "d8", qualities: ["ranged"]}
+abilities:
+  - "Immune to poison; Detect Life and Detect Dead pass over it. Its blade crumbles to nothing when it falls; the stronger ones raise a wall of ash to block pursuit."
+critical: "the firebolt sets the target ablaze."
+source: "wardens-guide/bestiary#ash-spawn"
+body: |
+  A smoldering figure of compacted volcanic ash that rises from cairns and ash-piles on Solstheim, neither living nor dead.
+
+  Daedra & Magical: The Daedra of the planes of Oblivion come to Nirn by summoning, by a Prince's command, or through a thinning of the barrier between worlds. They are immune to disease, and a Daedra "slain" in Mundus is only banished home. A Banish or Expel spell hurls a summoned one back to Oblivion.
+---
+id: "ash-guardian"
+type: "monster"
+name: "Ash Guardian"
+hp: 10
+armor: 2
+STR: 16
+DEX: 8
+WIL: 10
+category: "Apocrypha & Ash"
+attacks:
+  - {name: "ash fists", damage: "{d8, d8}kh1"}
+abilities:
+  - "Fire damage against it is Impaired. Denied its heart stone, it turns on the one who called it."
+impaired_by:
+  - "fire"
+critical: "a heavy fist drives the target into the ground for 1d6 more STR."
+source: "wardens-guide/bestiary#ash-guardian"
+body: |
+  A hulking brute of stone and ash conjured by Solstheim's mages, bound to a heart stone.
+
+  Daedra & Magical: The Daedra of the planes of Oblivion come to Nirn by summoning, by a Prince's command, or through a thinning of the barrier between worlds. They are immune to disease, and a Daedra "slain" in Mundus is only banished home. A Banish or Expel spell hurls a summoned one back to Oblivion.
+---
+id: "riekling"
+type: "monster"
+name: "Riekling"
+hp: 3
+armor: 1
+STR: 8
+DEX: 13
+WIL: 7
+category: "Apocrypha & Ash"
+attacks:
+  - {name: "spear", damage: "d6"}
+  - {name: "thrown spear", damage: "d6"}
+abilities:
+  - "Four or more fight as a detachment; a Riekling Chief (6 HP, 2 Armor, axe d8) leads them. Mounted on a bristleback, a riekling charges as the boar does."
+source: "wardens-guide/bestiary#riekling"
+body: |
+  A small, blue-skinned goblin-kin of Solstheim's snowy north, living in ice caves and riding bristlebacks to war. Rieklings chatter in their own tongue, bow to a chief, and can be won over by a stranger who beats their chief — or brings them a better one.
+
+  Daedra & Magical: The Daedra of the planes of Oblivion come to Nirn by summoning, by a Prince's command, or through a thinning of the barrier between worlds. They are immune to disease, and a Daedra "slain" in Mundus is only banished home. A Banish or Expel spell hurls a summoned one back to Oblivion.
+---
+id: "vampire"
+type: "monster"
+name: "Vampire"
+hp: 12
+armor: 1
+STR: 14
+DEX: 12
+WIL: 16
+category: "Vampire"
+attacks:
+  - {name: "draining bite", damage: "d8"}
+  - {name: "vampiric drain", damage: "d6", qualities: ["ranged"]}
+abilities:
+  - "When it drains a living creature, it regains that much HP; its drain may pass on Sanguinare Vampiris (STR save or contract the disease). It can raise a fresh corpse as a thrall."
+enhanced_by:
+  - "fire"
+disease: "sanguinare-vampiris"
+critical: "the bite drains the target's spirit for 1d8 WIL; one brought to 0 WIL this way dies and rises as the vampire's thrall."
+source: "wardens-guide/bestiary#vampire"
+body: |
+  A pale, charming predator that feeds on mortal blood, sleeping by day and hunting by night. Volkihar vampires raid whole villages.
+
+  Vampires: The undead servants of Molag Bal stalk Skyrim's nights. Vampires are immune to poison and disease; fire damage against them is Enhanced, and sunlight leaves them Deprived (unable to regain HP). The Volkihar of the frozen northwest command the deadliest of their kind.
+---
+id: "vampire-lord"
+type: "monster"
+name: "Vampire Lord"
+hp: 16
+armor: 1
+STR: 16
+DEX: 13
+WIL: 18
+category: "Vampire"
+attacks:
+  - {name: "raking claws", damage: "{d8, d8}kh1"}
+  - {name: "vampiric drain", damage: "d8", qualities: ["ranged"]}
+abilities:
+  - "Its drain heals it for the damage dealt. It can call a Gargoyle, raise the dead, and seize a foe at range with Vampiric Grip, pulling it close unless it passes a STR save."
+enhanced_by:
+  - "fire"
+critical: "the bite drains 1d8 WIL and leaves the target paralyzed and pliant."
+source: "wardens-guide/bestiary#vampire-lord"
+body: |
+  A monstrous winged form granted to the pure-blooded by Molag Bal — a hovering horror of claw and blood-magic. Attacked on sight.
+
+  Vampires: The undead servants of Molag Bal stalk Skyrim's nights. Vampires are immune to poison and disease; fire damage against them is Enhanced, and sunlight leaves them Deprived (unable to regain HP). The Volkihar of the frozen northwest command the deadliest of their kind.
+---
+id: "death-hound"
+type: "monster"
+name: "Death Hound"
+hp: 6
+STR: 12
+DEX: 13
+WIL: 5
+category: "Vampire"
+attacks:
+  - {name: "freezing bite", damage: "d8"}
+abilities:
+  - "Immune to poison; frost damage against it is Impaired. Whatever it bites is slowed. It flees from a werewolf in Beast Form."
+impaired_by:
+  - "frost"
+critical: "the cold sinks deep; the target loses 1d4 more STR."
+source: "wardens-guide/bestiary#death-hound"
+body: |
+  A frost-rimed undead hound kept by the Volkihar as a guard-dog, found in pairs around their lairs.
+
+  Vampires: The undead servants of Molag Bal stalk Skyrim's nights. Vampires are immune to poison and disease; fire damage against them is Enhanced, and sunlight leaves them Deprived (unable to regain HP). The Volkihar of the frozen northwest command the deadliest of their kind.
+---
+id: "vampire-thrall"
+type: "monster"
+name: "Vampire Thrall"
+hp: 4
+STR: 12
+DEX: 11
+WIL: 6
+category: "Vampire"
+attacks:
+  - {name: "dagger", damage: "d6"}
+  - {name: "fists", damage: "d4"}
+abilities:
+  - "It fights mindlessly to defend the vampire and never tests Morale while the master lives."
+source: "wardens-guide/bestiary#vampire-thrall"
+body: |
+  A living mortal enthralled to a vampire master — a guard, a blood-cattle servant, or a fanatic protector. Found beside their master, hollow-eyed and drained.
+
+  Vampires: The undead servants of Molag Bal stalk Skyrim's nights. Vampires are immune to poison and disease; fire damage against them is Enhanced, and sunlight leaves them Deprived (unable to regain HP). The Volkihar of the frozen northwest command the deadliest of their kind.
+---
+id: "bandit"
+type: "monster"
+name: "Bandit"
+hp: 4
+armor: 1
+STR: 12
+DEX: 12
+WIL: 9
+category: "Outlaw"
+attacks:
+  - {name: "iron sword or war axe", damage: "d8"}
+  - {name: "hunting bow", damage: "d6"}
+abilities:
+  - "A detachment travels with a leader in heavier mail (2 Armor) wielding a greatsword (d10) or a crossbow (d8). Tougher tiers (the Marauder, the Bandit Chief) climb in HP and die."
+  - "Loyal: test Morale against the leader's WIL (13). If the leader falls, the rest flee."
+source: "wardens-guide/bestiary#bandit"
+body: |
+  The most common cutthroat in Skyrim, lairing in caves, forts, and ruined towers. Four or more fight as a detachment.
+---
+id: "forsworn"
+type: "monster"
+name: "Forsworn"
+hp: 5
+armor: 1
+STR: 12
+DEX: 13
+WIL: 9
+category: "Outlaw"
+attacks:
+  - {name: "twin axes", damage: "{d6, d6}kh1"}
+  - {name: "bone bow", damage: "d6"}
+abilities:
+  - "Forsworn Shamans cast fire and healing spells; a band may be led by a Briarheart. Tougher tiers (the Pillager, the Ravager) climb in HP and die."
+  - "Loyal: test Morale against the band's leader (WIL 12)."
+source: "wardens-guide/bestiary#forsworn"
+body: |
+  A fur-and-feather-clad Reachman raider who reveres the hagravens and the Old Gods, found only in the Reach. Raids in bands; four or more fight as a detachment.
+---
+id: "forsworn-briarheart"
+type: "monster"
+name: "Forsworn Briarheart"
+hp: 8
+armor: 1
+STR: 16
+DEX: 13
+WIL: 8
+category: "Outlaw"
+attacks:
+  - {name: "twin swords", damage: "{d8, d8}kh1"}
+abilities:
+  - "It fights on while the briar sits in its chest; tear the briar out (from a helpless Briarheart) and it dies at once. Its chest yields a Briar Heart, prized by alchemists."
+critical: "a frenzied flurry costs the target 1d6 more STR."
+source: "wardens-guide/bestiary#forsworn-briarheart"
+body: |
+  A Forsworn champion whose heart a hagraven tore out and replaced with a poisoned briar — savage strength, at the price of unending pain.
+---
+id: "hagraven"
+type: "monster"
+name: "Hagraven"
+hp: 10
+armor: 1
+STR: 12
+DEX: 12
+WIL: 16
+category: "Wild Spirit"
+attacks:
+  - {name: "raking claws", damage: "d8"}
+  - {name: "fireball", damage: "d8", qualities: ["blast"]}
+abilities:
+  - "Slow to turn; harry her from the flanks. Her claws may carry Brain Rot (STR save or contract the disease). She alone can perform the rite that makes a Briarheart."
+disease: "brain-rot"
+critical: "the fireball sets the target ablaze."
+source: "wardens-guide/bestiary#hagraven"
+body: |
+  A crone half-transformed into a foul bird by a dark bargain; matriarch and maker of the Forsworn. Encountered alone or in covens of three, often with a Briarheart at her side.
+---
+id: "necromancer"
+type: "monster"
+name: "Necromancer"
+hp: 6
+armor: 1
+STR: 8
+DEX: 11
+WIL: 14
+category: "Sorcerer"
+attacks:
+  - {name: "bound dagger", damage: "d6"}
+  - {name: "elemental bolt", damage: "d8", qualities: ["ranged"]}
+abilities:
+  - "Casts Destruction bolts and raises the slain — its own dead or the party's fallen — as thralls mid-fight. The corpses it raises may carry Brain Rot. A Master Necromancer may carry a Spell Tome or a staff."
+critical: "a death-bolt drains 1d4 WIL."
+source: "wardens-guide/bestiary#necromancer"
+body: |
+  A robed sorcerer who practices the forbidden art of raising the dead, lairing in barrows and ruined towers among skeletons and zombies.
+---
+id: "conjurer"
+type: "monster"
+name: "Conjurer"
+hp: 6
+armor: 1
+STR: 8
+DEX: 11
+WIL: 14
+category: "Sorcerer"
+attacks:
+  - {name: "bound sword", damage: "d8"}
+  - {name: "elemental bolt", damage: "d8", qualities: ["ranged"]}
+abilities:
+  - "Summons atronachs and Dremora to fight for it and flings Destruction spells. A Master Conjurer may carry a Spell Tome or a staff."
+critical: "a bolt of raw magicka drains 1d4 WIL."
+source: "wardens-guide/bestiary#conjurer"
+body: |
+  A robed summoner who binds Daedra to its service, found in warlock lairs and ruins.
+---
+id: "miraak-cultist"
+type: "monster"
+name: "Miraak Cultist"
+hp: 6
+armor: 1
+STR: 10
+DEX: 12
+WIL: 13
+category: "Sorcerer"
+attacks:
+  - {name: "ceremonial dagger", damage: "d6"}
+  - {name: "elemental bolt", damage: "d8", qualities: ["ranged"]}
+abilities:
+  - "Summons creatures and casts Destruction magic; now and then one carries a staff. Tougher tiers (the Arch Cultist) climb in HP and die."
+critical: "a bolt of fire or frost leaves the target ablaze or frozen fast."
+source: "wardens-guide/bestiary#miraak-cultist"
+body: |
+  A bone-masked servant of Miraak, the First Dragonborn, sent to hunt down a "false Dragonborn." Travels in pairs.
+---
+id: "silver-hand"
+type: "monster"
+name: "Silver Hand"
+hp: 6
+armor: 1
+STR: 13
+DEX: 12
+WIL: 9
+category: "Outlaw"
+attacks:
+  - {name: "silver sword", damage: "d8"}
+  - {name: "hunting bow", damage: "d6"}
+abilities:
+  - "Its silver weapons are Enhanced against werewolves, werebears, and many undead. Tougher tiers (the Silver Hand Warrior) climb in HP."
+  - "Loyal: test Morale against the band's leader (WIL 11)."
+source: "wardens-guide/bestiary#silver-hand"
+body: |
+  A brutal werewolf-hunter who marks a lair with wolf-heads on pikes and kills beast and bystander alike. Four or more fight as a detachment.
+---
+id: "thalmor-justiciar"
+type: "monster"
+name: "Thalmor Justiciar"
+hp: 6
+armor: 1
+STR: 10
+DEX: 13
+WIL: 14
+category: "Soldier"
+attacks:
+  - {name: "elven sword", damage: "d8"}
+  - {name: "Destruction bolt", damage: "d8", qualities: ["ranged"]}
+abilities:
+  - "Spells against it are Impaired. Justiciar Wizards cast at range; soldiers fight with elven blades. Well-equipped and disciplined."
+impaired_by:
+  - "magic"
+critical: "a Destruction bolt leaves the target ablaze, frozen fast, or blinded by lightning."
+source: "wardens-guide/bestiary#thalmor-justiciar"
+body: |
+  A haughty Aldmeri agent who patrols the roads hunting Talos worshippers, often with a prisoner in tow and a squad at its back.

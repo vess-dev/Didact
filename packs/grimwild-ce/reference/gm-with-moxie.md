@@ -1,0 +1,10 @@
+---
+id: gm-with-moxie
+title: "GM with Moxie"
+tags: [gm, principles, moxie]
+page: 90
+---
+- **Map fiction to rules.** Encourage players to focus on the fiction and let you handle the rules. The more narratively important something is, the more mechanical weight you should give it. *In a game of courtly intrigue, slaying a dragon might be a montage roll for a knight while an important dinner party is a complex linked challenge full of dire stakes.* Get creative applying the rules, mixing them up in ways not explicitly laid out. Don't be afraid to tinker. Moxie is modular and you're not going to break it. Graft on rules from other systems you like, or hack Moxie and make it your own. If the rules clash with what makes sense in the fiction, the fiction wins. Engage with the rules quickly, resolve them, and return to the story. *"What does that look like?" or "Give us a quick scene."*
+- **Make rulings to fill gaps.** The rules are a flexible framework and designed not to cover every detail. When things fall through the cracks, try to interpret the rules' intent and make a ruling that fits the moment. If it's a judgment call, tell the players. If you're unsure of a rule, make a quick call now and check later. When in doubt, everything can collapse down to a single story roll—ask the players what they want to happen, then roll to see if that's how it goes down.
+- **Pace the game cinematically.** Keep the game flowing like a well-paced movie. Don't let scenes drag, wrap up scenes to move on to something more interesting. If players don't seem keen on an upcoming situation, suggest a montage. Skip long planning phases by cutting to the action, using a story roll to discover the players' situation if needed. Reward players buying into these techniques by giving them good odds.
+- **Follow the players' lead.** Keep tabs on story arcs and present drama, dilemmas, and opportunities related to them. Follow where the characters want to go. Present interesting situations related to it. When players hesitate or hit an impasse, spur them into action with danger timers, quarrels, tangles, or Resolve the situation and move on.

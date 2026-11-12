@@ -1,0 +1,7 @@
+id: made-lite
+name: Made (test pack)
+kind: system
+version: 0.1.0
+description: Rules that make records at once (pools above all) and point at them.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

@@ -1,0 +1,25 @@
+table: monster-categories
+title: Monster Categories
+dice: d20
+source: wardens-guide/bestiary#monster-categories
+entries:
+  1: {text: Avian, data: {monsters: [Phoenix, Roc, Wyvern]}}
+  2: {text: Beast, data: {monsters: [Blood Elk, Grizzly Bear, Killer Bees, Night Cat, Viper, Wolf]}}
+  3: {text: Behemoth, data: {monsters: [Green Dragon, Purple Worm]}}
+  4: {text: Construct, data: {monsters: [Bone Construct, Cobblehounds, Gargoyle]}}
+  5: {text: Demon, data: {monsters: [Hellhound, Nightmare]}}
+  6: {text: Extraplanar, data: {monsters: [Eye of Terror, Mind Lasher]}}
+  7: {text: Fey, data: {monsters: [Boggart, Dryad, Frost Elf, Pixie, Red Cap, Night Hag, Sea Hag, Will-o-Wisp]}}
+  8: {text: Giant, data: {monsters: [Ettin, Sky Giant, Storm Giant, Titan]}}
+  9: {text: Goblinoid, data: {monsters: [Bugbear, Goblin, Hobgoblin, Ogre, Root Goblin, Troll, Wood Troll]}}
+  10: {text: Humanoid, data: {monsters: [Acolyte, Bandit, Gnoll, Hooded Men, Triton]}}
+  11: {text: Hybrid, data: {monsters: [Centaur, Manticore, Minotaur, Owlbear]}}
+  12: {text: Incorporeal, data: {monsters: [Invisible Stalker, Shadow]}}
+  13: {text: Insectoid, data: {monsters: [Aranea, Burrowing Horror, Cave Locust, Giant Scorpion]}}
+  14: {text: Lizard, data: {monsters: [Basilisk, Hydra, Kobold, Naga, Reptilian]}}
+  15: {text: Magical, data: {monsters: [Blink Dog, Warp Panther, Water Elemental]}}
+  16: {text: Mythical, data: {monsters: [Banshee, Griffon, Harpy, Hydra, Lamia, Unicorn]}}
+  17: {text: Plant, data: {monsters: [Creeping Vines, Root Witch, Shambling Mound, Treant]}}
+  18: {text: Shape Shifter, data: {monsters: [Swine Thing, Werewolf]}}
+  19: {text: Undead, data: {monsters: [Crypt Guardian, Ghost, Ghoul, Lich, Mummy, Skeleton, Vampire, Wight, Zombie]}}
+  20: {text: Unusual, data: {monsters: [Gelatinous Ooze, Mimic, Rust Monster, Warrior Snail]}}

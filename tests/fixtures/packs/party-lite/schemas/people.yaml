@@ -1,0 +1,9 @@
+type: character
+fields:
+  fatigue: {kind: counter, min: 0, max: 3}
+---
+type: pc
+extends: character
+---
+type: npc
+extends: character

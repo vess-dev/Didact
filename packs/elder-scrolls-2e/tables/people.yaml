@@ -1,0 +1,758 @@
+# People (wardens-guide/npc-tables, naming-procedures): the NPC tables and each race's names.
+# `first-names` (cairn-2e's id, which its generators and `didact name npc` roll) picks a race
+# as the NPC race table does, then a given name from that race's list.
+table: names-nord
+title: "Nord given names"
+dice: d20
+source: wardens-guide/naming-procedures#nord
+entries:
+  1: "Hrolfdan"
+  2: "Magnhild"
+  3: "Bjornulf"
+  4: "Alvhild"
+  5: "Gunnbjorn"
+  6: "Geirny"
+  7: "Ingvar"
+  8: "Oddrun"
+  9: "Njall"
+  10: "Thorgerd"
+  11: "Ragnfast"
+  12: "Svanhvit"
+  13: "Sigvald"
+  14: "Aslaug"
+  15: "Ulfgrim"
+  16: "Steinvor"
+  17: "Vebjorn"
+  18: "Arnhild"
+  19: "Kolbein"
+  20: "Tofa"
+---
+table: names-nord-2
+title: "Nord family name or byname"
+dice: d20
+source: wardens-guide/naming-procedures#nord
+entries:
+  1: "Crag-Walker"
+  2: "Frost-Beard"
+  3: "Oath-Keeper"
+  4: "Ash-Born"
+  5: "Long-Axe"
+  6: "Winter-Born"
+  7: "Salt-Beard"
+  8: "Horn-Blower"
+  9: "Half-Hand"
+  10: "Elk-Runner"
+  11: "Storm-Eye"
+  12: "Barrow-Born"
+  13: "Mead-Maker"
+  14: "Hearth-Keeper"
+  15: "Troll-Bane"
+  16: "Rime-Hand"
+  17: "the Tall"
+  18: "the Quiet"
+  19: "Bone-Setter"
+  20: "Two-Winters"
+---
+table: names-imperial
+title: "Imperial given names"
+dice: d20
+source: wardens-guide/naming-procedures#imperial
+entries:
+  1: "Decimus"
+  2: "Hortensia"
+  3: "Gallio"
+  4: "Livilla"
+  5: "Valens"
+  6: "Naevia"
+  7: "Marcian"
+  8: "Tullia"
+  9: "Gordian"
+  10: "Vipsania"
+  11: "Mamercus"
+  12: "Servilia"
+  13: "Faustinus"
+  14: "Albia"
+  15: "Tiberinus"
+  16: "Numeria"
+  17: "Opimia"
+  18: "Plautia"
+  19: "Salvia"
+  20: "Verginia"
+---
+table: names-imperial-2
+title: "Imperial family name"
+dice: d20
+source: wardens-guide/naming-procedures#imperial
+entries:
+  1: "Albinius"
+  2: "Dentatus"
+  3: "Galba"
+  4: "Maturus"
+  5: "Pollio"
+  6: "Sabellius"
+  7: "Tertullus"
+  8: "Varenus"
+  9: "Voconius"
+  10: "Canidius"
+  11: "Manlius"
+  12: "Dolabella"
+  13: "Fulvianus"
+  14: "Laevinus"
+  15: "Pedanius"
+  16: "Scaevola"
+  17: "Tarquitius"
+  18: "Vatinius"
+  19: "Rabirius"
+  20: "Vettius"
+---
+table: names-breton
+title: "Breton given names"
+dice: d20
+source: wardens-guide/naming-procedures#breton
+entries:
+  1: "Bertrine"
+  2: "Thibaud"
+  3: "Isaure"
+  4: "Fulbert"
+  5: "Perrine"
+  6: "Jehan"
+  7: "Remiette"
+  8: "Aimery"
+  9: "Sidonie"
+  10: "Florimond"
+  11: "Ysabeau"
+  12: "Amaury"
+  13: "Eulalie"
+  14: "Colombe"
+  15: "Honorine"
+  16: "Doriane"
+  17: "Melisende"
+  18: "Osanne"
+  19: "Clotilde"
+  20: "Reynier"
+---
+table: names-breton-2
+title: "Breton family name"
+dice: d20
+source: wardens-guide/naming-procedures#breton
+entries:
+  1: "Beaulac"
+  2: "Coudray"
+  3: "Fontenel"
+  4: "Givray"
+  5: "Lamarque"
+  6: "Mauvert"
+  7: "Norbelle"
+  8: "Pellerin"
+  9: "Quintaine"
+  10: "Rochefort"
+  11: "Savaric"
+  12: "Trevanne"
+  13: "Vauclair"
+  14: "Aubemont"
+  15: "Bellerive"
+  16: "Corvaux"
+  17: "Durandel"
+  18: "Esterel"
+  19: "Fauquier"
+  20: "Montrevel"
+---
+table: names-redguard
+title: "Redguard given names"
+dice: d20
+source: wardens-guide/naming-procedures#redguard
+entries:
+  1: "Adila"
+  2: "Farid"
+  3: "Dalila"
+  4: "Rafiq"
+  5: "Jamila"
+  6: "Walid"
+  7: "Nabila"
+  8: "Zafir"
+  9: "Salima"
+  10: "Qadir"
+  11: "Amira"
+  12: "Tarek"
+  13: "Hafsa"
+  14: "Suhail"
+  15: "Layan"
+  16: "Idrisa"
+  17: "Zubaida"
+  18: "Samira"
+  19: "Taslima"
+  20: "Yasmin"
+---
+table: names-redguard-2
+title: "Redguard surname (with its prefix)"
+dice: d20
+source: wardens-guide/naming-procedures#redguard
+entries:
+  1: "al-Sentinel"
+  2: "al-Taneth"
+  3: "al-Rihad"
+  4: "al-Gilane"
+  5: "al-Hegathe"
+  6: "al-Elinhir"
+  7: "al-Skaven"
+  8: "al-Bergama"
+  9: "al-Stros"
+  10: "af-Leki"
+  11: "af-Cyrus"
+  12: "af-Hunding"
+  13: "af-Iszara"
+  14: "af-Shinji"
+  15: "at-Frandar"
+  16: "at-Divad"
+  17: "at-Makela"
+  18: "Ibn Yusuf"
+  19: "Ibn Fahara"
+  20: "Ibn Karif"
+---
+table: names-altmer
+title: "Altmer (High Elf) given names"
+dice: d20
+source: wardens-guide/naming-procedures#altmer-high-elf
+entries:
+  1: "Celenril"
+  2: "Faerinwe"
+  3: "Iloramar"
+  4: "Lanwen"
+  5: "Nerindil"
+  6: "Oroniel"
+  7: "Rilwen"
+  8: "Soriendil"
+  9: "Taaryon"
+  10: "Vanyelmo"
+  11: "Aranmir"
+  12: "Elaniel"
+  13: "Ferandil"
+  14: "Ilmaril"
+  15: "Merelwen"
+  16: "Norandir"
+  17: "Palanwe"
+  18: "Sarimond"
+  19: "Telvaril"
+  20: "Ulerin"
+---
+table: names-altmer-2
+title: "Altmer (High Elf) lineage"
+dice: d20
+source: wardens-guide/naming-procedures#altmer-high-elf
+entries:
+  1: "of Alinor"
+  2: "of Lillandril"
+  3: "of Cloudrest"
+  4: "of Shimmerene"
+  5: "of Skywatch"
+  6: "of Firsthold"
+  7: "of Sunhold"
+  8: "of Dusk"
+  9: "Caelinmar"
+  10: "Silaril"
+  11: "Aranion"
+  12: "Ancarwen"
+  13: "Caeldil"
+  14: "Silion"
+  15: "Arandor"
+  16: "Ancarius"
+  17: "Caelwen"
+  18: "Sildil"
+  19: "Caelinor"
+  20: "Ancarmir"
+---
+table: names-bosmer
+title: "Bosmer (Wood Elf) given names"
+dice: d20
+source: wardens-guide/naming-procedures#bosmer-wood-elf
+entries:
+  1: "Brenthil"
+  2: "Cilaen"
+  3: "Elthoril"
+  4: "Faenor"
+  5: "Gilwen"
+  6: "Haldrin"
+  7: "Lathrin"
+  8: "Mirilwe"
+  9: "Nethrin"
+  10: "Orithil"
+  11: "Pelwe"
+  12: "Rhonwe"
+  13: "Sylthan"
+  14: "Thaelin"
+  15: "Vaelir"
+  16: "Wenath"
+  17: "Aewen"
+  18: "Dunlin"
+  19: "Fethril"
+  20: "Hethra"
+---
+table: names-dunmer
+title: "Dunmer (Dark Elf) given names"
+dice: d20
+source: wardens-guide/naming-procedures#dunmer-dark-elf
+entries:
+  1: "Llevys"
+  2: "Mervas"
+  3: "Raveli"
+  4: "Sarvas"
+  5: "Tedris"
+  6: "Ulvys"
+  7: "Vedra"
+  8: "Drevas"
+  9: "Nelsa"
+  10: "Tirasa"
+  11: "Aldyn"
+  12: "Brevasa"
+  13: "Dalvys"
+  14: "Evaryn"
+  15: "Faldis"
+  16: "Gelvon"
+  17: "Idrasa"
+  18: "Mavora"
+  19: "Tervas"
+  20: "Nethys"
+---
+table: names-dunmer-2
+title: "Dunmer (Dark Elf) House, family or tribe"
+dice: d20
+source: wardens-guide/naming-procedures#dunmer-dark-elf
+entries:
+  1: "Redoran"
+  2: "Telvanni"
+  3: "Indoril"
+  4: "Dres"
+  5: "Sadras"
+  6: "Sarethi"
+  7: "Andrano"
+  8: "Llervu"
+  9: "Othreleth"
+  10: "Ules"
+  11: "Venim"
+  12: "Hlervu"
+  13: "Arethi"
+  14: "Rethan"
+  15: "Rendas"
+  16: "Salvi"
+  17: "Urshilaku (Ashlander)"
+  18: "Ahemmusa (Ashlander)"
+  19: "Erabenimsun (Ashlander)"
+  20: "Zainab (Ashlander)"
+---
+table: names-orc
+title: "Orc (Orsimer) given names"
+dice: d20
+source: wardens-guide/naming-procedures#orc-orsimer
+entries:
+  1: "Borzag"
+  2: "Bagra"
+  3: "Dulgak"
+  4: "Ghama"
+  5: "Gashbar"
+  6: "Lashbag"
+  7: "Gruzog"
+  8: "Urzola"
+  9: "Lagdub"
+  10: "Yarbul"
+  11: "Morzug"
+  12: "Burbog"
+  13: "Narbag"
+  14: "Dulak"
+  15: "Rugdash"
+  16: "Khazdul"
+  17: "Shumbul"
+  18: "Mauzob"
+  19: "Yazbag"
+  20: "Nargol"
+---
+table: names-orc-2
+title: "Orc (Orsimer) parent or clan (after gro- or gra-)"
+dice: d20
+source: wardens-guide/naming-procedures#orc-orsimer
+entries:
+  1: "Lurzog"
+  2: "Rugbash"
+  3: "Bolgrak"
+  4: "Durbag"
+  5: "Moglub"
+  6: "Olurz"
+  7: "Shargak"
+  8: "Umbog"
+  9: "Zagdub"
+  10: "Bazgar"
+  11: "Grushak"
+  12: "Gorbash"
+  13: "Azgul"
+  14: "Brugdash"
+  15: "Druzob"
+  16: "Gulbag"
+  17: "Lozgar"
+  18: "Murgol"
+  19: "Uzbag"
+  20: "Yarzol"
+---
+table: names-khajiit
+title: "Khajiit given names"
+dice: d20
+source: wardens-guide/naming-procedures#khajiit
+entries:
+  1: "Ri'zadha"
+  2: "Do'rasha"
+  3: "Ma'khara"
+  4: "Za'jhanni"
+  5: "Dro'barra"
+  6: "Khazira"
+  7: "Jo'vasha"
+  8: "J'khari"
+  9: "Qa'zirr"
+  10: "Ra'vashi"
+  11: "Dar'shira"
+  12: "La'zhinna"
+  13: "Ri'baddo"
+  14: "Ja'hirra"
+  15: "S'dharra"
+  16: "Do'mirr"
+  17: "Dro'zhana"
+  18: "M'raksha"
+  19: "Jo'zirri"
+  20: "Ra'khajo"
+---
+table: names-khajiit-2
+title: "Khajiit byname"
+dice: d20
+source: wardens-guide/naming-procedures#khajiit
+entries:
+  1: "the Tale-Spinner"
+  2: "Torn-Ear"
+  3: "Frost-Whisker"
+  4: "Chipped-Fang"
+  5: "Skeeverbane"
+  6: "Quick-Paw"
+  7: "the Patient"
+  8: "Sweet-Tongue"
+  9: "Moon-Touched"
+  10: "the Whisperer"
+  11: "Bent-Tail"
+  12: "Dune-Walker"
+  13: "the Grinning"
+  14: "Sugar-Whisker"
+  15: "Slow-Step"
+  16: "the Lucky"
+  17: "Skooma-Eye"
+  18: "One-Claw"
+  19: "the Restless"
+  20: "Far-Wanderer"
+---
+table: names-argonian
+title: "Argonian Jel names"
+dice: d20
+source: wardens-guide/naming-procedures#argonian
+entries:
+  1: "Heem-Tul"
+  2: "Jeesiz"
+  3: "Kaz-Neeus"
+  4: "Mee-Rasa"
+  5: "Nuur-Lai"
+  6: "Oleen-Taz"
+  7: "Peek-Ra"
+  8: "Seesil"
+  9: "Tee-Maz"
+  10: "Vaxi-Tul"
+  11: "Wazeesa"
+  12: "Xeel-Hei"
+  13: "Yeeka"
+  14: "Zaweesh"
+  15: "Bun-Kaa"
+  16: "Deeshaz"
+  17: "Gih-Weeus"
+  18: "Haj-Eix"
+  19: "Mushaa"
+  20: "Nee-Waz"
+---
+table: names-argonian-2
+title: "Argonian Tamrielic name"
+dice: d20
+source: wardens-guide/naming-procedures#argonian
+entries:
+  1: "Wades-Through-Fog"
+  2: "Eats-The-Storm"
+  3: "Two-Tails"
+  4: "Sings-Under-Water"
+  5: "Remembers-Rain"
+  6: "Tastes-The-Salt"
+  7: "Fetches-The-Net"
+  8: "Knots-The-Rope"
+  9: "Hides-In-Roots"
+  10: "Waits-For-Tide"
+  11: "Bright-Scale"
+  12: "Quiet-Wake"
+  13: "Sun-In-Reeds"
+  14: "Deep-Current"
+  15: "Long-Swim"
+  16: "Swims-With-Slaughterfish"
+  17: "Mends-The-Nets"
+  18: "Wakes-At-Dusk"
+  19: "Follows-The-Eels"
+  20: "Laughs-At-Rain"
+---
+table: npc-names-argonian
+title: "Argonian names (NPC tables)"
+description: "The NPC tables' Argonian names: Jel and Tamrielic names together, for a fast draw."
+dice: d20
+source: wardens-guide/npc-tables#names-d20-by-race
+entries:
+  1: "Heem-Tul"
+  2: "Wades-Through-Fog"
+  3: "Kaz-Neeus"
+  4: "Remembers-Rain"
+  5: "Nuur-Lai"
+  6: "Two-Tails"
+  7: "Peek-Ra"
+  8: "Tastes-The-Salt"
+  9: "Tee-Maz"
+  10: "Knots-The-Rope"
+  11: "Wazeesa"
+  12: "Hides-In-Roots"
+  13: "Yeeka"
+  14: "Bright-Scale"
+  15: "Bun-Kaa"
+  16: "Quiet-Wake"
+  17: "Gih-Weeus"
+  18: "Long-Swim"
+  19: "Mushaa"
+  20: "Laughs-At-Rain"
+---
+table: npc-race
+title: "NPC race"
+description: "Roll or choose to fit the place: Nords are doubled, the majority in Skyrim; 12 is the Warden's pick."
+dice: d12
+source: wardens-guide/npc-tables#race-d12
+entries:
+  1: {text: "Nord", data: {race: "nord"}}
+  2: {text: "Nord", data: {race: "nord"}}
+  3: {text: "Imperial", data: {race: "imperial"}}
+  4: {text: "Breton", data: {race: "breton"}}
+  5: {text: "Redguard", data: {race: "redguard"}}
+  6: {text: "Altmer", data: {race: "altmer"}}
+  7: {text: "Bosmer", data: {race: "bosmer"}}
+  8: {text: "Dunmer", data: {race: "dunmer"}}
+  9: {text: "Orc (Orsimer)", data: {race: "orc"}}
+  10: {text: "Khajiit", data: {race: "khajiit"}}
+  11: {text: "Argonian", data: {race: "argonian"}}
+  12: {text: "Warden's pick", data: {race: ""}}
+---
+table: first-names
+title: "First names"
+description: "A given name: the NPC race table (d12, Nords doubled), then that race's names (d20). On the Warden's pick (12), a race at random."
+dice: d12
+source: wardens-guide/npc-tables#names-d20-by-race
+entries:
+  1: {table: "names-nord", data: {race: "nord"}}
+  2: {table: "names-nord", data: {race: "nord"}}
+  3: {table: "names-imperial", data: {race: "imperial"}}
+  4: {table: "names-breton", data: {race: "breton"}}
+  5: {table: "names-redguard", data: {race: "redguard"}}
+  6: {table: "names-altmer", data: {race: "altmer"}}
+  7: {table: "names-bosmer", data: {race: "bosmer"}}
+  8: {table: "names-dunmer", data: {race: "dunmer"}}
+  9: {table: "names-orc", data: {race: "orc"}}
+  10: {table: "names-khajiit", data: {race: "khajiit"}}
+  11: {table: "npc-names-argonian", data: {race: "argonian"}}
+  12: {table: "names-any"}
+---
+table: names-any
+title: "A given name of any race"
+description: "One of the ten races' given names, each race equally likely."
+source: wardens-guide/npc-tables#names-d20-by-race
+entries:
+  - {table: "names-nord", data: {race: "nord"}}
+  - {table: "names-imperial", data: {race: "imperial"}}
+  - {table: "names-breton", data: {race: "breton"}}
+  - {table: "names-redguard", data: {race: "redguard"}}
+  - {table: "names-altmer", data: {race: "altmer"}}
+  - {table: "names-bosmer", data: {race: "bosmer"}}
+  - {table: "names-dunmer", data: {race: "dunmer"}}
+  - {table: "names-orc", data: {race: "orc"}}
+  - {table: "names-khajiit", data: {race: "khajiit"}}
+  - {table: "npc-names-argonian", data: {race: "argonian"}}
+---
+table: surnames
+title: "Second names"
+description: "A family name, byname or lineage from one of the races that use them (Bosmer use none); combine it by its race's convention, or use `full-names`."
+source: wardens-guide/naming-procedures#naming-people
+entries:
+  - {table: "names-nord-2"}
+  - {table: "names-imperial-2"}
+  - {table: "names-breton-2"}
+  - {table: "names-redguard-2"}
+  - {table: "names-altmer-2"}
+  - {table: "names-dunmer-2"}
+  - {table: "names-orc-2"}
+  - {table: "names-khajiit-2"}
+  - {table: "names-argonian-2"}
+---
+table: full-names
+title: "Full names"
+description: "A name by its race's convention (naming procedures): Nord given + byname, Orc given + gro-/gra- + parent, Khajiit name + byname, Argonian Jel or Tamrielic, Bosmer a single name. Each race equally likely; roll `npc-race` first to weight it."
+refs: {"names-nord": "names-nord", "names-imperial": "names-imperial", "names-breton": "names-breton", "names-redguard": "names-redguard", "names-altmer": "names-altmer", "names-bosmer": "names-bosmer", "names-dunmer": "names-dunmer", "names-orc": "names-orc", "names-khajiit": "names-khajiit", "names-argonian": "names-argonian", "names-nord-2": "names-nord-2", "names-imperial-2": "names-imperial-2", "names-breton-2": "names-breton-2", "names-redguard-2": "names-redguard-2", "names-altmer-2": "names-altmer-2", "names-dunmer-2": "names-dunmer-2", "names-orc-2": "names-orc-2", "names-khajiit-2": "names-khajiit-2", "names-argonian-2": "names-argonian-2", "orc-prefix": "orc-prefix", "argonian-name": "argonian-name"}
+source: wardens-guide/naming-procedures#naming-people
+entries:
+  - {text: "{names-nord} {names-nord-2}", data: {race: "nord"}}
+  - {text: "{names-imperial} {names-imperial-2}", data: {race: "imperial"}}
+  - {text: "{names-breton} {names-breton-2}", data: {race: "breton"}}
+  - {text: "{names-redguard} {names-redguard-2}", data: {race: "redguard"}}
+  - {text: "{names-altmer} {names-altmer-2}", data: {race: "altmer"}}
+  - {text: "{names-bosmer}", data: {race: "bosmer"}}
+  - {text: "{names-dunmer} {names-dunmer-2}", data: {race: "dunmer"}}
+  - {text: "{names-orc} {orc-prefix}{names-orc-2}", data: {race: "orc"}}
+  - {text: "{names-khajiit} {names-khajiit-2}", data: {race: "khajiit"}}
+  - {text: "{argonian-name}", data: {race: "argonian"}}
+---
+table: orc-prefix
+title: "Orc lineage prefix"
+description: "gro- for a son, gra- for a daughter."
+dice: d2
+source: wardens-guide/naming-procedures#orc-orsimer
+entries:
+  1: "gro-"
+  2: "gra-"
+---
+table: argonian-name
+title: "An Argonian's name"
+description: "A Jel name, a Tamrielic name, or both."
+refs: {"names-argonian": "names-argonian", "names-argonian-2": "names-argonian-2"}
+source: wardens-guide/naming-procedures#argonian
+entries:
+  - {text: "{names-argonian}"}
+  - {text: "{names-argonian-2}"}
+  - {text: "{names-argonian} ({names-argonian-2})"}
+---
+table: npc-quirk
+title: "Quirks"
+dice: d20
+source: wardens-guide/npc-tables#quirks-d20
+entries:
+  1: "Alert"
+  2: "Bald"
+  3: "Bright eyes"
+  4: "Broad face"
+  5: "Crooked teeth"
+  6: "Gaunt"
+  7: "Good posture"
+  8: "Grimy"
+  9: "Harsh voice"
+  10: "Heavy brow"
+  11: "Limps"
+  12: "War-paint or face tattoo"
+  13: "Muscular"
+  14: "Notable hair (braids, beads)"
+  15: "Pleasant voice"
+  16: "Squints"
+  17: "Old battle scar"
+  18: "Thick eyebrows"
+  19: "Weary"
+  20: "Young"
+---
+table: npc-background
+title: "Background"
+dice: d20
+source: wardens-guide/npc-tables#background-d20
+entries:
+  1: "Scholar or scribe"
+  2: "Assassin"
+  3: "Blacksmith"
+  4: "Farmer"
+  5: "Soldier (Legion or Stormcloak)"
+  6: "Gravedigger or undertaker"
+  7: "Hold guard"
+  8: "Healer or priest"
+  9: "Jailer"
+  10: "Laborer or miner"
+  11: "Jarl or Thane"
+  12: "Merchant"
+  13: "Monk or pilgrim"
+  14: "Mage or court wizard"
+  15: "Outlander"
+  16: "Peddler or caravaneer"
+  17: "Steward or courtier"
+  18: "Spy (Thalmor, Penitus, or Guild)"
+  19: "Thief or smuggler"
+  20: "Bandit or thug"
+---
+table: npc-goal
+title: "Goals"
+dice: d20
+source: wardens-guide/npc-tables#goals-d20
+entries:
+  1: "Ascension"
+  2: "Cleansing"
+  3: "Preserving the old ways"
+  4: "Defense of home or kin"
+  5: "Domination"
+  6: "Enrichment"
+  7: "Expansion"
+  8: "Freedom (for Skyrim, or themselves)"
+  9: "Healing"
+  10: "Belonging"
+  11: "Justice"
+  12: "Peace"
+  13: "Power"
+  14: "Lore or forbidden knowledge"
+  15: "Purification (of Daedra, undead, beasts)"
+  16: "Redemption"
+  17: "Revenge"
+  18: "Survival"
+  19: "Unity (Empire or clan)"
+  20: "Wealth"
+---
+table: npc-virtue
+title: "Virtues"
+dice: d20
+source: wardens-guide/npc-tables#traits
+entries:
+  1: "Cautious"
+  2: "Compassionate"
+  3: "Connected"
+  4: "Courageous"
+  5: "Disciplined"
+  6: "Discreet"
+  7: "Honest"
+  8: "Learned"
+  9: "Judicious"
+  10: "Loyal"
+  11: "Methodical"
+  12: "Meticulous"
+  13: "Polite"
+  14: "Well-liked"
+  15: "Pragmatic"
+  16: "Resourceful"
+  17: "Charming"
+  18: "Shrewd"
+  19: "Tenacious"
+  20: "Witty"
+---
+table: npc-vice
+title: "Vices"
+dice: d20
+source: wardens-guide/npc-tables#traits
+entries:
+  1: "Aloof"
+  2: "Corrupt"
+  3: "Cowardly"
+  4: "Cruel"
+  5: "Cynical"
+  6: "Deceptive"
+  7: "Greedy"
+  8: "Impulsive"
+  9: "Incompetent"
+  10: "Inflexible"
+  11: "Manipulative"
+  12: "Mercurial"
+  13: "Naive"
+  14: "Pedantic"
+  15: "Ruthless"
+  16: "Sarcastic"
+  17: "Selfish"
+  18: "Stubborn"
+  19: "Vain"
+  20: "Bigoted (against elves, beastfolk, or Nords)"

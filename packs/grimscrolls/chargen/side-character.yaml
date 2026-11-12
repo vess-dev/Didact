@@ -1,0 +1,39 @@
+# Side characters (Running Tamriel: Running Solo & Duet): a whole company without the
+# bookkeeping. The main hero is made as usual (chargen/pc.yaml); two or three followers run as
+# side characters. `didact char new grimscrolls.side-character`.
+chargen: side-character
+title: A side character (solo and duet play)
+help: >-
+  A follower run as a side character: no class and no Core Talent, just one talent; backgrounds
+  (a race and a background), but no tracked wises; one trait they are and one they're not, one
+  thing they want and one they don't; and a bond with your hero only. They don't earn XP, spark,
+  or thread, and they never take marks: anything that would mark them, a push included, is harm
+  instead. Stats as a hero's (the book is silent: 1 each plus 4 points).
+creates: pc
+modes: [random, guided]
+steps:
+  - apply: {side: true, level: 1, xp: 0, spark: 0, thread: 0}
+  - choose_or_roll: {table: races, as: race, field: race, prompt: "their race (a background: wises aren't tracked)"}
+  - add: {field: backgrounds, value: "@race"}
+  - choose_or_roll: {table: backgrounds, as: background, field: background, prompt: "and their background (no tracked wises)"}
+  - add: {field: backgrounds, value: "@background"}
+  - choose: {from: [brave, caring, confident, curious, gentle, honest, honorable, persistent, protective, quiet, rash, stubborn], as: trait, prompt: "one trait they are"}
+  - choose: {from: [brave, caring, confident, curious, gentle, honest, honorable, persistent, protective, quiet, rash, stubborn], as: not_trait, exclude: "@trait", prompt: "and one they're not"}
+  - add: {field: traits, value: "@trait"}
+  - add: {field: traits, value: "not {@not_trait}"}
+  - choose: {from: [belonging, glory, harmony, honor, justice, knowledge, love, power, renown, thrills, wealth, wisdom], as: desire, prompt: "one thing they want"}
+  - choose: {from: [belonging, glory, harmony, honor, justice, knowledge, love, power, renown, thrills, wealth, wisdom], as: not_desire, exclude: "@desire", prompt: "and one they don't"}
+  - add: {field: desires, value: "@desire"}
+  - add: {field: desires, value: "not {@not_desire}"}
+  - choose_or_roll: {table: talent-lists, as: talent_list, exclude: [Vampire, Werewolf], prompt: "their one talent: the list it comes from (no Core Talent; the curses' lists need the blood)"}
+  - choose: {from: "@talent_list.talents", records: talent, as: talent, prompt: "their one talent ({@talent_list})"}
+  - add: {field: talents, value: "@talent"}
+  - point_buy:
+      fields: [brawn, agility, wits, presence]
+      budget: 4
+      costs: {1: 0, 2: 1, 3: 2}
+      default: random
+      as: stats
+  - name: {from: "@race.names", prompt: "a name for the side character (the crucibles offer, for the {@race}: {@race.names}; or your own)"}
+  - prompt: "A bond with your hero only, an intensity and a nature: `didact set <side character> bonds+='… with <hero>'`. Side characters earn no XP, spark or thread, and take harm instead of marks (`didact do mark` does it)."
+source: "running-tamriel/running-solo-and-duet#side-characters"

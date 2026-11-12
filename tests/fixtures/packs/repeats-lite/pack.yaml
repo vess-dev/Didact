@@ -1,0 +1,7 @@
+id: repeats-lite
+name: Repeats (test pack)
+kind: system
+version: 0.1.0
+description: List fields of each kind, added to twice by `set` and by a rule.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

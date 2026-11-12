@@ -1,0 +1,16 @@
+# Every kind of rule reads the id of the system the world plays; a parameter of that name wins.
+action: played
+title: What the world plays
+steps:
+  - "Playing {@system}."
+---
+action: chosen
+title: A system named by hand
+params: {system: {kind: text, optional: true}}
+steps:
+  - "Chosen: {@system}."
+---
+trigger: opening
+on: session_start
+steps:
+  - "The session opens under {@system}."

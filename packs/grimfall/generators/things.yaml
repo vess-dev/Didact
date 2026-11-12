@@ -1,0 +1,163 @@
+# Things (Options & Dials, Building Your Own; The Armory; Surviving the Wasteland; The Classes).
+# Each replaces the parent's generator of the same id (arcana, treasure, weapon) or is Grimfall's own
+# (chem-recipe, vehicle, perk); the parent's potion and talent are hidden (pack.yaml).
+generator: arcana
+title: An arcana, built
+help: >-
+  Building your own arcana: pick a function (attack, enhance, hinder, influence, protect, restore,
+  reveal, summon, transform, traverse) and a form (the Schematic Crucible's), name it, and give it
+  three touchstones and one Limit that bites: a pool, a price, or a person who wants it back. Set
+  its tier by the Armory's gate (minor: a narrow edge, never potent; major: a broad edge plus an
+  engine; mythic: no cap but the table's judgment); expendables punch one tier up. Here the
+  touchstones are seeded with a word from each GM crucible column and the function: rename them
+  to fit. Prefill by name: tier, function, form_row, form, first, second, limit, name.
+source: "options-and-dials/building-your-own#arcana; the-armory/introduction#the-tier-gate"
+creates: arcana
+steps:
+  - choose_or_roll: {from: [minor, major, mythic], as: tier, field: tier, prompt: "its tier, read against the gate: minor (a narrow edge), major (a broad edge plus an engine), mythic"}
+  - choose_or_roll: {table: arcana-functions, as: function, prompt: "its function"}
+  - choose_or_roll: {table: inventor-schematic-form, as: form_row, prompt: "its form (the Schematic Crucible; take either word)"}
+  - choose_or_roll: {from: "@form_row.words", as: form, prompt: "the form"}
+  - table: gm-crucible-1
+    as: first_row
+  - choose_or_roll: {from: "@first_row.words", as: first, prompt: "a touchstone (the GM crucible's first column)"}
+  - table: gm-crucible-2
+    as: second_row
+  - choose_or_roll: {from: "@second_row.words", as: second, prompt: "a second touchstone (its second column)"}
+  - add: {field: touchstones, value: "@first"}
+  - add: {field: touchstones, value: "@second"}
+  - add: {field: touchstones, value: "@function.id"}
+  - choose_or_roll: {table: arcana-limits, as: limit, prompt: "one Limit that bites"}
+  - apply: {limit: "{@limit}"}
+  - name: {prompt: "a name for this {@tier} {@function.id} {@form} (its touchstones: {@first}, {@second}, {@function.id})"}
+  - if: "@tier == 'minor'"
+    then: ["A minor item is a narrow edge: set-dressing vantage, a thorn it ignores, +1d in a narrow circumstance, a 2d pool for a device-level trick, or a once-per-session trick. Minors are never potent."]
+  - if: "@tier == 'major'"
+    then: ["A major item is a broad edge (+1d whenever it's the right tool, or permissions nobody else has) plus an engine: a once-per-session potent use, a 4d power pool for its signature trick, or both."]
+  - if: "@tier == 'mythic'"
+    then: ["A mythic item answers to no cap but the table's judgment: ritual-level deeds and any number of potent tricks, its pools going potent by dropping 1d. It counts as its own ritual anchors."]
+  - prompt: "Write what it does in the fiction (its description is a touchstone too), and its Limit ({@limit}: `didact set <arcana> limit='…'`; a pool: `pool=4`). Hand out one per session at most; a named relic is one of a kind."
+---
+generator: chem-recipe
+title: A chem recipe
+help: >-
+  The Chem Crucible: roll a thorn (d8) for an effect and a base, or choose (Ragejet, Mendsalve,
+  Speeddust). The Chemist's two signature recipes are built this way; the name is the touchstone.
+  A dose is a trivial expendable: a single device-level effect whose buff lasts the scene, and the
+  strong stuff always kicks back. Prefill by name: effect, base.
+source: "the-classes/the-inventor#chem-crucible; surviving-the-wasteland/chems"
+creates: arcana
+steps:
+  - choose_or_roll: {table: inventor-chem-effect, as: effect, prompt: "its effect"}
+  - choose_or_roll: {table: inventor-chem-base, as: base, prompt: "its base"}
+  - name: {prompt: "the recipe's name: {@effect}{@base.suffix} (the name is the touchstone)"}
+  - apply: {tier: trivial, expendable: true, touchstones: ["{@name}"]}
+  - prompt: "What its buff does while it lasts (the scene), and its kick when it fades: the strong stuff always kicks back (`didact table show chems` for the standard ones)."
+---
+generator: treasure
+title: A haul
+help: >-
+  Serious wealth moves in hauls, in three sizes: minor (a working pistol and ammo, a sack of caps,
+  a minor arcana), major (a suit of combat armor, a caravan's cargo, a major arcana), mythic (a
+  functioning reactor, a water chip, a Vertibird). Here: its size, then what's in it: one of the
+  book's examples, an arcana of that tier from the Armory, or one of the crates' priceless things.
+  Prefill by name: tier, what, relic, name.
+source: "surviving-the-wasteland/caps-and-barter#hauls; the-armory/introduction; the-armory/minor-relics#also-in-the-crates"
+creates: item
+steps:
+  - choose_or_roll: {from: [minor, major, mythic], as: tier, prompt: "its size"}
+  - table: treasure-tiers
+    with: {tier: "@tier"}
+    as: examples
+  - choose_or_roll: {from: [its examples, an arcana, a priceless thing], as: what, prompt: "what's in it"}
+  - apply: {kind: haul, tier: "@tier"}
+  - if: "@what == 'an arcana'"
+    then:
+      - table: "{@tier}-arcana"
+        as: relic
+      - entity: {key: arcana, from: "@relic.id"}
+      - if: "default(@relic.pool.dice, 0) > 0"
+        then:
+          - entity:
+              key: relic_pool
+              type: track
+              name: "{@relic}: {@relic.pool.name}"
+              fields: {kind: pool, pool: "@relic.pool.kind", value: {value: "@relic.pool.dice", max: "@relic.pool.dice"}, note: "{if(default(@relic.pool.unique_reset, false), 'Spent: nothing refills it but its own named reset (the card says).', 'Spent until the next session (`didact do refresh`).')}"}
+              links: [{rel: of, to: "@arcana"}]
+      - if: "default(@relic.plating, 0) > 0"
+        then:
+          - entity:
+              key: relic_pool
+              type: track
+              name: "{@relic}: Plating"
+              fields: {kind: pool, pool: resource, value: {value: "@relic.plating", max: "@relic.plating"}, note: "Spent until the next session (breached, until it's repaired). This suit is Power Armor Training's Plating pool, plus its rider: suited up, when physical harm would land on you, roll it and the frame eats the hit (`didact do plating`). It answers only to hands that know the frame."}
+              links: [{rel: of, to: "@arcana"}]
+          - prompt: "Whoever runs the frame (Power Armor Training) points their sheet at its Plating, in place of the battered frame's: `didact set <pc> plating=<this pool>`; the session's reset refreshes it from then on."
+      - prompt: "In the haul: {@relic} (`didact show <arcana>`). A relic is a story the party can hold: one per session at most, a drawback or an old owner for the strong ones."
+  - if: "@what == 'a priceless thing'"
+    then:
+      - table: crate-treasures
+        as: priceless
+      - prompt: "In the haul: {@priceless}. Treasure, not arcana: caps, leverage, and grief by the pound; let the right buyer make it a story."
+  - if: "@what == 'its examples'"
+    then:
+      - prompt: "{@examples}"
+  - name: {prompt: "what the {@tier} haul is, exactly"}
+  - prompt: "Hauls belong to the party unless you decide otherwise. Sold in a settlement, a minor haul adds +2d to a Caps pool and a major one +4d (max 8d), and earns a second downtime action (`didact do sell haul=…`); traded into a community, a minor haul is +2d of Stockpile, a major +4d, a mythic +8d."
+---
+generator: weapon
+title: A signature weapon
+help: >-
+  Weapon styles (an option): give each signature weapon two descriptors (heavy, sweeping; quick,
+  concealable; scoped, temperamental). They're vantage, not stats: describe using them and the
+  thorns follow. Ordinary guns are vantage and set dressing; a named one is an arcana (the Armory:
+  `didact table roll minor-weapons`). Prefill by name: styles, name.
+source: "options-and-dials/gear-and-survival#weapon-styles; the-armory/unique-weapons"
+creates: item
+steps:
+  - choose_or_roll: {table: weapon-styles, as: styles, count: 2, field: styles, prompt: "two descriptors"}
+  - apply: {kind: weapon}
+  - name: {prompt: "what it is (its styles: {@styles})"}
+  - prompt: "Describe using its styles ({@styles}): they're vantage, and the thorns follow."
+---
+generator: vehicle
+title: A vehicle
+help: >-
+  A working vehicle is a haul first and vantage after: give it two style words (armored, thirsty;
+  fast, flashy; quiet, fragile) and let the fiction do the rest. Driving hard is an action roll
+  (Agility to drive, Wits to navigate), and damage lands as conditions on the machine (4d Radiator
+  Weeps, a thrown track). A chase is opposed task pools, or one pressure pool closing in. Fuel is a
+  story, not a gauge. The flying machines that matter live in the Armory. Prefill by name:
+  styles, name.
+source: surviving-the-wasteland/the-long-road#wheels-and-wings
+creates: item
+steps:
+  - choose_or_roll: {table: vehicle-styles, as: styles, count: 2, field: styles, prompt: "two style words"}
+  - apply: {kind: vehicle}
+  - name: {prompt: "the vehicle (its style words: {@styles})"}
+  - prompt: "Damage lands as conditions on the machine (`didact set <vehicle> conditions+='4d Radiator Weeps'`, a timer: `didact track new 'Radiator Weeps' --kind pool --size 4 --pool timer`); when the GM complicates things, the tank is why."
+---
+generator: perk
+title: A new perk, made with the GM
+help: >-
+  Building your own perk: a compendium-weight perk never grants standing potency outside a narrow
+  domain and never raises a stat. Its pools run 2d-3d, its "always" covers only knowledge and
+  vantage, and every strong trick is once per session, push-priced, or given time. File it under
+  the class it fits best (every perk but a Core Perk is open to every survivor); a level-up offers
+  it once it's made.
+source: "options-and-dials/building-your-own#perks; the-perk-compendium/introduction"
+creates: perk
+steps:
+  - choose: {table: classes, as: class, prompt: "the class it fits best"}
+  - apply: {class: "@class.id"}
+  - choose: {from: [a narrow edge, a standing permission, one good trick a session, a 2d-3d pool, a push-priced trick, a given-time trick], as: gives, prompt: "what it gives: a narrow edge, a standing permission, one good trick a session"}
+  - if: "@gives == 'a 2d-3d pool'"
+    then:
+      - choose: {from: [2d, 3d], as: pool, prompt: "the pool it gives each session (its pools run 2d-3d)"}
+      - ask: {as: resource, prompt: "the pool's name (Pack, Winging It, Serendipity, …)"}
+  - ask: {as: body, field: body, prompt: "what it does, in a line or two and the book's terms: a menu of italic words split by dashes, always, given time, push yourself, on a perfect, on a grim, a quick action, +1d (perk dice don't stack)"}
+  - choose: {from: ["no", "yes"], as: repeatable, prompt: "repeatable (each take adding what the entry says)?"}
+  - if: "@repeatable == 'yes'"
+    then: [apply: {repeatable: true}]
+  - name: {prompt: "its name"}
+  - prompt: "With the GM: is it compendium weight, and does it reach new ground rather than stacking a die on another perk's?"

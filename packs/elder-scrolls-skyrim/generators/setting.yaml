@@ -1,0 +1,217 @@
+# Bringing one frame, one Hold, or one Prince's quest into a world (campaigns/00-intro,
+# wardens-guide/the-holds, campaigns/07-the-daedric-quests). The compendium holds all ten frames,
+# the ten Holds and the fifteen quests; these drafts take one frame's (one Hold's, one quest's)
+# entries, by the lookup tables in tables/frames.yaml and tables/holds.yaml (by hand, `compendium
+# import --tag <frame>` brings in a part of one). Nothing is written until `gen commit`. They read
+# the world's system (`@system`): Grimscrolls plays a frame's clocks as pools, Elder Scrolls 2e and
+# any other system as clocks.
+generator: frame
+title: Start a campaign frame
+help: >-
+  One campaign frame as records: its quest (the pitch its goal, the beats in its GM notes), its
+  region and pointcrawl places, its cast, its threats (each system's numbers), its factions and
+  its clocks as trackers. It reads the world's system: under Elder Scrolls 2e each clock is a clock
+  of the frame's die, under Grimscrolls a pool of as many dice (at most 8d). Under any other
+  system the clocks are clocks and the threats keep Elder Scrolls 2e's numbers and Grimscrolls'
+  cards, which that system doesn't read: the GM gives each its own. It says how the campaign comes
+  to the frame's date: the Main Quest opens the day Helgen burns (`didact time set` before the
+  first session), the rest whenever play reaches them. Prefill the frame by name (`--prefill
+  '{"frame": "The Main Quest"}'`), or let `--auto` pick one.
+source: campaigns/00-intro#how-to-use-these-frames
+steps:
+  - choose_or_roll: {table: frames, as: frame}
+  - entity: {key: quest, from: "@frame.id"}
+  - if: "@frame.region <> ''"
+    then:
+      - entity: {key: region, from: "@frame.region"}
+  - repeat: "@frame.places"
+    as: n
+    steps:
+      - table: frame-places
+        with: {frame: "@frame.slug", n: "@n"}
+        as: place
+      - entity: {key: place, from: "@place.id", fields: {region: "@region"}}
+  - repeat: "@frame.cast"
+    as: n
+    steps:
+      - table: frame-cast
+        with: {frame: "@frame.slug", n: "@n"}
+        as: person
+      - entity: {key: person, from: "@person.id"}
+  - repeat: "@frame.threats"
+    as: n
+    steps:
+      - table: frame-threats
+        with: {frame: "@frame.slug", n: "@n"}
+        as: threat
+      - entity: {key: threat, from: "@threat.id"}
+  - repeat: "@frame.factions"
+    as: n
+    steps:
+      - table: frame-factions
+        with: {frame: "@frame.slug", n: "@n"}
+        as: faction
+      - entity: {key: faction, from: "@faction.id"}
+  - repeat: "@frame.clocks"
+    as: n
+    steps:
+      - table: frame-clocks
+        with: {frame: "@frame.slug", n: "@n"}
+        as: clock
+      - if: "@system == 'grimscrolls'"
+        then:
+          - if: "@clock.gs == 'pool'"
+            then:
+              - entity:
+                  key: clock
+                  type: track
+                  name: "{@clock}"
+                  fields:
+                    kind: pool
+                    pool: "@clock.pool"
+                    value: {value: "@clock.left", max: "@clock.dice"}
+                    note: "@clock.note"
+                    knowledge: secret
+                  tags: ["@frame.slug", clock]
+          - if: "@clock.gs == 'entry'"
+            then:
+              - entity: {key: clock, from: "@clock.id"}
+        else:
+          - if: "@clock.es"
+            then:
+              - entity: {key: clock, from: "@clock.id"}
+  # The frame's date against the campaign's. Only the Main Quest has a day of its own; the rest
+  # open on any day from it, whenever play reaches them. `time set` moves a campaign only before
+  # its first session: after that a day behind it is past, and one ahead is advanced to.
+  - let:
+      today: >-
+        default(@time.year, 0) == @frame.date.year and default(@time.month, 0) ==
+        @frame.date.month and default(@time.day_of_month, 0) == @frame.date.day
+      past: >-
+        default(@time.year, 0) > @frame.date.year or (default(@time.year, 0) == @frame.date.year
+        and (default(@time.month, 0) > @frame.date.month or (default(@time.month, 0) ==
+        @frame.date.month and default(@time.day_of_month, 0) > @frame.date.day)))
+  - if: "@today"
+    then:
+      - prompt: "{@frame} opens {@frame.when}: the campaign's today."
+    else:
+      - if: "@past and not @frame.own_day"
+        then:
+          - prompt: "{@frame} opens {@frame.when}: the campaign's today will do."
+        else:
+          - if: "@session == 0"
+            then:
+              - prompt: >-
+                  {@frame} opens {@frame.when} ({@frame.why}). Before its first session the
+                  campaign moves there: `didact time set '{@frame.opens}'`.
+            else:
+              - if: "@past"
+                then:
+                  - prompt: >-
+                      {@frame} opens {@frame.when} ({@frame.why}), and the campaign is past it:
+                      play has begun, so its date only moves on. Open the frame from today, or play
+                      it in a campaign of its own: `didact campaign new <id> --date
+                      '{@frame.opens}'`.
+                else:
+                  - prompt: >-
+                      {@frame} opens {@frame.when} ({@frame.why}), ahead of the campaign's today:
+                      `didact time advance` the days between (play has begun, so `time set` can't
+                      move it).
+  - if: "@system == 'grimscrolls'"
+    then:
+      - if: "@frame.notes_gs <> ''"
+        then: [{prompt: "Not trackers: {@frame.notes_gs}"}]
+    else:
+      - if: "@system == 'elder-scrolls-2e'"
+        then:
+          - if: "@frame.notes_es <> ''"
+            then: [{prompt: "Not trackers: {@frame.notes_es}"}]
+        else:
+          - if: "@frame.notes <> ''"
+            then: [{prompt: "Not trackers: {@frame.notes}"}]
+          - if: "@system == ''"
+            then:
+              - prompt: >-
+                  This world has no game system yet: the clocks came in as clocks, and each threat
+                  keeps Elder Scrolls 2e's numbers (and Grimscrolls' card, where it has one) in their
+                  own blocks, for the system it will play.
+            else:
+              - prompt: >-
+                  This world plays {@system}, neither Elder Scrolls system: the clocks came in as
+                  clocks, and each threat keeps Elder Scrolls 2e's numbers (and Grimscrolls' card,
+                  where it has one) in their own blocks, which {@system} doesn't read. Give each
+                  threat {@system}'s own, from its GM notes.
+  - if: "@frame.slug == 'the-daedric-quests'"
+    then:
+      - prompt: >-
+          A sandbox: each Prince's quest comes in on its own, with its people, when a Prince takes
+          an interest: `didact gen run elder-scrolls-skyrim.daedric-quest --prefill '{{"quest": "Pieces of the Past"}}' --auto`
+          (or let `--auto` pick).
+  - prompt: >-
+      Read the quest's GM notes (`didact show quest:<it> --gm`): the date, the arrival, the beats,
+      the climax, the Bestiary and the rewards by each system's ids. Everyone and every clock comes
+      in secret: `didact reveal <id>` as the party meets them. The frame's text: `didact rules
+      lookup {@frame} <section>`, its sections: {@frame.sections}.
+---
+generator: hold
+title: Visit a Hold
+help: >-
+  One Hold of the gazetteer as records: the Hold (its land, Jarl, barrow, ruins, other corners,
+  troubles and faces in its GM notes), its capital, its key locations (the barrow, the Dwemer
+  ruin, the notable sites), its Jarl, and the rival the war would seat. Under Elder Scrolls 2e the
+  gazetteer is also its rules text. Prefill it by name (`--prefill '{"hold": "The Rift"}'`), or
+  let `--auto` pick one.
+source: wardens-guide/the-holds#the-holds
+steps:
+  - choose_or_roll: {table: holds, as: hold}
+  - entity: {key: region, from: "@hold.id"}
+  - entity: {key: capital, from: "@hold.capital", fields: {region: "@region"}}
+  - repeat: "@hold.places"
+    as: n
+    steps:
+      - table: hold-places
+        with: {hold: "@hold.id", n: "@n"}
+        as: place
+      - entity: {key: place, from: "@place.id", fields: {region: "@region"}}
+  - entity: {key: jarl, from: "@hold.jarl", links: [{rel: rules, to: "@region"}]}
+  - if: "@hold.rival <> ''"
+    then:
+      - entity: {key: rival, from: "@hold.rival", links: [{rel: would rule, to: "@region"}]}
+  - prompt: >-
+      {@hold}: its land, troubles and faces are in its GM notes (`didact show loc:<it> --gm`). Run
+      the map as it stands at the start of 4E 201: should the other side win the Hold, the Jarl is
+      deposed and the rival installed. Its places come in known, with their text for the GM only:
+      write what the party sees with `didact set <place> description='…'`.
+  - if: "@system == 'elder-scrolls-2e'"
+    then:
+      - prompt: "The gazetteer's text: `didact rules lookup the holds {@hold}`."
+---
+generator: daedric-quest
+title: A Daedric Prince takes an interest
+help: >-
+  One of the Daedric Quests' fifteen quests as records: the quest (the hook its goal; the bargain
+  and its twist, the beats, the key people and foes, and the reward in its GM notes) and its key
+  people. Under Grimscrolls it names the Prince's Patience pool. Prefill it by name (`--prefill
+  '{"quest": "Pieces of the Past"}'`), or let `--auto` pick one: a Prince takes an interest.
+source: campaigns/07-the-daedric-quests#how-the-princes-meddle-with-mortals
+steps:
+  - choose_or_roll: {table: daedric-quests, as: quest}
+  - entity: {key: bargain, from: "@quest.id"}
+  - repeat: "@quest.people"
+    as: n
+    steps:
+      - table: daedric-quest-people
+        with: {quest: "@quest.id", n: "@n"}
+        as: person
+      - entity: {key: person, from: "@person.id"}
+  - prompt: >-
+      {@quest} is {@quest.prince}'s quest; the prize: {@quest.artifact}. A hook pulls the party in,
+      a bargain with a moral twist is offered, and refusing is always a valid ending: the party
+      walks away without the prize. Read its GM notes (`didact show quest:<it> --gm`); its people
+      come in secret. The text: `didact rules lookup daedric quests {@quest.prince}`.
+  - if: "@system == 'grimscrolls'"
+    then:
+      - prompt: >-
+          When a hero accepts the task, `didact do prince-task who=<pc> prince='{@quest.prince}'`
+          makes {@quest.prince}'s 8d Patience pool, rolled whenever they stall, bargain or
+          disappoint.

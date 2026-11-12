@@ -1,0 +1,24 @@
+# Moth Priest (backgrounds/moth-priest): the background's two d6 tables.
+table: moth-priest-1
+title: "What did the Scrolls show you?"
+dice: d6
+source: backgrounds/moth-priest#what-did-the-scrolls-show-you-roll-1d6
+entries:
+  1: "A death, perhaps your own. Once per day, when a blow would take you to 0 HP, you saw it coming: the damage is rolled again, and you take the lower result."
+  2: "The next heartbeat. Once per day, re-roll any failed save — but the foresight burns: your eyes go dark, and you are blind until the end of the scene."
+  3: "Everything, until the light went out. You are wholly blind, but you sense the shape of things as the Ancestor Moths do: within a stone's throw, darkness, blinding light, illusion, and invisibility hide nothing from you. You cannot read ink on a page or know a face across a room."
+  4: "Hermaeus Mora's whisper, leaking through the words. Once per session, ask the Warden one yes-or-no question about a person or place before you. The answer is always true, and each one leaves you Deprived until you next rest."
+  5: "Very little, very slowly. Your sight has faded to moth-gray, and nothing more. In return, you can read any script, living, dead, or warded, as plainly as common speech."
+  6: "A single prophecy, branded behind your eyes, that you do not yet understand. Once per campaign, declare that a thing you foresaw \"comes to pass now,\" and the Warden bends one uncertain moment in the party's favor."
+---
+table: moth-priest-2
+title: "What did you carry away from the Cult?"
+dice: d6
+source: backgrounds/moth-priest#what-did-you-carry-away-from-the-cult-roll-1d6
+entries:
+  1: {text: "Ancestor Moth Jar: A glass jar of living moths that settle on you in stillness (petty). Once per day, let them alight on an ally and read the air around them: that ally may re-roll one failed save before the scene ends.", data: {gear: [{name: "Ancestor Moth Jar", size: "petty"}]}}
+  2: {text: "Draw Knife and Canticle Bark: A moth priest's draw knife (d6) and a strip of bark from a Canticle Tree (petty, 3 uses). Burn a curl of it and Ancestor Moths gather, lighting the dark like a lantern for the scene.", data: {gear: [{name: "Draw knife", damage: "d6"}, {name: "Canticle bark", size: "petty", uses: 3}]}}
+  3: {text: "Blindfold of Far-Seeing: The silk that took your sight (petty). While you wear it, blinding light and ordinary darkness never hinder you.", data: {gear: [{name: "Blindfold of Far-Seeing", size: "petty"}]}}
+  4: {text: "The Emperor's Writ: A writ under the Emperor's seal and the Ancestor Moth (petty). Imperial officials and Legion officers receive you as a guest of the Emperor — and the Thalmor watch you as a spy.", data: {gear: [{name: "The Emperor's Writ", size: "petty"}]}}
+  5: {text: "Reader's Lens: A smoked glass disc on a chain (petty). Once per day, peer through it at a dead language, a hidden inscription, or magical writing, and grasp its meaning in a single turn.", data: {gear: [{name: "Reader's Lens", size: "petty"}]}}
+  6: {text: "Prophet's Staff: A tall ash staff (d6) carved with moths and stars. Once per day, it trembles in your hand a step before a trap or a pitfall.", data: {gear: [{name: "Prophet's Staff", damage: "d6"}]}}

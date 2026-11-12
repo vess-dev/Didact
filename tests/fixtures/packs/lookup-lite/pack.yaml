@@ -1,0 +1,7 @@
+id: lookup-lite
+name: Lookup (test pack)
+kind: system
+version: 0.1.0
+description: "Rules text, terms and entries to look up: titles with punctuation, short words."
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

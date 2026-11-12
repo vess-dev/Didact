@@ -1,0 +1,170 @@
+# Bringing one frame, or one vault, into a world (campaigns/00-intro, vaults/00-intro). The
+# compendium holds all 21 frames and 39 vaults; these drafts take one frame's (or one vault's)
+# entries, by the lookup tables in tables/frames.yaml and tables/vaults.yaml (by hand, `compendium
+# import --tag <frame>` brings in a part of one). Nothing is written until `gen commit`. Both read
+# the world's system (`@system`): Grimfall plays a frame's clocks as pools, Fallout 2e and any other
+# system as clocks.
+generator: frame
+title: Start a campaign frame
+help: >-
+  One campaign frame as records: its quest (the pitch its goal, the beats in its GM notes), its
+  region and pointcrawl places, its cast, its threats (each system's numbers), its factions and
+  its clocks as trackers. It reads the world's system: under Fallout 2e each clock is a clock of
+  the frame's die, under Grimfall a pool of as many dice (at most 8d). Under any other system the
+  clocks are clocks and the threats keep both Fallout systems' numbers, which that system doesn't
+  read: the GM gives each its own. It says how the campaign comes to the frame's date (`didact time
+  set` before the first session). Prefill the frame by name (`--prefill '{"frame": "Fallout
+  3"}'`), or let `--auto` pick one.
+source: campaigns/00-intro#how-to-use-a-campaign-frame
+steps:
+  - choose_or_roll: {table: frames, as: frame}
+  - entity: {key: quest, from: "@frame.id"}
+  - entity: {key: region, from: "@frame.region"}
+  - repeat: "@frame.places"
+    as: n
+    steps:
+      - table: frame-places
+        with: {frame: "@frame.slug", n: "@n"}
+        as: place
+      - entity: {key: place, from: "@place.id", fields: {region: "@region"}}
+  - repeat: "@frame.cast"
+    as: n
+    steps:
+      - table: frame-cast
+        with: {frame: "@frame.slug", n: "@n"}
+        as: person
+      - entity: {key: person, from: "@person.id"}
+  - repeat: "@frame.threats"
+    as: n
+    steps:
+      - table: frame-threats
+        with: {frame: "@frame.slug", n: "@n"}
+        as: threat
+      - entity: {key: threat, from: "@threat.id"}
+  - repeat: "@frame.factions"
+    as: n
+    steps:
+      - table: frame-factions
+        with: {frame: "@frame.slug", n: "@n"}
+        as: faction
+      - entity: {key: faction, from: "@faction.id"}
+  - repeat: "@frame.clocks"
+    as: n
+    steps:
+      - table: frame-clocks
+        with: {frame: "@frame.slug", n: "@n"}
+        as: clock
+      - if: "@clock.timer"
+        then:
+          - if: "@system == 'grimfall'"
+            then:
+              - entity:
+                  key: clock
+                  type: track
+                  name: "{@clock}"
+                  fields:
+                    kind: pool
+                    pool: "@clock.pool"
+                    value: {value: "@clock.dice", max: "@clock.dice"}
+                    note: "@clock.note"
+                    knowledge: secret
+                  tags: ["@frame.slug", clock]
+            else:
+              - entity: {key: clock, from: "@clock.id"}
+  # The frame's date against the campaign's: `time set` moves a campaign only before its first
+  # session, so after that a date behind it is said to be past, and one ahead is advanced to.
+  - if: >-
+      default(@time.year, 0) == @frame.date.year and default(@time.month, 0) == @frame.date.month
+      and default(@time.day_of_month, 0) == @frame.date.day
+    then:
+      - prompt: "{@frame} opens {@frame.opens}: the campaign's today."
+    else:
+      - if: "@session == 0"
+        then:
+          - prompt: >-
+              {@frame} opens {@frame.opens} ({@frame.why}). Before its first session the
+              campaign moves there: `didact time set '{@frame.opens}'`.
+        else:
+          - if: >-
+              default(@time.year, 0) > @frame.date.year or (default(@time.year, 0) ==
+              @frame.date.year and (default(@time.month, 0) > @frame.date.month or
+              (default(@time.month, 0) == @frame.date.month and default(@time.day_of_month, 0) >
+              @frame.date.day)))
+            then:
+              - prompt: >-
+                  {@frame} opens {@frame.opens} ({@frame.why}), and the campaign is past it:
+                  play has begun, so its date only moves on. Open the frame from today, or play
+                  it in a campaign of its own: `didact campaign new <id> --date '{@frame.opens}'`.
+            else:
+              - prompt: >-
+                  {@frame} opens {@frame.opens} ({@frame.why}), ahead of the campaign's today:
+                  `didact time advance` the days between (play has begun, so `time set` can't
+                  move it).
+  - if: "@system == 'grimfall'"
+    then:
+      - if: "@frame.notes_grimfall <> ''"
+        then: [{prompt: "Not trackers: {@frame.notes_grimfall}"}]
+    else:
+      - if: "@system == 'fallout-2e'"
+        then:
+          - if: "@frame.notes_fallout <> ''"
+            then: [{prompt: "Not trackers: {@frame.notes_fallout}"}]
+        else:
+          - if: "@frame.notes <> ''"
+            then: [{prompt: "Not trackers: {@frame.notes}"}]
+          - prompt: >-
+              This world plays {@system}, neither Fallout system: the clocks came in as clocks,
+              and each threat keeps Fallout 2e's and Grimfall's numbers in their own blocks, which
+              {@system} doesn't read. Give each threat {@system}'s own, from its text (`didact
+              rules lookup {@frame} threats`).
+  - if: "@frame.arcs <> ''"
+    then:
+      - prompt: >-
+          Its side arcs drop into it when play reaches them ({@frame.arcs}): `didact gen run
+          fallout-wasteland.frame --prefill '{{"frame": "<the arc>"}}' --auto`.
+    else:
+      - prompt: "A side arc: it drops into a {@frame.main} campaign whenever play reaches it."
+  - prompt: >-
+      Read the quest's GM notes (`didact show quest:<it> --gm`): the arrival, the beats, the
+      climax, the Bestiary and the rewards by each system's ids. Everyone and every clock comes in
+      secret: `didact reveal <id>` as the party meets them. The frame's text: `didact rules lookup
+      {@frame} pitch` (or tone, arrival, cast, clocks, threats, rewards, climax).
+---
+generator: vault
+title: Find a vault
+help: >-
+  One vault of the catalog as records: the vault (its premise, layout, inhabitants, reward and
+  hook in its GM notes, its Hidden note a secret) and the inhabitants the catalog gives a stat
+  line. It reads the world's system: under Grimfall it says how the vault is a 5-point site, under
+  Fallout 2e (and any other system) it gives the catalog's checklist. Prefill it by name
+  (`--prefill '{"vault": "Vault 11"}'`), or let `--auto` pick one.
+source: vaults/00-intro#how-to-use-this-chapter
+steps:
+  - choose_or_roll: {table: vaults, as: vault}
+  - entity: {key: site, from: "@vault.id"}
+  - repeat: "@vault.threats"
+    as: n
+    steps:
+      - table: vault-threats
+        with: {vault: "@vault.id", n: "@n"}
+        as: threat
+      - entity: {key: threat, from: "@threat.id", links: [{rel: lives in, to: "@site"}]}
+  - if: "@system == 'grimfall'"
+    then:
+      - prompt: >-
+          Under Grimfall it is a 5-point site (Chapter 9), its Reward placed first: The Door (the
+          way in), The Experiment (its Premise), The Twist (its Hidden note), The Confrontation
+          (its Inhabitants) and What Vault-Tec Left (its Reward). Its text: `didact rules lookup
+          {@vault}`.
+    else:
+      - prompt: >-
+          Run it as the catalog says (`didact rules lookup {@vault}`; the checklist: `didact rules
+          lookup vault checklist`): something to steal, something to be killed, something that
+          can kill the party, different ways through (at least two ways in), someone to talk to,
+          something to experiment with, something the party probably won't find.
+      - if: "@system <> 'fallout-2e'"
+        then:
+          - prompt: >-
+              This world plays {@system}: its inhabitants keep Fallout 2e's and Grimfall's
+              numbers, which {@system} doesn't read. Give them its own.
+  - prompt: "Its Hidden note is the vault's secret: `didact reveal` it only when they earn it."

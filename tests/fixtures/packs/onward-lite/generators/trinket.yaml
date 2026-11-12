@@ -1,0 +1,5 @@
+generator: trinket
+title: A trinket
+steps:
+  - choose_or_roll: {table: trinket-kinds, as: trinket}
+  - message: "trinket: {@trinket}; id: {default(@trinket.id, 'none')}; kind: {default(@trinket.kind, 'none')}"

@@ -1,0 +1,31 @@
+# Character options (Adventurers, pp. 44-89, 178-180): paths, talents and backgrounds.
+type: path
+label: Path
+fields:
+  aka: {kind: list, help: "Other names: orator, warlord, …"}
+  tagline: {kind: text, help: "The path in a line: 'Stirring the soul with song or deed.'"}
+  summary: {kind: text, help: "What playing it is about."}
+  core_talent: {kind: text, help: "The id of its core talent."}
+  talents: {kind: list, help: "The ids of its path talents."}
+  options: {kind: list, help: "Its optional extras: [{title, text, choices}]."}
+  tables: {kind: list, help: "The ids of its crucible tables."}
+  extra_path: {kind: flag, help: "One of the extra paths (not in the original free Grimwild)."}
+guidance: "A path is a core talent (which grows with level) and a list of themed talents."
+---
+type: talent
+label: Talent
+fields:
+  path: {kind: text, help: "The path it belongs to (or background, spellcasting, legacy)."}
+  core: {kind: flag, help: "The path's core talent."}
+  growth: {kind: text, help: "How a core talent grows at levels 2, 4, 6, …"}
+  per_session: {kind: text, help: "What it gives each session, if anything (3 inspiration, a 3d pool)."}
+guidance: >-
+  A talent is a special advantage that expands vantage: often a per-session resource or a
+  pool, a new kind of action, or a rule it bends. Keep it to a short paragraph.
+---
+type: background
+label: Background
+fields:
+  aka: {kind: list, help: "Also known as: Spy, Swindler, …"}
+  wises: {kind: list, help: "Three evocative areas of knowledge or experience."}
+guidance: "A background is a name (personalized to the setting) and three wises."

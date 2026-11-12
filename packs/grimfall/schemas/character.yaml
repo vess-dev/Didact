@@ -1,0 +1,77 @@
+# Survivors (The Core Engine; Building a Survivor; The Classes; Surviving the Wasteland). A hack's
+# type of the same id replaces its parent's whole, so Grimwild's sheet is repeated here with
+# Grimfall's changes: a class and perks for a path and talents, rad marks beside marks, the Core
+# Perks' wells (Might, Grit, Sway, devices, Cool, Luck, a quarry), the chems riding a survivor, and
+# the options' quirk. The parent's `npc` type (role, tier) is inherited as it is and builds on
+# this sheet; `pc` is repeated so its label says survivor.
+type: character
+label: Survivor
+fields:
+  brawn: {kind: int, min: 1, max: 3, default: 1, label: Brawn, help: "Power, menace, toughness (physical). On defense: you absorb it or overpower it."}
+  agility: {kind: int, min: 1, max: 3, default: 1, label: Agility, help: "Precision, athletics, reflexes (physical). On defense: you dodge, dive, or vanish."}
+  wits: {kind: int, min: 1, max: 3, default: 1, label: Wits, help: "Smarts, trickery, reading a situation (mental). On defense: you saw it coming."}
+  presence: {kind: int, min: 1, max: 3, default: 1, label: Presence, help: "Influence, willpower, reading people (mental). On defense: you keep your nerve."}
+  marks: {kind: list, help: "Marked stats: +1t on your next roll with it, then it clears. Marking an already-marked stat inflicts harm instead; pushing yourself costs a mark."}
+  rad_marks: {kind: list, help: "Stats with a rad mark (a mark from radiation): +1t on every roll with that stat until it clears, which it doesn't when you roll the stat, only with RadAway, a real rest, or a perk that sheds it. Mark that stat again and you take harm as usual."}
+  harm: {kind: list, help: "bloodied (+1t on physical rolls), rattled (+1t on mental rolls), desperate (+1t on everything), dropped."}
+  conditions: {kind: list, help: "Specific maladies: short-term (winded), urgent (4d Lethal Dose → dropped), long-term (Hooked: Jet), permanent (lost eye); +1t when one specifically hinders you. A Flesh Wound (Life Giver) puts +1t on all your rolls."}
+  chems: {kind: list, help: "The chems riding you this scene (buffout, psycho, jet, mentats, med-x, cateye, hydra, fixer, rad-x): their buff lasts the scene, then the kick comes due (`didact do chem`)."}
+  spark: {kind: int, min: 0, max: 2, default: 0, help: "Spend before any roll you make for +1d each; hold up to 2, carried between sessions."}
+  thread: {kind: int, min: 0, default: 2, help: "Authorship: 2 per session (Explorer, Covert Ops, Fortune Finder and Educated give 1 more each); spend 1 to add a story detail beyond set dressing."}
+  xp: {kind: int, min: 0, default: 0, label: XP, help: "1 after each session (the GM adds a bonus for a standout one); level up when your XP boxes equal the next level, then clear them (slash each box first for a slower road): `didact char advance`."}
+  level: {kind: int, min: 0, max: 7, default: 1, label: Level, help: "1 to 7 (0 only with the level 0 option): each level a new perk, and the Core Perk's Growth at its levels."}
+  stat_raised: {kind: flag, default: false, help: "The one permanent stat bump a survivor gets in a lifetime: a rare relic (You're SPECIAL!, the Sink) or the stat progression option, whatever the source."}
+  class: {kind: text, help: "One of the seven: The Sledge, The Pathfinder, The Everlast, The Charmer, The Inventor, The Ace, The Longshot. It decides your Core Perk and where your story starts, nothing more."}
+  perks: {kind: list, help: "The class's Core Perk, then one more at creation and one each level: from any class's list (never another Core Perk) or the Perk Compendium; a perk once, unless it's repeatable (compendium ids)."}
+  backgrounds: {kind: list, help: "Two: your origin and trade, the pillars of your vantage (a heritage can be one)."}
+  wises: {kind: list, help: "Three from each background: what you know, notice, and get away with."}
+  traits: {kind: list, help: "Two you are and one you're not ('not rash')."}
+  desires: {kind: list, help: "Two you want and one you don't ('not wealth')."}
+  features: {kind: list, help: "Three things people notice: a ghoul's rasp, a Pip-Boy that never comes off."}
+  bonds: {kind: list, help: "One toward each other PC: an intensity + a nature, 'lowkey doubts with the Longshot'."}
+  arcs: {kind: list, help: "One or two character arcs (the party's group arc is kept with the party: `gen run grimfall.party`)."}
+  arcana: {kind: list, help: "Relics, unique weapons and unique armors carried (the Armory)."}
+  class_notes: {kind: list, help: "What your class page and your perks have you decide: the source of your strength, your rigs, your companion, a reputation, a rap sheet, your lucky charm, your Core Perk's growth, …"}
+  quirk: {kind: text, help: "Quirks (an option): one edge-and-flaw at creation. The edge is always on; the flaw is a standing tangle: the first time each session it truly bites, take spark."}
+  machine: {kind: flag, default: false, help: "A machine or creature background (Machines & Strangers): marks and harm are dents, breaches and stripped servos, treatment is a wrench and a welder, and the 3d Stimpaks are a 3d Repair Kit."}
+  might: {kind: int, min: 0, default: 0, help: "The Sledge's Unstoppable Force: 4 each scene (+1 at levels 3 and 6), and 1 more whenever a blow leaves you bloodied or worse, even past the limit (`didact do might`)."}
+  studies: {kind: int, min: 0, default: 0, help: "The Pathfinder's Awareness: foes you can still study this session (1, +1 at levels 3 and 6; `didact do study`)."}
+  quarry: {kind: text, help: "The Pathfinder's quarry this session, and its weak point: researching, tracking or striking it adds the Weak Point die (`weak_point` on a roll)."}
+  grit: {kind: int, min: 0, default: 0, help: "The Everlast's Toughness: 6 each session (+1 at levels 2, 4 and 6). Dig deep: 1 Grit instead of a mark; walk it off: 2 Grit instead of harm (`grit` on `do mark`, `do harm`, `do push`)."}
+  sway: {kind: int, min: 0, default: 0, help: "The Charmer's Gift of Gab: 3 each session (+1 at levels 2, 4 and 6; `didact do sway`)."}
+  schematics: {kind: list, help: "The Inventor's schematics: 4 (the Schematic Crucible), +1 at levels 2, 4 and 6, and more from salvaged tech or another tinker's notes."}
+  devices: {kind: int, min: 0, default: 0, help: "The Inventor's devices left this session: 4 (+1 at levels 2, 4 and 6; `didact do device`)."}
+  potent_devices: {kind: int, min: 0, default: 0, help: "The Inventor's potent devices left this session: 2 (+1 at levels 2, 4 and 6)."}
+  skills: {kind: list, help: "The Ace's tagged skills: three as your trade, +1 at levels 3 and 6 (and one per Tag!); +1d when using them."}
+  cool: {kind: int, min: 0, default: 0, help: "The Ace's Cool: 2 each session (+1 at levels 3 and 6), each a potent feat within your tagged skills (`didact do cool`)."}
+  luck: {kind: map, help: "The Longshot's Luck, rolled before each session (3d, +1 at levels 3 and 6), by face: {sixes: 1, twos: 2} is a 6 and two 2s. Replace any d6 just rolled with one, then cross it off (`didact do luck`)."}
+  tokens: {kind: int, min: 0, default: 0, help: "Exploration tokens: 3 each when the GM expands the map, 1-3 for a real discovery; spent on points and paths (`didact do tokens`)."}
+  plan: {kind: text, help: "Plan ahead (a downtime action): a few words on the preparation; a special thread for details from it, lost when time passes again."}
+  suited: {kind: flag, default: false, help: "Suited up in a powered frame (Power Armor Training works only suited up): a disaster breaches it (`didact do breach`)."}
+  retiring: {kind: flag, default: false, help: "Retirement: dropped from the scene, alive but scarred; bow out soon, for if you're dropped again first, you die."}
+  side: {kind: flag, default: false, help: "A side character (Running Solo & Duet): no class and no Core Perk, just one perk; no XP, spark or thread, and harm instead of any mark."}
+  # The pools a survivor carries, pointed at by the sheet (character creation and leveling up set
+  # them; `didact set <pc> stimpaks=<track>` does too), so the rules find them without being told.
+  stimpaks: {kind: ref, to: track, help: "The 3d Stimpaks pool (a machine's Repair Kit; with the grimmer dial's shared pool, the party's): `didact do stimpak`."}
+  caps: {kind: ref, to: track, help: "The 4d Caps power pool (an option, on by default): `didact do spend`, `didact do sell`."}
+  supplies: {kind: ref, to: track, help: "The 4d Supplies pool (an option): `didact do supplies` rolls every survivor's."}
+  chem_stash: {kind: ref, to: track, help: "The 2d Chem Stash (an option): `didact do chem … from=stash`."}
+  armor_pool: {kind: ref, to: track, help: "The Armor pool of light (1d) or heavy (2d) armor (an option): `didact do armor`; it refreshes each session."}
+  plating: {kind: ref, to: track, help: "Power Armor Training's 3d Plating (or a named suit's): `didact do plating`; it refreshes each session unless breached."}
+  pack: {kind: ref, to: track, help: "Pack Rat's 3d Pack pool; it refreshes each session."}
+  chems_pool: {kind: ref, to: track, help: "Chemist's 4d Chems pool (`didact do chem … from=chems`); fresh each session."}
+  winging_it: {kind: ref, to: track, help: "Idiot Savant's 3d Winging It power pool (`didact do pool-action`); it refreshes each session."}
+  serendipity: {kind: ref, to: track, help: "Serendipity's 2d pool (`didact do harm … serendipity=<it>`); it refreshes each session."}
+  standing_pool: {kind: ref, to: track, help: "Wasteland Warlord's 3d Standing pool; it refreshes each session."}
+  lethal_dose: {kind: ref, to: track, help: "A running Lethal Dose's timer (`didact do rad … dose=lethal` makes it); treatment clears it (`didact do treat … condition='…'`)."}
+  bleeding_out: {kind: ref, to: track, help: "A running 4d Bleeding Out's timer (`didact do bleeding-out`); treatment stops it (`didact do treat … condition='4d Bleeding Out'`)."}
+guidance: >-
+  Two backgrounds (three wises each), two traits and one you're not, two desires and one you
+  don't, three features, a class with its Core Perk plus one more perk, stats of 1 each plus 4
+  points (max 3), one or two arcs, a bond toward each PC, a 3d Stimpaks pool (a Repair Kit for a
+  machine) and a 4d Caps pool. Make one with `didact char new`; level up with `didact char
+  advance`.
+---
+type: pc
+extends: character
+label: Survivor (player character)

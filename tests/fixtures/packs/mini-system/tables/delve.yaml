@@ -1,0 +1,26 @@
+# Tables for the `delve` generator (tests: computed tables, distinct draws, numbered maps).
+table: room-drop
+dice: d4
+entries:
+  1-2: {text: Lair, data: {room: lair, what: delve-lair}}
+  3-4: {text: Shrine, data: {room: shrine, what: delve-shrine}}
+---
+table: delve-lair
+dice: d4
+entries: [Den, Nest, Burrow, Warren]
+---
+table: delve-lair-detail
+dice: d4
+entries: [Bones, Musk, Eggs, Silence]
+---
+table: delve-shrine
+dice: d4
+entries: [Altar, Idol, Font, Reliquary]
+---
+table: delve-shrine-detail
+dice: d4
+entries: [Candles, Blood, Whispers, Dust]
+---
+table: boons
+dice: d6
+entries: [Gold, Silver, A map, A key, A song, A secret]

@@ -1,0 +1,43 @@
+table: spell-schools
+title: Spell schools
+dice: d4
+entries:
+  1-2: {text: Destruction, data: {school: destruction}, then: [{table: destruction}]}
+  3-4: {text: Warding, data: {school: warding}, then: [{table: wards}]}
+---
+table: destruction
+title: Destruction
+dice: d2
+entries:
+  1: {text: Fire, data: {element: fire}, then: [{table: fire-spells}]}
+  2: {text: Frost, data: {element: frost}, then: [{table: frost-spells}]}
+---
+table: fire-spells
+title: Fire spells
+dice: d4
+entries:
+  1: {text: Flames, data: {id: flames}}
+  2: {text: Fireball, data: {id: fireball}}
+  3: {text: Rune, data: {id: fire-rune}}
+  4: {text: "A scroll: roll for its spell", data: {scroll: true}, then: [{table: fire-scrolls}]}
+---
+table: frost-spells
+title: Frost spells
+dice: d2
+entries:
+  1: {text: Rune, data: {id: frost-rune}}
+  2: {text: Ice Spike, data: {id: ice-spike}}
+---
+table: fire-scrolls
+title: Fire scrolls
+dice: d2
+entries:
+  1: {text: Flames, data: {id: flames-scroll}}
+  2: {text: "A blank scroll: roll on Destruction again", then: [{table: destruction}]}
+---
+table: wards
+title: Wards
+dice: d2
+entries:
+  1: {text: Lesser Ward, data: {id: lesser-ward}}
+  2: {text: Steadfast Ward, data: {id: steadfast-ward}}

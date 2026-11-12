@@ -1,0 +1,75 @@
+# Fallout 2e, Overseer's Guide: Wasteland Seeds (CC BY-SA 4.0). The region generator: terrain,
+# defining feature, local inhabitants and a rumor or legend.
+table: wasteland-terrain
+title: Wasteland Terrain Type
+dice: d10
+source: overseers-guide/wasteland-seeds#terrain-type-d10
+entries:
+  1: Ruined Suburb
+  2: Pre-war Highway
+  3: Badland Flats
+  4: Dead Forest
+  5: Irradiated Swamp
+  6: Broken Farmland
+  7: Glowing Crater
+  8: Ashen Hills
+  9: Industrial Ruins
+  10: Salt Flats
+---
+table: wasteland-feature
+title: Wasteland Defining Feature
+dice: d10
+source: overseers-guide/wasteland-seeds#defining-feature-d10
+entries:
+  1: A crashed pre-war aircraft / Vertibird
+  2: A collapsed overpass bridging two ruins
+  3: A ring of rusted pylons
+  4: A single intact billboard
+  5: A dry riverbed full of corpses
+  6: A pre-war graveyard grown over with fungus
+  7: A crater lake that glows at night
+  8: An intact pre-war gas station
+  9: A cluster of abandoned cars
+  10: A pre-war statue, still standing
+---
+table: wasteland-inhabitants
+title: Wasteland Local Inhabitants
+dice: d20
+source: overseers-guide/wasteland-seeds#local-inhabitants-d20
+entries:
+  1: A lone prospector with a pack brahmin and a Geiger counter
+  2: A feral ghoul pack drifting out of a pre-war subway entrance
+  3: A raider warband flying a spiked banner over a ruined gas station
+  4: A brahmin-herder caravan on its third day out of a settlement
+  5: A super mutant scout with a board-nailed club and a baying mutant hound
+  6: A Brotherhood of Steel recon team in T-60 power armor, taking tech inventory
+  7: An Enclave remnant patrol in advanced power armor, looking for a missing scientist
+  8: A Children of Atom pilgrimage heading to a glowing crater
+  9: A tribal hunting party from a dry-canyon clan, stalking a yao guai
+  10: An NCR ranger pair scouting a rumored Legion crossing
+  11: A Legion frumentarius traveling with two slave porters, disguised as a trader
+  12: A Minuteman patrol from a nearby settlement, following a distress flare
+  13: A Followers of the Apocalypse medic with a mule and a crate of Stimpaks
+  14: A Railroad agent escorting a newly freed synth toward the next safehouse
+  15: An Institute Courser hunting a specific target — and the target is close
+  16: A lone Mr. Handy from a ruined estate, still running its pre-war routine
+  17: A Gunner squad on a paid contract, unwilling to say who hired them
+  18: A Hubologist recruiter and two barefoot initiates carrying a broken pre-war TV
+  19: A caravan of Atom Cats in patched leathers, looking for parts and a dance partner
+  20: Something not quite human — a synth gone off-script, a Zetan scout, or worse
+---
+table: wasteland-rumor
+title: Wasteland Rumor or Legend
+dice: d10
+source: overseers-guide/wasteland-seeds#rumor-or-legend-d10
+entries:
+  1: A fusion core is buried here.
+  2: Something big walks this stretch at night.
+  3: The water is clean for one hour a day.
+  4: A voice sings on a pre-war radio at dusk.
+  5: A ghoul here remembers the pre-war world.
+  6: A vault door is hidden under the rubble.
+  7: A doctor lives in the ruins and takes no payment.
+  8: A stash of pre-war chems is in a mailbox, if you know which one.
+  9: A madman broadcasts from a numbers station every seventh night.
+  10: The dead here do not always stay dead.

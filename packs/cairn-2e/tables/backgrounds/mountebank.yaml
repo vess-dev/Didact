@@ -1,0 +1,62 @@
+# Mountebank (backgrounds/mountebank): the background's two d6 tables.
+table: mountebank-1
+title: How was your fraud exposed?
+dice: d6
+source: backgrounds/mountebank
+entries:
+  1:
+    text: "Your \"patients\" kept reporting miraculous recoveries, despite your lack of training. Start with Bandages (3 uses) and a knack for healing."
+    data:
+      gear: [{name: Bandages, uses: 3}]
+  2:
+    text: "After seducing a wealthy patron, their family hired a criminal gang to retrieve you. You got away and need to lay low. Start with Beauty Cream, 2 uses. Apply to appear irresistibly beautiful for the next 12 hours."
+    data:
+      gear: [{name: Beauty Cream, uses: 2}]
+  3:
+    text: "You were a peddler of fake prophesies, but when one turned out to be true, it drew unwanted attention. Roll on the Omens table, but keep the result to yourself. Start with a concealable Knife (d6, petty)."
+    data:
+      private_omen: true
+      gear: [{name: Knife, damage: d6, size: petty}]
+  4:
+    text: "Your latest stunt destroyed a priceless artifact and injured a dozen bystanders. Start with a Captain's Uniform (petty), a Ceremonial Sword (harmless, 60gp), and a Bouquet of Flowers."
+    data:
+      gear:
+        - {name: Captain's Uniform, size: petty}
+        - {name: Ceremonial Sword, note: "harmless, 60gp"}
+        - Bouquet of Flowers
+  5:
+    text: "You were cursed by a hedgewitch for fooling some innocent village folk. Magic acts unpredictably in your hands (WIL save to avoid disaster). If you are the target of magic, the same applies to its wielder."
+  6:
+    text: "Your \"seances\" with the dead were in actuality a ruse involving a cleverly hidden spellbook of Auditory Illusion. Inevitably, a patron discovered your secret. Start with the Spellbook and a bundle of scarves. Auditory Illusion: You create illusory sounds that seem to come from a direction of your choice. Produces random and occasionally inopportune sounds throughout the day."
+    data:
+      gear: [Auditory Illusion Spellbook, Bundle of Scarves]
+---
+table: mountebank-2
+title: What keepsake could always identify you?
+dice: d6
+source: backgrounds/mountebank
+entries:
+  1:
+    text: "Royal Crest: Born into royalty, you chose a different life. The crest grants you access but also alerts your family of your whereabouts. Petty."
+    data:
+      gear: [{name: Royal Crest, size: petty}]
+  2:
+    text: "Miracle Oil: A smelly, slippery concoction. 2 uses."
+    data:
+      gear: [{name: Miracle Oil, uses: 2}]
+  3:
+    text: "Surgeon's Soap: A lye and ash block that makes skin temporarily transparent, revealing the anatomy within. 4 uses."
+    data:
+      gear: [{name: Surgeon's Soap, uses: 4}]
+  4:
+    text: "Goat Powder: Derived from the placenta of a baby goat. Temporarily cures any affliction, but symptoms return within hours."
+    data:
+      gear: [Goat Powder]
+  5:
+    text: "Cursed Sapphire: Worth 200gp, it noticeably returns to your pocket shortly after you spend it. You can't seem to get rid of it."
+    data:
+      gear: [{name: Cursed Sapphire, note: worth 200gp}]
+  6:
+    text: "Alchemical Tattoo: A dog, cat, or bird that can leave your body on demand. It follows your commands to the best of its abilities and can pass its injuries (as STR loss) back onto you. Petty."
+    data:
+      gear: [{name: Alchemical Tattoo, size: petty}]

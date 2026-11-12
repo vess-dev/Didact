@@ -1,0 +1,314 @@
+# Procedures (players-guide/procedures): the dungeon cycle, the wilderness watch, weather, travel,
+# downtime, and the faction turn; with the day's reminders when time passes.
+procedure: dungeon-turn
+title: Dungeon turn
+help: >-
+  One turn of the dungeon cycle: the Warden describes, the players act, then resources and
+  conditions are recorded. Roll an event when the party lingers (more than one cycle in a place),
+  hurries, enters a new area, or makes a loud disturbance. In a forestcrawl (place=forest) the
+  Wilderness Events table replaces the Dungeon Events, and going off-trail always rolls one
+  (trigger=off-trail).
+params:
+  trigger: {enum: [none, lingered, hurried, new-area, loud, off-trail], default: none}
+  place: {enum: [dungeon, forest], default: dungeon}
+steps:
+  - let: {where: "if(@trigger == 'off-trail', 'forest', @place)"}
+  - if: "@trigger == 'none'"
+    then: [No event this turn.]
+    else:
+      - if: "@where == 'forest'"
+        then:
+          - table: wilderness-events
+            as: event
+          - if: "@trigger == 'off-trail'"
+            then: ["Off the trail: the Warden made its costs clear (time, effort, tools, obvious dangers)."]
+          - if: "@event.kind == 'exhaustion'"
+            then: ["A barrier: spend extra time (another action) or add a Fatigue each (`didact do fatigue who=…`)."]
+        else:
+          - table: dungeon-events
+            as: event
+          - if: "@event.kind == 'exhaustion'"
+            then: ["The party rests (roll again: `didact do dungeon-turn trigger=lingered`), adds a Fatigue each (`didact do fatigue who=…`), or eats a ration (`didact inv use <who> Rations`)."]
+          - if: "@event.kind == 'loss'"
+            then: ["Relighting spends a use: `didact inv use <who> torch` (3 lightings; a lantern relights 6 times per oil can)."]
+      - if: "@event.kind == 'encounter'"
+        then: ["Possibly hostile: roll their reaction (`didact do reaction who=…`)."]
+  - reminder: "Record torches, rations and other uses spent, and any new conditions."
+  - reminder: "A turn has passed: `didact time advance 1 turn`."
+source: players-guide/procedures#dungeon-exploration-cycle
+---
+procedure: watch
+title: Wilderness watch
+help: >-
+  One watch of the wilderness cycle. Everyone picks one Wilderness Action: travel (roll to get
+  lost; shift=-1 or 1 makes it a step less or more likely), explore (find a location or
+  feature), supply (1d4 rations, a step bigger per extra helper and per bonus for experience or
+  equipment, up to 1d12) or make camp. Then the Warden rolls Wilderness Events, twice at night.
+params:
+  action: {enum: [travel, explore, supply, make-camp], default: travel}
+  path: {enum: [road, trail, wilderness], default: trail}
+  shift: {kind: int, default: 0, help: "Travel: getting lost a step more (+) or less (-) likely"}
+  helpers: {kind: int, default: 0, help: "Supply: how many more party members help"}
+  bonus: {kind: int, default: 0, help: "Supply: steps for relevant experience or equipment"}
+  night: {kind: flag, default: false}
+steps:
+  - if: "@action == 'travel'"
+    then:
+      - check: lost
+        with: {path: "@path", shift: "@shift"}
+        as: way
+  - if: "@action == 'supply'"
+    then:
+      - roll: "step(d4, max(0, min(@helpers + @bonus, 4)))"
+        as: rations
+      - message: "The party gathers {@rations} Rations (3 uses each): `didact inv add <who> Rations --count {@rations}`. (A home or village met along the way resupplies for gold and a full watch.)"
+  - if: "@action == 'explore'"
+    then: ["Exploring reveals a Location (shelter, village, cave, …) or a Feature (geyser, underground river, beached ship, …). Leaving still takes a Travel action."]
+  - if: "@action == 'make-camp'"
+    then: ["Make camp: `didact do make-camp who=<pc>` for each character; each (and each mount) eats a Ration. Skipping it: `didact do skip-camp who=<pc>`."]
+  - table: wilderness-events
+    as: event
+  - if: "@event.kind == 'encounter'"
+    then: ["Roll their reaction if it matters: `didact do reaction who=…`."]
+  - if: "@night"
+    then:
+      - message: "At night, the Warden rolls twice:"
+      - table: wilderness-events
+        as: second
+  - reminder: "A watch has passed: `didact time advance 1 watch`."
+source: players-guide/procedures#wilderness-exploration-cycle
+---
+procedure: weather
+title: Today's weather
+help: >-
+  Each day, roll the season's weather. Extreme twice in a row turns Catastrophic. The result
+  says what it does to travel.
+params:
+  season: {enum: [spring, summer, fall, winter]}
+steps:
+  - table: weather-$season
+    as: sky
+  - table: weather-effects
+    with: {weather: "@sky"}
+    as: effect
+  - message: "Weather: {@sky}. {@effect}"
+source: players-guide/procedures#weather
+---
+procedure: travel-time
+title: Travel time
+help: >-
+  How many watches a journey between two points takes: the path (roads none, trails +1,
+  wilderness +2), its length (short +1, medium +2, long +3), the terrain (tough +1, perilous
+  +2) and the weather (unpleasant or inclement: +1 watch or a Fatigue; extreme: both; inclement
+  and extreme also make the terrain a step harder). Especially vast terrain adds up to +2
+  (vast=1 or 2); traveling sleep-deprived makes the terrain a step harder (sleepless=true);
+  mounts, guides and maps can save watches (bonus=n). Mixed terrain or weather: one leg at a
+  time. Waterways use the surrounding terrain's Difficulty.
+params:
+  path: {enum: [road, trail, wilderness], default: trail}
+  distance: {enum: [short, medium, long], default: medium}
+  terrain: {enum: [easy, tough, perilous], default: easy}
+  weather: {enum: [Nice, Fair, Unpleasant, Inclement, Extreme, Catastrophic], default: Fair}
+  vast: {kind: int, default: 0, help: "Especially vast terrain: +0 to +2 watches"}
+  sleepless: {kind: flag, default: false, help: "Sleep-deprived: the terrain is a step harder"}
+  bonus: {kind: int, default: 0, help: "Watches saved by mounts, guides or maps"}
+steps:
+  - if: "@weather == 'Catastrophic'"
+    then:
+      - stop: "Catastrophic weather: most parties cannot travel at all."
+  - if: "@vast < 0 or @vast > 2"
+    then:
+      - stop: "Vast terrain adds up to +2 watches: vast=0, 1 or 2."
+  - let:
+      path_cost: "if(@path == 'road', 0, if(@path == 'trail', 1, 2))"
+      distance_cost: "if(@distance == 'short', 1, if(@distance == 'medium', 2, 3))"
+      steps: "if(@weather == 'Inclement' or @weather == 'Extreme', 1, 0) + if(@sleepless, 1, 0)"
+  - let: {terrain_cost: "min(2, if(@terrain == 'easy', 0, if(@terrain == 'tough', 1, 2)) + @steps)"}
+  - let: {weather_cost: "if(@weather == 'Unpleasant' or @weather == 'Inclement' or @weather == 'Extreme', 1, 0)"}
+  - let: {total: "@path_cost + @distance_cost + @terrain_cost + @weather_cost + @vast"}
+  - let: {watches: "max(1, @total - @bonus)"}
+  - message: "The journey takes {@watches} watches (path {@path_cost}, distance {@distance_cost}, terrain {@terrain_cost}, weather {@weather_cost}, vast {@vast}, saved {@total - @watches})."
+  - if: "@weather == 'Unpleasant' or @weather == 'Inclement'"
+    then: ["The party may instead add a Fatigue each to save the weather's extra watch."]
+  - if: "@weather == 'Extreme'"
+    then: ["Extreme weather: each character also adds a Fatigue."]
+  - reminder: "Mixed terrain or weather along the way: run it for each leg and add them up (two watches of travel and a night's camp make a day)."
+source: players-guide/procedures#travel-duration
+---
+procedure: downtime
+title: Downtime action
+help: >-
+  Between sessions, somewhere safe and not in recovery, a PC takes one Downtime Action at a time:
+  research (a question and a Source), training (a skill and a Master), strengthening ties (an
+  NPC or faction and an intent), or another the Warden allows. The Warden sets 1–5 Milestones,
+  each with a Cost (gold, resources, reputation or a loss); each action completes one Milestone
+  by paying its Cost (milestones=<tracker> ticks it). A PC may try to talk their way past a cost:
+  the Warden states the risk, then a WIL save (abate=true) reduces or avoids it.
+params:
+  who: ref
+  action: {enum: [research, training, ties, other], default: research}
+  goal: {kind: text, help: "The question, skill or relationship; it must come from play"}
+  gold: {kind: int, default: 0, help: "The Milestone's gold cost"}
+  cost: {kind: text, optional: true, help: "A cost that isn't gold: resources, reputation, a loss"}
+  abate: {kind: flag, default: false, help: "Try to reduce or avoid the cost by force of will"}
+  safe: {kind: flag, default: true, help: "Is it safe? Downtime can't happen in unsafe conditions"}
+  milestones: {kind: ref, optional: true, help: "The Milestones tracker (`didact track new … --kind track`)"}
+steps:
+  - if: "not @safe"
+    then:
+      - stop: "Downtime Actions can't be undertaken in unsafe conditions, or at a risk to {@who.name}'s safety."
+  - if: "'critical' in @who.conditions or 'stabilized' in @who.conditions or 'mortal-wound' in @who.conditions"
+    then:
+      - stop: "{@who.name} is in recovery: no Downtime Actions until they heal (`didact do recover who={@who.id}`)."
+  - let: {owed: "@gold", abated: false}
+  - if: "@abate"
+    then:
+      - check: save
+        with: {who: "@who", attr: WIL}
+        as: will
+      - if: "@will == 'success'"
+        then:
+          - let: {owed: 0, abated: true}
+          - message: "{@who.name}'s force of will carries it: the cost is reduced or avoided."
+        else: ["The risk comes to pass (the Warden stated it), and the cost stands."]
+  - if: "@owed > 0 and @owed > @who.gold"
+    then:
+      - stop: "{@who.name} has {@who.gold}gp and the Milestone costs {@owed}gp: find another way."
+  - if: "@owed > 0"
+    then:
+      - set: who.gold
+        op: "-="
+        value: "@owed"
+      - do: coins
+        with: {who: "@who"}
+        go_on: true
+  - if: "default(@cost, '') <> '' and not @abated"
+    then: ["The Milestone's cost is paid: {@cost}."]
+  - message: "{@who.name} spends a Downtime Action on $action: $goal."
+  - if: "default(@milestones, '') <> ''"
+    then:
+      - if: "default(@milestones.value.size, 0) == 0"
+        then:
+          - reminder: "A Milestone is complete: `didact track tick {@milestones}`."
+        else:
+          - if: "@milestones.value.value < @milestones.value.size"
+            then:
+              - set: milestones.value.value
+                op: "+="
+                value: 1
+              - message: "A Milestone is complete: {@milestones.value.value} of {@milestones.value.size}."
+              - if: "@milestones.value.value == @milestones.value.size"
+                then: ["Every Milestone is complete: the goal is reached ({@who.name}'s $action pays off)."]
+            else: ["Every Milestone of {@milestones} was already complete."]
+      - reminder: "The Warden may add or drop Milestones as play unfolds (`didact track tick {@milestones} --by -1` takes one back)."
+    else:
+      - reminder: "Milestones: `didact track new '$goal' --kind track --size <1-5> --for {@who.id}`, then `didact track tick <tracker>` for each one completed."
+  - reminder: "Growth may follow when the work comes from play: `didact char advance {@who.id} source=downtime`."
+source: players-guide/procedures#downtime
+---
+action: faction-action
+title: Faction action
+help: >-
+  Factions act even when the PCs don't. When the fiction positions a faction to advance a goal
+  (or at a faction turn), roll Faction Actions. Opposed by another faction, the one most at
+  risk first saves WIL (its highest-ranking agent's): on a failure it doesn't act this time.
+  The PCs' actions can overrule the roll or shift it either way.
+params:
+  who: ref
+  opposed: {kind: flag, default: false, help: "Another faction opposes it, and this one is most at risk"}
+steps:
+  - if: "@opposed"
+    then:
+      - check: save
+        with: {who: "@who", attr: WIL}
+        as: hold
+      - if: "@hold == 'failure'"
+        then:
+          - stop: "{@who.name} is outmaneuvered and doesn't act this time."
+  - table: setting-faction-action
+    as: result
+  - if: "@result.goals > 0"
+    then:
+      - set: who.progress
+        op: "+="
+        value: "@result.goals"
+      - message: "{@who.name} achieves a goal of its agenda."
+  - if: "@result.advantages < 0"
+    then: ["{@who.name} loses an Advantage: remove one (`didact set {@who.id} advantages-='…'`)."]
+  - if: "@result.advantages > 0"
+    then: ["{@who.name} finds a new Advantage: `didact table roll setting-faction-advantage`, then add it."]
+  - if: "@result.obstacles > 0"
+    then: ["A new Obstacle stands in {@who.name}'s way: `didact set {@who.id} obstacles+='…'`."]
+  - reminder: "Show the faction's progress in the world (and on the map). Completing its agenda can change the region."
+source: wardens-guide/setting-seeds#faction-actions
+---
+trigger: new-day
+title: A new day
+help: >-
+  When game time crosses into a new day: the day's weather. A calendar whose seasons are
+  spring, summer, fall and winter rolls it; without seasons, a reminder (a setting's own
+  calendar, like Vald's, brings its own).
+on: time
+when: >-
+  @time.day > (@time.seconds - @time.passed) // 86400 + 1 and (default(@time.season, '') == ''
+  or @time.season == 'spring' or @time.season == 'summer' or @time.season == 'fall'
+  or @time.season == 'winter')
+steps:
+  - if: "default(@time.season, '') == ''"
+    then:
+      - reminder: "A new day: roll its weather (`didact do weather season=<spring|summer|fall|winter>`)."
+    else:
+      - do: weather
+        with: {season: "@time.season"}
+source: players-guide/procedures#weather
+---
+trigger: still-deprived
+title: Still deprived
+help: "A new day finds a PC still deprived: the day counts once `deprive` says so (a Fatigue past the first)."
+on: time
+for: pcs
+params: {who: ref}
+when: "@time.day > (@time.seconds - @time.passed) // 86400 + 1 and 'deprived' in @who.conditions and not ('walloped' in @who.conditions) and @who.status <> 'dead'"
+steps:
+  - reminder: "A new day, and {@who.name} is still deprived (day {default(@who.deprived_days, 1)} so far): if the need is still unmet, `didact do deprive who={@who.id} need=…` counts this day (a Fatigue past the first); when it's met, `didact do relieve who={@who.id}`."
+source: players-guide/core-rules#deprivation--fatigue
+---
+trigger: spirit-absorbs
+title: The Mischievous Spirit absorbs a Fatigue
+help: "Bond 10: the consumed spirit occupies a slot but absorbs one Fatigue each day."
+on: time
+for: pcs
+params: {who: ref}
+when: "@time.day > (@time.seconds - @time.passed) // 86400 + 1 and 'Mischievous Spirit' in @who.inventory and default(@who.fatigue, 0) > 0"
+steps:
+  - set: who.fatigue
+    op: "-="
+    value: 1
+  - message: "The Mischievous Spirit absorbs one of {@who.name}'s Fatigue (it wants them alive, for now)."
+source: players-guide/character-creation#bonds
+---
+trigger: stone-heart
+title: The Stone Heart grows heavier
+help: >-
+  Bond 15: the Stone Heart grows heavier by one slot each month (its weight is the `burden`
+  counter). A calendar with months (a setting's, like Vald's) counts its own; the core rules
+  have none, so there a month is 30 days. A long skip past several months counts the first by
+  the calendar and the others as 30 days each.
+on: time
+for: pcs
+params: {who: ref}
+when: >-
+  default(@who.burden, 0) > 0 and if(default(@time.day_of_month, 0) > 0,
+  @time.passed > (@time.day_of_month - 1) * 86400 + @time.seconds % 86400,
+  (@time.day - 1) // 30 > ((@time.seconds - @time.passed) // 86400) // 30)
+steps:
+  - let:
+      months: >-
+        if(default(@time.day_of_month, 0) > 0,
+        1 + (@time.passed - (@time.day_of_month - 1) * 86400 - @time.seconds % 86400 - 1) // 2592000,
+        (@time.day - 1) // 30 - ((@time.seconds - @time.passed) // 86400) // 30)
+  - set: who.burden
+    op: "+="
+    value: "@months"
+  - message: "{@who.name}'s Stone Heart grows heavier: it takes {@who.burden} slots now. Until the debt is lifted, they cannot truly die."
+source: players-guide/character-creation#bonds

@@ -1,0 +1,83 @@
+# The procedures: the dungeon and forest turns, the watch, travel time, downtime, and what a new
+# day and the end of a session bring.
+test: exploration
+script:
+  - world new vale --system {pack} --seed explore
+  - campaign new first --seed explore
+  - new pc Freya --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set gold=40
+  - run: do dungeon-turn
+    expect: ["No event this turn.", "time advance 1 turn"]
+  - run: do dungeon-turn trigger=loud
+    expect: "dungeon-events:"
+  - run: do dungeon-turn trigger=new-area place=forest
+    expect: "wilderness-events:"
+  - run: do dungeon-turn trigger=off-trail
+    expect: ["wilderness-events:", "Off the trail"]
+  - run: do watch action=travel path=wilderness shift=-1
+    expect: ["1d6", "The party", "wilderness-events:", "time advance 1 watch"]
+  - run: do lost path=road shift=1
+    expect: "→"
+  - run: do watch action=supply helpers=2 bonus=5
+    expect: ["step(1d4, max(0, min(@helpers + @bonus, 4)))", "Rations (3 uses each)"]
+  - run: do watch action=make-camp night=true
+    expect: ["skip-camp", "At night, the Warden rolls twice"]
+  - run: do weather season=winter
+    expect: "Weather:"
+---
+test: travel-time
+help: Path, distance, terrain and weather add up; vast terrain adds up to 2; sleeplessness makes the terrain a step harder; mounts, guides and maps save watches (never below one).
+script:
+  - world new vale --system {pack} --seed travel
+  - campaign new first --seed travel
+  - run: do travel-time path=road distance=short terrain=easy weather=Fair
+    expect: "The journey takes 1 watches (path 0, distance 1, terrain 0, weather 0, vast 0, saved 0)."
+  - run: do travel-time path=wilderness distance=long terrain=perilous weather=Extreme
+    expect: ["The journey takes 8 watches (path 2, distance 3, terrain 2, weather 1, vast 0, saved 0).", "each character also adds a Fatigue"]
+  - run: do travel-time path=trail distance=medium terrain=easy weather=Inclement sleepless=true
+    expect: ["The journey takes 6 watches (path 1, distance 2, terrain 2, weather 1, vast 0, saved 0).", "add a Fatigue each to save the weather's extra watch"]
+  - run: do travel-time path=trail distance=medium terrain=tough vast=2 bonus=2
+    expect: "The journey takes 4 watches (path 1, distance 2, terrain 1, weather 0, vast 2, saved 2)."
+  - run: do travel-time path=road distance=short bonus=3
+    expect: "The journey takes 1 watches"
+  - run: do travel-time vast=3
+    expect: "stop: Vast terrain adds up to +2 watches"
+  - run: do travel-time weather=Catastrophic
+    expect: "stop: Catastrophic weather"
+---
+test: downtime
+help: Downtime pays a Milestone's Cost and ticks its tracker; not somewhere unsafe, not in recovery.
+script:
+  - world new vale --system {pack} --seed downtime
+  - campaign new first --seed downtime
+  - new pc Rui --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set gold=40
+  - track new 'The Order' --kind track --size 2 --for rui
+  - run: do downtime who=rui action=ties goal='join the Order of the Helm' gold=10 cost='a mission' milestones=the-order
+    expect: ["gold -= 10", "The Milestone's cost is paid: a mission.", "A Milestone is complete: 1 of 2."]
+  - run: do downtime who=rui action=ties goal='join the Order of the Helm' milestones=the-order
+    expect: ["A Milestone is complete: 2 of 2.", "Every Milestone is complete", "source=downtime"]
+  - run: do downtime who=rui goal='more' safe=false
+    expect: "stop: Downtime Actions can't be undertaken in unsafe conditions"
+  - set rui conditions+=stabilized
+  - run: do downtime who=rui goal='more'
+    expect: "stop: Rui is in recovery"
+  - set rui conditions-=stabilized
+  - run: do downtime who=rui goal='the vault' gold=100
+    expect: "stop: Rui has 30gp and the Milestone costs 100gp"
+---
+test: days-and-sessions
+help: A new day brings the weather reminder, the deprived PCs' day, the Mischievous Spirit's relief and the Stone Heart's weight; a session's end, downtime and growth.
+script:
+  - world new vale --system {pack} --seed days
+  - campaign new first --seed days
+  - new pc Cobb --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set burden=1 --set fatigue=2
+  - inv add cobb 'Mischievous Spirit'
+  - do deprive who=cobb need=food
+  - run: time advance 5 hours
+    expect: "day 1, 05:00"
+  - run: time advance 1 day
+    expect: ["A new day: roll its weather", "still deprived", "Mischievous Spirit absorbs one of Cobb's Fatigue"]
+  - run: time advance 30 days
+    expect: ["Stone Heart grows heavier: it takes 2 slots"]
+  - session start
+  - run: session end --summary 'A long road.'
+    expect: ["between-sessions (Cobb)", "Downtime Action", "didact char advance pc:cobb"]

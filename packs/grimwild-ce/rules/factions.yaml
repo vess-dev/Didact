@@ -1,0 +1,82 @@
+# Factions and campaign pools (p. 114): a faction's goals are faction pools, timers rolled between
+# sessions or when events trigger them (`didact faction turn` runs faction-turn for each faction).
+# When one depletes, the goal is accomplished or the faction moves against another, a story roll
+# in its favor saying how it plays out. In downtime (p. 30) the GM rolls them, then picks one and
+# depletes it completely (faction-goal). A faction's pools are the ones listed on it as pool_1,
+# pool_2, … (the faction generator lists its goals' pools).
+action: faction-turn
+title: A faction's turn
+help: >-
+  Roll each of a faction's pools (p. 114): the ones listed on it as pool_1, pool_2, … (the
+  faction generator lists its goals; list another with `didact set <faction> pool_3=<track>`).
+  A pool that depletes means the goal is accomplished, or the faction moves against another: a
+  story roll in its favor says how it plays out.
+params:
+  who: ref
+steps:
+  - if: "default(@who.pool_1, '') == ''"
+    then:
+      - stop: "{@who.name} has no faction pools listed: make one for a goal (`didact track new '<goal>' --kind pool --size 6 --pool campaign --for {@who.id}`) and list it (`didact set {@who.id} pool_1=<track>`)."
+  - do: faction-pool
+    with: {who: "@who", n: 1}
+source: "p. 114"
+---
+procedure: faction-pool
+title: A faction pool, rolled
+help: "One of a faction's listed pools (pool_1, pool_2, … up to pool_6) rolled on its turn; an empty one has already come to pass."
+params:
+  who: ref
+  n: {kind: int, default: 1}
+steps:
+  - if: "default(@who.pool_$n, '') <> ''"
+    then:
+      - do: faction-pool-roll
+        with: {who: "@who", pool: "@who.pool_$n"}
+      - if: "$n < 6"
+        then:
+          - do: faction-pool
+            with: {who: "@who", n: "$n + 1"}
+source: "p. 114"
+---
+procedure: faction-pool-roll
+title: A faction pool's roll
+help: "A faction pool rolled: every 1-3 drops, and at 0d the goal comes to pass (faction-goal)."
+params:
+  who: ref
+  pool: ref
+steps:
+  - if: "@pool.value <= 0"
+    then: ["{@pool.name} is already empty: its goal has come to pass."]
+    else:
+      - pool: "@pool"
+        as: rolled
+      - if: "@rolled.empty"
+        then:
+          - do: faction-goal
+            with: {who: "@who", pool: "@pool"}
+source: "p. 114"
+---
+action: faction-goal
+title: A faction's goal comes to pass
+help: >-
+  When a faction pool depletes (p. 114), or when the GM picks one in downtime and depletes it
+  completely (p. 30): the goal is accomplished, or the faction makes its move against another
+  faction, and a story roll in its favor (read from its side) says how it plays out.
+params:
+  who: ref
+  pool: {kind: ref, optional: true, help: "The pool to deplete completely first (downtime)"}
+steps:
+  - if: "default(@pool, '') <> ''"
+    then:
+      - if: "@pool.value > 0"
+        then:
+          - pool: "@pool"
+            mode: drop
+            drop: "@pool.value"
+            as: depleted
+  - message: "{@who.name}'s goal comes to pass: it's accomplished, or {@who.name} makes its move against another faction."
+  - check: story-roll
+    with: {question: "How does it play out, for {@who.name}?"}
+    as: move
+  - prompt: "Read the story roll from {@who.name}'s side: perfect, the ideal situation for them; messy, it's okay but there's a catch; grim, it's a problem for them. Replace factions that are no longer relevant to the story."
+source: "pp. 30, 114"

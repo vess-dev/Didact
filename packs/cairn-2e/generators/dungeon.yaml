@@ -1,0 +1,116 @@
+# Dungeon seed (wardens-guide/dungeon-seeds): run it for each Dungeon POI of a setting
+# (region=<that place>).
+generator: dungeon-seed
+title: Dungeon seed
+help: >-
+  A dungeon: its history (purpose, construction and ruination), its denizens' attitude and a
+  standout NPC, 1–2 factions with agendas, and 6–20 rooms (monster, lore, special or trap, each
+  with a detail), numbered from the entrance and joined by paths, some conditional or hidden.
+  region=<place> puts it inside a place. Prefill by name: dungeon_type, rooms, factions, …
+params:
+  region: {kind: text, default: "", help: "The place it lies in, e.g. loc:the-sunken-crypt"}
+source: wardens-guide/dungeon-seeds
+steps:
+  - table: setting-dungeon-type
+    as: dungeon_type
+  - table: poi-names
+    with: {poi: "@dungeon_type"}
+    as: dungeon_name
+  - table: dungeon-purpose-original-use
+    as: use
+  - table: dungeon-purpose-built-by
+    as: builder
+  - table: dungeon-construction-entrance
+    as: entrance
+  - table: dungeon-construction-composition
+    as: composition
+  - table: dungeon-ruination-condition
+    as: condition
+  - table: dungeon-ruination-cause
+    as: cause
+  - table: dungeon-traits-virtue
+    as: virtue
+  - table: dungeon-traits-vice
+    as: vice
+  - entity:
+      key: dungeon
+      type: loc
+      name: "{@dungeon_name}"
+      fields:
+        kind: dungeon
+        poi: dungeon
+        feature: "@dungeon_type"
+        traits: {virtue: "@virtue", vice: "@vice"}
+        region: "$region"
+      body: |
+        Purpose: {@use}, built by {@builder}.
+        Construction: {@entrance} (the entrance), {@composition}.
+        Ruination: {@condition}, from {@cause}.
+
+  # A standout NPC: prefers dungeon life, acts unlike the rest, someone to talk or trade with.
+  - table: dungeon-traits-virtue
+    as: npc_virtue
+  - table: dungeon-traits-vice
+    as: npc_vice
+  - table: first-names
+    as: npc_name
+  - entity:
+      key: npc
+      type: npc
+      name: "{@npc_name}"
+      fields:
+        role: "a denizen of {@dungeon_name} who prefers life below"
+        traits: {virtue: "@npc_virtue", vice: "@npc_vice"}
+      links: [{rel: lives in, to: "@dungeon"}]
+
+  # Factions: each with an agenda and what stands in its way.
+  - roll: d2
+    as: factions
+  - repeat: "@factions"
+    steps:
+      - table: dungeon-agenda-goal
+        as: goal
+      - table: dungeon-agenda-obstacle
+        as: obstacle
+      - table: faction-names
+        as: faction_name
+      - entity:
+          key: faction
+          type: faction
+          name: "{@faction_name}"
+          fields: {agenda: "@goal", obstacle: "@obstacle"}
+          links: [{rel: holds, to: "@dungeon"}]
+
+  # Rooms: 6–20 dice on the dungeon die drop, numbered from the entrance.
+  - roll: d15+5
+    as: rooms
+  - repeat: "@rooms"
+    steps:
+      - table: dungeon-die-drop
+        as: drop
+      - table: "{@drop.what}"
+        as: what
+      - table: "{@drop.detail}"
+        as: detail
+      - entity:
+          key: room
+          type: loc
+          name: "{@what}"
+          fields:
+            kind: room
+            poi: "@drop.room"
+            feature: "{@what}, {@detail}"
+            region: "@dungeon"
+  - map:
+      places: room
+      paths: {max: 4}
+      conditional: 5
+      hidden: 6
+      entrance: true
+      number: "{@dungeon_name}, room {@n}"
+
+  - prompt: "What kind of dungeon is this, and what makes it unusual? Why was it built, how, and what brought it down?"
+  - prompt: "What do we know of the creatures and factions inside? What does each faction want, and what stands in its way? Give them leaders and a hierarchy."
+  - prompt: "Theme: combine the history and denizens into a paragraph, with features throughout (light, smell, noise, build). Filter every room through it."
+  - prompt: "Name each room. Monsters have wants and may talk; lore rooms hold no danger (the players mustn't know that); special rooms offer hard choices with lasting costs; traps hint at themselves."
+  - prompt: "Conditional paths need something (a hidden lever, climbing gear); hidden ones must be found. Add crossings and levels where they help."

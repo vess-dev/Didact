@@ -1,0 +1,260 @@
+# Character traits, bonds and omens (players-guide/character-creation).
+table: physique
+title: Physique
+dice: d10
+source: players-guide/character-creation#physique
+entries:
+  1: "Athletic"
+  2: "Brawny"
+  3: "Flabby"
+  4: "Lanky"
+  5: "Rugged"
+  6: "Scrawny"
+  7: "Short"
+  8: "Statuesque"
+  9: "Stout"
+  10: "Towering"
+---
+table: skin
+title: Skin
+dice: d10
+source: players-guide/character-creation#skin
+entries:
+  1: "Birthmarked"
+  2: "Marked"
+  3: "Oily"
+  4: "Rosy"
+  5: "Scarred"
+  6: "Soft"
+  7: "Tanned"
+  8: "Tattooed"
+  9: "Weathered"
+  10: "Webbed"
+---
+table: hair
+title: Hair
+dice: d10
+source: players-guide/character-creation#hair
+entries:
+  1: "Bald"
+  2: "Braided"
+  3: "Curly"
+  4: "Filthy"
+  5: "Frizzy"
+  6: "Long"
+  7: "Luxurious"
+  8: "Oily"
+  9: "Wavy"
+  10: "Wispy"
+---
+table: face
+title: Face
+dice: d10
+source: players-guide/character-creation#face
+entries:
+  1: "Bony"
+  2: "Broken"
+  3: "Chiseled"
+  4: "Elongated"
+  5: "Pale"
+  6: "Perfect"
+  7: "Rakish"
+  8: "Sharp"
+  9: "Square"
+  10: "Sunken"
+---
+table: speech
+title: Speech
+dice: d10
+source: players-guide/character-creation#speech
+entries:
+  1: "Blunt"
+  2: "Booming"
+  3: "Cryptic"
+  4: "Droning"
+  5: "Formal"
+  6: "Gravelly"
+  7: "Precise"
+  8: "Squeaky"
+  9: "Stuttering"
+  10: "Whispery"
+---
+table: clothing
+title: Clothing
+dice: d10
+source: players-guide/character-creation#clothing
+entries:
+  1: "Antique"
+  2: "Bloody"
+  3: "Elegant"
+  4: "Filthy"
+  5: "Foreign"
+  6: "Frayed"
+  7: "Frumpy"
+  8: "Livery"
+  9: "Rancid"
+  10: "Soiled"
+---
+table: virtue
+title: Virtue
+dice: d10
+source: players-guide/character-creation#virtue
+entries:
+  1: "Ambitious"
+  2: "Cautious"
+  3: "Courageous"
+  4: "Disciplined"
+  5: "Gregarious"
+  6: "Honorable"
+  7: "Humble"
+  8: "Merciful"
+  9: "Serene"
+  10: "Tolerant"
+---
+table: vice
+title: Vice
+dice: d10
+source: players-guide/character-creation#vice
+entries:
+  1: "Aggressive"
+  2: "Bitter"
+  3: "Craven"
+  4: "Deceitful"
+  5: "Greedy"
+  6: "Lazy"
+  7: "Nervous"
+  8: "Rude"
+  9: "Vain"
+  10: "Vengeful"
+---
+table: bonds
+title: Bonds
+dice: d20
+source: players-guide/character-creation#bonds
+entries:
+  1:
+    text: "You inherited a Single Gem (500gp, cold and brittle) from a long-dead relative. It arrived with a warning: squander your newfound riches, and a debt long thought forgotten would be called in."
+    data: {"name": "Single Gem", "gear": [{"name": "Single Gem", "note": "500gp, cold and brittle"}]}
+  2:
+    text: "A distant cousin left you a small inheritance. Take 20Gp and a Strange Compass (petty) that always points towards something deep in the Wood."
+    data: {"name": "Strange Compass", "gear": [{"name": "Strange Compass", "size": "petty"}], "gold": 20}
+  3:
+    text: "You carry a Portrait in a locket (petty) of a past love who disappeared into the Wood long ago. Somehow you know that they are still alive."
+    data: {"name": "Portrait in a Locket", "gear": [{"name": "Portrait", "size": "petty", "note": "in a locket"}]}
+  4:
+    text: "You found a Tiny Crystal Prism (petty) buried in the dirt. When held up to the light, it shows visions of an unknown location deep within the Wood. Sometimes you feel a presence looking back at you."
+    data: {"name": "Tiny Crystal Prism", "gear": [{"name": "Tiny Crystal Prism", "size": "petty"}]}
+  5:
+    text: "You once freed a Naiad from a choked stream. In return, it gave you some Silver Moss (petty). Swallow it near water, and the creature will come, once, to repay its debt."
+    data: {"name": "Silver Moss", "gear": [{"name": "Silver Moss", "size": "petty"}]}
+  6:
+    text: "You inherited an old Journal, bound in bark. Each evening, its pages are filled with the events of the day, crassly written from the journal's perspective. The writing is crude but accurate."
+    data: {"name": "Bark-Bound Journal", "gear": ["Journal"]}
+  7:
+    text: "You protect a long-dormant family secret. Take one half of an Ancient Key (petty). They say that if joined with its twin, it opens a Gate through any door."
+    data: {"name": "Half an Ancient Key", "gear": [{"name": "Ancient Key (half)", "size": "petty"}]}
+  8:
+    text: "You received a Letter (petty) detailing incontrovertible proof that your true parentage is that of Fae nobility. The note also indicates a date and location where you are to meet the letter's author, deep in the the Wood."
+    data: {"name": "Letter of Fae Parentage", "gear": [{"name": "Letter", "size": "petty"}]}
+  9:
+    text: "You owe a great debt to a member of the nobility and carry their Signet Ring (petty), which serves as proof of their protection as well as your obligation."
+    data: {"name": "Signet Ring", "gear": [{"name": "Signet Ring", "size": "petty"}]}
+  10:
+    text: "You consumed a Mischievous Spirit that wreaks havoc on your insides, demanding to be taken home, deep in the Wood. It occupies one slot but absorbs one Fatigue each day. It wants you alive (for now)."
+    data: {"name": "Mischievous Spirit", "gear": [{"name": "Mischievous Spirit", "note": "absorbs one Fatigue each day"}]}
+  11:
+    text: "A roaming storyteller once spun you tales of great treasure hidden deep in the Wood. You thought it naught but fancy, till they gave you A Rolled-Up Map (petty) marked with an X."
+    data: {"name": "Rolled-Up Map", "gear": [{"name": "Rolled-Up Map", "size": "petty"}]}
+  12:
+    text: "During your travels, you met a dying hunter who asked you to deliver a message to their loved ones. Take a Letter (petty), sealed with tree sap. It is addressed only to the Lord Of Winter."
+    data: {"name": "Letter to the Lord of Winter", "gear": [{"name": "Letter", "size": "petty", "note": "addressed to the Lord of Winter"}]}
+  13:
+    text: "You found a wounded beast in the forest but chose to ignore it. You see it everywhere now, but only when you're alone. It looks sad but not angry. You cannot become panicked when acting alone."
+    data: {"name": "Wounded Beast"}
+  14:
+    text: "You promised a childhood friend that you'd bring them back a rare gift, something unique in all the world. Take a Bracelet (petty) woven from twine and wildflowers."
+    data: {"name": "Twine Bracelet", "gear": [{"name": "Bracelet", "size": "petty"}]}
+  15:
+    text: "You crossed a creature of the Wood, and it cursed you with a Stone Heart. With each passing month, the stone grows heavier by one slot. Until your debt is lifted, you cannot truly die."
+    data: {"name": "Stone Heart", "gear": [{"name": "Stone Heart", "size": "petty", "note": "its weight is the burden counter: one slot more each month"}], "burden": 1}
+  16:
+    text: "You carved a Whistle (petty) from an Oak Lord's branch. Your act did not go unnoticed. You cannot seem to rid yourself of the whistle either."
+    data: {"name": "Oak Lord's Whistle", "gear": [{"name": "Whistle", "size": "petty"}]}
+  17:
+    text: "The Dawn Brigade did your family a service, giving you a dried Blood-Red Flower (petty) as proof. When the flower turns white, it means the favor is owed."
+    data: {"name": "Blood-Red Flower", "gear": [{"name": "Blood-Red Flower", "size": "petty"}]}
+  18:
+    text: "An entertainer once visited your home, filling it with story and song. He left one day without a word, leaving behind only A Miniature Lute. Something rattles inside."
+    data: {"name": "Miniature Lute", "gear": ["A Miniature Lute"]}
+  19:
+    text: "A white crow appeared to you in a dream, holding a twig in its mouth. You awoke the next morning with the Twig (petty) in your hand. You believe it brings you luck. It smells faintly of sulfur."
+    data: {"name": "White Crow's Twig", "gear": [{"name": "Twig", "size": "petty"}]}
+  20:
+    text: "One of your ancestors wronged a Moss Witch, who cursed their bloodline. Your visage causes mirrors to shatter. You've noticed that the shards can sometimes reveal illusions."
+    data: {"name": "Moss Witch's Curse"}
+---
+table: omens
+title: Omens
+dice: d20
+source: players-guide/character-creation#omens
+entries:
+  1:
+    text: "The once rich waters of a life-giving river have turned black and putrid, tainting the land and sickening those who drink from it. A village elder points to some recent desecration as the cause, but most do not heed their words."
+    data: {"name": "The Blackened River"}
+  2:
+    text: "It feels like winter has arrived too quickly this year, frost and snows making their appearance much earlier than expected. There is talk of a pattern to the frost found in windows, ponds, and cracks in the ground. It almost looks like a map."
+    data: {"name": "The Early Winter"}
+  3:
+    text: "A thick, unnatural fog has begun encroaching upon an ancient and holy grove. It is said to be the work of a great forest spirit, angered by nearby deforestation."
+    data: {"name": "The Unnatural Fog"}
+  4:
+    text: "The night sky grows dimmer each evening, as if stars are disappearing one by one. Rumors of hellish creatures capturing farmers and pulling them into the Roots are spreading like wildfire. Village elders believe the two are connected."
+    data: {"name": "The Dimming Stars"}
+  5:
+    text: "The songbirds of the Wood have fallen eerily silent as of late. Hunters claim that a spectral figure has been spotted wandering the forest, gazing longingly at anyone it encounters."
+    data: {"name": "The Silent Songbirds"}
+  6:
+    text: "Strange, tear-shaped stones have been found throughout the region, sparking a \"gold rush\" of sorts for jewelers and thieves alike. The locals believe they are the tears of the earth itself, weeping for a great tragedy yet to come."
+    data: {"name": "The Tear-Shaped Stones"}
+  7:
+    text: "Swarming pests gnaw away at the edges of dreams, and farmers speak of a loud buzzing sound emanating from deep within the Wood. They also say that the sound is getting closer."
+    data: {"name": "The Buzzing in the Wood"}
+  8:
+    text: "There is a village known far and wide for its impressive “mother tree,\" said to shelter the town’s secrets in its boughs. Recently it has begun bleeding red sap, worrying the elders."
+    data: {"name": "The Bleeding Mother Tree"}
+  9:
+    text: "The moon turns a deep crimson, bathing the night in an eerie, blood-red light. Some say it heralds a time of chaos and strife, as the boundaries between the Wood and the mortal realm grow thin."
+    data: {"name": "The Crimson Moon"}
+  10:
+    text: "Strange cracks have appeared in the night sky, revealing a swirling vortex of light and color. Some say that the divide between realms is at its weakest in centuries and fear what may emerge from the other side."
+    data: {"name": "The Cracks in the Sky"}
+  11:
+    text: "A night-blooming flower once thought extinct is sprouting up throughout the Wood. Its scent is intoxicating but also causes vivid nightmares."
+    data: {"name": "The Night-Blooming Flower"}
+  12:
+    text: "Local livestock have grown increasingly agitated and unmanageable as of late. An old shepherd says it is due to an unsettling howl that emanates from the Wood each full moon."
+    data: {"name": "The Howl at the Full Moon"}
+  13:
+    text: "Swarms of insects are fleeing from the Wood in droves, destroying any wooden structures they come across. The sound of their wings hum a familiar tune as they pass overhead, like a forgotten nursery rhyme."
+    data: {"name": "The Fleeing Swarms"}
+  14:
+    text: "Hunters talk of a curse that befalls any who kill a beast with a streak of white fur: soon after, they are found dead in their homes. Each day, there are fewer and fewer creatures to hunt."
+    data: {"name": "The White-Furred Curse"}
+  15:
+    text: "Folks say that a faint laughter can be heard echoing out of wells all over the city, and that the echoes change to sobs at night."
+    data: {"name": "The Laughter in the Wells"}
+  16:
+    text: "The constellations have slowly started shifting in the night sky, forming unfamiliar patterns that have stargazers and sages perplexed. Even the animals seem disturbed."
+    data: {"name": "The Shifting Constellations"}
+  17:
+    text: "An ancient tree at the heart of a sleepy village has suddenly withered and died, despite showing no signs of disease. After its trunk was cut, a bloody hand was found in its core."
+    data: {"name": "The Bloody Hand in the Tree"}
+  18:
+    text: "Statues have been weeping blood for months on end, and the wombs of the village have lain barren since.  A single child has been the only exception, hidden away by elders overcome with fear and dread."
+    data: {"name": "The Weeping Statues"}
+  19:
+    text: "The local fauna is behaving oddly, displaying heightened aggression or fleeing the area entirely. Hunters talk of a shadowy figure that roams the Wood, calling to the animals."
+    data: {"name": "The Shadowy Figure"}
+  20:
+    text: "Border towns have become riotous in recent weeks after multiple claims of a red-robed figure appearing in their children's dreams, uttering the same warning: A fire is coming, and it will consume everything."
+    data: {"name": "The Red-Robed Figure"}

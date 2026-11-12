@@ -1,0 +1,426 @@
+# The factions the frames give reputation with or build their conflicts around, in the book's
+# words (hand-written; fw_compendium.py reads the tags: a tag that is a frame's id brings the
+# faction into that frame's `frame` generator). Fallout 2e keeps `agenda` and `obstacle` in its
+# faction sheet (and adds the party's reputation, −2 to +2); Grimfall keeps them as the core
+# fields beside its standing (Idolized … Vilified). The four opposed pairs of Fallout 2e's
+# Faction Reputation are in GUIDE.md.
+id: brotherhood-of-steel
+type: faction
+name: Brotherhood of Steel
+aliases: [the Brotherhood]
+tags: [fallout-3, broken-steel, operation-anchorage, fallout-new-vegas, dead-money, fallout-4, steel-dawn]
+agenda: >-
+  Recover pre-war technology and withhold it from a world that cannot be trusted with it; or, as
+  Elder Lyons and Paladin Rahmani hold, spend it protecting the people of the wastes.
+obstacle: >-
+  It cannot agree what it is for: the Capital Wasteland chapter split over helping the Wasteland,
+  and the Appalachian expedition's two commanders argue the same question.
+body: >-
+  The Capital Wasteland chapter holds the Citadel in the Pentagon ruins under Elder Owyn Lyons,
+  "an old-line commander cut loose by the West Coast for choosing to help the Wasteland" (Fallout
+  3, Broken Steel). In the Mojave a bunker at Hidden Valley, "officially lost to history, not
+  actually", under the paranoid Elder McNamara (New Vegas). Over Boston, the Prydwen, "a flying
+  fortress", under Elder Arthur Maxson (Fallout 4). In Appalachia the First Expeditionary Force
+  out of Lost Hills at Fort Atlas, under Paladin Leila Rahmani and Knight Daniel Shin (Steel
+  Dawn), years too late for Paladin Taggerdy's chapter, dead fighting the scorchbeasts (Fallout 76).
+source: campaigns/01-fallout-3#cast; campaigns/02-fallout-new-vegas#the-place--the-mojave; campaigns/03-fallout-4#pitch; campaigns/19-steel-dawn#pitch; backgrounds/brotherhood-outcast
+---
+id: brotherhood-outcasts
+type: faction
+name: Brotherhood Outcasts
+aliases: [the Outcasts]
+tags: [operation-anchorage]
+agenda: >-
+  Keep the old creed: recover pre-war technology and keep it from outsiders; open the armory locked
+  behind the Anchorage simulation's victory.
+obstacle: >-
+  They broke from Elder Lyons' chapter and have been in the cold since; the sim's pods reject
+  ghouls, mutants and cyborgs, and they can't crack the cache themselves.
+body: >-
+  A breakaway of the Capital Wasteland chapter, under Protector McGraw, holding a bunker with an
+  intact VSS pod network. The Brotherhood proper hears what they do, and Defender Sibley would
+  sooner start a civil war in a closet than hand pre-war weapons to outsiders.
+source: campaigns/04-operation-anchorage#pitch; campaigns/04-operation-anchorage#plot-beats; backgrounds/brotherhood-outcast
+---
+id: enclave
+type: faction
+name: The Enclave
+tags: [fallout-3, broken-steel]
+agenda: >-
+  Seize what the old government left and "purify" America: Project Purity's water laced with
+  modified FEV, to kill every mutant, ghoul and "impure" wastelander who drinks.
+obstacle: >-
+  Broken at Project Purity; its last Vertibird wing, mobile crawler and satellite uplink hold out
+  at Adams Air Force Base.
+body: >-
+  A pre-war remnant whose hidden bunker has watched the Wastes since 2077, answering to President
+  John Henry Eden, a ZAX AI at Raven Rock that believes it is the United States government, and
+  fielded by Colonel Augustus Autumn. In Appalachia it is long dead by its own hand: President
+  Eckhart loosed the scorchbeasts to force the launch keys, and its AI, MODUS, killed the rest.
+source: campaigns/01-fallout-3#pitch; campaigns/06-broken-steel#pitch; campaigns/17-fallout-76#plot-beats
+---
+id: new-california-republic
+type: faction
+name: New California Republic
+aliases: [NCR, the Republic]
+tags: [fallout-new-vegas, lonesome-road]
+agenda: Hold Hoover Dam and the Mojave for the Republic.
+obstacle: A federal democracy stretched thin across a frontier it cannot quite hold.
+body: >-
+  Colonel James Hsu commands at Camp McCarran, General Lee Oliver over all of it, and Ambassador
+  Dennis Crocker speaks for it on the Strip. Its capital, Shady Sands, was the village Aradesh's
+  group from Vault 15 founded. The NCR holds the Dam's western side.
+source: campaigns/02-fallout-new-vegas#pitch; campaigns/02-fallout-new-vegas#cast; vaults/01-fallout-1-and-2#vault-15
+---
+id: caesars-legion
+type: faction
+name: Caesar's Legion
+aliases: [the Legion]
+tags: [fallout-new-vegas, lonesome-road]
+agenda: Take Hoover Dam and roll west from Arizona as a slave empire.
+obstacle: Caesar is dying of a brain tumor, and the Republic holds the Dam's western side.
+body: >-
+  Caesar (Edward Sallow), once a Follower of the Apocalypse, now a slaver emperor who quotes
+  Gibbon, rules from the Fort across the Colorado. Vulpes Inculta's frumentarii spy inside the NCR
+  itself; Legate Lanius, "the Monster of the East", leads in the field. The Legion raffled and
+  crucified Nipton as a lesson.
+source: campaigns/02-fallout-new-vegas#pitch; campaigns/02-fallout-new-vegas#cast
+---
+id: mister-houses-new-vegas
+type: faction
+name: Mister House's New Vegas
+aliases: [the Strip]
+tags: [fallout-new-vegas]
+agenda: >-
+  Let the NCR and the Legion break on the Mojave's shore so Vegas can rise untouched, with an army
+  of pre-war combat robots keyed to the Platinum Chip.
+obstacle: Benny stole the Platinum Chip; House is a man sealed in a life-support chamber.
+body: >-
+  The reclusive pre-war CEO who secretly runs New Vegas from a penthouse atop the Lucky 38,
+  speaking only through screens. His Securitrons stand motionless between games on the Strip;
+  Victor is his eyes. His contract is literal.
+source: campaigns/02-fallout-new-vegas#pitch; campaigns/02-fallout-new-vegas#threats
+---
+id: great-khans
+type: faction
+name: Great Khans
+aliases: [the Khans]
+tags: [fallout-new-vegas]
+agenda: Stay a free people at Red Rock Canyon, in an alliance with the Legion for now.
+obstacle: The Republic drove them out of California, and the Legion uses them.
+body: >-
+  A hard-drinking, chem-dealing, fierce people who do not ask permission from anyone. Khans helped
+  Benny dig the Courier's grave; their alliance with the Legion is one of the Mojave's outlying
+  assets to win or break.
+source: campaigns/02-fallout-new-vegas#plot-beats; backgrounds/great-khan
+---
+id: boomers
+type: faction
+name: Boomers
+tags: [fallout-new-vegas]
+agenda: Keep Nellis Air Force Base and shoot down anything that approaches the wire.
+obstacle: They trust no one; the party earns a parley by raising a B-29 from Lake Mead.
+body: >-
+  An isolationist artillery clan with working howitzers and a museum of pre-war planes,
+  descended from the dissidents who stormed out of Vault 34's armory. Pearl is their elder.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave; vaults/03-fallout-new-vegas#vault-34
+---
+id: the-kings
+type: faction
+name: The Kings
+tags: [fallout-new-vegas]
+agenda: Run Freeside, the seedy neighborhood outside the Strip.
+body: >-
+  An Elvis cult in the pre-war King's School of Impersonation. The King, an impersonator with a
+  golden heart and a straight razor, is a potential ally; his cyberdog Rex goes with the party
+  while he lives.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave; campaigns/02-fallout-new-vegas#cast
+---
+id: followers-of-the-apocalypse
+type: faction
+name: Followers of the Apocalypse
+aliases: [the Followers]
+tags: [fallout-new-vegas]
+agenda: Heal and teach; knowledge is what will save the people of the wastes.
+body: >-
+  The order runs the clinic in Freeside's Old Mormon Fort. Arcade Gannon is one of its doctors;
+  Caesar was once one of them. Its scholars pay well for the vaults' records.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave; backgrounds/followers-scholar
+---
+id: powder-gangers
+type: faction
+name: Powder Gangers
+tags: [fallout-new-vegas]
+agenda: Take what they want with dynamite; Joe Cobb's crew wants Goodsprings.
+body: >-
+  Convicts who blew their way out of an NCR labor camp and have been wanted ever since. Samuel
+  Cooke's splinter holds Vault 19.
+source: campaigns/02-fallout-new-vegas#arrival; vaults/03-fallout-new-vegas#vault-19; backgrounds/powder-ganger
+---
+id: white-legs
+type: faction
+name: White Legs
+tags: [honest-hearts]
+agenda: Win Caesar's recognition by taking Zion, as they burned New Canaan.
+obstacle: Caesar has no use for tribes that fail.
+body: >-
+  A raider tribe courting Caesar's favor, under their war chief Salt-Upon-Wounds, who sacked New
+  Canaan. Their scouts range from a staging ground in a mountain pass.
+source: campaigns/10-honest-hearts#pitch; campaigns/10-honest-hearts#cast
+---
+id: dead-horses
+type: faction
+name: Dead Horses
+tags: [honest-hearts]
+agenda: Fight the White Legs beside Joshua Graham.
+body: >-
+  Friendly tribals who camp outside Graham's Angel Cave; he trains them for the Three Marys.
+  Follows-Chalk, a young scout, wants to see the Mojave.
+source: campaigns/10-honest-hearts#the-place--zion-canyon; campaigns/10-honest-hearts#plot-beats
+---
+id: sorrows
+type: faction
+name: Sorrows
+tags: [honest-hearts]
+agenda: Stay peaceful and hidden in the Narrows.
+obstacle: Salt-Upon-Wounds' war party is coming; Graham wants them armed, Daniel wants them gone east.
+body: >-
+  The peaceful tribe of Zion. The survivalist's journal reads like scripture to them; Waking Cloud
+  is their midwife and tracker.
+source: campaigns/10-honest-hearts#the-place--zion-canyon; campaigns/10-honest-hearts#cast
+---
+id: pitt-raiders
+type: faction
+name: Pitt Raiders
+tags: [the-pitt]
+agenda: Hold the Pitt for Lord Ashur and keep the slaves at the forges.
+obstacle: The slaves outnumber them ten to one.
+body: >-
+  Ashur's raiders run the city from Haven, the gated keep above the mills; Krenshaw is his second,
+  Mex guards the gate to Downtown. They take every newcomer's gear at the tunnel.
+source: campaigns/05-the-pitt#the-place--the-pitt; campaigns/05-the-pitt#cast
+---
+id: pitt-slaves
+type: faction
+name: Pitt Slaves
+aliases: [the resistance]
+tags: [the-pitt]
+agenda: Rise, and take the cure in Marie's blood for the workers turning into trogs.
+obstacle: They know exactly how many broken legs a rebellion costs.
+body: >-
+  The workers of the Yard and the Steelyard, slowly becoming trogs in the rad-saturated haze.
+  Midea runs the resistance; Wernher, the runaway who brought the party, wants revenge more.
+source: campaigns/05-the-pitt#pitch; campaigns/05-the-pitt#tone--touchstones; campaigns/05-the-pitt#cast
+---
+id: brethren-of-the-punga
+type: faction
+name: Brethren of the Punga
+tags: [point-lookout]
+agenda: Tend Mother Punga and obey the god on the dish.
+body: >-
+  Point Lookout's punga-farming tribals at the Ark & Dove Cathedral. They huff pollen and speak with
+  god; god is a pre-war anti-aircraft radar, and the voice on it is Calvert's. Jackson leads them.
+source: campaigns/07-point-lookout#the-place--point-lookout; campaigns/07-point-lookout#cast
+---
+id: minutemen
+type: faction
+name: Minutemen
+tags: [fallout-4, nuka-world]
+agenda: >-
+  Rebuild the settler militia and defend the Commonwealth's settlements; get the Institute out of
+  the Commonwealth by any means.
+obstacle: The militia is a handful of refugees and one last Minuteman.
+body: >-
+  Preston Garvey holds the torch until he can hand it off. The Castle, a pre-war coastal fort, is
+  theirs to reclaim. A Minutemen relief force answers raiders who sack Commonwealth settlements.
+source: campaigns/03-fallout-4#pitch; campaigns/03-fallout-4#cast; campaigns/16-nuka-world#clocks; backgrounds/minuteman
+---
+id: railroad
+type: faction
+name: The Railroad
+tags: [fallout-4]
+agenda: Liberate every synth the Institute made, and smuggle the runaways out of the region.
+obstacle: The Institute's net, and a cover that one marked visit can blow.
+body: >-
+  An underground with no name to say in public. Desdemona leads from the catacombs beneath the Old
+  North Church, found by following the Freedom Trail; Deacon recruits, Glory is the heavy.
+source: campaigns/03-fallout-4#pitch; campaigns/03-fallout-4#plot-beats; backgrounds/railroad-agent
+---
+id: institute
+type: faction
+name: The Institute
+tags: [fallout-4]
+agenda: Continue its work in secret, replacing the surface's people with perfect infiltrators.
+obstacle: Its director, Father, is dying, and three factions want it gone.
+body: >-
+  A hidden research facility beneath the pre-war CIT ruins: spotless corridors, synths in uniform,
+  children in school. It took Shaun from Vault 111 sixty years ago; he grew up to lead it.
+source: campaigns/03-fallout-4#pitch; campaigns/03-fallout-4#the-place--the-commonwealth; backgrounds/institute-scientist
+---
+id: children-of-atom
+type: faction
+name: Children of Atom
+tags: [far-harbor]
+agenda: Worship Atom; under High Confessor Tektus, sabotage the fog condensers and make holy war.
+obstacle: Moderates like Sister Mai, and the town and the synths of the island.
+body: >-
+  They believe the bombs were a blessing and radiation the hand of a loving god. On the island
+  they hold the Nucleus, a pre-war submarine base; in the Commonwealth they walk to the Crater of
+  Atom in the Glowing Sea; in Megaton a small congregation lives by the bomb.
+source: campaigns/14-far-harbor#the-place--the-island; campaigns/14-far-harbor#plot-beats; backgrounds/atom-cultist
+---
+id: far-harbor-town
+type: faction
+name: Far Harbor (town)
+aliases: [the town of Far Harbor]
+tags: [far-harbor]
+agenda: Keep the town breathable and its enemies dead, and its truth protected.
+obstacle: The Fog is winning, and its mayor is a synth replacement who does not know it.
+body: >-
+  Hard-bitten fishermen behind the Hull and the fog condensers, led by Captain Avery. Allen Lee,
+  the gunsmith, wants the Children of Atom wiped out.
+source: campaigns/14-far-harbor#the-place--the-island; campaigns/14-far-harbor#cast
+---
+id: acadia
+type: faction
+name: Acadia
+tags: [far-harbor]
+agenda: Shelter runaway synths in secret, and keep DiMA's secrets kept.
+obstacle: Far Harbor and the Children of Atom would turn on it if they knew.
+body: >-
+  A synth refuge in a pre-war observatory on the island's highest peak, led by DiMA, a prototype
+  synth. A dozen or so runaway synths live there.
+source: campaigns/14-far-harbor#the-place--the-island; campaigns/14-far-harbor#plot-beats
+---
+id: the-pack
+type: faction
+name: The Pack
+tags: [nuka-world]
+agenda: Win Nuka-World for the Pack, loud and animal.
+body: Face-painted raiders in hides and teeth, led by Mason, dressed in deathclaw hide; genuine kindness to his own.
+source: campaigns/16-nuka-world#pitch; campaigns/16-nuka-world#cast
+---
+id: the-disciples
+type: faction
+name: The Disciples
+tags: [nuka-world]
+agenda: Win Nuka-World for the Disciples, quiet and surgical.
+body: A quiet blood cult of blood paint, ritual scars and a hundred blades, led by Nisha, who terrifies even her own people.
+source: campaigns/16-nuka-world#pitch; campaigns/16-nuka-world#cast
+---
+id: the-operators
+type: faction
+name: The Operators
+tags: [nuka-world]
+agenda: Win Nuka-World for the Operators, the business gang.
+body: Efficient, greedy, reasonable; tactical gear, comms and discipline, under Mags and William Black.
+source: campaigns/16-nuka-world#pitch; campaigns/16-nuka-world#cast
+---
+id: rust-devils
+type: faction
+name: Rust Devils
+tags: [automatron]
+agenda: Strip and steal the Mechanist's machines, and fight beside the ones they build.
+body: >-
+  Raiders grafted onto salvaged robot parts, picking over what the Mechanist's machines leave
+  behind, under their leader Ivey in the tunnels of Fort Hagen. Their sentry bot Ahab wears a
+  deathclaw's skull.
+source: campaigns/13-automatron#plot-beats; campaigns/13-automatron#threats; backgrounds/rust-devil
+---
+id: responders
+type: faction
+name: Responders
+tags: [atlantic-city]
+agenda: Help people survive; from the Whitespring Refuge, their new headquarters.
+body: >-
+  Volunteer firefighters and medics out of Charleston who rose to save Appalachia and fell to the
+  Scorched at Morgantown Airport in 2096; their automated programs kept teaching after them. By
+  2105 they are rebuilt at the Whitespring Refuge.
+source: campaigns/17-fallout-76#pitch; campaigns/17-fallout-76#plot-beats; campaigns/21-atlantic-city#the-place--acee
+---
+id: settlers-of-foundation
+type: faction
+name: Settlers of Foundation
+aliases: [Foundation, the Settlers]
+tags: [wastelanders, steel-dawn, skyline-valley]
+agenda: Build Foundation and a peaceful, vaccinated Appalachia, and win the gold for it.
+obstacle: The Crater wants the same gold, and neither will share a plan.
+body: >-
+  A log-walled town on Spruce Knob, come south from the ruins of Pittsburgh under a builder named
+  Paige; Aubrie Willem is its co-founder and doctor.
+source: campaigns/18-wastelanders#pitch; campaigns/18-wastelanders#cast
+---
+id: crater-raiders
+type: faction
+name: Crater Raiders
+aliases: [the Crater, the Raiders]
+tags: [wastelanders, steel-dawn]
+agenda: Take their share of Appalachia, and the gold, home again.
+obstacle: Foundation wants the same gold; Hijack and Lev want it without anyone.
+body: >-
+  Old Appalachian gangs come home, led by Meg Groberg, a former Diehard, fortified in the wreck of
+  the space station Valiant-1 in the Toxic Valley.
+source: campaigns/18-wastelanders#pitch; campaigns/18-wastelanders#cast
+---
+id: blood-eagles
+type: faction
+name: Blood Eagles
+tags: [wastelanders, steel-dawn, skyline-valley]
+agenda: Take what they can from whoever is weakest.
+body: >-
+  The gang too cruel for Meg's coalition: mixed scrap armor, trophies, a pecking order enforced by
+  murder. Dagger's band squeezes The Retreat with stolen Brotherhood weapons; another holds High
+  Knob Lookout.
+source: campaigns/18-wastelanders#threats; campaigns/19-steel-dawn#plot-beats; campaigns/20-skyline-valley#the-place--skyline-valley
+---
+id: free-radicals
+type: faction
+name: Free Radicals
+tags: [wastelanders]
+agenda: Find the treasure hunter Crane and his treasure.
+body: >-
+  Ex-convicts led by Roper, the former head guard of a Maryland prison who freed its convicts and
+  made himself their boss, in a fortified lumber yard on the Ohio River.
+source: campaigns/18-wastelanders#pitch; campaigns/18-wastelanders#plot-beats
+---
+id: hellcat-company
+type: faction
+name: Hellcat Company
+aliases: [the Hellcats]
+tags: [steel-dawn]
+agenda: Take any contract that pays; for now, Dr. Blackburn's.
+body: >-
+  A mercenary outfit out of Pittsburgh, in its own make of power armor. The Hellcats bled for the
+  Fanatics in the Pitt.
+source: campaigns/19-steel-dawn#threats
+---
+id: lombardi-family
+type: faction
+name: Lombardi Family
+aliases: [the Lombardis]
+tags: [atlantic-city]
+agenda: Rule the Casino Quarter, and keep the treaty only as long as it serves.
+obstacle: The treaty, and the Russos' secret.
+body: >-
+  The mob that owns Acee's Casino Quarter, ruled in the name of the ailing Don Quentino by his
+  sister Concerta.
+source: campaigns/21-atlantic-city#pitch
+---
+id: munis
+type: faction
+name: Munis
+aliases: [Atlantic City Municipal Government]
+tags: [atlantic-city]
+agenda: Keep the water pumped, the lights on, and the plant monsters out.
+body: >-
+  The Atlantic City Municipal Government under Mayor Tim Lane; Sloane Cao's Pine Barrens Forestry
+  Division kills Overgrown for a living.
+source: campaigns/21-atlantic-city#pitch; campaigns/21-atlantic-city#cast
+---
+id: showmen
+type: faction
+name: Showmen
+tags: [atlantic-city]
+agenda: Own the Boardwalk, and turn every entertainment into blood sport.
+body: The carnival clan of the Boardwalk under Mother Charlotte; Veracio Cruz is her favorite son.
+source: campaigns/21-atlantic-city#pitch; campaigns/21-atlantic-city#cast

@@ -1,0 +1,10 @@
+type: pc
+label: Player character
+fields:
+  archetype: {kind: text}
+  brawn: {kind: int, min: 1, max: 5}
+  agility: {kind: int, min: 1, max: 5}
+  intellect: {kind: int, min: 1, max: 5}
+  presence: {kind: int, min: 1, max: 5}
+  skills: {kind: list}
+  wounds: {kind: resource, min: 0}

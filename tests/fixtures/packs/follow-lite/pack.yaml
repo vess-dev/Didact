@@ -1,0 +1,7 @@
+id: follow-lite
+name: Follow (test pack)
+kind: system
+version: 0.1.0
+description: Tables whose entries roll other tables, read by rules, generators and character creation.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

@@ -1,0 +1,24 @@
+# Enchanter (backgrounds/enchanter): the background's two d6 tables.
+table: enchanter-1
+title: "Where did you learn the binding art?"
+dice: d6
+source: backgrounds/enchanter#where-did-you-learn-the-binding-art-roll-1d6
+entries:
+  1: "At the College of Winterhold, under Sergius Turrianus, who enchants nothing he has not first unmade. You already know one enchantment from the samples in the Crafting chapter, and the College's arcane enchanter is open to you."
+  2: "In the field, trapping souls the practical way. Once per day, when you kill a creature while holding an empty soul gem large enough for it, its soul is caught in the gem of its own accord."
+  3: {text: "At a Jarl's enchanter, where you ruined more than you finished. A botched binding scarred your palm with a live sigil. Take a ring of your own working (petty, 1 charge): spend the charge to re-roll a failed save of one type, chosen when you made it. Recharge: a filled soul gem.", data: {gear: [{name: "Ring of your own working", size: "petty", charges: 1, recharge: "a filled soul gem", note: "spend the charge to re-roll a failed save of the type chosen when you made it"}]}}
+  4: "By unmaking more relics than you kept. You can lift an enchantment whole from one item and set it into another, a trick most enchanters swear is impossible. It takes a filled soul gem, an arcane enchanter, and a Downtime Action, and the charges come with it."
+  5: {text: "In the dark corners the College pretends not to know, bargaining for souls. Take a black soul gem (petty), empty, and the wary, watched look of one who deals in the taboo.", data: {gear: [{name: "Black soul gem", size: "petty"}]}}
+  6: {text: "From a page of Ahzidal's notes, taken from a Solstheim barrow where the Dragon Priest-enchanter's cult once laid him. Take the page (petty): it teaches one enchantment no living enchanter knows, of the Warden's choosing — and Ahzidal's dead have been known to come looking for his work.", data: {gear: [{name: "Page of Ahzidal's notes", size: "petty", note: "it teaches one enchantment no living enchanter knows"}]}}
+---
+table: enchanter-2
+title: "What hums in your pack?"
+dice: d6
+source: backgrounds/enchanter#what-hums-in-your-pack-roll-1d6
+entries:
+  1: {text: "Flame-Bound Blade: A steel sword you ensouled yourself (d8, 2 charges). Spend a charge as you strike: the blow is Enhanced and counts as fire. Recharge: a filled soul gem.", data: {gear: [{name: "Flame-Bound Blade", damage: "d8", charges: 2, recharge: "a filled soul gem"}]}}
+  2: {text: "Bag of Curios: A sack of broken enchanted trinkets (petty): a cracked ring, a tarnished circlet, a chipped dagger. Unmake them at an arcane enchanter to learn two enchantments from the Crafting chapter's samples, of the Warden's choosing.", data: {gear: [{name: "Bag of Curios", size: "petty"}]}}
+  3: {text: "Warded Circlet: A silver circlet (petty, 1 charge) worked against the loud school. Spend the charge when a spell strikes you, and it is absorbed harmlessly. Recharge: a filled soul gem.", data: {gear: [{name: "Warded Circlet", size: "petty", charges: 1, recharge: "a filled soul gem"}]}}
+  4: {text: "Traveling Enchanter: A folding arcane enchanter of Dwemer make (bulky), all brass leaves and crystal pins. You can enchant anywhere you can spend a quiet day.", data: {gear: [{name: "Traveling Enchanter", size: "bulky"}]}}
+  5: "The Learned Effect: You already know the Absorb Health enchantment (see Crafting), learned by unmaking a vampire's ring."
+  6: {text: "Grand Soul, Set Aside: A grand soul gem (petty), filled, that you have been saving for a masterwork — the brightest of white souls, turning like a small caught star. You have already turned down good coin for it more than once.", data: {gear: [{name: "Grand soul gem", size: "petty", note: "filled: the brightest of white souls, saved for a masterwork"}]}}

@@ -1,0 +1,389 @@
+# The Thieves Guild (campaigns/05-the-thieves-guild): written by es_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Elder Scrolls 2e's numbers, and Grimscrolls'
+# card where its Bestiary or its Faces has the threat) and clocks.
+id: the-thieves-guild
+type: quest
+name: The Thieves Guild
+tags: [the-thieves-guild, frame, main-campaign]
+goal: |-
+  The Thieves Guild of Riften is a shadow of its old self. Jobs go wrong. Marks slip away. Members whisper that the Guild is cursed — and they are nearer the truth than they know. Twenty-five years ago Guild Master Gallus was murdered, and his killer took his chair: Mercer Frey, the man who now runs the Guild from the Ragged Flagon in the Ratway beneath the city.
+
+  What no one living in the Cistern remembers is that the Guild's fortune was never luck at all. It was a covenant. The Guild's three best thieves were once the Nightingales — sworn agents of Nocturnal, Daedric Prince of shadow and luck — who guarded her shrine, the Twilight Sepulcher, and in return she let her favor run through the whole Guild. Mercer broke that covenant. He murdered Gallus, framed Gallus's lover Karliah for the deed, and crept into the Sepulcher to steal the Skeleton Key, the artifact that holds Nocturnal's luck in the world. With the Key gone, the Guild's fortune drains a little more each season, and Mercer grows rich on the side while the Cistern starves.
+
+  The party is recruited by Brynjolf, proves itself on jobs for the Black-Briar matriarch Maven, and is then dragged into the truth: Mercer's betrayal, exposed at Snow Veil Sanctum when he stabs them and leaves them for dead. Karliah — innocent all along — pulls them out of the dark, and together they take the Nightingale oath to hunt Mercer down. The chase ends in the Dwemer deep at Irkngthand, where Mercer dies clutching the Eyes of the Falmer, and the Skeleton Key passes back into the party's hands. It must be returned to the Twilight Sepulcher and Nocturnal's covenant restored — and when it is, the party stands as Guild Master over a Guild whose luck has finally turned.
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  *A red-haired stranger in the Riften market wants a quiet favor, and one favor becomes a place in the Guild beneath the streets. But the Thieves Guild is dying — its luck has soured, its vault stands empty, and the rot starts at the very top. Follow the coin far enough and you will find a traitor who sold his oath to a Daedric Prince, a wronged woman who has waited twenty-five years to be believed, and a black key that the dark itself wants returned.*
+
+  ## GM notes
+
+  **Date.** Sundas, 17 Last Seed 4E 201: 4E 201, the book's moment; no day of its own: whenever Brynjolf finds the party in the Riften market. It is the calendar's start: a new campaign opens on it.
+
+  **The frame's text:** `didact rules lookup the thieves guild pitch` (and `stakes`, `tone touchstones`, `arrival`, `plot beats`, `the place`, `cast`, `clocks`, `threats`, `rewards`, `climax`).
+
+  **Stakes.** The Guild's survival, and a debt to a Daedric Prince. If Mercer keeps the Key, the Thieves Guild dies in the dark beneath Riften and Nocturnal's favor is gone from Skyrim's thieves for good; if the party returns it, the luck comes back — and the party inherits a Guild, a Prince's regard, and an oath that binds them in life and after death.
+
+  **Arrival.** Any one of these drops a party into Brynjolf's eye-line in the Riften market:
+
+  - **The mark.** A PC is a thief, cutpurse, or burglar (the *Thieves Guild Burglar*, *Cutpurse*, or *Nightingale* background) and word of a quiet score in Riften draws them to the canal town. Brynjolf has been watching for new talent. (A Thieves Guild Burglar already belongs to the Guild, and starts at **Thieves Guild +1**.)
+  - **The debt.** A PC owes coin to the **Black-Briars** or to a Riften loan-shark; Maven offers to wipe the slate clean if they do "a little work" for a friend of hers in the market.
+  - **The errand.** The party comes to Riften chasing something unrelated — a stolen heirloom, a fence, a rumor — and Brynjolf, sizing them up, offers them a fast hundred Septims to help him fleece a vendor. ("You look like you could use the coin, and I could use a pair of hands.")
+  - **The exile's letter.** A PC receives a cryptic note from a Dunmer they have never met (Karliah, watching from the shadows), warning that "the Guild you are about to join is not what it was." The note makes sense only much later.
+
+  **Plot beats.**
+
+  1. **A Chance Arrangement.** Brynjolf approaches the party in the Riften market and proposes a small crime: he will draw the crowd's eye while a PC lifts **Madesi's silver ring** from his locked strongbox and plants it on the trader **Brand-Shei**. A clean job (a DEX save under the crowd's nose) earns 100 Septims and an invitation down into the Ratway. A botched one means a Riften Bounty and a harder welcome — but Brynjolf likes nerve either way.
+  2. **Taking Care of Business.** Down in the **Ragged Flagon**, Brynjolf sets the party loose on three deadbeat debtors — the innkeeper **Keerava**, the pawnbroker **Bersi Honey-Hand**, and the bunkhouse-keeper **Haelga**. Each can be leaned on (a WIL save to intimidate), have a prized possession threatened, or simply beaten in a brawl. Collect all three and the party earns a permanent place in the Cistern and a set of **Thieves Guild armor** each (light armor, 1 Armor — dark, quiet, and a friend in every shadow).
+  3. **Proving Yourself — the Jobs.** **Mercer Frey** himself sets the party two scores that secretly serve **Maven Black-Briar**. Run them in either order.
+     - **Loud and Clear (Goldenglow Estate).** The bee-farm island of **Goldenglow** has stopped paying Maven; its owner Aringoth has hired mercenaries. The party infiltrates (a sewer entrance, if **Vex** is asked), burns *exactly three* of the bee hives — no more, or the reward sours — cracks Aringoth's safe, and lifts the **Bill of Sale**, which proves someone bought the estate to spite Mercer.
+     - **Dampened Spirits (Honningbrew Meadery).** Maven wants the rival **Honningbrew Meadery** ruined. With the schemer **Mallus Maccius** the party poisons the brewing vat and the skeever nest below it, fights the mad wizard **Hamelyn** in the cellar, and frames the owner Sabjorn. Spare everyone but Hamelyn and Maven pays in an enchanted blade.
+     - The trail of the Goldenglow sale leads (via the fence **Gulum-Ei** in Solitude) to a single, chilling fact: a *woman with a grudge against Mercer* is bankrolling moves against the Guild. Mercer names her — **Karliah**, the thief who murdered Gallus and fled twenty-five years ago — and sends the party to corner her at Snow Veil Sanctum.
+  4. **The Betrayal — Speaking With Silence (Snow Veil Sanctum).** Mercer joins the party as a companion and leads them into the Nordic barrow of **Snow Veil Sanctum**, past draugr and Karliah's tripwires, to a sealed puzzle-door he alone can open. Beyond it, Karliah ambushes them — but her paralyzing arrow takes *the party*, and in the frozen moment that follows they overhear the truth: **Mercer murdered Gallus.** Mercer runs them through and leaves them for dead in the dark. *(Mechanically: a scripted defeat. The party does not win this fight — Mercer flees regardless. If a Warden prefers, run it as a forced Retreat where Mercer escapes no matter the dice.)* The party wakes to **Karliah** standing over them, the wronged woman revealed innocent at last, holding **Gallus's encoded journal** and asking for their help.
+  5. **Hard Answers — Reading the Dead Man's Journal.** Karliah sends the party to the mage **Enthir** at the College of Winterhold, and Enthir to **Calcelmo** in Markarth, who alone holds a key to Gallus's cipher (it is written in the Falmer tongue). The party breaks into **Calcelmo's** Dwemer museum and laboratory, makes a rubbing of the **Falmer Translation Guide**, and slips out. Enthir decodes the journal: Mercer was a **Nightingale**, he looted the Guild's vault for years, and he desecrated the **Twilight Sepulcher** — Nocturnal's shrine — stealing the **Skeleton Key**. *(Reward: the* **Nightingale Blade** *can be found or granted in this stretch.)*
+  6. **The Pursuit — Riftweald Manor.** Back in Riften, Karliah lays the journal before a stunned Guild and **Brynjolf** opens the Cistern vault: it is *empty*. Mercer robbed them all. The party breaks into Mercer's house, **Riftweald Manor**, past his hired bruiser **Vald** and a gauntlet of traps, and recovers his plans — he means one last, impossible heist: the **Eyes of the Falmer**, two flawless gemstones the size of a man's head, in the lost Dwemer city of **Irkngthand**. *(The unique sword* **Chillrend** *waits in a case here.)*
+  7. **Become a Nightingale — Trinity Restored (Nightingale Hall).** To stop a Nightingale, you must become one. Karliah leads the party and Brynjolf to the hidden **Nightingale Hall** by the Shadow Stone. There each dons a suit of **Nightingale Armor**, and Karliah summons **Nocturnal** herself in the oath chamber at the Hall's heart. The party and Brynjolf swear the Nightingale oath; Nocturnal accepts them as her agents and makes plain the price of the bargain: the **Skeleton Key** must be returned to the Sepulcher, or her luck stays broken forever. Then they ride for Irkngthand.
+  8. **Blindsighted — Irkngthand.** The party descends into **Irkngthand**, deepest of the Dwemer ruins, through Dwarven automatons, blind **Falmer** war-bands, and their **chaurus** beasts. They reach the great Falmer statue just in time to watch **Mercer** pry the **Eyes of the Falmer** from its sockets — and collapse the ledge beneath them. The final fight is **Mercer Frey**, who turns invisible, twists shadows, and tries to turn Brynjolf against Karliah with stolen Nightingale tricks. Cut him down and take the **Skeleton Key** and the **Eyes** from his body, then escape the chamber as it floods, out through Bronze Water Cave. *(Reward: Karliah gives the* **Nightingale Bow***.)*
+  9. **Darkness Returns — the Twilight Sepulcher.** The party carries the **Skeleton Key** to the **Twilight Sepulcher** in Falkreath Hold, Nocturnal's true shrine, where the dead Nightingales stand guard. There the spirit of **Gallus** himself waits, a Nightingale in death as in life. The party walks the **Pilgrim's Path** — a trial in which stepping out of shadow into the light is *lethal* — past Nightingale Sentinels who do not know the war is over, and sets the Key back into the **Ebonmere**, the well of shadow that opens on Nocturnal's realm. Nocturnal's luck floods back into the world, Gallus is freed to his rest, and each Nightingale chooses an **Agent's gift** at the Ebonmere (see Rewards).
+  10. **Under New Management — Guild Master.** With the Key returned and the Guild's fortune restored, the party finishes rebuilding the Guild's reach across the Holds (a handful of jobs from **Delvin Mallory** and **Vex**). In a ceremony in the Cistern, **Brynjolf** names the party **Guild Master**. They receive the **Guild Master's Armor** from the fence **Tonilia**, the key to the Guild's tribute chest, and a standing cut of every score the Guild pulls in Riften and beyond.
+
+  **Climax.**
+
+  The campaign resolves at the **Twilight Sepulcher** with the Skeleton Key in the party's hands. The choices:
+
+  - **Return the Key (the intended ending).** The party walks the Pilgrim's Path, sets the Key in the Ebonmere, and restores Nocturnal's covenant. Gallus is freed, the Guild's luck floods back, and the party rises to **Guild Master** over a Guild reborn — wealthy, lucky, and theirs. **Thieves Guild: Sworn (+2).**
+  - **Keep the Key.** A party that walks away with the Skeleton Key keeps the finest lockpick in Tamriel and a sliver of borrowed luck — but Nocturnal's favor never returns. The Guild stays a dying thing, Brynjolf and Karliah turn cold, and there is no Guild Master ceremony. The artifact's own text says it plainly: the Guild's fortune wanes for as long as it is kept.
+  - **Mercer wins (failure state).** If the party never recovers the Key — if they abandon the hunt after Snow Veil Sanctum, or fall in Irkngthand — Mercer escapes Skyrim with the Eyes of the Falmer and the Key both, and the Thieves Guild quietly dies in the dark beneath Riften, its luck spent. Karliah's exile becomes permanent, and Gallus is never avenged.
+
+  **The frame's records.** `didact gen run elder-scrolls-skyrim.frame --prefill '{"frame": "The Thieves Guild"}' --auto` drafts the region, 5 places, 8 people, 0 threats, its factions and its clocks, for the world's system; `gen commit` writes them.
+
+  **Bestiary** (Elder Scrolls 2e / Grimscrolls): Draugr → `draugr` / `draugr`; Draugr Overlord → `draugr-overlord` / `draugr`; Frostbite Spider → `frostbite-spider` / `frostbite-spider`; Skeever → `skeever` / `skeever`; Bandit → `bandit` / `bandits`; Dwarven Spider → `dwarven-spider` / `dwarven-spider`; Dwarven Sphere → `dwarven-sphere` / `dwarven-sphere`; Dwarven Centurion → `dwarven-centurion` / `dwarven-centurion`; Falmer → `falmer` / `falmer`; Falmer Nightprowler → `falmer-nightprowler` / `falmer`; Falmer Warmonger → `falmer-warmonger` / `falmer`; Chaurus → `chaurus` / `chaurus`.
+
+  **Rewards in each system's catalog:** Thieves Guild armor (grimscrolls.thieves-guild-leathers); Nightingale Blade (elder-scrolls-2e.nightingale-blade · grimscrolls.nightingale-blade-and-bow); Chillrend (elder-scrolls-2e.chillrend · grimscrolls.chillrend); Nightingale Armor (elder-scrolls-2e.nightingale-armor · grimscrolls.nightingale-armor); Nightingale Hood (elder-scrolls-2e.nightingale-hood); Nightingale Bow (elder-scrolls-2e.nightingale-bow · grimscrolls.nightingale-blade-and-bow); The Skeleton Key (elder-scrolls-2e.skeleton-key · grimscrolls.skeleton-key); Guild Master's Armor (elder-scrolls-2e.guild-masters-armor); Amulet of Articulation (elder-scrolls-2e.amulet-of-articulation · grimscrolls.amulet-of-articulation).
+source: campaigns/05-the-thieves-guild#pitch
+---
+id: the-thieves-guild-region
+type: loc
+name: Riften & the Ratway
+tags: [the-thieves-guild, region]
+mechanics:
+  elder-scrolls-2e: {kind: region}
+body: |-
+  ## GM notes
+
+  Riften is a canal-laced wooden trade town on Lake Honrich in the autumn-forest Hold of the Rift, ruled in name by Jarl **Laila Law-Giver** and in truth by **Maven Black-Briar**. It is the most corrupt city in Skyrim, and the Guild is the reason.
+source: campaigns/05-the-thieves-guild#the-place--riften--the-ratway
+---
+id: the-thieves-guild-the-riften-market
+type: loc
+name: The Riften Market
+tags: [the-thieves-guild, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  Open stalls in the canal town's heart. Where Brynjolf works the crowd and the campaign begins. Madesi the Argonian jeweler, Brand-Shei the Dunmer trader, and Grelka the armorer keep stalls here.
+source: campaigns/05-the-thieves-guild#the-place--riften--the-ratway
+---
+id: the-thieves-guild-the-ratway
+type: loc
+name: The Ratway
+tags: [the-thieves-guild, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  The flooded sewer-warren beneath Riften, full of skeevers, lowlifes, and the desperate (it is also where the Blades' loremaster Esbern hides, in another tale). Two ways into the Guild: the long crawl through the Ratway, or a secret tomb door east of the Hall of the Dead.
+source: campaigns/05-the-thieves-guild#the-place--riften--the-ratway
+---
+id: the-thieves-guild-the-cistern
+type: loc
+name: The Cistern
+tags: [the-thieves-guild, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  The Guild's true home behind the Flagon — a vaulted, water-floored hall of bunks, a strongbox vault, and the Guild Master's quarters. Empty bunks tell the story of the Guild's decline.
+source: campaigns/05-the-thieves-guild#the-place--riften--the-ratway
+---
+id: the-thieves-guild-mistveil-keep
+type: loc
+name: Mistveil Keep
+tags: [the-thieves-guild, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  Jarl Laila's seat. The party need not enter, but the city guard answers to it, and a high Bounty here makes every job harder.
+source: campaigns/05-the-thieves-guild#the-place--riften--the-ratway
+---
+id: the-thieves-guild-brynjolf
+type: monster
+name: Brynjolf
+knowledge: secret
+tags: [the-thieves-guild, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Thieves Guild'
+    hp: 6
+    armor: 1
+    STR: 11
+    DEX: 14
+    WIL: 13
+    attacks:
+    - {name: dagger, damage: d6}
+    - name: short bow
+      damage: d6
+      qualities: [bulky]
+    abilities:
+    - 'Patter: once per day, when Brynjolf talks rather than fights, a PC backing his play may re-roll
+      a failed WIL save to persuade or distract. An ally, not an obstacle — he turns Nightingale alongside
+      the party in Beat 7.'
+body: |-
+  ## GM notes
+
+  The Guild's silver-tongued recruiter, a red-haired Nord who works the Riften market in plain sight. Loyal to the Guild above any one master.
+
+  Elder Scrolls 2e: 6 HP, 1 Armor, 11 STR, 14 DEX, 13 WIL, dagger (d6), short bow (d6, bulky).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/05-the-thieves-guild#brynjolf
+---
+id: the-thieves-guild-mercer-frey
+type: monster
+name: Mercer Frey
+aliases: [Mercer Frey (the traitor)]
+knowledge: secret
+tags: [the-thieves-guild, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Thieves Guild'
+    hp: 12
+    armor: 2
+    STR: 13
+    DEX: 15
+    WIL: 14
+    attacks:
+    - {name: Dwarven sword and dagger, damage: '{d8, d6}kh1'}
+    abilities:
+    - 'Stolen Luck: While he holds the Skeleton Key (Beats 4–8), once per combat Mercer turns invisible
+      and vanishes — the next attack against him is wasted, and he may move away unseen. In the final
+      fight he can, once, force a PC or an ally to pass a WIL save or strike at the nearest friend.'
+    - On taking Critical Damage, he drops the Skeleton Key and the Eyes of the Falmer, and the 
+      chamber around him begins to flood.
+fields: {role: the traitor}
+body: |-
+  ## GM notes
+
+  *the traitor*
+
+  Guild Master of the Thieves Guild and the campaign's villain: a Breton who broke the Nightingale oath, murdered Gallus, framed Karliah, and stole the Skeleton Key. Cold, controlled, and utterly without remorse.
+
+  Elder Scrolls 2e: 12 HP, 2 Armor, 13 STR, 15 DEX, 14 WIL, Dwarven sword and dagger (d8+d6).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/05-the-thieves-guild#mercer-frey-the-traitor
+---
+id: the-thieves-guild-karliah
+type: monster
+name: Karliah
+aliases: [Karliah (the wronged Nightingale)]
+knowledge: secret
+tags: [the-thieves-guild, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Thieves Guild'
+    hp: 8
+    armor: 1
+    STR: 11
+    DEX: 15
+    WIL: 13
+    attacks:
+    - name: Nightingale Bow
+      damage: d6
+      qualities: [bulky]
+    - {name: Nightingale Blade, damage: d8}
+    abilities:
+    - 'Shadow-Shot: From concealment or dim light her bow attack is Enhanced. She fights from the edges
+      of a room, never the middle.'
+fields: {role: the wronged Nightingale}
+body: |-
+  ## GM notes
+
+  *the wronged Nightingale*
+
+  A Dunmer thief and Nightingale, lover of the murdered Gallus, exiled twenty-five years for a crime she did not commit. Patient, grief-worn, and deadly with a bow from the dark. The party's chief ally from Beat 4 onward.
+
+  Elder Scrolls 2e: 8 HP, 1 Armor, 11 STR, 15 DEX, 13 WIL, Nightingale Bow (d6, bulky), Nightingale Blade (d8).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/05-the-thieves-guild#karliah-the-wronged-nightingale
+---
+id: the-thieves-guild-delvin-mallory
+type: monster
+name: Delvin Mallory
+knowledge: secret
+tags: [the-thieves-guild, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Thieves Guild'
+    hp: 6
+    armor: 1
+    STR: 12
+    DEX: 13
+    WIL: 12
+    attacks:
+    - {name: dagger, damage: d6}
+    abilities:
+    - 'Old Hand: Knows a fence, a back door, or a name for any city in Skyrim — the Warden may use him
+      to hand the party a lead when they stall.'
+body: |-
+  ## GM notes
+
+  A grizzled Breton veteran of the Cistern who dispenses the Guild's bread-and-butter jobs and frets over the "curse." Hands out work, gear, and gossip; never the threat.
+
+  Elder Scrolls 2e: 6 HP, 1 Armor, 12 STR, 13 DEX, 12 WIL, dagger (d6).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/05-the-thieves-guild#delvin-mallory
+---
+id: the-thieves-guild-vex
+type: monster
+name: Vex
+knowledge: secret
+tags: [the-thieves-guild, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Thieves Guild'
+    hp: 6
+    armor: 1
+    STR: 11
+    DEX: 15
+    WIL: 12
+    attacks:
+    - {name: dagger, damage: d6}
+    abilities:
+    - 'The Way In: If consulted before a heist (e.g. Goldenglow), she reveals a hidden entrance: the party
+      need not save to get past the outer guards.'
+body: |-
+  ## GM notes
+
+  The Guild's best infiltrator, a sharp-tongued Imperial who has never failed a job she took. Runs the "specialist" work alongside Delvin.
+
+  Elder Scrolls 2e: 6 HP, 1 Armor, 11 STR, 15 DEX, 12 WIL, dagger (d6).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/05-the-thieves-guild#vex
+---
+id: the-thieves-guild-maven-black-briar
+type: monster
+name: Maven Black-Briar
+aliases: [Maven Black-Briar (patron)]
+knowledge: secret
+tags: [the-thieves-guild, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Thieves Guild'
+    hp: 5
+    STR: 9
+    DEX: 10
+    WIL: 15
+    abilities:
+    - "Long Reach: Crossing Maven raises the party's Riften Bounty and can turn the city guard hostile.
+      Pleasing her is worth a step of Thieves Guild Reputation and a quiet word in the Jarl's ear. If
+      the Imperials later take the Rift, she is installed as Jarl — and a Guild Master she favors profits
+      accordingly."
+fields: {role: patron}
+body: |-
+  ## GM notes
+
+  *patron*
+
+  The Black-Briar matriarch who truly rules Riften, mead-rich and venomous, the Guild's patron and paymaster. The party works for her long before they understand they do.
+
+  Elder Scrolls 2e: 5 HP, 9 STR, 10 DEX, 15 WIL, no weapon (she commands those who fight).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/05-the-thieves-guild#maven-black-briar-patron
+---
+id: the-thieves-guild-vald
+type: monster
+name: Vald
+aliases: [Vald (Mercer's guard)]
+knowledge: secret
+tags: [the-thieves-guild, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Thieves Guild'
+    hp: 8
+    armor: 2
+    STR: 14
+    DEX: 13
+    WIL: 9
+    attacks:
+    - {name: war axe, damage: d8}
+    - name: crossbow
+      damage: d8
+      qualities: [bulky]
+fields: {role: Mercer's guard}
+body: |-
+  ## GM notes
+
+  *Mercer's guard*
+
+  A surly mercenary set to guard Riftweald Manor (Beat 6), in debt to Maven and looking for a way out. Can be fought, bribed, or turned by clearing his debt to Maven.
+
+  Elder Scrolls 2e: 8 HP, 2 Armor, 14 STR, 13 DEX, 9 WIL, war axe (d8), crossbow (d8, bulky).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/05-the-thieves-guild#vald-mercers-guard
+---
+id: the-thieves-guild-nocturnal
+type: npc
+name: Nocturnal
+aliases: [Nocturnal — the Daedric Prince]
+knowledge: secret
+tags: [the-thieves-guild, cast]
+fields: {role: the Daedric Prince}
+body: |-
+  ## GM notes
+
+  *the Daedric Prince*
+
+  *(not a combatant — a presence)*
+
+  - The Daedric Prince of shadow, luck, and the night, patron of all thieves; she manifests in the oath chamber of the Nightingale Hall and again before the **Ebonmere** in the Twilight Sepulcher. Aloof, amused, and entirely transactional — the Nightingales serve her, not the reverse.
+  - **Not a Fight**: Nocturnal is never an enemy and cannot be harmed. She is the bargain itself: she grants the Nightingale oath (Beat 7) and her blessing (Beat 9), and her favor — the Guild's luck — lives or dies by whether the **Skeleton Key** sits in its shrine.
+source: campaigns/05-the-thieves-guild#nocturnal--the-daedric-prince
+---
+id: the-thieves-guild-the-guilds-luck
+type: track
+name: The Guild's Luck
+knowledge: secret
+tags: [the-thieves-guild, clock]
+kind: clock
+size: 6
+value: {value: 6, size: 6}
+note: '(d6, counting down) Starts at 6. Loses a point whenever a Guild job goes wrong, a member is caught
+  or killed, or a session passes without the party moving against Mercer after Beat 4. At 3, the Cistern
+  empties — only Delvin, Vex, Brynjolf, and Tonilia remain; at 1, Maven cuts the Guild loose and the Riften
+  guard raids the Flagon. Returning the Key restores it to 6 at once. [It counts down: `didact track tick
+  <it> --by -1` for each point lost.]'
+source: campaigns/05-the-thieves-guild#clocks
+---
+id: the-thieves-guild-mercers-head-start
+type: track
+name: Mercer's Head Start
+knowledge: secret
+tags: [the-thieves-guild, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: '(d4) After Beat 4, ticks each session the party spends on anything but the hunt. At 4, Mercer has
+  the Eyes of the Falmer and is gone from Irkngthand before the party arrives: they must chase him to
+  the coast, a ship, and a last stand on the ice.'
+source: campaigns/05-the-thieves-guild#clocks

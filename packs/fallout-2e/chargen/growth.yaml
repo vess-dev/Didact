@@ -1,0 +1,63 @@
+# Growth (overseers-guide/growth): characters don't level up. Three paths: Scars (the attack
+# applies them by itself), Training (a technique learned from a Master in Downtime, at a Cost) and
+# Acquisition (every item, relic, perk and ally kept). `didact char advance <pc>` records a
+# Training or an Acquisition step by step; nothing is written until `char commit`. Replaces the
+# parent's growth draft (Cairn's growth triggers aren't Fallout's).
+chargen: growth
+title: Growth
+help: >-
+  Growth through Training: a technique learned during Downtime from a Master, at a specific Cost,
+  producing a small, precise mechanical upgrade (an attack Enhanced on a named condition, a new
+  way to resist a specific effect, a new option in a specific situation; never a general +1).
+  Growth through Acquisition: an item, relic, perk or ally that changed what the character can
+  do. Scars need no draft: the attack applies them. Answer any step up front: `didact char
+  advance <pc> how=training technique='One-Handed Brace' master='a Ranger sniper' cost='beat her
+  in a footrace'`.
+advances: pc
+modes: [guided]
+params:
+  who: ref
+  how: {enum: [training, acquisition, scar], optional: true, help: "The path of growth"}
+  technique: {kind: text, optional: true, help: "training: the technique and what it does, in a sentence"}
+  master: {kind: text, optional: true, help: "training: who taught it"}
+  cost: {kind: text, optional: true, help: "training: what it cost (caps, time, a favor, a relic, a piece of the past)"}
+  gained: {kind: text, optional: true, help: "acquisition: what they came out with, and what it lets them do"}
+steps:
+  - choose:
+      from: [training, acquisition, scar]
+      as: how
+      answer: "$how"
+      prompt: "How does {@who.name} grow: through Training (a technique from a Master, at a Cost), Acquisition (an item, relic, perk or ally), or a Scar?"
+  - if: "@how == 'scar'"
+    then:
+      - stop: "Scars need no draft: the attack applies them when HP reaches exactly 0 (`didact do scar who={@who.id} lost=<n>` by hand), and most give something back."
+  - if: "@how == 'training'"
+    then:
+      - if: "default(@technique, '') == ''"
+        then:
+          - ask: {as: technique, prompt: "The technique and its precise effect, in a sentence (e.g. 'One-Handed Brace: with one hand free, once per combat one attack with a one-handed weapon is Enhanced')"}
+        else:
+          - let: {technique: "@technique"}
+      - if: "default(@master, '') == ''"
+        then:
+          - ask: {as: master, prompt: "The Master who taught it (it must come from play)"}
+        else:
+          - let: {master: "@master"}
+      - if: "default(@cost, '') == ''"
+        then:
+          - ask: {as: cost, prompt: "What it cost: caps, time, a favor, a relic, a piece of the character's past"}
+        else:
+          - let: {cost: "@cost"}
+      - add: {field: abilities, value: "{@technique} (trained by {@master}; cost: {@cost})"}
+      - add: {field: growth, value: "Training: {@technique}, from {@master} ({@cost})"}
+      - message: "{@who.name} learns {@technique}."
+  - if: "@how == 'acquisition'"
+    then:
+      - if: "default(@gained, '') == ''"
+        then:
+          - ask: {as: gained, prompt: "What they came out with, and what it lets them do now"}
+        else:
+          - let: {gained: "@gained"}
+      - add: {field: growth, value: "Acquisition: {@gained}"}
+      - message: "{@who.name} grows through what they carry: {@gained}."
+source: overseers-guide/growth#three-paths-of-growth

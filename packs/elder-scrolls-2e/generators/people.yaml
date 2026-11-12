@@ -1,0 +1,73 @@
+# People and jobs (wardens-guide/npc-tables, adventure-hooks): an NPC, replacing cairn-2e's (the
+# race first, then a name from that race's column), and the job of the week.
+generator: npc
+title: An NPC
+help: >-
+  The NPC tables, step by step: a race (d12, Nords doubled; 12 the Warden's pick, or choose to
+  fit the place), a name from that race's column, a quirk, a background, a goal, a virtue and a
+  vice. Ordinary folk are 10s across the board, 3 HP, no Armor and one improvised weapon (give a
+  soldier or a mage more by Creating Monsters' ranges). A reaction to the party (2d6) when it
+  isn't obvious. Prefill by name: race, picked, name, quirk, background, goal, virtue, vice,
+  disposition.
+source: wardens-guide/npc-tables#putting-it-together
+steps:
+  - choose_or_roll: {table: npc-race, as: race}
+  - if: "default(@race.race, '') == ''"
+    then:
+      - choose: {from: [nord, imperial, breton, redguard, altmer, bosmer, dunmer, orc, khajiit, argonian], as: picked, prompt: "The Warden's pick, to fit the place (a court in Solitude skews Nord and Imperial; Windhelm's Gray Quarter is Dunmer; a caravan camp, Khajiit)"}
+      - message: "The Warden's pick: {@picked} (a draft that rolls itself picks for the Warden)."
+      - let: {people: "@picked"}
+    else:
+      - let: {people: "@race.race"}
+  - let: {names: "if(@people == 'argonian', 'npc-names-argonian', if(@people == 'orc', 'names-orc', if(@people == 'nord', 'names-nord', if(@people == 'imperial', 'names-imperial', if(@people == 'breton', 'names-breton', if(@people == 'redguard', 'names-redguard', if(@people == 'altmer', 'names-altmer', if(@people == 'bosmer', 'names-bosmer', if(@people == 'dunmer', 'names-dunmer', 'names-khajiit')))))))))"}
+  - choose_or_roll: {table: "{@names}", as: name}
+  - choose_or_roll: {table: npc-quirk, as: quirk}
+  - choose_or_roll: {table: npc-background, as: background}
+  - choose_or_roll: {table: npc-goal, as: goal}
+  - choose_or_roll: {table: npc-virtue, as: virtue}
+  - choose_or_roll: {table: npc-vice, as: vice}
+  - choose_or_roll: {table: reactions, as: disposition}
+  - let: {race_name: "if(@people == 'orc', 'Orsimer', if(@people == 'nord', 'Nord', if(@people == 'imperial', 'Imperial', if(@people == 'breton', 'Breton', if(@people == 'redguard', 'Redguard', if(@people == 'altmer', 'Altmer', if(@people == 'bosmer', 'Bosmer', if(@people == 'dunmer', 'Dunmer', if(@people == 'khajiit', 'Khajiit', 'Argonian')))))))))"}
+  - entity:
+      key: npc
+      type: npc
+      name: "{@name}"
+      fields:
+        race: "{@race_name}"
+        role: "@background"
+        goal: "@goal"
+        traits: {quirk: "@quirk", virtue: "@virtue", vice: "@vice"}
+        STR: 10
+        DEX: 10
+        WIL: 10
+        hp: 3
+        disposition: "@disposition"
+  - if: "'Bigoted' in @vice"
+    then: ["Bigoted: let it shift the Reaction one step worse toward the wrong PC (`didact do reaction who=<npc> party=<party> toward=<pc> shift=-1`)."]
+  - prompt: "Read the results together for a breath and a person steps out of them. Most have a quiet lean toward the Stormcloaks or the Empire, even the ones who say they don't; many go by an earned byname (Crag-Walker, Half-Hand, Two-Winters)."
+  - prompt: "What do they want from the party, and what would they do to get it?"
+---
+generator: adventure-hook
+title: The job of the week
+help: >-
+  A job (wardens-guide/adventure-hooks), five steps and six dice: the Patron (d20), the Task
+  (d6) and that task's own job (d20), the Complication (d10), the Location (d12) and the Reward
+  (d10), beyond the base pay of a few hundred Septims. A thread to resolve. Prefill by name:
+  patron, task, job, complication, location, reward.
+source: wardens-guide/adventure-hooks#adventure-hooks
+steps:
+  - choose_or_roll: {table: hook-patron, as: patron}
+  - choose_or_roll: {table: hook-task, as: task}
+  - choose_or_roll: {table: "{@task.job}", as: job}
+  - choose_or_roll: {table: hook-complication, as: complication}
+  - choose_or_roll: {table: hook-location, as: location}
+  - choose_or_roll: {table: hook-reward, as: reward}
+  - entity:
+      key: job
+      type: thread
+      name: "Job: {@task.task}"
+      fields:
+        goal: "{@job}"
+      body: "Patron: {@patron}\nTask: {@task}\nThe job: {@job}\nComplication: {@complication}\nLocation: {@location}\nReward: {@reward} (beyond base pay of a few hundred Septims)"
+  - prompt: "Sit with the five results for a minute: who really wants this done, what the catch is, where the danger lies, and what walking back out is worth. Name the patron (`didact gen run elder-scrolls-2e.npc`) and the place."
+  - prompt: "A starting point, not a script: if the party resolves it in an unexpected way, let them. Killing bandits, Forsworn, draugr and the plainly monstrous never lowers Renown."

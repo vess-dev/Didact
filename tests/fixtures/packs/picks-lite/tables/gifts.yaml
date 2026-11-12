@@ -1,0 +1,8 @@
+# Each gift says what it grants when a choice offers it (`about:`); the lantern says it itself.
+table: gifts
+title: Gifts
+about: "Grants: {grants}."
+entries:
+  - {text: Ember, data: {grants: [warmth, light]}}
+  - {text: Feather, data: {grants: [a soft fall]}}
+  - {text: Lantern, note: "A light that never goes out.", data: {grants: [light]}}

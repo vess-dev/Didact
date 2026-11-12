@@ -1,0 +1,24 @@
+# Alchemist (backgrounds/alchemist): the background's two d6 tables.
+table: alchemist-1
+title: "What did your apprenticeship leave you with?"
+dice: d6
+source: backgrounds/alchemist#what-did-your-apprenticeship-leave-you-with-roll-1d6
+entries:
+  1: "A knowing palate. A pinch of an ingredient on your tongue reveals all of its properties, not just one, and given an hour in the wild you can always gather a useful handful where another would find only weeds."
+  2: {text: "A healer's name that hides the rest. Take a Potion of Healing, and the trust of plain folk, who come to you for cures and never think to wonder what else you keep.", data: {gear: [{name: "Potion of Healing", size: "petty", uses: 1}]}}
+  3: {text: "The quiet poisoner's trade. Take a vial of Damage Health poison (3 uses; see Crafting), and the discretion never to be the one suspected.", data: {gear: [{name: "Damage Health poison", uses: 3, note: "see Crafting"}]}}
+  4: "A near-fatal lesson that left you hardened to your own art. You need not save against ordinary poisons, and you can taste a tainted cup or a doctored dose before it touches your lips."
+  5: {text: "The Nirnroot beds of Sarethi Farm, where Avrusa Sarethi taught you what she will teach no one else. Take a living Nirnroot in a clay pot (petty), worth 50 Septims to any alchemist, and an ear for its song: you can hear wild Nirnroot chiming a hundred paces off.", data: {gear: [{name: "Living Nirnroot", size: "petty", note: "in a clay pot; worth 50 Septims to any alchemist"}]}}
+  6: {text: "A cruel commission you carried out, for a patron who still calls on you. Take a vial of Paralytic poison (3 uses; see Crafting), and a debt to someone you would rather not name.", data: {gear: [{name: "Paralytic poison", uses: 3, note: "see Crafting"}]}}
+---
+table: alchemist-2
+title: "What rare brew or ingredient do you guard most closely?"
+dice: d6
+source: backgrounds/alchemist#what-rare-brew-or-ingredient-do-you-guard-most-closely-roll-1d6
+entries:
+  1: {text: "Nurelion's Commission: Old Nurelion of the White Phial shop in Windhelm paid you 50 Septims up front to find the legendary flask his shop is named for. You have his notes (petty), and a map to a cave in the snows west of the city, below the ruin of Alftand.", data: {add: {gold: 50}, gear: [{name: "Nurelion's notes", size: "petty", note: "and a map to a cave in the snows west of Windhelm"}]}}
+  2: {text: "Alchemist's Ring: A plain silver ring enchanted for the craft (petty). When you brew at a lab, you get one more dose than the recipe would give.", data: {gear: [{name: "Alchemist's Ring", size: "petty"}]}}
+  3: {text: "Phial of Lingering Death: A stoppered vial of Lingering poison (1 use; see Crafting), your cruelest work. It goes on killing after the blade is out.", data: {gear: [{name: "Phial of Lingering Death", uses: 1, note: "see Crafting"}]}}
+  4: {text: "Cure-All Draught: A precious flask brewed from rare makings (2 uses). A dose cures one disease and restores 1d4 STR besides — the remedy folk will walk for days, and pay through the nose, to ask of you.", data: {gear: [{name: "Cure-All Draught", uses: 2}]}}
+  5: {text: "Invisibility Draught: A clouded vial that bends the light around the drinker (petty, 1 use). You cannot be seen until you attack, cast, or the scene ends.", data: {gear: [{name: "Invisibility Draught", size: "petty", uses: 1}]}}
+  6: {text: "The Rarest Reagent: A single jealously kept ingredient (petty) — a Daedra heart, a Crimson Nirnroot from Blackreach, a sliver of Jarrin root. Once per campaign, with a lab and a quiet night, brew it into a draught of the Warden's making that does the all but impossible; then it is gone, and another may take seasons to find.", data: {gear: [{name: "The Rarest Reagent", size: "petty"}]}}

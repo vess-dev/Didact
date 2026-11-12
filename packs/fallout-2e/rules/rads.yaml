@@ -1,0 +1,329 @@
+# Rads, Rad Scars and ghoulification (players-guide/core-rules#deprivation--rads, rad-scars,
+# hazards#rad-zones, unusual-pcs). Rads fill inventory slots; every Rad a PC takes calls for a Rad
+# Scar save, which the sheet runs by itself (the `rads` field's hook fires `rad-scar-save` for
+# each Rad gained, however it was added). NPCs don't track Rads: a Rad costs a rad-susceptible
+# creature 1 STR instead.
+action: rad
+title: Take a Rad
+help: >-
+  A PC takes Rads (amount=n): hot zones, dirty water, rad weather, radiation weapons, the
+  fiction. Each fills a slot (no free slot: drop an item first) and calls for a Rad Scar save.
+  Robots and super mutants take none; a Radiant ghoul takes none from the environment
+  (source=ambient, hot-zone, weather or water). Rad-X negates the next Rad from any source; gear
+  that halves Rads (a radiation suit, sealed power armor, Lead Lining: gear=halves) ignores every
+  second Rad of that kind (counted per source), gear that negates them (a sealed hazmat suit,
+  X-01: gear=negates) all of them. A
+  rad-susceptible NPC loses 1 STR a Rad instead (no Critical Damage save for it); rad-immune ones
+  ignore it.
+params:
+  who: ref
+  amount: {kind: int, default: 1}
+  source: {enum: [ambient, hot-zone, weather, water, weapon, chem, relic, other], default: other, help: "Where it comes from"}
+  gear: {enum: [none, halves, negates], default: none, help: "Protective gear against this exposure"}
+steps:
+  - if: "@who.type <> 'pc'"
+    then:
+      - if: "default(@who.rad_immune, false) or default(@who.category, '') == 'Ghouls' or default(@who.category, '') == 'Super Mutants' or default(@who.category, '') == 'Pre-war Robots' or default(@who.category, '') == 'Rogue Machines'"
+        then:
+          - stop: "{@who.name} is rad-immune: the Rad does nothing."
+      - set: who.STR
+        op: "-="
+        value: "@amount"
+      - stop: "NPCs and creatures don't track Rads: {@who.name} loses {@amount} STR instead (that loss doesn't force a Critical Damage save)."
+  - if: "'rads' in @who.immunities or @who.kind == 'robot' or @who.kind == 'super-mutant'"
+    then:
+      - stop: "{@who.name} takes no Rads from any source (a robot's chassis, a super mutant's FEV-rebuilt cells)."
+  - let: {environmental: "@source == 'ambient' or @source == 'hot-zone' or @source == 'weather' or @source == 'water'"}
+  - if: "@environmental and 'ambient-rads' in @who.immunities"
+    then:
+      - stop: "{@who.name} absorbs environmental radiation instead of taking it: no Rads from hot zones, rad storms or dirty water (weapons and direct radiation still count)."
+  - if: "@gear == 'negates'"
+    then:
+      - stop: "{@who.name}'s gear negates the exposure: no Rads (a single puncture breaks a hazmat suit's seal)."
+  # "When gear halves Rads, the wearer ignores every second Rad of that kind" (hazards#rad-zones):
+  # `rad_halved` keeps the kinds (sources) whose next Rad is the one ignored.
+  - let: {parity: "if('$source' in default(@who.rad_halved, ''), 1, 0)"}
+  - let:
+      taken: "if(@gear == 'halves', (@amount + 1 - @parity) // 2, @amount)"
+      next_parity: "if(@gear == 'halves', (@parity + @amount) % 2, @parity)"
+  - if: "@gear == 'halves'"
+    then:
+      - if: "@next_parity == 1 and @parity == 0"
+        then:
+          - set: who.rad_halved
+            op: "+="
+            value: $source
+      - if: "@next_parity == 0 and @parity == 1"
+        then:
+          - set: who.rad_halved
+            op: "-="
+            value: $source
+      - message: "Gear halves the exposure: {@who.name} ignores every second $source Rad ({@amount} → {@taken})."
+  - if: "@who.rad_x and @taken > 0"
+    then:
+      - let: {taken: "@taken - 1"}
+      - set: who.rad_x
+        value: false
+      - message: "Rad-X negates the next Rad: one Rad less ({@taken} left)."
+  - if: "@taken <= 0"
+    then:
+      - stop: "No Rad gets through."
+  - if: "@who.inventory.free < @taken"
+    then:
+      - stop: "{@who.name} has {@who.inventory.free} free slot(s) for {@taken} Rad(s): drop an item first (`didact inv drop {@who.id} <item>`), then `didact do rad who={@who.id} amount={@taken}`."
+  - set: who.rads
+    op: "+="
+    value: "@taken"
+  - message: "{@who.name} takes {@taken} Rad(s) ({@who.rads} now): each calls for a Rad Scar save (20 − Rads)."
+source: players-guide/core-rules#deprivation--rads
+---
+check: rad-scar-save
+title: Rad Scar save
+help: >-
+  Every Rad a PC takes calls for it: 1d20 against 20 minus their current Rads (the new one
+  included). At or under resists; over, a Rad Scar: 1d20 on the Rad Scars table (1–10 Minor,
+  11–20 Major), kept for good. Ghouls never roll it (Rads still fill their slots). The sheet runs
+  it for each Rad gained.
+params: {who: ref}
+before:
+  - if: "@who.type <> 'pc'"
+    then:
+      - stop: "NPCs don't track Rads or Rad Scars."
+  - if: "'rads' in @who.immunities or @who.kind == 'robot' or @who.kind == 'super-mutant'"
+    then:
+      - stop: "{@who.name} takes no Rads at all: take it off again (`didact set {@who.id} rads-=1`)."
+  - if: "'rad-scars' in @who.immunities or @who.kind == 'ghoul'"
+    then:
+      - if: "@who.rads >= 6"
+        then:
+          - reminder: "A ghoul at six or more Rads: a full day there without clearing any, and {@who.name} rolls 1d20 at the next watch (`didact do feral-check who={@who.id}`): on a 20, they go feral."
+      - stop: "{@who.name} is a ghoul: no Rad Scar save, though the Rad fills its slot."
+  - let: {target: "20 - @who.rads"}
+roll: d20
+success: "@roll <= @target"
+on:
+  success: ["{@who.name} resists: no Rad Scar (needed {@target} or under)."]
+  failure:
+    - table: rad-scars
+      as: mark
+    - set: who.rad_scars
+      op: "+="
+      value: "@mark.name"
+    - set: who.rad_scar_count
+      op: "+="
+      value: "default(@mark.count, 1)"
+    - if: "default(@mark.hp, 0) > 0"
+      then:
+        - do: attribute-raise
+          with: {who: "@who", attr: hp, amount: "@mark.hp", value: stays}
+    - if: "default(@mark.hp, 0) < 0"
+      then:
+        - do: attribute-lower
+          with: {who: "@who", attr: hp, amount: "0 - @mark.hp"}
+    - if: "default(@mark.WIL, 0) < 0"
+      then:
+        - do: attribute-lower
+          with: {who: "@who", attr: WIL, amount: "0 - @mark.WIL"}
+    - if: "default(@mark.DEX, 0) < 0"
+      then:
+        - do: attribute-lower
+          with: {who: "@who", attr: DEX, amount: "0 - @mark.DEX"}
+    - message: "{@who.name} gains a {@mark.grade} Rad Scar: {@mark}"
+    - prompt: "A Rad Scar is visible in the fiction before it matters: what does {@who.name} notice in the next mirror, or what does the next stranger flinch at?"
+source: players-guide/rad-scars#rad-scars
+---
+action: clear-rads
+title: Clear Rads
+help: >-
+  Rads clear only through RadAway, a medical clinic, a settlement's Industrial Water Purifier
+  (1 a day), or a specific chem, meal, perk, relic, bond or background ability (amount=n, or
+  all=true). Sleep and ordinary rest never clear them, and a Deprived character can't clear any.
+params:
+  who: ref
+  amount: {kind: int, default: 1}
+  all: {kind: flag, default: false, help: "Clear every Rad (a clinic's rad flush)"}
+  by: {kind: text, default: RadAway, help: "What clears them"}
+steps:
+  - if: "'deprived' in default(@who.conditions, '')"
+    then:
+      - stop: "{@who.name} is Deprived: no Rads clear until the lack is remedied (`didact do relieve who={@who.id}`)."
+  - if: "default(@who.rads, 0) == 0"
+    then:
+      - stop: "{@who.name} carries no Rads."
+  - let: {cleared: "if(@all, @who.rads, min(@amount, @who.rads))"}
+  - set: who.rads
+    op: "-="
+    value: "@cleared"
+  - message: "$by clears {@cleared} Rad(s) from {@who.name} ({@who.rads} left)."
+source: players-guide/core-rules#deprivation--rads
+---
+action: rad-zone
+title: Rad zone exposure
+help: >-
+  Ambient rad zones add 1 Rad per watch of travel (watches=n); hot zones (glowing craters,
+  ruptured reactors, weapon-test sites) add 1 Rad per scene on top (zone=hot, scenes=n). A sealed
+  hazmat suit negates ambient Rads (gear=negates); a radiation suit, sealed power armor or a Lead
+  Lining halves them (gear=halves; X-01 negates). A dose of Rad-X negates the next Rad.
+params:
+  who: ref
+  zone: {enum: [ambient, hot], default: ambient}
+  watches: {kind: int, default: 1, help: "Watches of travel through the zone"}
+  scenes: {kind: int, default: 0, help: "Scenes spent in a hot zone"}
+  gear: {enum: [none, halves, negates], default: none}
+steps:
+  - let: {amount: "@watches + if(@zone == 'hot', @scenes, 0)"}
+  - if: "@amount <= 0"
+    then:
+      - stop: "No exposure: no Rads."
+  - message: "{@who.name}: {@amount} Rad(s) of exposure before protection ({@watches} watch(es) in the zone, {if(@zone == 'hot', @scenes, 0)} scene(s) in a hot zone)."
+  - do: rad
+    with: {who: "@who", amount: "@amount", source: "{if(@zone == 'hot', 'hot-zone', 'ambient')}", gear: "@gear"}
+source: players-guide/hazards#rad-zones
+---
+action: ghoulify
+title: Ghoulification
+help: >-
+  A PC with three Rad Scars (Ghoul-Kissed counts as two) rolls 1d6 at the next long rest: 1–3
+  they ghoulify (the background becomes Ghoul; attributes, HP, perks and gear stay; no more Rad
+  Scars; they may re-roll Bonds), 4–5 they resist (the next one sticks), 6 they break bad (a
+  feral ghoul under the Overseer's control; the player makes a new character). With two or more
+  Rad Scars a PC may choose to ghoulify instead of rolling (choose=true). The long rest
+  (`recover`) runs it.
+params:
+  who: ref
+  choose: {kind: flag, default: false, help: "The PC wants to become a ghoul (two Rad Scars or more): result 1, no roll"}
+steps:
+  - if: "@who.kind == 'ghoul' or 'rad-scars' in @who.immunities"
+    then:
+      - stop: "{@who.name} is already a ghoul (or beyond Rad Scars)."
+  - if: "'rads' in @who.immunities or @who.kind == 'robot' or @who.kind == 'super-mutant'"
+    then:
+      - stop: "{@who.name} cannot ghoulify (no Rads, no Rad Scars)."
+  - if: "@choose and default(@who.rad_scar_count, 0) < 2"
+    then:
+      - stop: "Voluntary ghoulification needs two Rad Scars or more ({@who.name} has {default(@who.rad_scar_count, 0)})."
+  - if: "@choose or @who.ghoul_flag"
+    then:
+      - let: {outcome: "'ghoulify'"}
+      - if: "@who.ghoul_flag and not @choose"
+        then: ["{@who.name} resisted once already: this time it sticks."]
+    else:
+      - if: "default(@who.rad_scar_count, 0) < 3"
+        then:
+          - stop: "{@who.name} has {default(@who.rad_scar_count, 0)} Rad Scar(s): the roll comes with the third (or choose=true from the second)."
+      - table: ghoulification
+        as: result
+      - let: {outcome: "@result.kind"}
+  - if: "@outcome == 'ghoulify'"
+    then:
+      - set: who.background
+        value: Ghoul
+      - set: who.kind
+        value: ghoul
+      - set: who.immunities
+        op: "+="
+        value: rad-scars
+      - set: who.ghoul_flag
+        value: false
+      - message: "{@who.name} ghoulifies: the background is Ghoul now (attributes, HP, perks and gear stay), face and skin change, and no more Rad Scars come, though Rads still fill slots (players-guide/unusual-pcs#ghoul-pcs)."
+      - prompt: "{@who.name} may re-roll their Bonds if they wish. A ghoul who spends a full day at six or more Rads risks ferality; settlements charge more, seat them apart, or post a guard."
+  - if: "@outcome == 'resist'"
+    then:
+      - set: who.ghoul_flag
+        value: true
+      - message: "{@who.name} resists: the transformation stalls. The next one sticks."
+      - prompt: "At the Overseer's option, one of {@who.name}'s Rad Scars may be re-rolled (`didact table roll fallout-2e.rad-scars`), but a new one will come."
+  - if: "@outcome == 'feral'"
+    then:
+      - set: who.status
+        value: feral
+      - message: "{@who.name} breaks bad: a feral ghoul, under the Overseer's control from now on. They may be fought later."
+      - prompt: "The player makes a new character (`didact char new`), who joins the party at once."
+source: players-guide/core-rules#rad-scars--ghoulification
+---
+check: feral-check
+title: A ghoul's feral risk
+help: >-
+  A ghoul PC who spends a full day at six or more Rads without clearing any rolls 1d20 at the
+  next watch: on a 20, the player loses the character to ferality.
+params: {who: ref}
+before:
+  - if: "@who.kind <> 'ghoul'"
+    then:
+      - stop: "Only ghouls go feral from Rads."
+  - if: "default(@who.rads, 0) < 6"
+    then:
+      - stop: "{@who.name} carries {default(@who.rads, 0)} Rads: the risk starts at six, held a full day."
+roll: d20
+success: "@roll < 20"
+on:
+  success: ["{@who.name} holds on to themselves. Clear some Rads."]
+  failure:
+    - set: who.status
+      value: feral
+    - message: "A 20: {@who.name} goes feral, and the player loses the character (`didact char new` for the next one)."
+source: players-guide/core-rules#rad-scars--ghoulification
+---
+trigger: once-per-session
+title: Once-per-session uses come back
+help: "When a session starts, the PCs' once-per-session uses (Thinned Blood, Glowing Marrow, Overdrive, …) are fresh again, and no chem has been dosed yet this session."
+on: session_start
+for: pcs
+params: {who: ref}
+when: "count(@who.once_per_session) > 0 or count(@who.session_doses) > 0"
+steps:
+  - set: who.once_per_session
+    value: []
+  - set: who.session_doses
+    value: []
+source: players-guide/core-rules#time-units--rest
+---
+trigger: feral-risk
+title: A ghoul at six Rads
+help: "A new day finds a ghoul PC at six or more Rads: if they cleared none all day, the feral check comes at the next watch."
+on: time
+for: pcs
+params: {who: ref}
+when: "@time.day > (@time.seconds - @time.passed) // 86400 + 1 and default(@who.kind, '') == 'ghoul' and default(@who.rads, 0) >= 6 and @who.status <> 'dead'"
+steps:
+  - reminder: "{@who.name} is a ghoul at {@who.rads} Rads: if a full day passed without clearing any, roll at the next watch: `didact do feral-check who={@who.id}`."
+source: players-guide/unusual-pcs#ghoul-pcs
+---
+trigger: spirit-absorbs
+title: The nanite culture clears a Rad
+help: "Bond 10: the experimental nanite culture occupies a slot but clears 1 Rad each day (not while Deprived)."
+on: time
+for: pcs
+params: {who: ref}
+when: "@time.day > (@time.seconds - @time.passed) // 86400 + 1 and 'Nanite Culture' in @who.inventory and default(@who.rads, 0) > 0"
+steps:
+  - if: "'deprived' in @who.conditions"
+    then:
+      - stop: "{@who.name} is Deprived: the nanite culture can't clear a Rad today."
+  - set: who.rads
+    op: "-="
+    value: 1
+  - message: "The nanite culture clears one of {@who.name}'s Rads ({@who.rads} left). It wants them alive — for now."
+source: players-guide/character-creation#bonds--1-to-10
+---
+procedure: attribute-lower
+title: Lower an attribute's or HP's maximum
+help: >-
+  The Rad Scars' "−1 max HP", "−1 max WIL", "−1 max DEX" (and Courier-style permanent losses): the
+  maximum drops by the amount, and the current score with it when it would sit above the new
+  maximum. Cairn's own `attribute-raise` only ever raises one.
+params:
+  who: ref
+  attr: {enum: [STR, DEX, WIL, hp]}
+  amount: {kind: int, default: 1}
+steps:
+  - let: {top: "@who.$attr.max", label: "if('$attr' == 'hp', 'HP', '$attr')"}
+  - let: {took: "max(0, @top - @amount)"}
+  - if: "@who.$attr > @took"
+    then:
+      - set: who.$attr
+        value: "@took"
+  - set: who.$attr.max
+    value: "@took"
+  - message: "{@who.name}: max {@label} {@top} → {@took}."
+source: players-guide/rad-scars#minor-rad-scars-1d20-results-110

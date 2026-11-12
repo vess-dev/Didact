@@ -1,0 +1,402 @@
+# Old World Blues (campaigns/11-old-world-blues): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: old-world-blues
+type: quest
+name: Old World Blues
+tags: [old-world-blues, frame, side-arc]
+goal: An old drive-in theater, the Midnight Science Fiction Feature, plays a reel that hypnotizes 
+  the audience. The party wakes at Big Mountain, a pre-war science crater full of robotic horrors 
+  and experimental weapons. Their brains are missing. The Think Tank's old nemesis — Dr. Mobius — 
+  stole one of them. To get it back, the party must fetch three pieces of the crater's forgotten 
+  tech. Everyone in this place is already insane.
+date: Wednesday, 19 October 2281
+body: |-
+  *A drive-in movie theater abducts the party's brains. They wake up at the Big Mountain research facility as talking brainless bodies, guests of the Think Tank — five floating screens full of pre-war scientists who have forgotten they are dead and want the party to help them keep forgetting.*
+
+  ## GM notes
+
+  **Date.** Wednesday, 19 October 2281: a New Vegas side arc: that frame's date, or whenever the drive-in plays. Open a campaign on it with `didact campaign new <id> --date 'Wednesday, 19 October 2281'`, or move one there with `didact time set 'Wednesday, 19 October 2281'` before its first session.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup Old World Blues tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** The drive-in, a reel, waking in the Sink (a pre-war lab with a talking toaster and a house-wide AI). The Think Tank floats in through a wall and explains the situation as if it were a minor formality.
+
+  **Plot beats.**
+
+  1. The Drive-In. The party watches a reel and wakes at Big Mountain without their brains. Their bodies are fine. Their skills are fine. The loss is cosmetic and terrifying. Play the first scene as a cold shower of banter between the party, the Sink's talking appliances, and the five-panel Think Tank broadcasting from the dome.
+  2. Meeting the Think Tank. The party is introduced to Klein, Dala, 0, Borous, and 8 — the five floating brain-panels running Big MT. They are polite, petty, and completely disconnected from the war that ended the world. They want the party to fetch three pieces of tech from the crater's old labs. They also want to keep the party's brains — one of which Mobius has already stolen.
+  3. The Sink Comes Online. The party claims their home base. The toaster, the Book Chute, the Auto-Doc, Muggy, and the Central Intelligence all speak. Each wants one upgrade from somewhere in the crater. Turning the Sink into a real base is the B-plot of the campaign — and the stakes of the climax.
+  4. X-13 Stealth Lab. First mission. A pre-war stealth suit in a glass case that introduces itself as Stealth Suit Mk II. The lab's tests are the party's tutorial in the crater's strange tech. The suit joins the party as a semi-companion.
+  5. X-8 Research Center. Cyberdogs, nightstalkers, and the trail of the holotape that fixes the Sink's Auto-Doc — it ends in the Y-17 medical facility. A child's voice on the school PA. The lab was testing long-term conditioning on captives; the conditioning mostly took.
+  6. X-42 Robo-Scorpion Warehouse. The sonic emitter. A warehouse fight with smaller roboscorpions building up to a giant one — a proper boss. The emitter is the only weapon that will work on the climax.
+  7. Little Yangtze. The darkest detour. A pre-war internment camp where Chinese prisoners were held for Big MT's brain experiments — collared, abandoned when the bombs fell, and ghoulified by the fallout. Father Elijah used the camp as his base and learned to build his bomb collars from theirs; the party finds his workbench and sees what Dead Money's horror looked like when it was still an experiment. Trauma harnesses wait in a shed; the party may take one.
+  8. The Forbidden Zone Dome. Confronting Mobius. He is not the villain. He is the one sane member of the Think Tank who has been playing the villain to keep the other five from doing worse. His speech is the emotional center of the campaign.
+  9. The Think Tank Confrontation. The party returns to the dome with the truth. Klein refuses to hear it. The party can fight him, reason with him, or use the sonic emitter to shut the whole Think Tank down one panel at a time. Resolutions in the Climax below.
+
+  **Climax.**
+
+  Mobius is found in the Forbidden Zone. He is also a Think Tank panel, the sixth — the one who "left."
+
+  - **Kill Mobius.** The Think Tank cheers. The brain is returned. The party leaves. The Sink stays — they can come back between campaigns.
+  - **Spare Mobius, expose the Think Tank.** The five realize what they are. Some hold it together. Dr. 8 weeps in static. The Sink becomes a neutral home the party can use *and* rent out.
+  - **Join the Think Tank.** Upload one PC's mind to a floating panel. They become a recurring NPC ally. The player rolls a new character.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "Old World Blues"}' --auto` drafts the region, 9 places, 7 people, 2 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Bestiary** (Fallout 2e / Grimfall): Lobotomite → `lobotomite` / `lobotomite`; Roboscorpion → `roboscorpion` / `roboscorpion`; Giant Roboscorpion → `giant-roboscorpion` / `roboscorpion`; Trauma Override Harness → `trauma-override-harness` / `trauma-override-harness`; Nightstalker, Legendary → `nightstalker-legendary` / `nightstalker`; Cyberdog → `cyberdog` / `mongrel-pack`; Feral Ghoul → `feral-ghoul` / `feral-ghoul`.
+
+  **Rewards in each system's catalog:** Sonic Emitter (fallout-2e.sonic-emitter-big-mt · grimfall.sonic-emitter); Stealth Suit Mk II (fallout-2e.stealth-suit-mk-ii · grimfall.stealth-suit-mk-ii); Protonic Inversal Axe (fallout-2e.protonic-inversal-axe · grimfall.protonic-inversal-axe); LAER (fallout-2e.laer · grimfall.laer); K9000 Cyberdog Gun (fallout-2e.k9000-cyberdog-gun · grimfall.k9000-cyberdog-gun); X-2 Antenna (fallout-2e.x-2-antenna · grimfall.x-2-antenna); Compliance Regulator (fallout-2e.compliance-regulator · grimfall.compliance-regulator); Dr. Klein's Glove (fallout-2e.dr-kleins-glove · grimfall.dr-kleins-glove); Dr. Mobius' Glove (fallout-2e.dr-mobius-glove · grimfall.dr-mobius-glove).
+source: campaigns/11-old-world-blues#pitch
+---
+id: old-world-blues-region
+type: loc
+name: Big MT
+tags: [old-world-blues, region]
+mechanics:
+  fallout-2e: {kind: region}
+  grimfall: {kind: region}
+body: |-
+  ## GM notes
+
+  Big Mountain is a crater full of labs. The party can enter them in any order.
+source: campaigns/11-old-world-blues#the-place--big-mt
+---
+id: old-world-blues-the-sink
+type: loc
+name: The Sink
+tags: [old-world-blues, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Home base. Talking appliances, a toaster with opinions about the pre-war West, a Central Intelligence AI that offers upgrades in exchange for tech.
+source: campaigns/11-old-world-blues#the-place--big-mt
+---
+id: old-world-blues-the-x-8-research-center
+type: loc
+name: The X-8 Research Center
+tags: [old-world-blues, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Cyberdogs and children-sized lobotomized subjects. The holotape that fixes the Sink's Auto-Doc waits in the Y-17 medical facility.
+source: campaigns/11-old-world-blues#the-place--big-mt
+---
+id: old-world-blues-the-x-13-stealth-lab
+type: loc
+name: The X-13 Stealth Lab
+tags: [old-world-blues, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A pre-war stealth suit in a case, talking to itself.
+source: campaigns/11-old-world-blues#the-place--big-mt
+---
+id: old-world-blues-the-x-42-giant-robo-scorpion-warehouse
+type: loc
+name: The X-42 Giant Robo-Scorpion Warehouse
+tags: [old-world-blues, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A warehouse with a robo-scorpion boss built from the parts of smaller ones. Beating it unlocks the sonic emitter. The warehouse terminals can turn its own turrets on the giant, and pulse weapons are Enhanced against it.
+source: campaigns/11-old-world-blues#the-place--big-mt
+---
+id: old-world-blues-higgs-village
+type: loc
+name: Higgs Village
+tags: [old-world-blues, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A pre-war cul-de-sac preserved under a warehouse roof — the Think Tank's own houses, from back when they had bodies. The mailman is a lobotomite. One house has a body in the basement — an earlier Courier.
+source: campaigns/11-old-world-blues#the-place--big-mt
+---
+id: old-world-blues-the-think-tank-dome
+type: loc
+name: The Think Tank Dome
+tags: [old-world-blues, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The Think Tank's floating panels. Central HQ.
+source: campaigns/11-old-world-blues#the-place--big-mt
+---
+id: old-world-blues-forbidden-zone-dome
+type: loc
+name: Forbidden Zone Dome
+tags: [old-world-blues, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Mobius's territory. Roboscorpions, traps, a screen that insults you.
+source: campaigns/11-old-world-blues#the-place--big-mt
+---
+id: old-world-blues-little-yangtze
+type: loc
+name: Little Yangtze
+tags: [old-world-blues, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A pre-war internment camp for Chinese prisoners, now home to their ghoulified survivors — still collared, still behind the wire. Father Elijah's abandoned workbench is here. Trauma harnesses wait in a shed.
+source: campaigns/11-old-world-blues#the-place--big-mt
+---
+id: old-world-blues-the-crater-road
+type: loc
+name: The Crater Road
+tags: [old-world-blues, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The outer ring. Lobotomites wander it like sheep.
+source: campaigns/11-old-world-blues#the-place--big-mt
+---
+id: old-world-blues-dr-mobius
+type: monster
+name: Dr. Mobius
+knowledge: secret
+tags: [old-world-blues, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Old World Blues'
+    hp: 6
+    armor: 2
+    DEX: 10
+    WIL: 18
+    attacks:
+    - {name: roboscorpion handlers, note: summons a detachment once per scene}
+    abilities:
+    - Its stat block gives no STR (written —).
+    - 'Delusion: Cannot be killed through combat alone. The party must shut him off at the Forbidden Zone
+      terminal.'
+  grimfall:
+    tier: elite
+    role: trickster
+    category: Named Threats & Legends
+    senses:
+    - hovering monitors with disembodied brains and waldo-claws
+    - shrill overlapping technobabble and feedback
+    - disinfectant and old ozone
+    pools:
+    - name: Dr. Klein
+      dice: 6
+      traits: domineering, drowns out all dissent
+      moves: Bluster, Override a Colleague
+    - name: Dr. Mobius
+      dice: 4
+      traits: the exiled sixth, ranting over the speakers from his Forbidden Zone; addled, and 
+        secretly the only merciful one
+      moves: Roboscorpion Bluster, Let the Truth Slip
+    - name: The Council
+      dice: 6
+      traits: bickering en masse; shields the lab
+      moves: Talk in Circles, Vote to Dissect You
+    - name: The Lab
+      dice: 6
+      traits: locked until the Council yields
+      moves: Unleash an Experiment, Reprogram a Captive
+    fail: 8d "Consensus to Dissect" — a timer; when it runs dry, the squabbling stops and the 
+      machines turn on you.
+    wants: data, distraction, and to win the argument — not to grasp what they've actually done
+    note: A linked challenge of comedy and horror; reason, trickery, or sheer absurdity beat force. 
+      Win Mobius over and the Council's fear of him splits them.
+body: |-
+  ## GM notes
+
+  **Dr. Mobius** — the villain. Mostly a mask over the group's shared guilt.
+
+  A Think Tank panel; the Armor is his throne's plating. Invulnerable in his chamber until the throne's emitter is destroyed. Off-throne: no HP, only dialogue.
+
+  Fallout 2e: 6 HP, 2 Armor, — STR, 10 DEX, 18 WIL, roboscorpion handlers (summons a detachment once per scene).
+
+  Grimfall: its card is `grimfall.the-think-tank` (The Think Tank), in this record's grimfall block.
+source: campaigns/11-old-world-blues#dr-mobius
+---
+id: old-world-blues-dr-klein
+type: monster
+name: Dr. Klein
+aliases: [Dr. Klein (and the Think Tank)]
+knowledge: secret
+tags: [old-world-blues, threat, cast]
+mechanics:
+  fallout-2e: {category: 'Campaign: Old World Blues'}
+  grimfall:
+    tier: elite
+    role: trickster
+    category: Named Threats & Legends
+    senses:
+    - hovering monitors with disembodied brains and waldo-claws
+    - shrill overlapping technobabble and feedback
+    - disinfectant and old ozone
+    pools:
+    - name: Dr. Klein
+      dice: 6
+      traits: domineering, drowns out all dissent
+      moves: Bluster, Override a Colleague
+    - name: Dr. Mobius
+      dice: 4
+      traits: the exiled sixth, ranting over the speakers from his Forbidden Zone; addled, and 
+        secretly the only merciful one
+      moves: Roboscorpion Bluster, Let the Truth Slip
+    - name: The Council
+      dice: 6
+      traits: bickering en masse; shields the lab
+      moves: Talk in Circles, Vote to Dissect You
+    - name: The Lab
+      dice: 6
+      traits: locked until the Council yields
+      moves: Unleash an Experiment, Reprogram a Captive
+    fail: 8d "Consensus to Dissect" — a timer; when it runs dry, the squabbling stops and the 
+      machines turn on you.
+    wants: data, distraction, and to win the argument — not to grasp what they've actually done
+    note: A linked challenge of comedy and horror; reason, trickery, or sheer absurdity beat force. 
+      Win Mobius over and the Council's fear of him splits them.
+body: |-
+  ## GM notes
+
+  **Dr. Klein** — Think Tank chair. Mean, loud, sure he's right.
+
+  Non-combatant. The Think Tank are floating brain-panels in a domed room. They have no weapons and no means to fight the party directly. They are an authority, not an encounter. If threatened, Klein opens every lab in Big MT against the party — the lab creatures are the threat, not the panels. If the party physically smashes a panel, it takes one solid hit to destroy (3 HP, no Armor) and the Think Tank collectively panics.
+
+  Grimfall: its card is `grimfall.the-think-tank` (The Think Tank), in this record's grimfall block.
+source: campaigns/11-old-world-blues#dr-klein-and-the-think-tank
+---
+id: old-world-blues-dr-dala
+type: npc
+name: Dr. Dala
+knowledge: secret
+tags: [old-world-blues, cast]
+fields: {role: Think Tank biologist}
+body: |-
+  ## GM notes
+
+  **Dr. Dala** — Think Tank biologist. Flirts with her specimens. Polite.
+source: campaigns/11-old-world-blues#cast
+---
+id: old-world-blues-dr-0
+type: npc
+name: Dr. 0
+knowledge: secret
+tags: [old-world-blues, cast]
+fields: {role: Think Tank engineer}
+body: |-
+  ## GM notes
+
+  **Dr. 0** — Think Tank engineer. Still nursing a grudge against a pre-war rival named House.
+source: campaigns/11-old-world-blues#cast
+---
+id: old-world-blues-dr-8
+type: npc
+name: Dr. 8
+knowledge: secret
+tags: [old-world-blues, cast]
+fields: {role: Think Tank communications}
+body: |-
+  ## GM notes
+
+  **Dr. 8** — Think Tank communications. Speaks in whistles and static. Kindest of the five.
+source: campaigns/11-old-world-blues#cast
+---
+id: old-world-blues-dr-borous
+type: npc
+name: Dr. Borous
+knowledge: secret
+tags: [old-world-blues, cast]
+fields: {role: Think Tank geneticist}
+body: |-
+  ## GM notes
+
+  **Dr. Borous** — Think Tank geneticist. Mad for cyberdogs and high school football.
+source: campaigns/11-old-world-blues#cast
+---
+id: old-world-blues-muggy
+type: npc
+name: Muggy
+knowledge: secret
+tags: [old-world-blues, cast]
+fields: {role: a tiny Securitron obsessed with coffee mugs}
+body: |-
+  ## GM notes
+
+  **Muggy** — a tiny Securitron obsessed with coffee mugs.
+source: campaigns/11-old-world-blues#cast
+---
+id: old-world-blues-roxie
+type: npc
+name: Roxie
+knowledge: secret
+tags: [old-world-blues, cast]
+fields: {role: a cyberdog spliced together at X-8}
+body: |-
+  ## GM notes
+
+  **Roxie** — a cyberdog spliced together at X-8. Thinks she's a person.
+source: campaigns/11-old-world-blues#cast
+---
+id: old-world-blues-the-sinks-auto-doc
+type: npc
+name: The Sink's Auto-Doc
+knowledge: secret
+tags: [old-world-blues, cast]
+fields: {role: speaks to the party only after repair}
+details: {wants: Wants to cure them. Wants to upgrade them.}
+body: |-
+  ## GM notes
+
+  **The Sink's Auto-Doc** — speaks to the party only after repair. Wants to cure them. Wants to upgrade them.
+source: campaigns/11-old-world-blues#cast
+---
+id: old-world-blues-science-clock
+type: track
+name: Science Clock
+knowledge: secret
+tags: [old-world-blues, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: (d6) The Think Tank's attention span. Ticks when the party refuses an experimental offer, 
+  disagrees with a Think Tank member in audience, or returns to the Sink without a new specimen. At 
+  6, they try to "upgrade" the party without consent.
+source: campaigns/11-old-world-blues#clocks
+---
+id: old-world-blues-mobius-clock
+type: track
+name: Mobius Clock
+knowledge: secret
+tags: [old-world-blues, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4) Mobius's opposition. Ticks when the party clears a lab, recovers a pre-war technology the
+  Think Tank will want, or is broadcast-at from the Forbidden Zone. Each tick, a new roboscorpion 
+  patrol is loosed into a zone of the Overseer's pick. At 4, the patrols converge on the Sink 
+  itself.
+source: campaigns/11-old-world-blues#clocks

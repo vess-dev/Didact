@@ -1,0 +1,8 @@
+type: pc
+label: Player character
+fields:
+  traits: {kind: list}
+  might: {kind: int, min: 0, max: 3, help: "Strength of arm and will."}
+  wit: {kind: int, min: 0, max: 3}
+  gift: {kind: text}
+  knack: {kind: text}

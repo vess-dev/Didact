@@ -1,0 +1,277 @@
+# Fallout 2e terms, for `didact define <term>` (players-guide, overseers-guide, reference/rules.md).
+# The parent's Cairn terms are all hidden (pack.yaml `hides`): these are the ones a Fallout 2e
+# world defines, the chassis it keeps from Cairn in the book's own words first.
+- term: Save
+  aliases: [saves, saving throw]
+  definition: "To avoid a bad outcome from a risky action, roll 1d20 equal to or under the relevant attribute. A 1 always succeeds, a 20 always fails; when two sides clash the one more at risk rolls, and a group rolls its worst attribute. Pass or fail: never \"a step easier\"."
+  see: [save, save-together]
+- term: Hit Protection
+  aliases: [HP]
+  definition: "Luck, skill, toughness and the narrow miss, not a pool of meat: 1d6 at creation, all of it back on a short rest. Damage past it comes off STR; an attack that takes a PC to exactly 0 gives a Scar."
+  see: [attack, rest]
+- term: Strength
+  aliases: [STR]
+  definition: "Raw power, endurance, resistance to radiation, poison and heavy weather. Damage past HP comes off it. At 0 you are dead."
+  see: [save, attribute-damage]
+- term: Dexterity
+  aliases: [DEX]
+  definition: "Reflexes, aim, balance, stealth, fine motor control: the first-round save to act. At 0 you are paralyzed, helpless."
+  see: [save]
+- term: Willpower
+  aliases: [WIL]
+  definition: "Nerve, charisma, tech savvy, sanity under pressure; the save enemies make for Morale. At 0, a broken mind: catatonic or hallucinating."
+  see: [save, morale]
+- term: Armor
+  definition: "Subtracted from the damage roll before it reaches HP, and never more than 3. A helmet or a shield adds +1 only while worn or held; power armor is 3."
+  see: [attack]
+- term: Critical Damage
+  definition: "Damage past HP comes off STR, and the target saves STR at the new score. A PC who fails can only crawl and gasp, and dies within the hour unless stabilized (bandages or a Stimpak); an NPC who fails is dead, and some creatures' own critical effect happens."
+  see: [attack, stabilize]
+- term: Scar
+  aliases: [Scars]
+  definition: "When an attack takes a PC to exactly 0 HP, the HP lost in it picks a row of the Scars table, Close Shave (1) to Doomed (12): a lasting wound, and often a re-roll of a maximum. A rule that keeps a row from you means 1d12 for the row instead."
+  see: [scar, scar-heal]
+- term: Doomed
+  definition: "Scars row 12: fail the next Critical Damage save and you die horribly; pass it and roll 3d6, taking it as max HP if higher."
+  see: [scar]
+- term: Stabilized
+  aliases: [Stabilize]
+  definition: "A PC with Critical Damage or Bleeding Out who gets aid in time (a bandage, a Stimpak, an auto-doc): out of danger, out of action until a long rest. It works on the Deprived too."
+  see: [stabilize]
+- term: Panicked
+  aliases: [Panic]
+  definition: "Surrounded, cornered, in the dark, face to face with a deathclaw, a PC may have to save WIL; a failure leaves them Panicked: 0 HP, no action in the first round, every attack Impaired, until a WIL save taken as an action shakes it off."
+  see: [panic, steady]
+- term: Blast
+  definition: "An attack that hits everything in an area (a grenade, a flamer, a minigun spray, a shotgun up close), rolled separately against each target; if the count is unclear, the weapon's die gives it."
+  see: [attack, blast-targets]
+- term: Detachment
+  definition: "A large group of similar fighters (a raider gang, a super mutant squad, a feral horde) as one stat block: Critical Damage routs it, 0 STR destroys it. Individuals' attacks on it are Impaired (blast excepted); its attacks on individuals are Enhanced and blast."
+  see: [attack]
+- term: Morale
+  definition: "Enemies save WIL to keep fighting at their first casualty and again when half their number is down; a group may use its leader's WIL, a lone enemy saves at 0 HP. PCs never test Morale."
+  see: [morale]
+- term: Reaction
+  aliases: [Reactions, Reaction roll]
+  definition: "2d6 for a stranger whose mood is unclear: 2 Hostile, 3–5 Wary, 6–8 Curious, 9–11 Kind, 12 Helpful. Party Karma adds its value; a step ladder that clamps at its ends."
+  see: [reaction]
+- term: Round
+  definition: "About ten seconds of combat. In the first, each PC saves DEX to act, then the enemies act; after that the sides take turns, PCs first, each side's results simultaneous."
+- term: Retreat
+  definition: "Breaking off a fight takes a DEX save and a direction to run. No save, no escape."
+  see: [retreat]
+- term: Die of Fate
+  definition: "1d6 when an outcome is genuinely uncertain and no save applies: 4 or more leans toward the party, 3 or less against."
+  see: [fate]
+- term: Bulky
+  definition: "An item that takes two inventory slots: power armor, a long gun, a tent."
+- term: Petty
+  definition: "An item that takes no slot: a letter, a ring, a chem, a small pouch of caps (under 100)."
+- term: Background
+  definition: "Who a character was: one of fifty (1d50, or pick), each with names, starting gear, 3d6 caps and two d6 tables. The non-human ones, and the two ghouls, follow Playing Unusual PCs."
+- term: Bond
+  definition: "A personal item or obligation rolled at creation (1d20): it implies a place, a person or faction, and a timer. Left untouched three sessions, it comes to collect."
+  see: [resolve-bond]
+- term: Omen
+  definition: "A shared hook the youngest character rolls (1d20) and reads aloud: something unfolding beneath the business of survival, felt every session."
+  see: [resolve-omen]
+- term: Hireling
+  aliases: [hirelings]
+  definition: "Paid help (a gunhand, a medic, a tinker): 3d6 attributes, 1d6 HP, gear for the trade and a daily rate. Hirelings take Morale saves, have no Loyalty and walk away the day the pay stops."
+- term: Growth
+  definition: "How characters change without XP or levels: through Scars, through Training (a Master and a Cost, in Downtime) and through Acquisition (gear, relics, perks, allies)."
+- term: Watch
+  aliases: [watches]
+  definition: "A third of a day: morning, afternoon or night. Each character takes one Wilderness Action a watch (Travel, Explore, Supply or Make Camp); travel is counted in watches."
+  see: [watch, travel-time]
+- term: Turn
+  aliases: [turns]
+  definition: "A few minutes of focused action (Didact counts five), the unit of vault and ruin exploration: a character moves about 40 ft and takes one action (searching, forcing a door, reading a magazine, resting)."
+  see: [dungeon-turn]
+- term: Point
+  aliases: [points]
+  definition: "A destination on the map (a settlement, a ruin, a crater, a bridge, a caravan stop), joined to others by paths that cost watches of travel."
+  see: [travel-time]
+- term: Hidden Path
+  definition: "A path on no known map: found at a cost (discovered, learned from a local, mapped), and kept off the players' map until then."
+- term: Conditional Path
+  definition: "A path that needs something to cross it: tools, keys, climbing gear, a map or a guide."
+- term: Travel
+  definition: "A Wilderness Action: the party moves toward the next point and rolls 1d6 for getting lost (a beaten trail 2-in-6, open wastes 3-in-6, an old highway never)."
+  see: [watch, travel-time]
+- term: Explore
+  definition: "A Wilderness Action: searching a wide area reveals a Location (shelter, village, lab, cave) or a Feature (dry well, crashed Vertibird, old checkpoint). Leaving still takes Travel."
+  see: [watch]
+- term: Supply
+  definition: "A Wilderness Action: hunting, foraging or scavenging food gives 1d4 Rations, a bigger die for more hands (up to 1d12)."
+  see: [watch]
+- term: Make Camp
+  definition: "Usually the day's last watch: each PC and mount eats a Ration and a watch rotation is set; a full night's safe sleep clears all Fatigue, never Rads. Skipping it: a Fatigue each, Deprived, and the terrain a step harder."
+  see: [make-camp, skip-camp]
+- term: Milestone
+  aliases: [Milestones]
+  definition: "One of 1–5 blocks of work the Overseer sets for a multi-step Downtime activity, each with a Cost."
+  see: [downtime]
+- term: Cost
+  definition: "What a Milestone takes: caps, resources, reputation, or a loss (a finger, a relic, a secret, a friend). Unable to pay, a PC may try a WIL save, the risk stated, to reduce or avoid it."
+  see: [downtime]
+- term: Source
+  definition: "What Research needs: a person, place or archive that might know. Without one, the first Downtime is spent finding one, if there is one."
+  see: [downtime]
+- term: Master
+  definition: "What Training needs: a teacher of the technique. The Overseer sets the milestones and costs."
+  see: [downtime]
+- term: Agenda
+  definition: "What a faction wants in a region (the Faction Generator's second column: a trade monopoly, tribute from the highways, sacred ground …)."
+- term: Overseer
+  aliases: [GM, Warden]
+  definition: "The one who runs the wasteland: referees the rules, voices NPCs, describes the ruin, calls for saves when the fiction is in doubt. Neutral: not adversary, not cheerleader. (Cairn's Warden.)"
+- term: Caps
+  aliases: [bottle caps, cap]
+  definition: "The currency, in place of gold pieces. A small pouch under 100 caps is petty; more takes a slot (the coin-weight option)."
+  see: [coins]
+- term: Rad
+  aliases: [Rads, radiation]
+  definition: "Environmental radiation, distinct from Fatigue. Each Rad fills an inventory slot until cleared (RadAway, a clinic, a purifier, a specific chem, meal, perk, relic or ability; never sleep or rest), and every Rad taken calls for a Rad Scar save. NPCs don't track Rads: a Rad costs a rad-susceptible creature 1 STR."
+  see: [rad, rad-scar-save, clear-rads, rad-zone]
+- term: Rad Scar
+  aliases: [Rad Scars]
+  definition: "A permanent mark of radiation: whenever a PC takes a Rad, 1d20 against 20 minus their current Rads (several at once: add them all, then one save each); over it, a Rad Scar (1d20: 1–10 Minor, 11–20 Major). Three of them push toward ghoulification."
+  see: [rad-scar-save, ghoulify]
+- term: Ghoulification
+  aliases: [ghoulify, ghoulified]
+  definition: "At the long rest after a third Rad Scar, 1d6: 1–3 the PC becomes a ghoul (background Ghoul, no more Rad Scars), 4–5 they resist (the next one sticks), 6 they go feral and are lost. From two Rad Scars a PC may choose to ghoulify."
+  see: [ghoulify]
+- term: Feral
+  aliases: [feral ghoul, ferality]
+  definition: "A ghoul whose mind is gone. A ghoul PC who spends a full day at six or more Rads rolls 1d20 at the next watch: on a 20, they go feral and the player loses the character."
+  see: [feral-check]
+- term: Fatigue
+  definition: "Strain that isn't radiological: each Fatigue fills an inventory slot until a full night's safe sleep (a robot's hour of diagnostics). From Super Stimpaks, addiction and alcohol mornings, lost sleep, foul weather, deprivation past a day. Rads and Fatigue never clear each other."
+  see: [fatigue]
+- term: Deprived
+  aliases: [Deprivation]
+  definition: "Missing food, clean water or sleep: no HP or attributes recovered and no Rads or Fatigue cleared, by any means, chems included (a Stimpak or a bandage still stabilizes), and a Fatigue for each day past the first."
+  see: [deprive, relieve]
+- term: Addiction
+  aliases: [addicted, Addictive]
+  definition: "Every dose of an addictive chem forces a STR save; on a fail the PC is addicted, and gains a Fatigue each morning until a dose of that chem. Addictions stack. Cured by Addictol / Fixer, the Cure an Addiction Downtime Action, or a week's refusal at the Overseer's discretion."
+  see: [chem, cure-addiction, addiction-morning]
+- term: Chem
+  aliases: [Chems]
+  definition: "A one-shot pre-war drug: petty, consumed on use, never causes Rads, often addictive (Stimpak, RadAway, Psycho, Jet, Buffout, Mentats …). Chems replace Cairn's scrolls."
+  see: [chem]
+- term: Perk Magazine
+  aliases: [magazine, perk, perks]
+  definition: "A pre-war skill magazine: one slot while carried; reading it takes a turn somewhere safe and quiet, consumes the copy, and teaches its one reader a perk. Perk Magazines replace Cairn's spellbooks."
+  see: [read-magazine]
+- term: Perk Slots
+  definition: "Every PC has five, flat. Reading a sixth magazine means swapping one perk out: it's gone until a fresh copy of its magazine is read."
+  see: [read-magazine]
+- term: Holotape
+  aliases: [holotapes]
+  definition: "A pre-war data cartridge: audio logs, journals, training reels, passcodes, map data. Pure lore: no perks, no bonuses. One slot unless petty; played on a Pip-Boy, a terminal or a power armor HUD."
+- term: Pre-war Relic
+  aliases: [Relic, Relics]
+  definition: "A unique pre-war item that still works, or works differently: limited uses or charges and a Recharge condition. Using one costs nothing (no Fatigue, no Rads) unless its entry says so."
+- term: Scrap
+  definition: "The crafting resource, tracked as a number: a handful of usable parts each. Every 5 Scrap takes a slot (rounded up); a settlement Scrap Heap stores it freely. Gained by scavenging (1d6), breaking gear down, a Scrap Heap (1d6 a visit) and wrecks (2d6)."
+  see: [scrap, craft]
+- term: Workstation
+  aliases: [Workshop, Weapons Workbench, Armor Workbench, Chemistry Station, Cooking Station, Power Armor Station, Scrap Bench]
+  definition: "Where a recipe is made: a Cooking Station (meals), Chemistry Station (chems), Weapons Workbench (weapon mods, ammo), Armor Workbench (armor mods), Power Armor Station (power armor mods), Workshop / Scrap Bench (gadgets). No station, no recipe."
+  see: [craft]
+- term: Mod
+  aliases: [weapon mod, armor mod, mods]
+  definition: "A permanent upgrade installed on a weapon or suit at a workbench for Scrap, caps and Downtime: two per weapon or suit (a power armor frame two more); removing one destroys it."
+  see: [craft]
+- term: Power Armor
+  definition: "3 Armor, bulky, loud, fusion-core powered. Untrained, every DEX save in it fails. No sneaking, sprinting, climbing or swimming; its servos brace heavy weapons; sealed and powered, it halves ambient Rads."
+  see: [save, attack]
+- term: Fusion core
+  definition: "Powers power armor (a week of light wear, a day of sustained combat), the Gatling laser, heavy energy weapons and atomic cars (7 fuel uses)."
+- term: Heavy weapon
+  aliases: [brace required, braced]
+  definition: "A weapon that must be braced (a wall, the ground, a bipod, power armor servos): unbraced or on the move, Impaired. The Heavy Gunner perk, the Heavy Weapons Cert, a super mutant and a trained wearer in a fueled suit ignore it."
+  see: [attack]
+- term: Called shot
+  definition: "A declared target (a gun, a collar, a fuel tank, a kneecap): the attack is Impaired, and on a hit the narrative effect applies with the damage."
+  see: [attack]
+- term: Impaired
+  definition: "An attack from weakness (bad cover, long range, a called shot, an unbraced heavy weapon, a Panicked attacker, an individual against a detachment): 1d4 damage whatever the weapon. Impaired and Enhanced together cancel."
+  see: [attack]
+- term: Enhanced
+  definition: "An attack from advantage (a helpless target, a perfect flank, a detachment against an individual, Psycho): 1d12 damage, unless the weapon's own dice are already better. Never stacks."
+  see: [attack]
+- term: Short rest
+  definition: "A few minutes in safety with a drink of clean water: all HP back. In a ruin it takes a turn, a light and a safe spot. It clears no Fatigue and no Rads."
+  see: [rest]
+- term: Long rest
+  definition: "A full week's rest somewhere safe, usually with a doc, a chem or an auto-doc: attribute loss restored, the ghoulification roll at three Rad Scars, and the point where an unattached second companion drifts away."
+  see: [recover]
+- term: Hot zone
+  aliases: [rad zone, the Glow]
+  definition: "Ground that irradiates: an ambient rad zone adds a Rad a watch of travel, a hot zone a Rad a scene on top. Stormy or worse weather over a hot zone is rad weather."
+  see: [rad-zone, weather]
+- term: Rad weather
+  aliases: [rad storm, rad-rain]
+  definition: "Stormy or worse weather in a region that holds a hot zone: the Fatigue it would inflict is a Rad instead. The Overseer says so before the party chooses between the strain and the extra watch."
+  see: [weather, travel-time]
+- term: Ruin Events
+  definition: "The d6 rolled when the party lingers, hurries, enters a new zone or makes a loud disturbance in a vault or ruin: Encounter, Sign, Environment, Loss, Exhaustion, Quiet."
+  see: [dungeon-turn]
+- term: Wasteland Events
+  definition: "The d6 rolled each watch of wasteland travel (twice at night): Encounter, Sign, Environment, Loss, Exhaustion, Discovery."
+  see: [watch]
+- term: Step ladder
+  aliases: [ladder, one step]
+  definition: "A fixed list of named rungs a shift moves along: Reactions, Terrain Difficulty, Weather, the die steps, Faction Reputation, Party Karma, weight class, companion Loyalty, settlement attributes. Ladders clamp at their ends."
+- term: Faction Reputation
+  definition: "The party's standing with each faction, −2 Vilified, −1 Hostile, 0 Neutral, +1 Liked, +2 Idolized, moved one step at a time by actions the faction notices; opposed pairs move together."
+  see: [reputation]
+- term: Party Karma
+  aliases: [Karma]
+  definition: "What the wasteland as a whole remembers of the party, −3 Hated to +3 Messiah: one step a session at most, public acts only. Strangers' Reaction rolls add it."
+  see: [karma, reaction]
+- term: Companion
+  definition: "An NPC who travels for reasons beyond caps: 1d6 HP, 3d6 attributes, 1 Armor, one weapon, one trick, Loyalty 3. One active companion per PC."
+  see: [command, loyalty]
+- term: Loyalty
+  definition: "A companion's ladder, 1 Wary, 2 Tested, 3 Trusting, 4 Devoted, 5 True (once per session, takes a hit meant for its PC). Robots have a Directive instead."
+  see: [loyalty]
+- term: Command action
+  aliases: [Command]
+  definition: "Once per combat, a PC spends their action to direct their companion: a clean action with Enhanced damage or a re-rolled save."
+  see: [command]
+- term: Directive
+  definition: "A robot companion's rule in place of Loyalty: the first time its PC violates it, the robot warns them; the second time, it tries to enforce it."
+- term: Settlement
+  definition: "A place the party claims: Population, Defense and Industry from 1 to 5 (1/1/1 to start) and eight building slots (petty buildings take none)."
+  see: [build, raid, upkeep]
+- term: Frame HP
+  definition: "A vehicle's damage before it's a wreck; restored by a mechanic and parts (a field patch, a workshop, a rebuild), never by rest."
+  see: [vehicle-damage, field-patch, vehicle-repair, frame-rebuild]
+- term: Speed Tier
+  definition: "Slow (normal watch costs), Standard (one watch of path, terrain or weather penalty removed per fuel use), Fast (two). Speed erases penalties, not the road."
+  see: [travel-time]
+- term: Crash
+  definition: "A vehicle taken to 0 Frame HP in a single impact: the driver rolls Scars at 2d6 HP lost, each passenger at 1d6, and the vehicle is a wreck (2d6 Scrap and 2d6 × 10 caps of salvage). Worn down over several hits, it's broken, not crashed."
+  see: [crash]
+- term: Unusual PC
+  aliases: [robot PC, ghoul PC, super mutant PC, synth PC, deathclaw PC, Zetan PC]
+  definition: "A non-human PC (backgrounds 39–50 and the ghouls): robots need no food, water, sleep or breath and take no Rads or chems; ghouls roll no Rad Scars; super mutants take no Rads and can't be addicted; deathclaws take no Stimpaks; Zetans meet the wasteland a step worse. The sheet's kind and immunities say which."
+- term: Pip-Boy
+  definition: "A pre-war wrist computer: plays holotapes, tracks Rads and HP, keeps a map (its wearer can't get lost on ground they've walked), talks to terminals. No perks. Petty while worn."
+- term: Downtime Action
+  definition: "A block of between-session work, one per PC at a time, somewhere safe and out of recovery: research, training, strengthening ties, scavenging a ruin, crafting, curing an addiction."
+  see: [downtime, scavenge, craft, cure-addiction]
+- term: The Before
+  definition: "The old world, before the bombs. Almost nobody alive remembers it: a few ghouls, a few machines, a few sleepers thawed out of the ice."
+- term: The Wastes
+  definition: "Everywhere between the known settlements: highways, farmland going back to dirt, forests through shopping malls, salt flats, craters, badlands. At the core of each wild region lies its Heart, a profound ruin."
+- term: The Glow
+  aliases: [Gates]
+  definition: "What lies beneath and between the ruins: subways, bunkers, vault levels, hot zones, caves; its entrances are Gates (vault doors, tunnels, storm drains, reactor shafts)."
+- term: The Commonwealth of Ashes
+  aliases: [the Ashes]
+  definition: "Fallout 2e's implied setting: a generic post-atomic wasteland two centuries after the war, in a small region of ruins, settlements and wildlands."

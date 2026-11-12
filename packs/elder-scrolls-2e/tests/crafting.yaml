@@ -1,0 +1,86 @@
+# Skill Books (wardens-guide/skill-books) and crafting (players-guide/crafting): the five slots and
+# the swap, a +1 max HP perk; tempering once to the cap, brewing 1d4 doses, learning an effect,
+# binding it with a soul gem's charges (constant only from greater, grand or black), recharging.
+test: skill-books
+script:
+  - world new holds --system {pack} --seed books
+  - campaign new first --seed books
+  - new pc Calcelmo --set STR=10 --set DEX=10 --set WIL=14 --set hp=3 --set race=Altmer
+  - run: inv add calcelmo 'Mace Etiquette'
+    expect: "Mace Etiquette"
+  - run: do read-book who=calcelmo book='Mace Etiquette'
+    expect: ["skill-book-perks", "skill_books += Mace Etiquette", "Once per combat, one of your attacks with a mace or club is Enhanced.", "- Mace Etiquette", "The book is consumed"]
+  - run: do read-book who=calcelmo book='Mace Etiquette'
+    expect: "stop: Calcelmo already carries the perk of Mace Etiquette"
+  - run: do read-book who=calcelmo book='Aevar Stone-Singer'
+    expect: ["hp.max += 1", "Gain +1 maximum HP."]
+  - run: do read-book who=calcelmo book="Hallgerd's Tale"
+    expect: "skill_books += Hallgerd's Tale"
+  - do read-book who=calcelmo book='The Importance of Where'
+  - do read-book who=calcelmo book='Night Falls on Sentinel'
+  - run: do read-book who=calcelmo book='Battle of Sancre Tor'
+    expect: "stop: All five of Calcelmo's Skill-Book slots are full"
+  - run: do read-book who=calcelmo book='Battle of Sancre Tor' forget='Aevar Stone-Singer'
+    expect: ["skill_books -= Aevar Stone-Singer", "hp.max -= 1", "lets go of what Aevar Stone-Singer taught them", "skill_books += Battle of Sancre Tor"]
+  - run: show calcelmo
+    expect: ["Battle of Sancre Tor", "HP 3/3"]
+  - set calcelmo conditions+=deprived
+  - run: do read-book who=calcelmo book='King'
+    expect: "stop: Calcelmo is Deprived"
+---
+test: crafting
+script:
+  - world new holds --system {pack} --seed crafting
+  - campaign new first --seed crafting
+  - new pc Eorlund --set STR=14 --set DEX=10 --set WIL=12 --set hp=4 --set race=Nord --set gold=300
+  - run: >-
+      inv add eorlund 'Steel sword' --data '{"damage": "d8"}'
+    expect: "Steel sword"
+  - inv add eorlund 'Chain mail' Shield
+  - run: do temper who=eorlund item='Steel sword' price=10 material=Steel
+    expect: ["material-tiers", "gold -= 10", "Steel sword is tempered: d8 → d10, for good.", "inventory.Steel sword.damage = d10", "inventory.Steel sword.tempered = true"]
+  - run: do temper who=eorlund item='Daedric sword' die=d12
+    expect: "stop: Daedric sword is already d12, the cap"
+  - run: do temper who=eorlund item='Steel sword'
+    expect: "stop: A piece can be tempered only once"
+  - run: do temper who=eorlund item=Shield
+    expect: "stop: Shield is a shield or helmet: it never gives more than +1"
+  - run: do temper who=eorlund item='Chain mail' price=40 material=Dwarven
+    expect: ["gold -= 200", "Chain mail is tempered: 2 → 3 Armor, for good.", "inventory.Chain mail.armor = 3", "inventory.Chain mail.suit = 3"]
+  - run: show eorlund
+    expect: "armor 3"
+  - run: do temper who=eorlund item='Iron dagger' die=d6
+    expect: ["d6 → d8", "Mark it on whoever carries it: `didact set <them> \"inventory.Iron dagger.damage=d8\"`"]
+  - run: do temper who=eorlund item='Plate' armor=3
+    expect: "stop: Plate is already at the cap of 3 Armor"
+  - run: do temper who=eorlund item='Nordic sword' die=d8 price=10 material='Nordic / Stalhrim'
+    expect: "stop: A unit of Nordic / Stalhrim for Nordic sword costs about 200 Septims; Eorlund has 90."
+  - run: do brew who=eorlund brew='Potion of Healing'
+    expect: ["1d4", "brews", "+ Potion of Healing", "details from elder-scrolls-2e.potion-of-healing"]
+  - run: do brew who=eorlund brew='Bitter Draught'
+    expect: "+ Bitter Draught"
+  - run: inv show eorlund
+    expect: ["Potion of Healing ×", "uses 1/1", "Bitter Draught"]
+  - run: do enchant who=eorlund item='Steel sword' effect='Fire damage' gem=petty
+    expect: "stop: Eorlund can only bind an effect they understand"
+  - inv add eorlund 'Ring of Fire Resistance' 'Silver ring' 'Greater soul gem' 'Common soul gem'
+  - inv add eorlund 'Petty soul gem' --count 2
+  - run: do learn-effect who=eorlund item='Ring of Fire Resistance' effect='Resist an element'
+    expect: ["- Ring of Fire Resistance", "effects_known += Resist an element", "learns Resist an element"]
+  - run: do enchant who=eorlund item='Silver ring' effect='Resist an element' gem=petty worn=true constant=true
+    expect: "stop: A petty soul can't power a constant enchantment"
+  - run: do enchant who=eorlund item='Silver ring' effect='Resist an element' gem=greater worn=true constant=true
+    expect: ["soul-gems", "- Greater soul gem", "Silver ring is a Relic now: Resist an element, constant while worn", "inventory.Silver ring.enchantment = Resist an element (constant while worn)"]
+  - run: do learn-effect who=eorlund item='Flaming Axe' effect='Fire damage'
+    expect: ["Unbinding destroys it: drop it from whoever carried it", "effects_known += Fire damage"]
+  - run: do enchant who=eorlund item='Steel sword' effect='Fire damage' gem=petty
+    expect: ["- Petty soul gem", "1 charge(s); Recharge: feed it another filled soul gem", "inventory.Steel sword.charges = 1"]
+  - run: inv show eorlund
+    expect: ["- Petty soul gem (petty", "charges 1/1"]
+    expect_not: "Petty soul gem ×"
+  - run: inv use eorlund 'Steel sword'
+    expect: "spent until it recharges"
+  - run: do recharge who=eorlund item='Steel sword' gem=common
+    expect: ["- Common soul gem", "2 charge(s) back, up to its maximum", "inventory.Steel sword.charges += 2", "stopped at its max 1"]
+  - run: do recharge who=eorlund item="Azura's Star" gem=grand found=true
+    expect: "stop: A found Relic recharges only as its own Recharge line says"

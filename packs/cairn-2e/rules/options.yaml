@@ -1,0 +1,25 @@
+# Options: where the book is silent or says "optionally", each campaign decides at session zero
+# (`didact campaign profile coin-weight=per-100`). Rules read them as @option.coin_weight.
+option: coin-weight
+title: Coin weight
+ask: How much room do coins take once a bag holds 100gp or more?
+help: >-
+  The book: "A bag of coins worth less than 100gp is petty and does not occupy a slot." It
+  doesn't say how much room more takes. `didact do coins who=<pc>` sets the slots after the gold
+  changes.
+choices:
+  one-slot: "A bag of 100gp or more takes one slot (a bag is no longer petty)."
+  per-100: "Each full 100gp takes a slot."
+  off: "Coins never take a slot."
+default: one-slot
+source: players-guide/character-creation#inventory-slots
+---
+option: unusual-weather
+kind: flag
+title: Unusual weather
+ask: Should setting seeds roll Unusual Weather around each terrain?
+help: >-
+  The book: "Optionally, you may also roll on the Unusual Weather table around particular
+  landmarks or terrain." On, each terrain a setting seed makes gets one.
+default: false
+source: wardens-guide/setting-seeds#weather

@@ -1,0 +1,109 @@
+# Every table lands, and the new checks' odds are the book's.
+test: every-table
+help: Each of the pack's tables rolls cleanly (a lookup table once for each key).
+table: all
+times: 5
+---
+test: rad-scar-save-at-1-rad
+help: "At 1 Rad you resist on a 1–19 (players-guide/rad-scars)."
+odds: "d20 <= 20 - @rads"
+with: {rads: 1}
+chance: 0.95
+tolerance: 0.001
+---
+test: rad-scar-save-at-3-rads
+help: "At 3 Rads, on a 1–17."
+odds: "d20 <= 20 - @rads"
+with: {rads: 3}
+chance: 0.85
+tolerance: 0.001
+---
+test: rad-scar-save-at-10-rads
+help: "At 10 Rads, on a 1–10."
+odds: "d20 <= 20 - @rads"
+with: {rads: 10}
+chance: 0.5
+tolerance: 0.001
+---
+test: ghoulify-on-1-to-3
+help: "Ghoulification: 1–3 on a d6 ghoulifies."
+odds: "d6 <= 3"
+chance: 0.5
+tolerance: 0.001
+---
+test: break-bad-on-6
+help: "Ghoulification: a 6 is a feral ghoul."
+odds: "d6 >= 6"
+chance: 0.1667
+tolerance: 0.001
+---
+test: ghoul-goes-feral-on-20
+help: "A ghoul a full day at six Rads goes feral on a 20."
+odds: "d20 >= 20"
+chance: 0.05
+tolerance: 0.001
+---
+test: ultrajet-addiction-save
+help: "Ultrajet's addiction save counts as STR −2: at STR 10, a 1–8."
+odds: "d20 <= @STR - 2"
+with: {STR: 10}
+chance: 0.4
+tolerance: 0.001
+---
+test: lost-on-a-beaten-trail
+odds: "d6 <= 2"
+chance: 0.3333
+tolerance: 0.001
+---
+test: lost-in-the-open-wastes
+odds: "d6 <= 3"
+chance: 0.5
+tolerance: 0.001
+---
+test: enhanced-two-d10s-beat-a-d12
+help: "Enhanced never makes an attack worse: two d10s kept highest average more than a d12, so the attack keeps them."
+odds: "{d10, d10}kh1 >= 7"
+chance: 0.64
+tolerance: 0.001
+---
+test: supply-die-steps-up
+help: Two extra helpers step the supply die from d4 to d8.
+expr: "step(d4, 2)"
+got: "8"
+expect: 8
+---
+test: scars-read-by-hp-lost
+table: scars
+with: {hp_lost: 11}
+times: 3
+---
+test: extreme-twice-turns-catastrophic
+table: weather-winter
+times: 40
+---
+test: karma-shifts-reactions
+help: "Karma +2: a stranger's 2d6+2 on the Reaction ladder (clamped at Helpful)."
+table: reactions
+with: {karma: 2}
+times: 20
+---
+test: two-step-tables
+help: >-
+  A table row that rolls on another table hands its result on to the generator: the Random
+  Weapon table's 20 writes the Exotic Weapon Cache's weapon, and a full unique section's last
+  row the weapon its continued table gives; a prefill can name a weapon of a continued table.
+  Seeded: a fresh library's first rolls.
+script:
+  - world new two-step-tables --system {pack} --seed ts
+  - campaign new exotic-cache --seed exotic-cache-3
+  - run: gen run fallout-2e.weapon --auto
+    expect: ["loot-weapon: Roll on Exotic Weapon Cache", "+ item Junk Jet"]
+  - campaign new unique-continued --seed unique-continued-2
+  - run: >-
+      gen run fallout-2e.unique-weapon --auto --prefill '{"kind": "unarmed"}'
+    expect: ["unique-weapons-unarmed: Roll once on Unarmed, continued", "+ item Gatorclaw Gauntlet"]
+  - run: table roll unique-weapons-unarmed --seed s3
+    expect: ["Roll once on Unarmed, continued", "then fallout-2e.unique-weapons-unarmed-continued", "Ogua Gauntlet"]
+  - run: >-
+      gen run fallout-2e.unique-weapon --auto --prefill '{"kind": "melee-bladed", "unique": "Protonic Inversal Axe"}'
+    expect: ["Protonic Inversal Axe", "+ item Protonic Inversal Axe"]

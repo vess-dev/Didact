@@ -1,0 +1,39 @@
+# Designing arcana (pp. 42-43, with the tiers of pp. 40-41): the book's six steps, with the tier
+# decided first because it shapes the rest (a mythic arcana counts as having every function and
+# takes three or more touchstones). The idea, the form and the description are the GM's; the
+# dice can make every other choice. Expendables (potions, scrolls) are the potion generator.
+generator: arcana
+title: Arcana
+help: >-
+  Designing arcana, step by step: its tier; its function (a mythic one has every function); a
+  theme and two touchstones from its crucible (three for a mythic one); what it does at its tier
+  (a mythic one takes an extra quality or limitation instead); and a name. Then its idea, form
+  and how the magic shows. Prefill by name: tier, function, theme, touchstones, effect,
+  addition, name.
+source: "pp. 42-43"
+creates: arcana
+steps:
+  - if: "@option.magic == 'none'"
+    then:
+      - stop: "No magic (an option): there's no arcana in this world."
+  - choose_or_roll: {from: [minor, major, mythic], as: tier, field: tier, prompt: "its tier, by its magical impact (limitations may lower it)"}
+  - if: "@tier <> 'mythic'"
+    then:
+      - choose_or_roll: {table: arcana-functions, as: function, prompt: "its function: the general effect, and a touchstone"}
+  - choose_or_roll: {from: [arcane, divine, eldritch, primal, technology], as: theme, prompt: "the theme of its touchstones (its crucible)"}
+  - if: "@tier == 'mythic'"
+    then:
+      - choose_or_roll: {table: "arcana-{@theme}", as: touchstones, count: 3, field: touchstones, prompt: "three touchstones (a mythic arcana counts as having every function)"}
+      - choose_or_roll: {table: arcana-mythic-additions, as: addition, prompt: "an extra quality or limitation"}
+      - apply: {pool: 6, addition: "@addition"}
+    else:
+      - choose_or_roll: {table: "arcana-{@theme}", as: touchstones, count: 2, field: touchstones, prompt: "two touchstones, thematic and focused"}
+      - add: {field: touchstones, value: "@function.id"}
+      - choose_or_roll: {table: "arcana-{@tier}-effects", as: effect, prompt: "what it does, based on its touchstones"}
+      - apply: {pool: "@effect.pool", activation: "@effect"}
+  - name: {prompt: "a name, and a form that fits its magic (boots to traverse, a dagger to attack): its touchstones are {@touchstones}"}
+  - prompt: "Where does it come from, and what themes go along with it? Its touchstones: {@touchstones}."
+  - prompt: "Write its description: how the magic shows and what it does in the fiction (`didact set <arcana> sensories+='…'`, and its colors: palette+='…'), and how it's used (activation=…)."
+  - if: "@tier == 'mythic'"
+    then:
+      - prompt: "A mythic arcana is the basis of quests: give it a history, and power enough (its 6d pool drops 1d before a roll for a potent effect)."

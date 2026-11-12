@@ -1,0 +1,307 @@
+# Grimwild: Community Edition (Preview 5.3), Chapter 3: GM Toolkit (pp. 93-108). CC0 1.0.
+# The GM crucible, the suspense and impact moves, stakes, and vigilance. Challenges (pp. 104-106)
+# and factions (p. 114) are worked examples only, with no table or pick-list to transcribe.
+#
+# Crucibles are d66 read both ways (`both_ways`, p. 5): the row die is the tens digit and the column
+# die the units, and 31 also gives 13; pick the one that grabs you. (The book's own example on p. 93
+# numbers the GM crucible the other way round, "3, 1 = 31: precarious or 13: broken"; the pair of
+# words is the same.) The GM crucible is reprinted in the solo rules (p. 192).
+# Pick-lists keep the book's examples in each entry's data (`examples`).
+table: gm-crucible-1
+title: "GM Crucible (first table)"
+description: "Roll once on each table. Let your mind drift towards the most evocative, then drill down on it and interpret what it might mean. The first table: a d66 read both ways (31 or 13). `gm-crucible` rolls both tables."
+dice: d66
+both_ways: true
+source: "p. 93"
+entries:
+  11: "tough"
+  12: "quiet"
+  13: "precarious"
+  14: "wild"
+  15: "mysterious"
+  16: "rustic"
+  21: "muffled"
+  22: "aged"
+  23: "romantic"
+  24: "menacing"
+  25: "puzzling"
+  26: "eerie"
+  31: "broken"
+  32: "dwindling"
+  33: "distant"
+  34: "perilous"
+  35: "bleak"
+  36: "tense"
+  41: "forgotten"
+  42: "abundant"
+  43: "hidden"
+  44: "withered"
+  45: "chaotic"
+  46: "looming"
+  51: "festive"
+  52: "lost"
+  53: "immense"
+  54: "serene"
+  55: "vibrant"
+  56: "flickering"
+  61: "rugged"
+  62: "splintered"
+  63: "sacred"
+  64: "relentless"
+  65: "tangled"
+  66: "twisted"
+---
+table: gm-crucible-2
+title: "GM Crucible (second table)"
+description: "Roll once on each table. Let your mind drift towards the most evocative, then drill down on it and interpret what it might mean. The second table: a d66 read both ways (31 or 13). `gm-crucible` rolls both tables."
+dice: d66
+both_ways: true
+source: "p. 93"
+entries:
+  11: "journey"
+  12: "juncture"
+  13: "rift"
+  14: "scheme"
+  15: "nexus"
+  16: "team"
+  21: "tremor"
+  22: "debris"
+  23: "symbol"
+  24: "scar"
+  25: "archive"
+  26: "chasm"
+  31: "sanctuary"
+  32: "betrayal"
+  33: "trail"
+  34: "wasteland"
+  35: "help"
+  36: "mystery"
+  41: "peak"
+  42: "threshold"
+  43: "boundary"
+  44: "beacon"
+  45: "secret"
+  46: "wall"
+  51: "territory"
+  52: "rumor"
+  53: "standoff"
+  54: "strife"
+  55: "maze"
+  56: "pact"
+  61: "dilemma"
+  62: "tradition"
+  63: "jackpot"
+  64: "omen"
+  65: "deception"
+  66: "illusion"
+---
+table: gm-crucible
+title: "GM Crucible"
+description: "Roll once on each grid (each reads both ways), smash the words together and interpret."
+refs:
+  first: "gm-crucible-1"
+  second: "gm-crucible-2"
+entries: ["{first} + {second}"]
+source: "p. 93"
+---
+table: suspense-moves
+title: "Suspense moves"
+description: "Suspense moves help the players out in some way or escalate tension, earning or offering a way to take suspense when used. Use these moves with cinematic timing."
+source: "pp. 98-99"
+entries:
+  - text: "Build Up: Use this move when you want to build up drama before a big scene, giving each PC spark and taking suspense."
+    data:
+      examples:
+        - "The dragon roars, and rocks tumble from the ceiling. What does it look like when you dodge them and engage?"
+        - "How are you dressed as you enter the masquerade?"
+        - "You sit around a campfire, knowing the battle to come in the morning."
+        - "You watch the goblin warband in the distance. They’ll be here by morning. What is the mood around the camp?"
+    source: "p. 98"
+  - text: "Clue In: Use this move when you want to show the direction of the story, taking suspense while giving the players knowledge and leaving the PCs in the dark."
+    data:
+      examples:
+        - "We see the baron through the castle window, draining blood from his latest victim."
+        - "As you trek through the forest, unaware, we see the glint of feline eyes behind you."
+        - "We move to the next town over. We see flames and dancing goblins, as they make plans to come to Humblefalls next."
+    source: "p. 98"
+  - text: "Foreshadow: Use this move when you want to introduce adversity without suspense, telegraphing danger and following up with an impact move if left unaddressed."
+    data:
+      examples:
+        - "You hear hoofbeats coming, a 4d timer."
+        - "The dragon takes a deep breath."
+        - "You see thick spider webs on the ceiling."
+        - "One of the tiles ahead of you is slightly raised and discolored."
+        - "Before walking up to the wrecked caravan, you notice small humanoid tracks around it. Everything seems too quiet."
+    source: "p. 99"
+  - text: "Resolve: Use this move when the players are stuck or cornered, helping the PCs and getting suspense in return."
+    data:
+      examples:
+        - "You hear from above, \"Need some help down there?\""
+        - "The minotaur seems satisfied that it won and turns to walk away."
+        - "Seeing what happened to Guzrak, the remaining goblins drop their weapons and surrender."
+    source: "p. 99"
+---
+table: impact-moves
+title: "Impact moves"
+description: "Impact moves deal significant consequences, and make the world feel powerful. Use these moves when prompted; when not prompted by their own roll, impact moves directly against a PC give them a defense roll."
+source: "pp. 100-101"
+entries:
+  - text: "Complicate Things: Use this move when things are too easy or stable, adding elements that raise the stakes or add thorns to relevant rolls."
+    data:
+      examples:
+        - "The guard catches sight of you and rings the alarm bell (start 4d reinforcements arrive)."
+        - "The ruffians in the tavern all draw their weapons."
+        - "The fire spreads to the furniture."
+        - "You see skeletal hands burst from the ground as The Lich summons more undead!"
+    source: "p. 100"
+  - text: "Counter: Use this move when you want to showcase the resilience of a major threat, countering a PC’s action, or taking away their permissions."
+    data:
+      examples:
+        - "The mage casts a quick protective spell, slowing your strike."
+        - "The queen raises a hand, silencing everyone."
+        - "Your punch lands square on his jaw, and he slowly grins."
+        - "With a flash of necrotic power, The Lich dispels your magic, making it dissipate into the aether."
+    source: "p. 100"
+  - text: "Hit Hard: Use this move when injury is the most dramatic consequence, inflicting marks, harm, vex, or conditions on a PC."
+    data:
+      examples:
+        - "The ceiling collapses, raining rocks down on you."
+        - "She smirks wickedly at you—take vex, you’re pissed."
+        - "The bandit’s arrow whistles through the air, embedding itself in your shoulder."
+        - "His boney hand grabs your wrist. You take bloodied as the life force is sapped from you."
+    source: "p. 101"
+  - text: "Lock Down: Use this move when you want to add cinematic edge, declaring an unavoidable event to take chances, options, equipment, and allies away."
+    data:
+      examples:
+        - "The thief gets away, nowhere to be seen."
+        - "The bridge behind you collapses."
+        - "Your gold pouch and sword slide towards the lava, which do you go for?"
+        - "A magic barrier forms in front of the door. It seems the only way out now is to defeat this grand evil once and for all."
+    source: "p. 101"
+---
+table: stakes
+title: "Stakes"
+description: "Stakes frame the danger of a scene, telling the table about the severity of trouble they should expect. Unless clearly otherwise, the scene has regular stakes."
+source: "p. 103"
+entries:
+  - text: "Low Stakes: Lighter territory. You may roll for things you’d normally skip or don’t see as risky. Impact moves have the weight of 1 mark, or softer consequences (set dressing, vex, raise stakes). This is a tool for tone, moving between intense and light play."
+    data:
+      examples:
+        - "Fisticuffs in a barfight."
+        - "Keep your nerve while questioned by a friendly guard."
+        - "Help a cat that’s stuck in a tree."
+  - text: "Regular Stakes: Typical play and the assumed default. Impact moves have the weight of 1 harm, or other standard consequences (2 marks, condition, roll a pressure pool, complicate things)."
+    data:
+      examples:
+        - "Sneak through a guarded warehouse."
+        - "Handle a tense negotiation."
+        - "Fight a gnoll, 1-on-1."
+  - text: "High Stakes: Things are escalated. Impact moves have the weight of desperate harm, twice that of a standard consequence. A disaster can drop PCs immediately, with most incoming trouble putting them at death’s door."
+    data:
+      examples:
+        - "Defend yourself while cornered by an angry ogre."
+        - "Explaining your actions to the queen."
+        - "Bluff a trained and suspicious guard."
+  - text: "Dire Stakes: Death looms. Keep players in the loop and let them know that PC death is on the table. Any prompted impact move will instantly drop the PC."
+    data:
+      examples: ["Pushed off a cliff.", "Looking into the eyes of an elder horror."]
+---
+table: vigilance
+title: "Vigilance"
+description: "The GM spotlights the most relevant PC and uses a gut feeling to decide how much they perceive based on their vantage and the type of tension the GM wants to build. With the optional Active Vigilance rule (p. 177), the PC makes a story roll affected by their vantage: on a perfect, the player gets a reveal; on a messy, a hint; on a grim, the GM uses strike."
+source: "p. 107"
+entries:
+  - text: "Reveal (Tests their skill): Foreshadow with an obvious unveiling of an imminent threat. The PC that becomes aware has a chance to act before the danger strikes, potentially side-stepping the threat even without an action. Character competence guides the story forward."
+    data:
+      examples:
+        - "Spotting the assassin in hiding."
+        - "A whirling of gears betraying the swinging scythe trap about to spring."
+  - text: "Hint (Tests their intuition): Foreshadow with a subtle clue about a hidden element. The player gets a single chance to interpret the situation. They're limited to just one to highlight the natural response of the PC and to keep things flowing. Intuition guides the story forward. A correct response leads to a reveal, letting the character take the initiative before danger strikes, or possibly bypass the situation entirely. This is the most common of the three."
+    data:
+      examples:
+        - "That funny feeling of being watched."
+        - "A blood trail down a hallway."
+        - "Unnatural quiet."
+  - text: "Strike (Tests their defenses): Make an impact move as the danger immediately strikes them. The GM assumes the PCs were not vigilant enough to see the threat beforehand. The dangerous world guides the story forward. This costs suspense as any other impact move, though you can consider using Clue In to gain suspense and let the players in on the secret."
+    data:
+      examples:
+        - "You realize the servant slipped poison into your glass."
+        - "A trapdoor opens beneath you."
+---
+table: vigilance-examples
+title: "Vigilance examples"
+description: "A danger and what the spotlighted PC gets at each level of vigilance: reveal, hint, or strike (each entry's data holds the four columns)."
+source: "p. 108"
+entries:
+  - text: "poisoned dart trap — reveal: dartgun spotted in wall; hint: floor creaks unnaturally; strike: darts fly from the walls"
+    data:
+      danger: "poisoned dart trap"
+      reveal: "dartgun spotted in wall"
+      hint: "floor creaks unnaturally"
+      strike: "darts fly from the walls"
+  - text: "flammable gas trap — reveal: bit of gas ignites; hint: faint smell lingers; strike: area engulfed in flames"
+    data:
+      danger: "flammable gas trap"
+      reveal: "bit of gas ignites"
+      hint: "faint smell lingers"
+      strike: "area engulfed in flames"
+  - text: "political intrigue — reveal: wax seal is clearly fake; hint: inconsistencies in letter; strike: forgery leads to crisis"
+    data:
+      danger: "political intrigue"
+      reveal: "wax seal is clearly fake"
+      hint: "inconsistencies in letter"
+      strike: "forgery leads to crisis"
+  - text: "hidden malice — reveal: threatens a PC; hint: suspicious glances; strike: calls the guards"
+    data:
+      danger: "hidden malice"
+      reveal: "threatens a PC"
+      hint: "suspicious glances"
+      strike: "calls the guards"
+  - text: "fractured resolve — reveal: express doubts or fears; hint: hesitates when speaking; strike: act against plans"
+    data:
+      danger: "fractured resolve"
+      reveal: "express doubts or fears"
+      hint: "hesitates when speaking"
+      strike: "act against plans"
+  - text: "concealing illusion — reveal: reveals true form; hint: shimmering distortion; strike: causes a wrong move"
+    data:
+      danger: "concealing illusion"
+      reveal: "reveals true form"
+      hint: "shimmering distortion"
+      strike: "causes a wrong move"
+  - text: "shattered trust — reveal: lets intentions slip; hint: avoids eye contact; strike: betrays the party"
+    data:
+      danger: "shattered trust"
+      reveal: "lets intentions slip"
+      hint: "avoids eye contact"
+      strike: "betrays the party"
+  - text: "crumbling ceiling — reveal: cracks spread visibly; hint: dust falls lightly; strike: debris crashes down"
+    data:
+      danger: "crumbling ceiling"
+      reveal: "cracks spread visibly"
+      hint: "dust falls lightly"
+      strike: "debris crashes down"
+  - text: "swarming insects — reveal: cloud of insects in sky; hint: animals running away; strike: swarm descends viciously"
+    data:
+      danger: "swarming insects"
+      reveal: "cloud of insects in sky"
+      hint: "animals running away"
+      strike: "swarm descends viciously"
+  - text: "cursed relic — reveal: it speaks your name; hint: air growing cold; strike: it curses the handler"
+    data:
+      danger: "cursed relic"
+      reveal: "it speaks your name"
+      hint: "air growing cold"
+      strike: "it curses the handler"
+  - text: "creeping spiders — reveal: see skittering; hint: large webs above; strike: descends from the sky"
+    data:
+      danger: "creeping spiders"
+      reveal: "see skittering"
+      hint: "large webs above"
+      strike: "descends from the sky"
+  - text: "bandit ambush — reveal: form ducked in cover; hint: crossbow leaned on tree; strike: bandits threaten party"
+    data:
+      danger: "bandit ambush"
+      reveal: "form ducked in cover"
+      hint: "crossbow leaned on tree"
+      strike: "bandits threaten party"

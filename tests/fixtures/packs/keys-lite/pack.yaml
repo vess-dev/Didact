@@ -1,0 +1,7 @@
+id: keys-lite
+name: Keys (test pack)
+kind: system
+version: 0.1.0
+description: Character creation and a level-up that make records and point the sheet at them.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

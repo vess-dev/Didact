@@ -1,0 +1,758 @@
+# The College of Winterhold (campaigns/04-college-of-winterhold): written by es_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Elder Scrolls 2e's numbers, and Grimscrolls'
+# card where its Bestiary or its Faces has the threat) and clocks.
+id: college-of-winterhold
+type: quest
+name: The College of Winterhold
+tags: [college-of-winterhold, frame, main-campaign]
+goal: |-
+  A campaign of scholars and secrets, for a party who would rather solve a magical catastrophe than swing a sword at it — though there is plenty of swinging to be done in the deep places. The party joins the last free school of magic in Skyrim, helps unearth a god's left-behind Eye beneath a frozen ruin, and watches a quiet Thalmor "advisor" turn that Eye into a weapon that murders the Arch-Mage and threatens to crack the province open. To stop him they must descend into the worst tomb in Hjaalmarch, take the Staff of Magnus from a dragon priest four thousand years dead, and bring it back to the Hall of the Elements for a final duel. The survivor of that duel becomes Arch-Mage.
+
+  This frame assumes the party can cast — at least one PC should carry a Spell Tome, and the rest should be the sort who fall in with mages. It runs equally well as the campaign's spine or as a self-contained arc dropped into a wider Skyrim game.
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  *"The Eye of Magnus does not answer to the College. It answers to whoever is willing to die for it — and to whoever is willing to kill."*
+
+  ## GM notes
+
+  **Date.** Sundas, 17 Last Seed 4E 201: 4E 201, the book's moment; no day of its own: whenever the party reaches the bridge at Winterhold. It is the calendar's start: a new campaign opens on it.
+
+  **The frame's text:** `didact rules lookup the college of winterhold pitch` (and `stakes`, `tone touchstones`, `arrival`, `plot beats`, `the place`, `cast`, `clocks`, `threats`, `rewards`, `climax`).
+
+  **Stakes.** The College of Winterhold is the only place in Skyrim where magic is taught openly. It clings to a spire of rock above the Sea of Ghosts, reached by a single long bridge, on the edge of a town the sea swallowed eighty years ago. The townsfolk blame the College for that disaster — the Great Collapse — and the mages have learned to keep their gates shut and their business their own. Into that uneasy quiet the College has lately taken on a Thalmor "advisor," Ancano, foisted on Arch-Mage Savos Aren as the price of being left alone. Nobody trusts him. Nobody can be rid of him. Then a dig at the nearby Nordic ruin of Saarthal breaks into a sealed vault and finds a thing that should not exist: a vast humming orb of pure magicka, older than the Nords, older than the elves — the Eye of Magnus, a fragment left behind when the god Magnus fled the world at the dawn of creation. No one knows what it does. No one knows how to turn it off. And one of the people standing closest to it is a Thalmor agent who has spent his whole posting waiting for exactly this. The stakes climb in three steps. First the Eye is a mystery the College wants to study. Then it is a danger the College cannot contain. Then Ancano binds himself to it, kills the Arch-Mage, and begins unmaking the town of Winterhold one anomaly at a time — and only the lost Staff of Magnus can master the Eye before it spreads past the town to the Hold and beyond.
+
+  **Arrival.** Any one of these gets a party to the bridge at Winterhold:
+
+  - **The obvious one.** A PC wants to learn magic, or learn *more* magic, and the College is the only school that will have them. They come to apply. A PC with the College Apprentice background is already enrolled, and starts at **College of Winterhold +1**.
+  - **A tome to translate.** The party recovered a Spell Tome from a barrow that none of them can safely read — it smells of grave-cold, or only shows its letters in moonlight. **Urag gro-Shub**, the College librarian, is the one scholar in Skyrim who might identify it.
+  - **A missing apprentice.** A merchant or a worried parent in Dawnstar or Windhelm hires the party to find a young mage who left to study at Winterhold and has not written home. (He is fine — for now. He becomes a useful tie inside the College.)
+  - **Sent by another faction.** A Jarl's court wizard, or the Synod (the Imperial mages' order), wants eyes inside the independent College and pays the party to enroll and report.
+  - **The cold road.** The party is simply crossing the worst Hold in Skyrim in winter, and the College is the only fire and roof for a day in any direction.
+
+  **Plot beats.**
+
+  1. **First Lessons.** At the bridge, the gate-keeper **Faralda** tests each would-be student: cast a spell, or talk your way past with a WIL save. Inside, **Mirabelle Ervine** gives a tour and starter robes; **Tolfdir** lectures in the Hall of the Elements and has the party raise a **Ward** against his (deliberately weak) firebolt. The party meets fellow apprentices — a shy Nord, a proud Dunmer noblewoman, an over-eager Khajiit — any of whom make good recurring ties. *Reward:* admission to the College (**College of Winterhold** becomes Trusted, +1, if it was not already); College robes (clothing, no Armor); a **Spell Tome: Lesser Ward** for the party's caster.
+  2. **Under Saarthal.** Tolfdir takes the party to the **Saarthal** dig. Recovering artifacts, they find the **Saarthal Amulet** — and the moment it is touched, a hall seals shut around a PC. Escape means wearing the amulet and loosing a spell at the weakened wall. Deeper in, the Psijic monk **Nerien** freezes time to warn them: *"You should not have come here. What you have found will be sought by powers you cannot imagine."* Past him, behind a barrier of light, hums the **Eye of Magnus**, guarded by the draugr champion **Jyrik Gauldurson** (see Threats). The party reports back; the Arch-Mage orders the Eye studied — and that is when **Ancano** starts paying very close attention.
+  3. **The Library and the Augur.** Two threads, run in either order, that turn "interesting artifact" into "looming catastrophe":
+     - **Hitting the Books.** **Urag** reports that his books on Saarthal and the god Magnus were stolen by a washed-out apprentice, Orthorn, who fled to a necromancers' coven at **Fellglow Keep**. The party retrieves them from **the Caller** and her thralls — by force, trade, or persuasion.
+     - **Good Intentions.** **Ancano** summons the party to "meet a visitor" — the Psijic **Quaranir**, who freezes time and tells them the Eye must be kept from *anyone's* use, and points them to the **Augur of Dunlain** in the Midden. The Augur delivers the campaign's thesis: the Eye cannot be contained. They need the **Staff of Magnus**.
+     - *Reward:* each PC may take one **Skill Book** from the Arcanaeum's spares, with Urag's grudging thanks; a minor Relic from the Augur's chamber; the knowledge of what they must find.
+  4. **The Synod and the Oculory.** **Mirabelle** reports that the **Synod** — the Imperial mages' order, the College's rivals — have been asking after the Staff and mentioned **Mzulft**. The party travels south to the Dwemer ruin, fights through automatons and a **Falmer** warren, takes the Oculory's focusing crystal from a **Falmer Warmonger** in the deeps, and reaches the dying Synod expedition. With the surly survivor **Paratus**, they work the **Oculory**: set the crystal, play fire and frost across the device, and rotate its bands until it throws a map of Skyrim across the dome, pinpointing the Staff in **Labyrinthian**. *Branch:* help Paratus freely and the Synod owes the party a favor (a later ally, or a discount on tomes); rob or abandon him and the Synod becomes a hostile rival. *The turn:* they return to find disaster has arrived ahead of them — **Ancano** has bound himself to the Eye and sealed it, and himself, inside a barrier of force.
+  5. **The Eye Awakens.** The point of no return. **Savos Aren** confronts Ancano at the Eye and is killed by its unleashed power before the party's eyes. This is a fixed moment, not a winnable fight: a PC who throws themselves in is flung back for d6, and the Arch-Mage still dies. The Eye's energy lashes out, and **magic anomalies** spill from the Hall into the **town of Winterhold** below. With **Faralda** and the scholar **Arniel Gane**, the party must put them down before they kill the townsfolk — a running fight through the snow that buys the College time. *Branch — the price:* the eruption mortally wounds **Mirabelle Ervine**. By default she lives just long enough to hand the party the **Torc of Labyrinthian** (the key to the ruin) and **Savos Aren's Amulet**, then dies of her injuries while they are away. A merciful Warden may let quick Restoration save her at a cost (a Fatigue, a Scar, a spent Relic); a grim one lets her die at once. Either way, the party leaves for Labyrinthian with the Torc.
+  6. **Labyrinthian.** The party crosses Hjaalmarch to **Labyrinthian** and descends into the dragon cult's ancient seat. **Visions of a young Savos Aren** and his fellow apprentices replay the day they came here and only he walked out — context, atmosphere, and a quiet warning. The ruin is thick with **Skeletons** and **draugr**, and a magicka-draining curse hangs over the deep halls: every Spell Tome channeled here calls for the duress WIL save, in or out of combat. Partway down, a **Skeletal Dragon** bursts from a buried courtyard.
+  7. **Morokei.** At the ruin's heart, behind a shield of light fed by two enthralled wizards, waits the dragon priest **Morokei** — "Glorious," four thousand years dead and still draining the magicka of anyone who enters his sanctum (see Threats). *Branch — the Thalmor's last knife:* as the party takes the Staff, the Thalmor agent **Estormo** ambushes them — Ancano sent him to make sure the Staff never reaches the College. Beat him or talk him down; either way, they learn the Thalmor knew everything. *Reward:* the **Staff of Magnus** and the **Morokei** mask. The party returns to find **Tolfdir** holding the line at the College — and, by default, Mirabelle dead.
+  8. **The Eye of Magnus.** The party climbs back into the **Hall of the Elements**, where **Ancano** stands fused to the Eye behind its force-field, the magicka pouring off him. See **Climax**.
+
+  **Climax.**
+
+  The Hall of the Elements, the Eye blazing, Ancano fused to it behind the force-field.
+
+  - **Break the field.** A PC must turn the **Staff of Magnus** against the field — a spent charge, or a full action holding the beam (the Warden's call) — to collapse the barrier and leave Ancano exposed and reeling. Periodically he tries to re-seal it; a held burst of the Staff keeps it down.
+  - **The duel.** Then it is a fight against the empowered Ancano (see Threats). When he drops, his stolen power detonates: d6 _blast_ to everyone nearby.
+  - **The aftermath.** **Quaranir** and the Psijics appear and take the Eye away to safekeeping "where no mortal hand can misuse it" — and with **Tolfdir**, the College names the party (or its lead caster) **Arch-Mage of the College of Winterhold**.
+  - **What becomes of the College.** Depending on how the party treated the Synod (Beat 4), the survivors, and the town of Winterhold during the anomalies (Beat 5), the College ends the campaign either rebuilt and respected — Renown shifts one step better, and the town's Reaction to the mages shifts a step warmer — or isolated and feared, with Jarl Korir and the townsfolk as Wary as ever. The title is the same; the welcome is not.
+
+  ### Running Notes
+
+  - **The Thalmor watch who reads what.** Ancano is the villain, but he is also a reminder that magic is political. The Thalmor's interest in the Eye, the College, and the party's tomes can seed a sequel, or tie into the Civil War and Main Quest arcs.
+  - **No player Shouts.** The draugr lords use Shout-flavored attacks as creature abilities; the party gains no Thu'um from this campaign. Their power is the Staff, their tomes, and the Arch-Mage's seat.
+  - **Magic is Cairn magic.** Every spell here is a **Spell Tome** (both hands, read aloud, +1 Fatigue, WIL save under duress) or a **Relic** (charges and a Recharge). The Labyrinthian curse and the Eye's force-field are scene rules laid on top of the game, never changes to it.
+  - **Let the scholars be scholars.** The best moments here are not the boss fights but the parley with Urag, the Augur's riddle, Paratus at the broken Oculory, and the awful quiet after the Arch-Mage dies. Reward the players who think their way through the College as richly as the ones who fight through Labyrinthian.
+
+  **The frame's records.** `didact gen run elder-scrolls-skyrim.frame --prefill '{"frame": "The College of Winterhold"}' --auto` drafts the region, 6 places, 8 people, 7 threats, its factions and its clocks, for the world's system; `gen commit` writes them.
+
+  **Bestiary** (Elder Scrolls 2e / Grimscrolls): Draugr → `draugr` / `draugr`; Draugr Overlord → `draugr-overlord` / `draugr`; Skeleton → `skeleton` / `skeleton`; Necromancer → `necromancer` / `necromancer-coven`; Conjurer → `conjurer` / `hedge-wizards`; Vampire Thrall → `vampire-thrall` / `vampire-clan`; Falmer → `falmer` / `falmer`; Chaurus → `chaurus` / `chaurus`; Dwarven Spider → `dwarven-spider` / `dwarven-spider`; Dwarven Sphere → `dwarven-sphere` / `dwarven-sphere`; Ice Wraith → `ice-wraith` / `ice-wraith`; Frost Troll → `frost-troll` / `troll`.
+
+  **Rewards in each system's catalog:** The Staff of Magnus (elder-scrolls-2e.staff-of-magnus · grimscrolls.staff-of-magnus); The Morokei mask (elder-scrolls-2e.morokei · grimscrolls.dragon-priest-mask); The Archmage's Robes (elder-scrolls-2e.archmages-robes · grimscrolls.archmages-robes); The Saarthal Amulet (elder-scrolls-2e.saarthal-amulet); Gauldur Amulet, Magicka Fragment (elder-scrolls-2e.gauldur-amulet-magicka-fragment · grimscrolls.gauldur-amulet); Savos Aren's Amulet (elder-scrolls-2e.savos-arens-amulet).
+source: campaigns/04-college-of-winterhold#pitch
+---
+id: college-of-winterhold-region
+type: loc
+name: The College of Winterhold pointcrawl
+tags: [college-of-winterhold, region]
+mechanics:
+  elder-scrolls-2e: {kind: region}
+body: |-
+  ## GM notes
+
+  Run each as a small keyed site; the College itself is a hub the party returns to between expeditions.
+source: campaigns/04-college-of-winterhold#the-place
+---
+id: college-of-winterhold-the-college-and-the-hall-of-the-elements
+type: loc
+name: The College & the Hall of the Elements
+tags: [college-of-winterhold, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  (*Winterhold*) A free-standing spire above the Sea of Ghosts, reached by one long ruined bridge with a single gate at the far end, kept by **Faralda**. **The Hall of the Elements** is the central domed chamber where lectures are held and, later, where the Eye is brought and the final duel fought. Off it lie the **Arcanaeum** (Urag's library), the Halls of Countenance and Attainment where the mages live, and the **Arch-Mage's Quarters** at the top — locked until the campaign's end, then the party's.
+source: campaigns/04-college-of-winterhold#the-place
+---
+id: college-of-winterhold-the-midden
+type: loc
+name: The Midden
+tags: [college-of-winterhold, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  Beneath everything, a frozen warren of forgotten experiments, failed conjurations, and the Augur's prison. Cold counts as a hazard here: a watch in the Midden without a fire leaves a PC Deprived.
+source: campaigns/04-college-of-winterhold#the-place
+---
+id: college-of-winterhold-fellglow-keep
+type: loc
+name: Fellglow Keep
+tags: [college-of-winterhold, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  (*Whiterun Hold*) A ruined fort overrun by necromancers and their thralls, where the stolen books are held by **the Caller**.
+source: campaigns/04-college-of-winterhold#the-place
+---
+id: college-of-winterhold-tolfdir
+type: monster
+name: Tolfdir
+aliases: ["Tolfdir — senior instructor, the party's first teacher"]
+knowledge: secret
+tags: [college-of-winterhold, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The College of Winterhold'
+    hp: 8
+    armor: 1
+    STR: 9
+    DEX: 9
+    WIL: 15
+    attacks:
+    - {name: staff, damage: d6}
+    - name: Destruction bolt
+      damage: d8
+      qualities: [ranged]
+    abilities:
+    - Casts wards and flesh-spells over the party rather than attacking; in a crisis he is calm 
+      where others panic. Knows the Alteration shelves of the Arcanaeum by heart. Names the party 
+      Arch-Mage at the campaign's end, and means it.
+fields: {role: "senior instructor, the party's first teacher"}
+body: |-
+  ## GM notes
+
+  *senior instructor, the party's first teacher*
+
+  An old, kindly, absent-minded master of Alteration who has taught at the College longer than anyone living. The party's mentor and steadiest ally; he believes the best of everyone, which is both his charm and his blind spot.
+
+  Elder Scrolls 2e: 8 HP, 1 Armor, 9 STR, 9 DEX, 15 WIL, staff (d6), Destruction bolt (d8, ranged).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/04-college-of-winterhold#tolfdir--senior-instructor-the-partys-first-teacher
+---
+id: college-of-winterhold-mirabelle-ervine
+type: monster
+name: Mirabelle Ervine
+aliases: ['Mirabelle Ervine — Master-Wizard, who actually runs the place']
+knowledge: secret
+tags: [college-of-winterhold, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The College of Winterhold'
+    hp: 10
+    armor: 1
+    STR: 10
+    DEX: 12
+    WIL: 14
+    attacks:
+    - {name: staff, damage: d6}
+    - name: Frostbite
+      damage: d6
+      qualities: [blast]
+    abilities:
+    - The party's source of keys, tasks, and blunt truth. She hands over the Torc of Labyrinthian 
+      and the late Arch-Mage's amulet when the disaster breaks — and the cost of the Eye's first 
+      eruption is her (see Beat 5).
+fields: {role: 'Master-Wizard, who actually runs the place'}
+body: |-
+  ## GM notes
+
+  *Master-Wizard, who actually runs the place*
+
+  A brisk, unsentimental Breton who handles every door, key, ledger, and discipline problem so the Arch-Mage can think. She has no patience and no illusions, least of all about Ancano.
+
+  Elder Scrolls 2e: 10 HP, 1 Armor, 10 STR, 12 DEX, 14 WIL, staff (d6), Frostbite (d6, blast).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: 
+  campaigns/04-college-of-winterhold#mirabelle-ervine--master-wizard-who-actually-runs-the-place
+---
+id: college-of-winterhold-arch-mage-savos-aren
+type: monster
+name: Arch-Mage Savos Aren
+aliases: [Arch-Mage Savos Aren — head of the College]
+knowledge: secret
+tags: [college-of-winterhold, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The College of Winterhold'
+    hp: 12
+    armor: 2
+    STR: 10
+    DEX: 12
+    WIL: 16
+    attacks:
+    - {name: staff, damage: d6}
+    - name: elemental bolt
+      damage: d8
+      qualities: [blast]
+    abilities:
+    - A genuinely powerful mage who nonetheless loses — Ancano kills him with the Eye's stolen power
+      at the campaign's turn. His death is the point of no return, not a fight the party can win for
+      him.
+fields: {role: head of the College}
+body: |-
+  ## GM notes
+
+  *head of the College*
+
+  A cautious, secretive Dunmer who has led the College for decades and carries a guilt he never speaks of: as a young apprentice he went into Labyrinthian with his friends and walked out the only survivor. He tolerates Ancano because defying the Thalmor openly could doom the College outright.
+
+  Elder Scrolls 2e: 12 HP, 2 Armor, 10 STR, 12 DEX, 16 WIL, staff (d6), elemental bolt (d8, blast).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/04-college-of-winterhold#arch-mage-savos-aren--head-of-the-college
+---
+id: college-of-winterhold-ancano
+type: monster
+name: Ancano
+aliases: ['Ancano — Thalmor agent, the antagonist']
+knowledge: secret
+tags: [college-of-winterhold, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The College of Winterhold'
+    hp: 6
+    armor: 1
+    STR: 10
+    DEX: 13
+    WIL: 14
+    attacks:
+    - {name: elven sword, damage: d8}
+    - name: Destruction bolt
+      damage: d8
+      qualities: [ranged]
+    abilities: ['Also: spells against him are Impaired.', 'Empowered by the Eye: see Threats.']
+    impaired_by: [magic]
+  grimscrolls:
+    category: Orders & Armies
+    tier: tough
+    role: tactician
+    sights: spotless black-and-gold robes
+    sounds: a question as if to a child
+    smells: hot lightning
+    traits: [the Concordat shields them, blinded by contempt]
+    moves: [Read the Warrant, Lightning from Behind Shields]
+    wants: heretics in chains, and names — obedience suits them better than a fight
+    note: A patrol is a 6d pool; drop the **Justiciar**, its wizard and mind, and the soldiers 
+      withdraw to report. Answer civilly, deny Talos, and they pass with a sneer. Kill them and a 
+      death squad follows (*6d The Thalmor Find You*). After the Great War only.
+fields: {role: 'Thalmor agent, the antagonist'}
+body: |-
+  ## GM notes
+
+  *Thalmor agent, the antagonist*
+
+  A coldly polite Altmer "advisor" who watches everything and answers to the Aldmeri Dominion, not the Arch-Mage. Until Beat 5 he is protected by the rules of hospitality, not by force: striking first paints the party as murderers.
+
+  Elder Scrolls 2e: 6 HP, 1 Armor, 10 STR, 13 DEX, 14 WIL, elven sword (d8), Destruction bolt (d8, ranged); spells against him are Impaired.
+
+  The frame runs it as the Bestiary's Thalmor Justiciar (`elder-scrolls-2e.thalmor-justiciar`); the numbers are the same.
+
+  Grimscrolls: its card is `grimscrolls.thalmor-justiciars` (Thalmor Justiciars), in this record's grimscrolls block.
+source: campaigns/04-college-of-winterhold#ancano--thalmor-agent-the-antagonist
+---
+id: college-of-winterhold-urag-gro-shub
+type: monster
+name: Urag gro-Shub
+aliases: [Urag gro-Shub — the librarian]
+knowledge: secret
+tags: [college-of-winterhold, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The College of Winterhold'
+    hp: 8
+    armor: 2
+    STR: 14
+    DEX: 11
+    WIL: 13
+    attacks:
+    - {name: fists, damage: d4}
+    - name: Destruction bolt
+      damage: d8
+      qualities: [ranged]
+    abilities:
+    - Identifies strange tomes, names obscure ruins, and points the party at the lore they need at 
+      every step — if they treat his books with respect. Wreck a book and his Reaction drops two 
+      steps. The single best source of information in the campaign.
+fields: {role: the librarian}
+body: |-
+  ## GM notes
+
+  *the librarian*
+
+  A massive, glowering Orc who guards the Arcanaeum as a mother guards her children, because to him a damaged book is a death in the family. Gruff, fair, and astonishingly learned.
+
+  Elder Scrolls 2e: 8 HP, 2 Armor, 14 STR, 11 DEX, 13 WIL, fists (d4), Destruction bolt (d8, ranged).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/04-college-of-winterhold#urag-gro-shub--the-librarian
+---
+id: college-of-winterhold-the-augur-of-dunlain
+type: npc
+name: The Augur of Dunlain
+aliases: [The Augur of Dunlain — the oracle in the Midden]
+knowledge: secret
+tags: [college-of-winterhold, cast]
+fields: {role: the oracle in the Midden}
+body: |-
+  ## GM notes
+
+  *the oracle in the Midden*
+
+  A voice and a sphere of blue light; no body to strike.
+
+  - Once a brilliant student who reached too far into magic and became a being of pure prophecy, sealed in the freezing Midden. It speaks in riddles but does not lie, and it sees what the living cannot.
+  - It tells the party plainly: the Eye cannot be contained — only the **Staff of Magnus** can master it. Attacks against it are wasted; it is an oracle, not a monster. (If the Warden wants teeth, a careless or hostile approach blasts the offender for 1d6 WIL: *"You are not ready to know."*)
+source: campaigns/04-college-of-winterhold#the-augur-of-dunlain--the-oracle-in-the-midden
+---
+id: college-of-winterhold-quaranir
+type: monster
+name: Quaranir
+aliases: [Quaranir and the Psijic Order]
+knowledge: secret
+tags: [college-of-winterhold, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The College of Winterhold'
+    hp: 10
+    STR: 14
+    DEX: 12
+    WIL: 16
+    abilities:
+    - 'A Psijic can halt time in a scene: all other action stops while they deliver a message, and the
+      party cannot act against them. At the very end they take the Eye away to safekeeping "where no mortal
+      hand can misuse it."'
+body: |-
+  ## GM notes
+
+  Robed monks of the ancient, half-mythical Psijic Order of the Isle of Artaeum, who appear and vanish where they please and freeze time around themselves to speak unheard. They watch the Eye from afar and intervene only with warnings — they will not fight the party's battles for them.
+
+  Elder Scrolls 2e: 10 HP, 14 STR, 12 DEX, 16 WIL, no attack of their own (they simply stop time).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/04-college-of-winterhold#quaranir-and-the-psijic-order
+---
+id: college-of-winterhold-paratus-decimius
+type: monster
+name: Paratus Decimius
+aliases: [Paratus Decimius — the Synod survivor]
+knowledge: secret
+tags: [college-of-winterhold, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The College of Winterhold'
+    hp: 6
+    armor: 1
+    STR: 9
+    DEX: 11
+    WIL: 14
+    attacks:
+    - {name: dagger, damage: d6}
+    - name: Destruction bolt
+      damage: d8
+      qualities: [ranged]
+fields: {role: the Synod survivor}
+body: |-
+  ## GM notes
+
+  *the Synod survivor*
+
+  The last living member of the Synod's expedition to Mzulft: arrogant, frightened, and certain the College is beneath him. He will help work the Oculory because he cannot do it alone.
+
+  Elder Scrolls 2e: 6 HP, 1 Armor, 9 STR, 11 DEX, 14 WIL, dagger (d6), Destruction bolt (d8, ranged).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/04-college-of-winterhold#paratus-decimius--the-synod-survivor
+---
+id: college-of-winterhold-jyrik-gauldurson
+type: monster
+name: Jyrik Gauldurson
+aliases: [Jyrik Gauldurson (Saarthal)]
+knowledge: secret
+tags: [college-of-winterhold, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The College of Winterhold'
+    hp: 12
+    armor: 3
+    STR: 16
+    DEX: 8
+    WIL: 12
+    attacks:
+    - {name: ancient greatsword, damage: d10}
+    critical: a death-curse strikes the target for 1d4 WIL.
+  grimscrolls:
+    category: The Restless Dead & the Blighted
+    tier: mook
+    role: protector
+    sights: blue eyes opening in a wall niche
+    sounds: ancient steel scraping stone
+    smells: embalming spice and dust
+    traits: [lies still until you pass, 'fights for the tomb, not its life']
+    moves: [Rise Behind You, Shield the Sarcophagus]
+    wants: the tomb unrobbed and its lord undisturbed — it has no interest in the world outside the 
+      door
+    note: "A crypt's worth is a 4d pool; **Restless** and **Wights** are toughs. A **Scourge** shouts
+      — one word staggers a whole rank (+1t for a beat) — and a **Deathlord** is a 6d elite with ebony
+      arms and a voice that disarms. Fire is the old answer: it drops 1d before the pool rolls."
+body: |-
+  ## GM notes
+
+  *Saarthal*
+
+  One of the three treacherous sons of the ancient Arch-Mage Gauldur, entombed at Saarthal. He is shielded by the Eye and takes no damage until Tolfdir severs the link — give the party a round or two of fighting through summoned Skeletons while Tolfdir works; then the shield drops and the real fight begins.
+
+  Elder Scrolls 2e: 12 HP, 3 Armor, 16 STR, 8 DEX, 12 WIL, ancient greatsword (d10).
+
+  The frame runs it as the Bestiary's Wight (`elder-scrolls-2e.wight`); the numbers are the same.
+
+  Grimscrolls: its card is `grimscrolls.draugr` (Draugr), in this record's grimscrolls block.
+source: campaigns/04-college-of-winterhold#jyrik-gauldurson-saarthal
+---
+id: college-of-winterhold-the-caller
+type: monster
+name: The Caller
+aliases: [The Caller (Fellglow Keep)]
+knowledge: secret
+tags: [college-of-winterhold, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The College of Winterhold'
+    hp: 6
+    armor: 1
+    STR: 8
+    DEX: 11
+    WIL: 14
+    attacks:
+    - {name: bound dagger, damage: d6}
+    - name: elemental bolt
+      damage: d8
+      qualities: [ranged]
+    abilities:
+    - Run as a Necromancer from the Bestiary (6 HP, 1 Armor, 8 STR, 11 DEX, 14 WIL, bound dagger 
+      (d6), elemental bolt (d8, ranged)), with a detachment of Skeletons and a few vampire thralls. 
+      She would rather bargain for her life than die for Urag's books.
+  grimscrolls:
+    category: Outlaws & Cults
+    tier: tough
+    role: blaster
+    sights: candles in a ruined chapel
+    sounds: the click of walking bone
+    smells: embalming salts and earth
+    traits: [the dead stand in front, every corpse is a spare]
+    moves: [Raise What You Just Killed, Frost from Behind the Bones]
+    wants: bodies, black soul gems, and privacy — not witnesses, and never a fair fight
+    note: The risen are a 4d pool that gets a die back when anything dies nearby; the coven behind 
+      is 6d, and its dead fall with it. A **Worm Anchorite** leads a cell; an **Arch Necromancer** 
+      is a 6d elite. Cornered, most trade a secret for their lives.
+body: |-
+  ## GM notes
+
+  *Fellglow Keep*
+
+  Run as a Necromancer from the Bestiary (6 HP, 1 Armor, 8 STR, 11 DEX, 14 WIL, bound dagger (d6), elemental bolt (d8, ranged)), with a detachment of Skeletons and a few vampire thralls. She would rather bargain for her life than die for Urag's books.
+
+  Elder Scrolls 2e: 6 HP, 1 Armor, 8 STR, 11 DEX, 14 WIL, bound dagger (d6), elemental bolt (d8, ranged).
+
+  The frame runs it as the Bestiary's Necromancer (`elder-scrolls-2e.necromancer`); the numbers are the same.
+
+  Grimscrolls: its card is `grimscrolls.necromancer-coven` (Necromancer Coven), in this record's grimscrolls block.
+source: campaigns/04-college-of-winterhold#the-caller-fellglow-keep
+---
+id: college-of-winterhold-magic-anomalies
+type: monster
+name: Magic Anomalies
+aliases: [Magic Anomalies (Winterhold)]
+knowledge: secret
+tags: [college-of-winterhold, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The College of Winterhold'
+    hp: 3
+    STR: 12
+    DEX: 12
+    WIL: 10
+    attacks:
+    - name: crackling surge
+      damage: d8
+      qualities: [blast]
+    impaired_by: [magic]
+body: |-
+  ## GM notes
+
+  *Winterhold*
+
+  Living fragments of the Eye's magicka, flickering blue through the ruined town. Run a pack of four or more as a detachment. Weapons strike them normally; spells against them are Impaired.
+
+  Elder Scrolls 2e: 3 HP, 12 STR, 12 DEX, 10 WIL, crackling surge (d8, blast).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/04-college-of-winterhold#magic-anomalies-winterhold
+---
+id: college-of-winterhold-the-skeletal-dragon
+type: monster
+name: The Skeletal Dragon
+aliases: [The Skeletal Dragon (Labyrinthian)]
+knowledge: secret
+tags: [college-of-winterhold, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The College of Winterhold'
+    hp: 12
+    armor: 2
+    STR: 16
+    DEX: 13
+    WIL: 16
+    attacks:
+    - {name: bite, damage: d10}
+    - name: frost breath
+      damage: d8
+      qualities: [blast]
+    abilities:
+    - "A detachment: individuals' attacks on it are Impaired (unless blast); its attacks on individuals
+      are Enhanced and blast."
+    enhanced_by: [magic]
+  grimscrolls:
+    category: Bosses of Tamriel
+    tier: boss
+    role: blaster
+    sights: a shadow crossing the whole valley
+    sounds: a roar that arrives before the sound of wings
+    smells: scorched pine and hot stone
+    pools:
+    - name: The Dragon
+      dice: 8
+      traits: armored in scale and pride, and reachable only once it is grounded
+      moves: [Bite and Toss, Tail Sweep]
+    - name: Its Wings
+      dice: 6
+      traits: bring it down with arrows, a ballista, a rival's challenge, or a Shout that names it 
+        mortal
+      moves: [Strafe the Line, Wheel Away]
+    - name: Its Thu'um
+      dice: 4
+      traits: fire or frost in a single word; break its breath and you break its concentration
+      moves: [Breath of Fire, Shout the Ranks Apart]
+    fail: It takes to the sky with someone in its jaws — or it finishes the town it came for.
+    wants: dominion, tribute, and to be answered — a dragon challenged or flattered in its own 
+      tongue may prefer talk to killing
+    note: "A linked challenge (6d + 4d + 8d): the Dragon itself is locked until it is grounded or goaded
+      down. **Frost** dragons trade fire for ice. **Blood**, **Elder**, and **Ancient** dragons add a
+      die to each part in turn; a **Revered** or **Legendary** one drains what it bites. A dragon's soul
+      does not rest: unless a Dragonborn takes it, the bones can be raised again."
+body: |-
+  ## GM notes
+
+  *Labyrinthian*
+
+  All bone and no soul: it cannot fly, cannot be frightened, and magic against it is Enhanced. Scatter its bones when it falls, or it knits itself together again by the next day.
+
+  Elder Scrolls 2e: 12 HP, 2 Armor, 16 STR, 13 DEX, 16 WIL, bite (d10), frost breath (d8, blast), detachment.
+
+  The frame runs it as the Bestiary's Dragon (`elder-scrolls-2e.dragon`); the numbers are the same.
+
+  Grimscrolls: its card is `grimscrolls.dragon` (Dragon), in this record's grimscrolls block.
+source: campaigns/04-college-of-winterhold#the-skeletal-dragon-labyrinthian
+---
+id: college-of-winterhold-morokei
+type: monster
+name: Morokei
+aliases: [Morokei (the heart of Labyrinthian)]
+knowledge: secret
+tags: [college-of-winterhold, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The College of Winterhold'
+    hp: 12
+    armor: 1
+    STR: 8
+    DEX: 13
+    WIL: 18
+    attacks:
+    - {name: life-draining touch, damage: d8}
+    - name: elemental bolt
+      damage: d8
+      qualities: [blast]
+    abilities:
+    - Magic against him is Impaired; he keeps his distance, hurls Destruction, throws up wards, and 
+      raises the fallen.
+    impaired_by: [magic]
+    critical: a death-curse strikes the target for 1d6 WIL. He turns to dust when slain, leaving his
+      mask and the Staff of Magnus.
+  grimscrolls:
+    category: Bosses of Tamriel
+    tier: boss
+    role: blaster
+    sights: a coffin lid thrown the length of the hall
+    sounds: a dry voice Shouting in the dragon tongue
+    smells: lightning and embalming salts
+    pools:
+    - name: The Priest
+      dice: 8
+      traits: adrift above the floor, warded, and always backing away
+      moves: [Lightning Down the Hall, Shout the Ranks Apart]
+    - name: The Thralls in the Walls
+      dice: 6
+      traits: draugr who rise in shifts to feed their lord their own life
+      moves: [Burst from the Niches, Kneel and Feed]
+    - name: The Staff
+      dice: 4
+      traits: a wall of storm across the floor, and an atronach to hold the gap
+      moves: [Wall of Storms, Atronach in the Gap]
+    fail: It leaves the barrow with its dead behind it, and the nearest hold has a master it did not
+      choose.
+    wants: to rule again in the dragons' name — and never to see its mask on a living face
+    note: "A linked challenge (6d + 4d + 8d): the Priest is locked while its thralls stand. Break the
+      Staff or corner the Priest for a setup. Each is named for its mask, which outlasts it. **Morokei**
+      of Labyrinthian holds the Staff of Magnus (+1t to work magic near him). **Nahkriin** keeps Alduin's
+      portal at Skuldafn. **Hevnoraak** planned his own return, and the ghost jailing him in Valthume
+      wants help."
+body: |-
+  ## GM notes
+
+  *the heart of Labyrinthian*
+
+  The shield of light: Morokei cannot be touched until the party kills or breaks the concentration of his two enthralled wizards — run each as a Conjurer (6 HP, 1 Armor, 8 STR, 11 DEX, 14 WIL, bound sword (d8), elemental bolt (d8, ranged)). While the wizards stand, every attack on Morokei is wasted.
+
+  Elder Scrolls 2e: 12 HP, 1 Armor, 8 STR, 13 DEX, 18 WIL, life-draining touch (d8), elemental bolt (d8, blast).
+
+  The frame runs it as the Bestiary's Dragon Priest (`elder-scrolls-2e.dragon-priest`); the numbers are the same.
+
+  Grimscrolls: its card is `grimscrolls.dragon-priest` (Dragon Priest), in this record's grimscrolls block.
+source: campaigns/04-college-of-winterhold#morokei-the-heart-of-labyrinthian
+---
+id: college-of-winterhold-estormo
+type: monster
+name: Estormo
+aliases: [Estormo (the Thalmor's last knife)]
+knowledge: secret
+tags: [college-of-winterhold, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The College of Winterhold'
+    hp: 6
+    armor: 1
+    STR: 10
+    DEX: 13
+    WIL: 14
+    attacks:
+    - {name: elven sword, damage: d8}
+    - name: Destruction bolt
+      damage: d8
+      qualities: [ranged]
+    abilities:
+    - 'Also: spells against him are Impaired.'
+    - Run as a Thalmor Justiciar from the Bestiary (6 HP, 1 Armor, 10 STR, 13 DEX, 14 WIL, elven 
+      sword (d8), Destruction bolt (d8, ranged); spells against him are Impaired).
+    impaired_by: [magic]
+  grimscrolls:
+    category: Orders & Armies
+    tier: tough
+    role: tactician
+    sights: spotless black-and-gold robes
+    sounds: a question as if to a child
+    smells: hot lightning
+    traits: [the Concordat shields them, blinded by contempt]
+    moves: [Read the Warrant, Lightning from Behind Shields]
+    wants: heretics in chains, and names — obedience suits them better than a fight
+    note: A patrol is a 6d pool; drop the **Justiciar**, its wizard and mind, and the soldiers 
+      withdraw to report. Answer civilly, deny Talos, and they pass with a sneer. Kill them and a 
+      death squad follows (*6d The Thalmor Find You*). After the Great War only.
+body: |-
+  ## GM notes
+
+  *the Thalmor's last knife*
+
+  Run as a Thalmor Justiciar from the Bestiary (6 HP, 1 Armor, 10 STR, 13 DEX, 14 WIL, elven sword (d8), Destruction bolt (d8, ranged); spells against him are Impaired).
+
+  Elder Scrolls 2e: 6 HP, 1 Armor, 10 STR, 13 DEX, 14 WIL, elven sword (d8), Destruction bolt (d8, ranged); spells against him are Impaired.
+
+  The frame runs it as the Bestiary's Thalmor Justiciar (`elder-scrolls-2e.thalmor-justiciar`); the numbers are the same.
+
+  Grimscrolls: its card is `grimscrolls.thalmor-justiciars` (Thalmor Justiciars), in this record's grimscrolls block.
+source: campaigns/04-college-of-winterhold#estormo-the-thalmors-last-knife
+---
+id: college-of-winterhold-ancano-empowered-by-the-eye
+type: monster
+name: Ancano, empowered by the Eye
+aliases: ['Ancano, empowered by the Eye (the final fight)']
+knowledge: secret
+tags: [college-of-winterhold, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The College of Winterhold'
+    hp: 14
+    armor: 2
+    STR: 10
+    DEX: 13
+    WIL: 18
+    attacks:
+    - name: magicka lash
+      damage: d10
+      qualities: [blast]
+    abilities:
+    - Once per round, he draws on the Eye to heal 1d6 HP or to fling a PC back for d6. Spells 
+      against him are Impaired. The Staff's beam strikes him at its full die, but while he is joined
+      to the Eye it cannot silence him — the lash is the Eye's power, not a spell.
+    - 'On taking Critical Damage, the stolen power gutters out of him in a shockwave as he dies: d6 blast
+      to everyone nearby, friend and foe.'
+    impaired_by: [magic]
+body: |-
+  ## GM notes
+
+  *the final fight*
+
+  The field: while the Eye's force-field stands, Ancano cannot be harmed at all — every attack and spell against him is wasted. Only the Staff of Magnus, turned against the field, drops it.
+
+  Elder Scrolls 2e: 14 HP, 2 Armor, 10 STR, 13 DEX, 18 WIL, magicka lash (d10, blast).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/04-college-of-winterhold#ancano-empowered-by-the-eye-the-final-fight
+---
+id: college-of-winterhold-the-eyes-hunger
+type: track
+name: The Eye's Hunger
+knowledge: secret
+tags: [college-of-winterhold, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: (d6) How far the Eye's power has spread since Ancano seized it. Ticks at the start of each 
+  session after Beat 5, and whenever the party rests somewhere safe on the road to Labyrinthian. At 
+  2, anomalies stalk the town of Winterhold by night; at 4, the townsfolk flee and the Jarl blames 
+  the College; at 6, the Eye's field swallows the whole spire, and the final fight must be fought in
+  a Hall where every Spell Tome forces the duress WIL save.
+source: campaigns/04-college-of-winterhold#clocks
+---
+id: college-of-winterhold-ancanos-suspicion
+type: track
+name: Ancano's Suspicion
+knowledge: secret
+tags: [college-of-winterhold, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: "(d4) Before Beat 5, ticks each time the party openly pries into Ancano's business or brings him
+  news of the Eye. At 4, he moves early: Beat 5 begins at once, before the party has the Oculory's answer."
+source: campaigns/04-college-of-winterhold#clocks

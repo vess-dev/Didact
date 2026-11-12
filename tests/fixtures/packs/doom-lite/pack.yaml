@@ -1,0 +1,7 @@
+id: doom-lite
+name: Doom (test pack)
+kind: system
+version: 0.1.0
+description: A check whose first step makes the record its options then change.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

@@ -1,0 +1,24 @@
+# Wise Woman (backgrounds/wise-woman): the background's two d6 tables.
+table: wise-woman-1
+title: "What did the old craft give you?"
+dice: d6
+source: backgrounds/wise-woman#what-did-the-old-craft-give-you-roll-1d6
+entries:
+  1: "Knowing hands. Once per day, with a poultice and a laying-on of hands, restore 1d6 STR to a hurt creature (this counts as its magical healing for the day). You can always tell a sickness from a curse at a glance."
+  2: "The lore of root and leaf. You know every herb of the North on sight. Once per day, given a quiet hour and what grows nearby, brew a draught that cures one ordinary disease, draws out a poison, or restores 1d4 STR."
+  3: "The reading of omens. Once per session, cast the bones, watch the birds, or read the smoke, and ask the Warden one true thing about what is coming — a danger on the road ahead, a lie in a stranger's mouth, the truth behind an ill dream."
+  4: "The old wards against the dark. Once per day, hold up a charm and speak the old words at a hagraven, a witch, or one of the restless dead: it must pass a WIL save or recoil, and it will not come near you for the rest of the scene."
+  5: "The trust of plain folk. In any village, croft, or farmstead you are welcomed as the wise woman, and folk bring you their secrets along with their ailments: the Warden tells you what the place whispers about anyone you ask after."
+  6: "The older sight, kept clean of the hagraven's bargain. Once per day, look hard at someone and learn one hidden thing about them — a charm laid on them, a sickness in them, a beast's blood beneath their skin."
+---
+table: wise-woman-2
+title: "What charm or remedy do you keep closest?"
+dice: d6
+source: backgrounds/wise-woman#what-charm-or-remedy-do-you-keep-closest-roll-1d6
+entries:
+  1: {text: "Bear-Claw Amulet: A charm of the Old Gods, of Kyne and the hunt (petty). Once per day, clutch it and re-roll a failed save against the wild — cold, beasts, storm, or a fall. Nord hunters treat you as kin for the wearing of it.", data: {gear: [{name: "Bear-Claw Amulet", size: "petty"}]}}
+  2: {text: "Curing Simples: Garlic, hawk feathers, and bitter root tied in cloth (3 uses). Steeped and drunk, a dose cures one ordinary disease.", data: {gear: [{name: "Curing Simples", uses: 3}]}}
+  3: {text: "Rune-Cast Bones: A handful of carved knucklebones (petty). Once per day, cast them before a choice between two roads, two doors, or two offers: the Warden tells you truly which is the worse.", data: {gear: [{name: "Rune-Cast Bones", size: "petty"}]}}
+  4: {text: "Threshold Ward: A knot of briar, iron nails, and red thread (petty, 3 uses). Hang it at a door or a camp's edge and speak the warding: for one night, the restless dead and witch-things will not cross it unbidden.", data: {gear: [{name: "Threshold Ward", size: "petty", uses: 3}]}}
+  5: {text: "Love-Philter: A vial of rose-hip and something darker (2 uses). A drop in a cup, and the drinker must pass a WIL save or be besotted with the first person they see until the next dawn. You have sold it to more lonely farmers than you like to admit.", data: {gear: [{name: "Love-Philter", uses: 2}]}}
+  6: {text: "Hag-Stone: A holed river-stone (petty), gift of an old woman who went on to the darker path you refused. Once per day, look through the hole to see the true shape of one disguised, illusory, or shapechanged thing before you.", data: {gear: [{name: "Hag-Stone", size: "petty"}]}}

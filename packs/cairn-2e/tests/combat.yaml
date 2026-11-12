@@ -1,0 +1,143 @@
+# Combat as the book runs it: two weapons keep the highest, impaired and enhanced dice, panic,
+# direct damage, critical damage with the attacker's own effect, stabilizing, morale, retreat,
+# and every scar applied. Seeded, so it plays the same every time.
+test: attacks
+script:
+  - world new vale --system {pack} --seed combat
+  - campaign new first --seed combat
+  - new pc Ivy --set STR=12 --set DEX=12 --set WIL=12 --set hp=6
+  - new pc Wren --set STR=3 --set DEX=12 --set WIL=12 --set hp=3
+  - spawn wolf
+  - spawn blood-elk
+  - new detachment Bandits --set hp=6 --set STR=12 --set WIL=9 --set count=6
+  - run: do attack attacker=ivy target=wolf "weapon={d6, d6}kh1"
+    expect: ["{1d6, 1d6}kh1", "Ivy deals"]
+  - run: do attack attacker=ivy target=bandits "weapon={d6, d6}kh1"
+    expect: ["2d4kh1", "The attack is impaired (Ivy → Bandits)"]
+  - run: do attack attacker=bandits target=ivy weapon=d6
+    expect: ["1d12kh1", "The attack is enhanced"]
+  - run: do attack attacker=ivy target=wolf mode=unarmed
+    expect: ["1d4", "The attack is unarmed"]
+  - set ivy conditions+=panicked
+  - run: do attack attacker=ivy target=wolf weapon=d8
+    expect: ["1d4kh1", "The attack is impaired (Ivy → Wolf)"]
+  - set ivy conditions-=panicked
+  - run: do attack attacker=wolf target=wren weapon=3
+    expect: ["scars: Walloped", "conditions += ['deprived', 'walloped']", "Wren gets a scar (3 HP lost: walloped)"]
+  - run: do attack attacker=blood-elk target=wren weapon=2
+    expect: ["STR -= 2", "Wren takes critical damage", "reminder set for day 1, 01:00", "Blood Elk's critical damage: Gores its victims"]
+  - run: remind --list
+    expect: "Wren dies of critical damage unless stabilized"
+  - run: show wren
+    expect: ["STR 1/3", "HP 0/3", "critical", "Walloped (3 HP lost)"]
+  - run: do stabilize who=wren
+    expect: ["conditions -= critical", "conditions += stabilized", "With bandages, Wren stabilizes"]
+  - run: do stabilize who=wren
+    expect: "stop: Wren is already stabilized."
+  - run: remind --cancel 'Wren dies'
+    expect: "cancelled the reminder"
+  - run: do attack attacker=ivy target=blood-elk weapon=5 direct=true
+    expect: ["Blood Elk can't rely on HP: the damage goes straight to STR.", "monster:blood-elk: STR -= 5"]
+  - run: do blast-targets weapon=d8
+    expect: "The blast can catch up to"
+  - run: do morale who=bandits wil=13
+    expect: ["check cairn-2e.morale", "1d20", "→", "Bandits"]
+  - run: do morale who=ivy
+    expect: "stop: Morale does not affect PCs"
+  - run: rolls
+    expect: "cairn-2e.morale (who=detachment:bandits, wil=13)"
+  - run: do retreat who=ivy
+    expect: ["Is there somewhere safe to run to?", "→"]
+---
+test: doomed
+help: A doomed PC's next critical damage save decides; passing lifts the doom and rerolls max HP.
+script:
+  - world new vale --system {pack} --seed doom
+  - campaign new first --seed doom
+  - new pc Doom --set STR=18 --set DEX=12 --set WIL=12 --set hp=2 --set conditions=doomed
+  - spawn wolf
+  - run: do attack attacker=wolf target=doom weapon=4
+    expect: ["STR -= 2", "Doom was doomed, and passes: the doom lifts.", "3d6", "Doomed, survived"]
+  - run: show doom
+    expect: ["STR 16/18", "Doomed, survived"]
+---
+test: scars
+help: Every scar result, applied, and the later halves healed.
+script:
+  - world new vale --system {pack} --seed scars
+  - campaign new first --seed scars
+  - new pc Lucius --set STR=12 --set DEX=12 --set WIL=12 --set hp=4
+  - run: do scar who=lucius lost=1
+    expect: ["scar-location", "Lasting Scar (", "1 HP lost"]
+  - run: do scar who=lucius lost=2
+    expect: ["describe how they refocus", "Rattling Blow (2 HP lost)"]
+  - run: do scar who=lucius lost=4
+    expect: ["broken-limb", "Broken Limb (", "scar-heal who=pc:lucius scar=broken-"]
+  - run: do scar who=lucius lost=5
+    expect: ["conditions += diseased", "Diseased (5 HP lost)"]
+  - run: do scar who=lucius lost=6
+    expect: ["head-wound", "3d6", "Reorienting Head Wound ("]
+  - run: do scar who=lucius lost=7
+    expect: ["conditions += hamstrung", "Hamstrung (7 HP lost)"]
+  - run: do scar who=lucius lost=8
+    expect: ["conditions += deafened", "Deafened (8 HP lost)"]
+  - run: do scar who=lucius lost=9
+    expect: ["3d6", "Re-brained (9 HP lost)"]
+  - run: do scar who=lucius lost=10
+    expect: ["the Warden says which", "Sundered (10 HP lost"]
+  - run: do scar who=lucius lost=11
+    expect: ["conditions += ['deprived', 'mortal-wound']", "dies in one hour unless healed", "reminder set for"]
+  - run: do scar who=lucius lost=12
+    expect: ["conditions += doomed", "Doomed (12 HP lost)"]
+  - run: do scar who=lucius lost=15
+    expect: ["the book's table stops at 12 HP lost", "Doomed (15 HP lost)"]
+  - run: do scar who=lucius lost=3
+    expect: "Walloped (3 HP lost)"
+  - run: do scar-heal who=lucius scar=diseased
+    expect: ["conditions -= diseased", "2d6", "Diseased, got over it"]
+  - run: do scar-heal who=lucius scar=deafened
+    expect: "Lucius can hear again."
+  - run: do scar-heal who=lucius scar=deafened
+    expect: "stop: Lucius has no deafened to heal"
+  - run: do stabilize who=lucius
+    expect: "conditions += stabilized"
+  - set lucius gold=60
+  - run: do recover who=lucius
+    expect: ["conditions -= mortal-wound", "Mortal Wound, recovered", "conditions -= walloped", "Walloped, rested", "conditions -= hamstrung", "Hamstrung, recovered", "conditions -= stabilized", "After a week's rest, Lucius's attributes are restored (50gp)"]
+  - run: show lucius
+    expect: ["Gold 10", "doomed"]
+---
+test: attribute-loss
+help: Damage outside combat comes off an attribute (the one the parameter names), and a week with a healer restores it, with or without critical damage.
+script:
+  - world new vale --system {pack} --seed loss
+  - campaign new first --seed loss
+  - new pc Freya --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set gold=60
+  - run: do attribute-damage target=freya attr=DEX amount=3
+    expect: ["pc:freya: DEX -= 3", "Freya loses 3 DEX."]
+  - run: show freya
+    expect: "DEX 9/12"
+  - run: do attribute-damage target=freya attr=WIL amount=12
+    expect: ["now delirious", "Complete WIL loss"]
+  - run: do recover who=freya cost=0
+    expect: ["DEX = 12", "WIL = 12", "conditions -= delirious", "restored (0gp)"]
+  - run: show freya
+    expect: ["DEX 12", "WIL 12", "Gold 60"]
+---
+test: armor-worn-or-held
+help: Armor counts while worn or held (at most 3); stowed in the backpack it doesn't.
+script:
+  - world new vale --system {pack} --seed armor
+  - campaign new first --seed armor
+  - new pc Rook --set STR=12 --set DEX=12 --set WIL=12 --set hp=4
+  - run: inv add rook Shield Helmet Gambeson Chainmail
+    expect: "body"
+  - run: show rook
+    expect: "armor 3"
+  - inv move rook Chainmail backpack
+  - inv move rook Shield backpack
+  - run: show rook
+    expect: "armor 2"
+  - inv move rook Shield body
+  - run: show rook
+    expect: "armor 3"

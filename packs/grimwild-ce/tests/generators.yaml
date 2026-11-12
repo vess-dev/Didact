@@ -1,0 +1,128 @@
+# Every generator the book's procedures make, all the way to records: each one runs with the
+# dice deciding what the prefill doesn't, then commits. Seeded, so it plays the same every time.
+test: every-generator
+script:
+  - world new wild --system {pack} --seed generators
+  - campaign new first --seed generators
+  - run: >-
+      gen run grimwild-ce.npc --auto --prefill '{"name": "Vella Mouser", "background": "Trader"}'
+    expect: ["npc Vella Mouser: backgrounds: [Trader], wises: [cultural tastes", "tier: "]
+  - run: gen commit g1
+    expect: "npc:vella-mouser"
+  - run: >-
+      gen run grimwild-ce.monster --auto --prefill '{"tier": "Elite: A dangerous foe with strong scene presence, often leading a group of lesser enemies. These are typically a challenge themselves.", "pool": 6, "name": "Ash Wight"}'
+    expect: "monster Ash Wight: tier: elite"
+  - run: gen commit g2
+    expect: "monster:ash-wight"
+  - run: >-
+      gen run grimwild-ce.arcana --auto --prefill '{"tier": "major", "theme": "primal", "name": "Boots of the Long Road"}'
+    expect: "arcana Boots of the Long Road: tier: major, touchstones: ["
+  - run: gen commit g3
+    expect: "arcana:boots-of-the-long-road"
+  - run: >-
+      gen run grimwild-ce.potion --auto --prefill '{"name": "Mist Draught"}'
+    expect: ["tier: minor, expendable: ", "It's a "]
+  - run: gen commit g4
+    expect: "arcana:mist-draught"
+  - run: >-
+      gen run grimwild-ce.treasure --auto --prefill '{"tier": "major", "what": "arcana", "name": "The Weeping Crown"}'
+    expect: ["item The Weeping Crown: kind: treasure, tier: major, treasure: arcana", "grimwild-ce.arcana"]
+  - run: gen commit g5
+    expect: committed
+  - run: >-
+      gen run grimwild-ce.weapon --auto --prefill '{"name": "Short sword"}'
+    expect: "item Short sword: styles: ["
+  - run: gen commit g6
+    expect: "item:short-sword"
+  - run: >-
+      gen run grimwild-ce.faction --auto --prefill '{"name": "The Oldgrove Druids", "goal_1": "Quiet the horrors", "goal_2": "Parley with Shaz", "pool_2": 8}'
+    expect: ["faction The Oldgrove Druids", "pool_1: goal-1, pool_2: goal-2", "track Quiet the horrors: kind: pool, pool: campaign"]
+  - run: gen commit g7
+    expect: "track:parley-with-shaz"
+  - run: track list
+    expect: "Parley with Shaz 8d"
+  - run: >-
+      gen run grimwild-ce.quest --auto --prefill '{"difficulty": "Daunting: 4d+4d+6d", "name": "Cure the Plague"}'
+    expect: ["phases: [4, 4, 6]", "track Cure the Plague: peril: kind: pool, pool: pressure, phases: [4, 4]"]
+  - run: gen commit g8
+    expect: "track:cure-the-plague-peril"
+  - run: >-
+      gen run grimwild-ce.quest --auto --prefill '{"difficulty": "Trivial: 4d", "name": "Enjoy the Fall Festival"}'
+    expect: "difficulty: trivial"
+  - run: gen commit g9
+    expect: "2 records"
+  - run: >-
+      gen run grimwild-ce.challenge --auto --prefill '{"dice": 8, "name": "Navigate the Channel"}'
+    expect: ["track Navigate the Channel: kind: pool, pool: task", "suspense: 2"]
+  - run: gen commit g10
+    expect: "track:navigate-the-channel"
+  - run: track list
+    expect: "Navigate the Channel 8d"
+  - run: >-
+      gen run grimwild-ce.battleground enemies=3 --auto --prefill '{"name": "Boarding a Pirate Ship"}'
+    expect: "loc Boarding a Pirate Ship: kind: battleground, threats: ["
+  - run: gen commit g11
+    expect: "loc:boarding-a-pirate-ship"
+  - run: >-
+      gen run grimwild-ce.community-asset --auto --prefill '{"tier": "major", "name": "Twin-Sails Tavern", "representative": "Old Brask", "job": "barkeep"}'
+    expect: ["tier: major, cost: 8", "npc Old Brask: role: barkeep, traits: ["]
+  - run: gen commit g12
+    expect: "npc:old-brask"
+  - run: gen run grimwild-ce.region --auto
+    expect: ["loc The Grimwild: kind: region", "region: region-1"]
+  - run: gen commit g13
+    expect: "7 records"
+  - run: gen run grimwild-ce.settlement buildings=4 --auto
+    expect: ["kind: settlement", "kind: building"]
+  - run: gen commit g14
+    expect: "5 records"
+  - run: gen run grimwild-ce.site --auto
+    expect: ["kind: site", "point: showdown"]
+  - run: gen commit g15
+    expect: "6 records"
+  - run: >-
+      gen run grimwild-ce.talent --prefill '{"kind": "path", "path": "Bard", "gives": "a resource pool", "pool": "3d", "resource": "Echo", "body": "Each session, you have a 3d Echo pool. Roll it to repeat a sound you have heard.", "name": "Echo Song", "thematic": "no"}'
+    expect: ["talent Echo Song: path: bard, per_session: a 3d Echo resource pool", "strong enough to be a talent"]
+  - run: gen commit g16
+    expect: "talent:echo-song"
+  - run: gen run grimwild-ce.party --auto
+    expect: ["lore The adventuring party: keys: [party", "constant: true", "Group-building questions (p. 50)"]
+  - run: gen commit g17
+    expect: "lore:the-adventuring-party"
+  - run: brief
+    expect: "The adventuring party: "
+  - run: >-
+      gen run grimwild-ce.ritual --auto --prefill '{"intent": "Cleanse the Oldgrove", "source": "the druid rites", "name": "Rite of Clean Roots"}'
+    expect: ["track Rite of Clean Roots: intent: Cleanse the Oldgrove", "anchor_list: [", "kind: pool, pool: task"]
+  - run: gen commit g18
+    expect: "track:rite-of-clean-roots"
+  - run: >-
+      gen run grimwild-ce.linked-challenge --auto --prefill '{"whole": "The Great Red Dragon", "parts": 2, "part": ["Claws", "Body"]}'
+    expect: ["track The Great Red Dragon: Claws: kind: pool, pool: task", "suspense: 2", "track The Great Red Dragon: Body"]
+  - run: gen commit g19
+    expect: "2 records"
+  - run: do suspense spend=1 challenge=the-great-red-dragon-body
+    expect: "The Great Red Dragon: Body's bonus suspense: 1"
+# Character creation walks through the chosen path's own page (a few of them here).
+---
+test: path-pages
+script:
+  - world new wild --system {pack} --seed paths
+  - campaign new first --seed paths
+  - run: >-
+      char new --mode random --prefill '{"name": "Merra", "path": "Wizard"}'
+    expect: ["path_notes: [theorem: ", "(two of them name it)"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Oskar", "path": "Summoner"}'
+    expect: "-like creature I send "
+  - run: >-
+      char new --mode random --prefill '{"name": "Ide", "path": "Paladin"}'
+    expect: "tenet: I swear to bring "
+  - run: >-
+      char new --mode random --prefill '{"name": "Brakka", "path": "Berserker", "scars": ["Wild, ripped hair", "Cracked jawline", "Crushed foot"]}'
+    expect: "scars: Wild, ripped hair, Cracked jawline, Crushed foot"
+  - run: >-
+      char new --mode random --prefill '{"name": "Fen", "path": "Druid"}'
+    expect: "a druidic tell: "
+  - run: char commit c5
+    expect: "pc:fen"

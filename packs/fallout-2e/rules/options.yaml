@@ -1,0 +1,76 @@
+# Options: what the book leaves to the table at session zero (overseers-guide/getting-started:
+# tone, stakes, reach) and the rules it marks as the Overseer's call (ammo tracking, a second dose
+# in a session). `didact campaign profile tone=horror track-ammo=on`. Rules read them as
+# @option.track_ammo. Cairn's coin-weight is restated here in caps; its unusual-weather, which
+# Fallout's seeds don't read, is hidden (pack.yaml `hides`).
+option: coin-weight
+title: Caps weight
+ask: How much room do caps take once a pouch holds 100 or more?
+help: >-
+  The book: "A small pouch of caps (under 100) is petty." It doesn't say how much room more
+  takes. `didact do coins who=<pc>` sets the slots after the caps change.
+choices:
+  one-slot: "A pouch of 100 caps or more takes one slot (no longer petty)."
+  per-100: "Each full 100 caps takes a slot."
+  off: "Caps never take a slot."
+default: one-slot
+source: players-guide/character-creation#4-inventory
+---
+option: tone
+title: The Tone Dial
+ask: "Where does the pin go on the Tone Dial: bleak, pulpy, weird or horror?"
+help: >-
+  Every Fallout game has set a different tone; the table picks one, and may shift it over a
+  campaign (one setting per session). It replaces Didact's own tone question.
+choices:
+  bleak: "Fallout, Fallout 3: cold, heavy, melancholy. Every settlement is a graveyard with a cookfire. Violence is ugly. Survival is the story."
+  pulpy: "New Vegas, Fallout 4: noir voice-over, leather dusters, named raider bosses, a radio DJ narrating the party's legend. Violence is cinematic."
+  weird: "Fallout 2 (late), Fallout 76: super mutants making conversation, aliens, mothmen, pre-war TV hosts, a ghoul running for mayor. Violence is absurd."
+  horror: "Point Lookout, Far Harbor, Dunwich: swamp dread, eldritch whispers, things in the fog that should not be there. Violence is a relief from the worse thing that was about to happen."
+default: bleak
+source: overseers-guide/getting-started#the-tone-dial
+---
+option: lethality
+title: Stakes
+ask: "Death is possible in Fallout 2e: does the table want that?"
+help: >-
+  Session zero's third question. If someone doesn't want PC deaths, lean on Scars and moral
+  consequence instead. It replaces Didact's own lethality question.
+choices:
+  standard: "Death is possible, as the book has it: telegraphed, never a gotcha."
+  gentle: "No PC deaths: lean on Scars and moral consequence instead (the Overseer turns a death into a Scar or a cost)."
+default: standard
+source: overseers-guide/getting-started#the-first-conversation-session-zero
+---
+option: reach
+title: Reach
+ask: "A Fallout-3-style regional adventure, a New-Vegas-style sandbox, or a Fallout-4-style settlement game?"
+help: Session zero's fifth question; it shapes the first session.
+choices:
+  regional: "A regional adventure (Fallout 3): one region, its threat and its factions."
+  sandbox: "A sandbox (New Vegas): factions, reputation and the party's choices drive it."
+  settlement: "Settlement-focused (Fallout 4): a place the party claims and builds (overseers-guide/settlements)."
+default: regional
+source: overseers-guide/getting-started#the-first-conversation-session-zero
+---
+option: track-ammo
+kind: flag
+title: Track ammo
+ask: Should ammunition be tracked?
+help: >-
+  The book: ammunition is not tracked unless a weapon's description says otherwise, or the
+  Overseer decides resupply is part of the fiction. Tracked, 1 ammo use = 1 use of the weapon:
+  one attack (`didact inv use <pc> '<ammo>'`).
+default: false
+source: players-guide/core-rules#ranged-attacks
+---
+option: second-dose
+kind: flag
+title: A second dose addicts
+ask: Does a second dose of the same chem in one session addict automatically?
+help: >-
+  The book: "the Overseer may rule that a second dose in the same session automatically causes
+  addiction, no save." On, a second dose of the same chem in one session (counted while a session
+  is open; `didact do chem … again=true` without one) addicts without a save.
+default: false
+source: players-guide/core-rules#addiction

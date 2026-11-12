@@ -1,0 +1,7 @@
+id: shared-setting
+name: Shared (test pack)
+kind: setting
+version: 0.1.0
+description: A setting for either of two systems, each one's numbers in its own block.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

@@ -1,0 +1,24 @@
+# Dremora (backgrounds/dremora): the background's two d6 tables.
+table: dremora-1
+title: "How were you bound to Mundus?"
+dice: d6
+source: backgrounds/dremora#how-were-you-bound-to-mundus-roll-1d6
+entries:
+  1: "Loose-leashed. Your conjurer died before the binding closed cleanly. Once per day, a charm or compulsion meant to bend you simply fails."
+  2: "As a Kynreeve, an officer of your clan, used to being obeyed. Once per day, bark an order in the Daedric tongue at a lesser Daedra — a scamp, a clannfear, a Dremora of lower caste: it must pass a WIL save or obey you for a round."
+  3: "With a spark of Dagon's wrath. Once per day, loose a gout of caged fire from your hand at a foe in reach: d6 damage, ignoring Armor, and anything flammable on it catches."
+  4: "As a tower-guard of your clan-lord's citadel, set to watch the Barrier itself. You can feel the thin places where Oblivion presses close — an old Gate-scar, a Daedric shrine, a summoning circle — from a mile away."
+  5: "Schooled for Mundus. The binding-master taught you before loosing you. You speak the tongues of men and mer without accent, and you read Daedric script and the glyphs of the Dwemer."
+  6: "With a sliver of a black soul fused to your essence when the calling cracked a gem. Once per day, when you fell a foe, draw in its fleeing soul and taste its memories: the Warden tells you one thing it knew."
+---
+table: dremora-2
+title: "What mark of Oblivion sets you apart?"
+dice: d6
+source: backgrounds/dremora#what-mark-of-oblivion-sets-you-apart-roll-1d6
+entries:
+  1: {text: "Daedric Bow: A bow of banded black and red (d6, bulky) whose arrows trail a thread of Oblivion-fire: thatch, hay, or a banner catches wherever they strike.", data: {gear: [{name: "Daedric Bow", damage: "d6", size: "bulky"}]}}
+  2: {text: "Clan Helm: A horned Daedric helm (+1 Armor). Ordinary folk who see you in it will not meet your eyes.", data: {gear: [{name: "Clan Helm", armor: 1}]}}
+  3: "The Bound Hand: You can call a bound sword (d8) out of Oblivion into your empty hand at will; it vanishes the moment it leaves your grip, and it strikes spirits at full force."
+  4: "Oathkeeper's Word: You cannot lie about an oath you have given, and mortals sense it. Once per day, re-roll a failed WIL save made to compel a promise from someone, or to keep one yourself."
+  5: {text: "Ash Censer: A Daedric brazier of Deadlands ash (petty, 3 uses). Burn a pinch and speak into the smoke, and a Dremora of your clan hears you across the Barrier: it may trade news of Oblivion, a threat, or a favor, at a price.", data: {gear: [{name: "Ash Censer", size: "petty", uses: 3}]}}
+  6: "The Long Memory: You forget no debt, slight, or face across the centuries. Once per session, the Warden tells you a true thing your kind would remember about any Daedra, Oblivion realm, or old binding the party encounters."

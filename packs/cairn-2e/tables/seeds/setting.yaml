@@ -1,0 +1,875 @@
+# Setting Seeds tables (wardens-guide/setting-seeds), Cairn Second Edition by Yochai Gal, CC-BY-SA 4.0.
+# One table per rolled column. See PROCEDURES.md for the order the book rolls them in.
+table: setting-culture-character
+title: "Culture: Character"
+dice: d20
+source: wardens-guide/setting-seeds#culture
+entries:
+  1: "Altruistic"
+  2: "Artistic"
+  3: "Curious"
+  4: "Devious"
+  5: "Enlightened"
+  6: "Hardy"
+  7: "Harmonious"
+  8: "Inventive"
+  9: "Mercantile"
+  10: "Nomadic"
+  11: "Reclusive"
+  12: "Religious"
+  13: "Resilient"
+  14: "Scholarly"
+  15: "Stoic"
+  16: "Struggling"
+  17: "Traditional"
+  18: "War-like"
+  19: "Wealthy"
+  20: "Xenophobic"
+---
+table: setting-culture-ambition
+title: "Culture: Ambition"
+dice: d20
+source: wardens-guide/setting-seeds#culture
+entries:
+  1: "Bounty"
+  2: "Conquest"
+  3: "Control"
+  4: "Conversion"
+  5: "Division"
+  6: "Dominance"
+  7: "Exploration"
+  8: "Fealty"
+  9: "Independence"
+  10: "Knowledge"
+  11: "Natural Harmony"
+  12: "Peace"
+  13: "Power"
+  14: "Purity"
+  15: "Recognition"
+  16: "Return"
+  17: "Security"
+  18: "Stability"
+  19: "Unification"
+  20: "Wealth"
+---
+table: setting-resources-abundance
+title: "Resources: Abundance"
+dice: d20
+source: wardens-guide/setting-seeds#resources
+entries:
+  1: "Food"
+  2: "Fuel"
+  3: "Gemstones"
+  4: "Herbs"
+  5: "Horses"
+  6: "Knowledge"
+  7: "Land"
+  8: "Livestock"
+  9: "Medicine"
+  10: "Ore"
+  11: "Skilled Labor"
+  12: "Spices"
+  13: "Stone"
+  14: "Textiles"
+  15: "Tools"
+  16: "Trade Goods"
+  17: "Vessels"
+  18: "Water"
+  19: "Weapons"
+  20: "Wood"
+---
+table: setting-resources-scarcity
+title: "Resources: Scarcity"
+dice: d20
+source: wardens-guide/setting-seeds#resources
+entries:
+  1: "Food"
+  2: "Fuel"
+  3: "Gemstones"
+  4: "Herbs"
+  5: "Horses"
+  6: "Knowledge"
+  7: "Land"
+  8: "Livestock"
+  9: "Medicine"
+  10: "Ore"
+  11: "Skilled Labor"
+  12: "Spices"
+  13: "Stone"
+  14: "Textiles"
+  15: "Tools"
+  16: "Trade Goods"
+  17: "Vessels"
+  18: "Water"
+  19: "Weapons"
+  20: "Wood"
+---
+table: setting-faction-type
+title: "Faction Types: Type"
+dice: d20
+source: wardens-guide/setting-seeds#faction-types
+entries:
+  1: "Artisans"
+  2: "Commoners"
+  3: "Criminals"
+  4: "Cultists"
+  5: "Exiles"
+  6: "Explorers"
+  7: "Industrialists"
+  8: "Merchants"
+  9: "Military"
+  10: "Nobles"
+  11: "Nomads"
+  12: "Pilgrims"
+  13: "Protectors"
+  14: "Religious"
+  15: "Revolutionaries"
+  16: "Rulers"
+  17: "Scholars"
+  18: "Settlers"
+  19: "Spies"
+  20: "Tribe"
+---
+table: setting-faction-agent
+title: "Faction Types: Agent"
+dice: d20
+source: wardens-guide/setting-seeds#faction-types
+entries:
+  1: "Academic"
+  2: "Assassin"
+  3: "Blacksmith"
+  4: "Farmer"
+  5: "General"
+  6: "Gravedigger"
+  7: "Guard"
+  8: "Healer"
+  9: "Jailer"
+  10: "Laborer"
+  11: "Lord"
+  12: "Merchant"
+  13: "Monk"
+  14: "Mystic"
+  15: "Outlander"
+  16: "Peddler"
+  17: "Politician"
+  18: "Spy"
+  19: "Thief"
+  20: "Thug"
+---
+table: setting-faction-trait-1
+title: "Faction Traits: Trait 1"
+dice: d20
+source: wardens-guide/setting-seeds#faction-traits
+entries:
+  1: "Cautious"
+  2: "Connected"
+  3: "Decadent"
+  4: "Disciplined"
+  5: "Discreet"
+  6: "Dogmatic"
+  7: "Enigmatic"
+  8: "Fierce"
+  9: "Incorruptible"
+  10: "Intellectual"
+  11: "Judicious"
+  12: "Keen"
+  13: "Loyal"
+  14: "Meticulous"
+  15: "Popular"
+  16: "Pragmatic"
+  17: "Resourceful"
+  18: "Secretive"
+  19: "Shrewd"
+  20: "Tenacious"
+---
+table: setting-faction-trait-2
+title: "Faction Traits: Trait 2"
+dice: d20
+source: wardens-guide/setting-seeds#faction-traits
+entries:
+  1: "Adaptable"
+  2: "Bankrupt"
+  3: "Brutal"
+  4: "Collaborative"
+  5: "Corrupt"
+  6: "Craven"
+  7: "Cruel"
+  8: "Cunning"
+  9: "Cynical"
+  10: "Deceptive"
+  11: "Generous"
+  12: "Incompetent"
+  13: "Manipulative"
+  14: "Mercurial"
+  15: "Repressed"
+  16: "Ruthless"
+  17: "Selfish"
+  18: "Stealthy"
+  19: "Threatened"
+  20: "Xenophobic"
+---
+table: setting-faction-advantage-count
+title: "Faction Advantages: # of Advantages"
+description: "How many advantages the faction has. Roll setting-faction-advantage that many times, rerolling repeated results."
+dice: d20
+source: wardens-guide/setting-seeds#faction-advantages
+entries:
+  1-7: {text: "1", data: {count: 1}}
+  8-12: {text: "2", data: {count: 2}}
+  13-17: {text: "3", data: {count: 3}}
+  18-20: {text: "4", data: {count: 4}}
+---
+table: setting-faction-advantage
+title: "Faction Advantages: Advantage"
+description: "Roll once per advantage (the number comes from setting-faction-advantage-count). Reroll repeated results."
+dice: d20
+source: wardens-guide/setting-seeds#faction-advantages
+entries:
+  1: "Alliances"
+  2: "Anonymity"
+  3: "Apparatus"
+  4: "Beliefs"
+  5: "Charisma"
+  6: "Conviction"
+  7: "Fealty"
+  8: "Force"
+  9: "Information"
+  10: "Lineage"
+  11: "Magic"
+  12: "Members"
+  13: "Popularity"
+  14: "Position"
+  15: "Renown"
+  16: "Resources"
+  17: "Ruthlessness"
+  18: "Specialization"
+  19: "Subterfuge"
+  20: "Wealth"
+---
+table: setting-faction-agenda
+title: "Faction Agendas: Agenda"
+dice: d20
+source: wardens-guide/setting-seeds#faction-agendas
+entries:
+  1: "Ascend to a Higher Plane"
+  2: "Collect Artifacts"
+  3: "Cultivate a Rare Resource"
+  4: "Defend Something"
+  5: "Destroy Something"
+  6: "Dominate Others"
+  7: "Enrich Themselves"
+  8: "Establish a Colony"
+  9: "Establish a New Order"
+  10: "Explore Uncharted Lands"
+  11: "Forge an Alliance"
+  12: "Infiltrate Another Faction"
+  13: "Preserve the Status Quo"
+  14: "Protect a Secret"
+  15: "Purge the Land"
+  16: "Reveal a Secret"
+  17: "Revenge"
+  18: "Revive a Former Power"
+  19: "Seek New Leadership"
+  20: "Spread a Belief"
+---
+table: setting-faction-obstacle
+title: "Faction Agendas: Obstacle"
+dice: d20
+source: wardens-guide/setting-seeds#faction-agendas
+entries:
+  1: "A geographic barrier or impassable terrain."
+  2: "A key piece of information must first be discovered."
+  3: "A particular object or Relic is required."
+  4: "A powerful figure or foe must be eliminated."
+  5: "A rare but necessary resource must first be acquired."
+  6: "A serious debt forces the faction to make dire choices."
+  7: "A well-known prophecy predicts imminent failure."
+  8: "An alliance with an enemy must first be brokered."
+  9: "An internal schism threatens to tear the faction apart."
+  10: "Another faction has the same goal."
+  11: "Another faction stands in opposition."
+  12: "Commoners stand openly in opposition."
+  13: "Considerable capital is required."
+  14: "Contravenes an established code, with a heavy penalty."
+  15: "Hindered by cultural taboos."
+  16: "Many must die, either as a necessity or consequence."
+  17: "Must be carried out at a rare or exact moment."
+  18: "Must be carried out in absolute secrecy."
+  19: "Requires a specialist of an uncommon sort."
+  20: "The outcome would lead to unavoidable war."
+---
+table: setting-faction-action
+title: "Faction Actions"
+description: "Roll whenever a faction is positioned to advance a goal in its agenda. Data: goals achieved, advantages gained or lost, obstacles added."
+dice: d6
+source: wardens-guide/setting-seeds#faction-actions
+entries:
+  1: {text: "Failure: A new Obstacle is introduced, and an Advantage is lost.", data: {goals: 0, advantages: -1, obstacles: 1}}
+  2: {text: "Setback: An Advantage is lost.", data: {goals: 0, advantages: -1, obstacles: 0}}
+  3: {text: "Status Quo: Nothing is gained, but nothing is lost.", data: {goals: 0, advantages: 0, obstacles: 0}}
+  4: {text: "Mixed Success: A goal is achieved, but an Advantage is lost.", data: {goals: 1, advantages: -1, obstacles: 0}}
+  5: {text: "Success: A goal is achieved, and no Advantages are lost.", data: {goals: 1, advantages: 0, obstacles: 0}}
+  6: {text: "Major Success: A goal is achieved, and a new Advantage is found.", data: {goals: 1, advantages: 1, obstacles: 0}}
+---
+table: setting-terrain-die-drop
+title: "Terrain Die Drop Table"
+description: "The face of each terrain die dropped on the map. Then roll that difficulty's terrain and landmark tables (e.g. setting-easy-terrain and setting-easy-landmark)."
+dice: d6
+source: wardens-guide/setting-seeds#terrain-die-drop-table
+entries:
+  1-3: {text: "Easy", data: {difficulty: easy, what: setting-easy-terrain, detail: setting-easy-landmark}}
+  4-5: {text: "Tough", data: {difficulty: tough, what: setting-tough-terrain, detail: setting-tough-landmark}}
+  6: {text: "Perilous", data: {difficulty: perilous, what: setting-perilous-terrain, detail: setting-perilous-landmark}}
+---
+table: setting-easy-terrain
+title: "Easy Terrain"
+dice: d20
+source: wardens-guide/setting-seeds#easy
+entries:
+  1: "Bluffs"
+  2: "Dells"
+  3: "Farmlands"
+  4: "Fells"
+  5: "Foothills"
+  6: "Glens"
+  7: "Grasslands"
+  8: "Gulleys"
+  9: "Heaths"
+  10: "Lowlands"
+  11: "Meadows"
+  12: "Moors"
+  13: "Pampas"
+  14: "Pastures"
+  15: "Plains"
+  16: "Plateaus"
+  17: "Prairies"
+  18: "Savannas"
+  19: "Steppes"
+  20: "Valleys"
+---
+table: setting-easy-landmark
+title: "Easy Landmark"
+dice: d20
+source: wardens-guide/setting-seeds#easy
+entries:
+  1: "Broken Sundial"
+  2: "Circle of Menhirs"
+  3: "Circular Maze"
+  4: "Cloud Stairway"
+  5: "Dead Aqueduct"
+  6: "Enormous Footprint"
+  7: "Fallen Column"
+  8: "False Oasis"
+  9: "Giant's Throne"
+  10: "Glittering Cascade"
+  11: "Golden Bridge"
+  12: "Great Stone Face"
+  13: "Great Waterwheel"
+  14: "Heart Tree"
+  15: "Opaque Lake"
+  16: "Petrified Forest"
+  17: "Pit of Cold Fire"
+  18: "Silver Face"
+  19: "Sinkhole"
+  20: "Titanic Gate"
+---
+table: setting-tough-terrain
+title: "Tough Terrain"
+dice: d20
+source: wardens-guide/setting-seeds#tough
+entries:
+  1: "Barrens"
+  2: "Canyons"
+  3: "Chaparral"
+  4: "Coral Reefs"
+  5: "Deserts"
+  6: "Dunes"
+  7: "Estuaries"
+  8: "Fens"
+  9: "Forests"
+  10: "Heathlands"
+  11: "Hills"
+  12: "Mangroves"
+  13: "Marshlands"
+  14: "Moorlands"
+  15: "Rainforests"
+  16: "Scrublands"
+  17: "Taiga"
+  18: "Thickets"
+  19: "Tundra"
+  20: "Woodlands"
+---
+table: setting-tough-landmark
+title: "Tough Landmark"
+dice: d20
+source: wardens-guide/setting-seeds#tough
+entries:
+  1: "Algae Falls"
+  2: "Basalt Columns"
+  3: "Behemoth Graveyard"
+  4: "Canyon Bridge"
+  5: "Cinder Cones"
+  6: "Flame Pits"
+  7: "Forest of Arrows"
+  8: "Frozen Waterfall"
+  9: "Fungal Forest"
+  10: "Half-Buried Ark"
+  11: "Hanging Valley"
+  12: "Inverted Lighthouse"
+  13: "Leviathan Bones"
+  14: "Massive Crater"
+  15: "Massive Dung Ball"
+  16: "Salt Flat Mirrors"
+  17: "Shrouded Ziggurat"
+  18: "Stalagmite Forest"
+  19: "Sunken Colossus"
+  20: "Titan's Table"
+---
+table: setting-perilous-terrain
+title: "Perilous Terrain"
+dice: d20
+source: wardens-guide/setting-seeds#perilous
+entries:
+  1: "Alpine Meadows"
+  2: "Bogs"
+  3: "Boulders"
+  4: "Caverns"
+  5: "Cliffs"
+  6: "Craters"
+  7: "Crevasses"
+  8: "Geysers"
+  9: "Glaciers"
+  10: "Gorges"
+  11: "Hollows"
+  12: "Ice Fields"
+  13: "Jungles"
+  14: "Lava Fields"
+  15: "Mountains"
+  16: "Peatlands"
+  17: "Quagmires"
+  18: "Ravine"
+  19: "Swamps"
+  20: "Wastelands"
+---
+table: setting-perilous-landmark
+title: "Perilous Landmark"
+dice: d20
+source: wardens-guide/setting-seeds#perilous
+entries:
+  1: "Active Volcano"
+  2: "Ammonia Caves"
+  3: "Bone Mountain"
+  4: "Crystalline Forest"
+  5: "Dome of Darkness"
+  6: "Enormous Hive"
+  7: "Floating Object"
+  8: "Inactive Automaton"
+  9: "Land Scar"
+  10: "Large Vents"
+  11: "Magma Sculptures"
+  12: "Man on the Mountain"
+  13: "Meteor Garden"
+  14: "Obsidian Needle"
+  15: "Reverse Waterfall"
+  16: "River of Sulfur"
+  17: "Siren Stones"
+  18: "Sky-Root"
+  19: "Titanic Ribcage"
+  20: "Weeping Bubble"
+---
+table: setting-seasonal-weather-spring
+title: "Seasonal Weather: Spring"
+dice: d6
+source: wardens-guide/setting-seeds#seasonal-weather
+entries:
+  1: "Mild and sunny"
+  2: "Nice and drizzly"
+  3: "Cool and breezy"
+  4: "Mild and cloudy"
+  5: "Cold and windy"
+  6: "Cold and rainy"
+---
+table: setting-seasonal-weather-summer
+title: "Seasonal Weather: Summer"
+dice: d6
+source: wardens-guide/setting-seeds#seasonal-weather
+entries:
+  1: "Hot and sunny"
+  2: "Nice and cloudy"
+  3: "Mild and rainy"
+  4: "Cool and stormy"
+  5: "Hot and humid"
+  6: "Sweltering and humid"
+---
+table: setting-seasonal-weather-fall
+title: "Seasonal Weather: Fall"
+dice: d6
+source: wardens-guide/setting-seeds#seasonal-weather
+entries:
+  1: "Nice and breezy"
+  2: "Mild and windy"
+  3: "Cool and foggy"
+  4: "Cold and cloudy"
+  5: "Cool and rainy"
+  6: "Chilly and stormy"
+---
+table: setting-seasonal-weather-winter
+title: "Seasonal Weather: Winter"
+dice: d6
+source: wardens-guide/setting-seeds#seasonal-weather
+entries:
+  1: "Mild and clear"
+  2: "Cool and windy"
+  3: "Cold and raining"
+  4: "Frigid and stormy"
+  5: "Freezing and snowing"
+  6: "Freezing and hailing"
+---
+table: setting-unusual-weather
+title: "Unusual Weather"
+dice: d20
+source: wardens-guide/setting-seeds#unusual-weather
+entries:
+  1: "An annual fog appears randomly, turning metallic surfaces to gold on contact."
+  2: "An aurora that is visible even during the day."
+  3: "Birds fly backwards, yet somehow still move forward."
+  4: "Days are erratic. The Sun goes backwards for a time, then jumps forward as night rapidly sets in."
+  5: "Distant chimes instead of thunder. A smoky, sweet wind blows in from the West."
+  6: "Enormous, fleshy eyes peer down from the skies, their pupils lighting up the night sky."
+  7: "Flashes of movement in the periphery that always amount to nothing."
+  8: "Fog that fills the belly (no need for rations). Tomorrow, vomiting."
+  9: "Lakes and streams evaporate in minutes, filling storm clouds that drench the landscape."
+  10: "Periodic rains of small aquatic creatures (tadpoles, frogs, small fish). No one knows where they come from."
+  11: "Rainbows lack most of their colors and occasionally flicker. Raindrops fall in various colors."
+  12: "Rolling dust clouds that smell of cinnamon. The coughing lasts long after they've moved on."
+  13: "Shadows disappear at random. Animals become more reluctant."
+  14: "The air is thicker than usual, and breathing is difficult."
+  15: "The clouds are shaped like faces. They appear to be laughing."
+  16: "The moon appears larger and softly hums at night."
+  17: "The rain glows gently at night. It can be gathered, but the light eventually fades."
+  18: "The stars rearrange themselves in intricate patterns, making navigation difficult."
+  19: "The winds carry whispers. Some say they tell hints of the future."
+  20: "When it snows, the flakes are warm and dry."
+---
+table: setting-poi-die-drop
+title: "POI Die Drop Table"
+description: "The face of each POI die dropped on the map. Then roll that POI type's two tables (on a 1, choose Waypoint or Settlement)."
+dice: d6
+source: wardens-guide/setting-seeds#poi-die-drop-table
+entries:
+  1: {text: "Waypoint or Settlement", data: {poi: waypoint-or-settlement}}
+  2-3: {text: "Curiosity", data: {poi: curiosity, what: setting-curiosity, detail: setting-curiosity-feature}}
+  4: {text: "Lair", data: {poi: lair, what: setting-lair, detail: setting-lair-feature}}
+  5-6: {text: "Dungeon", data: {poi: dungeon, what: setting-dungeon-type, detail: setting-dungeon-feature}}
+---
+table: setting-settlement
+title: "Settlements"
+dice: d20
+source: wardens-guide/setting-seeds#settlements
+entries:
+  1: "Academy"
+  2: "Caravan"
+  3: "Citadel"
+  4: "City"
+  5: "Commune"
+  6: "Compound"
+  7: "Convent"
+  8: "Farmstead"
+  9: "Fortress"
+  10: "Garrison"
+  11: "Hamlet"
+  12: "Keep"
+  13: "Monastery"
+  14: "Outpost"
+  15: "Plantation"
+  16: "Prison"
+  17: "Stronghold"
+  18: "Town"
+  19: "Villa"
+  20: "Village"
+---
+table: setting-settlement-feature
+title: "Settlements: Feature"
+dice: d20
+source: wardens-guide/setting-seeds#settlements
+entries:
+  1: "Built Atop Ruins"
+  2: "Built on Bones of Giants"
+  3: "Center of Learning"
+  4: "Close-Knit"
+  5: "Divided"
+  6: "Emits a Mysterious Hum"
+  7: "Famous for its Artisans"
+  8: "Famous for its Festivals"
+  9: "Guarded by Trained Beasts"
+  10: "Hides a Dangerous Portal"
+  11: "High Population Density"
+  12: "Impregnable"
+  13: "Integrated with Nature"
+  14: "Known for its Hospitality"
+  15: "Location of a Legendary Forge"
+  16: "Moves or Revolves"
+  17: "Protected by a Great Warrior"
+  18: "Ruled by a Powerful Faction"
+  19: "Steeped in Tradition"
+  20: "Trading Hub"
+---
+table: setting-waypoint
+title: "Waypoints"
+dice: d20
+source: wardens-guide/setting-seeds#waypoints
+entries:
+  1: "Archive"
+  2: "Asylum"
+  3: "Bazaar"
+  4: "Beacon Tower"
+  5: "Bunker"
+  6: "Cabin"
+  7: "Campground"
+  8: "Guildhall"
+  9: "Hospice"
+  10: "Hunting Lodge"
+  11: "Inn"
+  12: "Observatory"
+  13: "Reservoir"
+  14: "Sanatorium"
+  15: "Sanctuary"
+  16: "Shrine"
+  17: "Temple"
+  18: "Trading Post"
+  19: "Watchtower"
+  20: "Work Camp"
+---
+table: setting-waypoint-feature
+title: "Waypoints: Feature"
+dice: d20
+source: wardens-guide/setting-seeds#waypoints
+entries:
+  1: "A Haven for Outcasts"
+  2: "Built on Sacred Grounds"
+  3: "Contains a Powerful Artifact"
+  4: "Cursed By Previous Occupants"
+  5: "Decrepit Buildings"
+  6: "Distrustful Occupants"
+  7: "Does Not Appear on Any Map"
+  8: "Front for Illegal Operations"
+  9: "Host to a Renowned Artisan"
+  10: "Known for its Elaborate Defenses"
+  11: "Occupants Are Lawful to a Fault"
+  12: "Occupants Are Overly Formal"
+  13: "Outsiders Are Barred"
+  14: "Outsiders Cannot Carry Weapons"
+  15: "Part of an Illegal Trade Route"
+  16: "Popular Pilgrim Destination"
+  17: "Protects a Powerful Object"
+  18: "Reclusive Occupants"
+  19: "Sits on Natural Deposits"
+  20: "Technologically Advanced"
+---
+table: setting-curiosity
+title: "Curiosities"
+dice: d20
+source: wardens-guide/setting-seeds#curiosities
+entries:
+  1: "Ancient Tree"
+  2: "Broken Tower"
+  3: "Buried Megalith"
+  4: "Collapsed Mill"
+  5: "Cracked Bell"
+  6: "Crystal Spire"
+  7: "Dripping Archway"
+  8: "Echoing Fields"
+  9: "Enormous Fist"
+  10: "Enormous Footprint"
+  11: "Floating Island"
+  12: "Frozen Graveyard"
+  13: "Hanging Bridges"
+  14: "Illegible Signpost"
+  15: "Leviathan Skeleton"
+  16: "Oddly-Shaped Lake"
+  17: "Petrified Trees"
+  18: "Purple Geysers"
+  19: "Singing Stones"
+  20: "Sunken City"
+---
+table: setting-curiosity-feature
+title: "Curiosities: Feature"
+dice: d20
+source: wardens-guide/setting-seeds#curiosities
+entries:
+  1: "Abandoned Vessel"
+  2: "Ancient Trash Heap"
+  3: "Buried Ley Line"
+  4: "Buried Library"
+  5: "Carnivorous Plants"
+  6: "Celestial Mirror"
+  7: "Cult Ritual Site"
+  8: "Edible Fungus"
+  9: "Floating Debris"
+  10: "Hidden Market"
+  11: "Illusory"
+  12: "Impossible Music"
+  13: "Infested With Vermin"
+  14: "Irregular Gravity"
+  15: "Isolated Weather"
+  16: "Only Appears at Night"
+  17: "Perpetual Mist"
+  18: "Perpetual Shadows"
+  19: "Site of Ancient Battle"
+  20: "Unstable Ground"
+---
+table: setting-lair
+title: "Lairs"
+dice: d20
+source: wardens-guide/setting-seeds#lairs
+entries:
+  1: "Abandoned Tower"
+  2: "Ancient Prison"
+  3: "Collapsed Mine"
+  4: "Colossal Hive"
+  5: "Crashed Ship"
+  6: "Crumbling Fort"
+  7: "Dry Aqueduct"
+  8: "Enormous Stump"
+  9: "Forgotten Graveyard"
+  10: "Hidden Burrow"
+  11: "Hollow Obelisk"
+  12: "Overgrown Garden"
+  13: "Primeval Menhirs"
+  14: "Primitive Bridge"
+  15: "Rotted Mill"
+  16: "Ruined Town"
+  17: "Rusted Construct"
+  18: "Spiked Cave"
+  19: "Sunken Grotto"
+  20: "Unruly Copse"
+---
+table: setting-lair-feature
+title: "Lairs: Feature"
+dice: d20
+source: wardens-guide/setting-seeds#lairs
+entries:
+  1: "Abandoned"
+  2: "At Crossroads"
+  3: "Baited Entrance"
+  4: "Bioluminescence"
+  5: "Constant Screaming"
+  6: "Entry Forbidden"
+  7: "Faction Hideout"
+  8: "Hidden Exit"
+  9: "Odd Machinery"
+  10: "Piles of Bones"
+  11: "Previously Occupied"
+  12: "Religious Graffiti"
+  13: "Scattered Traps"
+  14: "Scavengers Prowl"
+  15: "Signs Posted"
+  16: "Something Sleeps"
+  17: "Symbiotic Entity"
+  18: "Training Camp"
+  19: "Underwater"
+  20: "Waste Pit"
+---
+table: setting-dungeon-type
+title: "Dungeons: Type"
+dice: d20
+source: wardens-guide/setting-seeds#dungeons
+entries:
+  1: "Burial Ground"
+  2: "Cave"
+  3: "Cellar"
+  4: "Crypt"
+  5: "Den"
+  6: "Estate"
+  7: "Fort"
+  8: "Great Hall"
+  9: "Laboratory"
+  10: "Manor"
+  11: "Mine"
+  12: "Outpost"
+  13: "Palace"
+  14: "Prison"
+  15: "Ruined City"
+  16: "Stronghold"
+  17: "Temple"
+  18: "Tomb"
+  19: "Tower"
+  20: "Workshop"
+---
+table: setting-dungeon-feature
+title: "Dungeons: Feature"
+dice: d20
+source: wardens-guide/setting-seeds#dungeons
+entries:
+  1: "Abandoned"
+  2: "Buried"
+  3: "Burnt"
+  4: "Clockwork"
+  5: "Collapsed"
+  6: "Crumbling"
+  7: "Crystalline"
+  8: "Floating"
+  9: "Flooded"
+  10: "Fungal"
+  11: "Inverted"
+  12: "Isolated"
+  13: "Mirrored"
+  14: "Otherworldly"
+  15: "Overgrown"
+  16: "Petrified"
+  17: "Remote"
+  18: "Sealed"
+  19: "Toxic"
+  20: "Warped"
+---
+table: setting-path-feature
+title: "Path Features: Feature"
+dice: d20
+source: wardens-guide/setting-seeds#path-features
+entries:
+  1: "Abandoned Fields"
+  2: "Blood-Red"
+  3: "Buried Charms"
+  4: "Cattle Prints"
+  5: "Constant Patrols"
+  6: "Dead Vegetation"
+  7: "Disappearing"
+  8: "Diseased Animals"
+  9: "Follows the Stars"
+  10: "Frequent Pilgrims"
+  11: "Massive Grooves"
+  12: "Mile Markers"
+  13: "Mineral Flecks"
+  14: "Newly Made"
+  15: "Overgrown"
+  16: "Rusted Tools"
+  17: "Shriveled Away"
+  18: "Shredded"
+  19: "Twisted"
+  20: "Ubiquitous Footprints"
+---
+table: setting-path-condition
+title: "Path Features: Condition"
+dice: d20
+source: wardens-guide/setting-seeds#path-features
+entries:
+  1: "Bandit Ambushes"
+  2: "Blocked by Giant Boulder"
+  3: "Collapsed Bridge"
+  4: "Confusing to Navigate"
+  5: "Dense Bramble"
+  6: "Divided by Political Dispute"
+  7: "Erratic Weather"
+  8: "Frequent Flash Floods"
+  9: "Gets Extremely Cold"
+  10: "Heavy Toll Required"
+  11: "Labyrinthine Canyons"
+  12: "Night Predators"
+  13: "Occasional Stampedes"
+  14: "Overcrowded"
+  15: "Passes over Rapids"
+  16: "Poisonous Fruit"
+  17: "Smoke-filled"
+  18: "Steep Climb"
+  19: "Thick Evening Mist"
+  20: "Uneven, Soggy Ground"

@@ -1,0 +1,6 @@
+generator: spell
+title: A spell
+steps:
+  - choose_or_roll: {table: spell-schools, as: spell}
+  - ask: {as: owner, prompt: "whose spellbook it is"}
+  - message: "spell: {@spell}; id: {default(@spell.id, 'none')}; school: {default(@spell.school, 'none')}; element: {default(@spell.element, 'none')}; scroll: {default(@spell.scroll, 'none')}; owner: {@owner}"

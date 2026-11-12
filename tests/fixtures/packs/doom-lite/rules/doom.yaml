@@ -1,0 +1,23 @@
+# The record a check's `before:` step makes is bound for the rest of it: its options and its
+# outcome's steps read and change it after `didact resolve`, as they would at once.
+check: defy
+title: Defy the doom
+params: {who: ref}
+before:
+  - entity:
+      type: track
+      name: "Doom of {@who.name}"
+      fields: {kind: pool, pool: pressure, value: {value: 4, max: 4}, note: waiting}
+    as: doom
+roll: d6
+success: "@roll >= 1"
+options:
+  push:
+    label: Push it
+    steps:
+      - set: doom.note
+        value: pushed
+      - pool: "@doom"
+        mode: drop
+on:
+  success: ["{@doom.name}: {@doom.note}."]

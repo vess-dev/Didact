@@ -1,0 +1,3 @@
+# daggerheart (paper test)
+
+Not a playable game: the smallest slice of daggerheart's rules that exercises the mechanics Didact must express.

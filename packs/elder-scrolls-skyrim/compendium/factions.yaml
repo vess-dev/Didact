@@ -1,0 +1,315 @@
+# The factions the frames give reputation with or build their conflicts around, in the book's
+# words (hand-written; es_compendium.py reads the tags: a tag that is a frame's id brings the
+# faction into that frame's `frame` generator). Ids are the slug of the name without a leading
+# "the", as in the Fallout setting; the two whose slug is a frame's id (the College of Winterhold,
+# the Dawnguard) end in `-faction`. Elder Scrolls 2e keeps Faction Reputation on each PC's sheet
+# (`didact do reputation who=<pc> faction=<key>`); Grimscrolls keeps a standing on the faction
+# (`didact do standing who=<faction>`). GUIDE.md maps each faction to its key.
+id: stormcloaks
+type: faction
+name: The Stormcloaks
+aliases: [the Sons and Daughters of Skyrim]
+tags: [the-main-quest, the-civil-war]
+agenda: Throw off the Empire, win Skyrim its independence, and worship Talos in the open.
+obstacle: >-
+  General Tullius and the Imperial Legion, sent from Cyrodiil to crush the rebellion; and its own
+  prejudice: Windhelm's treatment of its refugees is the rebellion's shame.
+body: >-
+  Ulfric Stormcloak, Jarl of Windhelm, made the Talos ban a war: he challenged High King Torygg to
+  single combat and killed him, and now leads the Stormcloaks, the Sons and Daughters of Skyrim.
+  They warm to Nords and to anyone who'll fight the Legion, and look hard at elves and Imperials.
+  His war-chief Galmar Stone-Fist tests every recruit at the Palace of the Kings. The ranks:
+  Unblooded, Ice-Veins, Bone-Breaker, Snow-Hammer, Stormblade.
+source: campaigns/02-the-civil-war#pitch; campaigns/02-the-civil-war#the-branch--choosing-a-side--joining; campaigns/02-the-civil-war#rewards
+---
+id: imperial-legion
+type: faction
+name: The Imperial Legion
+aliases: [the Legion]
+tags: [the-main-quest, the-civil-war]
+agenda: >-
+  Crush the rebellion and hold Skyrim together under one law and one crown, the better to face the
+  Thalmor when the Concordat's truce breaks.
+obstacle: >-
+  Its cause is colder and more pragmatic, and the price of "order" is the Concordat that started
+  all this.
+body: >-
+  General Tullius, the Empire's military governor of Skyrim, holds Castle Dour in Solitude; Legate
+  Rikke, a Nord who worships Talos in private, recruits for it and assigns its missions. It takes
+  any able recruit regardless of blood, prizes discipline, and distrusts open Talos zealots. The
+  ranks: Auxiliary, Quaestor, Praefect, Tribune, Legate.
+source: campaigns/02-the-civil-war#pitch; campaigns/02-the-civil-war#the-branch--choosing-a-side--joining; campaigns/02-the-civil-war#rewards
+---
+id: thalmor
+type: faction
+name: The Thalmor
+aliases: [the Aldmeri Dominion]
+tags: [the-main-quest, the-civil-war, college-of-winterhold]
+agenda: >-
+  A long civil war that keeps Men killing Men, weakens whoever wins, and leaves the Dominion
+  stronger for the next war it actually means to fight.
+obstacle: >-
+  They publicly back the Empire, and must never be caught at it: the Justiciar is never quite where
+  the party can pin a betrayal on them.
+body: >-
+  The High Elf supremacists of the Aldmeri Dominion, who forced the White-Gold Concordat and ride
+  the roads enforcing its ban on Talos. First Emissary Elenwen keeps a dossier on everyone who
+  matters at the embassy above Solitude, one that names Ulfric himself a Thalmor asset. They hunt
+  the Blades' loremaster Esbern in the Ratway, and foisted the "advisor" Ancano on the College of
+  Winterhold.
+source: campaigns/00-intro#the-moment-4e-201; campaigns/02-the-civil-war#stakes; campaigns/01-the-main-quest#plot-beats; campaigns/04-college-of-winterhold#stakes
+---
+id: greybeards
+type: faction
+name: The Greybeards
+tags: [the-main-quest]
+agenda: Keep the Way of the Voice in the silence of High Hrothgar, and test the Dragonborn they summon.
+obstacle: >-
+  Their Voices would level a room, so only Arngeir speaks freely; and the Blades demand the death of
+  their master, Paarthurnax.
+body: >-
+  Monks of the Voice at High Hrothgar, near the summit of the Throat of the World, reached by the
+  7,000 Steps above Ivarstead. Their summons rolls across all of Skyrim when a dragon's soul is
+  taken. Arngeir is their spokesman, and the ancient dragon Paarthurnax leads them from the summit.
+  If the war blocks the Dragon Crisis, they host the truce of Season Unending.
+source: campaigns/01-the-main-quest#pitch; campaigns/01-the-main-quest#cast; campaigns/01-the-main-quest#the-place--skyrim-the-mountain-and-the-bridge-of-worlds
+---
+id: blades
+type: faction
+name: The Blades
+tags: [the-main-quest]
+agenda: >-
+  Find the Dragonborn and end the dragons, the World-Eater first, and later the old dragon on the
+  summit too.
+obstacle: >-
+  The order is all but gone: Delphine, hidden as a Riverwood innkeeper, and Esbern, hiding from the
+  Thalmor in the Ratway, are among the last.
+body: >-
+  The last of an ancient order of dragonslayers, who have spent their lives waiting for a
+  Dragonborn. Their home is Sky Haven Temple beyond the Karthspire, with Alduin's Wall and the
+  katana Dragonbane. Sooner or later they demand that the party kill Paarthurnax for his ancient
+  crimes; refusing costs their support.
+source: campaigns/01-the-main-quest#pitch; campaigns/01-the-main-quest#cast; campaigns/01-the-main-quest#climax
+---
+id: forsworn
+type: faction
+name: The Forsworn
+tags: [the-main-quest, the-civil-war]
+agenda: >-
+  Their rebellion: the Reach, the ancestral land of the Reachfolk, taken back from the Jarls of
+  Markarth.
+obstacle: >-
+  Their king, Madanach, the King in Rags, is a prisoner in Cidhna Mine and runs the rebellion from
+  inside the rock.
+body: >-
+  The native ground of the Forsworn is the Reach, a harsh, vertical country of gorges and crags.
+  They hold the Karthspire's canyon before Sky Haven Temple, raid the silver road from redoubts in
+  the crags, and make Markarth the hardest ground of the civil war, contested between the Legion,
+  the Stormcloaks and themselves.
+source: wardens-guide/the-holds#the-reach--capital-markarth; campaigns/01-the-main-quest#the-place--skyrim-the-mountain-and-the-bridge-of-worlds; campaigns/02-the-civil-war#the-place--key-locations
+---
+id: companions
+type: faction
+name: The Companions
+tags: [the-companions]
+agenda: >-
+  Keep faith with the band of Ysgramor: warriors-for-hire who take all comers who can swing a
+  blade; and, as their Harbinger Kodlak wants, be free of Hircine's bargain.
+obstacle: >-
+  The inner Circle are werewolves, beast-blooded through an old pact with the Glenmoril Witches in
+  Hircine's name; and the Silver Hand mean to gut Jorrvaskr.
+body: >-
+  Jorrvaskr, the overturned hull of a longship in Whiterun's Wind District, has been their mead
+  hall for nearly five thousand years. Kodlak Whitemane is Harbinger; the Circle are Aela, Skjor,
+  Vilkas and Farkas; Eorlund Gray-Mane works the Skyforge above the hall. The warmest faction in
+  Skyrim, and the one carrying the heaviest curse.
+source: campaigns/03-the-companions#pitch; campaigns/03-the-companions#tone--touchstones; campaigns/03-the-companions#cast
+---
+id: silver-hand
+type: faction
+name: The Silver Hand
+tags: [the-companions]
+agenda: Every werewolf in Skyrim skinned, Jorrvaskr gutted, and the shards of Ysgramor's axe Wuuthrad taken.
+obstacle: >-
+  The Companions' Circle, and the truth about themselves: murderers who are not entirely wrong.
+body: >-
+  Fanatic werewolf-hunters who lair in forts hung with pelts: Gallows Rock under Krev the Skinner,
+  and Driftshade Refuge near Dawnstar. They kill Kodlak and steal Wuuthrad. Their blades are
+  silver, Enhanced against the beast-blooded.
+source: campaigns/03-the-companions#pitch; campaigns/03-the-companions#cast; campaigns/03-the-companions#silver-hand-hunter
+---
+id: college-of-winterhold-faction
+type: faction
+name: The College of Winterhold
+aliases: [the College]
+tags: [college-of-winterhold]
+agenda: >-
+  Teach magic openly, the only place in Skyrim that does, and keep its gates shut and its business
+  its own.
+obstacle: >-
+  The townsfolk blame it for the Great Collapse, and a Thalmor "advisor", Ancano, was foisted on the
+  Arch-Mage as the price of being left alone.
+body: >-
+  A spire of rock above the Sea of Ghosts, reached by a single long bridge, on the edge of a town
+  the sea swallowed eighty years ago. Arch-Mage Savos Aren leads it, Mirabelle Ervine runs it, and
+  Tolfdir teaches; Urag gro-Shub keeps the Arcanaeum. Its dig at Saarthal has found the Eye of
+  Magnus.
+source: campaigns/04-college-of-winterhold#stakes; campaigns/04-college-of-winterhold#cast
+---
+id: synod
+type: faction
+name: The Synod
+tags: [college-of-winterhold]
+agenda: The Staff of Magnus, and eyes inside the independent College.
+obstacle: Its expedition to Mzulft is dying in the deep, and only Paratus Decimius is left alive.
+body: >-
+  The Imperial mages' order, the College's rivals. They have been asking after the Staff of Magnus
+  and went into the Dwemer ruin of Mzulft. Helped freely, they owe the party a favor; robbed or
+  abandoned, they become a hostile rival.
+source: campaigns/04-college-of-winterhold#plot-beats; campaigns/04-college-of-winterhold#arrival
+---
+id: psijic-order
+type: faction
+name: The Psijic Order
+tags: [college-of-winterhold]
+agenda: Keep the Eye of Magnus from anyone's use, and take it away where no mortal hand can misuse it.
+obstacle: They intervene only with warnings, and will not fight the party's battles for them.
+body: >-
+  Robed monks of the ancient, half-mythical order of the Isle of Artaeum, who appear and vanish
+  where they please and freeze time around themselves to speak unheard. Nerien warns the party at
+  Saarthal; Quaranir points them to the Augur of Dunlain.
+source: campaigns/04-college-of-winterhold#quaranir-and-the-psijic-order; campaigns/04-college-of-winterhold#plot-beats
+---
+id: thieves-guild
+type: faction
+name: The Thieves Guild
+aliases: [the Guild]
+tags: [the-thieves-guild]
+agenda: Pull the scores that keep the Cistern fed, and get the Guild's luck back.
+obstacle: >-
+  Its Guild Master, Mercer Frey, broke Nocturnal's covenant and stole the Skeleton Key: the Guild's
+  fortune drains a little more each season, and its vault stands empty.
+body: >-
+  A shadow of its old self in the Ratway beneath Riften: the Ragged Flagon and the Cistern behind
+  it. Brynjolf recruits in the market; Delvin Mallory and Vex hand out the work; the Black-Briars
+  are its patrons. Its luck was never luck, but a covenant with Nocturnal.
+source: campaigns/05-the-thieves-guild#pitch; campaigns/05-the-thieves-guild#the-place--riften--the-ratway; campaigns/05-the-thieves-guild#cast
+---
+id: nightingales
+type: faction
+name: The Nightingales
+tags: [the-thieves-guild]
+agenda: Guard Nocturnal's shrine, the Twilight Sepulcher, and in return carry her luck to the whole Guild.
+obstacle: One of the three, Mercer Frey, broke the oath, murdered Gallus and stole the Skeleton Key.
+body: >-
+  The Guild's three best thieves, sworn agents of Nocturnal, Daedric Prince of shadow and luck.
+  Karliah is the last true one, exiled twenty-five years for a murder she didn't commit. Their hall
+  is hidden by the Shadow Stone, and the dead Nightingales stand guard in the Sepulcher.
+source: campaigns/05-the-thieves-guild#pitch; campaigns/05-the-thieves-guild#plot-beats
+---
+id: black-briars
+type: faction
+name: The Black-Briars
+aliases: [the Black-Briar family]
+tags: [the-thieves-guild]
+agenda: >-
+  Rule Riften in truth: Maven Black-Briar, mead-rich and venomous, is the Guild's patron and
+  paymaster.
+obstacle: >-
+  Laila Law-Giver holds the Jarl's seat in name, and rivals like Goldenglow Estate and the
+  Honningbrew Meadery won't pay or won't bend.
+body: >-
+  The family that truly rules Riften, the most corrupt city in Skyrim. Crossing Maven raises the
+  party's Riften Bounty and can turn the city guard; pleasing her is worth a step with the Guild.
+  If the Imperials take the Rift, she is installed openly as Jarl.
+source: campaigns/05-the-thieves-guild#the-place--riften--the-ratway; campaigns/05-the-thieves-guild#maven-black-briar-patron; campaigns/05-the-thieves-guild#plot-beats
+---
+id: dark-brotherhood
+type: faction
+name: The Dark Brotherhood
+tags: [the-dark-brotherhood]
+agenda: >-
+  Murder for coin, and call it worship of the Dread Father Sithis: and the grandest contract in its
+  history, the murder of Emperor Titus Mede II.
+obstacle: All but extinct in this Fourth Era, rotten from within, and hunted by the Penitus Oculatus.
+body: >-
+  Tamriel's most feared guild of assassins, bound by old tenets. Its last Sanctuary is in the pine
+  forest by Falkreath, behind a Black Door, under Astrid; the Night Mother's coffin names a
+  Listener. The family: Nazir, Babette, Gabriella, Festus Krex, Arnbjorn, Veezara, and the Keeper
+  Cicero.
+source: campaigns/06-the-dark-brotherhood#pitch; campaigns/06-the-dark-brotherhood#plot-beats; campaigns/06-the-dark-brotherhood#cast
+---
+id: penitus-oculatus
+type: faction
+name: The Penitus Oculatus
+tags: [the-dark-brotherhood]
+agenda: Guard the Emperor, and hunt the Dark Brotherhood to extinction.
+obstacle: The Brotherhood is a step ahead of them, its contract on the Emperor already in motion.
+body: >-
+  The Emperor's bodyguard-spies in Skyrim, disciplined agent-soldiers in dark leather, under
+  Commander Maro, with an outpost at Dragon Bridge. They sack the Falkreath Sanctuary and crew the
+  Katariah.
+source: campaigns/06-the-dark-brotherhood#commander-maro-penitus-oculatus--the-betrayers-tool; campaigns/06-the-dark-brotherhood#penitus-oculatus-agent-use-freely; campaigns/06-the-dark-brotherhood#the-destroyers-path-the-alternate-branch
+---
+id: vigil-of-stendarr
+type: faction
+name: The Vigil of Stendarr
+aliases: [the Vigil, the Vigilants]
+tags: [the-daedric-quests, dawnguard]
+agenda: >-
+  Hunt Daedra, their cultists, vampires, werebeasts and the undead, Abominations all, and anyone who
+  courts a Prince or carries a Prince's relic.
+obstacle: >-
+  Their Skyrim chapter-house south of Dawnstar was destroyed by the Volkihar vampires: those who
+  remain are few, grieving, and zealous to the point of recklessness.
+body: >-
+  Stendarr's holy order. A Vigilant makes a fine complication on any Daedric bargain: a rival
+  racing the party to a shrine, an accuser the morning after, or an avenger who tracks an Artifact
+  to the party's door.
+source: campaigns/07-the-daedric-quests#the-vigil-of-stendarr-foe--complication; campaigns/07-the-daedric-quests#running-these-frames
+---
+id: dawnguard-faction
+type: faction
+name: The Dawnguard
+tags: [dawnguard]
+agenda: End every vampire in Skyrim, and deny Lord Harkon the sun.
+obstacle: >-
+  An order of vampire-hunters scraped back together by the grim zealot Isran, in the ruin of Fort
+  Dawnguard, against a vampire court four thousand years old.
+body: >-
+  Fort Dawnguard stands in Dayspring Canyon, reached through a long tunnel that hides it from the
+  world. It grows as the order rebuilds: Gunmar's forge and armored war-trolls, Sorine Jurard's
+  crossbows. A vampire is not welcome there.
+source: campaigns/08-dawnguard#pitch; campaigns/08-dawnguard#the-place; campaigns/08-dawnguard#plot-beats
+---
+id: volkihar
+type: faction
+name: The Volkihar
+aliases: [the Volkihar clan, the Volkihar court]
+tags: [dawnguard]
+agenda: >-
+  Enact the Tyranny of the Sun, the old elven prophecy that would blot the sun from the sky forever
+  and free their kind to hunt the day.
+obstacle: >-
+  Lord Harkon needs the Elder Scrolls that hold the prophecy, the lost Auriel's Bow, and the blood
+  of his own daughter, a Daughter of Coldharbour.
+body: >-
+  The vampire clan of Castle Volkihar, a castle of black stone on a fog-bound island in the Sea of
+  Ghosts, reached only by a ferryman: elegant monsters who believe they are owed the world. Lord
+  Harkon is its master, Garan Marethi his adviser; Serana is his daughter and Valerica her mother.
+source: campaigns/08-dawnguard#pitch; campaigns/08-dawnguard#the-place; campaigns/08-dawnguard#cast
+---
+id: skaal
+type: faction
+name: The Skaal
+tags: [dragonborn]
+agenda: >-
+  Live in harmony with the land under the All-Maker, and keep the knowledge they have guarded for
+  four thousand years.
+obstacle: Miraak's spell is taking the island; only Storn Crag-Strider's ward still holds over their village.
+body: >-
+  A Nord tribe of the snowbound north coast of Solstheim, in the northernmost settlement in
+  Tamriel. They worship the All-Maker, live in harmony with the land, and alone know the forging of
+  Stalhrim. Chief Fanari Strong-Voice leads; Storn Crag-Strider is shaman, his daughter Frea his
+  heir.
+source: campaigns/09-dragonborn#the-place--solstheim--apocrypha; campaigns/09-dragonborn#stakes; campaigns/09-dragonborn#plot-beats

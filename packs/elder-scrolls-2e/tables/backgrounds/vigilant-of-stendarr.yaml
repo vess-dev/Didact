@@ -1,0 +1,24 @@
+# Vigilant of Stendarr (backgrounds/vigilant-of-stendarr): the background's two d6 tables.
+table: vigilant-of-stendarr-1
+title: "What broke your faith without breaking your oath?"
+dice: d6
+source: backgrounds/vigilant-of-stendarr#what-broke-your-faith-without-breaking-your-oath-roll-1d6
+entries:
+  1: "A conjurer's pet Daedra slew your whole patrol while you lay pinned and helpless. You learned the sound a summoning makes: when a foe begins a conjuring within earshot, you may act before it does."
+  2: {text: "You burned a hagraven's coven in the Reach, and the last of them cursed you as she died: crows gather wherever you camp, and no hunter will share your fire. Take her clenched claw (petty). It creaks open and points toward the nearest hagraven or witch's altar.", data: {gear: [{name: "Clenched claw", size: "petty"}]}}
+  3: {text: "A Daedric shrine you smashed left a brand on your palm that aches whenever a Daedra is near. Take a censer of Stendarr (3 uses): lit, its smoke wards a doorway or a small room, and no lesser Daedra can cross the threshold while it burns.", data: {gear: [{name: "Censer of Stendarr", uses: 3}]}}
+  4: {text: "You alone walked out of the Hall of the Vigilant when the hearth went cold and a Daedric sigil was scorched into the floor. Take a fallen brother's steel warhammer (d10, bulky, two-handed) and his unfinished list of cults yet to be cleansed.", data: {gear: [{name: "Steel warhammer", damage: "d10", size: "bulky", qualities: ["two-handed"]}]}}
+  5: "You spent years curing the sick for free, as the Vigil does, and watched Stendarr let the worst of them die anyway. A night of prayer and tending from you cures one person of all their mundane diseases, as surely as a temple would."
+  6: {text: "You were ordered to destroy a Daedric relic, and could not bring yourself to do it. Take the whispering shard of black ebony (petty) you hid instead. Once per day, ask it one question about the Daedra or their servants and it answers truly, but each answer costs you 1d4 WIL, and every night it asks you for something.", data: {gear: [{name: "Whispering shard", size: "petty", note: "of black ebony; once per day it answers one question about the Daedra truly, for 1d4 WIL"}]}}
+---
+table: vigilant-of-stendarr-2
+title: "What relic of the order do you bear?"
+dice: d6
+source: backgrounds/vigilant-of-stendarr#what-relic-of-the-order-do-you-bear-roll-1d6
+entries:
+  1: {text: "Stendarr's Maul: A blessed steel maul (d10, bulky, two-handed) with the open hand on its head. A Daedra slain by it does not simply flee back to Oblivion to take a new body: it is barred from Mundus for a hundred years.", data: {gear: [{name: "Stendarr's Maul", damage: "d10", size: "bulky", qualities: ["two-handed"]}]}}
+  2: {text: "Silvered Dagger: A silver dagger (d6, silver) with Stendarr's hand etched along the blade, meant for werewolves, vampires, and the Daedra-touched.", data: {gear: [{name: "Silvered Dagger", damage: "d6", qualities: ["silver"]}]}}
+  3: {text: "Stendarr's Aegis: A worn steel shield bearing the open hand (+1 Armor). Held before a Daedra or a vampire, the first attack that creature makes against you each combat is Impaired.", data: {gear: [{name: "Stendarr's Aegis", armor: 1}]}}
+  4: {text: "Ward of the Hand: An amulet of Stendarr (petty). Once per day, when a spell or magical effect would strike you, raise the hand: it fizzles harmlessly.", data: {gear: [{name: "Ward of the Hand", size: "petty", note: "an amulet of Stendarr"}]}}
+  5: {text: "The Wrathful Torch: A reliquary brand of caged sunlight. It sheds light like a torch that never gutters and serves as a club (d6). Thrust it at one undead creature within reach to set it Ablaze (2 charges). Recharge: Leave it in full sunlight from dawn to dusk.", data: {gear: [{name: "The Wrathful Torch", damage: "d6", charges: 2, recharge: "Leave it in full sunlight from dawn to dusk.", note: "sheds light like a torch that never gutters"}]}}
+  6: {text: "The Litany: A heavy prayer-book of the order with silvered clasps (petty). Read a passage over a corpse and it can never be raised; once per day, read it over a willing companion and they need not save against fear or charm for the rest of the scene.", data: {gear: [{name: "The Litany", size: "petty"}]}}

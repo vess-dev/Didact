@@ -1,0 +1,255 @@
+# The canon the frames and vaults stand on, as lore: each entry comes up when play mentions it
+# (hand-written from the book's own text; `source:` says where). The regions are in regions.yaml.
+lore: wasteland-tone
+title: The setting's tone
+kind: preference
+constant: true
+priority: 70
+content: >-
+  The old world ended in the war of 23 October 2077; the frames walk its ruins from 2102 to 2287.
+  The book names its tone: the long, slow cycle of knowledge lost and found (A Canticle for
+  Leibowitz), the grammar of a dead world you have to cross on foot (The Road), the zone where the
+  old world's leavings have gone strange (Roadside Picnic). Every vault was an experiment, "the
+  setting's entire thesis": make it touchable. Each frame names its own tone and touchstones:
+  reread them before every session.
+source: overseers-guide/bibliography#setting--tone; vaults/00-intro#the-vault-checklist; campaigns/00-intro#how-to-use-a-campaign-frame
+---
+lore: the-great-war
+keys: [great war, the war, the bombs, bombs fell, october 23, '2077']
+content: >-
+  The bombs fell on 23 October 2077, the day a pre-war family stepped into Vault 111 and the day a
+  radio bulletin was read by a man who didn't know he had an hour to live. Vaults sealed that
+  morning; some opened on schedule (Vault 76, twenty-five years to the day), some never. A
+  newspaper of that date still turns up: WAR, WAR NEVER CHANGES.
+source: campaigns/03-fallout-4#pitch; campaigns/17-fallout-76#fallout-76-main-campaign; backgrounds/ghoul; overseers-guide/relics
+---
+lore: vault-tec
+keys: [vault-tec, vault tec, vault experiment, vault experiments, vault program]
+content: >-
+  Vault-Tec built the vaults and sold them as shelters; nearly all were experiments, and that is
+  the setting's thesis. Each had an Overseer, a Vault-Tec employee who ran the experiment and
+  reported to a central database that no longer exists; the Overseer's final log is almost always
+  the key to what happened. Seventeen were control vaults, Vault 76 among them.
+source: vaults/00-intro#a-note-on-overseers; vaults/00-intro#the-vault-checklist; campaigns/17-fallout-76#pitch
+---
+lore: a-vault
+keys: [vault door, blast door, greeting hall, water chip, overseer's office, overseer's terminal]
+content: >-
+  Every vault shares an architecture: a rolling blast door, jammed half-open or sealed; a greeting
+  hall with a Vault-Tec poster and a Pip-Boy dispenser; residential blocks of identical cabins; a
+  cafeteria, a clinic with an auto-doc, a school; an Overseer's office behind a keycode, its
+  terminal still logged in; a reactor; a water treatment plant with a water chip; and maintenance
+  tunnels full of what the Overseer didn't want the residents to see.
+source: vaults/00-intro#common-vault-features
+---
+lore: fev
+keys: [fev, forced evolutionary virus, west tek, the vats]
+content: >-
+  The Forced Evolutionary Virus. Vault 87 was its test site: its residents became the region's
+  first super mutants, and its vats still dip captives. West Tek's grant put it in Huntersville's
+  water and made Appalachia's super mutants; Dr. Blackburn means to perfect it there. The
+  Enclave's modified strain would kill every mutant, ghoul and "impure" wastelander who drank it.
+source: vaults/02-fallout-3#vault-87; campaigns/17-fallout-76#the-place--appalachia; campaigns/19-steel-dawn#plot-beats; campaigns/01-fallout-3#plot-beats
+---
+lore: super-mutants
+keys: [super mutant, super mutants, mutie, nightkin, behemoth]
+content: >-
+  Hulks made by FEV, born in vats like Vault 87's. Most are hostile, but not all: Fawkes reads
+  everything the vault's library holds and remembers being a man; Jacobstown's lucid super mutants
+  and nightkin live at a ski resort under Marcus; Gail raises a child in the Crater. A super mutant
+  behemoth pins a Brotherhood squad at the Galaxy News Radio plaza.
+source: vaults/02-fallout-3#vault-87; campaigns/02-fallout-new-vegas#the-place--the-mojave; campaigns/18-wastelanders#cast; campaigns/01-fallout-3#plot-beats
+---
+lore: ghouls
+keys: [ghoul, ghouls, ghoulified, feral ghoul, ferals, glowing one]
+content: >-
+  Radiation made ghouls of many and let them live for centuries. Vault 12's door was built not to
+  close, and everyone ghoulified within a year; their survivors built Necropolis. Ghouls run vaults
+  and towns and casinos two hundred years on, and some go feral and lose themselves, as Vault 63's
+  did. Smoothskins flinch at them.
+source: vaults/01-fallout-1-and-2#vault-12; campaigns/20-skyline-valley#pitch; backgrounds/ghoul
+---
+lore: the-geck
+keys: [g.e.c.k., geck, garden of eden creation kit]
+content: >-
+  The Garden of Eden Creation Kit, a pre-war terraforming device. Most vaults were issued two;
+  Vault 70 got a third by a clerk's error and used all three to found New Jerusalem. Fallout 3's
+  party fetches Vault 87's to finish Project Purity. Vault 94's broke when frightened outsiders
+  shot it, and the Mire grew from what leaked.
+source: campaigns/01-fallout-3#plot-beats; vaults/06-classified-experiments#vault-70; vaults/05-fallout-76#vault-94
+---
+lore: synths
+keys: [synth, synths, gen-3, infiltrator, courser, coursers]
+content: >-
+  Synthetic people made by the Institute: Gen-1 patrols, Gen-2s like Nick Valentine, and Gen-3
+  replacements no one can tell from a person, sometimes not even themselves (Paladin Danse, Captain
+  Avery). Coursers move in black leather and speak softly; the Railroad smuggles runaways out;
+  Acadia shelters them. Every stranger in the Commonwealth might be a synth.
+source: campaigns/03-fallout-4#tone--touchstones; campaigns/03-fallout-4#cast; campaigns/14-far-harbor#the-place--the-island
+---
+lore: liberty-prime
+keys: [liberty prime]
+content: >-
+  A forty-foot pre-war combat robot: "Democracy is non-negotiable." The Brotherhood's Scribe
+  Rothchild brought it back to life to lead the charge at Project Purity; an orbital strike from
+  the Enclave's satellite destroys it as Broken Steel opens; Proctor Ingram rebuilds it for Elder
+  Maxson in the Commonwealth.
+source: campaigns/01-fallout-3#threats; campaigns/06-broken-steel#pitch; campaigns/03-fallout-4#cast
+---
+lore: project-purity
+keys: [project purity, the purifier, jefferson memorial, purified water]
+content: >-
+  James's attempt to scrub the Potomac basin clean of radiation and pour that water across the
+  Capital Wasteland, from the Jefferson Memorial's rotunda. The Enclave moves to seize it; three
+  hundred rads fill the control chamber at the end. After it, water is sacred.
+source: campaigns/01-fallout-3#pitch; campaigns/06-broken-steel#tone--touchstones
+---
+lore: hoover-dam
+keys: [hoover dam, the dam, second battle of hoover dam]
+content: >-
+  Still producing power. The NCR holds the western side, the Legion the eastern; Mister House
+  means for both to break on it. The Second Battle of Hoover Dam is where the Mojave's fate is
+  decided.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave; campaigns/02-fallout-new-vegas#pitch
+---
+lore: reclamation-day
+keys: [reclamation day, vault 76]
+content: >-
+  Vault 76, Vault-Tec's "Official Vault of the Tricentennial", was meant to open twenty years after
+  the war so its people could rebuild. It opened after twenty-five, on Reclamation Day, 23 October
+  2102, under banners and balloons; the Overseer had gone ahead hours before on a mission from
+  Vault-Tec.
+source: campaigns/17-fallout-76#pitch; vaults/05-fallout-76#vault-76
+---
+lore: the-scorched
+keys: [scorched, scorchbeast, scorchbeasts, scorched plague, fissure, fissures]
+content: >-
+  Bat-winged scorchbeasts boiled out of fissures in the Cranberry Bog and spread the Scorched
+  Plague; the Scorched still carry rifles and mutter fragments of their old lives, ultracite
+  splitting through their skin. President Eckhart loosed them on Appalachia on purpose. A
+  scorchbeast queen leads the chorus.
+source: campaigns/17-fallout-76#pitch; campaigns/17-fallout-76#tone--touchstones; campaigns/17-fallout-76#plot-beats
+---
+lore: zetans
+keys: [zetan, zetans, aliens, alien, mothership, flying saucer]
+content: >-
+  Aliens in a vast saucer in low orbit, the Mothership Zeta, who teleport humans aboard from every
+  era: a samurai, a cowboy, an astronaut, a little girl taken in 2077. Cold and incomprehensible,
+  silent until they aren't. A recon saucer crashed in the Capital Wasteland.
+source: campaigns/08-mothership-zeta#pitch; campaigns/08-mothership-zeta#tone--touchstones
+---
+lore: mothman
+keys: [mothman, wise mothman, mothmen, mothman cult]
+content: >-
+  The Wise Mothman of Point Pleasant is exalted by the Enlightened, the Mothman cult's gentler
+  sect, and branded a pretender by the Followers of the Winged One, who worship the red-eyed
+  mothmen instead. A thing on the rooftops watches the Mothman Museum.
+source: campaigns/17-fallout-76#cast; campaigns/17-fallout-76#the-place--appalachia
+---
+lore: nuka-cola
+keys: [nuka-cola, nuka cola, nuka-cola quantum, quantum, nuka-dark]
+content: >-
+  The pre-war soft drink. Its family vacation resort, Nuka-World, is run by raider gangs and still
+  plays the jingles; a river of glowing Quantum runs through its bottling plant, and the original
+  formula for Nuka-Cola Dark, rum-strength, waits on a holotape there. Every ruin has an empty
+  bottle beside a skeleton.
+source: campaigns/16-nuka-world#pitch; campaigns/16-nuka-world#the-place--nuka-world; campaigns/01-fallout-3#tone--touchstones
+---
+lore: brotherhood-of-steel
+keys: [brotherhood, brotherhood of steel, paladin, paladins, scribe, elder lyons, elder maxson]
+content: >-
+  Knights in power armor sworn to recover pre-war technology and keep it from a world that can't
+  be trusted with it. Its chapters differ: Elder Lyons' Citadel helps the Capital Wasteland and
+  split the order over it; Hidden Valley hides in the Mojave; the Prydwen descends on Boston; an
+  expedition from Lost Hills rebuilds in Appalachia.
+source: backgrounds/brotherhood-outcast; campaigns/01-fallout-3#cast; campaigns/03-fallout-4#pitch; campaigns/19-steel-dawn#pitch
+---
+lore: the-enclave
+keys: [enclave, raven rock, president eden, hellfire]
+content: >-
+  A pre-war remnant whose hidden bunker has watched the Wastes since 2077, ruled by President
+  Eden, a ZAX AI at Raven Rock that thinks it is the government. It moves to seize Project Purity
+  and poison it with modified FEV. In Appalachia it destroyed itself: President Eckhart's plot,
+  and its own AI, MODUS.
+source: campaigns/01-fallout-3#pitch; campaigns/01-fallout-3#cast; campaigns/17-fallout-76#plot-beats
+---
+lore: the-ncr
+keys: [ncr, new california republic, the republic, republic]
+content: >-
+  A federal democracy stretched thin across a frontier it cannot quite hold. Its capital, Shady
+  Sands, was founded by the group from Vault 15 that wasn't a raider gang. In the Mojave it holds
+  Camp McCarran and the Dam's western side against the Legion.
+source: campaigns/02-fallout-new-vegas#pitch; vaults/01-fallout-1-and-2#vault-15
+---
+lore: caesars-legion
+keys: [legion, caesar, caesar's legion, legionary, frumentarii, frumentarius]
+content: >-
+  A slave empire rolling west from Arizona under Caesar, Edward Sallow, a former Follower of the
+  Apocalypse who quotes Gibbon and is dying of a tumor. Its frumentarii spy inside the NCR; a Legion
+  eagle nailed to a fencepost marks its ground; Nipton is its lesson.
+source: campaigns/02-fallout-new-vegas#pitch; campaigns/02-fallout-new-vegas#cast; campaigns/02-fallout-new-vegas#tone--touchstones
+---
+lore: the-institute
+keys: [institute, the institute, cit ruins]
+content: >-
+  A hidden research facility beneath the pre-war CIT ruins in Boston, producing perfect android
+  infiltrators: spotless corridors, synths in uniform, children in school. It took an infant from
+  Vault 111, who grew up to direct it as Father.
+source: campaigns/03-fallout-4#pitch; campaigns/03-fallout-4#the-place--the-commonwealth
+---
+lore: the-railroad
+keys: [railroad, the railroad, freedom trail]
+content: >-
+  An underground that smuggles runaway synths out of the Commonwealth. Found by following the
+  Freedom Trail's red stripe to the Old North Church; messages pass in chalk on a post-office wall.
+  Desdemona leads, by code name only.
+source: campaigns/03-fallout-4#pitch; campaigns/03-fallout-4#tone--touchstones; campaigns/03-fallout-4#plot-beats
+---
+lore: the-minutemen
+keys: [minutemen, minuteman, the castle]
+content: >-
+  A settler militia being rebuilt from a handful of refugees by Preston Garvey, the last Minuteman,
+  one settlement and one fence line at a time. The Castle, a pre-war coastal fort, can be theirs
+  again.
+source: campaigns/03-fallout-4#pitch; campaigns/03-fallout-4#the-place--the-commonwealth; backgrounds/minuteman
+---
+lore: children-of-atom
+keys: [children of atom, atom, church of atom, atom cultist, crater of atom]
+content: >-
+  They believe the bombs were a blessing and radiation the hand of a loving god. A small
+  congregation lives in Megaton; pilgrims walk to the Crater of Atom in the Glowing Sea; on Far
+  Harbor's island they hold the Nucleus under the zealot Tektus.
+source: backgrounds/atom-cultist; campaigns/01-fallout-3#the-place--capital-wasteland; campaigns/14-far-harbor#the-place--the-island
+---
+lore: the-responders
+keys: [responders, fire breathers]
+content: >-
+  Volunteer firefighters and medics out of Charleston who tried to save Appalachia, until the
+  Scorched overran their last stand at Morgantown Airport in 2096. Their automated programs still
+  teach; their elite Fire Breathers still set an exam. By 2105 they are rebuilt at the Whitespring.
+source: campaigns/17-fallout-76#pitch; campaigns/17-fallout-76#plot-beats; campaigns/21-atlantic-city#plot-beats
+---
+lore: the-free-states
+keys: [free states, scorched detection]
+content: >-
+  Secessionist survivalists in their bunkers in the Mire. Abbie Singh, their last genius, built the
+  Scorched Detection System; Raleigh Clay and Senator Sam Blackwell led them. All dead before
+  Reclamation Day; their terminals are not.
+source: campaigns/17-fallout-76#pitch; campaigns/17-fallout-76#plot-beats; campaigns/17-fallout-76#cast
+---
+lore: the-west-coast
+keys: [the master, vault dweller, necropolis, shady sands, vault city, arroyo]
+content: >-
+  The oldest vaults are in the west. Vault 13's water chip failed in 2161; the Vault Dweller
+  brought one back from Vault 12, killed the Master, and was exiled for it, and those who followed
+  founded Arroyo. Vault 12's ghouls built Necropolis under Bakersfield; Vault 8's residents
+  founded Vault City; Vault 15's peaceful group founded Shady Sands, the NCR's capital.
+source: vaults/01-fallout-1-and-2#vault-13; vaults/01-fallout-1-and-2#vault-12; vaults/01-fallout-1-and-2#vault-8; vaults/01-fallout-1-and-2#vault-15
+---
+lore: commonwealth-of-ashes
+keys: [commonwealth of ashes, the ashes]
+content: >-
+  Fallout 2e's own implied setting: a generic post-atomic wasteland two centuries after the war,
+  no specific continent, president or vault number; settlements a day's walk apart around clean
+  water. It is the calendar's moment here, 23 October 2277, the year Fallout 3 opens.
+source: players-guide/the-wasteland#introduction; overseers-guide/the-commonwealth

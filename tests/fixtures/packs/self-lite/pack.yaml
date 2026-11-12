@@ -1,0 +1,7 @@
+id: self-lite
+name: Self (test pack)
+kind: system
+version: 0.1.0
+description: "A system whose own entries give their numbers in a block of its own."
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

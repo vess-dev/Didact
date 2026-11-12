@@ -1,0 +1,25 @@
+# Drafts that roll two-step tables and then wait (an `ask`), so that they replay.
+generator: cache
+title: A cache
+steps:
+  - choose_or_roll: {table: blade-cache, as: find}
+  - choose: {table: ring-and-blade, as: pair}
+  - entity: {key: find, from: "@find.id", fields: {size: "@find.size", pair: "@pair.id"}}
+  - ask: {as: owner, prompt: "whose was it?"}
+---
+generator: hoard
+title: A hoard
+steps:
+  - table: relics
+    as: relic
+  - entity: {key: relic, from: "@relic.id", fields: {found: "@relic.found"}}
+  - ask: {as: keeper, prompt: "who keeps it?"}
+---
+# A table step whose entry's data the next step reads: prefilled, it is still that entry.
+generator: lair
+title: A lair
+steps:
+  - table: groups
+    as: group
+  - choose: {from: "@group.ids", as: dweller}
+  - entity: {key: lair, type: loc, name: "The {@group} lair", fields: {dweller: "@dweller"}}

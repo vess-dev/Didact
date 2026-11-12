@@ -1,0 +1,125 @@
+# Loot (roll-tables/marketplace, relics, perk-magazines, unique-weapons, unique-armors;
+# players-guide/marketplace): a weapon, armor, gear, a relic, a perk magazine or a unique, chosen
+# or rolled on the book's loot tables and written as its compendium entry. They replace the
+# parent's generators of the same ids (weapon, armor, gear, relic); Cairn's spellbook generator is
+# hidden (pack.yaml `hides`): perk magazines take its place.
+generator: weapon
+title: A weapon
+help: >-
+  A weapon from Random Weapon (d20; a rolled 20 rolls the Exotic Weapon Cache, and its weapon is
+  the one written), or chosen: its damage die, tags, ammo and price as the Marketplace gives them.
+  Prefill by name: weapon, name.
+source: roll-tables/marketplace#random-weapon-d20
+steps:
+  - choose_or_roll: {table: loot-weapon, as: weapon}
+  - if: "default(@weapon.id, '') <> ''"
+    then:
+      - let: {name: "@weapon"}
+      - entity: {key: weapon, from: "@weapon.id"}
+    else:
+      - prompt: "{@weapon}: pick the item (`didact compendium find …`), roll the Exotic Weapon Cache (`didact table roll fallout-2e.loot-exotic-weapon`) or the Unique Weapons tables (`didact gen run fallout-2e.unique-weapon`)."
+  - prompt: "Is it a pipe-and-tape job, factory-wrapped pre-war, or someone's pride? Who carried it last?"
+---
+generator: armor
+title: Armor
+help: >-
+  A piece of armor from Random Armor (d20), or chosen: its Armor, size and notes as the Marketplace
+  gives them. Prefill by name: armor, name.
+source: roll-tables/marketplace#random-armor-d20
+steps:
+  - choose_or_roll: {table: loot-armor, as: armor}
+  - if: "default(@armor.id, '') <> ''"
+    then:
+      - entity: {key: armor, from: "@armor.id"}
+    else:
+      - prompt: "{@armor}: pick the item from the Marketplace (`didact compendium find …`)."
+  - prompt: "Whose was it, and what does wearing it say about the wearer?"
+---
+generator: gear
+title: A piece of gear
+help: >-
+  Common gear from Random Gear (d20), or chosen: its uses, size and price as the Marketplace gives
+  them. Prefill by name: gear, name.
+source: roll-tables/marketplace#random-gear-d20
+steps:
+  - choose_or_roll: {table: loot-gear, as: gear}
+  - if: "default(@gear.id, '') <> ''"
+    then:
+      - entity: {key: gear, from: "@gear.id"}
+    else:
+      - prompt: "{@gear}: pick the item from the Marketplace (`didact compendium find …`)."
+  - prompt: "Is it new, worn or strange? Anything about it worth a line of description?"
+---
+generator: relic
+title: A pre-war relic
+help: >-
+  A relic from the Relic Roll Tables: common (d20; 20 rolls Pre-war Culture & Curiosity), culture
+  (d10), rare (d20), forbidden (d8), legendary (d12: place deliberately, never roll into a cache),
+  vault curiosities (d12) or a bobblehead (d8), chosen or rolled, as its entry has it: charges,
+  recharge, effect. At most one a session. Prefill by name: rarity, relic, name.
+source: roll-tables/relics
+steps:
+  - choose: {from: [common, culture, rare, forbidden, legendary, vault, bobblehead], as: rarity, prompt: "Which relic table: common, culture, rare, forbidden, legendary (campaign-defining), vault curiosities, or a bobblehead?"}
+  - choose_or_roll: {table: "{if(@rarity == 'common', 'relics', if(@rarity == 'culture', 'relics-culture', if(@rarity == 'rare', 'relics-rare', if(@rarity == 'forbidden', 'relics-forbidden', if(@rarity == 'legendary', 'relics-legendary', if(@rarity == 'vault', 'relics-vault', 'bobbleheads'))))))}", as: relic}
+  - if: "default(@relic.id, '') <> ''"
+    then:
+      - entity: {key: relic, from: "@relic.id"}
+    else:
+      - prompt: "{@relic}: the table points elsewhere or leaves it to the Overseer: pick a relic (`didact compendium find …`), or design one (`didact template relic`)."
+  - prompt: "Who made it, who carried it last, and who would want it back? A relic is a decision: let the party fight for it."
+---
+generator: perk-magazine
+title: A perk magazine
+help: >-
+  A pre-war magazine: the series (d20), then the issue within it (the book rolls a d12, a d20 for
+  Guns and Bullets, re-rolling past the last issue), or a unique prototype issue (d6), chosen or
+  rolled, as its entry has it: the perk and what it does. Prefill by name: series, issue, name.
+source: roll-tables/perk-magazines
+steps:
+  - choose: {from: [series, unique], as: kind, prompt: "An ordinary issue from a series, or one of the unique / prototype magazines (only one copy each in a campaign)?"}
+  - if: "@kind == 'unique'"
+    then:
+      - choose_or_roll: {table: magazines-unique, as: issue}
+    else:
+      - choose_or_roll: {table: magazine-series, as: series}
+      - choose_or_roll: {table: "{@series.table}", as: issue}
+  - if: "default(@issue.id, '') <> ''"
+    then:
+      - entity: {key: magazine, from: "@issue.id"}
+    else:
+      - prompt: "{@issue}: the Overseer picks a unique that fits the scene, or re-rolls."
+  - prompt: "Where is it found: an attic, a vault library, a locker room, a dead wastelander's effects? A copy of Grognak on a raider boss's desk says something about the boss."
+---
+generator: unique-weapon
+title: A unique weapon
+help: >-
+  A named, one-of-a-kind weapon from the Unique Weapons roll tables (by kind), chosen or rolled,
+  as its entry has it: base damage, tags and its special. Only one of each in a campaign; place it
+  deliberately. Prefill by name: kind, unique, name.
+source: roll-tables/unique-weapons
+steps:
+  - choose: {from: [pistols-and-revolvers-ballistic, pistols-and-revolvers-energy, rifles-and-carbines-ballistic, shotguns, submachine-guns, energy-rifles, heavy-weapons, heavy-weapons-launchers-grenades-and-oddities, melee-bladed, melee-blunt, unarmed], as: kind, prompt: "Which kind of unique weapon? (the catalog's sections)"}
+  - choose_or_roll: {table: "unique-weapons-{@kind}", as: unique}
+  - if: "default(@unique.id, '') <> ''"
+    then:
+      - entity: {key: unique, from: "@unique.id"}
+    else:
+      - prompt: "{@unique}: the Overseer picks (`didact compendium find …`), or re-rolls."
+  - prompt: "A unique weapon should answer a story question: whose hands is it in now, what's its drawback, and who will come for it?"
+---
+generator: unique-armor
+title: A unique armor
+help: >-
+  A named, one-of-a-kind armor, costume or headgear from the Unique Armors roll tables (by kind),
+  chosen or rolled, as its entry has it. Only one of each in a campaign. Prefill by name: kind,
+  unique, name.
+source: roll-tables/unique-armors
+steps:
+  - choose: {from: [light-armor-and-clothing, body-armor-and-suits, power-armor, helmets-and-headgear, costumes, accessories-and-add-ons], as: kind, prompt: "Which kind of unique armor? (the catalog's sections)"}
+  - choose_or_roll: {table: "unique-armors-{@kind}", as: unique}
+  - if: "default(@unique.id, '') <> ''"
+    then:
+      - entity: {key: unique, from: "@unique.id"}
+    else:
+      - prompt: "{@unique}: the Overseer picks (`didact compendium find …`), or re-rolls."
+  - prompt: "When someone pulls a unique armor out of a crate, the whole region hears about it within a week: who?"

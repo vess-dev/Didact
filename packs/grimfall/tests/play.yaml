@@ -1,0 +1,277 @@
+# Smoke plays: the Core Engine's rolls and damage, a fight with a Bestiary threat, surviving the
+# wasteland, and a session's rhythm with the Core Perks' engines. Seeded, so each plays the same
+# every time.
+test: the-engine
+help: "Action and defense rolls with Grimfall's dice (spark, a perk die, the Weak Point die, a rad mark, a Flesh Wound, all in, a bonus-dice pool, Quick Draw), the harm ladder with Grit and Life Giver, dropped, retirement, a device's misfire."
+script:
+  - world new wastes --system {pack} --seed engine
+  - campaign new first --seed engine
+  - new pc Ace --set agility=3 --set wits=2 --set brawn=1 --set presence=1 --set 'perks+=the-professional' --set 'perks+=quick-draw' --set spark=1
+  - new pc Dutch --set brawn=3 --set agility=1 --set wits=2 --set presence=2 --set 'perks+=toughness' --set 'perks+=life-giver' --set 'perks+=rooted' --set grit=6
+  - set ace 'rad_marks=["wits"]'
+  - run: do action who=ace stat=agility thorns=1 spark=1 perk weak_point
+    expect: ["pc:ace: spark -= 1", "5d6 → [2 1 1 2 5]", "1d8 → [1]", "→ messy", "Regular stakes: the impact move weighs one harm"]
+  - run: do action who=ace stat=wits
+    expect: ["The rad mark on wits adds a thorn, and lingers", "2d6 → [6 6]", "→ critical", "thorns can't cut it"]
+  - run: show ace
+    expect: "rad_marks wits"
+  - run: do defense who=ace stat=agility thorns=2
+    expect: ["Quick Draw: no thorns on an Agility defense roll, except those from damage.", "→ perfect", "Ace is clear."]
+  - run: do action who=dutch stat=brawn all_in stakes=high
+    expect: ["all in: 5s count as 6s, 4s as 1s", "→ perfect"]
+  - run: do mark who=dutch stat=brawn grit
+    expect: "Dig deep: Dutch spends 1 Grit instead of the mark on brawn (5 Grit left)."
+  - run: do harm who=dutch kind=bloodied flesh_wound
+    expect: "Life Giver: Dutch takes a Flesh Wound instead of getting bloodied"
+  - run: do action who=dutch stat=wits
+    expect: "The Flesh Wound adds a thorn"
+  - run: do harm who=dutch kind=bloodied grit
+    expect: "Walk it off: Dutch spends 2 Grit and shrugs off the bloodied entirely (3 Grit left)."
+  - run: do harm who=dutch kind=rattled
+    expect: "Dutch is rattled: +1t on mental rolls"
+  - run: do harm who=dutch kind=rattled
+    expect: "Dutch is rattled again: desperate, +1t on everything."
+  - run: do harm who=dutch kind=rattled
+    expect: ["Dutch is already rattled and desperate: dropped, out of the scene.", "didact do dropped who=pc:dutch"]
+  - run: do dropped who=dutch all_in
+    expect: "→ "
+  - run: do end-story who=dutch end=retirement
+    expect: "if they're dropped again first, they die"
+  - run: do dropped who=dutch
+    expect: ["→ perished", "they die"]
+  - track new 'Covering Fire' --kind pool --size 3
+  - run: do action who=ace stat=agility bonus=covering-fire
+    expect: ["pool Covering Fire", "Covering Fire rolls alongside: its best die counts"]
+  - run: campaign profile dangerous-tech=on
+    expect: "dangerous-tech"
+  - run: do misfire who=ace
+    expect: "Dangerous tech: Ace's device misfires (two or more 1s, thorns included)."
+---
+test: a-fight
+help: "A fight run with the tracker (what comes back each fight, Kamikaze, Adrenaline at the end), a Bestiary boss in play as a linked challenge (its parts' pools and bonus suspense), a horde as one pool, Might, Pain is fuel and Adrenaline, Plating from the sheet eating a hit, a breached frame staying breached through the session's reset until it's repaired, and a swapped perk's pool made at once and refreshed."
+script:
+  - world new wastes --system {pack} --seed fight
+  - campaign new first --seed fight
+  - new pc Brick --set brawn=3 --set agility=2 --set wits=1 --set presence=2 --set class='The Sledge' --set 'perks+=unstoppable-force' --set 'perks+=adrenaline' --set 'perks+=power-armor-training' --set suited=true
+  - track new "Brick's Plating" --kind pool --size 3 --pool resource
+  - 'set brick plating=track:brick-s-plating "quirk=Kamikaze: You always act first when you rush in. / The first impact move of any fight finds you, if it can."'
+  - session start
+  - run: scene new 'The deathclaw at the hauler'
+    expect: "Unstoppable Force: Brick has 4 Might this scene."
+  - run: >-
+      gen run grimfall.foe --auto --prefill '{"creature": "Deathclaw"}'
+    expect: ["monster Deathclaw: tier: boss, role: predator", "track Deathclaw: The Deathclaw: kind: pool, pool: task", "track Deathclaw: Slashing Claws: kind: pool, pool: task", "suspense: 2", "A linked challenge"]
+  - run: gen commit g1
+    expect: "4 records (monster:deathclaw, track:deathclaw-the-deathclaw, track:deathclaw-slashing-claws, track:deathclaw-charging-legs)"
+  - run: combat start brick deathclaw
+    expect: ["There are no turns in Grimfall", "A fight starts: per-fight edges come back", "Kamikaze: the first impact move of this fight finds Brick, if it can."]
+  - run: do might who=brick use=hurl
+    expect: "Heave, on a foe: hurl them across the room, drop the car on them (2 Might). Brick: 2 Might left."
+  - run: do action who=brick stat=brawn perk
+    expect: "4d6 → "
+  - run: track roll deathclaw-slashing-claws
+    expect: "pool Deathclaw: Slashing Claws"
+  - run: do suspense spend=1 challenge=deathclaw-charging-legs
+    expect: "Deathclaw: Charging Legs's bonus suspense: 1."
+  - run: do defense who=brick stat=agility thorns=1
+    expect: "→ "
+  - run: do harm who=brick kind=bloodied
+    expect: ["Brick is bloodied", "Pain is fuel: the blow leaves Brick bloodied or worse: +1 Might (3)", "Adrenaline: Brick got bloodied"]
+  - run: do plating who=brick
+    expect: ["pool Brick's Plating", "The frame eats the hit"]
+  - run: do breach who=brick
+    expect: ["Brick's Plating is breached: 0d", "track:brick-s-plating: fields.status = breached"]
+  - run: do plating who=brick pool=brick-s-plating
+    expect: "0d: spent, or breached"
+  - run: combat end
+    expect: "Adrenaline: if Brick's blood was up, it ends now that no threat remains."
+  - run: >-
+      gen run grimfall.foe --auto --prefill '{"creature": "Feral Ghoul"}'
+    expect: ["monster Feral Ghoul: tier: mook, role: swarmer", "track Feral Ghoul: kind: pool, pool: task", "Mooks are fodder"]
+  - run: gen commit g2
+    expect: "track:feral-ghoul"
+  - run: track list
+    expect: ["Feral Ghoul 6d", "Deathclaw: The Deathclaw 8d"]
+  - run: track roll feral-ghoul
+    expect: "pool Feral Ghoul"
+    expect_not: "matches several records"
+  - run: do push who=brick pool=feral-ghoul stat=brawn
+    expect: "Brick pushes: Feral Ghoul drops 1d"
+    expect_not: "matches several records"
+  - run: do switch-perk who=brick drop=adrenaline take=pack-rat why='a season hauling scrap'
+    expect: ["Brick swaps adrenaline for pack-rat.", "+ track Brick's Pack [track:brick-s-pack]", "pc:brick: pack = track:brick-s-pack"]
+  - track roll track:brick-s-pack
+  - session end
+  - run: session start
+    expect: ["Brick's Plating is still breached: it stays at 0d", "Brick's Pack is back to 3d."]
+  - run: do breach who=brick fix=repair
+    expect: ["Brick's Plating is back to 3d.", "Brick's Plating is repaired with parts and a day's work: whole again."]
+  - run: do switch-perk who=brick drop=pack-rat take=adrenaline
+    expect: ["`didact rm track:brick-s-pack` deletes the record", "pc:brick: unset pack"]
+---
+test: surviving
+help: "Rads (a rad mark, a lethal dose and its timer made at once, Rad-X, RadAway), chems and their kick at the scene's end, stimpaks, the Caps pool and a sold haul (the sheet's own pools), scavenging, a real rest somewhere safe, downtime actions and a project's pool made by name, the drift, and time passing."
+script:
+  - world new wastes --system {pack} --seed survive
+  - campaign new first --seed survive
+  - run: >-
+      char new --mode random --prefill '{"name": "Sunny", "class": "The Pathfinder", "perk_list": "The Pathfinder'"'"'s signature perks", "perk": "sniper"}'
+    expect: "class: The Pathfinder, perks: [awareness, sniper]"
+  - char commit c1
+  - session start
+  - scene new 'The glowing orchard'
+  - run: do rad who=sunny dose=zone stat=wits
+    expect: "Sunny takes a rad mark on wits: +1t on every wits roll"
+  - run: do rad who=sunny dose=zone stat=wits
+    expect: ["the rads inflict harm instead", "Sunny is rattled"]
+  - run: do rad who=sunny dose=lethal
+    expect: ["a 4d Lethal Dose rolled as time passes", "+ track Sunny: Lethal Dose [track:sunny-lethal-dose]", "pc:sunny: lethal_dose = track:sunny-lethal-dose", "Sunny's 4d Lethal Dose (track:sunny-lethal-dose) runs"]
+  - run: do rad who=sunny dose=lethal
+    expect: "Sunny already carries a 4d Lethal Dose (track:sunny-lethal-dose): it keeps running."
+  - run: do treat who=sunny condition='4d Lethal Dose'
+    expect: ["Treatment clears Sunny's 4d Lethal Dose.", "`didact rm track:sunny-lethal-dose` deletes the record", "pc:sunny: unset lethal_dose"]
+  - run: do chem who=sunny chem=radaway
+    expect: "RadAway: with a breather, Sunny's rad marks clear."
+  - run: do chem who=sunny chem=rad-x
+    expect: "Rad-X: radiation hazards are set dressing"
+  - run: do rad who=sunny dose=zone stat=brawn
+    expect: "Rad-X: radiation hazards are set dressing for Sunny this scene."
+  - run: do chem who=sunny chem=buffout
+    expect: ["chems: Buffout: +1d on feats of raw muscle", "The kick, when it fades: mark Brawn when it fades."]
+  - run: do action who=sunny stat=brawn chem
+    expect: "→ "
+  - run: do stimpak who=sunny
+    expect: ["A stimpak clears Sunny's rattled.", "pool Sunny's Stimpaks"]
+  - run: scene end
+    expect: ["Buffout fades: Sunny marks Brawn.", "pc:sunny: chems = []"]
+  - run: do spend who=sunny huge
+    expect: ["A huge ask: Sunny's Caps drops 1d first (3d left).", "→ "]
+  - run: do sell who=sunny
+    expect: ["Sunny's Caps grows: ", "a second, different downtime action"]
+  - run: do scavenge place=sealed who=sunny
+    expect: ["scavenging: 3d: somewhere sealed since the bombs.", "→ "]
+  - run: do rest who=sunny safe
+    expect: ["Sunny rests: all marks and harm clear, rad marks too.", "Sunny's Stimpaks is back to 3d."]
+  - run: do downtime who=sunny act=steam also=venture
+    expect: ["Blow off steam: give a vignette", "Venture: odd jobs, courier runs, a solo score.", "Awareness: Sunny can study 1 foe this session", "Sunny's Stimpaks is back to 3d.", "roll the faction pools (`didact faction turn`)"]
+  - run: do downtime who=sunny act=plan plan='a bribed guard at the gate'
+    expect: "Plan ahead: Sunny prepares (a bribed guard at the gate)"
+  - run: do downtime who=sunny act=pursue project="Mod Dutch's rifle"
+    expect: ["Time passes: Sunny's plan-ahead thread is lost.", "+ track Sunny: Mod Dutch's rifle [track:", "Pursue a goal: Sunny works on Sunny: Mod Dutch's rifle ("]
+  - run: do downtime who=sunny act=pursue project="Mod Dutch's rifle"
+    expect: ["track Sunny: Mod Dutch's rifle [track:", "is here already", "Pursue a goal: Sunny works on Sunny: Mod Dutch's rifle ("]
+  - new loc 'Canyon Junction'
+  - run: do drift at=canyon-junction
+    expect: "The drift: calm → "
+  - run: do time-passes what="a season behind Dutch's walls"
+    expect: ["time-details: ", "Time passes: a season behind Dutch's walls.", "`didact faction turn`"]
+  - set sunny 'perks+=lead-belly'
+  - run: do rad who=sunny dose=lethal condition=rad-sick
+    expect: ["Lead Belly: radiation lands one step lighter on Sunny.", "A lethal dose arrives as a bad one: Sunny is rad-sick"]
+---
+test: a-session
+help: "Sessions start warm (best moment, spark, thread with Explorer, the per-session wells: Grit, Sway, devices, Cool, studies and a new quarry, the Longshot's Luck rolled), the GM's suspense and a Build Up (every PC takes spark), then the engines in play: a quarry and the Weak Point die, Sway, a device, Cool, Luck crossed off, vigilance with Keen eye, a quarrel, bonds and arcs."
+script:
+  - world new wastes --system {pack} --seed session
+  - campaign new first --seed session
+  - new pc Hawk --set wits=3 --set agility=2 --set class='The Pathfinder' --set 'perks+=awareness' --set 'perks+=explorer'
+  - new pc Velvet --set presence=3 --set class='The Charmer' --set 'perks+=gift-of-gab'
+  - new pc Gizmo --set wits=3 --set class='The Inventor' --set 'perks+=science' --set 'schematics+=shock baton' --set level=2
+  - new pc Slick --set agility=3 --set class='The Ace' --set 'perks+=the-professional' --set 'skills+=stealth'
+  - new pc Jackpot --set presence=2 --set class='The Longshot' --set 'perks+=luck-of-the-draw'
+  - new pc Dutch --set brawn=3 --set class='The Everlast' --set 'perks+=toughness' --set level=4
+  - run: session start
+    expect: "session 1"
+  - run: session end --summary 'The first job.'
+    expect: "session-experience (Hawk): pc:hawk: xp += 1"
+  - run: session start
+    expect: ["share Hawk's best moment", "Hawk: spark 1, thread 3.", "Awareness: Hawk can study 1 foe this session", "Gift of Gab: 3 Sway this session.", "Science!: 5 devices and 3 potent devices this session.", "The Professional: 2 Cool this session.", "Luck of the Draw: Jackpot's Luck this session is ", "Toughness: 8 Grit this session.", "GM suspense: 1."]
+  - run: do suspense-move move=build-up
+    expect: ["every PC adds a detail, and takes spark", "Hawk has 2 spark.", "Velvet has 2 spark.", "Gizmo has 2 spark.", "Slick has 2 spark.", "Jackpot has 2 spark.", "Dutch has 2 spark.", "GM suspense: 2."]
+  - run: do study who=hawk foe='the raider boss' weak_point='the knee he favors'
+    expect: "Hawk's quarry for the rest of the session: the raider boss (the knee he favors)."
+  - run: do study who=hawk foe='a second boss' weak_point='none'
+    expect: "Hawk has studied every foe they can this session"
+  - run: do action who=velvet stat=presence weak_point
+    expect: "→ "
+  - set slick 'marks=["agility"]'
+  - run: do sway who=velvet use=mark ally=slick stat=agility
+    expect: "Sway: Velvet talks Slick down from the mark on agility: it clears (2 Sway left)."
+  - run: do sway who=velvet use=raise ally=velvet
+    expect: "Sway works on others, never on yourself."
+  - run: do device who=gizmo schematic='shock baton'
+    expect: ["Gizmo rigs a device from the shock baton schematic (4 devices, 3 potent left).", "→ "]
+  - run: do device who=gizmo schematic='laser drill'
+    expect: "Gizmo doesn't know a schematic called 'laser drill'"
+  - set gizmo "schematics+=Abe's pulse mine"
+  - run: do device who=gizmo schematic="Abe's pulse mine"
+    expect: "Gizmo rigs a device from the Abe's pulse mine schematic"
+  - run: do cool who=slick skill=stealth
+    expect: "Cool: a potent feat within stealth (1 Cool left)."
+  - run: show jackpot
+    expect: "luck: ones: "
+  - run: do vigilance who=hawk
+    expect: "and Hawk always gets at least a hint."
+  - run: campaign profile active-vigilance=on
+    expect: "active-vigilance"
+  - run: do vigilance who=hawk
+    expect: "→ "
+  - run: do quarrel first=velvet second=slick stakes='who keeps the keycard'
+    expect: ["At stake: who keeps the keycard.", "Velvet has 2 spark", "→ "]
+  - run: do change-bond who=velvet toward=slick bond='tense rivalry'
+    expect: "Velvet's bond with Slick is now tense rivalry: give a short vignette."
+  - run: do resolve-arc who=hawk arc='prove myself'
+    expect: "Hawk resolves a story arc with a real moment."
+  - run: do vex who=slick response=freak-out
+    expect: "Slick takes vex: freak out, for a beat or two."
+---
+test: wild-wasteland
+help: "With Wild Wasteland on, a critical on a story roll (two 6s) goes strange: the crucible is rolled."
+script:
+  - world new t --system {pack} --seed w7
+  - campaign new c --seed w7
+  - campaign profile wild-wasteland=on
+  - run: do story-roll odds=good question='Is the terminal still powered?'
+    expect: ["3d6 → [6 5 6]", "→ perfect", "Wild Wasteland: a critical on a story roll", "wild-wasteland: "]
+---
+test: thread-and-treatment
+help: "Thread spent (a detail, Explorer's flashback, Fortune Finder's find, the plan-ahead thread), treatment clearing harm and a condition, Finesse's 5 alongside a 6, a major haul sold, and Chem Resistant's lighter kicks when the scene ends."
+script:
+  - world new wastes --system {pack} --seed thread
+  - campaign new first --seed thread
+  - new pc Hawk --set wits=3 --set agility=2 --set 'perks+=awareness' --set 'perks+=explorer' --set thread=3
+  - new pc Lucky --set presence=2 --set agility=3 --set 'perks+=fortune-finder' --set 'perks+=finesse' --set thread=3
+  - new pc Doc --set wits=3 --set 'perks+=science' --set 'perks+=chem-resistant'
+  - run: do thread who=hawk detail='a contact in this town'
+    expect: ["Hawk spends a thread (2 left)", "The detail: a contact in this town."]
+  - run: do thread who=hawk flashback
+    expect: ["Hawk spends a thread (1 left)", "3d6 → ", "The GM always takes suspense in place of an impact move on this flashback"]
+  - run: do thread who=lucky find
+    expect: ["Lucky spends a thread (2 left)", "2d6 → ", "Fortune Finder: the better it goes, the better the find"]
+  - run: do thread who=lucky flashback
+    expect: "A flashback is Explorer's or Covert Ops'."
+  - run: do downtime who=hawk act=plan plan='a map of the vents'
+    expect: "Plan ahead: Hawk prepares (a map of the vents)"
+  - run: do thread who=hawk plan
+    expect: "Hawk spends the plan-ahead thread, on a detail from that preparation."
+  - set doc 'harm=["bloodied", "desperate"]' 'conditions=["broken arm"]'
+  - run: do treat who=doc
+    expect: ["Treatment clears Doc's desperate.", "the drama is what it costs"]
+  - run: do treat who=doc heal=bloodied
+    expect: "Treatment clears Doc's bloodied."
+  - run: do treat who=doc condition='broken arm'
+    expect: "Treatment clears Doc's broken arm."
+  - run: do treat who=doc
+    expect: "Doc carries no harm to treat"
+  - run: do action who=lucky stat=agility finesse
+    expect: ["3d6 → [6 3 5]", "Finesse: a 5 alongside the 6 counts as a second 6", "→ critical"]
+  - track new "Lucky's Caps" --kind pool --size 4 --pool power
+  - run: do sell who=lucky pool=lucky-s-caps haul=major
+    expect: ["Lucky's Caps grows: 8d of 8d.", "Lucky sells off a major haul"]
+  - session start
+  - scene new 'The lab'
+  - run: do chem who=doc chem=buffout
+    expect: "Chem Resistant: Doc's kicks and comedowns run one step lighter (a mark or vex becomes +1t for a beat"
+  - do chem who=doc chem=jet
+  - run: scene end
+    expect: ["Buffout fades: Chem Resistant steps the mark on Brawn down to +1t for a beat.", "the lighter comedowns (Jet's crash", "pc:doc: chems = []"]

@@ -1,0 +1,51 @@
+# Items, perk magazines and relics (players-guide/marketplace, overseers-guide/perk-magazines,
+# relics, unique-weapons, unique-armors). The item type repeats Cairn's fields (a hack's type
+# replaces its parent's whole) and adds what Fallout's gear says: ammo, an effect, a category, and
+# the power armor flag the rules read to know a suit is worn.
+type: item
+label: Item
+fields:
+  size: {kind: enum, values: [petty, normal, bulky], default: normal, help: "Petty: no slot; bulky: two."}
+  damage: {kind: dice, help: "A weapon's damage die, e.g. d8; two at once (the book's d8+d8: roll both, keep the highest) is '{d8, d8}kh1'."}
+  armor: {kind: int, min: 0, max: 3, help: "Armor it gives while worn or held (+1 for helmets and shields)."}
+  uses: {kind: uses, help: "Uses before it's gone: Rations 3, a fusion cell 6, a Stimpak 1."}
+  price: {kind: int, min: 0, help: "In caps."}
+  slots: {kind: int, min: 0, help: "Extra slots it carries (a shopping cart +4)."}
+  qualities: {kind: tags, help: "blast, loud, ranged, built-in, brace required (heavy weapons), addictive, rare, unique, slow, fast, …"}
+  ammo: {kind: text, help: "What it burns: 10mm, fusion cell, flamer fuel, … (1 ammo use = 1 attack, when ammo is tracked)."}
+  effect: {kind: text, help: "What it does beyond damage or armor: a chem's effect, a unique's special."}
+  category: {kind: text, help: "Its Marketplace section or catalog: Pistols — Ballistic, Medical, Unique weapons, …"}
+  power_armor: {kind: flag, help: "A power armor suit: 3 Armor, bulky, loud, needs a fusion core and training."}
+  note: {kind: text, help: "Anything else the book says: \"25 ft\", \"fits 2\", \"issued, not sold\"."}
+guidance: >-
+  Price it against the Marketplace, in caps. Damage dice run d4 to d12 (d20 is the Fat Man only):
+  pipe guns and knives d6, 10mm and SMGs d8, rifles, .44s and sledges d10, plasma, gauss and
+  miniguns d12. Light armor is 1 Armor, medium 2 (bulky), power armor 3 (bulky, loud, a fusion
+  core); helmets and shields +1; Armor never passes 3. Heavy weapons are brace required. Chems
+  are petty and may be addictive. Petty items take no slot; bulky ones take two.
+---
+type: magazine
+extends: item
+label: Perk magazine
+fields:
+  series: {kind: text, help: "The magazine series: Guns and Bullets, Grognak the Barbarian, …"}
+  issue: {kind: int, min: 0, help: "The issue number (none for the unique issues)."}
+  perk: {kind: text, help: "The perk it teaches: the issue's title, or the perk named after it."}
+  rare: {kind: flag, help: "A rare issue: fewer of them in a campaign."}
+guidance: >-
+  A pre-war magazine takes one slot. Reading it takes a turn somewhere safe and quiet (not in
+  combat, not while Deprived) and consumes the copy: one reader ever, who gains the perk into
+  one of five Perk Slots (`didact do read-magazine`). Write the perk as one concrete effect from
+  the effect vocabulary: Enhanced or Impaired, ignores N Armor, a die stepped up, a save
+  re-rolled once per scene, a Reaction shifted a step.
+---
+type: relic
+extends: item
+label: Pre-war relic
+fields:
+  charges: {kind: uses, help: "Uses or charges before it must recharge."}
+  recharge: {kind: text, help: "The condition that brings it back online."}
+guidance: >-
+  A unique pre-war thing that still works, or works differently: appearance and origin, uses or
+  charges, a Recharge condition, and an effect. Using one costs nothing by itself (no Fatigue, no
+  Rads) unless its entry says so. Distribute at most one a session.

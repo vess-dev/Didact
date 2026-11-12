@@ -1,0 +1,7 @@
+fatigue: Each point takes up an inventory slot until the character rests.
+deprived: A deprived character can't recover HP.
+---
+term: Hit Protection
+definition: Your ability to avoid damage; it runs out before your STR does.
+aliases: [HP, hp]
+see: [damage]

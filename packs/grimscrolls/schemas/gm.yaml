@@ -1,0 +1,41 @@
+# The GM's kit: arcana (Chapter 8, The Reliquary, and Chapter 6's draughts), the combat roles
+# (Chapter 7), and the Daedric Princes (Chapter 9). `arcana` and `role` replace grimwild-ce's
+# types (the parent's arcana are hidden; its role entries are replaced by Chapter 7's).
+type: arcana
+label: Arcana
+fields:
+  tier: {kind: enum, values: [trivial, minor, major, mythic], help: "Minor: a narrow edge (never potent). Major: a broad edge plus an engine (a once-per-session potent use, a 4d power pool, or both). Mythic: no cap but the table's judgment. Trivial: a common draught (Chapter 6)."}
+  expendable: {kind: flag, default: false, help: "A single-use find (×1): it punches one tier up (a minor ×1 gives one potent effect; a major ×1, one ritual-level effect; a mythic ×1 is a plot device)."}
+  hall: {kind: text, help: "Its hall in the Reliquary: Relics & Wonders, Arms of Renown, or Armor, Raiment & Rings."}
+  function: {kind: text, help: "What it does, in a word (Building Your Own): attack, enhance, hinder, influence, protect, restore, reveal, summon, transform, traverse."}
+  touchstones: {kind: list, help: "Three evocative phrases that bound what the relic can be stretched to do (the name and description are touchstones too)."}
+  needs: {kind: list, help: "A mythic machine's or rite's own requirements."}
+  limit: {kind: text, help: "The pool, the price, or the person who wants it back."}
+  pool: {kind: int, min: 0, help: "The pool its Limit names, in dice (a power pool unless it says it's a timer); it refreshes each session unless soul-fed."}
+  pool_name: {kind: text, help: "That pool's name."}
+  soul_fed: {kind: flag, default: false, help: "Soul-fed: its pool comes back only when a filled soul gem is spent on it (a common soul 2d, a grand soul fills it)."}
+  effect: {kind: text, help: "A draught's effect while it lasts (Chapter 6)."}
+  catch: {kind: text, help: "A draught's catch (Chapter 6)."}
+guidance: >-
+  A relic: a function (attack, enhance, hinder, influence, protect, restore, reveal, summon,
+  transform, traverse) and a form, a name, three touchstones and one Limit that bites (a pool, a
+  price, a Prince's attention, or a person who wants it back). Its tier by the tier gate; a named
+  relic is one of a kind; hand out one per session at most. `didact gen run grimscrolls.arcana`.
+---
+type: role
+label: Combat role
+fields:
+  fights_by: {kind: text, label: Fights by, help: "How a threat with this role fights."}
+  falters_when: {kind: text, label: Falters when, help: "What makes it falter."}
+guidance: "A role (Chapter 7) says how a threat fights, and what makes it falter."
+---
+type: prince
+label: Daedric Prince
+fields:
+  sphere: {kind: text, help: "What the Prince rules."}
+  wants_from_mortals: {kind: text, label: Wants from mortals}
+  pays_in: {kind: list, label: Pays in, help: "The Prince's artifacts (the Reliquary's ids)."}
+guidance: >-
+  A Prince is never a stat block: a voice, a bargain, and a campaign pool. When a hero accepts a
+  Prince's task, start an 8d Patience pool (`didact do prince-task`); at 0d the Prince clears the
+  matter up in person.

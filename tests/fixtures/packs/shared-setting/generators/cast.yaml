@@ -1,0 +1,4 @@
+generator: meet
+title: Meet the cast
+steps:
+  - entity: {key: alpha, from: bram}

@@ -1,0 +1,47 @@
+# Every table lands, and the dice math behind Grimscrolls' own checks. The odds are exact.
+test: every-table
+help: Each table rolls cleanly (a lookup table once for each key).
+table: all
+times: 3
+---
+test: hunters-die
+help: "The Hunter's die rolls beside the action against your quarry (Marksman: The Hunt): with 2d and the die, a 6 comes up 91 times in 216."
+odds: "3d6kh1 >= 6"
+chance: 0.4213
+tolerance: 0.005
+---
+test: reckless-is-all-or-nothing
+help: "Reckless (Critical Charge, Daring, Master Destruction): 5s count as 6s and 4s as 1s, so 2d is a perfect 20 times in 36 and never messy."
+odds: "2d6kh1 >= 5"
+chance: 0.5556
+tolerance: 0.005
+---
+test: reckless-critical
+help: "Reckless on 2d: a critical (two or more 6s, the 5s counting) comes up 4 times in 36."
+odds: "2d6>=5 >= 2"
+chance: 0.1111
+tolerance: 0.005
+---
+test: momentum-die-raises
+help: "A Momentum die (a thorn that came back) raises the result a step on a 7 or 8."
+odds: "1d8 >= 7"
+chance: 0.25
+tolerance: 0.005
+---
+test: dropped-deadlier
+help: "Deadlier lethality: dropped is a 1d story roll, a perfect 1 time in 6."
+odds: "1d6 >= 6"
+chance: 0.1667
+tolerance: 0.005
+---
+test: dropped-softer
+help: "Softer lethality (or a Stamina hero): dropped is a 3d story roll, a perfect 91 times in 216."
+odds: "3d6kh1 >= 6"
+chance: 0.4213
+tolerance: 0.005
+---
+test: potions-empty-at-once
+help: "A full 3d Potions pool runs dry on one roll (every die 1-3) 1 time in 8."
+odds: "3d6>=4 == 0"
+chance: 0.125
+tolerance: 0.005

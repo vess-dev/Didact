@@ -1,0 +1,8 @@
+id: inherit-setting
+name: Inherit Setting (fixture)
+kind: setting
+version: 0.1.0
+description: A setting for the base system, with settings of its own.
+requires: {packs: [core, inherit-base]}
+license: {spdx: CC0-1.0}
+settings: {torch_uses: 9}

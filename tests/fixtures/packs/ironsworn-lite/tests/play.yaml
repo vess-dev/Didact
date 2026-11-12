@@ -1,0 +1,10 @@
+test: play
+script:
+  - world new t --system {pack}
+  - campaign new c
+  - new pc Kyn --fill --set iron=3 --set momentum=9
+  - new vow "Avenge the village" --set progress=0
+  - do action-roll who=kyn stat=iron
+  - do mark-progress vow=avenge-the-village rank=dangerous
+  - do mark-progress vow=avenge-the-village rank=troublesome
+  - do progress-roll vow=avenge-the-village

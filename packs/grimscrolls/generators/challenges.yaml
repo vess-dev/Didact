@@ -1,0 +1,82 @@
+# Challenges (Running Tamriel: Challenges, Battlegrounds; The Core Engine: linked pools). They
+# replace grimwild-ce's generators of the same ids with Grimscrolls' own: a challenge is a task
+# pool (2d-8d), one or two traits, two or three moves and, when failure has a shape, a fail
+# state; every challenge brings 2 bonus suspense of its own, a linked challenge once (kept on
+# its first pool). A battleground lists its features and its threats, each with 2 suspense of
+# its own or a timer. The dice give an idea from the GM crucible.
+generator: challenge
+title: A challenge
+help: >-
+  Frame anything worth screen time as a challenge: a task pool (2d to 8d: choose it, or let the
+  dice), one or two traits, two or three moves, and, when failure has a shape, a fail state (6d
+  Cross the Pass Before the Storm: trait white-blind; moves Wall of Snow, The Cornice Goes; fail
+  4d The Pilgrims Are Lost). It brings 2 bonus suspense of its own, kept on it. Prefill by name:
+  dice, name.
+source: "running-tamriel/challenges; running-tamriel/the-gms-half-of-the-engine"
+creates: track
+steps:
+  - choose_or_roll: {from: [2, 3, 4, 5, 6, 7, 8], as: dice, prompt: "its task pool (2d to 8d)"}
+  - table: gm-crucible
+    as: idea
+  - name: {prompt: "what it is: Cross the Pass Before the Storm, Open the Sealed Barrow (the GM crucible offers {@idea})"}
+  - apply: {kind: pool, pool: task, value: {value: "@dice", max: "@dice"}, suspense: 2}
+  - prompt: "Its 2 bonus suspense is kept on it, for moves relating to it: `didact do suspense spend=1 challenge=<challenge>`."
+  - prompt: "One or two traits (white-blind; three rings and a claw-shaped lock) and two or three moves (Wall of Snow, The Cornice Goes): `didact set <challenge> traits+='…' moves+='…'`."
+  - prompt: "When failure has a shape, a fail state (4d The Pilgrims Are Lost): `didact set <challenge> fail='…'`; a competing timer is a pool of its own (`didact track new '<fail state>' --kind pool --size 4 --pool timer`). Tiers and roles for enemies are in Chapter 7."
+---
+generator: linked-challenge
+title: A linked challenge
+help: >-
+  A challenge in chained phases, as linked pools are (6d Its Wings + 8d The Dragon: beat the first
+  to reach the second) and as Chapter 7's bosses are (a linked challenge, 6d + 4d + 8d): what the
+  whole is, how many pools, and each one's name and size (2d to 8d), in the order they fall. The
+  whole brings 2 bonus suspense once, kept on its first pool. Prefill by name: whole, parts, part
+  (a list, one name each), dice.
+source: "the-core-engine/pools; running-tamriel/challenges; running-tamriel/the-gms-half-of-the-engine; the-bestiary/bosses-and-legends#bosses-of-tamriel"
+steps:
+  - ask: {as: whole, prompt: "what the whole is: the dragon over the pass, the gate outside the walls"}
+  - choose_or_roll: {from: [2, 3], as: parts, prompt: "how many linked pools (two, or three as the Bestiary's bosses have)"}
+  - repeat: "@parts"
+    as: n
+    steps:
+      - ask: {as: part, prompt: "pool {@n}, in the order they fall: its name (Its Wings, The Dragon)"}
+      - choose_or_roll: {from: [2, 3, 4, 5, 6, 7, 8], as: dice, prompt: "{@part}'s pool (2d to 8d)"}
+      - entity:
+          key: part
+          type: track
+          name: "{@whole}: {@part}"
+          fields: {kind: pool, pool: task, value: {value: "@dice", max: "@dice"}, suspense: "{if(@n == 1, 2, 0)}", linked: "{@whole}", note: "pool {@n} of {@parts}: locked until the one before it falls"}
+  - prompt: "The whole's 2 bonus suspense sits on its first pool (`didact do suspense spend=1 challenge=<first pool>`), once for the linked challenge, not per pool."
+  - prompt: "Give it traits that lock a pool until the fiction opens it (the Dragon itself is locked until it is grounded or goaded down), moves, and a fail state: `didact set <pool> traits+='…' moves+='…' fail='…'`."
+---
+generator: battleground
+title: A battleground
+help: >-
+  When the place itself fights, list its features (they bend vantage and thorns) and its threats,
+  each carrying 2 suspense of its own or a timer (The Barrow Hall: 4d The Niches Open, 6d The Oil
+  Lamps, the thing in the sarcophagus). The dice give an idea from the GM crucible, each threat's
+  weight (a 4d or 6d timer, or 2 suspense), and a creature's tier and role (Chapter 7).
+  threats=<n> sets how many timers or suspense (2), foes=<n> how many creatures among the threats
+  (1). Prefill by name: name, threat, tier, role.
+params:
+  threats: {kind: int, default: 2, help: "How many threats with a timer or 2 suspense"}
+  foes: {kind: int, default: 1, help: "How many creatures among the threats"}
+source: "running-tamriel/challenges#battlegrounds"
+creates: loc
+steps:
+  - name: {prompt: "the battleground: The Barrow Hall, The Dwemer Pump Room"}
+  - table: gm-crucible
+    as: idea
+  - apply: {kind: battleground}
+  - repeat: "$threats"
+    steps:
+      - choose_or_roll: {from: ["a 4d timer", "a 6d timer", "2 suspense of its own"], as: threat, prompt: "a threat: a timer, or 2 suspense of its own"}
+      - add: {field: threats, value: "@threat"}
+  - repeat: "$foes"
+    steps:
+      - choose_or_roll: {table: combat-tiers, as: tier, prompt: "a creature among the threats: its tier"}
+      - choose_or_roll: {table: combat-roles, as: role, prompt: "and its role"}
+      - add: {field: threats, value: "a {@tier.id} {@role.id}"}
+  - prompt: "Its features, which bend vantage and thorns (burial niches along both walls · a floor of pressure plates and swinging blades · a word wall chanting faintly; the GM crucible offers {@idea}): `didact set <battleground> features+='…'`."
+  - prompt: "Say what each threat is (4d The Niches Open, 6d The Oil Lamps, the thing in the sarcophagus): `didact set <battleground> threats=…`; a creature is a Bestiary card of its tier and role (`didact compendium find …`, `didact spawn <creature>`)."
+  - prompt: "When the fight starts, each timer is a tracker (`didact track new '<threat>' --kind pool --size 4 --pool timer`), and each threat's 2 suspense is its own."

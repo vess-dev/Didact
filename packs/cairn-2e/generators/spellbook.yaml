@@ -1,0 +1,17 @@
+# A spellbook (wardens-guide/spellbooks): one spell, chosen or rolled on the d100 table, as its
+# compendium entry has it. Spellbooks can't be copied or made: they're found.
+generator: spellbook
+title: A spellbook
+help: >-
+  A spellbook (choose its spell, or let the d100): the spell's effect as the book gives it, and a
+  prompt for the book's own oddity. Prefill by name: spell, name.
+source: wardens-guide/spellbooks#spellbooks
+steps:
+  - choose_or_roll: {table: spellbooks, as: spell}
+  - let: {name: "@spell"}
+  - entity:
+      key: spellbook
+      from: "@spell.id"
+      name: "{@name}"
+  - prompt: "Give the book an oddity of its own in a sentence (its description): a smell when opened, a mind of its own, legible only by moonlight."
+  - prompt: "Where does it wait to be found: a tomb, a dungeon, a manor's library?"

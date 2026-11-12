@@ -1,0 +1,37 @@
+# A quest (Solo Rules: Quests and Peril, p. 194): story arcs as linked task pools, sized by the
+# quest's difficulty, and its peril, linked pressure pools for the antagonists' plans (one fewer
+# than the quest's; a trivial quest has none). Roll a quest pool when you make meaningful
+# progress on its arc, and a peril pool when the threat is ignored, time passes, or you suffer a
+# meaningful failure at a critical moment.
+generator: quest
+title: A quest
+help: >-
+  A quest, step by step: its difficulty (choose it, or let the dice), a name, and its linked
+  task pools (the arcs) and peril pools (one fewer). Then its arcs, its peril and any fail
+  state. Prefill by name: difficulty, name.
+source: "p. 194"
+creates: quest
+steps:
+  - choose_or_roll: {table: quest-difficulty, as: difficulty, prompt: "how hard it is: the number and size of its pools"}
+  - name: {prompt: "the quest: Cure the Plague, Save the Galliad Kingdom, Enjoy the Fall Festival"}
+  - apply: {difficulty: "@difficulty.id"}
+  - entity:
+      key: arcs
+      type: track
+      name: "{@name}: arcs"
+      fields: {kind: pool, pool: task, phases: "@difficulty.pools", phase: 1, value: {value: "@difficulty.first", max: "@difficulty.first"}}
+      links: [{rel: of, to: character}]
+  - if: "@difficulty.peril_first > 0"
+    then:
+      - entity:
+          key: peril
+          type: track
+          name: "{@name}: peril"
+          fields: {kind: pool, pool: pressure, phases: "@difficulty.peril", phase: 1, value: {value: "@difficulty.peril_first", max: "@difficulty.peril_first"}}
+          links: [{rel: of, to: character}]
+  - prompt: "Name its arcs, one for each linked pool ({@difficulty}): 4d Find the Heir, 4d Secure Passage, 6d Defend the Stronghold. Most are locked behind the first: `didact set <quest> arcs+='…'`."
+  - if: "@difficulty.peril_first > 0"
+    then:
+      - prompt: "Name its peril, the antagonists' plans in its pools: 4d Orcs Cut Supply Lines, 4d The Siege Begins. If the peril pools empty, the antagonists get their way."
+  - prompt: "A fail state, if it has one: a single break point that ends the quest (✘ The Heir Dies): `didact set <quest> fail='…'`."
+  - prompt: "Each story arc completed is 1 XP (`didact do experience who=<pc> why=arc`), and the quest +1 bonus XP (`why=quest`). Roll a peril pool when the threat is ignored, significant time passes, or you suffer a meaningful failure at a critical moment (often a disaster)."

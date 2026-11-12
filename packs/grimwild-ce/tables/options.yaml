@@ -1,0 +1,211 @@
+# Grimwild: Community Edition (Preview 5.3), Chapter 6: Game Options (pp. 172-187). CC0 1.0.
+# The setting dials (magic, scale, lethality) as pick-lists, dangerous magic's twists, the example
+# weapon styles, and the seven flavors of fantasy. The optional rules (pp. 174-177) and legacy talents
+# (pp. 178-179) are rules text, not tables.
+#
+# The weapon styles are printed in three columns: a d66 read both ways, where one die picks the row
+# and the other the column (1-2, 3-4, 5-6), as p. 5 describes. Each flavor's data holds its setting
+# dials (the captions under Scale, Lethality and Magic; the sliders' positions are only drawn), its
+# rules tweaks and its media touchstones.
+table: setting-dials-magic
+title: "Setting dials: magic"
+description: "Fantasy settings sometimes feature magic in a limited way, as a rarity or an exclusively evil force. In others, the wonders are widespread and available to all. Base Grimwild takes the middle road, with magic available, but not ubiquitous. Dangerous Magic's twists are in dangerous-magic-twists."
+source: "p. 172"
+entries:
+  - "Rare Magic: Limit the party to one magic user, if any. Potent spells can't open new opportunities; they act only as normal spells with broader impact—often with more risk. Establish before your game if magical healing exists."
+  - "No Magic: All magical paths are removed, as is arcana. Reflavor talents as skill and technology as needed. Consider also dialing down lethality (next page) or using the Vigor Pool optional rule to make up for the lack of magical healing unless you're looking for a gritty tone."
+  - "Common Magic: Make arcana more plentiful in the world, and reflavor more talents to be magical in nature. PCs should start with 1 minor arcana, and the story of where it came from."
+  - "Dangerous Magic: All spells can trigger a magical twist (as sorcerer) when two or more 1s are rolled. When triggered, pick one of the following or make your own consequence:"
+---
+table: dangerous-magic-twists
+title: "Dangerous magic: twists"
+description: "All spells can trigger a magical twist (as sorcerer) when two or more 1s are rolled. When triggered, pick one of the following or make your own consequence."
+source: "p. 172"
+entries:
+  - "Wild Surge: make a 1d story roll to see the collateral damage"
+  - "Dark Omen: GM takes +1 suspense"
+  - "6d Corruption pool: 0d → change trait, desire, bond, or appearance negatively"
+---
+table: setting-dials-scale
+title: "Setting dials: scale"
+description: "There is a vast difference in the scale of character impact between small village common folk and mythic heroes. Use these options to change the scope of the game."
+source: "p. 173"
+entries:
+  - "Smaller Scale: More rolls have risk, and are judged as impossible. Mooks should be rare, with even common enemies posing a threat. The max level for PCs is 3, though the GM should allow talents to be switched out after in-game milestones."
+  - "Larger Scale: Fewer rolls have risk and are judged as impossible. Mooks should be waded through freely, as pure set dressing, while toughs can be taken a few at a time. Bosses should be epic in their own right, not just being linked challenges more often, but having an interesting ‘catch’ or ‘secret’ to overcoming them that provides the real test. PCs start at level 3."
+---
+table: setting-dials-lethality
+title: "Setting dials: lethality"
+description: "Base Grimwild strikes a balance, with characters more durable than the commoners around them, but a few bad calls can still leave them on the ground."
+source: "p. 173"
+entries:
+  - "More Lethal: Use high and dire stakes more often. When weapons appear, the players should know that death could happen at any moment. Healing often takes longer, and resurrection is impossible. When a PC is desperate, give them an urgent condition which will lead to dropped (4d bleeding out, 6d blacking out). When a PC is dropped, they make a 1d story roll, making death (or permanent injury) a coin flip."
+  - "Less Lethal: Use low stakes more often, even in combat if the heroes aren’t against strong foes. PCs will rarely have permanent conditions, and resurrection is possible. When a PC is dropped, they make a 3d story roll, giving much better odds to stay in the fight."
+---
+table: weapon-styles
+title: "Example weapon styles"
+description: "PC weapons have 2 descriptors—their weapon styles, clear ways to differentiate them from others of their kind. Use any of the following, or come up with your own. Three columns: one die picks the row, the other the column (1-2, 3-4, 5-6), read both ways."
+dice: d66
+both_ways: true
+source: "p. 176"
+entries:
+  11-12: "precise"
+  13-14: "quick"
+  15-16: "bashing"
+  21-22: "quiet"
+  23-24: "sweeping"
+  25-26: "piercing"
+  31-32: "vicious"
+  33-34: "entangling"
+  35-36: "sapping"
+  41-42: "disarming"
+  43-44: "heavy"
+  45-46: "balanced"
+  51-52: "dazing"
+  53-54: "nimble"
+  55-56: "concealable"
+  61-62: "ornate"
+  63-64: "brutal"
+  65-66: "long"
+---
+table: flavors-of-fantasy
+title: "Flavors of fantasy"
+description: "Guidance, rules tweaks, and setting dials to shift the base assumptions of Grimwild over to other popular sub-genres of fantasy. Pick and choose what you want to use for your own setting, altering it as needed. Each entry's data holds its summary, setting dials (scale, lethality, magic), rules tweaks and media touchstones."
+source: "pp. 181-187"
+entries:
+  - text: "Heroic Fantasy: Use this flavor when you want classic heroic journeys where courage, loyalty, and resolve are tested."
+    data:
+      name: "Heroic Fantasy"
+      summary: "Inspirational and adventurous, with a focus on self-discovery and the hero’s journey. Characters grow through challenge, forge bonds through hardship, and leave the world better than they found it, often through sacrifice. These stories are about becoming more than you were and choosing to act when it matters most."
+      scale: "Scope increases throughout the story"
+      lethality: "Some sacrifices are made, but the heroes will win the day"
+      magic: "Magic is commonplace, and usable by many"
+      note: "The default Grimwild rules are geared for a darker Heroic Fantasy. GMs should be mindful of keeping consequences varied, but otherwise there are no rules changes."
+      media:
+        literature: ["Mistborn", "Water Outlaws", "Icewind Dale Trilogy"]
+        visual: ["The Legend of Vox Machina", "The Secret of NIMH", "Adventure Time"]
+        interactive: ["Dragon Age", "Baldur's Gate", "The Legend of Zelda"]
+    source: "p. 181"
+  - text: "Grimdark: Use this flavor when you want stories of moral ambiguity and characters pushed to their limits by an uncaring world."
+    data:
+      name: "Grimdark"
+      summary: "Bleak, brutal, and unforgiving. A world of moral ambiguity, harsh realities, and the constant threat of ruin. Any victories are costly, and hope is hard-won. In this world, doing the right thing hurts, but doing nothing hurts more. The point of some of these stories isn't the battle, but the nature of defeat."
+      scale: "Wide range of conflict, usually on a personal scale"
+      lethality: "Danger around every corner, and death is lasting"
+      magic: "Magic is a dark, usually antagonistic force"
+      rules_tweaks:
+        - "The effect of potency is scaled down."
+        - "Casting magic comes with higher risk (thorns) or stakes."
+        - "Magic healing is rare or non-existent."
+        - "When dropped, make a 1d story roll."
+        - "Marks only clear on rest."
+        - "Vex responses are random."
+        - "PC bonds are rolled randomly."
+        - "Supplies (Optional Rule, pg. 175)."
+      media:
+        literature: ["Second Apocalypse", "The Black Company", "First Law"]
+        visual: ["Berserk", "Black Death", "The Head Hunter"]
+        interactive: ["Dark Souls Series", "Diablo", "Darkest Dungeon"]
+    source: "p. 182"
+  - text: "Low Fantasy: Use this flavor when you want tense, small-scale stories where preparation, vigilance, and relationships matter more than raw power."
+    data:
+      name: "Low Fantasy"
+      summary: "Grounded and often more cynical or realistic. This has small-scale conflicts with limited or no magic. These stories are about people scraping by in a world that largely doesn’t care."
+      scale: "Smaller scope with personal struggles"
+      lethality: "Dangers are real, and death can be quick if unprepared"
+      magic: "Magic is rare, powerful, and dangerous"
+      rules_tweaks:
+        - "The effect of potency is scaled down."
+        - "Limited to 1 magic user, if any. Magic use comes with higher risk or stakes."
+        - "When dropped, make a 1d story roll."
+        - "Vigilance is more important, and is focused on hint more than strike or reveal."
+        - "Social fallout from vex is increased."
+        - "Encumbrance (Optional Rule, pg. 175)."
+        - "Wealth (Optional Rule, pg. 176)."
+        - "Slow XP progression, max level of 3."
+        - "Consequences stick around longer."
+        - "Factions play a major role."
+      media:
+        literature: ["A Song of Ice and Fire", "The Lies of Lock Lamora", "Sailing to Sarantium"]
+        visual: ["Spice and Wolf", "The 13th Warrior", "The Last Kingdom"]
+        interactive: ["The Witcher", "Mount & Blade", "Kingdom Come: Deliverance"]
+    source: "p. 183"
+  - text: "Sword & Sorcery: Use this flavor when you want high-action adventures driven by risk, greed, nerve, and luck."
+    data:
+      name: "Sword & Sorcery"
+      summary: "Adventurous, action-packed, and often pulpy. Heroes rely on wit, steel, and audacity in a world full of dangerous monsters and lost riches. The only way to live forever is to be a legend."
+      scale: "Use your might and wits to overcome personal stakes"
+      lethality: "Danger abounds, but you are strong enough to meet it"
+      magic: "Magic corrupts the fools who seek it out"
+      rules_tweaks:
+        - "No magic, or rare and dangerous magic (Setting dials, pg. 172)"
+        - "Make a 1d story roll when dropped."
+        - "Clear marks and harm after each scene."
+        - "Vex happens more often, but social fallout from vex responses is lessened."
+        - "Each PC has a 4d Renown campaign timer, spreading their legend. Those in the greater world will come to know their names."
+        - "Mooks require no roll to take out."
+        - "Slow xp progression, but carousing earns +1 XP."
+        - "Vigor Pool (Optional Rule, pg. 174)."
+      media:
+        literature: ["Conan the Barbarian", "The Grimnir Trilogy", "Fafhrd and the Gray Mouser"]
+        visual: ["Fire and Ice", "Heavy Metal", "Jason and the Argonauts"]
+        interactive: ["Thief the Dark Age", "Dragon's Dogma", "Risen Series"]
+    source: "p. 184"
+  - text: "Noblebright: Use this flavor when you want hopeful stories where courage changes the course of events."
+    data:
+      name: "Noblebright"
+      summary: "Both hopeful and dangerous. Good almost always triumphs over evil. The world can be made better, and heroes are defined as much by mercy as by strength. This world is optimistic without being soft. Noblebright is about choosing light despite the dark forces in the world."
+      scale: "Threats are far reaching, but so are you"
+      lethality: "Both physical and moral victories matter"
+      magic: "Magic varies by area and faction, and is unaligned"
+      rules_tweaks:
+        - "PCs begin at 2nd level with 1 minor arcana."
+        - "Make a 3d story roll when dropped."
+        - "Should a PC die, the player has full control of the end of their story."
+        - "Stakes for physical combat are often lower, while those for social conflicts are higher."
+        - "Rattled clears after any intense scene."
+        - "Social fallout from vex is increased."
+      media:
+        literature: ["The Princess Bridge", "The Stormlight Archive", "The Chronicles of Narnia"]
+        visual: ["The Last Airbender", "She-Ra", "The 10th Kingdom"]
+        interactive: ["Kingdom Hearts", "Dragon Quest", "World of Warcraft"]
+    source: "p. 185"
+  - text: "High Fantasy: Use this flavor when you want grand stories of destiny, wonder, and world-shaping events."
+    data:
+      name: "High Fantasy"
+      summary: "Epic and grand, often with a sense of wonder. Cosmic conflicts, destinies, and large-scale battles. Magic is powerful, heroes are exceptional, and conflicts are vast. These stories are about heroes standing at the center of myths, not just surviving, but becoming a part of them."
+      scale: "The choices made will shape the future of the world"
+      lethality: "You're incredible, but up against ultimate power"
+      magic: "Magic, gods, and mysticism are everywhere"
+      rules_tweaks:
+        - "PCs begin at 3rd level with 2 minor arcana or 1 major arcana, as well as a story about where they came from."
+        - "Mooks require no roll to take out, while toughs can be taken a few at a time."
+        - "Bosses are linked challenges, usually with a trick to overcoming them."
+        - "More rolls are automatic successes."
+        - "Token Initiative (Optional Rule, pg. 174). This helps keep narrative balance when more rolls are automatically successful."
+      media:
+        literature:
+          - "The Wheel of Time"
+          - "Malazan Book of the Fallen"
+          - "A Court of Thorns and Roses"
+        visual: ["The Dark Crystal", "Kill 6 Billion Demons", "The Never Ending Story"]
+        interactive: ["Final Fantasy", "The Elder Scrolls Series", "Kingdoms of Amalur"]
+    source: "p. 186"
+  - text: "Cozy Fantasy: Use this flavor when you want warm, character-driven stories about belonging and growth."
+    data:
+      name: "Cozy Fantasy"
+      summary: "Wholesome, heartwarming, and low-stakes. Stories are focused on friendship, personal growth, and the simple joys in a magical world. Conflict exists, but rarely with high stakes. Cozy fantasy is about finding comfort, connection, and meaning in small moments."
+      scale: "Stories are personal, and low-stakes"
+      lethality: "True danger is rare, and with heart, you overcome"
+      magic: "The world is full of whimsy, arcane or not"
+      rules_tweaks:
+        - "Low stakes is the default. Normal stakes and higher must be declared."
+        - "PCs and allies only die in meaningful ways, nearly always outside of conflict."
+        - "Slow XP progression."
+        - "Changing a bond or completing a story arc in the session earns +1 XP."
+        - "Characters can’t progress past level 3. Once PCs reach major milestones, they’re allowed to switch out one talent with another."
+      media:
+        literature: ["Legends and Lattes", "The Spellshop", "The Ogress and the Orphans"]
+        visual: ["Kiki's Delivery Service", "Spirited Away", "Delicious in Dungeon"]
+        interactive: ["Stardew Valley", "Beacon Pines", "Wytchwood"]
+    source: "p. 187"

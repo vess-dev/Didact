@@ -1,0 +1,38 @@
+# NPCs from the book's own crucibles: a background and its wises (p. 48), traits and desires
+# (p. 46), the character crucibles for personality, body, eyes, voice and clothing (p. 51), and a
+# tier and a combat role for when it comes to a fight (Combat Kit, pp. 109-111). The book has no
+# name tables: the draft waits for a name. Prefill what you already know:
+#   didact gen run grimwild-ce.npc --auto --prefill '{"name": "Vella Mouser", "background": "Merchant"}'
+generator: npc
+title: An NPC
+help: >-
+  An NPC, step by step: a background and its wises, two traits and a desire, a personality,
+  their body, eyes, voice and clothing (choose each, or let the dice), a tier and a combat role
+  for when it comes to a fight, and a name. Prefill by name: background, traits, desire,
+  personality, body, eyes, voice, clothing, tier, role, name.
+source: "p. 51"
+creates: npc
+steps:
+  - choose_or_roll: {table: backgrounds, as: background, prompt: "a background (its three wises come with it)"}
+  - add: {field: backgrounds, value: "@background"}
+  - add: {field: wises, value: "@background.wises"}
+  - choose_or_roll: {table: traits, as: traits, count: 2, field: traits, prompt: "two traits they very much are"}
+  - choose_or_roll: {table: desires, as: desire, prompt: "what they truly desire"}
+  - add: {field: desires, value: "@desire"}
+  - choose_or_roll: {table: character-personality, as: personality}
+  - choose_or_roll: {table: character-body, as: body}
+  - choose_or_roll: {table: character-eyes, as: eyes}
+  - choose_or_roll: {table: character-voice, as: voice}
+  - choose_or_roll: {table: character-clothing, as: clothing}
+  - apply:
+      details:
+        looks: "{@body}, {@eyes} eyes, {@voice} voice, {@clothing} clothes"
+        personality: "@personality"
+        wants: "@desire"
+  - choose_or_roll: {table: combat-tiers, as: tier, prompt: "their tier, if it comes to a fight"}
+  - choose_or_roll: {table: combat-roles, as: role, prompt: "how they fight"}
+  - apply: {tier: "@tier.id", role: "@role.id"}
+  - name: {prompt: "a name for this {@personality} {@background} (the book has no name tables)"}
+  - prompt: "Three distinctive features others notice (their look is a start: {@body}, {@eyes} eyes, {@voice} voice, {@clothing} clothes): `didact set <npc> features+='…'`."
+  - prompt: "They desire {@desire}: what do they want from the party, and what would they do to get it?"
+  - prompt: "If it comes to a fight: tier {@tier.id}, role {@role.id} (`didact compendium show grimwild-ce.{@role.id}`); a group of them is a pool."

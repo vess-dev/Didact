@@ -1,0 +1,10 @@
+deck: action-deck
+standard: true
+jokers: 2
+---
+deck: omens-deck
+cards: [The Tower, The Moon, The Sun]
+---
+bag: initiative
+tokens: {pc: 2, enemy: 0, end-of-round: 1}
+ends_round: end-of-round

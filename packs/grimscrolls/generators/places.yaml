@@ -1,0 +1,278 @@
+# Places and things: the map (region, street and site scale), holdings and their assets, quests,
+# rituals, hauls and weapons, as Grimscrolls describes them; they replace grimwild-ce's
+# generators of the same ids, whose crucibles Grimscrolls doesn't have. Everything on the map
+# gets a two-word label: the book has no label tables, so a generator asks for each (the GM
+# crucible is offered as an idea); prefill them (a list, one per point).
+generator: region
+title: Making the map
+help: >-
+  When the GM calls to expand the map, everyone at the table, GM included, takes 3 exploration
+  tokens and spends them going around: settlements, sites and dangers (1 token minor, 2 major),
+  curiosities, areas and barriers (3), joined by paths (major roads 2, minor trails 1, rough
+  scrambles free), with a waypoint for each day of hard travel. Here the dice place each point
+  when nobody chooses, and the paths join them (near, farther, far: the waypoints are the GM's).
+  points=<n> sets how many (6). Prefill by name: region_name, point, label (a list).
+params:
+  points: {kind: int, default: 6, help: "How many points to place"}
+source: "surviving-tamriel/the-long-road#making-the-map"
+steps:
+  - ask: {as: region_name, prompt: "the region: a hold, a county, a stretch of the Bitter Coast"}
+  - entity:
+      key: region
+      type: loc
+      name: "{@region_name}"
+      fields: {kind: region}
+  - repeat: "$points"
+    steps:
+      - choose_or_roll: {table: region-points, as: point, prompt: "what to place: a settlement, site or danger (minor or major), or a curiosity, barrier or area"}
+      - table: gm-crucible
+        as: idea
+      - ask: {as: label, prompt: "a two-word label for this {@point} (Drowned Shrine, Giant's Pasture, Smugglers' Stair; the GM crucible offers {@idea})"}
+      - entity:
+          key: point
+          type: loc
+          name: "{@label}"
+          fields: {kind: "@point.point", size: "@point.size", region: "@region"}
+  - map:
+      places: point
+      paths: {max: 3}
+      distances: [near, farther, far]
+      describe: [region-paths]
+      entrance: true
+  - prompt: "The GM adds a waypoint for each day of hard travel along each path, and draws the first road in; nobody knows the whole province, and the map grows the way rumor does. Heroes earn 1-3 tokens for a real discovery, and can spend thread as a token when a wise or story arc explains how they knew (`didact do tokens`)."
+---
+generator: settlement
+title: A town at street scale
+help: >-
+  Town maps work as the region's at street scale: roads (1 token) and notable buildings, minor (2
+  tokens, lower-case on the map) or major (3, CAPITALS), each with a two-word label. Prefill by
+  name: town, building_size, label (a list). buildings=<n> sets how many (5); region=<place> puts
+  it inside a place.
+params:
+  buildings: {kind: int, default: 5, help: "How many notable buildings"}
+  region: {kind: text, default: "", help: "The place it lies in, e.g. loc:the-pale"}
+source: "surviving-tamriel/the-long-road#making-the-map"
+steps:
+  - ask: {as: town, prompt: "the town"}
+  - entity:
+      key: settlement
+      type: loc
+      name: "{@town}"
+      fields: {kind: settlement, region: "$region"}
+  - repeat: "$buildings"
+    steps:
+      - choose_or_roll: {from: [minor, major], as: building_size, prompt: "a notable building: minor (2 tokens, lower-case) or major (3 tokens, CAPITALS)"}
+      - ask: {as: label, prompt: "its two-word label (a {@building_size} building)"}
+      - entity:
+          key: building
+          type: loc
+          name: "{@label}"
+          fields: {kind: building, size: "@building_size", region: "@settlement"}
+  - map:
+      places: building
+      paths: {max: 2}
+      distances: ["next door", "down the road", "across town"]
+  - prompt: "Its roads are the paths between the buildings (1 token each). Who works or lives in each, and what's going on?"
+---
+generator: site
+title: A barrow, a ruin, a gate
+help: >-
+  Build a barrow, or any delve, as a 5-point site: the GM places the Hoard first, then everyone
+  spends exploration tokens on the rest (rooms 1 token minor, 2 major): the Door (Entrance), the
+  Riddle (Puzzle), the Twist (Hitch), the Reckoning (Showdown) and the Hoard (Reward), joined in
+  that order. The ruin crucible says who built it and what holds it now. Prefill by name:
+  built_by, holds, site_name. region=<place> puts it inside a place.
+params:
+  region: {kind: text, default: "", help: "The place it lies in"}
+source: "running-tamriel/barrows-ruins-and-gates"
+steps:
+  - choose_or_roll: {table: ruin-built-by, as: built_by, prompt: "who built it (roll a thorn, or choose)"}
+  - choose_or_roll: {table: ruin-now-holds, as: holds, prompt: "what holds it now"}
+  - ask: {as: site_name, prompt: "the site's two-word label (built by {@built_by}; it holds {@holds})"}
+  - entity:
+      key: site
+      type: loc
+      name: "{@site_name}"
+      fields: {kind: site, region: "$region", built_by: "@built_by", holds: "@holds"}
+  - entity:
+      key: hoard
+      type: loc
+      name: "{@site_name}: the Hoard"
+      fields: {kind: point, point: reward, region: "@site"}
+  - entity:
+      key: door
+      type: loc
+      name: "{@site_name}: the Door"
+      fields: {kind: point, point: entrance, region: "@site"}
+      links: [{rel: path, to: riddle-1}]
+  - entity:
+      key: riddle
+      type: loc
+      name: "{@site_name}: the Riddle"
+      fields: {kind: point, point: puzzle, region: "@site"}
+      links: [{rel: path, to: twist-1}]
+  - entity:
+      key: twist
+      type: loc
+      name: "{@site_name}: the Twist"
+      fields: {kind: point, point: hitch, region: "@site"}
+      links: [{rel: path, to: reckoning-1}]
+  - entity:
+      key: reckoning
+      type: loc
+      name: "{@site_name}: the Reckoning"
+      fields: {kind: point, point: showdown, region: "@site"}
+      links: [{rel: path, to: "@hoard"}]
+  - prompt: "The Door: getting in is its own story (the claw, the collapsed stair, the thing nesting in the antechamber). The Riddle: whoever built it wanted something kept in, or out; meet that as a problem that can't just be hit. The Twist: what the centuries did to the builders' plan (the rival expedition, the second seal, the tenant). The Reckoning: the fight or the bargain this place has been waiting to have. The Hoard: the haul, the truth, and usually a hook to the next site."
+  - prompt: "Its threats: `didact gen run grimscrolls.challenge`, `grimscrolls.monster`, or the Bestiary (`didact compendium find draugr`); its haul: `grimscrolls.treasure`."
+---
+generator: community-asset
+title: A holding's asset
+help: >-
+  A holding grows on its Stores pool: every die that drops when it rolls pays toward the next
+  asset, minor (4: a wall, a forge, an alchemy garden, a tavern with a name) or major (8: a mine
+  that pays, a shrine with a priest, a trade road that comes to you). Give every asset a face (the
+  steward, the smith, the bard who won't leave). Prefill by name: size, name, face, job.
+source: "running-tamriel/homes-worth-keeping"
+creates: loc
+steps:
+  - choose_or_roll: {from: [minor, major], as: size, prompt: "a minor asset (4) or a major one (8)"}
+  - table: holding-assets
+    with: {size: "@size"}
+    as: asset
+  - name: {prompt: "what it is ({@asset})"}
+  - apply: {kind: asset, size: "@size", cost: "{if(@size == 'major', 8, 4)}"}
+  - ask: {as: face, prompt: "its face: the steward, the smith, the bard who won't leave (a name)"}
+  - ask: {as: job, prompt: "what they are to it"}
+  - entity:
+      key: face
+      type: npc
+      name: "{@face}"
+      fields: {role: "@job"}
+      links: [{rel: represents, to: character}]
+  - prompt: "When trouble comes, play it out, but don't erase the players' work: damage to an asset costs a die or two of stores to fix."
+---
+generator: holding
+title: A holding
+help: >-
+  When the party plants a flag (a homestead, a guild hall, a fort they cleared and kept), it
+  becomes a holding, and it grows on a Stores pool: trade hauls into it (a minor haul adds +2d, a
+  major +4d, a mythic +8d); when time passes, roll it, and every die that drops pays toward the
+  next asset (`didact do stores`). Prefill by name: name, haul.
+source: "running-tamriel/homes-worth-keeping"
+creates: loc
+steps:
+  - name: {prompt: "the holding: a homestead, a guild hall, a fort cleared and kept"}
+  - apply: {kind: holding}
+  - choose_or_roll: {from: [minor, major, mythic], as: haul, prompt: "the first haul traded into its Stores"}
+  - entity:
+      key: stores
+      type: track
+      name: "{@name}: Stores"
+      fields: {kind: pool, pool: resource, value: {value: "{if(@haul == 'mythic', 8, if(@haul == 'major', 4, 2))}", max: "{if(@haul == 'mythic', 8, if(@haul == 'major', 4, 2))}"}, note: "a holding's Stores: roll it when time passes; every die that drops pays toward the next asset (minor 4, major 8): `didact do stores`"}
+      links: [{rel: of, to: character}]
+  - prompt: "Its assets: `didact gen run grimscrolls.community-asset` when the Stores have paid for one. Give every asset a face, and the bandits something to regret."
+---
+generator: quest
+title: A quest
+help: >-
+  Frame goals at the weight they deserve: an errand is a montage, a job is a session with a task
+  pool, and a quest (end the plague, take the fort, close the gate) is a chain of linked task
+  pools (4d + 4d + 6d for a daunting one) racing linked peril pools, one fewer than the quest has,
+  4d + 4d for a daunting one, that the whole table can see. Rewards follow Chapter 6's hauls.
+  Makes the daunting chain and its peril. Prefill by name: name.
+source: "running-tamriel/the-gms-prep-kit#quests"
+creates: quest
+steps:
+  - name: {prompt: "the quest: end the plague, take the fort, close the gate"}
+  - entity:
+      key: arcs
+      type: track
+      name: "{@name}"
+      fields: {kind: pool, pool: task, phases: [4, 4, 6], phase: 1, value: {value: 4, max: 4}, note: "a daunting quest's linked task pools (4d + 4d + 6d)"}
+      links: [{rel: of, to: character}]
+  - entity:
+      key: peril
+      type: track
+      name: "{@name}: peril"
+      fields: {kind: pool, pool: pressure, phases: [4, 4], phase: 1, value: {value: 4, max: 4}, note: "the quest's peril: linked pressure pools, one fewer than the quest has (4d + 4d), that the whole table can see"}
+      links: [{rel: of, to: character}]
+  - prompt: "The quest races its peril (4d + 4d), in plain sight of the whole table. A lighter goal is a job (one task pool) or an errand (a montage)."
+  - prompt: "Rewards follow the hauls: minor, major or mythic (`didact gen run grimscrolls.treasure`)."
+---
+generator: ritual
+title: A ritual
+help: >-
+  A ritual changes the map. It takes three things: a source (a caster of the right school, a
+  scroll, a relic, a Prince's favor), anchors (two or three concrete requirements the GM and table
+  set: a black soul gem, the full of Secunda, the blood of the one who swore the oath), and the
+  invocation, a task pool worked down over time, usually while something tries to stop you.
+  Missing anchors make the pool bigger, or the whole thing impossible. Prefill by name: intent,
+  source, anchors, anchor (a list), dice, name.
+source: "the-core-engine/magicka#the-three-magnitudes"
+creates: track
+steps:
+  - ask: {as: intent, field: intent, prompt: "what it is meant to do (seal an Oblivion gate, raise a tower in a night, bind a Daedra to a bargain, break the curse in the blood)"}
+  - choose_or_roll: {from: [a caster of the right school, a scroll, a relic, "a Prince's favor"], as: ritual_source, prompt: "its source"}
+  - apply: {source: "@ritual_source"}
+  - choose_or_roll: {from: [2, 3], as: anchors, prompt: "how many anchors (two or three concrete requirements)"}
+  - repeat: "@anchors"
+    steps:
+      - ask: {as: anchor, prompt: "an anchor the GM and table set (a black soul gem, the full of Secunda, the blood of the one who swore the oath)"}
+      - add: {field: anchor_list, value: "@anchor"}
+  - choose_or_roll: {from: [2, 4, 6, 8], as: dice, prompt: "the invocation's task pool (2d short, 4d medium, 8d long, 6d between)"}
+  - apply: {kind: pool, pool: task, value: {value: "@dice", max: "@dice"}, note: "the ritual is cast"}
+  - name: {prompt: "the ritual's name ({@intent})"}
+  - prompt: "The invocation is worked down over time, usually while something tries to stop you: roll it as it goes (`didact track roll <ritual>`). A missing anchor makes the pool bigger, or the whole thing impossible."
+---
+generator: treasure
+title: A haul
+help: >-
+  Serious wealth moves in hauls, in three sizes: minor (a good sword, a fat purse of septims, a
+  filled soul gem, a horse, a minor relic), major (a suit of ebony, a caravan's cargo, a house in
+  town, a major relic), mythic (a ship and its crew, the deed to a keep, a dragon's hoard, a seat
+  on a council). Hauls belong to the party unless you decide otherwise. Here: its size, then
+  what's in it: one of the book's examples, or a relic of that tier from the Reliquary (its card,
+  and its first pool when it has one). Prefill by name: size, what, relic, name.
+source: "surviving-tamriel/coin-and-barter; the-reliquary/introduction"
+creates: item
+steps:
+  - choose_or_roll: {from: [minor, major, mythic], as: size, prompt: "its size"}
+  - table: hauls
+    with: {size: "@size"}
+    as: haul
+  - choose_or_roll: {from: [one of its examples, a relic], as: kind_of, prompt: "what's in it: one of the book's examples, or a relic of its tier"}
+  - if: "@kind_of == 'a relic'"
+    then:
+      - table: "{@size}-arcana"
+        as: relic
+      - entity: {key: arcana, from: "@relic.id"}
+      - if: "default(@relic.pool.dice, 0) > 0"
+        then:
+          - entity:
+              key: relic_pool
+              type: track
+              name: "{@relic.pool.track}"
+              fields: {kind: pool, pool: "@relic.pool.kind", value: {value: "@relic.pool.dice", max: "@relic.pool.dice"}, note: "@relic.pool.note"}
+              links: [{rel: of, to: "@arcana"}]
+      - apply: {kind: haul, size: "@size", haul: "{@relic}"}
+      - prompt: "In the haul: {@relic} (`didact show <arcana>`). A relic is a story the party can hold: one per session at most, and a Limit that bites. A new one of your own: `didact gen run grimscrolls.arcana`."
+    else:
+      - choose_or_roll: {from: "@haul.examples", as: what, prompt: "what it is (the book's examples; or your own)"}
+      - apply: {kind: haul, size: "@size", haul: "@what"}
+  - name: {prompt: "a name for this {@size} haul ({default(@what, @relic)}): say what it is exactly"}
+  - prompt: "Selling off a minor haul in a town adds +2d to a hero's Coin (max 8d) and a second downtime action (`didact do sell-haul`); a holding's Stores take a minor +2d, a major +4d, a mythic +8d (`didact do stores`)."
+---
+generator: weapon
+title: A signature weapon
+help: >-
+  Weapon styles (an option): give each signature weapon two descriptors (heavy, sweeping · quick,
+  concealable · elegant, temperamental): vantage, not stats; describe using them and the thorns
+  follow. Prefill by name: styles, name.
+source: "options-and-dials/gear-and-survival#weapon-styles"
+creates: item
+steps:
+  - ask: {as: styles, field: styles, prompt: "two descriptors (heavy, sweeping · quick, concealable · elegant, temperamental)"}
+  - apply: {kind: weapon}
+  - name: {prompt: "what it is: a Nord great-axe, a duelist's buckler, a bone bow (its styles: {@styles})"}
+  - prompt: "Describe using its styles ({@styles}) when you fight: they're vantage, and the thorns follow."

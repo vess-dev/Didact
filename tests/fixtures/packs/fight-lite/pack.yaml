@@ -1,0 +1,7 @@
+id: fight-lite
+name: Fight (test pack)
+kind: system
+version: 0.1.0
+description: Triggers that run when a fight starts and ends, and a power once per fight.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

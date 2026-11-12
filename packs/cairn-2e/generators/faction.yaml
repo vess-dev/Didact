@@ -1,0 +1,52 @@
+# A faction on its own (wardens-guide/setting-seeds#factions), as the setting seed makes them:
+# its type and agent, two traits, its advantages, its agenda and primary obstacle. Every table
+# can be chosen from or rolled; the agent is an NPC of their own.
+generator: faction
+title: A faction
+help: >-
+  A faction, step by step: its type and its agent's role, two traits, 1–4 advantages, an agenda
+  and the obstacle in its way (choose each, or let the dice), a name, and an agent with a WIL
+  score for opposed faction saves. Prefill by name: faction_type, agent_role, trait_1, trait_2,
+  advantage, agenda, obstacle, faction_name, agent_name, agent_wil.
+source: wardens-guide/setting-seeds#faction-types
+steps:
+  - choose_or_roll: {table: setting-faction-type, as: faction_type}
+  - choose_or_roll: {table: setting-faction-agent, as: agent_role}
+  - choose_or_roll: {table: setting-faction-trait-1, as: trait_1}
+  - choose_or_roll: {table: setting-faction-trait-2, as: trait_2}
+  - table: setting-faction-advantage-count
+    as: advantage_count
+  - table: setting-faction-advantage
+    as: advantage
+    times: "@advantage_count.count"
+    distinct: true
+  - choose_or_roll: {table: setting-faction-agenda, as: agenda}
+  - choose_or_roll: {table: setting-faction-obstacle, as: obstacle}
+  - table: faction-names
+    as: faction_name
+  - table: first-names
+    as: agent_name
+  - roll: 3d6
+    as: agent_wil
+  - entity:
+      key: agent
+      type: npc
+      name: "{@agent_name}"
+      fields: {role: "@agent_role", WIL: "@agent_wil"}
+      body: "The {@agent_role} of {@faction_name}, in charge of one or more of its goals. They may have motives of their own."
+  - entity:
+      key: faction
+      type: faction
+      name: "{@faction_name}"
+      fields:
+        kind: "@faction_type"
+        traits: ["@trait_1", "@trait_2"]
+        advantages: "@advantage"
+        agenda: "@agenda"
+        obstacle: "@obstacle"
+        leader: "@agent"
+        agents: ["@agent"]
+        WIL: "@agent_wil"
+  - prompt: "Give it 3–5 progressive goals toward its agenda, each gaining an advantage the next one needs, and one dealing with its obstacle (`gen edit <draft> faction-1.goals=…`)."
+  - prompt: "What power does it have over the people around it? Who or what threatens its agenda?"
+  - prompt: "How would it deal with newcomers, like an adventuring party?"

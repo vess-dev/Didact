@@ -1,0 +1,64 @@
+# An encounter (roll-tables/bestiary) and a hoard (roll-tables/marketplace): the roll tables
+# turned into records, the creature as its Bestiary entry has it.
+generator: encounter
+title: An encounter
+help: >-
+  A creature fit for the situation (roll-tables/bestiary): the threat tier that matches the
+  party's strength, the terrain and the narrative pressure (low, medium, high, legendary; the
+  book leaves it to the Warden), then that tier's d20, and the creature as its Bestiary entry
+  has it. Four or more similar foes fight as a detachment. Prefill by name: tier, encounter.
+source: roll-tables/bestiary#encounter-roll-tables
+steps:
+  - choose: {from: [encounters-low, encounters-medium, encounters-high, encounters-legendary], as: tier, prompt: "Which tier fits the party's strength, the terrain and the pressure (the Die of Fate can help decide)?"}
+  - message: "Threat tier: {@tier} (the Warden's pick; a draft that rolls itself picks for the Warden)."
+  - choose_or_roll: {table: "{@tier}", as: encounter}
+  - if: "default(@encounter.id, '') == ''"
+    then: ["No Bestiary entry for this one: the Warden designs it (`didact gen run cairn-2e.monster`)."]
+    else:
+      - if: "count(@encounter.ids) > 1"
+        then:
+          - choose: {from: "@encounter.ids", as: creature, prompt: "The row names several: which one is met (the Warden's pick)?"}
+          - message: "The row names several: {@creature} (the Warden's pick; a draft that rolls itself picks for the Warden)."
+        else:
+          - let: {creature: "@encounter.id"}
+      - entity:
+          key: creature
+          from: "@creature"
+          scope: campaign
+  - prompt: "{@encounter}: how many, and what are they doing when the party finds them? Four or more similar foes fight as a detachment (`didact new detachment '…' --set hp=… --set STR=… --set count=…`, its numbers from the Bestiary entry), or spawn them one by one (`didact spawn <entry> --count 3`)."
+  - prompt: "Roll their reaction if it isn't obvious (`didact do reaction who=<it> party=<party> toward=<pc>`); they save morale at their first casualty and at half their number."
+---
+generator: loot
+title: A hoard
+help: >-
+  What's in the hoard (roll-tables/marketplace): the d100, then the table it sends you to
+  (random gear, weapon, armor, potions and ingredients, coin and treasure, a Spell Tome, a
+  Relic) and the Septims it says to roll. Weighted toward the common stuff. Prefill by name:
+  find, inside.
+source: roll-tables/marketplace#whats-in-the-hoard-d100
+steps:
+  - choose_or_roll: {table: hoard, as: find}
+  - let: {coins: 0, inner: "{''}"}
+  - if: "default(@find.coins, '') == '2d10*5'"
+    then:
+      - roll: 2d10*5
+        as: coins
+  - if: "default(@find.coins, '') == '3d10*10'"
+    then:
+      - roll: 3d10*10
+        as: coins
+  - if: "default(@find.table, '') <> ''"
+    then:
+      - table: "{@find.table}"
+        as: inside
+      - let: {inner: "{default(@inside.name, @inside)}"}
+  - entity:
+      key: hoard
+      type: note
+      name: "Hoard: {@find}"
+      body: "{@find}{if(@coins > 0, ' ', '')}{if(@coins > 0, @coins, '')}{if(@coins > 0, ' Septims.', '')}{if(@inner <> '', ' ', '')}{@inner}"
+  - if: "default(@find.tempered, false)"
+    then: ["Already tempered: its die one rung higher, to a max of d12."]
+  - if: "@coins > 0"
+    then: ["{@coins} Septims (`didact set <pc> gold+={@coins}`, then `didact do coins who=<pc>`)."]
+  - prompt: "Who left it, and why is it here? The richest finds (a named blade, a hero's armor, a charged Relic, a forbidden Spell Tome) should leave a mark on the world: an old owner, a debt, a curse."

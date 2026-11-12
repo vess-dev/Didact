@@ -1,0 +1,1381 @@
+# The frames, to pick one, and what the `frame` generator drafts for each; the Daedric Quests'
+# fifteen, and what the `daedric-quest` generator drafts: written by es_compendium.py, don't edit by hand.
+table: frames
+title: The campaign frames (pick one)
+source: campaigns/00-intro#the-campaigns
+about: Opens {when} ({main}).
+entries:
+- text: The Main Quest
+  data:
+    id: the-main-quest
+    slug: the-main-quest
+    region: the-main-quest-region
+    main: a campaign of its own
+    places: 13
+    cast: 15
+    threats: 3
+    clocks: 3
+    factions: 6
+    date: {year: 201, month: 8, day: 17}
+    opens: Sundas, 17 Last Seed 4E 201
+    own_day: true
+    when: Sundas, 17 Last Seed 4E 201
+    why: the day Helgen burns, the frame's Arrival
+    notes: "The War in the Way: not a die but the state of the civil war: while the war is unsettled and
+      Whiterun contested, the Jarl won't lend Dragonsreach for the trap (Beat 9 is blocked) until Season
+      Unending or one side wins; run it from the Civil War frame, or by fiat."
+    notes_es: "The War in the Way: not a die but the state of the civil war: while the war is unsettled
+      and Whiterun contested, the Jarl won't lend Dragonsreach for the trap (Beat 9 is blocked) until
+      Season Unending or one side wins; run it from the Civil War frame, or by fiat."
+    notes_gs: "The War in the Way: not a die but the state of the civil war: while the war is unsettled
+      and Whiterun contested, the Jarl won't lend Dragonsreach for the trap (Beat 9 is blocked) until
+      Season Unending or one side wins; run it from the Civil War frame, or by fiat."
+    sections: pitch, stakes, tone touchstones, arrival, plot beats, the elder scroll dragonrend, the
+      place, cast, clocks, threats, rewards, climax
+- text: The Civil War
+  data:
+    id: the-civil-war
+    slug: the-civil-war
+    region: the-civil-war-region
+    main: a campaign of its own
+    places: 9
+    cast: 20
+    threats: 0
+    clocks: 2
+    factions: 4
+    date: {year: 201, month: 8, day: 17}
+    opens: Sundas, 17 Last Seed 4E 201
+    own_day: false
+    when: whenever play reaches it, from Sundas, 17 Last Seed 4E 201
+    why: the book's moment
+    notes: ''
+    notes_es: ''
+    notes_gs: ''
+    sections: pitch, stakes, tone touchstones, arrival, the branch, plot beats, the place, cast, 
+      clocks, threats, rewards, climax
+- text: The Companions
+  data:
+    id: the-companions
+    slug: the-companions
+    region: the-companions-region
+    main: a campaign of its own
+    places: 8
+    cast: 8
+    threats: 2
+    clocks: 2
+    factions: 2
+    date: {year: 201, month: 8, day: 17}
+    opens: Sundas, 17 Last Seed 4E 201
+    own_day: false
+    when: whenever play reaches it, from Sundas, 17 Last Seed 4E 201
+    why: the book's moment
+    notes: ''
+    notes_es: ''
+    notes_gs: ''
+    sections: pitch, stakes, tone touchstones, arrival, plot beats, the beast-blood, the place, 
+      cast, clocks, threats, rewards, climax
+- text: The College of Winterhold
+  data:
+    id: college-of-winterhold
+    slug: college-of-winterhold
+    region: college-of-winterhold-region
+    main: a campaign of its own
+    places: 6
+    cast: 8
+    threats: 7
+    clocks: 2
+    factions: 4
+    date: {year: 201, month: 8, day: 17}
+    opens: Sundas, 17 Last Seed 4E 201
+    own_day: false
+    when: whenever play reaches it, from Sundas, 17 Last Seed 4E 201
+    why: the book's moment
+    notes: ''
+    notes_es: ''
+    notes_gs: ''
+    sections: pitch, stakes, tone touchstones, arrival, plot beats, the place, cast, clocks, 
+      threats, rewards, climax
+- text: The Thieves Guild
+  data:
+    id: the-thieves-guild
+    slug: the-thieves-guild
+    region: the-thieves-guild-region
+    main: a campaign of its own
+    places: 5
+    cast: 8
+    threats: 0
+    clocks: 2
+    factions: 3
+    date: {year: 201, month: 8, day: 17}
+    opens: Sundas, 17 Last Seed 4E 201
+    own_day: false
+    when: whenever play reaches it, from Sundas, 17 Last Seed 4E 201
+    why: the book's moment
+    notes: ''
+    notes_es: ''
+    notes_gs: ''
+    sections: pitch, stakes, tone touchstones, arrival, plot beats, the place, cast, clocks, 
+      threats, rewards, climax
+- text: The Dark Brotherhood
+  data:
+    id: the-dark-brotherhood
+    slug: the-dark-brotherhood
+    region: the-dark-brotherhood-region
+    main: a campaign of its own
+    places: 5
+    cast: 9
+    threats: 1
+    clocks: 3
+    factions: 2
+    date: {year: 201, month: 8, day: 17}
+    opens: Sundas, 17 Last Seed 4E 201
+    own_day: false
+    when: whenever play reaches it, from Sundas, 17 Last Seed 4E 201
+    why: the book's moment
+    notes: "The Listener's Standing: ambient, after Beat 5: each clean, signature kill that becomes a
+      rumor nudges the party's Infamy (Elder Scrolls 2e: `didact do renown party=<it> step=down deed='…'`;
+      Grimscrolls: fame, Chapter 9) and its standing as Listener."
+    notes_es: "The Listener's Standing: ambient, after Beat 5: each clean, signature kill that becomes
+      a rumor nudges the party's Infamy (`didact do renown party=<it> step=down deed='…'`) and its standing
+      as Listener."
+    notes_gs: "The Listener's Standing: ambient, after Beat 5: each clean, signature kill that becomes
+      a rumor feeds the party's fame (Chapter 9) and its standing as Listener."
+    sections: pitch, stakes, tone touchstones, arrival, the branch, plot beats, the place, cast, 
+      clocks, threats, rewards, climax, the destroyer's path
+- text: The Daedric Quests
+  data:
+    id: the-daedric-quests
+    slug: the-daedric-quests
+    region: ''
+    main: 'a side arc beside any frame: a sandbox of Daedric bargains'
+    places: 0
+    cast: 0
+    threats: 1
+    clocks: 0
+    factions: 1
+    date: {year: 201, month: 8, day: 17}
+    opens: Sundas, 17 Last Seed 4E 201
+    own_day: false
+    when: whenever play reaches it, from Sundas, 17 Last Seed 4E 201
+    why: the book's moment
+    notes: ''
+    notes_es: ''
+    notes_gs: ''
+    sections: how the princes meddle with mortals, nocturnal, the vigil of stendarr, quick reference
+- text: Dawnguard
+  data:
+    id: dawnguard
+    slug: dawnguard
+    region: dawnguard-region
+    main: a side arc (DLC) beside any frame, for a seasoned band
+    places: 7
+    cast: 12
+    threats: 3
+    clocks: 2
+    factions: 3
+    date: {year: 201, month: 8, day: 17}
+    opens: Sundas, 17 Last Seed 4E 201
+    own_day: false
+    when: whenever play reaches it, from Sundas, 17 Last Seed 4E 201
+    why: the book's moment
+    notes: ''
+    notes_es: ''
+    notes_gs: ''
+    sections: pitch, stakes, tone touchstones, arrival, the branch, plot beats, the place, cast, 
+      clocks, threats, rewards, climax
+- text: Dragonborn
+  data:
+    id: dragonborn
+    slug: dragonborn
+    region: dragonborn-region
+    main: a side arc (DLC) that pairs with the Main Quest but doesn't need it
+    places: 7
+    cast: 7
+    threats: 4
+    clocks: 2
+    factions: 1
+    date: {year: 201, month: 8, day: 17}
+    opens: Sundas, 17 Last Seed 4E 201
+    own_day: false
+    when: whenever play reaches it, from Sundas, 17 Last Seed 4E 201
+    why: the book's moment
+    notes: ''
+    notes_es: ''
+    notes_gs: ''
+    sections: pitch, stakes, tone touchstones, arrival, plot beats, bend will, as a story device, 
+      the black books, as relics, the place, cast, clocks, threats, rewards, climax
+- text: Hearthfire
+  data:
+    id: hearthfire
+    slug: hearthfire
+    region: hearthfire-region
+    main: a side arc (DLC) between adventures
+    places: 3
+    cast: 0
+    threats: 6
+    clocks: 0
+    factions: 0
+    date: {year: 201, month: 8, day: 17}
+    opens: Sundas, 17 Last Seed 4E 201
+    own_day: false
+    when: whenever play reaches it, from Sundas, 17 Last Seed 4E 201
+    why: the book's moment
+    notes: ''
+    notes_es: ''
+    notes_gs: ''
+    sections: premise, acquiring a plot, building a downtime path, hiring the household, adopting 
+      children, troubles that come with a home, optional a spriggan in the woods, rewards
+---
+table: frame-places
+title: A frame's places, by number (the frame generator)
+lookup: [frame, n]
+source: campaigns/00-intro#how-to-use-these-frames
+entries:
+  the-main-quest:
+    1:
+      text: Helgen
+      data: {id: the-main-quest-helgen}
+    2:
+      text: Riverwood
+      data: {id: the-main-quest-riverwood}
+    3:
+      text: Bleak Falls Barrow
+      data: {id: hold-whiterun-bleak-falls-barrow}
+    4:
+      text: Whiterun & Dragonsreach
+      data: {id: the-main-quest-whiterun-and-dragonsreach}
+    5:
+      text: Western Watchtower
+      data: {id: the-main-quest-western-watchtower}
+    6:
+      text: High Hrothgar & the 7,000 Steps
+      data: {id: the-main-quest-high-hrothgar-and-the-7-000-steps}
+    7:
+      text: The Throat of the World
+      data: {id: the-main-quest-the-throat-of-the-world}
+    8:
+      text: Ustengrav
+      data: {id: hold-hjaalmarch-ustengrav}
+    9:
+      text: The Thalmor Embassy & the Ratway
+      data: {id: the-main-quest-the-thalmor-embassy-and-the-ratway}
+    10:
+      text: The Karthspire & Sky Haven Temple
+      data: {id: the-main-quest-the-karthspire-and-sky-haven-temple}
+    11:
+      text: Alftand → Blackreach → the Tower of Mzark
+      data: {id: the-main-quest-alftand-blackreach-the-tower-of-mzark}
+    12:
+      text: Skuldafn
+      data: {id: the-main-quest-skuldafn}
+    13:
+      text: Sovngarde
+      data: {id: the-main-quest-sovngarde}
+  the-civil-war:
+    1:
+      text: Windhelm — Palace of the Kings
+      data: {id: the-civil-war-windhelm-palace-of-the-kings}
+    2:
+      text: Solitude — Castle Dour
+      data: {id: the-civil-war-solitude-castle-dour}
+    3:
+      text: Whiterun — Dragonsreach
+      data: {id: the-civil-war-whiterun-dragonsreach}
+    4:
+      text: Korvanjund
+      data: {id: the-civil-war-korvanjund}
+    5:
+      text: Serpentstone Isle
+      data: {id: the-civil-war-serpentstone-isle}
+    6:
+      text: Fort Hraggstad
+      data: {id: the-civil-war-fort-hraggstad}
+    7:
+      text: The contested forts
+      data: {id: the-civil-war-the-contested-forts}
+    8:
+      text: Markarth
+      data: {id: hold-the-reach-markarth}
+    9:
+      text: High Hrothgar
+      data: {id: the-civil-war-high-hrothgar}
+  the-companions:
+    1:
+      text: Jorrvaskr
+      data: {id: hold-whiterun-jorrvaskr}
+    2:
+      text: The Skyforge
+      data: {id: the-companions-the-skyforge}
+    3:
+      text: The Underforge
+      data: {id: the-companions-the-underforge}
+    4:
+      text: Dustman's Cairn
+      data: {id: the-companions-dustmans-cairn}
+    5:
+      text: Glenmoril Coven
+      data: {id: the-companions-glenmoril-coven}
+    6:
+      text: Gallows Rock
+      data: {id: the-companions-gallows-rock}
+    7:
+      text: Driftshade Refuge
+      data: {id: the-companions-driftshade-refuge}
+    8:
+      text: Ysgramor's Tomb
+      data: {id: hold-winterhold-ysgramors-tomb}
+  college-of-winterhold:
+    1:
+      text: The College & the Hall of the Elements
+      data: {id: college-of-winterhold-the-college-and-the-hall-of-the-elements}
+    2:
+      text: The Midden
+      data: {id: college-of-winterhold-the-midden}
+    3:
+      text: Saarthal
+      data: {id: hold-winterhold-saarthal}
+    4:
+      text: Fellglow Keep
+      data: {id: college-of-winterhold-fellglow-keep}
+    5:
+      text: Mzulft
+      data: {id: hold-eastmarch-mzulft}
+    6:
+      text: Labyrinthian
+      data: {id: hold-hjaalmarch-labyrinthian}
+  the-thieves-guild:
+    1:
+      text: The Riften Market
+      data: {id: the-thieves-guild-the-riften-market}
+    2:
+      text: The Ratway
+      data: {id: the-thieves-guild-the-ratway}
+    3:
+      text: The Ragged Flagon
+      data: {id: hold-the-rift-ragged-flagon}
+    4:
+      text: The Cistern
+      data: {id: the-thieves-guild-the-cistern}
+    5:
+      text: Mistveil Keep
+      data: {id: the-thieves-guild-mistveil-keep}
+  the-dark-brotherhood:
+    1:
+      text: The Abandoned Shack
+      data: {id: the-dark-brotherhood-the-abandoned-shack}
+    2:
+      text: The Falkreath Sanctuary
+      data: {id: hold-falkreath-the-falkreath-sanctuary}
+    3:
+      text: Volunruud
+      data: {id: hold-the-pale-volunruud}
+    4:
+      text: The Dawnstar Sanctuary
+      data: {id: hold-the-pale-the-dawnstar-sanctuary}
+    5:
+      text: The Katariah
+      data: {id: the-dark-brotherhood-the-katariah}
+  dawnguard:
+    1:
+      text: Fort Dawnguard
+      data: {id: dawnguard-fort-dawnguard}
+    2:
+      text: Dimhollow Crypt
+      data: {id: dawnguard-dimhollow-crypt}
+    3:
+      text: Castle Volkihar
+      data: {id: dawnguard-castle-volkihar}
+    4:
+      text: Forebears' Holdout
+      data: {id: dawnguard-forebears-holdout}
+    5:
+      text: Ancestor Glade
+      data: {id: dawnguard-ancestor-glade}
+    6:
+      text: The Soul Cairn
+      data: {id: dawnguard-the-soul-cairn}
+    7:
+      text: The Forgotten Vale
+      data: {id: dawnguard-the-forgotten-vale}
+  dragonborn:
+    1:
+      text: Raven Rock
+      data: {id: hold-solstheim-raven-rock}
+    2:
+      text: Skaal Village
+      data: {id: hold-solstheim-skaal-village}
+    3:
+      text: Tel Mithryn
+      data: {id: hold-solstheim-tel-mithryn}
+    4:
+      text: The All-Maker Stones
+      data: {id: dragonborn-the-all-maker-stones}
+    5:
+      text: The Temple of Miraak
+      data: {id: hold-solstheim-temple-of-miraak}
+    6:
+      text: Nchardak
+      data: {id: dragonborn-nchardak}
+    7:
+      text: Apocrypha
+      data: {id: dragonborn-apocrypha}
+  hearthfire:
+    1:
+      text: Lakeview Manor
+      data: {id: hearthfire-lakeview-manor}
+    2:
+      text: Windstad Manor
+      data: {id: hearthfire-windstad-manor}
+    3:
+      text: Heljarchen Hall
+      data: {id: hearthfire-heljarchen-hall}
+---
+table: frame-cast
+title: A frame's cast, by number (the frame generator)
+lookup: [frame, n]
+source: campaigns/00-intro#how-to-use-these-frames
+entries:
+  the-main-quest:
+    1:
+      text: Tsun
+      data: {id: the-main-quest-tsun}
+    2:
+      text: Odahviing
+      data: {id: the-main-quest-odahviing}
+    3:
+      text: Alduin
+      data: {id: the-main-quest-alduin}
+    4:
+      text: Paarthurnax
+      data: {id: the-main-quest-paarthurnax}
+    5:
+      text: Arngeir
+      data: {id: the-main-quest-arngeir}
+    6:
+      text: Delphine
+      data: {id: the-main-quest-delphine}
+    7:
+      text: Esbern
+      data: {id: the-main-quest-esbern}
+    8:
+      text: Jarl Balgruuf the Greater
+      data: {id: the-main-quest-jarl-balgruuf-the-greater}
+    9:
+      text: Ralof
+      data: {id: the-main-quest-ralof}
+    10:
+      text: Hadvar
+      data: {id: the-main-quest-hadvar}
+    11:
+      text: Gormlaith Golden-Hilt
+      data: {id: the-main-quest-gormlaith-golden-hilt}
+    12:
+      text: Hakon One-Eye
+      data: {id: the-main-quest-hakon-one-eye}
+    13:
+      text: Felldir the Old
+      data: {id: the-main-quest-felldir-the-old}
+    14:
+      text: General Tullius
+      data: {id: the-main-quest-general-tullius}
+    15:
+      text: Ulfric Stormcloak
+      data: {id: the-main-quest-ulfric-stormcloak}
+  the-civil-war:
+    1:
+      text: Ulfric Stormcloak
+      data: {id: the-civil-war-ulfric-stormcloak}
+    2:
+      text: Galmar Stone-Fist
+      data: {id: the-civil-war-galmar-stone-fist}
+    3:
+      text: General Tullius
+      data: {id: the-civil-war-general-tullius}
+    4:
+      text: Legate Rikke
+      data: {id: the-civil-war-legate-rikke}
+    5:
+      text: Stormcloak Soldier
+      data: {id: the-civil-war-stormcloak-soldier}
+    6:
+      text: Imperial Soldier
+      data: {id: the-civil-war-imperial-soldier}
+    7:
+      text: Imperial Captain
+      data: {id: the-civil-war-imperial-captain}
+    8:
+      text: Stormcloak Officer
+      data: {id: the-civil-war-stormcloak-officer}
+    9:
+      text: Thalmor Justiciar
+      data: {id: the-civil-war-thalmor-justiciar}
+    10:
+      text: Elenwen
+      data: {id: the-civil-war-elenwen}
+    11:
+      text: Balgruuf the Greater
+      data: {id: the-civil-war-balgruuf-the-greater}
+    12:
+      text: Elisif the Fair
+      data: {id: the-civil-war-elisif-the-fair}
+    13:
+      text: Vignar Gray-Mane
+      data: {id: the-civil-war-vignar-gray-mane}
+    14:
+      text: Brunwulf Free-Winter
+      data: {id: the-civil-war-brunwulf-free-winter}
+    15:
+      text: Maven Black-Briar
+      data: {id: the-civil-war-maven-black-briar}
+    16:
+      text: Igmund
+      data: {id: the-civil-war-igmund}
+    17:
+      text: Siddgeir
+      data: {id: the-civil-war-siddgeir}
+    18:
+      text: Idgrod
+      data: {id: the-civil-war-idgrod}
+    19:
+      text: Skald
+      data: {id: the-civil-war-skald}
+    20:
+      text: Korir
+      data: {id: the-civil-war-korir}
+  the-companions:
+    1:
+      text: Kodlak Whitemane
+      data: {id: the-companions-kodlak-whitemane}
+    2:
+      text: Aela the Huntress
+      data: {id: the-companions-aela-the-huntress}
+    3:
+      text: Skjor
+      data: {id: the-companions-skjor}
+    4:
+      text: Vilkas
+      data: {id: the-companions-vilkas}
+    5:
+      text: Farkas
+      data: {id: the-companions-farkas}
+    6:
+      text: Krev the Skinner
+      data: {id: the-companions-krev-the-skinner}
+    7:
+      text: Eorlund Gray-Mane
+      data: {id: the-companions-eorlund-gray-mane}
+    8:
+      text: The Glenmoril Witches
+      data: {id: the-companions-the-glenmoril-witches}
+  college-of-winterhold:
+    1:
+      text: Tolfdir
+      data: {id: college-of-winterhold-tolfdir}
+    2:
+      text: Mirabelle Ervine
+      data: {id: college-of-winterhold-mirabelle-ervine}
+    3:
+      text: Arch-Mage Savos Aren
+      data: {id: college-of-winterhold-arch-mage-savos-aren}
+    4:
+      text: Ancano
+      data: {id: college-of-winterhold-ancano}
+    5:
+      text: Urag gro-Shub
+      data: {id: college-of-winterhold-urag-gro-shub}
+    6:
+      text: The Augur of Dunlain
+      data: {id: college-of-winterhold-the-augur-of-dunlain}
+    7:
+      text: Quaranir
+      data: {id: college-of-winterhold-quaranir}
+    8:
+      text: Paratus Decimius
+      data: {id: college-of-winterhold-paratus-decimius}
+  the-thieves-guild:
+    1:
+      text: Brynjolf
+      data: {id: the-thieves-guild-brynjolf}
+    2:
+      text: Mercer Frey
+      data: {id: the-thieves-guild-mercer-frey}
+    3:
+      text: Karliah
+      data: {id: the-thieves-guild-karliah}
+    4:
+      text: Delvin Mallory
+      data: {id: the-thieves-guild-delvin-mallory}
+    5:
+      text: Vex
+      data: {id: the-thieves-guild-vex}
+    6:
+      text: Maven Black-Briar
+      data: {id: the-thieves-guild-maven-black-briar}
+    7:
+      text: Vald
+      data: {id: the-thieves-guild-vald}
+    8:
+      text: Nocturnal
+      data: {id: the-thieves-guild-nocturnal}
+  the-dark-brotherhood:
+    1:
+      text: Astrid
+      data: {id: the-dark-brotherhood-astrid}
+    2:
+      text: The Night Mother
+      data: {id: the-dark-brotherhood-the-night-mother}
+    3:
+      text: Cicero
+      data: {id: the-dark-brotherhood-cicero}
+    4:
+      text: Nazir
+      data: {id: the-dark-brotherhood-nazir}
+    5:
+      text: Babette
+      data: {id: the-dark-brotherhood-babette}
+    6:
+      text: Gabriella
+      data: {id: the-dark-brotherhood-gabriella}
+    7:
+      text: Festus Krex
+      data: {id: the-dark-brotherhood-festus-krex}
+    8:
+      text: Emperor Titus Mede II
+      data: {id: the-dark-brotherhood-emperor-titus-mede-ii}
+    9:
+      text: Commander Maro
+      data: {id: the-dark-brotherhood-commander-maro}
+  dawnguard:
+    1:
+      text: Isran
+      data: {id: dawnguard-isran}
+    2:
+      text: Serana
+      data: {id: dawnguard-serana}
+    3:
+      text: Lord Harkon
+      data: {id: dawnguard-lord-harkon}
+    4:
+      text: Valerica
+      data: {id: dawnguard-valerica}
+    5:
+      text: Dexion Evicus
+      data: {id: dawnguard-dexion-evicus}
+    6:
+      text: Knight-Paladin Gelebor
+      data: {id: dawnguard-knight-paladin-gelebor}
+    7:
+      text: Arch-Curate Vyrthur
+      data: {id: dawnguard-arch-curate-vyrthur}
+    8:
+      text: Gunmar
+      data: {id: dawnguard-gunmar}
+    9:
+      text: Sorine Jurard
+      data: {id: dawnguard-sorine-jurard}
+    10:
+      text: Garan Marethi
+      data: {id: dawnguard-garan-marethi}
+    11:
+      text: Lokil
+      data: {id: dawnguard-lokil}
+    12:
+      text: Malkus
+      data: {id: dawnguard-malkus}
+  dragonborn:
+    1:
+      text: Frea
+      data: {id: dragonborn-frea}
+    2:
+      text: Storn Crag-Strider
+      data: {id: dragonborn-storn-crag-strider}
+    3:
+      text: Neloth
+      data: {id: dragonborn-neloth}
+    4:
+      text: Hermaeus Mora
+      data: {id: dragonborn-hermaeus-mora}
+    5:
+      text: Miraak
+      data: {id: dragonborn-miraak}
+    6:
+      text: Lleril Morvayn
+      data: {id: dragonborn-lleril-morvayn}
+    7:
+      text: Gjalund Salt-Sage
+      data: {id: dragonborn-gjalund-salt-sage}
+---
+table: frame-threats
+title: A frame's threats, by number (the frame generator)
+lookup: [frame, n]
+source: campaigns/00-intro#how-to-use-these-frames
+entries:
+  the-main-quest:
+    1:
+      text: Mirmulnir
+      data: {id: the-main-quest-mirmulnir}
+    2:
+      text: Sahloknir
+      data: {id: the-main-quest-sahloknir}
+    3:
+      text: Nahkriin
+      data: {id: the-main-quest-nahkriin}
+  the-companions:
+    1:
+      text: Silver Hand Hunter
+      data: {id: the-companions-silver-hand-hunter}
+    2:
+      text: Kodlak's Wolf Spirit
+      data: {id: the-companions-kodlaks-wolf-spirit}
+  college-of-winterhold:
+    1:
+      text: Jyrik Gauldurson
+      data: {id: college-of-winterhold-jyrik-gauldurson}
+    2:
+      text: The Caller
+      data: {id: college-of-winterhold-the-caller}
+    3:
+      text: Magic Anomalies
+      data: {id: college-of-winterhold-magic-anomalies}
+    4:
+      text: The Skeletal Dragon
+      data: {id: college-of-winterhold-the-skeletal-dragon}
+    5:
+      text: Morokei
+      data: {id: college-of-winterhold-morokei}
+    6:
+      text: Estormo
+      data: {id: college-of-winterhold-estormo}
+    7:
+      text: Ancano, empowered by the Eye
+      data: {id: college-of-winterhold-ancano-empowered-by-the-eye}
+  the-dark-brotherhood:
+    1:
+      text: Penitus Oculatus Agent
+      data: {id: the-dark-brotherhood-penitus-oculatus-agent}
+  the-daedric-quests:
+    1:
+      text: Vigilant of Stendarr
+      data: {id: the-daedric-quests-vigilant-of-stendarr}
+  dawnguard:
+    1:
+      text: Durnehviir
+      data: {id: dawnguard-durnehviir}
+    2:
+      text: Soul Cairn Keeper
+      data: {id: dawnguard-soul-cairn-keeper}
+    3:
+      text: Frost Giant
+      data: {id: dawnguard-frost-giant}
+  dragonborn:
+    1:
+      text: Lurker Vindicator
+      data: {id: dragonborn-lurker-vindicator}
+    2:
+      text: Ahzidal
+      data: {id: dragonborn-ahzidal}
+    3:
+      text: Dukaan
+      data: {id: dragonborn-dukaan}
+    4:
+      text: Zahkriisos
+      data: {id: dragonborn-zahkriisos}
+  hearthfire:
+    1:
+      text: Housecarl
+      data: {id: hearthfire-housecarl}
+    2:
+      text: Bandit
+      data: {id: hearthfire-bandit}
+    3:
+      text: Giant
+      data: {id: hearthfire-giant}
+    4:
+      text: Confidence Trickster
+      data: {id: hearthfire-confidence-trickster}
+    5:
+      text: Dark Brotherhood Assassin
+      data: {id: hearthfire-dark-brotherhood-assassin}
+    6:
+      text: Spriggan
+      data: {id: hearthfire-spriggan}
+---
+table: frame-clocks
+title: A frame's clocks, by number (the frame generator)
+lookup: [frame, n]
+source: campaigns/00-intro#how-to-use-these-frames
+entries:
+  the-main-quest:
+    1:
+      text: The World-Eater's Hunger
+      data:
+        id: the-main-quest-the-world-eaters-hunger
+        es: true
+        gs: pool
+        pool: pressure
+        dice: 6
+        left: 6
+        note: "(d6) Alduin's growing power as he resurrects the dead. Ticks once each time a new dragon
+          attacks a settlement or a named dragon is resurrected (Mirmulnir, Sahloknir, each random dragon
+          the Warden drops on a town), and once whenever the party spends a whole session away from the
+          main quest. At 1–3, dragon attacks are rare and the roads are merely dangerous. At 4–5, dragons
+          appear at burial mounds and over villages; the dead walk more boldly. At 6, the sky is wrong
+          everywhere — dragon attacks are constant background dread until the party reaches Skuldafn.
+          The clock stops mattering once the party steps through the portal. (Grimscrolls: roll the pool
+          where the clock would tick; at 0d, what the clock's end says happens.)"
+    2:
+      text: The Blades' Patience
+      data:
+        id: the-main-quest-the-blades-patience
+        es: true
+        gs: pool
+        pool: pressure
+        dice: 4
+        left: 3
+        note: "(d4, starting at 1) How hard Delphine and Esbern press for Paarthurnax's death. Ticks the
+          first time the party meets Paarthurnax, again when they recover the Elder Scroll, and again
+          after the Time-Wound. At 4, the Blades issue the ultimatum (see Climax → The Paarthurnax Question)
+          and withhold their support until it is answered. (Grimscrolls: roll the pool where the clock
+          would tick; at 0d, what the clock's end says happens.)"
+    3:
+      text: The War in the Way
+      data:
+        id: the-main-quest-the-war-in-the-way
+        es: false
+        gs: ''
+        pool: ''
+        dice: 0
+        left: 0
+        note: ''
+  the-civil-war:
+    1:
+      text: The Long War
+      data:
+        id: the-civil-war-the-long-war
+        es: true
+        gs: pool
+        pool: pressure
+        dice: 6
+        left: 6
+        note: "(d6) Ticks each session the war drags on without a Hold changing hands, and whenever a
+          truce stalls. At 4, the Thalmor openly \"advise\": Justiciars ride with the Legion's patrols
+          and hunt Talos-worshippers in every town, whichever side the party serves. At 6, the Dominion
+          has what it wanted — both armies are bled so thin that bandits, Forsworn, and dragons roam the
+          Holds unchecked until the war is ended. (Grimscrolls: roll the pool where the clock would tick;
+          at 0d, what the clock's end says happens.)"
+    2:
+      text: Whiterun's Neutrality
+      data:
+        id: the-civil-war-whiteruns-neutrality
+        es: true
+        gs: pool
+        pool: pressure
+        dice: 4
+        left: 4
+        note: "(d4) Ticks with each mission the party runs before Beat 3. At 4, the Stormcloaks strike
+          before the Legion can garrison the city: a Legion party finds Whiterun already fallen and runs
+          Beat 4 as the attackers. (A Stormcloak party is the attacker either way — for them the clock
+          only measures how much warning Balgruuf has had.) (Grimscrolls: roll the pool where the clock
+          would tick; at 0d, what the clock's end says happens.)"
+  the-companions:
+    1:
+      text: The Silver Hand Clock
+      data:
+        id: the-companions-the-silver-hand-clock
+        es: true
+        gs: pool
+        pool: pressure
+        dice: 6
+        left: 6
+        note: "(d6) How close the hunters are to gutting Jorrvaskr. Advance it when the party kills Silver
+          Hand in the open (Gallows Rock, ambush sites), when a beast-blooded PC transforms where it can
+          be witnessed and reported, or when the party lingers in Whiterun between barrow-jobs. The hall
+          falls when this clock fills (never before Kodlak has sent the party to the Coven in Beat 5)
+          or when they return from the Coven, whichever comes first. It is a pressure gauge on the murder
+          that will come, not a way to dodge it. (Grimscrolls: roll the pool where the clock would tick;
+          at 0d, what the clock's end says happens.)"
+    2:
+      text: The Harbinger's Hope
+      data:
+        id: the-companions-the-harbingers-hope
+        es: true
+        gs: entry
+        pool: ''
+        dice: 0
+        left: 0
+        note: ''
+  college-of-winterhold:
+    1:
+      text: The Eye's Hunger
+      data:
+        id: college-of-winterhold-the-eyes-hunger
+        es: true
+        gs: pool
+        pool: pressure
+        dice: 6
+        left: 6
+        note: "(d6) How far the Eye's power has spread since Ancano seized it. Ticks at the start of each
+          session after Beat 5, and whenever the party rests somewhere safe on the road to Labyrinthian.
+          At 2, anomalies stalk the town of Winterhold by night; at 4, the townsfolk flee and the Jarl
+          blames the College; at 6, the Eye's field swallows the whole spire, and the final fight must
+          be fought in a Hall where every Spell Tome forces the duress WIL save. (Grimscrolls: roll the
+          pool where the clock would tick; at 0d, what the clock's end says happens.)"
+    2:
+      text: Ancano's Suspicion
+      data:
+        id: college-of-winterhold-ancanos-suspicion
+        es: true
+        gs: pool
+        pool: pressure
+        dice: 4
+        left: 4
+        note: "(d4) Before Beat 5, ticks each time the party openly pries into Ancano's business or brings
+          him news of the Eye. At 4, he moves early: Beat 5 begins at once, before the party has the Oculory's
+          answer. (Grimscrolls: roll the pool where the clock would tick; at 0d, what the clock's end
+          says happens.)"
+  the-thieves-guild:
+    1:
+      text: The Guild's Luck
+      data:
+        id: the-thieves-guild-the-guilds-luck
+        es: true
+        gs: pool
+        pool: resource
+        dice: 6
+        left: 6
+        note: "(d6, counting down) Starts at 6. Loses a point whenever a Guild job goes wrong, a member
+          is caught or killed, or a session passes without the party moving against Mercer after Beat
+          4. At 3, the Cistern empties — only Delvin, Vex, Brynjolf, and Tonilia remain; at 1, Maven cuts
+          the Guild loose and the Riften guard raids the Flagon. Returning the Key restores it to 6 at
+          once. (Grimscrolls: roll the pool where the clock would tick; at 0d, what the clock's end says
+          happens.)"
+    2:
+      text: Mercer's Head Start
+      data:
+        id: the-thieves-guild-mercers-head-start
+        es: true
+        gs: pool
+        pool: pressure
+        dice: 4
+        left: 4
+        note: "(d4) After Beat 4, ticks each session the party spends on anything but the hunt. At 4,
+          Mercer has the Eyes of the Falmer and is gone from Irkngthand before the party arrives: they
+          must chase him to the coast, a ship, and a last stand on the ice. (Grimscrolls: roll the pool
+          where the clock would tick; at 0d, what the clock's end says happens.)"
+  the-dark-brotherhood:
+    1:
+      text: The Tenets
+      data:
+        id: the-dark-brotherhood-the-tenets
+        es: true
+        gs: pool
+        pool: pressure
+        dice: 6
+        left: 6
+        note: "(d6) The Five Tenets forbid betraying the Brotherhood, disobeying the Night Mother, and
+          the like. Tick when the party flagrantly breaks faith — refusing a named contract, harming the
+          coffin, turning on family. At 6, the Wrath of Sithis falls: an unseen spectral assassin hunts
+          the offender (use Astrid's block, hostile) until the debt is paid in blood. (Reset on a sincere
+          act of atonement at the Night Mother's coffin.) (Grimscrolls: roll the pool where the clock
+          would tick; at 0d, what the clock's end says happens.)"
+    2:
+      text: Suspicion
+      data:
+        id: the-dark-brotherhood-suspicion
+        es: true
+        gs: pool
+        pool: pressure
+        dice: 4
+        left: 4
+        note: "(d4, Beats 4–7) Ticks each time a contract is botched loudly, a witness lives, or a Hold's
+          guards connect a death to the party. At 4, Commander Maro finds his opening — bring the betrayal
+          of Beat 8 forward and make the fire harder. (Grimscrolls: roll the pool where the clock would
+          tick; at 0d, what the clock's end says happens.)"
+    3:
+      text: The Listener's Standing
+      data:
+        id: the-dark-brotherhood-the-listeners-standing
+        es: false
+        gs: ''
+        pool: ''
+        dice: 0
+        left: 0
+        note: ''
+  dawnguard:
+    1:
+      text: The Tyranny Clock
+      data:
+        id: dawnguard-the-tyranny-clock
+        es: true
+        gs: pool
+        pool: pressure
+        dice: 6
+        left: 6
+        note: "(d6) How close Harkon comes to the eternal night. Ticks each time the party hands him an
+          advantage — a Scroll read in his service, the Bow brought to the castle, a Volkihar victory
+          left unanswered. (On the Volkihar track the party is usually advancing this themselves.) At
+          6, if the climax has not resolved, Harkon enacts the prophecy: the sun dims over Skyrim, every
+          vampire is emboldened, and the final assault begins on his terms. (Grimscrolls: roll the pool
+          where the clock would tick; at 0d, what the clock's end says happens.)"
+    2:
+      text: Serana's Trust
+      data:
+        id: dawnguard-seranas-trust
+        es: true
+        gs: entry
+        pool: ''
+        dice: 0
+        left: 0
+        note: ''
+  dragonborn:
+    1:
+      text: The Sleepers' Toil
+      data:
+        id: dragonborn-the-sleepers-toil
+        es: true
+        gs: pool
+        pool: pressure
+        dice: 6
+        left: 6
+        note: "(d6) Ticks each session any of the five outer Stones remains corrupted. At 3, Storn's ward
+          over the Skaal Village begins to fail, and a few villagers walk south in their sleep each night.
+          At 6, the Temple of Miraak is finished: once per session, Miraak may reach through a sleeping
+          PC's dreams (WIL save, or they wake having walked a mile toward the Temple, Deprived). (Grimscrolls:
+          roll the pool where the clock would tick; at 0d, what the clock's end says happens.)"
+    2:
+      text: Mora's Regard
+      data:
+        id: dragonborn-moras-regard
+        es: true
+        gs: pool
+        pool: pressure
+        dice: 4
+        left: 4
+        note: "(d4) Ticks each time a PC reads a Black Book. At 4, the Prince has marked that reader:
+          Seekers find them in their dreams, and one day Mora will ask for something in return — a seed
+          for a campaign yet to come. (Grimscrolls: roll the pool where the clock would tick; at 0d, what
+          the clock's end says happens.)"
+---
+table: frame-factions
+title: A frame's factions, by number (the frame generator)
+lookup: [frame, n]
+source: campaigns/00-intro#how-to-use-these-frames
+entries:
+  the-main-quest:
+    1:
+      text: The Stormcloaks
+      data: {id: stormcloaks}
+    2:
+      text: The Imperial Legion
+      data: {id: imperial-legion}
+    3:
+      text: The Thalmor
+      data: {id: thalmor}
+    4:
+      text: The Greybeards
+      data: {id: greybeards}
+    5:
+      text: The Blades
+      data: {id: blades}
+    6:
+      text: The Forsworn
+      data: {id: forsworn}
+  the-civil-war:
+    1:
+      text: The Stormcloaks
+      data: {id: stormcloaks}
+    2:
+      text: The Imperial Legion
+      data: {id: imperial-legion}
+    3:
+      text: The Thalmor
+      data: {id: thalmor}
+    4:
+      text: The Forsworn
+      data: {id: forsworn}
+  the-companions:
+    1:
+      text: The Companions
+      data: {id: companions}
+    2:
+      text: The Silver Hand
+      data: {id: silver-hand}
+  college-of-winterhold:
+    1:
+      text: The Thalmor
+      data: {id: thalmor}
+    2:
+      text: The College of Winterhold
+      data: {id: college-of-winterhold-faction}
+    3:
+      text: The Synod
+      data: {id: synod}
+    4:
+      text: The Psijic Order
+      data: {id: psijic-order}
+  the-thieves-guild:
+    1:
+      text: The Thieves Guild
+      data: {id: thieves-guild}
+    2:
+      text: The Nightingales
+      data: {id: nightingales}
+    3:
+      text: The Black-Briars
+      data: {id: black-briars}
+  the-dark-brotherhood:
+    1:
+      text: The Dark Brotherhood
+      data: {id: dark-brotherhood}
+    2:
+      text: The Penitus Oculatus
+      data: {id: penitus-oculatus}
+  the-daedric-quests:
+    1:
+      text: The Vigil of Stendarr
+      data: {id: vigil-of-stendarr}
+  dawnguard:
+    1:
+      text: The Vigil of Stendarr
+      data: {id: vigil-of-stendarr}
+    2:
+      text: The Dawnguard
+      data: {id: dawnguard-faction}
+    3:
+      text: The Volkihar
+      data: {id: volkihar}
+  dragonborn:
+    1:
+      text: The Skaal
+      data: {id: skaal}
+---
+table: daedric-quests
+title: "The Daedric Quests: a Prince's quest (pick one)"
+source: campaigns/07-the-daedric-quests#quick-reference--prince-quest-artifact
+about: "{prince}'s quest; the prize: {artifact}."
+entries:
+- text: Pieces of the Past
+  data:
+    id: the-daedric-quests-pieces-of-the-past
+    prince: Mehrunes Dagon
+    artifact: Mehrunes' Razor
+    people: 3
+- text: The House of Horrors
+  data:
+    id: the-daedric-quests-the-house-of-horrors
+    prince: Molag Bal
+    artifact: Mace of Molag Bal
+    people: 2
+- text: A Night to Remember
+  data:
+    id: the-daedric-quests-a-night-to-remember
+    prince: Sanguine
+    artifact: Sanguine Rose
+    people: 3
+- text: Waking Nightmare
+  data:
+    id: the-daedric-quests-waking-nightmare
+    prince: Vaermina
+    artifact: Skull of Corruption
+    people: 4
+- text: Discerning the Transmundane
+  data:
+    id: the-daedric-quests-discerning-the-transmundane
+    prince: Hermaeus Mora
+    artifact: Oghma Infinium
+    people: 2
+- text: The Mind of Madness
+  data:
+    id: the-daedric-quests-the-mind-of-madness
+    prince: Sheogorath
+    artifact: Wabbajack
+    people: 2
+- text: The Cursed Tribe
+  data:
+    id: the-daedric-quests-the-cursed-tribe
+    prince: Malacath
+    artifact: Volendrung
+    people: 2
+- text: The Only Cure
+  data:
+    id: the-daedric-quests-the-only-cure
+    prince: Peryite
+    artifact: Spellbreaker
+    people: 2
+- text: Ill Met by Moonlight
+  data:
+    id: the-daedric-quests-ill-met-by-moonlight
+    prince: Hircine
+    artifact: Savior's Hide or Ring of Hircine
+    people: 2
+- text: The Taste of Death
+  data:
+    id: the-daedric-quests-the-taste-of-death
+    prince: Namira
+    artifact: Ring of Namira
+    people: 2
+- text: A Daedra's Best Friend
+  data:
+    id: the-daedric-quests-a-daedras-best-friend
+    prince: Clavicus Vile
+    artifact: Masque of Clavicus Vile
+    people: 3
+- text: Boethiah's Calling
+  data:
+    id: the-daedric-quests-boethiahs-calling
+    prince: Boethiah
+    artifact: Ebony Mail
+    people: 2
+- text: The Whispering Door
+  data:
+    id: the-daedric-quests-the-whispering-door
+    prince: Mephala
+    artifact: Ebony Blade
+    people: 4
+- text: The Break of Dawn
+  data:
+    id: the-daedric-quests-the-break-of-dawn
+    prince: Meridia
+    artifact: Dawnbreaker
+    people: 2
+- text: The Black Star
+  data:
+    id: the-daedric-quests-the-black-star
+    prince: Azura
+    artifact: Azura's Star or The Black Star
+    people: 3
+---
+table: daedric-quest-people
+title: A Prince's quest's people, by number (the daedric-quest generator)
+lookup: [quest, n]
+source: campaigns/07-the-daedric-quests#how-the-princes-meddle-with-mortals
+entries:
+  the-daedric-quests-pieces-of-the-past:
+    1:
+      text: Silus Vesuius
+      data: {id: the-daedric-quests-silus-vesuius}
+    2:
+      text: Drascua
+      data: {id: the-daedric-quests-drascua}
+    3:
+      text: Ghunzul
+      data: {id: the-daedric-quests-ghunzul}
+  the-daedric-quests-the-house-of-horrors:
+    1:
+      text: Vigilant Tyranus
+      data: {id: the-daedric-quests-vigilant-tyranus}
+    2:
+      text: Logrolf the Willful
+      data: {id: the-daedric-quests-logrolf-the-willful}
+  the-daedric-quests-a-night-to-remember:
+    1:
+      text: Sam Guevenne
+      data: {id: the-daedric-quests-sam-guevenne}
+    2:
+      text: Sanguine
+      data: {id: the-daedric-quests-sanguine}
+    3:
+      text: Moira
+      data: {id: the-daedric-quests-moira}
+  the-daedric-quests-waking-nightmare:
+    1:
+      text: Erandur
+      data: {id: the-daedric-quests-erandur}
+    2:
+      text: Casimir
+      data: {id: the-daedric-quests-casimir}
+    3:
+      text: Veren
+      data: {id: the-daedric-quests-veren}
+    4:
+      text: Thorek
+      data: {id: the-daedric-quests-thorek}
+  the-daedric-quests-discerning-the-transmundane:
+    1:
+      text: Septimus Signus
+      data: {id: the-daedric-quests-septimus-signus}
+    2:
+      text: Hermaeus Mora
+      data: {id: the-daedric-quests-hermaeus-mora}
+  the-daedric-quests-the-mind-of-madness:
+    1:
+      text: Sheogorath
+      data: {id: the-daedric-quests-sheogorath}
+    2:
+      text: Dervenin
+      data: {id: the-daedric-quests-dervenin}
+  the-daedric-quests-the-cursed-tribe:
+    1:
+      text: Atub
+      data: {id: the-daedric-quests-atub}
+    2:
+      text: Chief Yamarz
+      data: {id: the-daedric-quests-chief-yamarz}
+  the-daedric-quests-the-only-cure:
+    1:
+      text: Kesh the Clean
+      data: {id: the-daedric-quests-kesh-the-clean}
+    2:
+      text: Orchendor
+      data: {id: the-daedric-quests-orchendor}
+  the-daedric-quests-ill-met-by-moonlight:
+    1:
+      text: Sinding
+      data: {id: the-daedric-quests-sinding}
+    2:
+      text: The Aspect of Hircine
+      data: {id: the-daedric-quests-the-aspect-of-hircine}
+  the-daedric-quests-the-taste-of-death:
+    1:
+      text: Brother Verulus
+      data: {id: the-daedric-quests-brother-verulus}
+    2:
+      text: Eola
+      data: {id: the-daedric-quests-eola}
+  the-daedric-quests-a-daedras-best-friend:
+    1:
+      text: Barbas
+      data: {id: the-daedric-quests-barbas}
+    2:
+      text: Clavicus Vile
+      data: {id: the-daedric-quests-clavicus-vile}
+    3:
+      text: Sebastian Lort
+      data: {id: the-daedric-quests-sebastian-lort}
+  the-daedric-quests-boethiahs-calling:
+    1:
+      text: Priestess of Boethiah
+      data: {id: the-daedric-quests-priestess-of-boethiah}
+    2:
+      text: Boethiah's old Champion
+      data: {id: the-daedric-quests-boethiahs-old-champion}
+  the-daedric-quests-the-whispering-door:
+    1:
+      text: Nelkir
+      data: {id: the-daedric-quests-nelkir}
+    2:
+      text: Jarl Balgruuf
+      data: {id: the-daedric-quests-jarl-balgruuf}
+    3:
+      text: Farengar Secret-Fire
+      data: {id: the-daedric-quests-farengar-secret-fire}
+    4:
+      text: Mephala
+      data: {id: the-daedric-quests-mephala}
+  the-daedric-quests-the-break-of-dawn:
+    1:
+      text: Meridia
+      data: {id: the-daedric-quests-meridia}
+    2:
+      text: Malkoran
+      data: {id: the-daedric-quests-malkoran}
+  the-daedric-quests-the-black-star:
+    1:
+      text: Aranea Ienith
+      data: {id: the-daedric-quests-aranea-ienith}
+    2:
+      text: Nelacar
+      data: {id: the-daedric-quests-nelacar}
+    3:
+      text: Malyn Varen
+      data: {id: the-daedric-quests-malyn-varen}

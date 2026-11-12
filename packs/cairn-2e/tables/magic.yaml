@@ -1,0 +1,159 @@
+# Magic tables (wardens-guide/spellbooks, wardens-guide/reliquary). Each entry's `data.id`
+# is its compendium entry (compendium/spellbooks.yaml, compendium/relics.yaml).
+table: spellbooks
+title: Spellbooks
+dice: d100
+source: wardens-guide/spellbooks#spellbooks
+entries:
+  1: {text: Adhere, data: {id: adhere}}
+  2: {text: Anchor, data: {id: anchor}}
+  3: {text: Animate Object, data: {id: animate-object}}
+  4: {text: Anthropomorphize, data: {id: anthropomorphize}}
+  5: {text: Arcane Eye, data: {id: arcane-eye}}
+  6: {text: Astral Prison, data: {id: astral-prison}}
+  7: {text: Attract, data: {id: attract}}
+  8: {text: Auditory Illusion, data: {id: auditory-illusion}}
+  9: {text: Babble, data: {id: babble}}
+  10: {text: Bait Flower, data: {id: bait-flower}}
+  11: {text: Beast Form, data: {id: beast-form}}
+  12: {text: Befuddle, data: {id: befuddle}}
+  13: {text: Body Swap, data: {id: body-swap}}
+  14: {text: Charm, data: {id: charm}}
+  15: {text: Command, data: {id: command}}
+  16: {text: Comprehend, data: {id: comprehend}}
+  17: {text: Cone of Foam, data: {id: cone-of-foam}}
+  18: {text: Control Plants, data: {id: control-plants}}
+  19: {text: Control Weather, data: {id: control-weather}}
+  20: {text: Cure Wounds, data: {id: cure-wounds}}
+  21: {text: Deafen, data: {id: deafen}}
+  22: {text: Detect Magic, data: {id: detect-magic}}
+  23: {text: Disassemble, data: {id: disassemble}}
+  24: {text: Disguise, data: {id: disguise}}
+  25: {text: Displace, data: {id: displace}}
+  26: {text: Earthquake, data: {id: earthquake}}
+  27: {text: Elasticity, data: {id: elasticity}}
+  28: {text: Elemental Wall, data: {id: elemental-wall}}
+  29: {text: Filch, data: {id: filch}}
+  30: {text: Fish Lung, data: {id: fish-lung}}
+  31: {text: Flare, data: {id: flare}}
+  32: {text: Fog Cloud, data: {id: fog-cloud}}
+  33: {text: Frenzy, data: {id: frenzy}}
+  34: {text: Gate, data: {id: gate}}
+  35: {text: Gravity Shift, data: {id: gravity-shift}}
+  36: {text: Greed, data: {id: greed}}
+  37: {text: Haste, data: {id: haste}}
+  38: {text: Hatred, data: {id: hatred}}
+  39: {text: Hear Whispers, data: {id: hear-whispers}}
+  40: {text: Hover, data: {id: hover}}
+  41: {text: Hypnotize, data: {id: hypnotize}}
+  42: {text: Icy Touch, data: {id: icy-touch}}
+  43: {text: Identify Owner, data: {id: identify-owner}}
+  44: {text: Illuminate, data: {id: illuminate}}
+  45: {text: Invisible Tether, data: {id: invisible-tether}}
+  46: {text: Knock, data: {id: knock}}
+  47: {text: Leap, data: {id: leap}}
+  48: {text: Liquid Air, data: {id: liquid-air}}
+  49: {text: Magic Dampener, data: {id: magic-dampener}}
+  50: {text: Manse, data: {id: manse}}
+  51: {text: Marble Craze, data: {id: marble-craze}}
+  52: {text: Masquerade, data: {id: masquerade}}
+  53: {text: Miniaturize, data: {id: miniaturize}}
+  54: {text: Mirror Image, data: {id: mirror-image}}
+  55: {text: Mirrorwalk, data: {id: mirrorwalk}}
+  56: {text: Multiarm, data: {id: multiarm}}
+  57: {text: Night Sphere, data: {id: night-sphere}}
+  58: {text: Objectify, data: {id: objectify}}
+  59: {text: Ooze Form, data: {id: ooze-form}}
+  60: {text: Pacify, data: {id: pacify}}
+  61: {text: Passage, data: {id: passage}}
+  62: {text: Phobia, data: {id: phobia}}
+  63: {text: Pit, data: {id: pit}}
+  64: {text: Primal Surge, data: {id: primal-surge}}
+  65: {text: "Push/Pull", data: {id: push-pull}}
+  66: {text: Raise Dead, data: {id: raise-dead}}
+  67: {text: Raise Spirit, data: {id: raise-spirit}}
+  68: {text: Read Mind, data: {id: read-mind}}
+  69: {text: Repel, data: {id: repel}}
+  70: {text: Scry, data: {id: scry}}
+  71: {text: Sculpt Elements, data: {id: sculpt-elements}}
+  72: {text: Sense, data: {id: sense}}
+  73: {text: Shield, data: {id: shield-spellbook}}
+  74: {text: Shroud, data: {id: shroud}}
+  75: {text: Shuffle, data: {id: shuffle}}
+  76: {text: Skillful Repair, data: {id: skillful-repair}}
+  77: {text: Sleep, data: {id: sleep}}
+  78: {text: Slick, data: {id: slick}}
+  79: {text: Smoke Form, data: {id: smoke-form}}
+  80: {text: Sniff, data: {id: sniff}}
+  81: {text: Snuff, data: {id: snuff}}
+  82: {text: Sort, data: {id: sort}}
+  83: {text: Spellsaw, data: {id: spellsaw}}
+  84: {text: Spider Climb, data: {id: spider-climb}}
+  85: {text: Swarm, data: {id: swarm}}
+  86: {text: Target Lure, data: {id: target-lure}}
+  87: {text: Telekinesis, data: {id: telekinesis}}
+  88: {text: Telepathy, data: {id: telepathy}}
+  89: {text: Teleport, data: {id: teleport}}
+  90: {text: Thicket, data: {id: thicket}}
+  91: {text: Time Control, data: {id: time-control}}
+  92: {text: True Sight, data: {id: true-sight}}
+  93: {text: Upwell, data: {id: upwell}}
+  94: {text: Vision, data: {id: vision}}
+  95: {text: Visual Illusion, data: {id: visual-illusion}}
+  96: {text: Ward, data: {id: ward}}
+  97: {text: Web, data: {id: web}}
+  98: {text: Widget, data: {id: widget}}
+  99: {text: Wizard Mark, data: {id: wizard-mark}}
+  100: {text: X-Ray Vision, data: {id: x-ray-vision}}
+---
+table: relics
+title: Relics
+description: "The Reliquary gives no die for its relics: each one here is equally likely."
+source: wardens-guide/reliquary#reliquary
+entries:
+  - {text: A Blade Called Hope, data: {id: a-blade-called-hope}}
+  - {text: "Assassin's Goblets", data: {id: assassins-goblets}}
+  - {text: Babbleflask, data: {id: babbleflask}}
+  - {text: Barbed Epaulets, data: {id: barbed-epaulets}}
+  - {text: Betterwand, data: {id: betterwand}}
+  - {text: Bloodmap, data: {id: bloodmap}}
+  - {text: Coin of the Father, data: {id: coin-of-the-father}}
+  - {text: "Dryad's Tear", data: {id: dryads-tear}}
+  - {text: Empathy Rod, data: {id: empathy-rod}}
+  - {text: Eyestone, data: {id: eyestone}}
+  - {text: Falconstone, data: {id: falconstone}}
+  - {text: "Footpad's Friend", data: {id: footpads-friend}}
+  - {text: Gate Chalk, data: {id: gate-chalk}}
+  - {text: Golden Wheat Paste, data: {id: golden-wheat-paste}}
+  - {text: Gossip Box, data: {id: gossip-box}}
+  - {text: "Harbinger's Bell", data: {id: harbingers-bell}}
+  - {text: Homunculus Nail, data: {id: homunculus-nail}}
+  - {text: Honest Earworm, data: {id: honest-earworm}}
+  - {text: Jar of Ants, data: {id: jar-of-ants}}
+  - {text: Last Breath, data: {id: last-breath}}
+  - {text: Lightsucker Candle, data: {id: lightsucker-candle}}
+  - {text: "Lover's Covenant", data: {id: lovers-covenant}}
+  - {text: Mace of the Kingslayer, data: {id: mace-of-the-kingslayer}}
+  - {text: Moth Mirror, data: {id: moth-mirror}}
+  - {text: Muffle Dust, data: {id: muffle-dust}}
+  - {text: Nightstone, data: {id: nightstone}}
+  - {text: Obliteration Scroll, data: {id: obliteration-scroll}}
+  - {text: "Parliament's Promise", data: {id: parliaments-promise}}
+  - {text: Phoenix Ash, data: {id: phoenix-ash}}
+  - {text: Ring of the Snake, data: {id: ring-of-the-snake}}
+  - {text: Roc Feather, data: {id: roc-feather}}
+  - {text: Skull Whistle, data: {id: skull-whistle}}
+  - {text: Soul Clump, data: {id: soul-clump}}
+  - {text: Spystone, data: {id: spystone}}
+  - {text: Sticky Rope, data: {id: sticky-rope}}
+  - {text: Stone Eater, data: {id: stone-eater}}
+  - {text: Stonewax Gum, data: {id: stonewax-gum}}
+  - {text: Sponge Army, data: {id: sponge-army}}
+  - {text: Tupshead Crown, data: {id: tupshead-crown}}
+  - {text: Veilsilk Grip, data: {id: veilsilk-grip}}
+  - {text: Voice of the Mountain, data: {id: voice-of-the-mountain}}
+  - {text: Ward Stone, data: {id: ward-stone}}
+  - {text: Whispergale, data: {id: whispergale}}
+  - {text: Whistle-Rope, data: {id: whistle-rope}}
+  - {text: Wonder Bar, data: {id: wonder-bar}}
+  - {text: Wraith Lantern, data: {id: wraith-lantern}}

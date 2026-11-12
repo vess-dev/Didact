@@ -1,0 +1,90 @@
+id: elder-scrolls-skyrim
+name: Skyrim (The Elder Scrolls 2e's campaigns and Holds)
+kind: setting
+version: 0.1.0
+description: >-
+  The setting of The Elder Scrolls 2e book, for either Elder Scrolls system (elder-scrolls-2e or
+  grimscrolls): its ten campaign frames, from the cart at Helgen to the Hall of Valor, the Daedric
+  Princes' fifteen bargains and a homestead of one's own; the nine Holds and Solstheim; and the
+  canon they stand on. The Tamrielic calendar from the book's own moment, Sundas, 17 Last Seed, 4E
+  201; canon that comes up in play as lore; the frames' places, people, threats (each system's
+  numbers) and clocks, ready to start with one generator; the Holds with their capitals, Jarls
+  and key locations; the factions; and the frames as searchable text.
+# Only core: a setting enabled in a world whose system is elder-scrolls-2e or grimscrolls (or any
+# other). Each system's numbers ride in the entries' `mechanics.<system>` blocks (GUIDE.md).
+requires: {packs: [core]}
+license:
+  spdx: CC-BY-SA-4.0 AND LicenseRef-Grimscrolls
+  redistributable: true
+  attribution: >-
+    The Elder Scrolls 2e is a fan work released under CC BY-SA 4.0. Rules chassis: Cairn Second
+    Edition by Yochai Gal (cairnrpg.com), CC BY-SA 4.0. Conversion, tables and setting text: fan
+    work, CC BY-SA 4.0; Elder Scrolls lore paraphrased from the community UESP wiki for
+    non-commercial home use. This pack adapts the book's campaign frames and Holds to Didact's
+    format and is shared under the same license; the threat cards and Faces it carries for
+    Grimscrolls are Grimscrolls' (an unofficial, non-commercial fan work adapted from Grimwild by
+    J. D. Maxwell, CC BY 4.0, by way of Grimwild: Community Edition) and keep Grimscrolls' own
+    terms: play them at your table, change them, pass them on — just don't sell them. An
+    unofficial, non-commercial fan work; The Elder Scrolls and Skyrim are trademarks of Bethesda
+    Softworks / ZeniMax. No copyrighted game text, art, logos or proprietary content is
+    reproduced.
+source:
+  title: The Elder Scrolls 2e (Campaigns, The Holds)
+  sections:
+    - campaigns/00-intro
+    - campaigns/01-the-main-quest
+    - campaigns/02-the-civil-war
+    - campaigns/03-the-companions
+    - campaigns/04-college-of-winterhold
+    - campaigns/05-the-thieves-guild
+    - campaigns/06-the-dark-brotherhood
+    - campaigns/07-the-daedric-quests
+    - campaigns/08-dawnguard
+    - campaigns/09-dragonborn
+    - campaigns/10-hearthfire
+    - wardens-guide/the-holds
+    # The canon the lore also draws on (the chapter itself is elder-scrolls-2e's).
+    - players-guide/skyrim
+settings:
+  # The Tamrielic calendar. The book doesn't print it: it assumes it ("the year 4E 201"). Months,
+  # their lengths and the weekdays are canon (UESP's calendar tables, checked by grep: Morning Star
+  # 31 days … Evening Star 31, the Oblivion and Skyrim column), and the campaign opens on the day
+  # Skyrim's opens: Sundas, the 17th of Last Seed, 4E 201 (the game "always starts" on it, and on
+  # Sundas from a fresh start). Sundas is the week's first day, so the start needs no `weekday`.
+  # `year` writes the era with the year, in every date Didact shows and in those it reads:
+  # "Sundas, 17 Last Seed 4E 201". A campaign can open on another date (`campaign new --date`, or
+  # `time set` before its first session: GUIDE.md, "The calendar").
+  # The seasons follow the months' Gregorian equivalents, at the real equinoxes and solstices, by
+  # name as Elder Scrolls 2e's weather table reads them (spring, summer, fall, winter), so its
+  # new-day trigger rolls the day's weather. The holidays are six that the canon dates and keeps
+  # all over Tamriel; the book names none with a date, and Skyrim's own calendar gives none.
+  calendar:
+    hours: 24
+    week: [Sundas, Morndas, Tirdas, Middas, Turdas, Fredas, Loredas]
+    months:
+      - {name: Morning Star, days: 31}
+      - {name: Sun's Dawn, days: 28}
+      - {name: First Seed, days: 31}
+      - {name: Rain's Hand, days: 30}
+      - {name: Second Seed, days: 31}
+      - {name: Midyear, days: 30}
+      - {name: Sun's Height, days: 31}
+      - {name: Last Seed, days: 31}
+      - {name: Hearthfire, days: 30}
+      - {name: Frostfall, days: 31}
+      - {name: Sun's Dusk, days: 30}
+      - {name: Evening Star, days: 31}
+    start: {year: 201, month: 8, day: 17}
+    year: "4E {year}"
+    seasons:
+      - {name: spring, month: 3, day: 20}
+      - {name: summer, month: 6, day: 21}
+      - {name: fall, month: 9, day: 22}
+      - {name: winter, month: 12, day: 21}
+    holidays:
+      - {name: New Life Festival, month: 1, day: 1, text: "The birth of a new year and the death of the old, kept in its own way by almost every people of Tamriel; Clavicus Vile's summoning day."}
+      - {name: Heart's Day, month: 2, day: 16, text: "Love wherever it is found, all over Tamriel: the Legend of the Lovers sung in the houses, and a free room at the inns. It began as Sanguine's summoning day."}
+      - {name: Tales and Tallows, month: 9, day: 3, text: "A day of the dead and of spirits, kept all over Tamriel; most celebrate it, and still fear the walking dead in the alleys."}
+      - {name: Witches' Festival, month: 10, day: 13, text: "Tamriel mocks and celebrates its ghosts, demons and evil spirits in defiance of its fears; Mephala's summoning day."}
+      - {name: Saturalia, month: 12, day: 25, text: "Gifts, parties and parades: a Breton holiday of Wayrest that has spread across Tamriel, heralding the New Life Festival."}
+      - {name: Old Life Festival, month: 12, day: 31, text: "The last day of the year: an Imperial holiday, kept throughout Tamriel in many ways."}

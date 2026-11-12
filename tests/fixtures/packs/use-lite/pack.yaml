@@ -1,0 +1,7 @@
+id: use-lite
+name: Use (test pack)
+kind: system
+version: 0.1.0
+description: Rules that use what a character carries and read one carried item's keys.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

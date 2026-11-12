@@ -1,0 +1,279 @@
+# Broken Steel (campaigns/06-broken-steel): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: broken-steel
+type: quest
+name: Broken Steel
+tags: [broken-steel, frame, side-arc]
+goal: After the Battle of Project Purity, Enclave forces are broken but not destroyed. The 
+  Brotherhood deploys Liberty Prime to assault the Enclave's satellite relay station — and the 
+  Enclave destroys Prime with an orbital strike from space. Adams Air Force Base holds their last 
+  Vertibird wing, a mobile base crawler, and the uplink to that satellite. The Brotherhood needs a 
+  Tesla Cannon to punch through Enclave Hellfire armor, and they need someone expendable to ride the
+  presidential metro into Adams AFB and end this.
+date: Tuesday, 6 November 2277
+body: |-
+  *The Enclave lost the purifier but they didn't lose the war. Their orbital weapon just killed Liberty Prime. Their scattered remnants are regrouping at a mobile base crawler and readying one last strike. The Brotherhood needs the party to finish what Prime started.*
+
+  ## GM notes
+
+  **Date.** Tuesday, 6 November 2277: two weeks after the Fallout 3 frame's climax, as both frames say; here two weeks after that frame's date. Open a campaign on it with `didact campaign new <id> --date 'Tuesday, 6 November 2277'`, or move one there with `didact time set 'Tuesday, 6 November 2277'` before its first session.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup Broken Steel tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** Elder Lyons (or his replacement) summons the party to the Citadel. Liberty Prime has been destroyed. The Brotherhood's morale is shattered. Scribe Rothchild has a plan — but it needs parts the Brotherhood doesn't have, and a route they can't secure on their own.
+
+  **Plot beats.**
+
+  1. Liberty Prime Falls. The campaign opens with the aftermath — or, if the Overseer is bold, with Prime's last assault (see Bestiary → Liberty Prime). The Brotherhood deploys Prime against the Enclave's satellite relay station. An orbital strike from the Bradley-Hercules satellite drops from the sky and annihilates Prime in a single shot. The Brotherhood retreats in shock. Sarah Lyons is wounded. Both clocks start here — the Brotherhood is already planning its answer, and the Enclave knows it is reeling and is preparing to press the advantage.
+  2. The Citadel Briefing. Scribe Rothchild has a plan. The Brotherhood needs a Tesla Cannon — a weapon that can crack Hellfire power armor and Enclave shielding. To build one, they need a Tesla coil from the Olney Powerworks beneath Old Olney. And to reach Adams AFB, they need the Presidential Metro powered up. The party is handed both jobs.
+  3. Old Olney and the Tesla Coil. A deathclaw-infested town between the Citadel and the Powerworks. The party can blast through, sneak through, or find a sewer route scribes have marked on an old map. The Olney Powerworks lies beneath — a pre-war research facility holding a working Tesla coil. The facility is guarded by Enclave deathclaws in implant collars. Retrieving the coil lets Scribe Vallincourt build the Tesla Cannon.
+  4. Waking the Metro. The pre-war Presidential Metro is still parked in its station. M.A.R.Go.T., the line's transit computer, greets the party in scripted pre-war courtesy. The train needs a working fusion core and a cleared line — a car full of ferals has to be dealt with before the train can move. The ride itself is one of the safest scenes in the campaign; let the party breathe.
+  5. Under the Flight Deck. The Metro drops the party into a service hatch beneath Adams's main runway. Above them: Vertibirds, fuel depots, Hellfire Troopers patrolling in pairs. The party's first job is not to be seen. This is the scene where stealth matters most; failure means the Assault Clock jumps two ticks.
+  6. Boarding the Crawler. Whether by ambush, stealth, or force, the party gets aboard the Enclave mobile base. The crawler is the Enclave's last major installation — command deck, barracks, reactor, holding cells. Enclave officers and Hellfire troopers man the halls. The satellite uplink is on the command deck.
+  7. The Satellite Uplink. The climax. The party reaches the command deck and the satellite targeting console. Sarah Lyons's frontal assault is hitting the base exterior. The party has control of the Bradley-Hercules orbital weapon — the same one that killed Liberty Prime. They choose the target. Resolutions in the Climax below.
+
+  **Climax.**
+
+  Sarah's assault hits the base exterior. The party is on the crawler's command deck, at the satellite targeting console.
+
+  - **Strike Adams AFB.** Target the orbital weapon at the base itself. The Enclave is annihilated. The crawler is destroyed. The party escapes on a Vertibird. The Brotherhood cheers.
+  - **Strike the Citadel.** Target the Brotherhood. The party has turned. The Enclave survives, the Brotherhood is crippled, and every NPC in the Capital Wasteland remembers who pushed the button.
+  - **Disable the satellite.** Shut the uplink down. The Enclave's last card is neutralized, but their troops escape on the last Vertibirds. They'll be back — as a problem for a future campaign.
+  - **Ride it out.** The party steals the presidential Vertibird and the targeting codes. They drop one step with the Brotherhood but gain a working Vertibird (one flight per campaign — treat it as a vehicle, see Vehicles) and a weapon no one else knows they have.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "Broken Steel"}' --auto` drafts the region, 4 places, 4 people, 2 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Bestiary** (Fallout 2e / Grimfall): Enclave Trooper → `enclave-trooper` / `enclave-patrol`; Enclave Officer → `enclave-officer` / `enclave-patrol`; Enclave Hellfire Trooper → `enclave-hellfire-trooper` / `enclave-patrol`; Sentry Bot → `sentry-bot` / `sentry-bot`; Enclave Deathclaw → `enclave-deathclaw` / `deathclaw`.
+
+  **Rewards in each system's catalog:** The Tesla Cannon (fallout-2e.tesla-cannon-unique · grimfall.tesla-cannon); Enclave Hellfire Armor (fallout-2e.enclave-hellfire-armor · grimfall.enclave-hellfire-armor); Presidential Metro Access Key (grimfall.presidential-metro-access-key).
+source: campaigns/06-broken-steel#pitch
+---
+id: broken-steel-region
+type: loc
+name: Old Olney, The Presidential Metro, and Adams AFB
+tags: [broken-steel, region]
+mechanics:
+  fallout-2e: {kind: region}
+  grimfall: {kind: region}
+body: ''
+source: campaigns/06-broken-steel#the-place--old-olney-the-presidential-metro-and-adams-afb
+---
+id: broken-steel-old-olney
+type: loc
+name: Old Olney
+tags: [broken-steel, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A ruined town. Deathclaw territory. The Olney Powerworks — and the Tesla coil — lie beneath.
+source: campaigns/06-broken-steel#the-place--old-olney-the-presidential-metro-and-adams-afb
+---
+id: broken-steel-the-presidential-metro
+type: loc
+name: The Presidential Metro
+tags: [broken-steel, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A pristine pre-war train, still climate-controlled. M.A.R.Go.T., the transit computer, greets you. Feral ghouls have broken into one car.
+source: campaigns/06-broken-steel#the-place--old-olney-the-presidential-metro-and-adams-afb
+---
+id: broken-steel-adams-afb-exterior
+type: loc
+name: Adams AFB Exterior
+tags: [broken-steel, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Cratered runway, Vertibird pads, a mobile base crawler. Enclave patrols and Hellfire troopers.
+source: campaigns/06-broken-steel#the-place--old-olney-the-presidential-metro-and-adams-afb
+---
+id: broken-steel-the-crawler
+type: loc
+name: The Crawler
+tags: [broken-steel, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The mobile base. Command deck, barracks, reactor, holding cells. The satellite uplink is on the command deck.
+source: campaigns/06-broken-steel#the-place--old-olney-the-presidential-metro-and-adams-afb
+---
+id: broken-steel-vertibird-gunship
+type: monster
+name: Vertibird Gunship
+knowledge: secret
+tags: [broken-steel, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Broken Steel'
+    hp: 20
+    armor: 3
+    STR: 16
+    DEX: 14
+    WIL: 12
+    rad_immune: true
+    attacks:
+    - name: door-minigun
+      damage: d10
+      qualities: [blast]
+    - {name: chin rockets, damage: d10}
+    abilities:
+    - 'Airborne: Ground melee attacks are Impaired. A Critical Damage result on the rotor brings it down.'
+  grimfall:
+    tier: elite
+    role: blaster
+    category: The Factions Under Arms
+    senses:
+    - rotor-thump before the dust storm
+    - a searchlight column
+    - burnt fuel and hot brass
+    traits: [owns the sky, 'strafes on a pattern (hover, then gun)']
+    moves: [Door-Gun Sweep, Rocket the Cover]
+    wants: the landing zone cleared and the cargo delivered — not small-arms fire finding the rotor
+    note: A 6d challenge from the ground; the rotor is the weak point and everyone knows it. 
+      Whoever's markings it wears, its arrival is the impact move.
+body: |-
+  ## GM notes
+
+  Enclave VTOL. Strafes on a round-2 pattern (hover, then gun).
+
+  Fallout 2e: 20 HP, 3 Armor, 16 STR, 14 DEX, 12 WIL, door-minigun (d10, blast), chin rockets (d10).
+
+  Grimfall: its card is `grimfall.vertibird-gunship` (Vertibird Gunship), in this record's grimfall block.
+source: campaigns/06-broken-steel#vertibird-gunship
+---
+id: broken-steel-enclave-sigma-squad-leader
+type: monster
+name: Enclave Sigma Squad Leader
+knowledge: secret
+tags: [broken-steel, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Broken Steel'
+    hp: 12
+    armor: 3
+    STR: 14
+    DEX: 14
+    WIL: 14
+    attacks:
+    - name: heavy incinerator
+      damage: d10
+      qualities: [blast, bulky]
+    - name: frag grenades
+      damage: d10
+      qualities: [blast]
+    abilities: ['Rally: While he lives, nearby Enclave Troopers automatically pass Morale saves.']
+  grimfall:
+    tier: tough
+    role: blaster
+    category: The Factions Under Arms
+    senses:
+    - sealed black plate and a filter-flattened voice
+    - plasma whine spinning up
+    - scorched air
+    traits: [best gear in the wastes, believes the paperwork]
+    moves: [Plasma Volley (nothing left to bury), Vertibird on Station]
+    wants: specimens, samples, and silence — you are not, technically, a citizen
+    note: Troopers fight as 6d pools of toughs; while an Officer directs them, each suspense spent 
+      on the squad can hit two targets at once. A Hellfire trooper in flame-black plate is a 6d 
+      elite that fire cannot touch. The scientist behind them will surrender instantly and lie 
+      fluently.
+body: |-
+  ## GM notes
+
+  The Enclave's last field commander on the crawler, in flame-scorched Hellfire armor. A true believer with nowhere left to retreat.
+
+  Fallout 2e: 12 HP, 3 Armor, 14 STR, 14 DEX, 14 WIL, heavy incinerator (d10, blast, bulky), frag grenades (d10, blast).
+
+  Grimfall: its card is `grimfall.enclave-patrol` (Enclave Patrol), in this record's grimfall block.
+source: campaigns/06-broken-steel#enclave-sigma-squad-leader
+---
+id: broken-steel-elder-lyons
+type: npc
+name: Elder Lyons
+knowledge: secret
+tags: [broken-steel, cast]
+fields: {role: the Brotherhood's conscience}
+details: {wants: 'Wants the Enclave broken, not annihilated.'}
+body: |-
+  ## GM notes
+
+  **Elder Lyons** — the Brotherhood's conscience. Wants the Enclave broken, not annihilated. Exhausted by Prime's loss.
+source: campaigns/06-broken-steel#cast
+---
+id: broken-steel-sarah-lyons
+type: npc
+name: Sarah Lyons
+knowledge: secret
+tags: [broken-steel, cast]
+fields: {role: 'Sentinel, wounded in the relay station assault but still leading'}
+body: |-
+  ## GM notes
+
+  **Sarah Lyons** — Sentinel, wounded in the relay station assault but still leading. Will lead the frontal assault on Adams.
+source: campaigns/06-broken-steel#cast
+---
+id: broken-steel-scribe-rothchild
+type: npc
+name: Scribe Rothchild
+knowledge: secret
+tags: [broken-steel, cast]
+fields: {role: mission handler}
+body: |-
+  ## GM notes
+
+  **Scribe Rothchild** — mission handler. Knows the metro. His assistant, Scribe Vallincourt, designs the Tesla Cannon.
+source: campaigns/06-broken-steel#cast
+---
+id: broken-steel-margot
+type: npc
+name: M.A.R.Go.T.
+knowledge: secret
+tags: [broken-steel, cast]
+fields:
+  role: the metro's pre-war transit computer; remembers when the line ran a president's train
+body: |-
+  ## GM notes
+
+  **M.A.R.Go.T.** — the metro's pre-war transit computer; remembers when the line ran a president's train. Useful, polite, delusional.
+source: campaigns/06-broken-steel#cast
+---
+id: broken-steel-assault-clock
+type: track
+name: Assault Clock
+knowledge: secret
+tags: [broken-steel, clock]
+kind: clock
+size: 8
+value: {value: 0, size: 8}
+note: (d8) The Brotherhood timetable. Ticks when Sarah completes a briefing, when the Tesla Cannon 
+  gains a working component, and when Rothchild certifies a party contribution to the attack plan. 
+  At 8, Sarah attacks regardless of the party's readiness.
+source: campaigns/06-broken-steel#clocks
+---
+id: broken-steel-orbital-clock
+type: track
+name: Orbital Clock
+knowledge: secret
+tags: [broken-steel, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: (d6) Enclave satellite prep. Ticks when the party retrieves an Enclave encryption log, 
+  destroys an Enclave relay without wiping it first, or is overheard discussing the assault plan in 
+  a public settlement. At 6, the Enclave fires the orbital weapon at the Citadel — Overseer's call 
+  whether it hits.
+source: campaigns/06-broken-steel#clocks

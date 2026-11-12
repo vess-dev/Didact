@@ -1,0 +1,47 @@
+table: culture
+dice: d4
+columns: [character, ambition]
+entries:
+  1: [Ascetic, Balance]
+  2: [Bureaucratic, Control]
+  3: [Curious, Discovery]
+  4: [Devout, Faith]
+---
+table: tavern       # columns read into the book's sentence
+dice: d4
+columns: [look, drink]
+read: "A {look} tavern that pours {drink}."
+entries:
+  1: [smoky, ale]
+  2: [quiet, cider]
+  3: [crowded, mead]
+  4: [flooded, bilge]
+---
+table: scars
+lookup: hp_lost
+entries:
+  1: Lasting scar
+  2: Rattling blow
+  3-4: Walloped
+  5+: Broken limb
+---
+table: encounters
+entries:
+  - {text: Wolves, weight: 3}
+  - {text: A lost merchant, weight: 1}
+---
+table: taint
+dice: d20 + @corruption
+clamp: true
+entries: {1-10: Nothing, 11-19: Whispers, 20: Possession}
+---
+table: fate
+lookup: [odds, chaos]
+entries:
+  likely: {1-4: [10, 50, 91], 5-9: [15, 75, 96]}
+  unlikely: {1-4: [5, 25, 86], 5-9: [10, 50, 91]}
+---
+table: omens
+dice: d4
+duplicates: make_it_worse
+entries: {1: Crows, 2: Blood moon, 3: {text: Two omens, roll: 2}, 4: Silence}

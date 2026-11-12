@@ -1,0 +1,33 @@
+# The GM's kit: arcana (The Armory; Science, Not Sorcery; Building Your Own) and roles (The
+# Bestiary). Both replace the parent's types whole (its arcana are hidden, its roles replaced by
+# Grimfall's): an arcana's tier, arsenal, touchstones, the Limit that bites, a mythic machine's
+# needs, its pools and a power armor suit's Plating; a role's way of fighting and faltering.
+type: arcana
+label: Arcana
+fields:
+  tier: {kind: enum, values: [trivial, minor, major, mythic], help: "Minor: a narrow edge, never potent. Major: a broad edge plus an engine (a once-per-session potent use, a 4d power pool, or both). Mythic: no cap but the table's judgment. Trivial: a chem-grade one-shot."}
+  expendable: {kind: flag, default: false, help: "Single-use (×1): it punches one tier above its weight (a minor ×1 gives one potent effect; a major ×1, one ritual-level effect; a mythic ×1 is a plot device)."}
+  kind: {kind: enum, values: [relic, weapon, armor], help: "Its arsenal: Relics of the Old World, Unique Weapons, Unique Armors."}
+  touchstones: {kind: list, help: "Three touchstones; the name and description are always the touchstones too."}
+  limit: {kind: text, help: "The Limit that bites: a pool, a price, or a person who wants it back."}
+  needs: {kind: text, help: "A mythic machine's requirements (not a ritual's anchors: a mythic counts as its own)."}
+  pool: {kind: int, min: 0, help: "Its first pool's dice; pools refresh each session unless the card names a unique reset."}
+  pools: {kind: list, help: "Every pool the card names: [{name, dice, kind}] (*2d Aid*, *4d Cells* power pool)."}
+  unique_reset: {kind: flag, help: "Its pool comes back only with its own named reset (rare ammunition, a price, an act)."}
+  plating: {kind: int, min: 0, help: "A power armor suit: the Plating pool it is for Power Armor Training (3d unless the card says otherwise)."}
+  power_armor: {kind: flag, help: "A powered frame: it rides the Sledge's Power Armor Training; untrained, a loud half-ton liability."}
+guidance: >-
+  Arcana are the relics: minor, major and mythic, most balanced by a pool or a price. Read every
+  card against its tier: a minor item is a narrow edge (+1d in a narrow circumstance, a 2d pool
+  for a device-level trick, or a once-per-session trick), a major one a broad edge plus an engine
+  (a once-per-session potent use, a 4d power pool, or both), a mythic one answers to no cap but the
+  table's judgment. To build one: a function and a form, a name, three touchstones and one Limit
+  that bites (`didact gen run grimfall.arcana`). The GM picks the stat an arcana rolls (Wits when
+  nothing fits, or a story roll when it's pure luck). Hand out one per session at most.
+---
+type: role
+label: Role
+fields:
+  fights_by: {kind: text, help: "How it fights."}
+  falters_when: {kind: text, help: "What makes it falter."}
+guidance: "A role says how a threat fights, and what makes it falter; with a tier, it tells a foe how to fight."

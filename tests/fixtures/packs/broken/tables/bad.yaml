@@ -1,0 +1,6 @@
+table: fine
+dice: d6
+entries: {1-6: ok}
+---
+table: Not An Id
+dice: d6

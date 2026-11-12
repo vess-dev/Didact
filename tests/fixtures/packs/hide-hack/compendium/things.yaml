@@ -1,0 +1,11 @@
+id: wolf
+type: npc
+name: Wolf
+role: hunter
+body: A hairless wolf.
+---
+id: mole
+type: npc
+name: Mole
+role: digger
+body: It is the size of a pony.

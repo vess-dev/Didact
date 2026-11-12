@@ -1,0 +1,24 @@
+# Briarheart (backgrounds/briarheart): the background's two d6 tables.
+table: briarheart-1
+title: "How did the hagraven remake you?"
+dice: d6
+source: backgrounds/briarheart#how-did-the-hagraven-remake-you-roll-1d6
+entries:
+  1: "In a thunderstorm, and a little of the lightning stayed in you. Once per day, let it loose through your hands: a creature you strike or grip must pass a STR save or drop whatever it holds, its fingers jerking open."
+  2: "As a dying chieftain, and the rite kept your hate intact. Once per day, act in the first round of a fight even though you failed the DEX save to do so."
+  3: {text: "With venom in the briar. Take a vial of briar sap (3 uses): coat a blade, and the next creature it wounds must pass a STR save or the thorns take root in the wound, dealing 1d4 STR each round until someone spends an action cutting them out.", data: {gear: [{name: "Briar sap", uses: 3}]}}
+  4: "With a sliver of her malice. Once per day, mark a foe you have wounded: its wounds will not close, and no potion or spell will heal it until the next dawn."
+  5: "On the third try. Two false hearts rotted in your chest before this one held. Nothing frightens you now: you need not save against fear."
+  6: "With a black soul-shard set beside the briar. Once per day, when you fell a foe in melee, draw its dying strength into you and recover 1d6 STR; its corpse withers to a husk."
+---
+table: briarheart-2
+title: "What did you keep of the warrior you were?"
+dice: d6
+source: backgrounds/briarheart#what-did-you-keep-of-the-warrior-you-were-roll-1d6
+entries:
+  1: {text: "The Redoubt Key: The iron key to the tower of a Forsworn redoubt you once held (petty). The Forsworn there still remember you — as their champion, or as the one who left.", data: {gear: [{name: "The Redoubt Key", size: "petty"}]}}
+  2: {text: "War-Chief's Headdress: A towering Forsworn headdress (+1 Armor) of antler, bone, and black feathers. Reachfolk know at a glance what you are.", data: {gear: [{name: "War-Chief's Headdress", armor: 1}]}}
+  3: {text: "Hagraven Feathers: Three black feathers from the matron who made you (petty, 3 uses). Burn one and speak, and she hears your words wherever she is — whether she answers is her business.", data: {gear: [{name: "Hagraven Feathers", size: "petty", uses: 3}]}}
+  4: {text: "Your Own Heart: Your mortal heart, dried hard in its bowl, stolen back from the matron's altar (petty). While you carry it, she can feel where you are, but she cannot compel you.", data: {gear: [{name: "Your Own Heart", size: "petty"}]}}
+  5: "Thorned Fists: Briar-thorns have pushed through your knuckles. Your bare fists strike for d6, and you cannot be disarmed of them."
+  6: "A Captive's Gratitude: You once let a Nord captive walk free from your redoubt's cells. They are someone in Markarth now, and they owe you their life."

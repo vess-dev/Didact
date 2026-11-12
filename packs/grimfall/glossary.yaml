@@ -1,0 +1,411 @@
+# Grimfall's terms, for `didact define <term>`, in the book's words. The parent's glossary is
+# hidden (pack.yaml): Grimfall's book replaces its words wholesale, so these are the whole set.
+- term: "Action roll"
+  definition: "When you try something risky, say your goal (why) and your approach (how); the GM picks the stat; roll that many d6 and read the highest: 6 perfect (you get it, clean), 4-5 messy (you get it, and the GM makes an impact move), 1-3 grim (you don't get it, and the GM makes an impact move); a grim that's cut is a disaster. Only roll when it's risky; a messy is a full success and a full problem."
+  aliases: ["perfect", "messy", "grim", "goal", "approach", "result"]
+  see: [action]
+- term: "Critical"
+  definition: "More than one 6. Thorns can't cut a critical. Pick a bonus: greater effect (drop 1d from the related task pool before rolling it), secondary effect (the effects of a related perfect, too), or setup (a benefit to a follow-up roll). If nothing fits, take spark."
+  aliases: ["criticals", "crit", "critical bonus", "greater effect", "secondary effect"]
+  see: [action, defense]
+- term: "Disaster"
+  definition: "Grim, cut by a thorn: the worst case. You take spark as consolation."
+  see: [action, take-spark]
+- term: "Thorn"
+  definition: "A d8 for each significant difficulty. A thorn landing 7-8 cuts the result one step (perfect → messy → grim → disaster), and every such thorn cuts again. Typical rolls carry 0-2; at 3 or more, the odds fall off a cliff."
+  aliases: ["thorns", "t", "cut", "cuts"]
+  see: [action]
+- term: "Defense roll"
+  definition: "When trouble comes at you that your own roll didn't invite (the GM spends suspense, a mine clicks), the GM picks the stat that fits the danger and you roll it. Perfect: you're clear. Messy: the GM lessens it. Grim: you take it all. Disaster: worse, and you take spark."
+  see: [defense]
+- term: "Story roll"
+  definition: "For luck and off-screen fact: 1d (bad odds), 2d (even), 3d (good). Perfect: ideal. Messy: yes, with a catch. Grim: it's a problem now."
+  see: [story-roll]
+- term: "Montage roll"
+  definition: "To cross a stretch of time or wasteland in one shot, everyone makes a 2d action roll and the table keeps the highest result."
+  see: [montage]
+- term: "Spark"
+  definition: "Pure protagonist energy: spend it before any roll you make for +1d each; hold up to 2, carried between sessions."
+  see: [take-spark]
+- term: "Vantage"
+  definition: "Your frame of reference: who you are, what's on your sheet, and the scene around you; you're assumed to carry the tools of your trade. Certain (no roll; it just works), reasonable (roll it, 0-1 thorns), doubtful (2+ thorns or higher stakes), impossible (no roll; propose something smaller)."
+  aliases: ["certain", "reasonable", "doubtful", "impossible", "tools of the trade"]
+  see: [action]
+- term: "Vigilance"
+  definition: "Nobody rolls to notice. When a hidden danger is in play, the GM spotlights the survivor it matters to and, by their vantage, gives a reveal, a hint, or a strike."
+  aliases: ["reveal", "hint", "strike"]
+  see: [vigilance]
+- term: "Potency"
+  definition: "A perk that grants a potent feat lets you attempt what's normally beyond human limits, and moves an action one or more steps toward certain. At its simplest, a potent action is a normal action with a critical bonus built in."
+  aliases: ["potent feat", "potent"]
+- term: "Assist"
+  definition: "Say how you help, roll 1d alongside their roll, and share the risk."
+  see: [action]
+- term: "Protect"
+  definition: "When an ally is about to eat the consequences of their own roll, throw yourself in front: a 1d defense roll."
+  see: [defense]
+- term: "Outside help"
+  definition: "A turret you reprogrammed, a friendly settler with a rifle: the GM rolls 1d and folds it in."
+  see: [action]
+- term: "Interrupt"
+  definition: "Only with a perk that says so: roll to stop an impact move as it happens. On a perfect it's stopped, on a messy the GM banks the suspense instead, and on a grim the move lands anyway. Whatever the result, you now share the risk."
+  see: [action]
+- term: "Pool"
+  definition: "Diminishing pools track anything that runs out. Roll the pool; dice landing 1-3 drop out; at 0d the thing happens or runs dry. Task, pressure, timer, resource, power, bonus-dice, linked and campaign pools; written size-first, in italics: 3d Stimpaks."
+  aliases: ["pools", "diminishing pool"]
+  see: [pool-action, push]
+- term: "Power pool"
+  definition: "Rolled in place of a stat: take the highest die as your result, then drop the 1-3s. Spark or assist dice rolled alongside stay separate."
+  see: [pool-action]
+- term: "Bonus-dice pool"
+  definition: "A buff you draw on: roll the pool alongside your own dice and count its best die with yours, then drop its 1-3s. 3d Covering Fire."
+  see: [action]
+- term: "Push yourself"
+  definition: "Always costs: after the perk resolves (and any roll it calls for), mark a stat of your choice. If a task pool roll drops nothing, push yourself to drop 1d anyway, or pivot to a secondary effect."
+  aliases: ["push", "pivot"]
+  see: [push, mark]
+- term: "Thread"
+  definition: "Authorship: 2 per session; spend 1 to add a story detail beyond set dressing. Set dressing is free."
+  see: [renew]
+- term: "Tangle"
+  definition: "A complication you volunteer, your character's flaws steering the story; it lands with the weight of an impact move, and you take spark for it."
+  aliases: ["tangles"]
+  see: [take-spark]
+- term: "Quarrel"
+  definition: "Two survivors at genuine cross-purposes: name the stakes, both roll 2d; highest wins. No perks apply. Everyone involved takes spark."
+  see: [quarrel]
+- term: "Bond"
+  definition: "Toward each other PC, one bond: an intensity plus a nature (lowkey doubts, tense rivalry, deep affection). Change it when something lands; the other player takes spark."
+  aliases: ["bonds"]
+  see: [change-bond]
+- term: "Story arc"
+  definition: "One group arc, one or two character arcs: short, evocative directions. Resolving one with a real moment earns spark."
+  aliases: ["arc", "arcs", "group arc"]
+  see: [resolve-arc]
+- term: "Mark"
+  definition: "Light damage to a stat: +1t on your next roll with it, then it clears. Marking an already-marked stat inflicts harm instead; pushing yourself costs a mark."
+  aliases: ["marks"]
+  see: [mark]
+- term: "Rad mark"
+  definition: "A mark from radiation: it lingers like a condition, +1t on every roll with that stat until it clears, which it doesn't when you roll the stat, only with RadAway, a real rest, or a perk that sheds it."
+  aliases: ["rad marks"]
+  see: [rad, chem]
+- term: "Harm"
+  definition: "The serious ladder: bloodied (+1t on physical rolls), rattled (+1t on mental rolls), desperate (+1t on everything), dropped."
+  aliases: ["bloodied", "rattled", "desperate"]
+  see: [harm]
+- term: "Dropped"
+  definition: "Harm that would make you desperate a second time takes you out of the scene. A story roll (usually 2d): perfect, just out until the scene ends; messy, it costs you a condition; grim, it's dire: a permanent condition, or the end of your story (sacrifice: one last automatic action, then the credits; retirement: bow out soon, and if you're dropped again first, you die; or another end you choose)."
+  aliases: ["sacrifice", "retirement"]
+  see: [dropped, end-story]
+- term: "Vex"
+  definition: "A flash of hot emotion: fight, flight, freeze, freak out. You pick how it plays; it lasts a beat or two."
+  see: [vex]
+- term: "Condition"
+  definition: "A specific malady: short-term (winded), urgent (a timer to worse: 4d Lethal Dose → dropped), long-term (Hooked: Jet), permanent (lost eye). +1t when one specifically hinders you."
+  aliases: ["conditions"]
+- term: "Stakes"
+  definition: "How hard the world hits, said out loud: low (a mark at most), regular (one harm, the default), high (moves land double, and a disaster can drop you), dire (any impact move drops you)."
+  see: [impact]
+- term: "Suspense"
+  definition: "The GM's currency of dramatic timing: earned 1 at a time by skipping a prompted impact move or by suspense moves, spent 1 to strike at any moment. Every challenge brings 2 bonus suspense of its own."
+  see: [suspense]
+- term: "Suspense move"
+  definition: "Build Up, Clue In, Foreshadow, Resolve: the GM's moves that earn (or, Foreshadow, cost nothing for) suspense."
+  aliases: ["Build Up", "Clue In", "Foreshadow", "Resolve"]
+  see: [suspense-move]
+- term: "Impact move"
+  definition: "Complicate Things, Counter, Hit Hard, Lock Down: how the world hits back, on messy and grim rolls and whenever the GM spends suspense."
+  aliases: ["Complicate Things", "Counter", "Hit Hard", "Lock Down", "impact moves"]
+  see: [impact]
+- term: "Challenge"
+  definition: "Anything worth screen time: a task pool (2d-8d), one or two traits, two or three moves, and, when failure has a shape, a fail state."
+  aliases: ["challenges", "fail state"]
+  see: [challenge]
+- term: "Battleground"
+  definition: "When the place itself fights: its features (they bend vantage and thorns) and threats (each carries 2 suspense of its own, or a timer)."
+  see: [battleground]
+- term: "Tier"
+  definition: "A threat's presence: mooks are fodder (a pack is one pool, usually 4d), toughs fall one at a time (a knot is a pool, usually 6d), elites are a challenge unto themselves (usually 6d), bosses own the scene (8d, or a linked challenge). Perks call mooks lesser foes, and elites and bosses greater ones."
+  aliases: ["mook", "tough", "elite", "boss", "lesser", "greater", "lesser foe", "greater foe"]
+  see: [foe]
+- term: "Role"
+  definition: "How a threat fights, and what makes it falter: blaster, brute, lurker, marksman, predator, protector, skirmisher, swarmer, tactician, trickster."
+- term: "Class"
+  definition: "One of seven, one for each letter of S.P.E.C.I.A.L.: a bundle of themed perks around a signature engine, nothing more. The class decides your Core Perk and where your story starts."
+  aliases: ["classes"]
+  see: [pc]
+- term: "S.P.E.C.I.A.L."
+  definition: "Vault-Tec's seven letters, the classes' themes: Strength (the Sledge), Perception (the Pathfinder), Endurance (the Everlast), Charisma (the Charmer), Intelligence (the Inventor), Agility (the Ace), Luck (the Longshot). Not a second stat line: each theme leans on one of the four stats."
+  aliases: ["SPECIAL"]
+- term: "Perk"
+  definition: "A special advantage that sets your survivor apart: each one expands your vantage. Every perk except the Core Perks is open to every survivor, once, unless it's repeatable."
+  aliases: ["perks", "signature perk", "repeatable"]
+  see: [level-up]
+- term: "Core Perk"
+  definition: "A class's engine, its class's alone, with Growth: it gets stronger at levels 2, 4 and 6, or at levels 3 and 6."
+  aliases: ["Core Perks", "Growth"]
+- term: "Perk dice"
+  definition: "Perk dice don't stack: however many perks apply to a roll, Core Perks included, they add +1d in total, and the same goes for setups, chems and relics: one die of each kind. Spark, assists, and special dice like the Weak Point die always add on top."
+  see: [action]
+- term: "Tag"
+  definition: "A string attached to a perk, after its name: Works suited up (when it works), Needs a companion (what you need first), repeatable (take it again for more). No tag, no strings."
+  aliases: ["tags"]
+- term: "Given time"
+  definition: "At least a beat of undisturbed work; perks that say so usually let you push yourself to do it on the spot instead."
+- term: "Always"
+  definition: "Holds about 95% of the time: it takes a Counter from a truly exceptional threat, or fiction that plainly rules it out, to stop it."
+- term: "Quick action"
+  definition: "A second action taken at once: the world's answer to the first, impact move included, waits until both are done. One per beat, however many perks offer it."
+- term: "Might"
+  definition: "The Sledge's Unstoppable Force: 4 each scene (+1 at levels 3 and 6). Heave (a potent feat of raw force; 2 on a foe), follow through, bull through. Pain is fuel: a blow that leaves you bloodied or worse gives 1, even past the limit."
+  see: [might]
+- term: "Quarry"
+  definition: "The Pathfinder's Awareness: once per session, study a foe and name its weak point; it's your quarry for the session, and the Weak Point die adds to every roll researching, tracking or striking it."
+  aliases: ["weak point"]
+  see: [study]
+- term: "Weak Point die"
+  definition: "A special d6 added to rolls against the Pathfinder's quarry; when it lands a 6, add a critical bonus (the weakness tears wider)."
+  see: [action]
+- term: "Grit"
+  definition: "The Everlast's Toughness: 6 each session (+1 at levels 2, 4 and 6). Dig deep: 1 Grit instead of a mark; walk it off: 2 Grit to shrug off harm entirely. When Grit turns aside something a foe did, you're set up against that foe."
+  aliases: ["Dig deep", "Walk it off"]
+  see: [mark, harm]
+- term: "Sway"
+  definition: "The Charmer's Gift of Gab: 3 each session (+1 at levels 2, 4 and 6). Spend 1, no roll, to raise an ally's die by 1, calm or provoke vex, or talk an ally down from a mark; or spend 1 and roll Presence for a potent feat of social influence, an interrupt, or to talk an ally out of being rattled. Never on yourself."
+  see: [sway]
+- term: "Device"
+  definition: "Any single effect of super-science: a device does what one skilled person could do, a new way; a potent device bends the rules. The Inventor rigs 4 devices and 2 potent devices a session (Science!), rolling Wits, the schematic as the touchstone."
+  aliases: ["devices", "potent device", "schematic", "schematics"]
+  see: [device]
+- term: "Ritual"
+  definition: "An engineering feat that changes the map: a source, two or three anchors, and the invocation, a task pool worked down over time."
+  aliases: ["rituals", "anchors", "invocation"]
+  see: [ritual]
+- term: "Cool"
+  definition: "The Ace's The Professional: 2 each session (+1 at levels 3 and 6), each a potent feat within your tagged skills."
+  aliases: ["tagged skills", "tag skills"]
+  see: [cool]
+- term: "Luck"
+  definition: "The Longshot's Luck of the Draw: 3d rolled before each session (+1 die at levels 3 and 6). Replace any d6 just rolled with one of your Luck results, then cross it off. The wheel turns: a disaster brings a fresh Luck die, if you're short."
+  see: [luck]
+- term: "All in"
+  definition: "Rooted or Better Criticals: 5s count as 6s, but 4s count as 1s, on your own dice: your stat's, plus any spark, perk, setup, chem, or relic die; never an ally's assist, outside help, a pool's dice, or a special die like the Weak Point die."
+  aliases: ["your own dice", "own dice"]
+  see: [action]
+- term: "Plating"
+  definition: "Power Armor Training's 3d resource pool each session, suited up: when physical harm would land on you, roll it and the frame eats the hit. A disaster while suited breaches it: 0d until it's repaired with parts and a day's work (a device patches it back to 1d), and a breached frame doesn't come back with the session."
+  aliases: ["breached", "suited up"]
+  see: [plating, breach]
+- term: "Flesh Wound"
+  definition: "Life Giver: instead of getting bloodied, a condition that puts +1t on all your rolls and clears when the scene ends. Only one; on a disaster, the harm as normal."
+  see: [harm]
+- term: "Stimpaks"
+  definition: "Every survivor's 3d Stimpaks resource pool: given a breather, jab one into yourself or an ally to clear one harm, then roll the pool. It refills after a night somewhere safe or in downtime. A robot's 3d Repair Kit works the same way. The grimmer dial can make it 2d, only yourself, or a single 3d pool the whole party shares."
+  aliases: ["stimpak", "Repair Kit", "breather"]
+  see: [stimpak]
+- term: "Chems"
+  definition: "A dose is a trivial expendable: a single device-level effect whose buff lasts the scene, and the strong stuff always kicks back: Buffout, Psycho, Jet, Mentats, Med-X, Cateye, Hydra, Fixer, Rad-X, RadAway."
+  aliases: ["chem", "kick", "comedown", "trivial", "Chem Stash"]
+  see: [chem]
+- term: "Hooked"
+  definition: "Ride a chem through a grim or disaster, or lean on it session after session, and the GM may hand you a long-term condition, Hooked: [chem], +1t when you're craving and dry."
+  aliases: ["addiction"]
+  see: [action]
+- term: "Hot zone"
+  definition: "Radiation that matters: +1t while you work in it, or a rad mark as you push through. A bad dose is rad-sick or rad-poisoned; a lethal dose an urgent 4d Lethal Dose (a warhead's 2d)."
+  aliases: ["bad dose", "lethal dose", "rad-sick", "rad-poisoned", "Rad-X", "RadAway"]
+  see: [rad]
+- term: "Caps"
+  definition: "Vantage and set dressing, not bookkeeping; every survivor also carries a personal 4d Caps power pool, rolled when you spend big (drop 1d first for the huge asks). At 0d, you're broke. Selling off a minor haul in a settlement adds +2d, a major one +4d (max 8d), and earns a second, different downtime action."
+  see: [spend, sell]
+- term: "Haul"
+  definition: "Serious wealth, in three sizes: minor (a working pistol and ammo, a minor arcana), major (a suit of combat armor, a major arcana), mythic (a functioning reactor, a water chip). Hauls belong to the party."
+  aliases: ["hauls"]
+  see: [sell, treasure]
+- term: "Scavenging"
+  definition: "A story roll for the place: 1d picked clean, 2d an ordinary ruin, 3d sealed since the bombs. Perfect: a minor haul or a stash; messy: a find with a catch; grim: nothing, and now something knows you're here."
+  see: [scavenge]
+- term: "Exploration tokens"
+  definition: "When the GM calls to expand the map, everyone at the table, GM included, takes 3 and spends them going around: points, specials and paths, with a waypoint for each day of hard travel."
+  aliases: ["tokens", "token menu", "waypoint", "expand the map", "map", "region map", "settlement map", "site map", "points", "specials", "paths"]
+  see: [tokens, region]
+- term: "Wonder in the wastes"
+  definition: "Take spark when you let the world in: a moment of ruined beauty, a question about the old world nobody can answer, a trip far off just to see, a scene about a place itself."
+  see: [take-spark]
+- term: "Downtime"
+  definition: "A long break (a month behind settlement walls, a season in a bunker): per-session perks and the Core Perks' wells refresh, stimpaks refill, and each survivor picks one downtime action (two different ones if they sold off a haul): rest, venture, blow off steam, pursue a goal, plan ahead. The GM rolls the faction pools, then runs one dry."
+  aliases: ["downtime action", "blow off steam", "venture", "plan ahead", "pursue a goal"]
+  see: [downtime]
+- term: "Standing"
+  definition: "How a faction sees the party, in one word: Idolized, Accepted, Neutral, Shunned, Vilified. It moves a step when you do something that faction will tell stories about."
+  aliases: ["Idolized", "Accepted", "Shunned", "Vilified", "karma"]
+  see: [standing]
+- term: "Faction pool"
+  definition: "A faction's goal, a campaign pool rolled between sessions or whenever the story triggers it; when one empties, the goal lands, or the faction moves against a rival."
+  aliases: ["faction pools"]
+  see: [faction-turn, faction-goal]
+- term: "Community"
+  definition: "A place the party plants a flag in; it grows on a Stockpile pool, paying toward assets: minor (4) or major (8), each with a face."
+  aliases: ["Stockpile", "asset", "assets"]
+  see: [stockpile, community, community-asset]
+- term: "5-point site"
+  definition: "A vault, or any delve: The Door (Entrance), The Experiment (Puzzle), The Twist (Hitch), The Confrontation (Showdown), What Vault-Tec Left (Reward), the Reward placed first."
+  aliases: ["The Door", "The Experiment", "The Twist", "The Confrontation", "What Vault-Tec Left", "vault"]
+  see: [vault]
+- term: "Wild Wasteland"
+  definition: "An optional dial: when things go strange (a critical on a story roll, a disaster in the middle of nowhere), roll a thorn on the crucible or choose, and play it absolutely straight."
+  see: [story-roll]
+- term: "Dangerous tech"
+  definition: "A tone dial: any device roll with two or more 1s, thorns included, misfires: a 1d story roll for the collateral, a dark omen, or a roll of a 6d Corruption pool."
+  aliases: ["misfire", "Corruption pool", "dark omen"]
+  see: [misfire]
+- term: "Quirk"
+  definition: "An option: at creation, an edge and a flaw welded together. The edge is always on; the flaw is a standing tangle: the first time each session it truly bites, take spark."
+  aliases: ["quirks"]
+- term: "Arcana"
+  definition: "The relics: minor, major and mythic, most balanced by a pool or a price; single-use finds are expendable (×1) and punch one tier above their weight. The name and description are always the touchstones."
+  aliases: ["relic", "relics", "expendable", "unique reset", "Limit", "tier gate"]
+  see: [arcana]
+- term: "Side character"
+  definition: "A companion run as a crew member: no class and no Core Perk, just one perk; stats as usual (1 in each, plus 4 points); backgrounds, but no tracked wises; one trait they are and one they're not, one thing they want and one they don't; a bond with your survivor only. No XP, spark or thread; anything that would mark them is harm instead."
+  aliases: ["side characters"]
+  see: [side-character]
+- term: "Companion"
+  definition: "A fiercely loyal companion (Inspirational): 3 tricks and 2 flaws; its survivor rolls 3d for its tricks, 1d otherwise; two damage boxes, marked and hurt."
+  aliases: ["tricks", "flaws"]
+  see: [companion]
+- term: "Weather & drift"
+  definition: "A wandering step: each downtime or dawn, a d6: 1-2 a step toward calm, 3-4 hold, 5-6 a step toward the green, along calm, wind, dust, rad-storm, the sky goes green."
+  aliases: ["drift"]
+  see: [drift]
+- term: "Setup"
+  definition: "A success that hands someone the upper hand improves their vantage (often fewer thorns) and gives +1d, for one follow-up or the rest of the scene, as the fiction says. One setup die, however many: dice of a kind don't stack."
+  aliases: ["set up", "setups"]
+  see: [action]
+- term: "Teamwork"
+  definition: "For a group effort, one rolls and the others assist. The GM picks who: sometimes the best at it, sometimes the worst."
+  see: [action]
+- term: "Set dressing"
+  definition: "Minor, common-sense details never cost anything: you have a lighter, the counter has a tip jar, your knife is where knives go. Anything certain in your vantage can just be established; thread is for the details that change the situation."
+  see: [thread]
+- term: "Spotlight"
+  definition: "There are no turns: the spotlight moves like a camera, not a queue. Act when it makes sense; share the screen. Grab it when you have something, pass it when you've held it."
+  aliases: ["turns", "turn order"]
+- term: "Stat"
+  definition: "Four stats, rated 1/poor to 3/great: Brawn (power, menace, toughness), Agility (precision, athletics, reflexes), Wits (smarts, trickery, reading a situation), Presence (influence, willpower, reading people). Brawn and Agility are physical, Wits and Presence mental. Stats rarely change: no perk raises one, and a survivor gets at most one permanent bump in a lifetime."
+  aliases: ["stats", "Brawn", "Agility", "Wits", "Presence"]
+- term: "Task pool"
+  definition: "Effort to overcome: 6d Crack the Vault Door, 4d Raider Pack. A dangerous foe is one: hurt it and the GM rolls its pool; at 0d it's beaten. If a roll of it drops nothing, push yourself to drop 1d anyway, or pivot to a secondary effect."
+  aliases: ["task pools"]
+  see: [push, foe]
+- term: "Pressure pool"
+  definition: "Trouble closing in: 6d The Horde Notices You."
+  aliases: ["pressure pools"]
+- term: "Timer pool"
+  definition: "Events unfolding: 8d Sunrise, 4d The Reactor Melts Down."
+  aliases: ["timer pools", "timer"]
+- term: "Resource pool"
+  definition: "Stock running out: 4d Clean Water, 3d Stimpaks. Use it, then roll it: the use always works, and the roll only shows how much is left. At 0d it's gone. The GM can also roll one as an impact move when losing some makes sense."
+  aliases: ["resource pools"]
+- term: "Linked pools"
+  definition: "Chained phases: 6d Slashing Claws + 8d The Deathclaw. Beat the first to reach the second. A boss can be a linked challenge, its parts each carrying their own pool, traits and moves, with a fail state."
+  aliases: ["linked pool", "linked challenge", "phases"]
+  see: [linked-challenge]
+- term: "Campaign pool"
+  definition: "Long-fuse events rolled between sessions and in downtime, faction pools among them: 8d The Enclave Returns."
+  aliases: ["campaign pools"]
+  see: [faction-turn]
+- term: "Healing"
+  definition: "Treatment takes time, tools, and know-how (a doctor's table, a med-kit, steady hands); it nearly always works, and the drama is what it costs. Marks clear themselves; harm clears with treatment; conditions when the fiction says so. Any real rest (a night's camp, a quiet week on the road) clears all marks and harm, and a night somewhere safe also refills stimpaks."
+  aliases: ["treatment", "real rest", "rest", "somewhere safe"]
+  see: [treat, rest, stimpak]
+- term: "Experience"
+  definition: "After each session, take 1 XP; the GM adds a bonus XP for a standout one (about one session in four). Level up when your XP boxes equal the next level, then clear them (for a slower road, slash each box before filling it). Each level: a new perk, and your Core Perk's Growth at the listed levels. Cap is level 7."
+  aliases: ["XP", "level", "levels", "level up", "slower road"]
+  see: [experience]
+- term: "Sessions start warm"
+  definition: "Before each session, look back at the last one together: every player shares their survivor's best moment and takes spark for it, thread and per-session perks reset, and the GM takes suspense and stitches the moments into the \"Previously, on…\" that opens the night."
+  aliases: ["pre-session", "previously on"]
+  see: [pre-session]
+- term: "Background"
+  definition: "Your origin and trade, the pillars of your vantage: two per survivor, three wises each, from the book's tables or built your own (a name and three wises). A heritage (ghoul, synth, super mutant, tribal, robot) can be one of them if you want it to matter mechanically; a machine or creature background is a body as much as a past."
+  aliases: ["backgrounds", "heritage"]
+- term: "Wise"
+  definition: "A phrase that expands your vantage: what you know, notice, and get away with. Three per background; swap any for one that fits better."
+  aliases: ["wises"]
+- term: "Trait"
+  definition: "Two you are and one you're not: brave, caring, confident, curious, gentle, honest, honorable, persistent, protective, quiet, rash, stubborn."
+  aliases: ["traits"]
+- term: "Desire"
+  definition: "Two you want and one you don't: belonging, glory, harmony, honor, justice, knowledge, love, power, renown, thrills, wealth, wisdom."
+  aliases: ["desires"]
+- term: "Feature"
+  definition: "What people notice, three per survivor: a ghoul's rasp, a glowing scar, a Pip-Boy that never comes off, a thousand-caps smile, dust-caked NCR fatigues."
+  aliases: ["features"]
+- term: "Party concept"
+  definition: "Before anyone writes a name, decide together what your crew is: 2 concepts that fit (Caravanners, Couriers, Do-Gooders, Mercs, Prospectors, Raiders, Regulators, Scavvers, Settlers, Tribe, Vault Expedition, Wanderers) and 1 that definitely doesn't; then pick a group arc, the next stretch of road, not the destination."
+  aliases: ["party", "concepts", "party concepts"]
+- term: "Touchstone"
+  definition: "Touchstones rule everything: a Shock Baton shocks and stuns, it doesn't heal, and if a use feels like a reach, it's past the touchstone's edge (the GM can allow it at +1t, or veto it). An Inventor's schematic is the touchstone of the device rigged from it; an arcana's name and description are always its touchstones."
+  aliases: ["touchstones"]
+  see: [device]
+- term: "GM crucible"
+  definition: "When the GM needs the seed of an answer: roll a thorn (d8) for each column, take a word from each row you land on, and smash them together. What's in the ruin? Rusted + beacon: a pre-war distress tower, still calling."
+  aliases: ["crucible", "crucibles"]
+- term: "Quest"
+  definition: "A chain of linked task pools (4d + 4d for a moderate one, 4d + 4d + 6d for a daunting one, 4d + 4d + 6d + 6d for an epic one, 4d + 4d + 6d + 6d + 8d for a legendary one) racing linked peril pools, one fewer than the quest has, sized like its first links, that the whole table can see. An errand is a montage; a job, a session with a task pool."
+  aliases: ["quests", "peril", "peril pool", "errand", "job"]
+- term: "Story kit"
+  definition: "An adventure prepped as parts, not plot: a hook heard three ways, a pressure pool or two to keep it moving, four or five useful pieces (a site map, two faces with wants, a challenge, a relic), a fail state, and the question the night is actually about."
+  aliases: ["story kits"]
+- term: "Fiction pillars"
+  definition: "Before a session, up to seven elements that might come up (a face, a place, a relic, an event), each with three sensory details, its drive, and one way to embody it at the table; above them, two or three load-bearing truths for the region, never contradicted."
+  aliases: ["fiction pillar"]
+- term: "Time passes"
+  definition: "The game jumps ahead, usually a month or a season: give each stretch three sensory details, and let one be wrong for the old world. Campaign pools roll, factions move, and downtime opens."
+  aliases: ["passage of time", "the passage of time"]
+  see: [time-passes]
+- term: "Lethality"
+  definition: "A tone dial. Deadlier: high and dire stakes often; a desperate survivor also carries an urgent condition (4d Bleeding Out); dropped = a 1d story roll; no coming back; stimpaks at 2d. Softer: low stakes often; dropped = a 3d story roll; permanent conditions are rare; stimpaks flow (the Softer stimpak dial)."
+  aliases: ["deadlier", "softer"]
+- term: "Scale"
+  definition: "A tone dial. Smaller: more rolls are risky or impossible, mooks are rare and every foe is a threat, and levels cap at 3. Larger: fewer rolls are risky, mooks are waded through and toughs fall a few at a time, survivors start at level 3, and bosses have a secret to overcome."
+- term: "Flavors of the wasteland"
+  definition: "Point the dials at a subgenre: grim survival (deadlier + supplies + focused growth), pulp heroics (softer + larger scale), frontier western (smaller scale + factions front and center), weird science (dangerous tech + Wild Wasteland on)."
+  aliases: ["flavor", "flavors", "grim survival", "pulp heroics", "frontier western", "weird science"]
+- term: "Weapon styles"
+  definition: "An option: give each signature weapon two descriptors (heavy, sweeping; quick, concealable; scoped, temperamental). They're vantage, not stats: describe using them and the thorns follow."
+  aliases: ["weapon style"]
+- term: "Armor"
+  definition: "Armor is vantage, not math. As an option, for crunchier plate: light armor gives a 1d Armor pool each session, heavy armor 2d (the Armory's heavy suits already have theirs); after a physical consequence lands, roll it to lessen the consequence, as a messy defense would. Light armor carries Lightly Armored, heavy Heavily Armored. Grit and Plating avoid harm outright; Armor only lessens it."
+  aliases: ["Armor pool", "Lightly Armored", "Heavily Armored"]
+  see: [armor]
+- term: "Supplies"
+  definition: "An option for survival-forward games: each survivor has a 4d Supplies resource pool (ammunition, rations, the little things), rolled after heavy use and as time passes away from settlements (every survivor's at once: `didact do supplies`); at 0d, hunger and thirst start writing the thorns."
+- term: "Encumbrance"
+  definition: "Normally common sense. As an option with teeth: each survivor carries 2 + Brawn slots of gear beyond armor and main weapons; most gear takes a slot, small items half, large or bulky ones two or more. Strong Back and Pack Rat laugh at it."
+- term: "Rest resets"
+  definition: "An option: per-session perks reset on a real rest instead of each session. When the group rests, everyone takes spark, per-session perks and thread reset, some conditions fade, and the GM takes 2 suspense."
+  see: [rest]
+- term: "Milestone levels"
+  definition: "An option: skip XP; the crew levels when a group arc resolves meaningfully."
+- term: "Focused growth"
+  definition: "An option: slash XP boxes before filling them (double the road), but award a bonus XP when the session hits the party concept dead-on."
+- term: "Level 0"
+  definition: "An option: start as vault kids and dirt farmers, with no Core Perk and 3 stat points instead of 4; the Core Perk and the last point arrive after the first session."
+  aliases: ["level zero"]
+- term: "Stat progression"
+  definition: "An option for long campaigns: when you level up, you can forgo the new perk to raise a stat by 1 (max 3). It counts as the survivor's one lifetime bump."
+- term: "Token initiative"
+  definition: "An option, if freeform spotlight stalls: at the start of an intense moment, give each player 2 tokens; spend one before each story beat; when everyone's spent out, all tokens refresh."
+- term: "Tick pool"
+  definition: "An option: a predictable pool, usually 2d-4d, that never rolls: it drops exactly 1d whenever triggered, a countdown the table reads like a clock."
+  aliases: ["tick pools"]
+  see: [tick]
+- term: "Writers' room"
+  definition: "An option that loosens authorship: thread and tangle details no longer need vantage; any player can offer an impact move against their own survivor (taking spark, as a tangle) or add a detail to the world, and only details that help the party cost thread."
+  aliases: ["writers room"]
+- term: "Active vigilance"
+  definition: "An option: the spotlighted PC makes a story roll, shaped by their vantage: perfect a reveal, messy a hint, grim the strike lands. A perk that guarantees a hint, like Keen eye, turns a grim into a hint."
+  see: [vigilance]

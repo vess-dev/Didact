@@ -1,0 +1,16 @@
+---
+id: point-lookout-plot-beats
+title: "Point Lookout: Plot Beats"
+tags: [campaigns, point-lookout, plot, beats]
+source: campaigns/07-point-lookout#plot-beats
+---
+Broad strokes. Five to seven sessions. The campaign is a triangle: Desmond, Calvert, and the Punga cult each want the party to kill someone else. The *Swamp Clock* ticks if the party takes their time.
+
+1. **The Ferry Arrival.** Tobar lands them at the pier in the fog. The boardwalk is partially alive — ghoul shopkeepers, a shooting gallery, a tilt-a-whirl still running. The party's memory gap from the pollen drink kicks in here: they're missing one scene from the crossing the Overseer knows about.
+2. **The Battle at Calvert Mansion.** Almost as soon as the party explores, the Brethren of the Punga assault Calvert Mansion. Desmond Lockheart begs the party to help him defend it. Fighting for Desmond earns his patronage and opens his vault of pre-war British-intelligence supplies; refusing means picking the mansion clean after it burns.
+3. **The Punga Trial.** The Brethren of the Punga cult test every visitor. A PC who breathes Mother Punga's pollen takes the **Punga Rite** and sees a vision — the Overseer should show them something real about the island they could not otherwise know. Mechanically, the PC may immediately take back one perk they once swapped out (dropping a current one if all five slots are full) without needing a fresh copy of its magazine, once this session, and takes **1d4 Fatigue**. The Cathedral will then ask a favor in return. God is listening (God is a radar dish).
+4. **Obadiah Blackhall's Tome.** Blackhall, patriarch of the old southern family at Blackhall Manor, has lost an occult book — the **Krivbeknih** — to the swampfolk. Recovering it from their ritual site is a classic side trail that leads the party into the swamp and introduces Marguerite's moonshine still and Plik's ghoul safari.
+5. **The Lighthouse.** Calvert's voice finally reaches the party directly — a pre-war brain in a jar under the lighthouse, broadcasting through the radar dish. He pitches himself as the only reasonable man on the island and promises a cure for ghoulification. He is lying about the cure. He is not lying about being reasonable.
+6. **The Underground Lab.** Beneath the lighthouse, a pre-war medical research facility — the **St. Aubin medical facility** — has been sealed since 2077. The party fights Robobrain security and retrieves a pre-war prototype — the **Microwave Emitter** or its variant. Separately, a **Chinese Intelligence Bunker** hidden beneath the aviary next to Calvert Mansion can be found during this arc — its logs reveal the pre-war Chinese spy ring that worked the resort, and the shadow war Desmond once fought in.
+7. **Pick Your Ghoul.** The party must side with Desmond, side with Calvert, or eliminate both. Each has a sponsor's weapon ready as a reward. The Punga cult will back the survivor — whoever that is — and the swamp will remember who chose what.
+8. **Silence the Obelisk.** Final scene. The obelisk is whatever broadcasts the island's influence — radar, brain tank, cult speaker. Silence it, claim it, or walk away with Tobar waiting at the pier (Tobar will try to drug them again on the way out).

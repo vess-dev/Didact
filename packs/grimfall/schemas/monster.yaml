@@ -1,0 +1,45 @@
+# Threats (The Bestiary) and companions (the Charmer's Inspirational; Running Solo & Duet). The
+# monster type replaces the parent's whole (its monsters are hidden): a card's tier, role, senses,
+# traits, moves, wants and note, a tier range's top, a linked challenge's parts and fail state, and
+# a light entry's one fact. Enemies never roll: a dangerous foe is a task pool (`didact gen run
+# grimfall.foe`).
+type: monster
+label: Threat
+fields:
+  category: {kind: text, help: "The Bestiary's section: Beasts & Vermin, Predators & Horrors, The Factions Under Arms, …"}
+  role: {kind: text, help: "How it fights, and what makes it falter: blaster, brute, lurker, marksman, predator, protector, skirmisher, swarmer, tactician, trickster (`didact compendium show grimfall.<role>`)."}
+  tier: {kind: enum, values: [mook, tough, elite, boss], help: "Mooks are fodder (a pack is one pool, usually 4d), toughs fall one at a time (a knot is a pool, usually 6d), an elite is a challenge alone (usually 6d), a boss owns the scene (8d, or a linked challenge). Perks call mooks lesser and elites and bosses greater."}
+  upto: {kind: enum, values: [tough, elite, boss], help: "A tier range's top: Mook–Elite turrets run from a 4d gun nest to a missile pod."}
+  senses: {kind: list, help: "What you see, hear and smell of it (the card's Senses)."}
+  traits: {kind: list, help: "What's true about it."}
+  moves: {kind: list, help: "What it does: impact moves."}
+  pools: {kind: list, help: "A linked challenge's parts: [{name, dice, traits, moves}] (the card's Part lines)."}
+  fail: {kind: text, help: "A linked challenge's fail state: what ends the fight the bad way (some are timers)."}
+  wants: {kind: text, label: Wants, help: "What it wants, and what it doesn't."}
+  note: {kind: text, help: "Variant strains and ranks: re-skin, re-tier and re-arm to taste."}
+  fact: {kind: text, help: "A light entry's one fact that matters (Cryptids & Oddities, Faces of the Wasteland)."}
+guidance: >-
+  A threat has no hit points: just traits, moves, and a tier that sets its presence, plus a role
+  for how it fights and what makes it falter (The Bestiary). Mooks are fodder: one good roll
+  clears several, and a pack is a single task pool, usually 4d. Toughs fall one at a time; a knot
+  of them is a pool too, usually 6d. Elites are a challenge unto themselves, usually 6d. Bosses
+  own the scene at 8d, or as a linked challenge whose parts each carry their own pool, traits and
+  moves, with a fail state. Elites and bosses framed as challenges bring 2 bonus suspense of
+  their own. Enemies never roll: their danger reaches the table as thorns, stakes, suspense and
+  the size of their pools.
+---
+type: companion
+label: Companion
+fields:
+  owner: {kind: ref, help: "The survivor it travels with (Inspirational; a lone PC's companion)."}
+  tricks: {kind: list, help: "Its tricks: distract, fight, guard, perform, rescue, retrieve, scout, search, track, warn. Its survivor rolls 3d for them, 1d otherwise."}
+  flaws: {kind: list, help: "Two flaws: aggressive, clumsy, grumpy, insatiable, jumpy, noisy, overprotective, scary, unruly."}
+  marked: {kind: flag, default: false, help: "Its first damage box: any mark."}
+  hurt: {kind: flag, default: false, help: "Its second damage box: any harm. A hurt companion can always exit a scene."}
+  hurt_boxes: {kind: int, min: 1, default: 1, help: "Another hurt box each time Inspirational is taken again (with the GM's leave)."}
+  kind: {kind: text, help: "A hired gun, a scrappy mutt, a patched-up robot, a settler you saved, a small robot or drone (Robotics Expert)."}
+guidance: >-
+  A fiercely loyal companion (the Charmer's Inspirational; any lone PC's in solo play): 3 tricks
+  and 2 flaws; its survivor rolls 3d for its tricks, 1d otherwise; two damage boxes, marked (any
+  mark) and hurt (any harm), and it can always exit a scene when hurt. Each PC adds a reciprocal
+  bond with it. If you lose it, you can bond with another.

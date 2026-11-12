@@ -1,0 +1,7 @@
+id: clock-lite
+name: Clock (test pack)
+kind: system
+version: 0.1.0
+description: Rules of every kind that read the session, the scene and the game time.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

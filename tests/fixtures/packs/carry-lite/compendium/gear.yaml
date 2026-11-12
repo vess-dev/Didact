@@ -1,0 +1,4 @@
+- {id: steel-sword, type: weapon, name: Steel sword, damage: d8, size: normal}
+- {id: potion-of-healing, type: item, name: Potion of Healing, size: petty}
+- {id: soul-gem, type: item, name: Soul gem, size: petty}
+- {id: anvil, type: item, name: Anvil, size: 3}

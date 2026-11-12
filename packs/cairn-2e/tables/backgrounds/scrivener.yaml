@@ -1,0 +1,60 @@
+# Scrivener (backgrounds/scrivener): the background's two d6 tables.
+table: scrivener-1
+title: What work did you keep for yourself?
+dice: d6
+source: backgrounds/scrivener
+entries:
+  1:
+    text: "The Wild Tongue. A bundle of leather-bound scrolls. A seminal work, cataloging the hidden languages of beasts and how to understand them."
+    data:
+      gear: [The Wild Tongue]
+  2:
+    text: "The Silent Symphony. Bound in fluorescent wrap. Very rare, it chronicles the subtle signs used by those employing invisibility magic."
+    data:
+      gear: [The Silent Symphony]
+  3:
+    text: "A Treatise on the Abyss. A nondescript black book. An in-depth, largely theoretical text describing the Roots, as well as information about the location of a nearby Gate."
+    data:
+      gear: [A Treatise on the Abyss]
+  4:
+    text: "The Star Waltz. A comet-shaped clasp bound in a fine leather cover. Detailed astronomical charts, celestial movements, and stellar festivals. Highly valued (100gp) for its usefulness to travelers."
+    data:
+      gear: [{name: The Star Waltz, note: 100gp}]
+  5:
+    text: "The Cathedral and the Canopy. Large-leaf binding over vellum. Nominally a children's storybook, the margins detail information about traveling, eating, and sleeping in the cloud forests."
+    data:
+      gear: [The Cathedral and the Canopy]
+  6:
+    text: "Garden of Glass. Bound in the cover of another book. A heretical work, it describes the materials, procedures, and optimal locations required to open a Gate."
+    data:
+      gear: [Garden of Glass]
+---
+table: scrivener-2
+title: How do you transcribe sensitive information?
+dice: d6
+source: backgrounds/scrivener
+entries:
+  1:
+    text: "Fib Ink: Glows when used to write true statements but fades if used to write false ones."
+    data:
+      gear: [Fib Ink]
+  2:
+    text: "Cipher Stone: A pair of sharp black stones. Each one decrypts any message written by the other."
+    data:
+      gear: [Cipher Stone]
+  3:
+    text: "Everquill: A quill that writes on any surface. You still need ink. Petty."
+    data:
+      gear: [{name: Everquill, size: petty}]
+  4:
+    text: "Whisper Vial: Whisper a message into the vial, and it will play it back to whoever opens it next."
+    data:
+      gear: [Whisper Vial]
+  5:
+    text: "Sanguine Lens: Extracts blood from a target without their knowledge. A stolen drop placed on the eye reveals memories from the past day."
+    data:
+      gear: [Sanguine Lens]
+  6:
+    text: "Echo Leaf: A blank parchment. Whomever unfurls it sees their actions of the day slowly revealed in a tight scrawl. Petty."
+    data:
+      gear: [{name: Echo Leaf, size: petty}]

@@ -1,0 +1,7 @@
+id: genesys-lite
+name: genesys paper test
+kind: system
+version: 0.1.0
+description: A paper test proving the pack format can express genesys's core mechanics.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

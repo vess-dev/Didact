@@ -1,0 +1,84 @@
+# Forest seed (wardens-guide/forest-seeds): a forestcrawl. Use it for any forested terrain,
+# such as a setting seed's Forests, Woodlands or Jungles (region=<that place>).
+generator: forest-seed
+title: Forest seed
+help: >-
+  A forest: how outsiders see it, its spirit (virtue and vice, agenda and obstacle), 8–12
+  points of interest (monster, ruins, shelter or hazard, each with a detail) joined by paths
+  from an entrance to an exit, and its trails with their markers. region=<place> puts it
+  inside a place. Prefill by name: pois, look_1, virtue, …
+params:
+  region: {kind: text, default: "", help: "The place it lies in, e.g. loc:the-weeping-woods"}
+source: wardens-guide/forest-seeds
+steps:
+  - table: forest-names
+    as: forest_name
+  - table: forest-description-1
+    as: look_1
+  - table: forest-description-2
+    as: look_2
+  - table: forest-traits-virtue
+    as: virtue
+  - table: forest-traits-vice
+    as: vice
+  - table: forest-agenda-goal
+    as: goal
+  - table: forest-agenda-obstacle
+    as: obstacle
+  - entity:
+      key: forest
+      type: loc
+      name: "{@forest_name}"
+      fields:
+        kind: forest
+        terrain: forest
+        feature: "{@look_1}, {@look_2}"
+        traits: {virtue: "@virtue", vice: "@vice"}
+        agenda: "@goal"
+        obstacle: "@obstacle"
+        region: "$region"
+
+  # Points of interest: 8–12 dice on the forest die drop.
+  - roll: d5+7
+    as: pois
+  - repeat: "@pois"
+    steps:
+      - table: forest-die-drop
+        as: drop
+      - table: "{@drop.what}"
+        as: what
+      - table: "{@drop.detail}"
+        as: detail
+      - entity:
+          key: poi
+          type: loc
+          name: "{@what}"
+          fields:
+            kind: poi
+            poi: "@drop.poi"
+            feature: "{@what}, {@detail}"
+            region: "@forest"
+
+  # Paths: 1–4 between points, from an entrance to an exit on opposite edges.
+  - map:
+      places: poi
+      paths: {max: 4}
+      conditional: 5
+      hidden: 6
+      entrance: true
+      exit: true
+
+  # Trails: runs of paths linking 3–4 points, each with a type and a marker.
+  - let: {trails: "max(1, @map.paths // 4)"}
+  - repeat: "@trails"
+    steps:
+      - table: forest-trail-type
+        as: trail
+      - table: forest-trail-marker
+        as: marker
+      - add: {to: "@forest", field: trails, value: "{@trail}, marked by {@marker}"}
+
+  - prompt: "Filter every point through the forest's description and spirit. If a conflict or pattern emerges, restate or change earlier results."
+  - prompt: "Which paths make up each trail? Turn odd pairings into questions (why does an old logging road lead to the bandits' hideout?)."
+  - prompt: "Write the forest's own encounter table from its points and agenda (the book's example: `didact table show forest-example-encounters`)."
+  - prompt: "Exploring it: the dungeon turn with Wilderness Events. Going off-trail costs time, effort or tools, and always rolls an event."

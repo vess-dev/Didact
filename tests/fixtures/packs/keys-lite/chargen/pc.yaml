@@ -1,0 +1,24 @@
+# A field naming a draft key holds the record it becomes, when the hero is made and when they
+# level up.
+chargen: pc
+title: A hero
+creates: pc
+modes: [random, guided]
+steps:
+  - entity: {key: oath, type: note, name: An old oath}
+  - apply: {oath: "@oath"}
+  - name: {from: [Wren]}
+---
+chargen: level-up
+title: Level up
+advances: pc
+params: {who: ref}
+steps:
+  - apply: {level: "{@who.level + 1}"}
+  - entity:
+      key: pool
+      type: track
+      name: "{@who.name}'s Blood"
+      fields: {kind: pool, value: {value: 3, max: 3}}
+      links: [{rel: of, to: character}]
+  - apply: {blood: "@pool"}

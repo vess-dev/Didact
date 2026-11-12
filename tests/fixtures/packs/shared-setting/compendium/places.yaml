@@ -1,0 +1,3 @@
+- {id: the-park, type: loc, name: The Park, tags: [park, region], mechanics: {role-lite: {kind: region}}}
+- {id: the-gate, type: loc, name: The Gate, tags: [park, place], mechanics: {role-lite: {kind: point}}}
+- {id: the-dam, type: loc, name: The Dam, tags: [dam, place]}

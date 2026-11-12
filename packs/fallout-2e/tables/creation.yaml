@@ -1,0 +1,223 @@
+# Fallout 2e, Overseer's Guide: Creating Monsters (CC BY-SA 4.0). The book's four two-column
+# tables, one table per column, under the parent's monster-* ids (they replace Cairn's, so
+# the monster generator rolls these). Cairn's conversion lookups (monster-morale-to-wil,
+# monster-saving-throw) have no Fallout counterpart: pack.yaml hides them.
+table: monster-physique
+title: 'Monster appearance: physique'
+description: Roll 1d20 for each column (monster-physique, monster-feature) and combine the results.
+dice: d20
+source: overseers-guide/creating-monsters#appearance-roll-1d20-twice
+entries:
+  1: Albino
+  2: Armored
+  3: Bloated
+  4: Emaciated
+  5: Eyeless
+  6: Fibrous
+  7: Gelatinous
+  8: Glowing
+  9: Hardened
+  10: Headless
+  11: Hunched
+  12: Iridescent
+  13: Leaking
+  14: Multi-eyed
+  15: Scaled
+  16: Segmented
+  17: Skeletal
+  18: Slimy
+  19: Translucent
+  20: Twisted
+---
+table: monster-feature
+title: 'Monster appearance: feature'
+description: Roll 1d20 for each column (monster-physique, monster-feature) and combine the results.
+dice: d20
+source: overseers-guide/creating-monsters#appearance-roll-1d20-twice
+entries:
+  1: Antennae
+  2: Beak
+  3: Carapace
+  4: Claws
+  5: Fangs
+  6: Fur
+  7: Gills
+  8: Horns
+  9: Markings
+  10: Plates
+  11: Scales
+  12: Shell
+  13: Snout
+  14: Stingers
+  15: Tails
+  16: Talons
+  17: Trunk
+  18: Tubing
+  19: Voice
+  20: Wings
+---
+table: monster-quirk
+title: 'Monster traits: quirks'
+description: Roll 1d20 for each column (monster-quirk, monster-weakness) and combine the results.
+dice: d20
+source: overseers-guide/creating-monsters#traits-roll-1d20-twice
+entries:
+  1: Alters its size at will
+  2: Changes color at will
+  3: Collects bones
+  4: Collects trophies
+  5: Does not die of old age
+  6: Draws symbols
+  7: Fascinated by fire
+  8: Hoards pre-war books
+  9: Loves a specific color
+  10: Rebuilds itself overnight
+  11: Loves shiny objects
+  12: Mimics voices
+  13: Moves in a straight line
+  14: Narrates everything
+  15: Obsessively cleans
+  16: Plants grow in its wake
+  17: Sleeps upside down
+  18: Speaks in pre-war slogans
+  19: Sweats useful minerals
+  20: Reproduces asexually
+---
+table: monster-weakness
+title: 'Monster traits: weaknesses'
+description: Roll 1d20 for each column (monster-quirk, monster-weakness) and combine the results.
+dice: d20
+source: overseers-guide/creating-monsters#traits-roll-1d20-twice
+entries:
+  1: Alcohol
+  2: Cold
+  3: Conversation
+  4: Flattery
+  5: Games
+  6: Gifts
+  7: EMP / Pulse
+  8: Loud noises
+  9: Purified water
+  10: Bright colors
+  11: Hot zones
+  12: Music
+  13: Cooked meals
+  14: Puzzles
+  15: Pre-war logos
+  16: Salt
+  17: Fusion-cell discharge
+  18: Sunlight
+  19: Pre-war pass codes
+  20: Weak spot
+---
+table: monster-attack-type
+title: 'Monster attacks: type'
+description: Roll 1d20 for each column (monster-attack-type, monster-critical-damage) and combine 
+  the results.
+dice: d20
+source: overseers-guide/creating-monsters#attacks-roll-1d20-twice
+entries:
+  1: Bites
+  2: Burns
+  3: Crushes
+  4: Freezes
+  5: Gases
+  6: Impales
+  7: Irradiates
+  8: Kicks
+  9: Punches
+  10: Shoots
+  11: Slams
+  12: Slashes
+  13: Slices
+  14: Sprays
+  15: Squeezes
+  16: Stabs
+  17: Stings
+  18: Throws
+  19: Whips
+  20: Zaps
+---
+table: monster-critical-damage
+title: 'Monster attacks: critical damage'
+description: Roll 1d20 for each column (monster-attack-type, monster-critical-damage) and combine 
+  the results.
+dice: d20
+source: overseers-guide/creating-monsters#attacks-roll-1d20-twice
+entries:
+  1: Asphyxiates
+  2: Bleeds
+  3: Blinds
+  4: Breaks
+  5: Crushes
+  6: Decays
+  7: Dissolves
+  8: Ensnares
+  9: Explodes
+  10: Grapples
+  11: Incapacitates
+  12: Lacerates
+  13: Liquefies
+  14: Paralyzes
+  15: Fuses to metal
+  16: Poisons
+  17: Punctures
+  18: Severs
+  19: Tramples
+  20: Weakens
+---
+table: monster-ability
+title: 'Monster abilities: ability'
+description: Roll 1d20 for each column (monster-ability, monster-ability-target) and combine the 
+  results.
+dice: d20
+source: overseers-guide/creating-monsters#abilities-roll-1d20-twice
+entries:
+  1: Absorbs
+  2: Amplifies
+  3: Attracts
+  4: Binds
+  5: Camouflages
+  6: Generates
+  7: Controls
+  8: Disables
+  9: Duplicates
+  10: Grows
+  11: Manipulates
+  12: Reflects
+  13: Regenerates
+  14: Resists
+  15: Reverses
+  16: Shapes
+  17: Shrinks
+  18: Transforms
+  19: Traps
+  20: Zaps
+---
+table: monster-ability-target
+title: 'Monster abilities: target'
+description: Roll 1d20 for each column (monster-ability, monster-ability-target) and combine the 
+  results.
+dice: d20
+source: overseers-guide/creating-monsters#abilities-roll-1d20-twice
+entries:
+  1: Body
+  2: Dreams
+  3: Element
+  4: Emotions
+  5: Energy
+  6: Health
+  7: Hearing
+  8: Signals
+  9: Light
+  10: Memory
+  11: Metal
+  12: Plants
+  13: Morale
+  14: Concrete
+  15: Surroundings
+  16: Time
+  17: Vision
+  18: Water
+  19: Weather
+  20: Radiation

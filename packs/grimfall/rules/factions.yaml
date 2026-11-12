@@ -1,0 +1,181 @@
+# Factions and communities (Running the Wasteland): standing, the wasteland keeping score; and a
+# settlement worth saving, growing on its Stockpile. The parent's faction pools (`faction-turn`,
+# `faction-pool`, `faction-pool-roll`, `faction-goal`) read the same in Grimfall and are inherited.
+action: standing
+title: Standing
+help: >-
+  The wasteland keeps score: for each faction that matters, one word for how it sees the party (or
+  one survivor, if they've earned a name of their own): Idolized, Accepted, Neutral (the default),
+  Shunned, Vilified. Standing is vantage: it sets the thorns on every dealing with that faction,
+  and what's certain, doubtful, or impossible to ask of them. It moves a step when you do
+  something that faction will tell stories about, and the same deed usually moves two factions in
+  opposite directions. Vilified: shot on sight, and somebody's paying (a 6d They Find You campaign
+  pool).
+params:
+  who: {kind: ref, to: faction, help: "The faction"}
+  shift: {kind: int, default: 1, help: "Steps: +1 warmer, -1 colder"}
+  why: {kind: text, optional: true}
+steps:
+  - let:
+      now: "default(@who.standing, 'Neutral')"
+  - let:
+      step: "if(@now == 'Vilified', 1, if(@now == 'Shunned', 2, if(@now == 'Accepted', 4, if(@now == 'Idolized', 5, 3))))"
+  - let: {next: "max(1, min(5, @step + @shift))"}
+  - let: {name: "if(@next == 1, 'Vilified', if(@next == 2, 'Shunned', if(@next == 3, 'Neutral', if(@next == 4, 'Accepted', 'Idolized'))))"}
+  - set: who.standing
+    value: "@name"
+  - message: "{@who.name}'s standing: {@now} → {@name}."
+  - if: "default(@why, '') <> ''"
+    then: ["Why: {@why}."]
+  - let: {key: "if(@next == 1, 'vilified', if(@next == 2, 'shunned', if(@next == 3, 'neutral', if(@next == 4, 'accepted', 'idolized'))))"}
+  - table: standing
+    with: {standing: "@key"}
+    as: what
+  - message: "{@what}"
+  - if: "@name == 'Vilified' and @now <> 'Vilified'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}: They Find You"
+          fields: {kind: pool, pool: campaign, value: {value: 6, max: 6}, note: "{@who.name} has the party Vilified: somebody's paying, and they find you."}
+          links: [{rel: of, to: "@who"}]
+        as: hunt
+      - message: "Vilified: somebody's paying. A 6d They Find You campaign pool ({@hunt.id}) rolls with {@who.name}'s faction turn."
+      - do: faction-lists
+        with: {who: "@who", pool: "@hunt"}
+  - prompt: "The same deed usually moves two factions in opposite directions: who else heard about it? Out of every faction's earshot, it's just karma: what the radio says about you decides whether Talon Company or the Regulators hold your warrant (Bounty Crews)."
+source: "running-the-wasteland/standing; running-the-wasteland/the-canyon-junction-powderkeg"
+---
+procedure: faction-lists
+title: A pool on a faction's list
+help: "A campaign pool listed on the faction's first free slot (pool_1 … pool_6), so `didact faction turn` rolls it."
+params:
+  who: {kind: ref, to: faction}
+  pool: {kind: ref, to: track}
+steps:
+  - if: "default(@who.pool_1, '') == @pool.id or default(@who.pool_2, '') == @pool.id or default(@who.pool_3, '') == @pool.id or default(@who.pool_4, '') == @pool.id or default(@who.pool_5, '') == @pool.id or default(@who.pool_6, '') == @pool.id"
+    then: ["{@pool.name} is on {@who.name}'s list already."]
+    else:
+      - if: "default(@who.pool_1, '') == ''"
+        then: [{set: who.pool_1, value: "@pool"}]
+        else:
+          - if: "default(@who.pool_2, '') == ''"
+            then: [{set: who.pool_2, value: "@pool"}]
+            else:
+              - if: "default(@who.pool_3, '') == ''"
+                then: [{set: who.pool_3, value: "@pool"}]
+                else:
+                  - if: "default(@who.pool_4, '') == ''"
+                    then: [{set: who.pool_4, value: "@pool"}]
+                    else:
+                      - if: "default(@who.pool_5, '') == ''"
+                        then: [{set: who.pool_5, value: "@pool"}]
+                        else:
+                          - if: "default(@who.pool_6, '') == ''"
+                            then: [{set: who.pool_6, value: "@pool"}]
+                            else: ["{@who.name} lists six pools already: roll {@pool.name} with them by hand (`didact track roll {@pool.id}`)."]
+source: running-the-wasteland/the-canyon-junction-powderkeg
+---
+action: stockpile
+title: A community's Stockpile
+help: >-
+  When the party plants a flag, it becomes a community, and it grows on a Stockpile pool. Trade
+  hauls into it (`act=trade haul=…`: a minor haul +2d, a major +4d, a mythic +8d); when time
+  passes, roll it (`act=roll`): every die that drops pays toward the next asset, minor (4: a wall,
+  a clinic, a bar with a name) or major (8: a working reactor, a caravan company, a radio mast
+  that reaches the whole region), named with `act=plan asset='…' tier=…`. Give every asset a face.
+  When raiders come, damage to an asset costs a die or two of stockpile to fix (`act=repair
+  dice=1`). A Charmer's Local Leader: a community that calls them its own pays one extra die toward
+  its next asset whenever its Stockpile rolls (`leader`).
+params:
+  community: {kind: ref, to: loc, help: "The community (a place)"}
+  pool: {kind: ref, to: track, optional: true, help: "Its Stockpile pool (left out: the community's own)"}
+  act: {enum: [trade, roll, plan, repair]}
+  haul: {enum: [minor, major, mythic], optional: true, help: "Trade: the haul's size"}
+  asset: {kind: text, optional: true, help: "Plan: the next asset"}
+  tier: {enum: [minor, major], optional: true, help: "Plan: the asset's tier (minor costs 4, major 8)"}
+  dice: {kind: int, default: 1, help: "Repair: the dice of stockpile it costs (a die or two)"}
+  leader: {kind: flag, default: false, help: "A Local Leader the community calls its own: one extra die toward its next asset"}
+steps:
+  - if: "default(@pool, '') <> ''"
+    then:
+      - do: stockpile-act
+        with: {community: "@community", pool: "@pool", act: $act, haul: $haul, asset: $asset, tier: $tier, dice: "@dice", leader: "@leader"}
+    else:
+      - if: "default(@community.stockpile, '') == ''"
+        then:
+          - stop: "{@community.name} has no Stockpile on record: name it (`pool=<track>`), or point the community at it (`didact set {@community.id} stockpile=<track>`)."
+      - do: stockpile-act
+        with: {community: "@community", pool: "@community.stockpile", act: $act, haul: $haul, asset: $asset, tier: $tier, dice: "@dice", leader: "@leader"}
+source: "running-the-wasteland/settlements-worth-saving; the-classes/the-charmer#local-leader"
+---
+procedure: stockpile-act
+title: A community's Stockpile, worked
+help: "Trade a haul in, plan the next asset, roll it when time passes, or fix an asset's damage (`stockpile`)."
+params:
+  community: {kind: ref, to: loc}
+  pool: {kind: ref, to: track}
+  act: {enum: [trade, roll, plan, repair]}
+  haul: {kind: text, optional: true}
+  asset: {kind: text, optional: true}
+  tier: {kind: text, optional: true}
+  dice: {kind: int, default: 1}
+  leader: {kind: flag, default: false}
+steps:
+  - if: "'$act' == 'trade'"
+    then:
+      - if: "default(@haul, '') == ''"
+        then:
+          - stop: "Trade what? haul=minor (+2d), major (+4d) or mythic (+8d)."
+      - do: grow-pool
+        with: {pool: "@pool", by: "if(@haul == 'mythic', 8, if(@haul == 'major', 4, 2))"}
+      - message: "{@community.name} trades in a $haul haul."
+  - if: "'$act' == 'plan'"
+    then:
+      - if: "default(@asset, '') == '' or default(@tier, '') == ''"
+        then:
+          - stop: "Name the next asset and its tier: asset='…' tier=minor (4) or major (8)."
+      - set: community.next_asset
+        value: $asset
+      - set: community.asset_tier
+        value: $tier
+      - message: "{@community.name}'s Stockpile now pays toward {@asset} ({@tier}: {if(@tier == 'major', 8, 4)})."
+  - if: "'$act' == 'repair'"
+    then:
+      - if: "@pool.value <= 0"
+        then:
+          - stop: "{@pool.name} is empty: nothing to fix the damage with."
+      - pool: "@pool"
+        mode: drop
+        drop: "@dice"
+        as: fixed
+      - message: "The damage to {@community.name}'s asset costs {@dice}d of stockpile to fix ({@fixed.left}d left)."
+  - if: "'$act' == 'roll'"
+    then:
+      - if: "@pool.value <= 0"
+        then:
+          - stop: "{@pool.name} is empty: trade a haul into it (`act=trade haul=…`)."
+      - pool: "@pool"
+        as: paid_out
+      - let:
+          cost: "if(default(@community.asset_tier, 'minor') == 'major', 8, 4)"
+          paid_now: "default(@community.paid, 0) + @paid_out.dropped + if(@leader, 1, 0)"
+      - if: "@leader"
+        then: ["Local Leader: the community pays one extra die toward its next asset."]
+      - if: "@paid_now >= @cost"
+        then:
+          - set: community.paid
+            value: "@paid_now - @cost"
+          - if: "default(@community.next_asset, '') <> ''"
+            then:
+              - set: community.assets
+                op: "+="
+                value: "{@community.next_asset}"
+              - unset: community.next_asset
+          - message: "{@community.name}'s Stockpile pays off: the asset is done ({@paid_now} of {@cost}; {@paid_now - @cost} carry toward the next)."
+          - prompt: "Give the asset a face (the barkeep, the militia sergeant, the DJ): `didact gen run grimfall.community-asset`, and name the next one (`didact do stockpile community={@community.id} act=plan asset='…' tier=…`)."
+        else:
+          - set: community.paid
+            value: "@paid_now"
+          - message: "{@community.name}'s Stockpile drops {@paid_out.dropped}d toward {if(default(@community.next_asset, '') <> '', @community.next_asset, 'the next asset')}: {@paid_now} of {@cost} paid ({@paid_out.left}d left)."
+source: "running-the-wasteland/settlements-worth-saving; the-classes/the-charmer#local-leader"

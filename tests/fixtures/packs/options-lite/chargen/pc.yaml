@@ -1,0 +1,10 @@
+# A hero whose start follows the options: deadly games start with less.
+chargen: pc
+title: A hero
+creates: pc
+modes: [random, guided]
+steps:
+  - if: "@option.lethality == 'deadly'"
+    then:
+      - apply: {hp: 4}
+  - name: {from: [Wren, Ash]}

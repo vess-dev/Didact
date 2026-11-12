@@ -1,0 +1,8 @@
+# Something only some campaigns can make: with torches, there are no everlasting lanterns.
+generator: lantern
+title: An everlasting lantern
+steps:
+  - if: "@option.torches"
+    then:
+      - stop: "Torches (an option): nothing burns forever here."
+  - entity: {key: lantern, type: item, name: Everlasting Lantern}

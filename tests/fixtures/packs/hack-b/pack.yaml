@@ -1,0 +1,6 @@
+id: hack-b
+name: Hack B (fixture)
+kind: system
+version: 0.3.0
+extends: [base-a >=1.0]
+license: {spdx: CC0-1.0}

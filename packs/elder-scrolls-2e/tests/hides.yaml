@@ -1,0 +1,48 @@
+# What pack.yaml hides of cairn-2e is gone from a Skyrim world: a Cairn monster, relic and
+# spellbook, Cairn's backgrounds', forest-name and NPC-name tables, the terrain-synonym tables
+# this book doesn't name, the two inert triggers, its rules text and its Spellbook glossary term;
+# while what this pack replaces or keeps still answers.
+test: cairn-leftovers-hidden
+script:
+  - world new holds --system {pack} --seed hides
+  - campaign new first --seed hides
+  - run: spawn blood-elk
+    fails: true
+    expect: "no entry 'blood-elk'"
+  - run: compendium find 'ward stone'
+    expect: "nothing in the compendium matches"
+  - run: spawn adhere
+    fails: true
+    expect: "no entry 'adhere'"
+  - run: table show aurifex-1
+    fails: true
+    expect: "no table 'aurifex-1'"
+  - run: table roll forest-names
+    fails: true
+    expect: "no table 'forest-names'"
+  - run: table list --pack cairn-2e
+    expect: ["10 tables:", "cairn-2e.scars", "cairn-2e.reactions", "cairn-2e.weather-winter"]
+    expect_not: ["cairn-2e.aurifex-1", "cairn-2e.npc-name-1", "cairn-2e.terrain-synonyms-tundra", "cairn-2e.spellbooks"]
+  - run: do spirit-absorbs
+    fails: true
+    expect: "no rule 'spirit-absorbs'"
+  # Cairn's Ward Stone (cairn-2e.reliquary-ward-stone-1-use) is the only text with the phrase:
+  # it stays hidden, and the words-alone fallback lists this pack's sections only.
+  - run: rules lookup 'ward stone'
+    expect: "no rules text about 'ward stone' as written; these have its words:"
+    expect_not: ["cairn-2e.", "Ward Stone"]
+  - run: define spellbook
+    fails: true
+    expect: "no glossary term 'spellbook'"
+  - run: name forest
+    fails: true
+    expect: "no name tables for 'forest'"
+  - run: define petty
+    expect: ["Petty** (elder-scrolls-2e)", "100 Septims"]
+    expect_not: "(cairn-2e)"
+  - run: spawn wolf
+    expect: "monster:wolf"
+  - run: table roll scars --with hp_lost=3
+    expect: "Walloped"
+  - run: rules lookup scars
+    expect: ["elder-scrolls-2e.core-rules-scars", "| HP Lost | Result |"]

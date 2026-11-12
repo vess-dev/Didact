@@ -1,0 +1,24 @@
+# Pilgrim of Kynareth (backgrounds/pilgrim-of-kynareth): the background's two d6 tables.
+table: pilgrim-of-kynareth-1
+title: "What did the Way of breath and sky teach you?"
+dice: d6
+source: backgrounds/pilgrim-of-kynareth#what-did-the-way-of-breath-and-sky-teach-you-roll-1d6
+entries:
+  1: "The breath that mends. Lay your hands on the hurt and breathe slow with them. Once per day, restore 1d6 STR to a creature; this counts as its magical healing for the day."
+  2: "The stillness that fear cannot enter. You need not save against fear or panic, and once per day, a word from you ends another's panic at once."
+  3: "The high places where others fall. You need not save to climb, balance, or cross narrow heights in ordinary conditions, and once per day, the wind sets you down gently from a fall that would have hurt you."
+  4: "The patience of the sky. Once per combat, instead of attacking, breathe deep and turn a blow aside: the next attack against you or an ally beside you is Impaired."
+  5: "The goddess's own breath. You can hold your breath three times as long as anyone, and once per day you may breathe over a sickroom, a smoke-filled hall, or a tainted cup, and the air or the drink comes clean."
+  6: "The wind as scripture. Once per session, ask the Warden one true thing the open air could carry to you — a coming storm, the direction of distant smoke, whether a high pass is clear."
+---
+table: pilgrim-of-kynareth-2
+title: "What token of your pilgrimage do you carry?"
+dice: d6
+source: backgrounds/pilgrim-of-kynareth#what-token-of-your-pilgrimage-do-you-carry-roll-1d6
+entries:
+  1: {text: "Amulet of Kynareth: A windswept silver pendant of her sigil (petty). Once per day, beneath the open sky, draw a deep breath and re-roll a failed STR or DEX save.", data: {gear: [{name: "Amulet of Kynareth", size: "petty"}]}}
+  2: {text: "Staff of the Way: A long pilgrim's staff of mountain ash (d6). You were taught to defend a life without taking one: a foe you drop with it is left senseless, never dead, unless you wish otherwise.", data: {gear: [{name: "Staff of the Way", damage: "d6"}]}}
+  3: {text: "Eldergleam Sap: A vial of sap bled from the Eldergleam, the eldest tree in Skyrim (2 uses). A drop restores 1d4 STR and cures one disease. Kynareth's priests would be horrified to learn how you came by it.", data: {gear: [{name: "Eldergleam Sap", uses: 2}]}}
+  4: {text: "Prayer Bells: A string of small bronze chimes from a mountain wayshrine (petty). Once per day, rung in a quiet place, they let one listener of your choice clear a Fatigue.", data: {gear: [{name: "Prayer Bells", size: "petty"}]}}
+  5: {text: "Hawk-Feather Charm: A feather from one of Kyne's hawks, bound in twine (petty). Once per day, hold it to your breast, and your next save to leap, climb, or keep your footing automatically succeeds.", data: {gear: [{name: "Hawk-Feather Charm", size: "petty"}]}}
+  6: {text: "Map of the High Ways: A roll of soft hide marked with the mountain shrines and safe passes of Skyrim (petty). You always know the surest route through the mountains, and pilgrims and hermits treat you as kin.", data: {gear: [{name: "Map of the High Ways", size: "petty"}]}}

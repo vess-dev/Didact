@@ -1,0 +1,7 @@
+id: traveller-lite
+name: lifepath paper test
+kind: system
+version: 0.1.0
+description: A paper test for lifepath character creation (terms of service that age you).
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

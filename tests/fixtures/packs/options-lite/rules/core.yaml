@@ -1,0 +1,22 @@
+# A fall reads the lethality option; lighting a torch reads the torches flag.
+check: fall
+title: A fall
+params:
+  who: ref
+before:
+  - let: {dice: "if(@option.lethality == 'deadly', 1, if(@option.lethality == 'gentle', 3, 2))"}
+roll: "(@dice)d6"
+bands:
+  safe: "max(@roll.dice) >= 4"
+  hurt: else
+on:
+  safe: ["{@who.name} lands safely ({@dice}d)."]
+  hurt: ["{@who.name} is hurt ({@dice}d)."]
+---
+action: light
+title: Light a torch
+params: {who: ref}
+steps:
+  - if: "@option.torches"
+    then: ["{@who.name}'s torch burns for an hour, then it's gone."]
+    else: ["{@who.name}'s torch burns."]

@@ -1,0 +1,252 @@
+# Cairn 2e, Warden's Guide: Creating Monsters (CC-BY-SA 4.0).
+# Creating Backgrounds, Bonds and Omens, and Growth have no tables: see CREATION.md.
+# The book's two-column tables are split into one table per column, rolled separately.
+table: monster-physique
+title: "Monster appearance: physique"
+description: Roll 1d20 for each column (monster-physique, monster-feature) and combine the results.
+dice: d20
+source: wardens-guide/creating-monsters#monster-appearance
+entries:
+  1: Albino
+  2: Black
+  3: Crystalline
+  4: Emaciated
+  5: Eyeless
+  6: Feathered
+  7: Gelatinous
+  8: Glowing
+  9: Hardened
+  10: Headless
+  11: Horned
+  12: Hunched
+  13: Iridescent
+  14: Polyocular
+  15: Scaled
+  16: Segmented
+  17: Skeletal
+  18: Slimy
+  19: Translucent
+  20: Twisted
+---
+table: monster-feature
+title: "Monster appearance: feature"
+description: Roll 1d20 for each column (monster-physique, monster-feature) and combine the results.
+dice: d20
+source: wardens-guide/creating-monsters#monster-appearance
+entries:
+  1: Antennae
+  2: Beak
+  3: Carapace
+  4: Claws
+  5: Fangs
+  6: Feathers
+  7: Fur
+  8: Gilled
+  9: Horns
+  10: Markings
+  11: Scales
+  12: Shell
+  13: Snout
+  14: Tail
+  15: Talons
+  16: Tentacles
+  17: Trunk
+  18: Tusks
+  19: Voice
+  20: Wings
+---
+table: monster-quirk
+title: "Monster traits: quirks"
+description: Roll 1d20 for each column (monster-quirk, monster-weakness) and combine the results.
+dice: d20
+source: wardens-guide/creating-monsters#monster-traits
+entries:
+  1: Alters Its Size at Will
+  2: Changes Color at Will
+  3: Collects Rare Flowers
+  4: Collects Trophies
+  5: Does Not Die of Old Age
+  6: Draws Symbols
+  7: Fascinated by Fire
+  8: Hoards Books
+  9: Loves a Specific Color
+  10: Reborn Each Day
+  11: Loves Shiny Objects
+  12: Mimics Voices
+  13: Moves in a Straight Line
+  14: Narrates Everything
+  15: Obsessively Cleans
+  16: Plants Grow in Its Wake
+  17: Sleeps Upside Down
+  18: Speaks in Rhymes
+  19: Sweats Rare Minerals
+  20: Reproduces Asexually
+---
+table: monster-weakness
+title: "Monster traits: weakness"
+description: Roll 1d20 for each column (monster-quirk, monster-weakness) and combine the results.
+dice: d20
+source: wardens-guide/creating-monsters#monster-traits
+entries:
+  1: Alcohol
+  2: Cold
+  3: Conversation
+  4: Flattery
+  5: Games
+  6: Gifts
+  7: Iron
+  8: Loud Noises
+  9: Mirrors
+  10: Bright Colors
+  11: Moonlight
+  12: Music
+  13: Prepared Meals
+  14: Puzzles
+  15: Religious Icons
+  16: Salt
+  17: Silver
+  18: Sunlight
+  19: True Name
+  20: Weak Spot
+---
+table: monster-attack-type
+title: "Monster attacks: type"
+description: >-
+  Roll 1d20 for each column (monster-attack-type, monster-critical-damage) and combine the
+  results.
+dice: d20
+source: wardens-guide/creating-monsters#monster-attacks
+entries:
+  1: Bites
+  2: Blunts
+  3: Burns
+  4: Freezes
+  5: Gases
+  6: Kicks
+  7: Punches
+  8: Shoots
+  9: Slams
+  10: Slashes
+  11: Slices
+  12: Smashes
+  13: Sprays
+  14: Squeezes
+  15: Stabs
+  16: Stings
+  17: Throws
+  18: Touches
+  19: Whips
+  20: Zaps
+---
+table: monster-critical-damage
+title: "Monster attacks: critical damage"
+description: >-
+  Roll 1d20 for each column (monster-attack-type, monster-critical-damage) and combine the
+  results. The result is what the attack does when its target fails a critical damage save.
+dice: d20
+source: wardens-guide/creating-monsters#monster-attacks
+entries:
+  1: Asphyxiates
+  2: Bleeds
+  3: Blinds
+  4: Breaks
+  5: Crushes
+  6: Decays
+  7: Dissolves
+  8: Ensnares
+  9: Explodes
+  10: Grapples
+  11: Incapacitates
+  12: Lacerates
+  13: Liquefies
+  14: Paralyzes
+  15: Petrifies
+  16: Poisons
+  17: Punctures
+  18: Severs
+  19: Tramples
+  20: Weakens
+---
+table: monster-ability
+title: "Monster abilities: ability"
+description: >-
+  Roll 1d20 for each column (monster-ability, monster-ability-target) and combine the results.
+dice: d20
+source: wardens-guide/creating-monsters#monster-abilities
+entries:
+  1: Absorbs
+  2: Amplifies
+  3: Attracts
+  4: Binds
+  5: Camouflages
+  6: Conjures
+  7: Controls
+  8: Disables
+  9: Duplicates
+  10: Grows
+  11: Manipulates
+  12: Reflects
+  13: Regenerates
+  14: Resists
+  15: Reverses
+  16: Shapes
+  17: Shrinks
+  18: Transforms
+  19: Traps
+  20: {text: Zaps, note: "As printed: row 20 repeats row 20 of Monster Attacks (Zaps, Weakens)."}
+---
+table: monster-ability-target
+title: "Monster abilities: target"
+description: >-
+  Roll 1d20 for each column (monster-ability, monster-ability-target) and combine the results.
+dice: d20
+source: wardens-guide/creating-monsters#monster-abilities
+entries:
+  1: Body
+  2: Dreams
+  3: Element
+  4: Emotions
+  5: Energy
+  6: Health
+  7: Hearing
+  8: Illusions
+  9: Light
+  10: Memory
+  11: Metal
+  12: Plants
+  13: Spirit
+  14: Stone
+  15: Surroundings
+  16: Time
+  17: Vision
+  18: Water
+  19: Weather
+  20: {text: Weakens, note: "As printed: row 20 repeats row 20 of Monster Attacks (Zaps, Weakens)."}
+---
+table: monster-morale-to-wil
+title: Converting morale (ML) to WIL
+description: >-
+  When converting a monster from another system, Morale (ML), which typically ranges between
+  2-12, is a good guidepost for WIL. The book offers this as a decent guide on converting ML
+  to WIL.
+lookup: ml
+source: wardens-guide/creating-monsters#converting-monsters
+entries:
+  4: 6
+  8: 12
+  10: 15
+  12: 18
+---
+table: monster-saving-throw
+title: Saving throws to ability scores
+description: >-
+  When converting a monster from another system, which saving throws should result in an
+  increase in one of the relevant ability scores.
+lookup: saving_throw
+source: wardens-guide/creating-monsters#saving-throws
+entries:
+  Death or Poison: {text: STR, data: {abilities: [STR]}}
+  Wands: {text: DEX, data: {abilities: [DEX]}}
+  Paralysis or Petrification: {text: WIL or STR, data: {abilities: [WIL, STR]}}
+  Breath Attacks: {text: DEX or STR, data: {abilities: [DEX, STR]}}
+  "Spells, Rods or Staves": {text: WIL, data: {abilities: [WIL]}}

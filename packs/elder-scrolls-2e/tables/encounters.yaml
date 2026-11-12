@@ -1,0 +1,136 @@
+# Encounters (roll-tables/bestiary, wardens-guide/bestiary#monster-categories): a creature for
+# the situation, by threat tier; data.ids are the compendium entries named.
+table: monster-categories
+title: "Monster Categories"
+description: "Roll or choose to seed an encounter; data.ids are the creatures' compendium entries (row 20 asks to reskin a Bandit as a Legionary or Stormcloak)."
+dice: d20
+source: wardens-guide/bestiary#monster-categories
+entries:
+  1: {text: "Draugr", data: {monsters: ["Draugr", "Draugr Overlord", "Draugr Deathlord", "Dragon Priest"], ids: ["draugr", "draugr-overlord", "draugr-deathlord", "dragon-priest"]}}
+  2: {text: "Undead", data: {monsters: ["Skeleton", "Boneman", "Ghost", "Wispmother", "Bonewolf", "Wight"], ids: ["skeleton", "boneman", "ghost", "wispmother", "bonewolf", "wight"]}}
+  3: {text: "Dragon", data: {monsters: ["Dragon", "Frost Dragon", "Elder Dragon", "Ancient Dragon", "Alduin"], ids: ["dragon", "frost-dragon", "elder-dragon", "ancient-dragon", "alduin"]}}
+  4: {text: "Automaton", data: {monsters: ["Dwarven Spider", "Dwarven Sphere", "Dwarven Centurion", "Dwarven Ballista"], ids: ["dwarven-spider", "dwarven-sphere", "dwarven-centurion", "dwarven-ballista"]}}
+  5: {text: "Falmer", data: {monsters: ["Falmer", "Falmer Nightprowler", "Falmer Warmonger"], ids: ["falmer", "falmer-nightprowler", "falmer-warmonger"]}}
+  6: {text: "Chaurus", data: {monsters: ["Chaurus", "Chaurus Reaper", "Chaurus Hunter"], ids: ["chaurus", "chaurus-reaper", "chaurus-hunter"]}}
+  7: {text: "Predator", data: {monsters: ["Sabre Cat", "Bear", "Wolf", "Skeever"], ids: ["sabre-cat", "bear", "wolf", "skeever"]}}
+  8: {text: "Coastal", data: {monsters: ["Mudcrab", "Horker", "Slaughterfish", "Netch"], ids: ["mudcrab", "horker", "slaughterfish", "netch"]}}
+  9: {text: "Vermin", data: {monsters: ["Frostbite Spider", "Ash Hopper", "Ice Wraith"], ids: ["frostbite-spider", "ash-hopper", "ice-wraith"]}}
+  10: {text: "Megafauna", data: {monsters: ["Mammoth", "Giant", "Bristleback"], ids: ["mammoth", "giant", "bristleback"]}}
+  11: {text: "Troll", data: {monsters: ["Troll", "Frost Troll"], ids: ["troll", "frost-troll"]}}
+  12: {text: "Wild Spirit", data: {monsters: ["Spriggan", "Spriggan Matron", "Hagraven"], ids: ["spriggan", "spriggan-matron", "hagraven"]}}
+  13: {text: "Shapeshifter", data: {monsters: ["Werewolf", "Werebear"], ids: ["werewolf", "werebear"]}}
+  14: {text: "Atronach", data: {monsters: ["Flame Atronach", "Frost Atronach", "Storm Atronach"], ids: ["flame-atronach", "frost-atronach", "storm-atronach"]}}
+  15: {text: "Daedra", data: {monsters: ["Dremora", "Scamp", "Clannfear", "Daedroth", "Spider Daedra", "Xivilai", "Gargoyle"], ids: ["dremora", "scamp", "clannfear", "daedroth", "spider-daedra", "xivilai", "gargoyle"]}}
+  16: {text: "Apocrypha & Ash", data: {monsters: ["Seeker", "Lurker", "Ash Spawn", "Ash Guardian", "Riekling"], ids: ["seeker", "lurker", "ash-spawn", "ash-guardian", "riekling"]}}
+  17: {text: "Vampire", data: {monsters: ["Vampire", "Vampire Lord", "Death Hound", "Vampire Thrall"], ids: ["vampire", "vampire-lord", "death-hound", "vampire-thrall"]}}
+  18: {text: "Outlaw", data: {monsters: ["Bandit", "Forsworn", "Forsworn Briarheart", "Silver Hand"], ids: ["bandit", "forsworn", "forsworn-briarheart", "silver-hand"]}}
+  19: {text: "Sorcerer", data: {monsters: ["Necromancer", "Conjurer", "Miraak Cultist"], ids: ["necromancer", "conjurer", "miraak-cultist"]}}
+  20: {text: "Soldier", data: {monsters: ["Thalmor Justiciar — or reskin a Bandit as a Legionary or Stormcloak"], ids: ["thalmor-justiciar", "bandit"]}}
+---
+table: encounters-low
+title: "Encounters: low threat"
+description: "Four or more similar foes fight as a detachment. Roll the Die of Fate first if unsure which tier fits."
+dice: d20
+source: roll-tables/bestiary#low-threat-d20
+entries:
+  1: {text: "Skeever (detachment)", data: {id: "skeever", ids: ["skeever"]}}
+  2: {text: "Mudcrab (1–2 at a riverbank)", data: {id: "mudcrab", ids: ["mudcrab"]}}
+  3: {text: "Wolf (lone, scouting)", data: {id: "wolf", ids: ["wolf"]}}
+  4: {text: "Frostbite Spider (lone, in a cave mouth)", data: {id: "frostbite-spider", ids: ["frostbite-spider"]}}
+  5: {text: "Horker (basking, territorial if approached)", data: {id: "horker", ids: ["horker"]}}
+  6: {text: "Slaughterfish (detachment, in shallows)", data: {id: "slaughterfish", ids: ["slaughterfish"]}}
+  7: {text: "Skeleton (1–3, in a barrow)", data: {id: "skeleton", ids: ["skeleton"]}}
+  8: {text: "Draugr (1–2, restless in their tomb)", data: {id: "draugr", ids: ["draugr"]}}
+  9: {text: "Falmer (1–2, isolated from the warren)", data: {id: "falmer", ids: ["falmer"]}}
+  10: {text: "Chaurus (lone, freshly hatched)", data: {id: "chaurus", ids: ["chaurus"]}}
+  11: {text: "Bandit (1–2 isolated highwaymen)", data: {id: "bandit", ids: ["bandit"]}}
+  12: {text: "Forsworn (lone scout)", data: {id: "forsworn", ids: ["forsworn"]}}
+  13: {text: "Netch (drifting, slow to anger)", data: {id: "netch", ids: ["netch"]}}
+  14: {text: "Ash Hopper (1–2, in volcanic soil)", data: {id: "ash-hopper", ids: ["ash-hopper"]}}
+  15: {text: "Death Hound (lone stray, half-feral), or a Scamp loosed by a careless conjurer", data: {id: "death-hound", ids: ["death-hound", "scamp"]}}
+  16: {text: "Ghost (alone, bound to one ruined room)", data: {id: "ghost", ids: ["ghost"]}}
+  17: {text: "Bristleback (rooting in the ash, ill-tempered)", data: {id: "bristleback", ids: ["bristleback"]}}
+  18: {text: "A lone Conjurer practicing in an abandoned shrine", data: {id: "conjurer", ids: ["conjurer"]}}
+  19: {text: "Silver Hand tracker, alone and asking questions", data: {id: "silver-hand", ids: ["silver-hand"]}}
+  20: {text: "Rieklings (1–3, riding a bristleback, curious and quarrelsome)", data: {id: "riekling", ids: ["riekling"]}}
+---
+table: encounters-medium
+title: "Encounters: medium threat"
+description: "Four or more similar foes fight as a detachment. Roll the Die of Fate first if unsure which tier fits."
+dice: d20
+source: roll-tables/bestiary#medium-threat-d20
+entries:
+  1: {text: "Sabre Cat (ambush from cover)", data: {id: "sabre-cat", ids: ["sabre-cat"]}}
+  2: {text: "Bear (1–2, defending a den)", data: {id: "bear", ids: ["bear"]}}
+  3: {text: "Wolf pack (detachment)", data: {id: "wolf", ids: ["wolf"]}}
+  4: {text: "Draugr Overlord with draugr", data: {id: "draugr-overlord", ids: ["draugr-overlord"]}}
+  5: {text: "Falmer Nightprowler (stalking ahead of a warren)", data: {id: "falmer-nightprowler", ids: ["falmer-nightprowler"]}}
+  6: {text: "Falmer Warmonger leading Falmer", data: {id: "falmer-warmonger", ids: ["falmer-warmonger", "falmer"]}}
+  7: {text: "Chaurus Hunter (detachment, winged)", data: {id: "chaurus-hunter", ids: ["chaurus-hunter"]}}
+  8: {text: "Chaurus Reaper guarding an egg sac", data: {id: "chaurus-reaper", ids: ["chaurus-reaper"]}}
+  9: {text: "Werewolf (alone, mid-transformation)", data: {id: "werewolf", ids: ["werewolf"]}}
+  10: {text: "Ice Wraith (haunting a glacier pass)", data: {id: "ice-wraith", ids: ["ice-wraith"]}}
+  11: {text: "Hagraven in her nest, with snares", data: {id: "hagraven", ids: ["hagraven"]}}
+  12: {text: "Forsworn Briarheart with Forsworn (detachment)", data: {id: "forsworn-briarheart", ids: ["forsworn-briarheart", "forsworn"]}}
+  13: {text: "Conjurer with bound atronach", data: {id: "conjurer", ids: ["conjurer"]}}
+  14: {text: "Necromancer raising skeletons", data: {id: "necromancer", ids: ["necromancer"]}}
+  15: {text: "Vampire (alone, hunting) with a Vampire Thrall", data: {id: "vampire", ids: ["vampire", "vampire-thrall"]}}
+  16: {text: "Dwarven Spider (detachment, awakened by intruders)", data: {id: "dwarven-spider", ids: ["dwarven-spider"]}}
+  17: {text: "Dwarven Sphere (patrolling a ruin)", data: {id: "dwarven-sphere", ids: ["dwarven-sphere"]}}
+  18: {text: "Ash Spawn (detachment, rising from the soil)", data: {id: "ash-spawn", ids: ["ash-spawn"]}}
+  19: {text: "Thalmor Justiciar with a small escort", data: {id: "thalmor-justiciar", ids: ["thalmor-justiciar"]}}
+  20: {text: "Bandit warband (detachment, chief leading)", data: {id: "bandit", ids: ["bandit"]}}
+---
+table: encounters-high
+title: "Encounters: high threat"
+description: "Four or more similar foes fight as a detachment. Roll the Die of Fate first if unsure which tier fits."
+dice: d20
+source: roll-tables/bestiary#high-threat-d20
+entries:
+  1: {text: "Troll (alone, enraged)", data: {id: "troll", ids: ["troll"]}}
+  2: {text: "Frost Troll guarding a frozen pass", data: {id: "frost-troll", ids: ["frost-troll"]}}
+  3: {text: "Giant defending its mammoth herd", data: {id: "giant", ids: ["giant"]}}
+  4: {text: "Mammoth (lone bull, charging)", data: {id: "mammoth", ids: ["mammoth"]}}
+  5: {text: "Dwarven Centurion (animus furnace roaring)", data: {id: "dwarven-centurion", ids: ["dwarven-centurion"]}}
+  6: {text: "Dwarven Ballista mounted at a chokepoint", data: {id: "dwarven-ballista", ids: ["dwarven-ballista"]}}
+  7: {text: "Draugr Deathlord (Word Wall guardian)", data: {id: "draugr-deathlord", ids: ["draugr-deathlord"]}}
+  8: {text: "Spriggan Matron with lesser spriggans", data: {id: "spriggan-matron", ids: ["spriggan-matron"]}}
+  9: {text: "Spriggan (detachment) in a sacred grove", data: {id: "spriggan", ids: ["spriggan"]}}
+  10: {text: "Werebear (alone, berserk)", data: {id: "werebear", ids: ["werebear"]}}
+  11: {text: "Wispmother with attendant wisps", data: {id: "wispmother", ids: ["wispmother"]}}
+  12: {text: "Wight risen from a plague pit", data: {id: "wight", ids: ["wight"]}}
+  13: {text: "Bonewolf pack with a Boneman archer (detachment)", data: {id: "bonewolf", ids: ["bonewolf", "boneman"]}}
+  14: {text: "Gargoyle ambush (2–3, posing as statues)", data: {id: "gargoyle", ids: ["gargoyle"]}}
+  15: {text: "Flame, Frost, or Storm Atronach (Warden picks the element)", data: {id: "flame-atronach", ids: ["flame-atronach", "frost-atronach", "storm-atronach"]}}
+  16: {text: "A bound Daedra — a Dremora, or a Crisis-years horror (Clannfear, Daedroth, Spider Daedra, Xivilai) — guarding its summoner's work", data: {id: "dremora", ids: ["dremora", "clannfear", "daedroth", "spider-daedra", "xivilai"]}}
+  17: {text: "Seeker drifting from Apocrypha", data: {id: "seeker", ids: ["seeker"]}}
+  18: {text: "Lurker rising from black water", data: {id: "lurker", ids: ["lurker"]}}
+  19: {text: "Vampire Lord with Death Hounds", data: {id: "vampire-lord", ids: ["vampire-lord", "death-hound"]}}
+  20: {text: "Dragon (basic, circling, demanding tribute or battle)", data: {id: "dragon", ids: ["dragon"]}}
+---
+table: encounters-legendary
+title: "Encounters: legendary threat"
+description: "Four or more similar foes fight as a detachment. Roll the Die of Fate first if unsure which tier fits."
+dice: d20
+source: roll-tables/bestiary#legendary-threat-d20
+entries:
+  1: {text: "Frost Dragon perched over a frozen lair", data: {id: "frost-dragon", ids: ["frost-dragon"]}}
+  2: {text: "Elder Dragon, ancient and cruel", data: {id: "elder-dragon", ids: ["elder-dragon"]}}
+  3: {text: "Ancient Dragon, oldest of its line", data: {id: "ancient-dragon", ids: ["ancient-dragon"]}}
+  4: {text: "Dragon Priest risen in a sealed temple", data: {id: "dragon-priest", ids: ["dragon-priest"]}}
+  5: {text: "Dragon Priest with a Draugr Deathlord honor guard", data: {id: "dragon-priest", ids: ["dragon-priest", "draugr-deathlord"]}}
+  6: {text: "A pair of Ash Guardians and the wizard who conjured them, defending a master's hoard", data: {id: "ash-guardian", ids: ["ash-guardian"]}}
+  7: {text: "A Lurker rising from the black water of a Black Book's realm", data: {id: "lurker", ids: ["lurker"]}}
+  8: {text: "Seeker and Lurker together, serving Hermaeus Mora", data: {id: "seeker", ids: ["seeker", "lurker"]}}
+  9: {text: "A pack of Dremora led by a sworn champion", data: {id: "dremora", ids: ["dremora"]}}
+  10: {text: "Vampire Lord and full coven (vampires, thralls, death hounds)", data: {id: "vampire-lord", ids: ["vampire-lord"]}}
+  11: {text: "A Dragon Priest commanding a barrow of draugr", data: {id: "dragon-priest", ids: ["dragon-priest"]}}
+  12: {text: "Giant warband driving a mammoth herd in a stampede", data: {id: "giant", ids: ["giant"]}}
+  13: {text: "Dwarven Centurion flanked by spheres and a ballista", data: {id: "dwarven-centurion", ids: ["dwarven-centurion"]}}
+  14: {text: "A Miraak Cultist warband on the First Dragonborn's errand", data: {id: "miraak-cultist", ids: ["miraak-cultist"]}}
+  15: {text: "Miraak Cultist champion bearing a stolen dragon soul", data: {id: "miraak-cultist", ids: ["miraak-cultist"]}}
+  16: {text: "Alduin, the World-Eater, descending", data: {id: "alduin", ids: ["alduin"]}}
+  17: {text: "An Ancient Dragon and its Dragon Priest thrall", data: {id: "ancient-dragon", ids: ["ancient-dragon", "dragon-priest"]}}
+  18: "A named bandit king holding a fortress (Warden's design)"
+  19: "A named arch-necromancer commanding the undead (Warden's design)"
+  20: "Whatever has been hunting the party for sessions now. It found them."

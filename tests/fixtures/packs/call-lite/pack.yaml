@@ -1,0 +1,7 @@
+id: call-lite
+name: Call (test pack)
+kind: system
+version: 0.1.0
+description: "A rule that unsets a field, one that reads what another bound, and a foe named as its pool."
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

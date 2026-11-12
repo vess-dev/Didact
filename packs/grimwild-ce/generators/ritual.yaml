@@ -1,0 +1,27 @@
+# A ritual (Rituals, p. 34): magic beyond even potent spells, cast in three parts: a source of
+# magic with relevant touchstones, two or three anchors binding the physical and metaphysical
+# realms (the anchor crucibles offer ideas), and the invocation, a challenge that finalizes the
+# casting, tracked with a task pool.
+generator: ritual
+title: A ritual
+help: >-
+  A ritual, step by step: what it's meant to do, its source of magic (a spellcasting talent, a
+  scroll, a potion or other arcana, even a monster talked into helping: a PC without magic can
+  start one), 2 or 3 anchors chosen by the GM and players together (grander rituals need rarer,
+  more unique ones), and the invocation's task pool (2d to 8d). Prefill by name: intent, source,
+  anchors (how many), anchor_kind, anchor, dice, name.
+source: "p. 34"
+creates: track
+steps:
+  - ask: {as: intent, field: intent, prompt: "what the ritual is meant to do (plot-changing: the labor of a team over an extended period, or pushing the limits of implausibility)"}
+  - ask: {as: source, field: source, prompt: "its source of magic, with relevant touchstones: a spellcasting talent, a scroll, a potion or other arcana, or a monster asked or tricked into helping"}
+  - choose_or_roll: {from: [2, 3], as: anchors, prompt: "how many anchors (2 or 3; grander rituals need rarer, more unique ones)"}
+  - repeat: "@anchors"
+    steps:
+      - choose_or_roll: {from: [tangible, intangible], as: anchor_kind, prompt: "an anchor, connected to the ritual's touchstones and intent: tangible or intangible"}
+      - choose_or_roll: {table: "ritual-anchors-{@anchor_kind}", as: anchor, prompt: "the anchor"}
+      - add: {field: anchor_list, value: "@anchor"}
+  - choose_or_roll: {from: [2, 3, 4, 5, 6, 7, 8], as: dice, prompt: "the invocation's task pool: all rituals take time, and most carry risk"}
+  - apply: {kind: pool, pool: task, value: {value: "@dice", max: "@dice"}, note: "the ritual is cast"}
+  - name: {prompt: "the ritual's name: {@intent}"}
+  - prompt: "The invocation is a challenge that finalizes the casting (the wizard's chalk symbols while the party protects him): roll the pool as it goes (`didact track roll <ritual>`). With an anchor missing, it's far more difficult, or impossible. A witch's Ritualist takes +1d on invocations and can use words of power as anchors; some talents and mythic arcana cast certain rituals without anchors."

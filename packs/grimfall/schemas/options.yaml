@@ -1,0 +1,45 @@
+# Character options (Building a Survivor; The Classes; The Perk Compendium): classes, perks and
+# backgrounds, the compendium entries character creation offers.
+type: class
+label: Class
+fields:
+  special: {kind: text, help: "Its letter of S.P.E.C.I.A.L.: S, P, E, C, I, A or L."}
+  attribute: {kind: text, help: "Strength, Perception, Endurance, Charisma, Intelligence, Agility or Luck: the class's theme, never a second stat line."}
+  aka: {kind: list, help: "Other names: Bruiser, Reaver, Slab, Warboss."}
+  tagline: {kind: text, help: "The class in a line: 'the world is soft, and you are not'."}
+  engine: {kind: text, help: "Its Core Perk's engine: Might, fresh every scene."}
+  role: {kind: text, help: "At the table, you're…"}
+  first_perk: {kind: text, help: "A first perk to try (its id)."}
+  core_perk: {kind: text, help: "The id of its Core Perk (its class's alone)."}
+  growth: {kind: text, help: "How the Core Perk grows: at levels 2, 4, and 6, or at levels 3 and 6."}
+  growth_levels: {kind: list}
+  perks: {kind: list, help: "The ids of its seven signature perks (open to every survivor)."}
+  options: {kind: list, help: "Its [Optional] crucibles: [{title, text, choices}]."}
+  tables: {kind: list, help: "The ids of those crucibles' tables."}
+guidance: "A class is a Core Perk with Growth (at levels 2, 4 and 6, or 3 and 6) plus seven signature perks: an engine its player runs every session, and a decision every scene."
+---
+type: perk
+label: Perk
+fields:
+  class: {kind: text, help: "The class it's filed under (every perk but a Core Perk is open to every survivor)."}
+  core: {kind: flag, help: "A Core Perk: the class's engine, its class's alone."}
+  signature: {kind: flag, help: "One of a class's seven signature perks (Chapter 4)."}
+  growth: {kind: text, help: "A Core Perk's Growth."}
+  growth_levels: {kind: list}
+  perk_tags: {kind: list, label: Tags, help: "A tag after a perk's name is a string attached to it: Works suited up (when it works), Needs a companion (what you need first)."}
+  repeatable: {kind: flag, help: "It can be taken again, each take adding what the entry says (its Again)."}
+  pools: {kind: list, help: "The pools it gives: [{name, dice, kind}]."}
+guidance: >-
+  A perk is a special advantage that expands vantage. A compendium-weight perk never grants
+  standing potency outside a narrow domain and never raises a stat; its pools run 2d-3d, its
+  "always" covers only knowledge and vantage, and every strong trick is once per session,
+  push-priced, or given time. Perk dice don't stack: however many perks apply to a roll, they add
+  +1d in total.
+---
+type: background
+label: Background
+fields:
+  wises: {kind: list, help: "Three phrases that expand your vantage: what you know, notice, and get away with."}
+  group: {kind: text, help: "People of the Wastes, Uniforms & Factions, or Machines & Strangers."}
+  machine: {kind: flag, help: "A machine or creature background: a body as much as a past (a 3d Repair Kit for the 3d Stimpaks)."}
+guidance: "A background is a name and three wises; swap any wise for one that fits better, and rename freely."

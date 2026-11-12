@@ -1,0 +1,7 @@
+id: roll-lite
+name: Roll (test pack)
+kind: system
+version: 0.1.0
+description: Rules that roll dice a value holds as text, filled in with braces.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

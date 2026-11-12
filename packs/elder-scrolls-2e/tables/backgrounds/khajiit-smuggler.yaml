@@ -1,0 +1,24 @@
+# Khajiit Smuggler (backgrounds/khajiit-smuggler): the background's two d6 tables.
+table: khajiit-smuggler-1
+title: "How did the caravan road shape you?"
+dice: d6
+source: backgrounds/khajiit-smuggler#how-did-the-caravan-road-shape-you-roll-1d6
+entries:
+  1: "You ran with a caravan that camped outside walls that would not open. You know every smuggler's gap, culvert, and unwatched gate around Skyrim's cities; the Warden tells you one quiet way in or out of any walled town."
+  2: {text: "You ran Skooma up from the south for a Clan Mother, and saw what it does. Take two phials of Skooma (petty), each worth 50 Septims to the wrong buyer — or a moment's reckless rush and the crash that follows (see Crafting).", data: {gear: [{name: "Phial of Skooma", size: "petty", note: "worth 50 Septims to the wrong buyer"}, {name: "Phial of Skooma", size: "petty", note: "worth 50 Septims to the wrong buyer"}]}}
+  3: {text: "A jealous rival branded you a thief in three Holds. Take a forged traveler's writ (petty) that passes a careless inspection; once per day, re-roll a failed WIL save to lie or bluff your way past a guard.", data: {gear: [{name: "Traveler's writ", size: "petty"}]}}
+  4: {text: "You guarded the caravan as much as you robbed for it. Take an Elven dagger (d6) won at dice, and a debt of hospitality: any Khajiit caravan in Skyrim will shelter you, no questions asked, and stand at your back if pressed.", data: {gear: [{name: "Elven dagger", damage: "d6"}]}}
+  5: {text: "A snow bear nearly ended your road in the high passes. Take its cured pelt cloak (petty, counts as warm clothing) and the scars: your maximum HP is 1 higher.", data: {extra_hp: true, gear: [{name: "Pelt cloak", size: "petty", note: "counts as warm clothing"}]}}
+  6: "You traded with the Dunmer of Windhelm's Gray Quarter at the caravan camp by the stables, since the Nords would not let you through the gate, until Nord toughs burned your wagon. You speak the Dunmer's tongue, you know which of them still deal in the old Morrowind trade, and you owe no Nord in Eastmarch anything but a knife."
+---
+table: khajiit-smuggler-2
+title: "What keeps your goods moving?"
+dice: d6
+source: backgrounds/khajiit-smuggler#what-keeps-your-goods-moving-roll-1d6
+entries:
+  1: {text: "Pack-Guar: A plodding scaled beast of burden (+6 slots, slow) bought off Dunmer refugees. It never spooks at a shout and eats anything, but it hates the snow.", data: {companion: "pack-guar"}}
+  2: "Smuggler's Cant: A trader's silver tongue, not a tool. Spend a turn in any market and you learn who here will buy what cannot be sold openly, and what the watch is paid to overlook."
+  3: {text: "Moon Sugar Pouch: A pouch of the sacred sweet (petty, 3 uses). A pinch on the tongue makes your next attack Enhanced — then add a Fatigue as the sweetness fades.", data: {gear: [{name: "Moon Sugar Pouch", size: "petty", uses: 3}]}}
+  4: {text: "Liar's Strongbox: A Khajiit puzzle-chest with three false compartments. Anything hidden inside is never found by a search at the gate; only someone who takes the box apart will find it.", data: {gear: [{name: "Liar's Strongbox", note: "a Khajiit puzzle-chest with three false compartments"}]}}
+  5: {text: "Throwing Knives: A bandolier of weighted blades (d6, 3 uses). Recover whatever you can find after the fight.", data: {gear: [{name: "Throwing Knives", damage: "d6", uses: 3}]}}
+  6: {text: "Whisper-Bells: A string of tiny muffled bells the caravans tie at a camp's edge. Hung across a doorway or a trail, they shiver in warning when anything larger than a skeever crosses: you cannot be taken by surprise from that direction.", data: {gear: [{name: "Whisper-Bells"}]}}

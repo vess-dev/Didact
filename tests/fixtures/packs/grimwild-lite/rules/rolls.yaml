@@ -1,0 +1,24 @@
+check: action
+help: Roll a pool of d6s and read the highest; each thorn (a d8 showing 7+) cuts the result a step.
+params: {pool: {kind: int, default: 2}, thorns: {kind: int, default: 0}}
+roll: {dice: "(@pool)d6", thorns: "(@thorns)d8>=7"}
+bands:
+  critical: "count(@dice.dice, 6) >= 2 and @thorns == 0"
+  perfect: "if(max(@dice.dice) == 6, 3, if(max(@dice.dice) >= 4, 2, 1)) - @thorns >= 3"
+  messy: "if(max(@dice.dice) == 6, 3, if(max(@dice.dice) >= 4, 2, 1)) - @thorns == 2"
+  grim: "if(max(@dice.dice) == 6, 3, if(max(@dice.dice) >= 4, 2, 1)) - @thorns == 1"
+  disaster: else
+---
+action: pool-roll
+help: Roll a diminishing pool; dice showing 1–3 drop away, and the pool fires when it's empty.
+params: {pool: ref}
+steps:
+  - roll: "(@pool.dice)d6"
+    as: r
+  - let: {dropped: "count(@r.dice, 1) + count(@r.dice, 2) + count(@r.dice, 3)"}
+  - set: pool.dice
+    op: "-="
+    value: "@dropped"
+  - if: "@pool.dice == 0"
+    then: ["{@pool.name} runs out!"]
+    else: ["{@pool.name}: {@pool.dice} dice left."]

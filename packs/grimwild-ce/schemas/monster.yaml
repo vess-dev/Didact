@@ -1,0 +1,30 @@
+# Monsters (Monsters A-Z, pp. 144-171): blocks the GM builds scenes from. Pools come from the
+# tier and role (Combat Kit, p. 109), except for expanded entries that list their own.
+type: monster
+label: Monster
+fields:
+  category: {kind: text, help: "The group for grouped entries: Demon, Fey, Undead, …"}
+  role: {kind: text, help: "Brute, lurker, tactician, trickster, …"}
+  tier: {kind: enum, values: [mook, tough, elite, boss], help: "Its threat level (Combat Kit, p. 109): mooks are set dressing, a tough falls to one roll, elites and bosses are pools."}
+  palette: {kind: list, help: "Its colors, for painting the scene."}
+  traits: {kind: list, help: "✱ What's true about it."}
+  moves: {kind: list, help: "◉ What it does (impact moves)."}
+  wants: {kind: text, label: Wants}
+  doesnt_want: {kind: text, label: "Doesn't want"}
+  sights: {kind: text}
+  sounds: {kind: text}
+  smells: {kind: text}
+  table: {kind: text, help: "The id of its d6 table (e.g. its lairs or signs)."}
+  tables: {kind: list, help: "Every table of a block that has more than one."}
+  pools: {kind: list, help: "Expanded entries: linked challenges [{name, dice, traits, moves, fail, says, links, leads_to}] (dice like 8 or '8+8')."}
+  scenario: {kind: map, help: "Expanded entries: {title, text}, a ready-to-use scene."}
+  section: {kind: map, help: "An extra part that isn't a scenario: {title, text, …} (a dragon's breath weapons, a lich's spellbook)."}
+  battlegrounds: {kind: list, help: "Battlegrounds (p. 105): [{name, features, threats, enemies, leads_to}]."}
+guidance: >-
+  A monster is a tier and a role (Combat Kit, pp. 109-111) plus what makes it vivid: palette,
+  traits, moves, wants and doesn't-want, and what you see, hear and smell. Tiers: a mook is
+  set dressing (one action roll takes out several; a crowd is a pool: 4d goblins); a tough is
+  a fairly dangerous enemy (one roll takes one out; a group is a pool: 4d bandits, 8d
+  zombies); an elite challenges the party alone (a 4d-6d pool: a minotaur 6d, a treant 4d); a
+  boss commands the scene, often as linked pools (a lich 8d+4d, a dragon 4d+4d+6d+8d). The
+  role (`didact compendium show grimwild-ce.<role>`) says how it fights and how it reacts.

@@ -1,0 +1,160 @@
+id: fallout-2e
+name: Fallout 2e
+kind: system
+version: 0.1.0
+description: >-
+  Fallout 2e: a wasteland hack of Cairn Second Edition. Scavengers, raiders, vault dwellers and
+  ghouls picking their way through the ruins of the old world for caps, relics, scrap and reasons
+  to keep going. Built on the cairn-2e pack: its saves, attacks, scars and critical damage, with
+  Rads and Rad Scars, ghoulification, addiction and chems, perk magazines, scrap and crafting,
+  power armor, vehicles, companions, faction reputation, party karma and settlements; the fifty
+  backgrounds, the bestiary, the marketplace, the relics, unique weapons and armors, and the
+  seed procedures, playable in Didact.
+requires: {packs: [core, cairn-2e]}
+extends: [cairn-2e]
+# What of cairn-2e has no place in a Fallout 2e world (GUIDE.md, "What is hidden and what is
+# inherited"): its compendium, reference text and glossary (this pack's stand in), every table
+# but the two Fallout rolls as they are, the spellbook type, and the generators, rule and option
+# with no Fallout counterpart. Cast, the dungeon seed and the forest seed are replaced by a stop
+# that names the Fallout command instead.
+hides:
+  type: [spellbook]
+  table: ["*", "!die-of-fate", "!head-wound"]
+  action: [faction-action]
+  option: [unusual-weather]
+  entry: ["*"]
+  generator: [spellbook, realm, pointcrawl, point-of-interest]
+  reference: ["*"]
+  term: ["*"]
+license:
+  spdx: CC-BY-SA-4.0
+  redistributable: true
+  attribution: >-
+    Fallout 2e, a wasteland hack of Cairn Second Edition by Yochai Gal (cairnrpg.com), which is
+    released under CC BY-SA 4.0; Fallout 2e is likewise released under CC BY-SA 4.0. Rules
+    chassis: Yochai Gal, Cairn Second Edition (CC BY-SA 4.0). Conversion, tables, and setting
+    text: fan work, CC BY-SA 4.0. This is an unofficial, non-commercial fan work. "Fallout" is a
+    trademark of Bethesda Softworks / ZeniMax; this hack uses the Fallout milieu as generic
+    post-apocalyptic flavor for home play only. This pack adapts its text and tables to Didact's
+    format and is shared under the same license.
+source:
+  title: Fallout 2e
+  sections:
+    - players-guide/overview-and-principles
+    - players-guide/core-rules
+    - players-guide/rad-scars
+    - players-guide/hazards
+    - players-guide/character-creation
+    - players-guide/unusual-pcs
+    - players-guide/procedures
+    - players-guide/crafting
+    - players-guide/companions
+    - players-guide/vehicles
+    - players-guide/the-wasteland
+    - players-guide/pregens
+    - players-guide/quick-reference
+    - players-guide/character-sheet
+    - players-guide/marketplace
+    - backgrounds/vault-dweller
+    - backgrounds/wastelander
+    - backgrounds/raider
+    - backgrounds/ghoul
+    - backgrounds/tribal
+    - backgrounds/great-khan
+    - backgrounds/brotherhood-initiate
+    - backgrounds/brotherhood-outcast
+    - backgrounds/desert-ranger
+    - backgrounds/legion-warrior
+    - backgrounds/minuteman
+    - backgrounds/atom-cultist
+    - backgrounds/railroad-agent
+    - backgrounds/tinker
+    - backgrounds/wasteland-medic
+    - backgrounds/followers-scholar
+    - backgrounds/hacker
+    - backgrounds/chem-cook
+    - backgrounds/slaver
+    - backgrounds/institute-scientist
+    - backgrounds/enclave-defector
+    - backgrounds/prewar-survivor
+    - backgrounds/scavver
+    - backgrounds/caravaneer
+    - backgrounds/courier
+    - backgrounds/gunner
+    - backgrounds/wasteland-detective
+    - backgrounds/prospector
+    - backgrounds/ncr-trooper
+    - backgrounds/boomer
+    - backgrounds/vault-tec-rep
+    - backgrounds/powder-ganger
+    - backgrounds/bounty-hunter
+    - backgrounds/lobotomite
+    - backgrounds/prewar-celebrity
+    - backgrounds/big-game-hunter
+    - backgrounds/rust-devil
+    - backgrounds/hubologist
+    - backgrounds/super-mutant
+    - backgrounds/synth-runaway
+    - backgrounds/mister-handy
+    - backgrounds/mister-gutsy
+    - backgrounds/protectron
+    - backgrounds/assaultron
+    - backgrounds/sentry-bot
+    - backgrounds/securitron
+    - backgrounds/eyebot
+    - backgrounds/robobrain
+    - backgrounds/zetan
+    - backgrounds/deathclaw
+    - overseers-guide/getting-started
+    - overseers-guide/the-commonwealth
+    - overseers-guide/combat
+    - overseers-guide/saves
+    - overseers-guide/detachments
+    - overseers-guide/knowledge-and-perception
+    - overseers-guide/vault-exploration
+    - overseers-guide/wasteland-exploration
+    - overseers-guide/pointcrawls
+    - overseers-guide/growth
+    - overseers-guide/bonds-and-omens
+    - overseers-guide/faction-reputation
+    - overseers-guide/party-karma
+    - overseers-guide/variable-difficulty
+    - overseers-guide/settlements
+    - overseers-guide/setting-seeds
+    - overseers-guide/vault-seeds
+    - overseers-guide/wasteland-seeds
+    - overseers-guide/adventure-hooks
+    - overseers-guide/creating-monsters
+    - overseers-guide/creating-backgrounds
+    - overseers-guide/naming-procedures
+    - overseers-guide/npc-tables
+    - overseers-guide/bibliography
+    - overseers-guide/bestiary
+    - overseers-guide/perk-magazines
+    - overseers-guide/relics
+    - overseers-guide/unique-weapons
+    - overseers-guide/unique-armors
+    - roll-tables/backgrounds
+    - roll-tables/bestiary
+    - roll-tables/marketplace
+    - roll-tables/perk-magazines
+    - roll-tables/relics
+    - roll-tables/unique-weapons
+    - roll-tables/unique-armors
+# Settings go on top of cairn-2e's, key by key: the parent's watches (morning, afternoon, night)
+# are Fallout's too; what differs is set here, each key whole.
+settings:
+  # A turn is "a few minutes of focused action" (core-rules#time-units--rest): five minutes here.
+  time_units: {round: 10, turn: 300}
+  combat:
+    mode: sides
+    first: party
+    round_one: >-
+      In the first round, each PC must pass a DEX save to act: `didact do save who=<pc> attr=DEX`
+      (items, abilities, a Turbo dose or the fiction may bypass it; untrained in power armor, it
+      fails automatically). Those who fail lose their turn, and a Panicked PC doesn't act in the
+      first round. Then the enemies act; after that sides alternate, PCs first, each side's
+      results simultaneous.
+    attack: attack
+  factions: {turn: faction-turn}
+  names: {npc: first-names, place: place-names, poi: poi-names, faction: faction-names}

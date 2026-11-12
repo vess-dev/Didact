@@ -1,0 +1,5 @@
+check: move
+help: 2d6 plus a stat; 10+ strong hit, 7–9 weak hit, 6– miss.
+params: {stat: {kind: int, default: 0}}
+roll: "2d6 + @stat"
+bands: {strong-hit: "@roll >= 10", weak-hit: "@roll >= 7", miss: else}

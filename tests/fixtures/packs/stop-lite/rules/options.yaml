@@ -1,0 +1,5 @@
+option: magic
+title: Magic (optional rule)
+kind: flag
+ask: Is there magic?
+default: true

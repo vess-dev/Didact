@@ -1,0 +1,30 @@
+# A battleground (p. 105): a combat challenge where the location matters. Its features (traits
+# for the scene, affecting vantage), its threats (hazards with a timer pool or 2 suspense of their
+# own) and its enemies, each a tier and a role (Combat Kit, pp. 109-111). Groups are listed with
+# their pool in front (4d archers); one acting as its own challenge has a | after it (8d | dragon).
+generator: battleground
+title: A battleground
+help: >-
+  A battleground, step by step: a name, an idea from the GM crucible, a threat (a timer pool or
+  2 suspense), and its enemies, each a tier and a role (choose them, or let the dice). Then its
+  features and what each threat and enemy is. enemies=<n> sets how many groups (2). Prefill by
+  name: name, idea, threat, tier, role.
+params:
+  enemies: {kind: int, default: 2, help: "How many groups of enemies"}
+source: "p. 105"
+creates: loc
+steps:
+  - name: {prompt: "the battleground: Lair of the Magma Serpent, Boarding a Pirate Ship"}
+  - table: gm-crucible
+    as: idea
+  - apply: {kind: battleground}
+  - choose_or_roll: {from: ["a 4d timer pool", "a 6d timer pool", "2 suspense of its own"], as: threat, prompt: "a threat: a hazard that repeats on a timer, or holds suspense"}
+  - add: {field: threats, value: "@threat"}
+  - repeat: "$enemies"
+    steps:
+      - choose_or_roll: {table: combat-tiers, as: tier, prompt: "a group of enemies: their tier"}
+      - choose_or_roll: {table: combat-roles, as: role, prompt: "and their role"}
+      - add: {field: enemies, value: "{@tier.dice} {@tier.foes} ({@tier.id} {@role.id})"}
+  - prompt: "Its features: elements likely to complicate the action, with a strong effect on vantage (strong winds, a cluttered warehouse, angry onlookers; the GM crucible offers {@idea}): `didact set <battleground> features+='…'`."
+  - prompt: "Say what its threat is ({@threat}: 4d heavy waves, aggressive spirits, a 6d guard patrol) and what each group of enemies is (4d deckhands, 3 swashbucklers, 8d | magma serpent): `didact set <battleground> …`."
+  - prompt: "When the fight starts, each pool is a tracker: `didact track new '<name>' --kind pool --size 4`."

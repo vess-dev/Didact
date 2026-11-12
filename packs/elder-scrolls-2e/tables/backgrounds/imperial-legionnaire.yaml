@@ -1,0 +1,24 @@
+# Imperial Legionnaire (backgrounds/imperial-legionnaire): the background's two d6 tables.
+table: imperial-legionnaire-1
+title: "Where did you learn to soldier?"
+dice: d6
+source: backgrounds/imperial-legionnaire#where-did-you-learn-to-soldier-roll-1d6
+entries:
+  1: {text: "The Great War, against the Aldmeri Dominion. You held a line that should have broken. You carry an elven sword (d8) taken from a dead Justiciar, and every Thalmor agent who sees it knows what it means.", data: {gear: [{name: "Elven sword", damage: "d8"}]}}
+  2: {text: "The hills of the Reach, putting down the Forsworn. You know their tricks — the briar snares, the rockfall ambush, the war-cry before the rush — and never walk into one blind. Take a captured Forsworn axe (d8).", data: {gear: [{name: "Forsworn axe", damage: "d8"}]}}
+  3: {text: "Helgen, on the day of the executions. You stood at the block when the dragon came, and you got out through the keep while the town burned. Take the headsman's axe (d10, bulky, two-handed) you snatched up running, and dreams of a black shape on the tower. Any Stormcloak who rode the carts that day would know that axe anywhere.", data: {gear: [{name: "Headsman's axe", damage: "d10", size: "bulky", qualities: ["two-handed"]}]}}
+  4: {text: "A quartermaster's ledger, not a battlefield. You ran supply and you ran it well: start with an extra Rations (3 uses) and 2d6 more Septims, and you can always find a Legion clerk willing to sell — or lose — some stores.", data: {gear: [{name: "Rations", uses: 3}], gold_dice: "2d6"}}
+  5: {text: "The Battle of the Red Ring, where the Legion broke the Dominion's grip on the Imperial City at last. Take the signet of a Tribune (petty) who owes you his life; legionnaires treat you one step better on the Reaction ladder.", data: {gear: [{name: "Signet of a Tribune", size: "petty"}]}}
+  6: {text: "A field hospital, mending wounds under fire. Take a field surgeon's kit (Bandages, 3 uses) and steady hands: your bandaging always stabilizes the dying, even with arrows in the air.", data: {gear: [{name: "Field surgeon's kit", uses: 3, note: "Bandages"}]}}
+---
+table: imperial-legionnaire-2
+title: "What did the Legion give you?"
+dice: d6
+source: backgrounds/imperial-legionnaire#what-did-the-legion-give-you-roll-1d6
+entries:
+  1: "Shield-Wall Drill: Once per combat, brace your held shield with an ally beside you: you both gain +1 Armor (to the cap of 3) until your next turn."
+  2: {text: "Imperial Bow: A standard-issue recurve (d6, bulky) and the drill of a Legion archer: if you begin a fight with an arrow nocked, you need not save to act in the first round.", data: {gear: [{name: "Imperial Bow", damage: "d6", size: "bulky"}]}}
+  3: {text: "Legion Horn: A brass war-horn on a baldric. Once per day, sound it: hirelings and soldiers within earshot do not break Morale for the rest of the scene.", data: {gear: [{name: "Legion Horn", note: "a brass war-horn on a baldric"}]}}
+  4: {text: "Writ of Requisition: A sealed writ from a Legate's clerk (petty, 1 use). Present it at any Legion fort or Imperial-held town to draw a Legion horse, Rations (3 uses), and a night's bed, and no one asks why. The horse is branded, and the Legion will want it back.", data: {gear: [{name: "Writ of Requisition", size: "petty", uses: 1, note: "draws a Legion horse, Rations (3 uses) and a night's bed at any Legion fort or Imperial-held town"}]}}
+  5: {text: "Imperial Heavy Armor: The Legion's steel-and-leather heavy cuirass (2 Armor, bulky), dented at the Red Ring and never once pierced.", data: {gear: [{name: "Imperial Heavy Armor", armor: 2, suit: 2, size: "bulky"}]}}
+  6: {text: "Cyrodilic Brandy: A flask of fierce southern spirit carried against the cold (2 uses). A swallow clears one Fatigue — yours or a comrade's. A taste of home, far from home.", data: {gear: [{name: "Cyrodilic Brandy", uses: 2}]}}

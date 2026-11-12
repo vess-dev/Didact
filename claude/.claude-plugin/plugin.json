@@ -1,0 +1,6 @@
+{
+  "name": "didact",
+  "version": "0.1.0",
+  "description": "Solo tabletop RPGs with Didact: it holds the game state, rolls the dice, runs the rules and keeps the history; Claude narrates.",
+  "keywords": ["ttrpg", "solo", "dice", "oracle"]
+}

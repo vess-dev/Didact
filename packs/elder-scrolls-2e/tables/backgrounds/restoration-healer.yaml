@@ -1,0 +1,24 @@
+# Restoration Healer (backgrounds/restoration-healer): the background's two d6 tables.
+table: restoration-healer-1
+title: "Where did you learn to mend?"
+dice: d6
+source: backgrounds/restoration-healer#where-did-you-learn-to-mend-roll-1d6
+entries:
+  1: {text: "At the Temple of Mara in Riften, laying hands on the sick of the Rift. Take a Spell Tome: Healing Hands, and a gentle authority: the hurt and frightened calm at your touch.", data: {gear: [{name: "Spell Tome: Healing Hands"}]}}
+  2: {text: "At the College of Winterhold, under Colette Marence, who insists Restoration is a true school of magic to anyone who will listen. Take a Spell Tome: Steadfast Ward, and her favorite trick: any ward you raise, you may raise over an ally beside you instead of yourself.", data: {gear: [{name: "Spell Tome: Steadfast Ward"}]}}
+  3: {text: "In a Hall of the Dead, as an acolyte of Arkay, keeping the catacombs quiet. Take a Spell Tome: Turn Lesser Undead, and the burial rites of every faith in Skyrim by heart.", data: {gear: [{name: "Spell Tome: Turn Lesser Undead"}]}}
+  4: {text: "In a Legion field hospital, where the wounded came faster than the prayers. Take a Spell Tome: Heal Other and your old surgeon's armband (petty). Soldiers of both armies still honor it: while you kneel over the wounded, no Legionnaire or Stormcloak will strike you.", data: {gear: [{name: "Spell Tome: Heal Other"}, {name: "Surgeon's armband", size: "petty"}]}}
+  5: {text: "At the Temple of Kynareth in Whiterun, beneath the dying Gildergreen. Take a Spell Tome: Healing, and Danica Pure-Spring's lessons: you know every disease by its signs and its cure, and you automatically pass saves against ordinary disease.", data: {gear: [{name: "Spell Tome: Healing"}]}}
+  6: {text: "Among the Vigilants of Stendarr, who heal the living and burn the rest. Take a Spell Tome: Sun Fire, and the Vigil's friendship — for as long as you give them no reason to doubt it.", data: {gear: [{name: "Spell Tome: Sun Fire"}]}}
+---
+table: restoration-healer-2
+title: "What relic of your calling do you carry?"
+dice: d6
+source: backgrounds/restoration-healer#what-relic-of-your-calling-do-you-carry-roll-1d6
+entries:
+  1: {text: "Amulet of Mara: The teardrop pendant of the Divine of love (petty), consecrated at her altar. Once per day, re-roll a failed WIL save made while casting a Restoration spell. In Skyrim, wearing one also tells the world you are open to a proposal; expect some.", data: {gear: [{name: "Amulet of Mara", size: "petty"}]}}
+  2: {text: "Surgeon's Kit: Knives, needles, gut thread, and poppy (bulky, 3 uses). An hour's work restores 1d4 STR to someone. It is craft, not magic, so it does not count against the day's magical healing. Restocked at any apothecary.", data: {gear: [{name: "Surgeon's Kit", size: "bulky", uses: 3, recharge: "restocked at any apothecary"}]}}
+  3: {text: "Censer of Cleansing: A brass thurible trailing sweet smoke (3 uses). A turn spent swinging it over a sickbed cures one ordinary disease. Refilled at any temple.", data: {gear: [{name: "Censer of Cleansing", uses: 3, recharge: "refilled at any temple"}]}}
+  4: {text: "Holy Water: Water from a temple font (3 uses). Splashed on one undead or Daedra, it sears it for d6, ignoring Armor.", data: {gear: [{name: "Holy Water", uses: 3}]}}
+  5: {text: "Amulet of Arkay: The circle of the god of burial (petty). Once per day, a skeleton, zombie, or draugr about to strike you must pass a WIL save or turn aside.", data: {gear: [{name: "Amulet of Arkay", size: "petty"}]}}
+  6: "The Healer's Name: A standing earned Hold by Hold. In any town, temple, or croft, the hurt and the sick make way for you: you are sheltered, fed, and trusted as a healer, no questions asked, and the desperate will trade you secrets, shelter, or coin for your hands."

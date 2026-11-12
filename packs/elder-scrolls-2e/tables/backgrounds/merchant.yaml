@@ -1,0 +1,24 @@
+# Merchant (backgrounds/merchant): the background's two d6 tables.
+table: merchant-1
+title: "What kind of trader are you?"
+dice: d6
+source: backgrounds/merchant#what-kind-of-trader-are-you-roll-1d6
+entries:
+  1: "The caravan's bookkeeper. You kept the accounts for a Khajiit caravan, and learned their tongue and their trust. Any Khajiit caravan in Skyrim will shelter you, share its news, and sell you goods no Hold market stocks."
+  2: {text: "A dealer in fine things — silver, gems, oddments out of old ruins. Take a spyglass, a necklace (petty) worth 2d6 × 10 Septims, and an eye that names a treasure's true worth, or a forgery, at a glance.", data: {gear: [{name: "Spyglass"}, {name: "Necklace", size: "petty", note: "worth 2d6 × 10 Septims"}]}}
+  3: {text: "A smuggler. You moved goods the Jarls would rather you didn't, past tariffs and Hold borders. Take 2d6 × 10 extra Septims, a hidden compartment in your strongbox, and contacts among the smugglers of every coast.", data: {gold_dice: "2d6*10"}}
+  4: {text: "A hard trader. Years of staving off road-thieves left you tough: your maximum HP is 1 higher, and you carry a steel mace (d8). Bandits learn quickly that you are no easy mark.", data: {extra_hp: true, gear: [{name: "Steel mace", damage: "d8"}]}}
+  5: {text: "An outfitter for caravans and delvers: picks, rope, lantern oil, the lot. Take 20 Septims' worth of gear from the Marketplace, and wherever you go you can lay hands on ordinary supplies a day faster than most.", data: {gear_budget: 20}}
+  6: "A lucky bargainer. Something wearing a fair face once struck a deal with you on a lonely road, and you came out ahead — barely. Once per session, ask the Warden one true thing about a deal, a debtor, or a stranger's hidden want."
+---
+table: merchant-2
+title: "What is the secret of your success?"
+dice: d6
+source: backgrounds/merchant#what-is-the-secret-of-your-success-roll-1d6
+entries:
+  1: "The Silver Tongue: Once per day, name your price for one sale or purchase, within reason, and the other party agrees to it. They only realize later how badly they did."
+  2: "The Coin-Counter's Eye: A lifetime of weighing purses and reading faces. You know roughly what coin a person carries, and you catch a lie in a bargain the moment it is told."
+  3: {text: "Friends in Every Hold: A little black book of names and debts (petty). Once per session, in any settlement, call on a contact — a fence, a steward, a guard captain, an innkeeper — for a favor, a bed, or a door quietly opened.", data: {gear: [{name: "Friends in Every Hold", size: "petty"}]}}
+  4: {text: "Caravan Guard: A surly Nord who walks beside the mule: a hireling with a spear (d8) and leather armor (1 Armor). His wages are paid through the end of the week; after that it is 10 Septims a day, and he fights for you exactly as long as the pay keeps coming.", data: {hireling: "caravan-guard"}}
+  5: "The Trade-Tongue: The cant and courtesies of a dozen peoples — Nord, Dunmer, Khajiit, Imperial, Orc, Argonian. You make yourself understood anywhere goods are bought or sold, and you give no offense you didn't mean to."
+  6: "The Loaded Purse: A fat coin-purse and a generous hand. Once per day, spend 1d6 Septims on a bribe, a round of drinks, or a \"finder's fee\" to turn a Wary or Curious stranger one step friendlier toward you."

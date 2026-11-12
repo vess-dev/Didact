@@ -1,0 +1,7 @@
+type: character
+fields:
+  hp: {kind: resource, min: 0}
+  inventory: {kind: slots, capacity: 4, when_full: {trigger: overburdened}}
+---
+type: pc
+extends: character

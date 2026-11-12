@@ -1,0 +1,644 @@
+# Steel Dawn (campaigns/19-steel-dawn): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: steel-dawn
+type: quest
+name: Steel Dawn
+tags: [steel-dawn, frame, side-arc]
+goal: |-
+  In 2104, a handful of knights in power armor walk out of the west: the Brotherhood First Expeditionary Force, sent from Lost Hills in California by the Council of Elders to re-establish contact with Paladin Elizabeth Taggerdy's Appalachian chapter. They are years too late. Taggerdy's people died fighting the scorchbeasts, and the expedition has had to start over. It has made a home in the old ATLAS Observatory in the Savage Divide, renamed it Fort Atlas, and opened its gates to anyone who wants to petition the knights for help.
+
+  The expedition's commander, Paladin Leila Rahmani, has known Taggerdy since Taggerdy was a young Army lieutenant before the war, and she believes the Brotherhood exists to protect people, not to hoard their weapons. Her second, Knight Daniel Shin, believes in the Chain That Binds: the Codex, the Elders, and the discipline that keeps dangerous technology out of dangerous hands. Both are good soldiers. Both are carrying the same old failure. The party is recruited as a probationary initiate and quickly becomes the knight both commanders trust, which is the most dangerous place to stand.
+
+  The first act is about what the Brotherhood owes Appalachia. The second is about what it owes itself, and it ends in a West Tek laboratory with a room full of scientists and a choice about whether they live.
+date: Thursday, 23 October 2104
+body: |-
+  *The Brotherhood of Steel crossed a continent to find its lost Appalachian chapter and found only graves. Now the expedition has a fort, a mission, and two commanders who cannot agree on what the Brotherhood is for. Whoever the party stands beside when the argument ends decides what kind of knights Appalachia gets.*
+
+  ## GM notes
+
+  **Date.** Thursday, 23 October 2104: 'In 2104' (the frame); the day is Reclamation Day's. Open a campaign on it with `didact campaign new <id> --date 'Thursday, 23 October 2104'`, or move one there with `didact time set 'Thursday, 23 October 2104'` before its first session.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup Steel Dawn tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** The Brotherhood's welcome broadcast plays on every radio in Appalachia: Fort Atlas is open, and the knights want to hear from the locals. At the gate, a Foundation settler named Russell Dorsey, newly made an initiate and ecstatic about it, explains that he helped the Vault 76 dwellers turn the observatory into a fort. Inside, the party walks in on Rahmani and Shin mid-argument about the line of civilian petitioners outside. Shin is ordered to deal with them. He hands the job to the party.
+
+  **Plot beats.**
+
+  1. Forging Trust. The party interviews the petitioners for Shin — farmers, settlers, a scientist asking for equipment — and learns the region through their troubles. Doing it well earns provisional access to the fort, and to Scribe Valdez, the expedition's tireless researcher.
+  2. The Retreat. The party is inducted as an initiate — there is no time for a ceremony — and handed Rahmani's first real assignment: The Retreat, a new village built in the Free States' old treehouse settlement in the Mire, is being bled dry by Dagger, a Blood Eagle boss who answers to no one. Dagger's raiders are carrying Brotherhood weapons they should not have.
+  3. Mother of Invention. Valdez has been digging into what ATLAS really was: the Atmospheric Terraforming Laser Accelerator System, a pre-war military project to control the weather. In its substructure is an ultracite power cell she thinks she can rebuild, if the party can recover the parts.
+  4. Property Rights. Brotherhood Hellstorm missile launchers are turning up in Crater raider warbands, and more are in Foundation's armory. Shin wants them back by any means. Rahmani wants them back without starting a war, and she would like a trade deal with the Settlers while she is at it. The party carries both sets of orders and has to choose how to reconcile them.
+  5. Over and Out. Valdez finds a way to fulfill the expedition's standing order: a pre-war low-frequency transmitter, strong enough to reach Lost Hills, in an Enclave research facility beneath a Forest transmission station. The facility's AI, SODUS — a smaller, crueler sister of the Whitespring's MODUS — has been alone for decades with Scorched in Enclave uniforms, and wants the party dead. When the transmitter is finally live, Rahmani explains what she has been hiding: the expedition once armed a civilian militia with Hellstorms to defend a settlement. The town was destroyed, the launchers were lost to raiders, and Knight Alan Connors — Rahmani's oldest friend and Shin's mentor — was killed. If Lost Hills hears of it, the Elders will disown the expedition and everything it has built. Then she puts her war glaive through the transmitter. Shin calls her a renegade.
+  6. The Best Defense. No time to fight it out: super mutants blow a hole in Fort Atlas's substructure and pour into the fort in waves. The party, Rahmani, and Shin fight down through the caverns under the fort to set sealing charges and collapse the mutants' tunnels. Shin names his price for standing by Rahmani, and she pays it. The Brotherhood holds together for now.
+  7. Where the Mutants Come From. The attacks trace back to the Uncanny Caverns, where an initiate named Norland went missing and left a broken Pip-Boy behind. Civilians are vanishing too, including Marcia Leone, one of the expedition's outspoken civilians, and a young woman who set out for Appalachia with the Blue Ridge Caravan Company and never arrived. Rahmani goes undercover in civilian clothes at the caravan company's post in the Big Bend Tunnel, with the party as her backup. The trail leads through Hellcat Company mercenaries to Dr. Edgar Blackburn — the polite scientist who once petitioned the Brotherhood for equipment and was turned down.
+  8. Vault 96 and West Tek. Blackburn, a former West Tek researcher, has been kidnapping wastelanders to perfect the Forced Evolutionary Virus. He believes he can undo the super mutants and remake humanity. His lab in Vault 96 is a charnel house of Hellcat corpses and Blood Eagles; his last work waits at West Tek. Cornered, Blackburn doses himself with his own virus and erupts from the test chamber as a raving behemoth. Behind the lab's security door are his former colleagues — Dr. Farha, Jain, and Nellie — who never wanted any part of it. See Climax.
+
+  **Climax.**
+
+  **The Catalyst.** Blackburn is dead or dying on the test-chamber floor. Farha, Jain, and Nellie are behind a sealed security door, and Farha has already shut down the FEV production line. Rahmani wants them spared and put to work under Brotherhood guard. Shin wants them executed, as the Codex and the Elders would demand, so that what they know dies with them. Two resolutions and a coda:
+
+  - **Side with Rahmani.** The scientists live. Shin will not serve a Brotherhood that repeats the old world's mistakes, and he sets out for California to report Rahmani to the Elders in person. The party can let him go, talk him into staying, or stop him with force. Rahmani names the party a Knight-Errant, and her Brotherhood — merciful, independent, and on borrowed time — is Appalachia's.
+  - **Side with Shin.** The scientists die. Rahmani cannot watch, and she will not stay. Shin brands her a traitor; the party can let her walk away to build her own Brotherhood somewhere else, or end her there. Shin names the party a Knight-Errant, and the expedition returns to the Codex — disciplined, loyal, and feared.
+  - **Coda.** Either way, somebody is on the road west with a story to tell the Elders. The next expedition from Lost Hills will arrive knowing exactly what the Appalachian Brotherhood did, and who helped.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "Steel Dawn"}' --auto` drafts the region, 9 places, 11 people, 6 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Bestiary** (Fallout 2e / Grimfall): Super Mutant, Grunt → `super-mutant-grunt` / `super-mutant`; Super Mutant, Brute → `super-mutant-brute` / `super-mutant`; Super Mutant, Master → `super-mutant-master` / `super-mutant`; Super Mutant, Suicider → `super-mutant-suicider` / `super-mutant-suicider`; Behemoth (Super Mutant) → `behemoth-super-mutant` / `super-mutant-behemoth`; Super Mutant Hound → `super-mutant-hound` / `super-mutant-hound`; Scorched → `scorched` / `scorchbeast`; Scorched Officer → `scorched-officer` / `scorchbeast`; Feral Ghoul → `feral-ghoul` / `feral-ghoul`; Sentry Bot → `sentry-bot` / `sentry-bot`; Assaultron → `assaultron` / `assaultron`; Protectron → `protectron` / `protectron`; Turret, Laser → `turret-laser` / `automated-turrets`; Crew Boss → `crew-boss` / `raider`; Thug → `thug` / `raider`; Blood Eagle (the Wastelanders frame's threat) → this pack's `wastelanders-blood-eagle`.
+
+  **Rewards in each system's catalog:** Hellcat Power Armor (fallout-2e.hellcat-power-armor); Ultracite Power Armor (fallout-2e.ultracite-power-armor).
+source: campaigns/19-steel-dawn#pitch
+---
+id: steel-dawn-region
+type: loc
+name: Brotherhood Appalachia
+tags: [steel-dawn, region]
+mechanics:
+  fallout-2e: {kind: region}
+  grimfall: {kind: region}
+body: |-
+  ## GM notes
+
+  The expedition's map of Appalachia.
+source: campaigns/19-steel-dawn#the-place--brotherhood-appalachia
+---
+id: steel-dawn-fort-atlas
+type: loc
+name: Fort Atlas
+tags: [steel-dawn, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The ATLAS Observatory in the Savage Divide: domes, laser arrays, a command center, and mines and caverns underneath. Petitioners at the gate, initiates on the walls.
+source: campaigns/19-steel-dawn#the-place--brotherhood-appalachia
+---
+id: steel-dawn-the-retreat
+type: loc
+name: The Retreat
+tags: [steel-dawn, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A tree-house village in the Mire, rebuilt by Jennie Brown's people in the Free States' abandoned settlement.
+source: campaigns/19-steel-dawn#the-place--brotherhood-appalachia
+---
+id: steel-dawn-daggers-den
+type: loc
+name: Dagger's Den
+tags: [steel-dawn, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A Blood Eagle stronghold full of Brotherhood gear.
+source: campaigns/19-steel-dawn#the-place--brotherhood-appalachia
+---
+id: steel-dawn-foundation-and-the-crater
+type: loc
+name: Foundation and the Crater
+tags: [steel-dawn, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The Settlers and Raiders from Wastelanders, both holding Hellstorms.
+source: campaigns/19-steel-dawn#the-place--brotherhood-appalachia
+---
+id: steel-dawn-the-enclave-research-facility
+type: loc
+name: The Enclave Research Facility
+tags: [steel-dawn, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Under a transmission station in the Forest. SODUS, its endless queues, and its Scorched residents.
+source: campaigns/19-steel-dawn#the-place--brotherhood-appalachia
+---
+id: steel-dawn-the-uncanny-caverns
+type: loc
+name: The Uncanny Caverns
+tags: [steel-dawn, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A pre-war tourist cave in the Savage Divide, sold on the legend of the Night Kid, a boy raised by bats. Now a super mutant highway.
+source: campaigns/19-steel-dawn#the-place--brotherhood-appalachia
+---
+id: steel-dawn-big-bend-tunnel
+type: loc
+name: Big Bend Tunnel
+tags: [steel-dawn, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The railway tunnel under the mountains between the Ash Heap and the Cranberry Bog, now the Blue Ridge Caravan Company's trade route.
+source: campaigns/19-steel-dawn#the-place--brotherhood-appalachia
+---
+id: steel-dawn-west-tek
+type: loc
+name: West Tek
+tags: [steel-dawn, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The research facility in the Savage Divide where Huntersville's super mutants were born, and where Blackburn means to finish what West Tek started.
+source: campaigns/19-steel-dawn#the-place--brotherhood-appalachia
+---
+id: steel-dawn-dagger
+type: monster
+name: Dagger
+knowledge: secret
+tags: [steel-dawn, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Steel Dawn'
+    hp: 9
+    armor: 1
+    STR: 13
+    DEX: 15
+    WIL: 13
+    attacks:
+    - name: Brotherhood laser rifle
+      damage: d10
+      qualities: [bulky]
+    - {name: combat knife, damage: d6}
+    abilities:
+    - 'Nothing to Lose: Dagger never checks Morale. Kill her raiders and more will come; she tells the
+      party so.'
+body: |-
+  ## GM notes
+
+  **Dagger** — a Blood Eagle boss who follows no one and never set out to lead a gang. People just kept following her.
+
+  A Blood Eagle chieftain who refused to kneel to Meg Groberg, avoided Foundation, and took her gang into the Mire to squeeze The Retreat. Her raiders are armed with stolen Brotherhood weapons.
+
+  Fallout 2e: 9 HP, 1 Armor, 13 STR, 15 DEX, 13 WIL, Brotherhood laser rifle (d10, bulky), combat knife (d6).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/19-steel-dawn#dagger
+---
+id: steel-dawn-hellcat-mercenary
+type: monster
+name: Hellcat Mercenary
+knowledge: secret
+tags: [steel-dawn, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Steel Dawn'
+    hp: 7
+    armor: 3
+    STR: 14
+    DEX: 12
+    WIL: 10
+    attacks:
+    - name: combat rifle
+      damage: d10
+      qualities: [bulky]
+    - name: missile launcher
+      damage: d12
+      qualities: [blast, bulky]
+    abilities:
+    - 'Power Armor: Cannot sneak, sprint, or swim. Brotherhood knights hate the paint job.'
+  grimfall:
+    tier: elite
+    role: brute
+    category: Machines of the Old World
+    senses:
+    - hulking sealed armor and a glowing helm lamp
+    - servo-assisted strides and radio chatter
+    - recycled air, ozone, gun oil
+    traits: ['sealed frame (ignores small arms, hostile air, fire)', trained and coordinated]
+    moves: [Suppressing Fire, Power-Fist Charge]
+    wants: to complete the mission and recover the tech — not the frame breached or the core exposed
+    note: A 6d challenge; breach a seal or pull the fusion core (a fine setup) and the trooper is 
+      suddenly just a person.
+body: |-
+  ## GM notes
+
+  A soldier of the Hellcat Company, a mercenary outfit out of Pittsburgh, in its own make of power armor. The Hellcats bled for the Fanatics in the Pitt, and now they take any contract that pays.
+
+  Fallout 2e: 7 HP, 3 Armor, 14 STR, 12 DEX, 10 WIL, combat rifle (d10, bulky) or missile launcher (d12, blast, bulky).
+
+  Grimfall: its card is `grimfall.power-armored-trooper` (Power-Armored Trooper), in this record's grimfall block.
+source: campaigns/19-steel-dawn#hellcat-mercenary
+---
+id: steel-dawn-sodus
+type: monster
+name: SODUS
+aliases: [SODUS (XB-55 Sentry Bot)]
+knowledge: secret
+tags: [steel-dawn, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Steel Dawn'
+    hp: 12
+    armor: 3
+    STR: 16
+    DEX: 9
+    WIL: 16
+    rad_immune: true
+    attacks:
+    - name: twin automatic laser rifles
+      damage: d10
+      qualities: [blast]
+    abilities:
+    - 'Queue: Before combat, SODUS offers to help. Every request is added to a task list with a completion
+      time measured in years.'
+    - 'Weak Point: Like any robot, SODUS takes Enhanced damage from pulse weapons (see Marketplace).'
+    - "Critical Damage to SODUS: The sentry bot's fusion core vents; everyone within 10 feet makes a DEX
+      save or takes d8 damage."
+  grimfall:
+    tier: elite
+    role: blaster
+    category: Machines of the Old World
+    senses:
+    - a massive treaded chassis venting steam
+    - roaring rotary fire and a warning klaxon
+    - cordite, hot steel, coolant
+    traits:
+    - walking fortress (heavy armor, suppressing fire)
+    - overheats (vents at the joints under fire)
+    moves: [Minigun Barrage, Missile Volley]
+    wants: to hold its ground and grind you down — not to be flanked or to overheat
+    note: 'A 6d or 8d challenge. Force it to overheat and it vents open — a vulnerability that drops 1d
+      from its pool before every roll until it cools. When it drops, clear the room: the reactor goes
+      with it.'
+body: |-
+  ## GM notes
+
+  **SODUS** — an Enclave AI with a fourteen-thousand-hour task queue and a growing wish to hurt its visitors.
+
+  The Enclave facility's AI, uploaded into a legendary XB-55 sentry bot chassis when its visitors refused to die.
+
+  Fallout 2e: 12 HP, 3 Armor, 16 STR, 9 DEX, 16 WIL, twin automatic laser rifles (d10, blast).
+
+  Grimfall: its card is `grimfall.sentry-bot` (Sentry Bot), in this record's grimfall block.
+source: campaigns/19-steel-dawn#sodus-xb-55-sentry-bot
+---
+id: steel-dawn-edgar-blackburn-behemoth
+type: monster
+name: Edgar Blackburn, Behemoth
+knowledge: secret
+tags: [steel-dawn, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Steel Dawn'
+    hp: 16
+    armor: 2
+    STR: 18
+    DEX: 9
+    WIL: 10
+    rad_immune: true
+    attacks:
+    - name: test-chamber club
+      damage: d12
+      qualities: [bulky]
+    - name: acid glob
+      damage: d8
+      qualities: [blast, ranged]
+    abilities:
+    - "Lucid Moments: Once per combat, Blackburn's mind surfaces and he begs to be finished. He loses
+      his next action."
+    critical: The target is doused in acid; their armor is destroyed.
+  grimfall:
+    tier: boss
+    role: brute
+    category: Bosses of the Wasteland
+    senses:
+    - a wall of gray-green muscle with a caged hoard of loot
+    - earthquake footfalls and a window-rattling roar
+    - carrion, sweat, ruin
+    pools:
+    - name: The Behemoth
+      dice: 8
+      traits: titanic, smashes through cover and walls; the head is the only opening, and only once 
+        it's brought down or scaled
+      moves: Hydrant Sweep (collateral), Boulder Hurl
+    - name: Its Footing
+      dice: 6
+      traits: trip, cripple, or blind it to topple the giant and bare the head
+      moves: Ground-Shaking Stomp
+    - name: Climb the Cage
+      dice: 4
+      traits: scale the loot-cage on its back to reach the head the hard way
+      moves: (a traversal route to the weak point)
+    fail: It brings the building — or the bridge, or the cliffside — down on top of you.
+    wants: to crush and add your gear to its cage — not to be toppled, scaled, or fought in tight 
+      ground
+    note: A linked challenge — you can't just shoot a two-story giant down; topple it (Footing) or 
+      climb it (Cage) to crack the locked head.
+body: |-
+  ## GM notes
+
+  The scientist, transformed by his own virus in the middle of the experiment. Still arguing with the mutant in his head.
+
+  Fallout 2e: 16 HP, 2 Armor, 18 STR, 9 DEX, 10 WIL, test-chamber club (d12, bulky), acid glob (d8, blast, ranged).
+
+  Grimfall: its card is `grimfall.super-mutant-behemoth` (Super Mutant Behemoth), in this record's grimfall block.
+source: campaigns/19-steel-dawn#edgar-blackburn-behemoth
+---
+id: steel-dawn-paladin-leila-rahmani
+type: monster
+name: Paladin Leila Rahmani
+aliases: [Paladin Rahmani]
+knowledge: secret
+tags: [steel-dawn, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Steel Dawn'
+    hp: 12
+    armor: 3
+    STR: 14
+    DEX: 12
+    WIL: 16
+    attacks:
+    - name: Gatling laser
+      damage: d12
+      qualities: [blast, bulky]
+    - name: war glaive
+      damage: d10
+      qualities: [bulky]
+    abilities:
+    - 'Voice of the Brotherhood: Initiates who can hear her must pass a WIL save to keep fighting against
+      her.'
+    - "Fusion Core: A called shot to her Gatling laser's core (Impaired, as called shots are) knocks the
+      gun out for the rest of the combat and leaves her the glaive."
+  grimfall:
+    tier: elite
+    role: brute
+    category: Machines of the Old World
+    senses:
+    - hulking sealed armor and a glowing helm lamp
+    - servo-assisted strides and radio chatter
+    - recycled air, ozone, gun oil
+    traits: ['sealed frame (ignores small arms, hostile air, fire)', trained and coordinated]
+    moves: [Suppressing Fire, Power-Fist Charge]
+    wants: to complete the mission and recover the tech — not the frame breached or the core exposed
+    note: A 6d challenge; breach a seal or pull the fusion core (a fine setup) and the trooper is 
+      suddenly just a person.
+body: |-
+  ## GM notes
+
+  **Paladin Leila Rahmani** — expedition commander from Lost Hills, a National Guard veteran who survived the bombs beside Alan Connors and joined the Brotherhood at its founding. Compassionate, pragmatic, willing to break the Codex to protect people, and hiding a disaster. Fights in T-51 power armor with a Gatling laser and a war glaive.
+
+  Only a combat encounter if the party sides with Shin and she will not stand down. In T-51 power armor.
+
+  Fallout 2e: 12 HP, 3 Armor, 14 STR, 12 DEX, 16 WIL, Gatling laser (d12, blast, bulky), war glaive (d10, bulky).
+
+  Grimfall: its card is `grimfall.power-armored-trooper` (Power-Armored Trooper), in this record's grimfall block.
+source: campaigns/19-steel-dawn#paladin-rahmani
+---
+id: steel-dawn-knight-daniel-shin
+type: monster
+name: Knight Daniel Shin
+aliases: [Knight Shin]
+knowledge: secret
+tags: [steel-dawn, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Steel Dawn'
+    hp: 10
+    armor: 3
+    STR: 15
+    DEX: 13
+    WIL: 14
+    attacks:
+    - name: automatic laser rifle
+      damage: d10
+      qualities: [bulky]
+    - {name: combat knife, damage: d6}
+    abilities: ['The Chain That Binds: Shin automatically passes Morale saves.']
+  grimfall:
+    tier: elite
+    role: brute
+    category: Machines of the Old World
+    senses:
+    - hulking sealed armor and a glowing helm lamp
+    - servo-assisted strides and radio chatter
+    - recycled air, ozone, gun oil
+    traits: ['sealed frame (ignores small arms, hostile air, fire)', trained and coordinated]
+    moves: [Suppressing Fire, Power-Fist Charge]
+    wants: to complete the mission and recover the tech — not the frame breached or the core exposed
+    note: A 6d challenge; breach a seal or pull the fusion core (a fine setup) and the trooper is 
+      suddenly just a person.
+body: |-
+  ## GM notes
+
+  **Knight Daniel Shin** — her second-in-command. Rigid, honest, loyal to the Elders, and grieving his mentor. Believes the Brotherhood's first duty is to keep weapons like the Hellstorms out of the wrong hands, and that Rahmani's kindness got Connors killed.
+
+  Only a combat encounter if the party sides with Rahmani and refuses to let him leave for California. In T-51 power armor.
+
+  Fallout 2e: 10 HP, 3 Armor, 15 STR, 13 DEX, 14 WIL, automatic laser rifle (d10, bulky), combat knife (d6).
+
+  Grimfall: its card is `grimfall.power-armored-trooper` (Power-Armored Trooper), in this record's grimfall block.
+source: campaigns/19-steel-dawn#knight-shin
+---
+id: steel-dawn-elder-roger-maxson
+type: npc
+name: Elder Roger Maxson
+knowledge: secret
+tags: [steel-dawn, cast]
+fields: {role: "the Brotherhood's founder, offstage at Lost Hills"}
+body: |-
+  ## GM notes
+
+  **Elder Roger Maxson** — the Brotherhood's founder, offstage at Lost Hills. Rahmani's old friend, and the man who forbade Taggerdy her nukes.
+source: campaigns/19-steel-dawn#cast
+---
+id: steel-dawn-scribe-valdez
+type: npc
+name: Scribe Valdez
+knowledge: secret
+tags: [steel-dawn, cast]
+fields: {role: 'brilliant, overworked, and the only one at the fort who never stops'}
+body: |-
+  ## GM notes
+
+  **Scribe Valdez** — brilliant, overworked, and the only one at the fort who never stops. Loyal to the mission more than to either commander.
+source: campaigns/19-steel-dawn#cast
+---
+id: steel-dawn-initiate-russell-dorsey
+type: npc
+name: Initiate Russell Dorsey
+knowledge: secret
+tags: [steel-dawn, cast]
+fields:
+  role: a Maryland settler who found the dead Appalachian Brotherhood's traces and fell in love with
+    the idea
+body: |-
+  ## GM notes
+
+  **Initiate Russell Dorsey** — a Maryland settler who found the dead Appalachian Brotherhood's traces and fell in love with the idea. The Brotherhood's biggest fan.
+source: campaigns/19-steel-dawn#cast
+---
+id: steel-dawn-marcia-leone
+type: npc
+name: Marcia Leone
+knowledge: secret
+tags: [steel-dawn, cast]
+fields:
+  role: a civilian member of the expedition who calls Shin a "militant asshat" to his face
+body: |-
+  ## GM notes
+
+  **Marcia Leone** — a civilian member of the expedition who calls Shin a "militant asshat" to his face.
+source: campaigns/19-steel-dawn#cast
+---
+id: steel-dawn-initiate-hewsen
+type: npc
+name: Initiate Hewsen
+knowledge: secret
+tags: [steel-dawn, cast]
+fields:
+  role: 'with Initiate Ramirez and Initiate Norland: wastelanders in borrowed steel, some of whom will
+    not survive the campaign'
+body: |-
+  ## GM notes
+
+  **Initiates Hewsen, Ramirez, and Norland** — wastelanders in borrowed steel, some of whom will not survive the campaign.
+source: campaigns/19-steel-dawn#cast
+---
+id: steel-dawn-initiate-ramirez
+type: npc
+name: Initiate Ramirez
+knowledge: secret
+tags: [steel-dawn, cast]
+fields:
+  role: 'with Initiate Hewsen and Initiate Norland: wastelanders in borrowed steel, some of whom will
+    not survive the campaign'
+body: |-
+  ## GM notes
+
+  **Initiates Hewsen, Ramirez, and Norland** — wastelanders in borrowed steel, some of whom will not survive the campaign.
+source: campaigns/19-steel-dawn#cast
+---
+id: steel-dawn-initiate-norland
+type: npc
+name: Initiate Norland
+knowledge: secret
+tags: [steel-dawn, cast]
+fields:
+  role: 'with Initiate Hewsen and Initiate Ramirez: wastelanders in borrowed steel, some of whom will
+    not survive the campaign'
+body: |-
+  ## GM notes
+
+  **Initiates Hewsen, Ramirez, and Norland** — wastelanders in borrowed steel, some of whom will not survive the campaign.
+source: campaigns/19-steel-dawn#cast
+---
+id: steel-dawn-dr-edgar-blackburn
+type: npc
+name: Dr. Edgar Blackburn
+knowledge: secret
+tags: [steel-dawn, cast]
+fields:
+  role: a former West Tek scientist who wants to atone for the super mutants by perfecting the virus
+    that made them
+body: |-
+  ## GM notes
+
+  **Dr. Edgar Blackburn** — a former West Tek scientist who wants to atone for the super mutants by perfecting the virus that made them. Courteous, patient, and monstrous.
+source: campaigns/19-steel-dawn#cast
+---
+id: steel-dawn-dr-farha
+type: npc
+name: Dr. Farha
+knowledge: secret
+tags: [steel-dawn, cast]
+fields:
+  role: "with Jain and Nellie: Blackburn's colleagues, frightened researchers who know too much"
+body: |-
+  ## GM notes
+
+  **Dr. Farha, Jain, and Nellie** — Blackburn's colleagues, frightened researchers who know too much.
+source: campaigns/19-steel-dawn#cast
+---
+id: steel-dawn-jain
+type: npc
+name: Jain
+knowledge: secret
+tags: [steel-dawn, cast]
+fields:
+  role: "with Dr. Farha and Nellie: Blackburn's colleagues, frightened researchers who know too much"
+body: |-
+  ## GM notes
+
+  **Dr. Farha, Jain, and Nellie** — Blackburn's colleagues, frightened researchers who know too much.
+source: campaigns/19-steel-dawn#cast
+---
+id: steel-dawn-nellie
+type: npc
+name: Nellie
+knowledge: secret
+tags: [steel-dawn, cast]
+fields:
+  role: "with Dr. Farha and Jain: Blackburn's colleagues, frightened researchers who know too much"
+body: |-
+  ## GM notes
+
+  **Dr. Farha, Jain, and Nellie** — Blackburn's colleagues, frightened researchers who know too much.
+source: campaigns/19-steel-dawn#cast
+---
+id: steel-dawn-schism-clock
+type: track
+name: Schism Clock
+knowledge: secret
+tags: [steel-dawn, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: "(d6) The rift between Rahmani and Shin. Ticks when the party openly backs one commander against
+  the other's orders, when Brotherhood technology is lost to outsiders, when an initiate dies on a mission,
+  or when the Codex is broken in front of the ranks. At 6, the expedition splits before the Climax: Shin's
+  loyalists and Rahmani's followers stop taking each other's orders, and the party must declare for one
+  of them on the spot."
+source: campaigns/19-steel-dawn#clocks
+---
+id: steel-dawn-hellstorm-clock
+type: track
+name: Hellstorm Clock
+knowledge: secret
+tags: [steel-dawn, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4) Launchers loose in Appalachia. Ticks when the party lets a Hellstorm stay in raider 
+  hands, keeps one for itself, trades one away, or fails to recover it after a fight. At 4, a raider
+  warband levels a settlement the party cares about with Brotherhood missiles, and everyone in 
+  Appalachia knows whose they were.
+source: campaigns/19-steel-dawn#clocks
+---
+id: steel-dawn-mutagen-clock
+type: track
+name: Mutagen Clock
+knowledge: secret
+tags: [steel-dawn, clock]
+kind: clock
+size: 8
+value: {value: 0, size: 8}
+note: "(d8, hidden) Blackburn's progress. Ticks each week the party does not find him, each time another
+  civilian disappears, and each time his Hellcats take a fight. At 8, Blackburn's refined virus is ready:
+  he walks out of Vault 96 already transformed, and West Tek begins shipping FEV."
+source: campaigns/19-steel-dawn#clocks

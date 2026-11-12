@@ -1,0 +1,24 @@
+# Nightingale (backgrounds/nightingale): the background's two d6 tables.
+table: nightingale-1
+title: "How did the Lady mark you?"
+dice: d6
+source: backgrounds/nightingale#how-did-the-lady-mark-you-roll-1d6
+entries:
+  1: "The Crescent Moon. You are an Agent of Shadow. Once per day, while you stand in darkness or deep shadow, become invisible until you attack, cast a spell, or step into bright light."
+  2: "The Half Moon. You are an Agent of Subterfuge. Once per day, cloud the judgement of a foe you can see: it must pass a WIL save or attack the nearest other creature on its next turn."
+  3: "The Full Moon. You are an Agent of Strife. Once per day, send a tendril of darkness into the heart of a foe you can see: it takes d6 damage, ignoring Armor, and you regain that many HP."
+  4: {text: "You found a journal page in a Riften pawnshop, written in an alphabet almost no one alive can read. Take the cipher-page (petty) — and the uneasy feeling that someone high in the Guild would kill to have it back.", data: {gear: [{name: "Cipher-page", size: "petty"}]}}
+  5: "The Lady's luck runs in your veins. Once per day, re-roll any failed save — but Nocturnal takes her tithe: lose 1d6 Septims, or, if your purse is empty, something you would miss more."
+  6: "You slept a night beneath the Shadow Stone near Riften and woke with the dark clinging to you. You need not save to stay hidden in darkness or deep shadow, so long as you keep still."
+---
+table: nightingale-2
+title: "What do you carry of the Evergloam?"
+dice: d6
+source: backgrounds/nightingale#what-do-you-carry-of-the-evergloam-roll-1d6
+entries:
+  1: {text: "Black-Fletched Bow: A dark recurve bow (d6, bulky) and a quiver of arrows fletched with nightingale feathers. They make no sound in flight.", data: {gear: [{name: "Black-Fletched Bow", damage: "d6", size: "bulky"}]}}
+  2: "Evergloam Eyes: Nocturnal's smallest blessing. You see in any darkness, however total, as though by gray moonlight."
+  3: {text: "Ebon Hush-Stone: A black river-pebble blessed at the Ebonmere (3 charges). Crush a flake of it underfoot to wrap a room in unnatural silence for the rest of the scene: no cry, clatter, or alarm carries beyond it. Recharge: a full night spent in total darkness.", data: {gear: [{name: "Ebon Hush-Stone", charges: 3, recharge: "a full night spent in total darkness"}]}}
+  4: {text: "Nocturnal's Crow: A black crow that will not leave you alone. It cannot fight, but it will carry a small object or a folded note to anyone you name within a day's flight, and it caws when strangers come near while you sleep.", data: {companion: "nocturnals-crow"}}
+  5: "The Watcher's Chill: Your onyx shard is a finer piece than most. When anyone watches you from hiding, it turns cold against your skin, and the Warden tells you so."
+  6: {text: "The Oath-Token: A twist of dark silver worn against the skin (petty), proof of your vow. Once per session, show it to a thief, fence, or Guild shadow and they grant you one favor as though you were Sworn to the Guild — but Nocturnal remembers every favor, and one day she will call them in.", data: {gear: [{name: "The Oath-Token", size: "petty"}]}}

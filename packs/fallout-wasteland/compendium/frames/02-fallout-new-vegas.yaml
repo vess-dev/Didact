@@ -1,0 +1,849 @@
+# Fallout: New Vegas Main Campaign (campaigns/02-fallout-new-vegas): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: fallout-new-vegas
+type: quest
+name: 'Fallout: New Vegas'
+aliases: ['Fallout: New Vegas Main Campaign']
+tags: [fallout-new-vegas, frame, main-campaign]
+goal: |-
+  You were shot, buried, and dug up alive by a Securitron named Victor. The man who shot you — Benny, a casino boss at the Tops — took the package you were carrying: a Platinum Chip commissioned by Mr. House, the reclusive pre-war CEO who secretly runs New Vegas from a penthouse atop the Lucky 38. The Chip is the key to House's endgame — an army of pre-war combat robots buried beneath the Fort, keyed to whoever plugs the Chip into the right terminal.
+
+  Three forces are converging on Hoover Dam: the New California Republic, a federal democracy stretched thin across a frontier it cannot quite hold; Caesar's Legion, a slave empire rolling west from Arizona; and Mr. House, who intends both of them to break on the Mojave's shore so Vegas can rise untouched. A fourth option — an independent Vegas piloted by a liberated Securitron AI named Yes Man — appears if the party kills Benny and takes his place.
+
+  Your first mission is simple: find the man who shot you. Every step after that builds toward the Second Battle of Hoover Dam.
+date: Wednesday, 19 October 2281
+body: |-
+  *You were a courier. Someone hired you to carry a platinum chip across the Mojave. A man in a checkered coat shot you in the head in the Goodsprings cemetery. You woke up in Doc Mitchell's house with a patch in your skull and a score to settle. By the time you're done, three armies will have decided the fate of Hoover Dam — and you will have picked the winner.*
+
+  ## GM notes
+
+  **Date.** Wednesday, 19 October 2281: the year New Canaan burned (Vault 70) and Mister House is 261; the day the game it adapts opens, Joe Cobb's raid a day or two off. Open a campaign on it with `didact campaign new <id> --date 'Wednesday, 19 October 2281'`, or move one there with `didact time set 'Wednesday, 19 October 2281'` before its first session.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup Fallout: New Vegas tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** You wake in Doc Mitchell's house in Goodsprings, southern Mojave, with a headache and a story you don't remember. Mitchell patches you up, runs the Vigor Tester, asks a few questions, and sets you loose. The town is in trouble: Joe Cobb and a crew of Powder Gangers plan to raid in a day or two. Whether you defend Goodsprings or slip out the back sets your reputation with the NCR, who will hear about it either way.
+
+  **Plot beats.**
+
+  1. Goodsprings. Doc Mitchell, Sunny Smiles, Trudy behind the bar at the Prospector Saloon. Joe Cobb and his Powder Gangers coming tomorrow morning. The party defends or flees. Sunny gives a PC a ranch-dog companion if they help. Chet at the General Store reluctantly trades supplies for favors. Victor the Securitron is also in town and keeps being around.
+  2. Primm and Nipton. South on the I-15. Primm is a broken casino town looking for a sheriff (Primm Slim's automated warning, Deputy Beagle, the convict boss holed up in the Bison Steve hotel). Nipton is worse — the Legion rolled through a day before the party, raffled the town, and crucified half the population. A lone Legion frumentarius stands on the school steps and explains the lesson.
+  3. Novac and Boulder City. The party picks up the Benny trail at Novac — a roadside motel with a giant dinosaur statue called Dinky. Manny Vargas, a sniper at Dinky's mouth, remembers Benny heading north for the Strip. Boulder City, a ruined NCR checkpoint town, offers the party an NCR faction contact — Lieutenant Monroe, mid-standoff with the same Great Khans who helped Benny dig the Courier's grave.
+  4. The Strip. New Vegas is still lit. The NCR has the gate, House's Securitrons have the inside. Credit check before you walk in. Benny is at The Tops, a rat-pack-themed casino. The party confronts him. Three outcomes: kill him in his suite and take Maria off his body, arrest him and haul him to Mr. House, or slip into bed with him and take the Chip in the morning.
+  5. Mister House's Offer. With the Chip, the party may accept an audience at the Lucky 38. Mr. House reveals himself as a pre-war CEO sealed in a life-support chamber for over two centuries. He offers a contract: deliver the Chip to the terminal beneath the Fort, secure two outlying assets, and win the Mojave for Vegas.
+  6. The NCR's Offer. Contact with Colonel James Hsu at Camp McCarran makes the case for the Republic. Hsu needs the party to investigate a missing caravan, which uncovers a Legion spy network (Frumentarii) inside the NCR itself. A patriot run with a brittle hierarchy.
+  7. Caesar's Offer. The party is summoned to The Fort, on the far side of the Colorado. They meet Caesar — Edward Sallow — face to face. He offers them the favor of Rome. He also wants something done about the Brotherhood of Steel hiding in Hidden Valley (a bunker he cannot afford to leave at his back). Agreeing is crossing a line; disagreeing means killing your way out of camp.
+  8. The Independent Road. If the party killed Benny or let him escape, they left with a gift: Yes Man, a hackable Securitron who now answers to the party directly. Yes Man makes a fourth path: a free Vegas under no flag but the party's, won by turning every other faction's assets to the party's use.
+  9. The Outlying Assets. The Mojave's three outlying powers — the Great Khans, the Brotherhood of Steel, and the Boomers — can be recruited for or against the Dam. Each requires a side arc: defusing the Khans' alliance with the Legion, brokering with Elder McNamara at Hidden Valley, and earning the Boomers' trust at Nellis Air Force Base by recovering a crashed B-29 from the bottom of Lake Mead.
+  10. The Second Battle of Hoover Dam. The party, their allies, and a hundred miles of broken highway meet at the Dam. The Legion pushes from the east. The NCR holds the west. Mr. House or Yes Man sends the Securitron army, or not. The Dam holds, or it doesn't. See Climax.
+
+  **Climax.**
+
+  The Second Battle of Hoover Dam. Four endings:
+
+  - **For the NCR.** General Oliver gives the orders. The Dam holds; the flag flies. Vegas becomes an NCR client state. The Followers of the Apocalypse open two clinics. Caesar dies of his tumor — or under a PC's blade at the command center.
+  - **For the Legion.** The Dam falls to the Bull. General Oliver makes his last stand in the command compound, where he can be fought, shamed, or talked into marching his troopers home. The Mojave is free of NCR forever; so is every slave cuffed to a Legion camp.
+  - **For Mister House.** The upgraded Securitron army routs both NCR and Legion. House broadcasts a victory speech from the Lucky 38. The party delivered Vegas to a pre-war ghost; in ten years the Strip is bigger and colder than it ever was.
+  - **For an Independent Vegas (Yes Man).** The Securitron army answers to *the party* now. NCR and Legion both break on the Dam. Yes Man broadcasts a cheerful message from the 38. The party is, whether they wanted to be or not, the new government.
+
+  In every ending but the Legion's, the last obstacle is the Legate's camp. Lanius personally duels the party's strongest fighter — or withdraws, if a PC can show him that the East cannot hold the Mojave (a WIL save, and a real argument). Win and he signals retreat; lose and the water goes red.
+
+  The Courier walks away. **Lonesome Road** picks up the spare road the Courier left behind — the one that was waiting since the first package they delivered.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "Fallout: New Vegas"}' --auto` drafts the region, 15 places, 18 people, 7 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Bestiary** (Fallout 2e / Grimfall): NCR Trooper → `ncr-trooper` / `ncr-patrol`; NCR Ranger → `ncr-ranger` / `ncr-patrol`; Legion Recruit → `legion-recruit` / `legion-warband`; Legion Legionary → `legion-legionary` / `legion-warband`; Legion Centurion → `legion-centurion` / `legion-warband`; Legion Praetorian → `legion-praetorian` / `legion-warband`; Thug → `thug` / `raider`; Crew Boss → `crew-boss` / `raider`; Feral Ghoul → `feral-ghoul` / `feral-ghoul`; Cazador → `cazador` / `cazador`; Nightstalker → `nightstalker` / `nightstalker`; Gecko, Giant → `gecko-giant` / `gecko-pack`; Radscorpion → `radscorpion` / `radscorpion`; Giant Ant → `giant-ant` / `giant-ants`; Powder Ganger → `powder-ganger` / `raider`.
+
+  **Rewards in each system's catalog:** Maria (fallout-2e.maria · grimfall.maria); That Gun (fallout-2e.that-gun · grimfall.that-gun); Pew Pew (fallout-2e.pew-pew · grimfall.pew-pew); Mercy (fallout-2e.mercy · grimfall.mercy); Ranger Sequoia (fallout-2e.ranger-sequoia · grimfall.ranger-sequoia); NCR Ranger Combat Armor (Black) (fallout-2e.ncr-ranger-combat-armor-black · grimfall.ncr-ranger-combat-armor-black); Desert Ranger Combat Armor (fallout-2e.desert-ranger-combat-armor · grimfall.desert-ranger-combat-armor); Elite Riot Gear (fallout-2e.elite-riot-gear · grimfall.elite-riot-gear); Platinum Chip (fallout-2e.the-platinum-chip · grimfall.the-platinum-chip).
+source: campaigns/02-fallout-new-vegas#pitch
+---
+id: fallout-new-vegas-region
+type: loc
+name: The Mojave
+tags: [fallout-new-vegas, region]
+mechanics:
+  fallout-2e: {kind: region}
+  grimfall: {kind: region}
+body: |-
+  ## GM notes
+
+  The Mojave is a proper regional sandbox; treat it like the Capital Wasteland, big but knowable.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave
+---
+id: fallout-new-vegas-goodsprings
+type: loc
+name: Goodsprings
+tags: [fallout-new-vegas, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Starter town. Doc Mitchell, Sunny Smiles, a single gas station, a cemetery with a shallow grave and your name on it.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave
+---
+id: fallout-new-vegas-primm
+type: loc
+name: Primm
+tags: [fallout-new-vegas, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A broken casino town with a dead roller coaster looping over the interstate. Needs a sheriff.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave
+---
+id: fallout-new-vegas-nipton
+type: loc
+name: Nipton
+tags: [fallout-new-vegas, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Legion lesson. The crucified teacher on the front steps of the school is a picture to carry all session.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave
+---
+id: fallout-new-vegas-novac
+type: loc
+name: Novac
+tags: [fallout-new-vegas, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Dinky the Dinosaur, a retired sniper in its mouth, a motel full of people who saw something.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave
+---
+id: fallout-new-vegas-boulder-city
+type: loc
+name: Boulder City
+tags: [fallout-new-vegas, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Ruined NCR checkpoint. Where the NCR proves it has rules of engagement and then breaks them.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave
+---
+id: fallout-new-vegas-new-vegas-strip
+type: loc
+name: New Vegas Strip
+tags: [fallout-new-vegas, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The Tops, Gomorrah, Ultra-Luxe, and the Lucky 38. House's Securitrons stand motionless between games.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave
+---
+id: fallout-new-vegas-freeside
+type: loc
+name: Freeside
+tags: [fallout-new-vegas, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The seedy neighborhood outside the Strip. The Kings (an Elvis cult in the pre-war King's School of Impersonation) run it. The Followers of the Apocalypse run the local clinic from the Old Mormon Fort.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave
+---
+id: fallout-new-vegas-camp-mccarran
+type: loc
+name: Camp McCarran
+tags: [fallout-new-vegas, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  NCR regional HQ. The airfield, the tents, the monorail to the Strip.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave
+---
+id: fallout-new-vegas-the-fort
+type: loc
+name: The Fort
+tags: [fallout-new-vegas, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Caesar's Legion HQ on the far bank of the Colorado. Cross at the barge from Cottonwood Cove, after handing the legionaries your weapons.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave
+---
+id: fallout-new-vegas-nellis-afb
+type: loc
+name: Nellis AFB
+tags: [fallout-new-vegas, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The Boomers — isolationist artillery clan with working howitzers and a museum of pre-war planes.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave
+---
+id: fallout-new-vegas-jacobstown
+type: loc
+name: Jacobstown
+tags: [fallout-new-vegas, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A settlement of lucid super mutants and nightkin at a pre-war ski resort, run by Marcus.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave
+---
+id: fallout-new-vegas-hidden-valley
+type: loc
+name: Hidden Valley
+tags: [fallout-new-vegas, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A Brotherhood of Steel bunker, officially lost to history, not actually. Elder McNamara inside.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave
+---
+id: fallout-new-vegas-red-rock-canyon
+type: loc
+name: Red Rock Canyon
+tags: [fallout-new-vegas, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Great Khan territory.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave
+---
+id: fallout-new-vegas-helios-one
+type: loc
+name: HELIOS One
+tags: [fallout-new-vegas, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A pre-war solar array. Whoever reactivates it controls one of the Mojave's largest power sources. NCR wants it on; Legion doesn't care; House can redirect it.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave
+---
+id: fallout-new-vegas-hoover-dam
+type: loc
+name: Hoover Dam
+tags: [fallout-new-vegas, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Still producing power. The NCR holds the western side, Legion the eastern. The climax lives here.
+source: campaigns/02-fallout-new-vegas#the-place--the-mojave
+---
+id: fallout-new-vegas-securitron-mk-i
+type: monster
+name: Securitron (Mk I)
+knowledge: secret
+tags: [fallout-new-vegas, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout: New Vegas'
+    hp: 10
+    armor: 3
+    STR: 14
+    DEX: 10
+    WIL: 13
+    rad_immune: true
+    attacks:
+    - name: 9mm SMG arm
+      damage: d8
+      qualities: [bulky]
+    - name: missile
+      damage: d10
+      qualities: [blast]
+      note: 1 use
+    abilities:
+    - 'Loyal to House: Ignores the party entirely unless they take hostile action on the Strip. Upgradeable
+      to Mk II via the Chip.'
+  grimfall:
+    tier: tough
+    role: protector
+    category: Machines of the Old World
+    senses:
+    - a monitor face flickering between moods
+    - one rubber tire humming on tile
+    - warm electronics
+    traits: [military-grade shell, the face is a mask over a targeting suite]
+    moves: [SMG Arm Burst, 'Rocket (one, and it counts)']
+    wants: the house rules enforced — the house being whoever holds its command codes
+    note: One is a hard fight; a patrol is a 6d pool. A Mark II upgrade makes each chassis an elite 
+      — rockets reload, and the cartoon smiles wider. An army of them is somebody's campaign.
+body: |-
+  ## GM notes
+
+  Mister House's automated enforcers. Cheerful cartoon face, rolling on one tread. Stationed on the Strip and inside the Lucky 38.
+
+  Fallout 2e: 10 HP, 3 Armor, 14 STR, 10 DEX, 13 WIL, 9mm SMG arm (d8, bulky), missile (d10, blast, 1 use).
+
+  Grimfall: its card is `grimfall.securitron` (Securitron), in this record's grimfall block.
+source: campaigns/02-fallout-new-vegas#securitron-mk-i
+---
+id: fallout-new-vegas-securitron-mk-ii
+type: monster
+name: Securitron (Mk II)
+aliases: [Securitron (Mk II) (post-Platinum-Chip upgrade)]
+knowledge: secret
+tags: [fallout-new-vegas, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout: New Vegas'
+    hp: 12
+    armor: 3
+    STR: 14
+    DEX: 10
+    WIL: 13
+    rad_immune: true
+    attacks:
+    - name: twin Gatling lasers
+      damage: d12
+      qualities: [blast, bulky]
+    - name: missile rack
+      damage: d10
+      qualities: [blast]
+      note: reloadable
+    abilities:
+    - 'Weak Point: Like any robot, Mk I or Mk II, it takes Enhanced damage from pulse weapons (see Marketplace).'
+  grimfall:
+    tier: tough
+    role: protector
+    category: Machines of the Old World
+    senses:
+    - a monitor face flickering between moods
+    - one rubber tire humming on tile
+    - warm electronics
+    traits: [military-grade shell, the face is a mask over a targeting suite]
+    moves: [SMG Arm Burst, 'Rocket (one, and it counts)']
+    wants: the house rules enforced — the house being whoever holds its command codes
+    note: One is a hard fight; a patrol is a 6d pool. A Mark II upgrade makes each chassis an elite 
+      — rockets reload, and the cartoon smiles wider. An army of them is somebody's campaign.
+body: |-
+  ## GM notes
+
+  What the Chip upgrades House's or Yes Man's force into. Devastating at the Dam.
+
+  Fallout 2e: 12 HP, 3 Armor, 14 STR, 10 DEX, 13 WIL, twin Gatling lasers (d12, blast, bulky), missile rack (d10, blast, reloadable).
+
+  Grimfall: its card is `grimfall.securitron` (Securitron), in this record's grimfall block.
+source: campaigns/02-fallout-new-vegas#securitron-mk-ii-post-platinum-chip-upgrade
+---
+id: fallout-new-vegas-fiend
+type: monster
+name: Fiend
+knowledge: secret
+tags: [fallout-new-vegas, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout: New Vegas'
+    hp: 6
+    STR: 13
+    DEX: 15
+    WIL: 7
+    attacks:
+    - name: varmint rifle
+      damage: d6
+      qualities: [bulky]
+    - {name: machete, damage: d6}
+    abilities:
+    - 'Jet-High: On the first round, Fiends may take a free move action before their attack.'
+  grimfall:
+    tier: tough
+    role: brute
+    category: Predators & Horrors
+    senses: [bloodshot eyes and ground-down teeth, laughter through gunfire, chem sweat]
+    traits: [feels nothing, 'will not retreat, ever']
+    moves: [Reckless Charge, Pin and Gnaw]
+    wants: the rush — there is no plan, and that's the problem
+    note: Dropping one doesn't always stop it — a true chem fiend gets one last swing on the way 
+      down (the GM can spend suspense on it after it falls). Vegas's Fiends run in jet-fueled 4d 
+      packs that always move before you expect.
+body: |-
+  ## GM notes
+
+  Chem-addled raider detachment from the West Vegas ruins. Individual or detachment. Each group carries a chem stash (1d4 random chems).
+
+  Fallout 2e: 6 HP, 13 STR, 15 DEX, 7 WIL, varmint rifle (d6, bulky) or machete (d6).
+
+  Grimfall: its card is `grimfall.raider-psycho` (Raider Psycho), in this record's grimfall block.
+source: campaigns/02-fallout-new-vegas#fiend
+---
+id: fallout-new-vegas-benny
+type: monster
+name: Benny
+knowledge: secret
+tags: [fallout-new-vegas, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout: New Vegas'
+    hp: 6
+    STR: 13
+    DEX: 14
+    WIL: 14
+    attacks:
+    - {name: Maria, damage: d8, note: 'unique 9mm, see Unique Weapons'}
+    - {name: switchblade, damage: d6}
+    abilities: ['Lucky: Once per combat, re-roll a single failed save.']
+  grimfall:
+    tier: tough
+    role: trickster
+    category: Faces of the Wasteland
+    fact: All charm and checkered coat — shoots first exactly once, then talks or runs. Once per 
+      fight, dumb luck Counters the blow that would have finished him.
+body: |-
+  ## GM notes
+
+  **Benny** — rat-pack casino boss at the Tops. Shot you in the head, stole the Chip. Charming, insecure, doomed.
+
+  Rat-pack casino boss. A talker first, a shooter last. Runs if it goes south.
+
+  Fallout 2e: 6 HP, 13 STR, 14 DEX, 14 WIL, Maria (d8, unique 9mm — see Unique Weapons), switchblade (d6).
+
+  Grimfall: its card is `grimfall.benny` (Benny), in this record's grimfall block.
+source: campaigns/02-fallout-new-vegas#benny
+---
+id: fallout-new-vegas-vulpes-inculta
+type: monster
+name: Vulpes Inculta
+knowledge: secret
+tags: [fallout-new-vegas, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout: New Vegas'
+    hp: 8
+    armor: 1
+    STR: 14
+    DEX: 16
+    WIL: 13
+    attacks:
+    - {name: machete gladius, damage: d8}
+    - name: hunting revolver
+      damage: d10
+      qualities: [bulky]
+    abilities:
+    - 'Frumentarius: Vulpes is always somewhere the party is not. Every scene the party meets him face-to-face
+      and does not kill him, the Legion Frumentarii Clock ticks one.'
+  grimfall:
+    tier: elite
+    role: trickster
+    category: Faces of the Wasteland
+    fact: Never where you look; every time he walks away, the Legion knows more. Kill him early or 
+      pay retail.
+body: |-
+  ## GM notes
+
+  **Vulpes Inculta** — Caesar's top frumentarius. The one holding the torch at Nipton. Smart and patient and coming for the party.
+
+  Caesar's spymaster. Not a straight fight — he retreats when bloodied, to arrange a worse encounter later.
+
+  Fallout 2e: 8 HP, 1 Armor, 14 STR, 16 DEX, 13 WIL, machete gladius (d8), hunting revolver (d10, bulky).
+
+  Grimfall: its card is `grimfall.vulpes-inculta` (Vulpes Inculta), in this record's grimfall block.
+source: campaigns/02-fallout-new-vegas#vulpes-inculta
+---
+id: fallout-new-vegas-legate-lanius
+type: monster
+name: Legate Lanius
+knowledge: secret
+tags: [fallout-new-vegas, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout: New Vegas'
+    hp: 14
+    armor: 3
+    STR: 18
+    DEX: 14
+    WIL: 12
+    attacks:
+    - name: Blade of the East
+      damage: d10
+      qualities: [bulky]
+    - {name: spiked gauntlets, damage: d8}
+    abilities:
+    - 'Monster of the East: Automatically passes Morale saves. On Critical Damage, spits a speech and
+      fights for one more round before dying.'
+  grimfall:
+    tier: boss
+    role: brute
+    category: Named Threats & Legends
+    senses:
+    - a towering bull-horned mask over scarred hide
+    - a low contemptuous rasp and the drag of a great blade
+    - iron, blood, desert dust
+    traits:
+    - master of a colossal two-handed blade
+    - fearless and tireless
+    - armies break before him
+    moves: [Cleaving Arc (collateral), Disarm and Behead, Demand a Duel]
+    fail: He cuts down an ally or routs your line, then turns his back on you in contempt.
+    wants: a worthy death and an enemy worth crushing — not a war won by words instead of blades
+    note: A straight 8d challenge — the iconic duel. He respects strength and the spoken word alike;
+      a sharp enough tongue can turn him aside where steel cannot.
+body: |-
+  ## GM notes
+
+  **Legate Lanius** — Caesar's second and field general. A killer wearing an iron mask, swinging a blade the size of a door.
+
+  Caesar's field general. Only seen at the climax. Huge, masked, the only enemy in the Mojave who moves like a deathclaw but talks like a man.
+
+  Fallout 2e: 14 HP, 3 Armor, 18 STR, 14 DEX, 12 WIL, Blade of the East (d10, bulky), spiked gauntlets (d8).
+
+  Grimfall: its card is `grimfall.legate-lanius` (Legate Lanius), in this record's grimfall block.
+source: campaigns/02-fallout-new-vegas#legate-lanius
+---
+id: fallout-new-vegas-mister-house
+type: monster
+name: Mister House
+knowledge: secret
+tags: [fallout-new-vegas, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout: New Vegas'
+    abilities:
+    - 'Not a combat encounter (— HP, — combat): Voice on a monitor.'
+    - "Terms: Mr. House's contract is literal. Breaking it activates every Securitron on the Strip against
+      the party."
+  grimfall:
+    tier: elite
+    role: tactician
+    category: Named Threats & Legends
+    senses:
+    - a flickering monochrome face on every screen
+    - a clipped, impatient cultured voice
+    - sterile cold and humming servers
+    pools:
+    - name: Securitron Army
+      dice: 6
+      traits: everywhere at once, expendable, endless
+      moves: Swarm the Strip, Pin You Down
+    - name: The Network
+      dice: 6
+      traits: cameras, doors, accounts; shields House
+      moves: Lock You Out, See Everything
+    - name: Mr. House
+      dice: 4
+      traits: locked in his pod behind the Network; frail in the flesh
+      moves: Make an Offer, Call in a Marker
+    fail: 8d "Lockdown" — a timer; when it runs dry, House seals the Strip and the Securitrons 
+      converge.
+    wants: Vegas perfected under his control and a future for mankind — not his pod cracked open or 
+      his network cut
+    note: A linked challenge of intrigue and infrastructure, not a brawl. Sever the Network to reach
+      the frail man inside.
+body: |-
+  ## GM notes
+
+  **Mister House** — the invisible hand of New Vegas. Speaks only through screens. Pre-war CEO in a sealed chamber, 261 years old.
+
+  Speaks only through the Lucky 38's PA or a Securitron proxy. Unkillable until the party breaches his life-support chamber and severs his feeds — a scene, not a combat.
+
+  Fallout 2e: — HP, — combat. Voice on a monitor.
+
+  Grimfall: its card is `grimfall.mr-house` (Mr. House), in this record's grimfall block.
+source: campaigns/02-fallout-new-vegas#mister-house
+---
+id: fallout-new-vegas-doc-mitchell
+type: npc
+name: Doc Mitchell
+knowledge: secret
+tags: [fallout-new-vegas, cast]
+fields: {role: Goodsprings physician; the one who dug the bullet out}
+body: |-
+  ## GM notes
+
+  **Doc Mitchell** — Goodsprings physician; the one who dug the bullet out. Kind, retired, always has a pot of coffee on.
+source: campaigns/02-fallout-new-vegas#cast
+---
+id: fallout-new-vegas-sunny-smiles
+type: npc
+name: Sunny Smiles
+knowledge: secret
+tags: [fallout-new-vegas, cast]
+fields: {role: 'Goodsprings scout, lever-action rifle, trusts dogs more than people'}
+body: |-
+  ## GM notes
+
+  **Sunny Smiles** — Goodsprings scout, lever-action rifle, trusts dogs more than people. Potential companion.
+source: campaigns/02-fallout-new-vegas#cast
+---
+id: fallout-new-vegas-victor
+type: npc
+name: Victor
+knowledge: secret
+tags: [fallout-new-vegas, cast]
+fields: {role: a cheerful cowboy-themed Securitron who keeps being around}
+body: |-
+  ## GM notes
+
+  **Victor** — a cheerful cowboy-themed Securitron who keeps being around. Mr. House's eyes. A PC with a Pip-Boy can hack his shell and get a peek at House's payroll.
+source: campaigns/02-fallout-new-vegas#cast
+---
+id: fallout-new-vegas-yes-man
+type: npc
+name: Yes Man
+knowledge: secret
+tags: [fallout-new-vegas, cast]
+fields: {role: a Securitron reprogrammed to be helpful to the party specifically}
+body: |-
+  ## GM notes
+
+  **Yes Man** — a Securitron reprogrammed to be helpful to the party specifically. Endlessly cheerful. Does not understand personal boundaries.
+source: campaigns/02-fallout-new-vegas#cast
+---
+id: fallout-new-vegas-caesar-edward-sallow
+type: npc
+name: Caesar (Edward Sallow)
+knowledge: secret
+tags: [fallout-new-vegas, cast]
+fields: {role: general of the Legion}
+body: |-
+  ## GM notes
+
+  **Caesar (Edward Sallow)** — general of the Legion. Former Follower of the Apocalypse, now a slaver emperor who quotes Gibbon. Brain tumor. Dying.
+source: campaigns/02-fallout-new-vegas#cast
+---
+id: fallout-new-vegas-colonel-james-hsu
+type: npc
+name: Colonel James Hsu
+knowledge: secret
+tags: [fallout-new-vegas, cast]
+fields: {role: NCR field commander at McCarran}
+body: |-
+  ## GM notes
+
+  **Colonel James Hsu** — NCR field commander at McCarran. Honest, overworked, worth an alliance.
+source: campaigns/02-fallout-new-vegas#cast
+---
+id: fallout-new-vegas-general-lee-oliver
+type: npc
+name: General Lee Oliver
+knowledge: secret
+tags: [fallout-new-vegas, cast]
+fields: {role: NCR overall commander}
+body: |-
+  ## GM notes
+
+  **General Lee Oliver** — NCR overall commander. An ass. Shows up at Hoover Dam to take credit.
+source: campaigns/02-fallout-new-vegas#cast
+---
+id: fallout-new-vegas-ambassador-dennis-crocker
+type: npc
+name: Ambassador Dennis Crocker
+knowledge: secret
+tags: [fallout-new-vegas, cast]
+fields: {role: NCR diplomat on the Strip}
+details: {wants: Wants the party to play nice.}
+body: |-
+  ## GM notes
+
+  **Ambassador Dennis Crocker** — NCR diplomat on the Strip. Wants the party to play nice.
+source: campaigns/02-fallout-new-vegas#cast
+---
+id: fallout-new-vegas-the-king
+type: npc
+name: The King
+knowledge: secret
+tags: [fallout-new-vegas, cast]
+fields: {role: leader of the Kings in Freeside}
+body: |-
+  ## GM notes
+
+  **The King** — leader of the Kings in Freeside. Elvis impersonator with a golden heart and a straight razor. Potential ally.
+source: campaigns/02-fallout-new-vegas#cast
+---
+id: fallout-new-vegas-elder-nolan-mcnamara
+type: npc
+name: Elder Nolan McNamara
+knowledge: secret
+tags: [fallout-new-vegas, cast]
+fields: {role: Hidden Valley Brotherhood elder}
+body: |-
+  ## GM notes
+
+  **Elder Nolan McNamara** — Hidden Valley Brotherhood elder. Paranoid and rightly so.
+source: campaigns/02-fallout-new-vegas#cast
+---
+id: fallout-new-vegas-pearl
+type: npc
+name: Pearl
+knowledge: secret
+tags: [fallout-new-vegas, cast]
+fields: {role: the Boomer elder at Nellis}
+body: |-
+  ## GM notes
+
+  **Pearl** — the Boomer elder at Nellis. Will parley if the party brings a surviving B-29 back up from Lake Mead.
+source: campaigns/02-fallout-new-vegas#cast
+---
+id: fallout-new-vegas-veronica-santangelo
+type: npc
+name: Veronica Santangelo
+knowledge: secret
+tags: [fallout-new-vegas, cast]
+fields:
+  role: a Brotherhood scribe who has wandered from the bunker looking for a world worth staying in
+body: |-
+  ## GM notes
+
+  **Veronica Santangelo** — a Brotherhood scribe who has wandered from the bunker looking for a world worth staying in. Potential companion.
+source: campaigns/02-fallout-new-vegas#cast
+---
+id: fallout-new-vegas-arcade-gannon
+type: npc
+name: Arcade Gannon
+knowledge: secret
+tags: [fallout-new-vegas, cast]
+fields: {role: a Followers of the Apocalypse doctor with a secret Enclave past}
+body: |-
+  ## GM notes
+
+  **Arcade Gannon** — a Followers of the Apocalypse doctor with a secret Enclave past. Potential companion.
+source: campaigns/02-fallout-new-vegas#cast
+---
+id: fallout-new-vegas-craig-boone
+type: npc
+name: Craig Boone
+knowledge: secret
+tags: [fallout-new-vegas, cast]
+fields: {role: "Novac's ex-NCR sniper, grieving"}
+body: |-
+  ## GM notes
+
+  **Craig Boone** — Novac's ex-NCR sniper, grieving. Potential companion. Will kill a Legionary on sight.
+source: campaigns/02-fallout-new-vegas#cast
+---
+id: fallout-new-vegas-lily-bowen
+type: npc
+name: Lily Bowen
+knowledge: secret
+tags: [fallout-new-vegas, cast]
+fields: {role: Jacobstown's nightkin grandmother}
+body: |-
+  ## GM notes
+
+  **Lily Bowen** — Jacobstown's nightkin grandmother. Confused about the century, deadly with a sword ground from a vertibird blade. Potential companion.
+source: campaigns/02-fallout-new-vegas#cast
+---
+id: fallout-new-vegas-raul-tejada
+type: npc
+name: Raul Tejada
+knowledge: secret
+tags: [fallout-new-vegas, cast]
+fields: {role: ghoul mechanic held prisoner atop Black Mountain}
+body: |-
+  ## GM notes
+
+  **Raul Tejada** — ghoul mechanic held prisoner atop Black Mountain. Old, tired, very dry. Potential companion.
+source: campaigns/02-fallout-new-vegas#cast
+---
+id: fallout-new-vegas-ed-e
+type: npc
+name: ED-E
+knowledge: secret
+tags: [fallout-new-vegas, cast]
+fields: {role: an Eyebot from the Mojave Express office}
+body: |-
+  ## GM notes
+
+  **ED-E** — an Eyebot from the Mojave Express office. Potential companion (see Eyebot background).
+source: campaigns/02-fallout-new-vegas#cast
+---
+id: fallout-new-vegas-rex
+type: npc
+name: Rex
+knowledge: secret
+tags: [fallout-new-vegas, cast]
+fields: {role: a cyberdog belonging to the King}
+body: |-
+  ## GM notes
+
+  **Rex** — a cyberdog belonging to the King. Loaner companion while the King is alive.
+source: campaigns/02-fallout-new-vegas#cast
+---
+id: fallout-new-vegas-dam-clock
+type: track
+name: Dam Clock
+knowledge: secret
+tags: [fallout-new-vegas, clock]
+kind: clock
+size: 12
+value: {value: 0, size: 12}
+note: (d12) The armies converge. Ticks when a PC publicly pledges to a faction, the party takes an 
+  outlying asset (Khans, Brotherhood, Boomers, HELIOS One), a McCarran or Fort mission is completed,
+  or any FNV DLC reaches its climax. At 12, the Second Battle begins whether the party is ready or 
+  not.
+source: campaigns/02-fallout-new-vegas#clocks
+---
+id: fallout-new-vegas-benny-clock
+type: track
+name: Benny Clock
+knowledge: secret
+tags: [fallout-new-vegas, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4) Benny's flight. Starts once the party has spoken to Manny Vargas. Ticks when the party 
+  finishes a major Strip-facing scene without confronting Benny. At 4, Benny flees the Strip for the
+  Fort — where the Legion takes him prisoner, a gift kneeling in Caesar's tent.
+source: campaigns/02-fallout-new-vegas#clocks
+---
+id: fallout-new-vegas-legion-frumentarii-clock
+type: track
+name: Legion Frumentarii Clock
+knowledge: secret
+tags: [fallout-new-vegas, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: (d6) How many of Vulpes Inculta's spies the party has tripped. Ticks when a named Legion agent
+  escapes, a Legion-sympathizer NPC is left alive after questioning, or Vulpes himself is seen and 
+  not killed. At 6, a four-man Legion hit team tries to assassinate the party during a scene of the 
+  Overseer's pick.
+source: campaigns/02-fallout-new-vegas#clocks
+---
+id: fallout-new-vegas-courier-clock
+type: track
+name: Courier Clock
+knowledge: secret
+tags: [fallout-new-vegas, clock]
+kind: clock
+size: 8
+value: {value: 0, size: 8}
+note: (d8, hidden, Overseer-only) Ticks when the party first enters a major settlement (Primm, 
+  Novac, the Strip, the Fort, Camp McCarran, Nellis, Jacobstown, Hidden Valley). On each tick, the 
+  Overseer narrates a letter, a rumor, or a voice that recognizes the PC as the Courier who 
+  survived. At 8, the whole Mojave knows the story before the party walks in.
+source: campaigns/02-fallout-new-vegas#clocks

@@ -1,0 +1,79 @@
+# Creatures, companions and vehicles (overseers-guide/bestiary, creating-monsters, detachments;
+# players-guide/companions, vehicles). Each repeats its Cairn type (a hack's type replaces its
+# parent's whole) and adds Fallout's numbers. Cairn's `detachment` type (count, leader) is
+# inherited as it is and builds on this monster.
+type: monster
+label: Creature
+fields:
+  hp:
+    kind: resource
+    min: 0
+    label: HP
+    on_zero: "Lone enemies save Morale when they're reduced to 0 HP: `didact do morale who=<it>`."
+    help: "3 is average, 6 hardy, 10+ a serious threat."
+  armor: {kind: int, min: 0, max: 3, default: 0, help: "Subtracted from damage; never more than 3."}
+  STR: {kind: stat, range: [0, 20], on_zero: {trigger: death}}
+  DEX: {kind: stat, range: [0, 20], on_zero: {condition: paralyzed}}
+  WIL: {kind: stat, range: [0, 20], on_zero: {condition: broken-mind}}
+  attacks: {kind: list, help: "e.g. [{name: bite, damage: d8}]; two dice keep the highest: '{d12, d12}kh1' (the book's d12+d12)."}
+  abilities: {kind: list, help: "Traits and special abilities, one line each."}
+  critical: {kind: text, help: "What happens when a target fails its Critical Damage save (the attack shows it)."}
+  category: {kind: text, help: "Its bestiary group: Wasteland Fauna, Ghouls, Pre-war Robots, …"}
+  rad_immune: {kind: flag, help: "Ghouls, robots, super mutants and other rad-immune things ignore a Rad; a rad-susceptible creature loses 1 STR instead."}
+  conditions: {kind: conditions}
+guidance: >-
+  Describe it in plain words first, then stat it (or roll prompts: `didact gen run
+  fallout-2e.monster`). HP is luck, speed and toughness: 3 average, 6 hardy, 10+ a serious
+  threat. Armor 0–3, raised if it shrugs off attacks without moving. STR, DEX and WIL: 3
+  deficient, 6 weak, 10 average, 14 noteworthy, 18 legendary; STR is taking a hit, DEX starts at
+  10, WIL is influence, presence and defense against the mind. Anything realistically defended
+  against is an attack (a die and its tags: _blast_, _bulky_); anything else is an ability (one
+  PC: it just happens; a group: an immediate save). Up to three bullets: a descriptor, a quirk or
+  tactic, and a Critical Damage effect that shows its horror. Stat block: X HP, X Armor, X STR,
+  X DEX, X WIL, attack (dX, tags); Armor left out at 0.
+---
+type: companion
+extends: monster
+label: Companion
+fields:
+  hp: {kind: resource, min: 0, label: HP}
+  owner: {kind: ref, help: "The PC whose companion it is (one active companion each)."}
+  loyalty: {kind: int, min: 1, max: 5, default: 3, help: "1 Wary, 2 Tested, 3 Trusting, 4 Devoted, 5 True (`didact do loyalty`)."}
+  directive: {kind: text, help: "A robot companion's Directive, in place of Loyalty: the first violation brings a warning, the second enforcement."}
+  trick: {kind: text, help: "The one thing it reliably does that a PC can't."}
+  slots: {kind: int, min: 0, default: 0, help: "What it carries for the party, if anything."}
+  inventory: {kind: slots, capacity: slots, sizes: {petty: 0, normal: 1, bulky: 2}, help: "What it carries, outside its owner's ten slots."}
+  speed: {kind: enum, values: [Slow, Standard, Fast], help: "A mount's speed tier (see Vehicles)."}
+  qualities: {kind: tags}
+  price: {kind: int, min: 0, help: "In caps."}
+  note: {kind: text}
+guidance: >-
+  An NPC who travels with a PC for reasons beyond caps: 1d6 HP, STR, DEX and WIL of 3d6 (swap
+  any two), 1 Armor unless their background says otherwise, one weapon, one special trick, and
+  Loyalty 3 (a dog starts at 4; a robot has a Directive instead). Once per combat its PC may
+  spend their action on the Command action (`didact do command`).
+---
+type: vehicle
+label: Vehicle
+fields:
+  hp: {kind: resource, min: 0, label: Frame HP, help: "Damage the chassis absorbs before it's a wreck; restored by a mechanic and parts, never by rest."}
+  armor: {kind: int, min: 0, max: 3, default: 0, help: "Off the damage to the frame; passengers inside add half of it (rounded down) to their own."}
+  passengers: {kind: int, min: 0, help: "How many ride: a rider counts as one."}
+  slots: {kind: int, min: 0, default: 0, help: "Cargo slots."}
+  inventory: {kind: slots, capacity: slots, sizes: {petty: 0, normal: 1, bulky: 2}}
+  fuel: {kind: text, help: "What it burns: gasoline, a fusion core, flamer fuel, feed, aircraft fuel."}
+  fuel_uses: {kind: uses, help: "Fuel uses left: each covers roughly a day's travel."}
+  speed: {kind: enum, values: [Slow, Standard, Fast], help: "Slow: normal watch costs; Standard removes one watch of penalty per fuel use, Fast two."}
+  airborne: {kind: flag, help: "Flies: ignores ground terrain penalties."}
+  weapons: {kind: list, help: "Mounted weapons and gunner positions."}
+  attacks: {kind: list, help: "A beast of burden's own attack, if it has one."}
+  qualities: {kind: tags, help: "loud, slow, bulky, …"}
+  price: {kind: int, min: 0, help: "A notional price in caps: a working vehicle almost never changes hands for caps alone."}
+  note: {kind: text}
+  conditions: {kind: conditions, help: "broken (worn down to 0 over several hits), wrecked (crashed)."}
+guidance: >-
+  Frame HP / Armor / Capacity / Fuel / Speed Tier. Slow vehicles pay the normal watch costs;
+  Standard ones remove one watch of path, terrain or weather penalty per fuel use, Fast ones two,
+  never below the distance's base cost. Under pressure the driver saves DEX (STR in a rad storm,
+  a hot zone or broken terrain); a crash at 0 Frame HP in one impact scars the driver (2d6 HP
+  lost) and passengers (1d6): `didact do crash`.

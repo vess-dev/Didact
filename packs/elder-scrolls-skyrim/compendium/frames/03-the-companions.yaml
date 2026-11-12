@@ -1,0 +1,578 @@
+# The Companions (campaigns/03-the-companions): written by es_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Elder Scrolls 2e's numbers, and Grimscrolls'
+# card where its Bestiary or its Faces has the threat) and clocks.
+id: the-companions
+type: quest
+name: The Companions
+tags: [the-companions, frame, main-campaign]
+goal: "In the Wind District of Whiterun stands Jorrvaskr, the overturned hull of a longship that has been
+  a mead hall for nearly five thousand years — home of the Companions, warriors-for-hire who keep faith
+  with the band of Ysgramor. They take all comers who can swing a blade. But the inner Circle carry a
+  secret: they are werewolves, beast-blooded through an old pact with the Glenmoril Witches in the name
+  of Hircine, Prince of the Hunt. Their Harbinger, old Kodlak Whitemane, has come to dread the bargain
+  — when a beast-blooded Companion dies, his soul hunts forever in Hircine's Hunting Grounds rather than
+  feasting in Sovngarde, and Kodlak wants free of it before he dies. He will not get the chance. The Silver
+  Hand — fanatic werewolf-hunters — are closing in, and they mean to gut Jorrvaskr and take the shards
+  of Ysgramor's lost axe, Wuuthrad, with them."
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  *An old warrior dies afraid of where his soul will go. The mead hall that raised the heroes of Skyrim hides a curse under its floor — the inner Circle run with wolves, sold to a Daedric Prince of the Hunt — and the only people who can break the bargain are the witches who struck it and the hunters who want every werewolf in Skyrim skinned.*
+
+  ## GM notes
+
+  **Date.** Sundas, 17 Last Seed 4E 201: 4E 201, the book's moment; no day of its own: whenever the party reaches Jorrvaskr. It is the calendar's start: a new campaign opens on it.
+
+  **The frame's text:** `didact rules lookup the companions pitch` (and `stakes`, `tone touchstones`, `arrival`, `plot beats`, `the beast-blood`, `the place`, `cast`, `clocks`, `threats`, `rewards`, `climax`).
+
+  **Stakes.** The party comes up through the ranks, is offered the beast-blood, and inherits a dying man's last wish. Kodlak's murder cannot be prevented — it is the hinge of the story — but everything after is the party's to settle: whether to embrace the wolf or seek the cure, whether the Circle's secret survives, and whether one old Nord's soul reaches Sovngarde or hunts forever under the moons. By the end, the party's own beast-blood is the central question, and the Harbinger's chair is empty for them to fill.
+
+  **Arrival.** The party is in or near **Whiterun**. Pick a hook:
+
+  - **The giant at the farm.** Out on the tundra, **Aela**, **Farkas**, and the whelp **Ria** are squaring off against a **giant** that has wandered onto Pelagia Farm. They could use a fourth blade. Fight well and Aela tells you where warriors drink.
+  - **Word of work.** A caravan guard, a tavern-keeper at the Bannered Mare, or a Hold guard mentions that Jorrvaskr "always needs strong arms," and the pay is honest.
+  - **Faction tie.** A PC with the Companion background already belongs to the hall and starts at **Companions +1**; a Nord Reaver, Housecarl, or Sellsword has heard the old stories and means to earn a seat at that table.
+
+  However they arrive, the road ends at the doors of Jorrvaskr, where Kodlak Whitemane is waiting to size them up.
+
+  **Plot beats.**
+
+  1. **Take Up Arms.** The party reaches Jorrvaskr and speaks with Harbinger Kodlak. He has them **spar with Vilkas** in the yard to take their measure (a friendly bout — first to yield, no Scars). Earn a place as a whelp. Run errands that show the hall's shape: carry Vilkas's sword to **Eorlund Gray-Mane** at the **Skyforge**, deliver a shield to Aela, let **Farkas** show the party their bunks. One radiant job (clear a bandit den, recover a stolen heirloom) proves they're worth blooding.
+  2. **Proving Honor.** **Skjor** sends the party after a fragment of **Wuuthrad**, with **Farkas** as escort, into **Dustman's Cairn**. Deep in the crypt a lever seals the party behind a gate — and the **Silver Hand** spring their ambush. Farkas **transforms into a werewolf** before the party's eyes, tears the hunters apart, and frees them. *The secret is out:* some Companions are beasts. Fight on through the draugr to the inner chamber, take the **Fragment of Wuuthrad** from the altar (a Word Wall thrums there — ancient noise, nothing the party can use), and carry it home. Kodlak formally inducts the party into the Companions.
+  3. **The Underforge.** **Skjor** wants a word away from Kodlak's ears. After dark he leads the party beneath the Skyforge to the **Underforge**, where **Aela** waits in beast form by a stone basin. This is the **offering of the beast-blood**: Skjor opens Aela's wolf-vein into the font and invites the party to drink and join the Circle. **This is the campaign's first real fork — see *The Beast-Blood* below.** Whoever drinks blacks out and comes to outside the walls, having run as a wolf in the night, with Aela grinning beside the kill.
+  4. **The Silver Hand's Den.** Skjor means to strike the Silver Hand while the party's blood is hot — he marches on their stronghold at **Gallows Rock** ahead of the party. By the time the party and Aela catch up, the hunters were ready for him: the party fights through cages of tortured, dying werewolves and the hunter-captain **Krev the Skinner**, and finds **Skjor dead**, hung for skinning. The war with the Silver Hand is now blood for blood.
+  5. **Blood's Honor.** Kodlak takes the party aside and confesses what eats at him: the Circle's lycanthropy came from a **pact with the Glenmoril Witches**, and a beast-blooded soul belongs to **Hircine's Hunting Grounds**, not Sovngarde. He wants the **cure**, for himself and for any who'll take it — and the cure begins with a **witch's head**. Send the party to the **Glenmoril Coven** in the Falkreath pines to kill a witch and take her head. (A thorough party takes *several* heads — one per Circle member who might want curing later.)
+  6. **The Fall of Jorrvaskr.** The party returns to find **Jorrvaskr attacked and Kodlak dead** — the Silver Hand struck the hall while the Circle was scattered, killed the old man, and **stole the recovered Fragments of Wuuthrad**. This beat is the hinge: Kodlak's death is not preventable. The hall is in mourning and fury; **Vilkas** and **Aela** are wild with grief.
+  7. **Purity of Revenge.** With **Vilkas**, hunt the Silver Hand to their den at **Driftshade Refuge** near Dawnstar. Cut through the hunters and their traps, put down the caged beasts, and **recover the stolen Fragments of Wuuthrad**. Vilkas tells the party to bring everything to the Skyforge — it is time to lay the Harbinger to rest.
+  8. **Glory of the Dead.** At Kodlak's pyre, the party gives every fragment to **Eorlund**, who **reforges Wuuthrad** on the Skyforge. The Circle — **Aela, Farkas, Vilkas**, and the party — carry the axe north to **Ysgramor's Tomb** in Winterhold. Set Wuuthrad in the hands of Ysgramor's statue to open the inner door. Fight through Companion ghosts and skittering frostbite spiders to the **Flame of the Harbinger**, where **Kodlak's ghost** waits, still beast-tangled. Cast a **Glenmoril witch's head** into the Flame: Kodlak's wolf-spirit tears loose as a beast to be put down. Defeat it, and the old man is **freed to Sovngarde**. The Companions name the party **Harbinger**.
+
+  **Climax.**
+
+  The Flame of the Harbinger in Ysgramor's Tomb, Wuuthrad reforged and set in the founder's hands, the Circle at the party's back, and Kodlak's beast-tangled ghost waiting. Cast a Glenmoril witch's head into the Flame and the old man's wolf-spirit tears loose to be put down. Beat it, and Kodlak walks free to Sovngarde at last. Then the party decides what they are:
+
+  - **Embrace the wolf.** The party keep the beast-blood (or take it now, at the font, if they held back). The Companions ride on as Hircine's own — fierce, feared, and damned to the Hunting Grounds when they fall. Aela is glad of it. The Ring of Hircine, if found, is theirs to make the wolf limitless.
+  - **Seek the cure.** With heads enough, the beast-blooded PCs burn the curse out of themselves as they did for Kodlak — mortal again, Sovngarde-bound, the bargain with Hircine broken. The Companions become what Kodlak wanted them to be: warriors, not beasts.
+  - **A divided hall.** The party need not agree. Some keep the wolf, some take the cure, some never drank — and the Companions go on as a brotherhood that holds together across the difference, the way it always did. Either way, the chair at the head of the table is the party's now, and Jorrvaskr's doors stand open to all comers who can swing a blade.
+
+  **Also in the frame:** The Beast-Blood (the central branch) (`didact rules lookup the companions …`).
+
+  **The frame's records.** `didact gen run elder-scrolls-skyrim.frame --prefill '{"frame": "The Companions"}' --auto` drafts the region, 8 places, 8 people, 2 threats, its factions and its clocks, for the world's system; `gen commit` writes them.
+
+  **Bestiary** (Elder Scrolls 2e / Grimscrolls): Giant → `giant` / `giant`; Draugr → `draugr` / `draugr`; Draugr Overlord → `draugr-overlord` / `draugr`; Ghost → `ghost` / `ghost-and-wraith`; Hagraven → `hagraven` / `hagraven`; Frostbite Spider → `frostbite-spider` / `frostbite-spider`; Giant Frostbite Spider → `frostbite-spider` / `frostbite-spider`; Werewolf → `werewolf` / `werewolf-pack`; Bandit → `bandit` / `bandits`; Wolf → `wolf` / `wolf-pack`.
+
+  **Rewards in each system's catalog:** Wuuthrad (elder-scrolls-2e.wuuthrad · grimscrolls.wuuthrad); Ring of Hircine (elder-scrolls-2e.ring-of-hircine · grimscrolls.ring-of-hircine); The Shield of Ysgramor (elder-scrolls-2e.shield-of-ysgramor · grimscrolls.shield-of-ysgramor).
+source: campaigns/03-the-companions#pitch
+---
+id: the-companions-region
+type: loc
+name: The Companions pointcrawl
+tags: [the-companions, region]
+mechanics:
+  elder-scrolls-2e: {kind: region}
+body: |-
+  ## GM notes
+
+  A loose pointcrawl. Whiterun is the hub; the dungeons hang off it.
+source: campaigns/03-the-companions#the-place
+---
+id: the-companions-the-skyforge
+type: loc
+name: The Skyforge
+tags: [the-companions, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  The ancient forge on the rock above Jorrvaskr, hotter and older than any other in Skyrim, worked by **Eorlund Gray-Mane**, the finest smith in the Hold. Skyforge Steel comes from here; here Wuuthrad is reforged.
+source: campaigns/03-the-companions#the-place
+---
+id: the-companions-the-underforge
+type: loc
+name: The Underforge
+tags: [the-companions, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  A hidden cave beneath the Skyforge, reached by a concealed door only the Circle knows. A stone basin and a font of beast-blood. Where the wolf is given.
+source: campaigns/03-the-companions#the-place
+---
+id: the-companions-dustmans-cairn
+type: loc
+name: Dustman's Cairn
+tags: [the-companions, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  A Nordic barrow northwest of Whiterun — draugr, a sealing-lever trap, and the **Silver Hand** ambush that exposes the Circle's secret. Holds a Fragment of Wuuthrad.
+source: campaigns/03-the-companions#the-place
+---
+id: the-companions-glenmoril-coven
+type: loc
+name: Glenmoril Coven
+tags: [the-companions, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  (*Falkreath Hold*) A misty cave of hagravens deep in the southern pines, where the witches who struck the Hircine pact still dwell. Source of the curse and the cure. Take heads here.
+source: campaigns/03-the-companions#the-place
+---
+id: the-companions-gallows-rock
+type: loc
+name: Gallows Rock
+tags: [the-companions, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  A Silver Hand stronghold — a grim fort hung with werewolf pelts. **Krev the Skinner** commands; **Skjor** dies here.
+source: campaigns/03-the-companions#the-place
+---
+id: the-companions-driftshade-refuge
+type: loc
+name: Driftshade Refuge
+tags: [the-companions, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  (*Winterhold Hold, southeast of Dawnstar*) The Silver Hand den that holds the stolen Wuuthrad fragments after Jorrvaskr falls — traps, caged beasts, and the hunters' last stand.
+source: campaigns/03-the-companions#the-place
+---
+id: the-companions-kodlak-whitemane
+type: monster
+name: Kodlak Whitemane
+aliases: [Kodlak Whitemane (Harbinger)]
+knowledge: secret
+tags: [the-companions, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Companions'
+    hp: 10
+    armor: 2
+    STR: 14
+    DEX: 12
+    WIL: 15
+    attacks:
+    - {name: Skyforge greatsword, damage: d12}
+    - {name: Beast Form claws, damage: '{d6, d6}kh1'}
+    - {name: bite, damage: d8}
+    abilities:
+    - 'Also: Beast Form claws (d6+d6), bite (d8).'
+    - He will not transform if he can help it — the wolf is his shame. In a true crisis the Warden 
+      may give him Beast Form for one scene.
+    - Run him as a mentor, not a combatant. He is killed by the Silver Hand at Beat 6 regardless of 
+      the party's strength — the loss, not a fight, is the point.
+  grimscrolls:
+    tier: elite
+    role: protector
+    fact: "Harbinger of the Companions: old, ailing, and a werewolf who has decided he would rather see
+      Sovngarde than Hircine's Hunting Grounds. He wants the cure before he dies, or failing that, after.
+      (4E 201, Whiterun)"
+fields: {role: 'Harbinger, weary and wise'}
+body: |-
+  ## GM notes
+
+  **Kodlak Whitemane** — Harbinger, weary and wise; wants his soul freed from Hircine before he dies. The heart of the story. *Dies at Beat 6 — this cannot be prevented.*
+
+  Old and scarred, calm where younger warriors rage; speaks of honor, the soul, and Sovngarde. Beast-blooded, but he fights it.
+
+  Elder Scrolls 2e: 10 HP, 2 Armor, 14 STR, 12 DEX, 15 WIL, Skyforge greatsword (d12); Beast Form claws (d6+d6), bite (d8).
+
+  Grimscrolls: its Face is `grimscrolls.kodlak-whitemane` (Kodlak Whitemane), in this record's grimscrolls block.
+source: campaigns/03-the-companions#kodlak-whitemane-harbinger
+---
+id: the-companions-aela-the-huntress
+type: monster
+name: Aela the Huntress
+aliases: [Aela the Huntress (Circle)]
+knowledge: secret
+tags: [the-companions, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Companions'
+    hp: 8
+    armor: 1
+    STR: 13
+    DEX: 16
+    WIL: 11
+    attacks:
+    - {name: ancient Nord bow, damage: d6}
+    - {name: hunting knife, damage: d6}
+    - {name: Beast Form claws, damage: '{d6, d6}kh1'}
+    - {name: bite, damage: d8}
+    abilities:
+    - 'Also: Beast Form claws (d6+d6), bite (d8).'
+    - 'In Beast Form she fights as the Werewolf of the Bestiary: mundane attacks against her are Impaired,
+      silver is Enhanced; she is immune to disease. She refuses the cure.'
+    - "Huntress's Mark: once per combat, her next attack on a foe she has already struck is Enhanced."
+    impaired_by: [mundane]
+    enhanced_by: [silver]
+  grimscrolls:
+    category: Orders & Armies
+    tier: tough
+    role: brute
+    sights: Skyforge steel worn like jewelry
+    sounds: a brawl cheered, not stopped
+    smells: mead
+    traits: [never refuse a challenge, take no side in any war]
+    moves: [Shield-Bash and Follow Through, Settle It with Fists]
+    wants: glory and the hall's good name — a foe who yields with honor is bought a drink
+    note: 'A shield-band is a 6d pool that fights to the yield unless contracted otherwise, and any contract
+      can be argued before the **Harbinger**, who commands no one and is obeyed anyway. The **Circle**
+      does not mention its beast blood: corner one and meet a werewolf.'
+fields: {role: 'Circle, and the truest believer in the wolf'}
+body: |-
+  ## GM notes
+
+  **Aela the Huntress** — Circle, and the truest believer in the wolf; glories in the Hunt, will never take the cure. Drives the revenge arc. Potential follower.
+
+  Lithe, war-painted, restless; happiest on a hunt and proudest of the wolf.
+
+  Elder Scrolls 2e: 8 HP, 1 Armor, 13 STR, 16 DEX, 11 WIL, ancient Nord bow (d6) or hunting knife (d6); Beast Form claws (d6+d6), bite (d8).
+
+  Grimscrolls: its card is `grimscrolls.the-companions` (The Companions), in this record's grimscrolls block.
+source: campaigns/03-the-companions#aela-the-huntress-circle
+---
+id: the-companions-skjor
+type: monster
+name: Skjor
+aliases: [Skjor (Circle)]
+knowledge: secret
+tags: [the-companions, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Companions'
+    hp: 10
+    armor: 2
+    STR: 15
+    DEX: 13
+    WIL: 12
+    attacks:
+    - {name: Skyforge sword, damage: d10}
+    - {name: Beast Form claws, damage: '{d6, d6}kh1'}
+    - {name: bite, damage: d8}
+    abilities:
+    - 'Also: Beast Form claws (d6+d6), bite (d8).'
+    - Mundane attacks against his Beast Form are Impaired, silver Enhanced; immune to disease. Dies 
+      at Gallows Rock (Beat 4).
+    - 'First Blood: his attacks are Enhanced in the first round of any combat he begins.'
+    impaired_by: [mundane]
+  grimscrolls:
+    category: Orders & Armies
+    tier: tough
+    role: brute
+    sights: Skyforge steel worn like jewelry
+    sounds: a brawl cheered, not stopped
+    smells: mead
+    traits: [never refuse a challenge, take no side in any war]
+    moves: [Shield-Bash and Follow Through, Settle It with Fists]
+    wants: glory and the hall's good name — a foe who yields with honor is bought a drink
+    note: 'A shield-band is a 6d pool that fights to the yield unless contracted otherwise, and any contract
+      can be argued before the **Harbinger**, who commands no one and is obeyed anyway. The **Circle**
+      does not mention its beast blood: corner one and meet a werewolf.'
+fields: {role: 'Circle, the old war-dog'}
+body: |-
+  ## GM notes
+
+  **Skjor** — Circle, the old war-dog; gives the party the beast-blood and dies for his haste against the Silver Hand at Gallows Rock.
+
+  One-eyed veteran, blunt and battle-glad; gives the beast-blood and pushes the war with the Silver Hand too fast.
+
+  Elder Scrolls 2e: 10 HP, 2 Armor, 15 STR, 13 DEX, 12 WIL, Skyforge sword (d10) and shield (counted in Armor); Beast Form claws (d6+d6), bite (d8).
+
+  Grimscrolls: its card is `grimscrolls.the-companions` (The Companions), in this record's grimscrolls block.
+source: campaigns/03-the-companions#skjor-circle
+---
+id: the-companions-vilkas
+type: monster
+name: Vilkas
+aliases: [Vilkas & Farkas (Circle twins), Vilkas & Farkas]
+knowledge: secret
+tags: [the-companions, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Companions'
+    hp: 9
+    armor: 2
+    STR: 15
+    DEX: 13
+    WIL: 11
+    attacks:
+    - {name: Skyforge greatsword, damage: d12}
+    - {name: Beast Form claws, damage: '{d6, d6}kh1'}
+    - {name: bite, damage: d8}
+    abilities:
+    - 'Also: Beast Form claws (d6+d6), bite (d8).'
+    - Mundane attacks against Beast Form are Impaired, silver Enhanced; immune to disease. Either 
+      can become a follower after the questline.
+    - "Shield-Brother: once per day, an ally fighting within arm's reach of a twin re-rolls a failed STR
+      or WIL save to hold their ground."
+    impaired_by: [mundane]
+  grimscrolls:
+    category: Orders & Armies
+    tier: tough
+    role: brute
+    sights: Skyforge steel worn like jewelry
+    sounds: a brawl cheered, not stopped
+    smells: mead
+    traits: [never refuse a challenge, take no side in any war]
+    moves: [Shield-Bash and Follow Through, Settle It with Fists]
+    wants: glory and the hall's good name — a foe who yields with honor is bought a drink
+    note: 'A shield-band is a 6d pool that fights to the yield unless contracted otherwise, and any contract
+      can be argued before the **Harbinger**, who commands no one and is obeyed anyway. The **Circle**
+      does not mention its beast blood: corner one and meet a werewolf.'
+fields: {role: 'Circle, the thoughtful twin'}
+body: |-
+  ## GM notes
+
+  **Vilkas** — Circle, the thoughtful twin; quick to anger, slow to trust, grieves Kodlak hard and leads the hunt to Driftshade. Open to the cure.
+
+  Twins and opposites: Vilkas thinks and seethes, Farkas is broad and kind. Both beast-blooded; both can be cured if they choose.
+
+  Elder Scrolls 2e: 9 HP, 2 Armor, 15 STR, 13 DEX, 11 WIL, Skyforge greatsword (d12); Beast Form claws (d6+d6), bite (d8).
+
+  Grimscrolls: its card is `grimscrolls.the-companions` (The Companions), in this record's grimscrolls block.
+source: campaigns/03-the-companions#vilkas--farkas-circle-twins
+---
+id: the-companions-farkas
+type: monster
+name: Farkas
+aliases: [Vilkas & Farkas (Circle twins), Vilkas & Farkas]
+knowledge: secret
+tags: [the-companions, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Companions'
+    hp: 9
+    armor: 2
+    STR: 15
+    DEX: 13
+    WIL: 11
+    attacks:
+    - {name: Skyforge greatsword, damage: d12}
+    - {name: Beast Form claws, damage: '{d6, d6}kh1'}
+    - {name: bite, damage: d8}
+    abilities:
+    - 'Also: Beast Form claws (d6+d6), bite (d8).'
+    - Mundane attacks against Beast Form are Impaired, silver Enhanced; immune to disease. Either 
+      can become a follower after the questline.
+    - "Shield-Brother: once per day, an ally fighting within arm's reach of a twin re-rolls a failed STR
+      or WIL save to hold their ground."
+    impaired_by: [mundane]
+  grimscrolls:
+    category: Orders & Armies
+    tier: tough
+    role: brute
+    sights: Skyforge steel worn like jewelry
+    sounds: a brawl cheered, not stopped
+    smells: mead
+    traits: [never refuse a challenge, take no side in any war]
+    moves: [Shield-Bash and Follow Through, Settle It with Fists]
+    wants: glory and the hall's good name — a foe who yields with honor is bought a drink
+    note: 'A shield-band is a 6d pool that fights to the yield unless contracted otherwise, and any contract
+      can be argued before the **Harbinger**, who commands no one and is obeyed anyway. The **Circle**
+      does not mention its beast blood: corner one and meet a werewolf.'
+fields: {role: 'Circle, the gentle twin'}
+body: |-
+  ## GM notes
+
+  **Farkas** — Circle, the gentle twin; escorts Proving Honor and reveals the wolf to save the party. Loyal to a fault. Open to the cure.
+
+  Twins and opposites: Vilkas thinks and seethes, Farkas is broad and kind. Both beast-blooded; both can be cured if they choose.
+
+  Elder Scrolls 2e: 9 HP, 2 Armor, 15 STR, 13 DEX, 11 WIL, Skyforge greatsword (d12); Beast Form claws (d6+d6), bite (d8).
+
+  Grimscrolls: its card is `grimscrolls.the-companions` (The Companions), in this record's grimscrolls block.
+source: campaigns/03-the-companions#vilkas--farkas-circle-twins
+---
+id: the-companions-silver-hand-hunter
+type: monster
+name: Silver Hand Hunter
+knowledge: secret
+tags: [the-companions, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Companions'
+    hp: 6
+    armor: 1
+    STR: 13
+    DEX: 12
+    WIL: 9
+    attacks:
+    - name: silver sword
+      damage: d8
+      qualities: [silver]
+    - {name: hunting bow, damage: d6}
+    abilities:
+    - Their blades are silver — Enhanced against any beast-blooded PC, in beast form or out. A band 
+      is led by a captain in heavier mail (2 Armor, silver greatsword d10).
+  grimscrolls:
+    category: The Night's Children
+    tier: mook
+    role: tactician
+    sights: wolf heads on pikes
+    sounds: something large pacing a cage
+    smells: silver polish and old straw
+    traits: [silver on every blade, prepared for worse than you]
+    moves: ['Net, Pin, and Question', Loose the Thing in the Cage]
+    wants: every werewolf skinned and Jorrvaskr shamed — and, lately, any ransom going
+    note: A lodge is a 4d pool; against the beast blood its blades land at high stakes. A leader 
+      like **Krev the Skinner** is a tough who collects pelts. They deal for a werewolf's name or a 
+      shard of Wuuthrad, and plain travelers can buy their way out (4E 201).
+body: |-
+  ## GM notes
+
+  Grim, fur-and-mail werewolf-hunters who lair in forts hung with pelts. Bands of four or more are a detachment.
+
+  Elder Scrolls 2e: 6 HP, 1 Armor, 13 STR, 12 DEX, 9 WIL, silver sword (d8, silver) or hunting bow (d6).
+
+  Grimscrolls: its card is `grimscrolls.the-silver-hand` (The Silver Hand), in this record's grimscrolls block.
+source: campaigns/03-the-companions#silver-hand-hunter
+---
+id: the-companions-krev-the-skinner
+type: monster
+name: Krev the Skinner
+aliases: [Krev the Skinner (Silver Hand captain)]
+knowledge: secret
+tags: [the-companions, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Companions'
+    hp: 10
+    armor: 2
+    STR: 14
+    DEX: 13
+    WIL: 12
+    attacks:
+    - name: silver greatsword
+      damage: d10
+      qualities: [silver]
+    - name: crossbow
+      damage: d8
+      qualities: [bulky]
+    abilities:
+    - His greatsword is silver — Enhanced against beast-blooded PCs. He fights from a kennel of 
+      caged, half-mad captive werewolves he looses as a detachment.
+    critical: drives a silver stake home — STR loss he inflicts this round cannot be restored until 
+      the wound is treated by a healer.
+  grimscrolls:
+    category: The Night's Children
+    tier: mook
+    role: tactician
+    sights: wolf heads on pikes
+    sounds: something large pacing a cage
+    smells: silver polish and old straw
+    traits: [silver on every blade, prepared for worse than you]
+    moves: ['Net, Pin, and Question', Loose the Thing in the Cage]
+    wants: every werewolf skinned and Jorrvaskr shamed — and, lately, any ransom going
+    note: A lodge is a 4d pool; against the beast blood its blades land at high stakes. A leader 
+      like **Krev the Skinner** is a tough who collects pelts. They deal for a werewolf's name or a 
+      shard of Wuuthrad, and plain travelers can buy their way out (4E 201).
+fields: {role: the Silver Hand captain at Gallows Rock}
+body: |-
+  ## GM notes
+
+  **Krev the Skinner** — the Silver Hand captain at Gallows Rock; flays beasts for trophies.
+
+  The butcher who commands Gallows Rock and skins beasts for trophies; he killed Skjor.
+
+  Elder Scrolls 2e: 10 HP, 2 Armor, 14 STR, 13 DEX, 12 WIL, silver greatsword (d10, silver), crossbow (d8, bulky).
+
+  Grimscrolls: its card is `grimscrolls.the-silver-hand` (The Silver Hand), in this record's grimscrolls block.
+source: campaigns/03-the-companions#krev-the-skinner-silver-hand-captain
+---
+id: the-companions-kodlaks-wolf-spirit
+type: monster
+name: Kodlak's Wolf Spirit
+aliases: [Kodlak's Wolf Spirit (at the Flame)]
+knowledge: secret
+tags: [the-companions, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Companions'
+    hp: 12
+    armor: 1
+    STR: 16
+    DEX: 14
+    WIL: 8
+    attacks:
+    - {name: spectral claws, damage: '{d6, d6}kh1'}
+    - {name: bite, damage: d8}
+    abilities:
+    - A creature of the Hunting Grounds; mundane weapons strike it normally here, on hallowed barrow
+      ground. Slaying it frees Kodlak.
+    critical: it bears the target to the ground and savages them for 1d6 more STR.
+body: |-
+  ## GM notes
+
+  *at the Flame*
+
+  The beast torn loose from Kodlak's soul when a Glenmoril head burns in the Flame of the Harbinger — a ghostly, savage wolf-shape, all the Hunt and none of the man.
+
+  Elder Scrolls 2e: 12 HP, 1 Armor, 16 STR, 14 DEX, 8 WIL, spectral claws (d6+d6), bite (d8).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/03-the-companions#kodlaks-wolf-spirit-at-the-flame
+---
+id: the-companions-eorlund-gray-mane
+type: npc
+name: Eorlund Gray-Mane
+knowledge: secret
+tags: [the-companions, cast]
+fields: {role: master smith of the Skyforge}
+body: |-
+  ## GM notes
+
+  **Eorlund Gray-Mane** — master smith of the Skyforge; reforges Wuuthrad. Not a fighter, but his work arms the whole hall.
+source: campaigns/03-the-companions#cast
+---
+id: the-companions-the-glenmoril-witches
+type: npc
+name: The Glenmoril Witches
+knowledge: secret
+tags: [the-companions, cast]
+fields: {role: hagraven coven who hold the keys to both curse and cure}
+body: |-
+  ## GM notes
+
+  **The Glenmoril Witches** — hagraven coven who hold the keys to both curse and cure. They struck the pact with Hircine; they are not friends.
+source: campaigns/03-the-companions#cast
+---
+id: the-companions-the-silver-hand-clock
+type: track
+name: The Silver Hand Clock
+knowledge: secret
+tags: [the-companions, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: (d6) How close the hunters are to gutting Jorrvaskr. Advance it when the party kills Silver 
+  Hand in the open (Gallows Rock, ambush sites), when a beast-blooded PC transforms where it can be 
+  witnessed and reported, or when the party lingers in Whiterun between barrow-jobs. The hall falls 
+  when this clock fills (never before Kodlak has sent the party to the Coven in Beat 5) or when they
+  return from the Coven, whichever comes first. It is a pressure gauge on the murder that will come,
+  not a way to dodge it.
+source: campaigns/03-the-companions#clocks
+---
+id: the-companions-the-harbingers-hope
+type: track
+name: The Harbinger's Hope
+knowledge: secret
+tags: [the-companions, clock]
+kind: counter
+min: 0
+max: 5
+value: 0
+note: (a tally of witches' heads, 0–5) Kodlak's progress toward peace, and the party's stock of 
+  cures. Advance it for each Glenmoril witch's head the party carries out of the Coven. At the Flame
+  of the Harbinger, each head spends to cure one soul — Kodlak's, or a beast-blooded PC's. Fewer 
+  heads than willing souls means someone stays a wolf.
+source: campaigns/03-the-companions#clocks

@@ -1,0 +1,1287 @@
+# The paths, and the crucibles on the path pages (Adventurers, pp. 45, 54-86). 6x6 crucibles
+# are d66: the first die is the row, the second the column, read both ways (31 or 13).
+table: paths
+title: Adventurer paths
+description: "The 17 paths (12 core, 5 extra); each entry's data holds the path id, its core talent, its path talents (compendium ids), the levels its core talent grows at (growth) with what it gains (grows), whether it's a magical path (magical), and the half core talent it can't take, if any (prohibited: another path's lesser version of its own core, marked [Prohibited: …] in the book)."
+source: p. 45
+entries:
+  - text: Artificer
+    data:
+      id: artificer
+      magical: true
+      core: artificer-infusion
+      growth: [2, 4, 6]
+      grows: "At levels 2, 4, and 6, you can create +1 major arcana, and learn 2 touchstones."
+      talents: [artificer-animate-objects, artificer-artificial-parts, artificer-grenades, artificer-magnum-opus, artificer-mischief-maker, artificer-trap-making, artificer-wandslinger]
+      extra: true
+  - text: Bard
+    data:
+      id: bard
+      magical: false
+      core: bard-inspiration
+      growth: [2, 4, 6]
+      grows: "At levels 2, 4, and 6, gain +1 inspiration per session."
+      talents: [bard-bardic-lore, bard-dynamic-entrance, bard-folk-hero, bard-forked-tongue, bard-friendly-face, bard-jack-of-all-trades, bard-wordplay]
+      extra: false
+      prohibited: berserker-warcry
+  - text: Berserker
+    data:
+      id: berserker
+      magical: false
+      core: berserker-frenzy
+      growth: [3, 6]
+      grows: "At levels 3 and 6, gain 1 free activation of frenzy per session."
+      talents: [berserker-fearsome, berserker-flesh-wounds, berserker-into-the-fray, berserker-joyful-warrior, berserker-mighty, berserker-overkill, berserker-warcry]
+      extra: false
+  - text: Cleric
+    data:
+      id: cleric
+      magical: true
+      core: cleric-channel-divinity
+      growth: [3, 6]
+      grows: "At levels 3 and 6, gain +1d to each rite pool."
+      talents: [cleric-blessed, cleric-devout, cleric-healer, cleric-iron-will, cleric-rings-false, cleric-sermons, cleric-shepherd]
+      extra: false
+      prohibited: paladin-divine-blessing
+  - text: Druid
+    data:
+      id: druid
+      magical: true
+      core: druid-wild-shape
+      growth: [3, 6]
+      grows: "At levels 3 and 6, gain +1d to your Wild Shape pool."
+      talents: [druid-augury, druid-awaken, druid-kindred-spirits, druid-primal-growth, druid-primordial-bonds, druid-true-shape, druid-windcaller]
+      extra: false
+  - text: Fighter
+    data:
+      id: fighter
+      magical: false
+      core: fighter-weapon-mastery
+      growth: [3, 6]
+      grows: "At levels 3 and 6, gain +1 mastery per scene."
+      talents: [fighter-arcane-training, fighter-bulwark, fighter-control, fighter-got-your-back, fighter-measured-tones, fighter-swift-recovery, fighter-tactician]
+      extra: false
+  - text: Monk
+    data:
+      id: monk
+      magical: false
+      core: monk-discipline
+      growth: [3, 6]
+      grows: "At levels 3 and 6, gain +1 flow per scene and +1 interrupts per session."
+      talents: [monk-healing-hands, monk-lightning-reflexes, monk-mind-over-matter, monk-redirect, monk-resonance, monk-tether, monk-there-is-no-try]
+      extra: false
+  - text: Paladin
+    data:
+      id: paladin
+      magical: false
+      core: paladin-oathsworn
+      growth: [2, 4, 6]
+      grows: "At levels 2, 4, and 6, gain +1 smite per session."
+      talents: [paladin-aegis, paladin-authority, paladin-challenge, paladin-dauntless, paladin-divine-blessing, paladin-guardian, paladin-rebuke]
+      extra: false
+  - text: Psion
+    data:
+      id: psion
+      magical: true
+      core: psion-awakened-mind
+      growth: [3, 6]
+      grows: "At levels 3, and 6, you gain +1 instability slot at 0t, and +1 bastion."
+      talents: [psion-echo, psion-foresight, psion-mind-blast, psion-psychic-warrior, psion-reader, psion-shift-form, psion-tumultuous-mind]
+      extra: true
+  - text: Ranger
+    data:
+      id: ranger
+      magical: false
+      core: ranger-quarry
+      growth: [3, 6]
+      grows: "At levels 3 and 6, choose +1 Quarry per session."
+      talents: [ranger-animal-companion, ranger-keen-senses, ranger-relentless, ranger-scout-ahead, ranger-seasoned-hunter, ranger-sharpshooter, ranger-trophies]
+      extra: false
+  - text: Rogue
+    data:
+      id: rogue
+      magical: false
+      core: rogue-expertise
+      growth: [3, 6]
+      grows: "At levels 3 and 6, gain +1 Competence per session and +1 skill."
+      talents: [rogue-distraction, rogue-eldritch-affinity, rogue-lurker, rogue-mastermind, rogue-opportunist, rogue-poisoner, rogue-weasel]
+      extra: false
+      prohibited: swashbuckler-natural-moxie
+  - text: Sorcerer
+    data:
+      id: sorcerer
+      magical: true
+      core: sorcerer-sorcery
+      growth: [2, 4, 6]
+      grows: "At levels 2, 4, and 6, gain a new magic path or technique."
+      talents: [sorcerer-eldritch-growth, sorcerer-maelstrom, sorcerer-magic-sense, sorcerer-metamagic, sorcerer-spelleater, sorcerer-wisps, sorcerer-wrath]
+      extra: false
+      prohibited: rogue-eldritch-affinity
+  - text: Summoner
+    data:
+      id: summoner
+      magical: true
+      core: summoner-vassal
+      growth: [3, 6]
+      grows: "At levels 3 and 6, you gain +1 aspect."
+      talents: [summoner-binding-word, summoner-fierce-protector, summoner-ley-magic, summoner-monster-menagerie, summoner-pocket-plane, summoner-portal-network, summoner-shared-soul]
+      extra: true
+  - text: Swashbuckler
+    data:
+      id: swashbuckler
+      magical: false
+      core: swashbuckler-panache
+      growth: [2, 4, 6]
+      grows: "At levels 2, 4, and 6, you gain +1 panache per scene."
+      talents: [swashbuckler-audacity, swashbuckler-fancy-footwork, swashbuckler-improvise, swashbuckler-lucky, swashbuckler-natural-moxie, swashbuckler-provoke, swashbuckler-the-legend-of]
+      extra: true
+  - text: Warlock
+    data:
+      id: warlock
+      magical: true
+      core: warlock-pact
+      growth: [3, 6]
+      grows: "At levels 3 and 6, gain +1 Eldritch Talent."
+      talents: [warlock-affliction, warlock-blood-rituals, warlock-knowing-gaze, warlock-magus, warlock-otherworldly-form, warlock-visions, warlock-wayfarer]
+      extra: false
+  - text: Witch
+    data:
+      id: witch
+      magical: true
+      core: witch-hidden-magic
+      growth: [2, 4, 6]
+      grows: "At levels 2, 4, and 6, you gain +2 words of power."
+      talents: [witch-bailiwick, witch-evil-eye, witch-familiar, witch-herbalism, witch-homely-hovel, witch-soothsayer, witch-wonder-magnet]
+      extra: true
+  - text: Wizard
+    data:
+      id: wizard
+      magical: true
+      core: wizard-spellcraft
+      growth: [2, 4, 6]
+      grows: "At levels 2, 4, and 6, gain +1 spell and potent spell per session, +1 theorem"
+      talents: [wizard-alchemist, wizard-archivist, wizard-colleagues, wizard-component-pouch, wizard-countermagic, wizard-mastered-theorem, wizard-specialty-school]
+      extra: false
+      prohibited: fighter-arcane-training
+---
+table: talent-lists
+title: Talent lists
+description: "Where a new talent can come from (Talents, p. 20; Path Talents, p. 52; Background Talents, pp. 88-89; Legacy Talents, pp. 178-179): every path's non-core talents (open to every path), the background talents (available to all paths), and the legacy talents (ask your GM before taking one: the dice never pick them). Each entry's data holds its talents (compendium ids); a magical path is marked, and so are the legacy talents of magical paths."
+source: "pp. 20, 52, 88-89, 178-179"
+entries:
+  - text: Artificer
+    data: {id: artificer, magical: true, talents: [artificer-animate-objects, artificer-artificial-parts, artificer-grenades, artificer-magnum-opus, artificer-mischief-maker, artificer-trap-making, artificer-wandslinger]}
+  - text: Bard
+    data: {id: bard, magical: false, talents: [bard-bardic-lore, bard-dynamic-entrance, bard-folk-hero, bard-forked-tongue, bard-friendly-face, bard-jack-of-all-trades, bard-wordplay]}
+  - text: Berserker
+    data: {id: berserker, magical: false, talents: [berserker-fearsome, berserker-flesh-wounds, berserker-into-the-fray, berserker-joyful-warrior, berserker-mighty, berserker-overkill, berserker-warcry]}
+  - text: Cleric
+    data: {id: cleric, magical: true, talents: [cleric-blessed, cleric-devout, cleric-healer, cleric-iron-will, cleric-rings-false, cleric-sermons, cleric-shepherd]}
+  - text: Druid
+    data: {id: druid, magical: true, talents: [druid-augury, druid-awaken, druid-kindred-spirits, druid-primal-growth, druid-primordial-bonds, druid-true-shape, druid-windcaller]}
+  - text: Fighter
+    data: {id: fighter, magical: false, talents: [fighter-arcane-training, fighter-bulwark, fighter-control, fighter-got-your-back, fighter-measured-tones, fighter-swift-recovery, fighter-tactician]}
+  - text: Monk
+    data: {id: monk, magical: false, talents: [monk-healing-hands, monk-lightning-reflexes, monk-mind-over-matter, monk-redirect, monk-resonance, monk-tether, monk-there-is-no-try]}
+  - text: Paladin
+    data: {id: paladin, magical: false, talents: [paladin-aegis, paladin-authority, paladin-challenge, paladin-dauntless, paladin-divine-blessing, paladin-guardian, paladin-rebuke]}
+  - text: Psion
+    data: {id: psion, magical: true, talents: [psion-echo, psion-foresight, psion-mind-blast, psion-psychic-warrior, psion-reader, psion-shift-form, psion-tumultuous-mind]}
+  - text: Ranger
+    data: {id: ranger, magical: false, talents: [ranger-animal-companion, ranger-keen-senses, ranger-relentless, ranger-scout-ahead, ranger-seasoned-hunter, ranger-sharpshooter, ranger-trophies]}
+  - text: Rogue
+    data: {id: rogue, magical: false, talents: [rogue-distraction, rogue-eldritch-affinity, rogue-lurker, rogue-mastermind, rogue-opportunist, rogue-poisoner, rogue-weasel]}
+  - text: Sorcerer
+    data: {id: sorcerer, magical: true, talents: [sorcerer-eldritch-growth, sorcerer-maelstrom, sorcerer-magic-sense, sorcerer-metamagic, sorcerer-spelleater, sorcerer-wisps, sorcerer-wrath]}
+  - text: Summoner
+    data: {id: summoner, magical: true, talents: [summoner-binding-word, summoner-fierce-protector, summoner-ley-magic, summoner-monster-menagerie, summoner-pocket-plane, summoner-portal-network, summoner-shared-soul]}
+  - text: Swashbuckler
+    data: {id: swashbuckler, magical: false, talents: [swashbuckler-audacity, swashbuckler-fancy-footwork, swashbuckler-improvise, swashbuckler-lucky, swashbuckler-natural-moxie, swashbuckler-provoke, swashbuckler-the-legend-of]}
+  - text: Warlock
+    data: {id: warlock, magical: true, talents: [warlock-affliction, warlock-blood-rituals, warlock-knowing-gaze, warlock-magus, warlock-otherworldly-form, warlock-visions, warlock-wayfarer]}
+  - text: Witch
+    data: {id: witch, magical: true, talents: [witch-bailiwick, witch-evil-eye, witch-familiar, witch-herbalism, witch-homely-hovel, witch-soothsayer, witch-wonder-magnet]}
+  - text: Wizard
+    data: {id: wizard, magical: true, talents: [wizard-alchemist, wizard-archivist, wizard-colleagues, wizard-component-pouch, wizard-countermagic, wizard-mastered-theorem, wizard-specialty-school]}
+  - text: Background talents
+    note: "Talents that fit backgrounds and heritages thematically, open to every path: link your second talent to your heritage, or work one out with the GM (pp. 88-89)."
+    data: {id: background, magical: false, talents: [background-aquatic, background-clout, background-crowd-favorite, background-cultural-weapon, background-flight, background-pint-sized, background-regeneration, background-salt-of-the-earth, background-simple-deduction, background-teamwork, background-thieves-cant]}
+  - text: Legacy talents (ask your GM)
+    note: "Talents from Grimwild v1.4 and earlier versions of the Community Edition, dropped for balance or theme: ask your GM before taking one (p. 178)."
+    weight: 0
+    data: {id: legacy, magical: false, legacy: true, talents: [legacy-cunning-actions, legacy-trap-sense, legacy-anchorshot, legacy-double-barreled-blunderbuss, legacy-mechanical-mount, legacy-steamhammer, legacy-swiftwing, legacy-mind-seed, legacy-disturbed-mind, legacy-prepared-spell], magical_talents: [legacy-anchorshot, legacy-double-barreled-blunderbuss, legacy-mechanical-mount, legacy-steamhammer, legacy-swiftwing, legacy-mind-seed, legacy-disturbed-mind, legacy-prepared-spell]}
+---
+table: artificer-magitechnobabble-prefix
+title: "Magitechnobabble: first half"
+description: "Smash together, and ramble on: a first half from this table and an ending from artificer-magitechnobabble-suffix."
+dice: d66
+both_ways: true
+source: p. 54
+entries:
+  11: alche-
+  12: tink-
+  13: zapp-
+  14: blun-
+  15: fum-
+  16: dab-
+  21: fizzi-
+  22: glim-
+  23: boond-
+  24: gogg-
+  25: sput-
+  26: splin-
+  31: clank-
+  32: cogg-
+  33: whim-
+  34: phliz-
+  35: miz-
+  36: bung-
+  41: spro-
+  42: flib-
+  43: chym-
+  44: zind-
+  45: cran-
+  46: rat-
+  51: mag-
+  52: quib-
+  53: wob-
+  54: bogg-
+  55: jig-
+  56: quab-
+  61: whizz-
+  62: griz-
+  63: scran-
+  64: quirk-
+  65: wiz-
+  66: jang-
+---
+table: artificer-magitechnobabble-suffix
+title: "Magitechnobabble: second half"
+description: "Smash together, and ramble on: an ending for a first half from artificer-magitechnobabble-prefix."
+dice: d66
+both_ways: true
+source: p. 54
+entries:
+  11: "-nic"
+  12: "-crank"
+  13: "-nar"
+  14: "-tome"
+  15: "-nox"
+  16: "-lash"
+  21: "-tor"
+  22: "-mage"
+  23: "-gram"
+  24: "-phage"
+  25: "-press"
+  26: "-hinge"
+  31: "-al"
+  32: "-flux"
+  33: "-plex"
+  34: "-tron"
+  35: "-scope"
+  36: "-ring"
+  41: "-con"
+  42: "-bolt"
+  43: "-lock"
+  44: "-spark"
+  45: "-spire"
+  46: "-shift"
+  51: "-fuse"
+  52: "-meter"
+  53: "-gear"
+  54: "-lume"
+  55: "-turn"
+  56: "-stone"
+  61: "-matic"
+  62: "-ator"
+  63: "-cog"
+  64: "-craft"
+  65: "-drum"
+  66: "-knob"
+---
+table: bard-song-style
+title: "Song composition: style"
+description: "Style: how you feel when you're performing the song. A song is a style, a tune, \"of\" an impact."
+source: p. 56
+entries: [chaotic, dire, fiery, gentle, haunting, playful, nostalgic, rousing, vicious, whimsical]
+---
+table: bard-song-tune
+title: "Song composition: tune"
+description: "Tune: the familiar form that anyone will recognize."
+source: p. 56
+entries: [anthem, aria, ballad, chant, ditty, hymn, ode, requiem, rhapsody, serenade]
+---
+table: bard-song-impact
+title: "Song composition: impact"
+description: "Impact: how the song magically influences others."
+source: p. 56
+entries: [affection, awe, calm, despair, fear, fury, hope, joy, mockery, wonder]
+---
+table: druid-tells
+title: Druidic tells
+description: "Ideas for features: tells that reflect a druid's deep connection with nature."
+dice: d66
+both_ways: true
+source: p. 62
+entries:
+  11: thorns
+  12: blossoming
+  13: feathered
+  14: bristled
+  15: roots
+  16: fluffy
+  21: moss
+  22: bark
+  23: earthen
+  24: hoofed
+  25: vibrant
+  26: silken
+  31: vines
+  32: glowing
+  33: translucent
+  34: tangled
+  35: crystalline
+  36: smoky
+  41: tusked
+  42: velvet
+  43: murky
+  44: speckled
+  45: verdant
+  46: willowy
+  51: shimmering
+  52: antlered
+  53: ashen
+  54: spiny
+  55: gnarled
+  56: fragrant
+  61: scaly
+  62: longtoothed
+  63: dewy
+  64: breezy
+  65: misty
+  66: petals
+---
+table: fighter-weapon-origin
+title: Weapon origin
+description: "Roll d66 twice to give your weapon its own small story. Three columns: the second die's 1-2, 3-4, 5-6 pick the column."
+dice: d66
+both_ways: true
+source: p. 64
+entries:
+  11: etched with words of loss
+  12: etched with words of loss
+  13: stolen from a family member
+  14: stolen from a family member
+  15: marked by a secret society
+  16: marked by a secret society
+  21: gift from a childhood mentor
+  22: gift from a childhood mentor
+  23: covered in burn marks
+  24: covered in burn marks
+  25: with a hidden compartment
+  26: with a hidden compartment
+  31: given to you by your father
+  32: given to you by your father
+  33: carved with friend's initials
+  34: carved with friend's initials
+  35: inscribed with a quote
+  36: inscribed with a quote
+  41: taken from a dead body
+  42: taken from a dead body
+  43: with a faded family crest
+  44: with a faded family crest
+  45: give as a peace offering
+  46: give as a peace offering
+  51: marred with blade nicks
+  52: marred with blade nicks
+  53: taken as spoils of war
+  54: taken as spoils of war
+  55: belonged to a gambler
+  56: belonged to a gambler
+  61: made from a rare material
+  62: made from a rare material
+  63: scratched from fierce battle
+  64: scratched from fierce battle
+  65: patched many times
+  66: patched many times
+---
+table: monk-style-concept
+title: "Martial arts style: concept"
+description: It's based on the ___ concept of... [choose 1 or 2]
+dice: d66
+both_ways: true
+source: p. 66
+entries:
+  11: "Primal: tiger"
+  12: "Elemental: fire"
+  13: "Powerful: thunderstorm"
+  14: "Idealistic: harmony"
+  15: "Philosophical: foundation"
+  16: "Stylistic: ferocity"
+  21: "Primal: crane"
+  22: "Elemental: water"
+  23: "Powerful: avalanche"
+  24: "Idealistic: destruction"
+  25: "Philosophical: flourishing"
+  26: "Stylistic: deception"
+  31: "Primal: snake"
+  32: "Elemental: air"
+  33: "Powerful: tsunami"
+  34: "Idealistic: tranquility"
+  35: "Philosophical: refinement"
+  36: "Stylistic: grace"
+  41: "Primal: wolf"
+  42: "Elemental: earth"
+  43: "Powerful: whirlwind"
+  44: "Idealistic: justice"
+  45: "Philosophical: adaption"
+  46: "Stylistic: brutality"
+  51: "Primal: mantis"
+  52: "Elemental: lightning"
+  53: "Powerful: earthquake"
+  54: "Idealistic: chaos"
+  55: "Philosophical: endurance"
+  56: "Stylistic: precision"
+  61: "Primal: raven"
+  62: "Elemental: heart"
+  63: "Powerful: volcano"
+  64: "Idealistic: freedom"
+  65: "Philosophical: transformation"
+  66: "Stylistic: patience"
+---
+table: monk-style-moves
+title: "Martial arts style: stances and moves"
+description: It features stances and moves like... [choose 3]
+dice: d66
+both_ways: true
+source: p. 66
+entries:
+  11: open palm
+  12: elbow strike
+  13: circular step
+  14: high kick
+  15: crane stance
+  16: mantis grab
+  21: spinning kick
+  22: aerial leaps
+  23: knee strike
+  24: tiger claw
+  25: side kick
+  26: close punch
+  31: low stance
+  32: breath control
+  33: joint lock
+  34: heavy strike
+  35: swift parry
+  36: leaping elbow
+  41: finger jabs
+  42: redirecting grab
+  43: pressure point
+  44: dual strikes
+  45: rooted stance
+  46: snap kick
+  51: iron forearm
+  52: chop strike
+  53: whipping attack
+  54: jumps & rolls
+  55: soft redirect
+  56: wide sweep
+  61: flowing step
+  62: iron grip
+  63: steady gaze
+  64: palm heel
+  65: backfist strike
+  66: crescent kick
+---
+table: monk-style-weapons
+title: "Martial arts style: weapons"
+description: It often makes use of ___ weapons like... [choose 2]
+dice: d66
+both_ways: true
+source: p. 66
+entries:
+  11: "Blunt: bo staff"
+  12: "Flexible: chain whip"
+  13: "Edged: sai"
+  14: "Reach: monk spade"
+  15: "Thrown: shuriken"
+  16: "Specialized: tiger claws"
+  21: "Blunt: three-part staff"
+  22: "Flexible: rope dart"
+  23: "Edged: kama"
+  24: "Reach: spear"
+  25: "Thrown: throwing spikes"
+  26: "Specialized: spiked boots"
+  31: "Blunt: half-staff"
+  32: "Flexible: sickle & chain"
+  33: "Edged: butterfly sword"
+  34: "Reach: naginata"
+  35: "Thrown: chakram"
+  36: "Specialized: war fan"
+  41: "Blunt: nunchaku"
+  42: "Flexible: weight & chain"
+  43: "Edged: hook sword"
+  44: "Reach: longhandle blade"
+  45: "Thrown: boomerang"
+  46: "Specialized: iron knuckles"
+  51: "Blunt: short sticks"
+  52: "Flexible: whip blade"
+  53: "Edged: straight sword"
+  54: "Reach: trident"
+  55: "Thrown: darts"
+  56: "Specialized: crescent knives"
+  61: "Blunt: batons"
+  62: "Flexible: scarf"
+  63: "Edged: curved sword"
+  64: "Reach: scythe"
+  65: "Thrown: throwing axes"
+  66: "Specialized: backfist rings"
+---
+table: paladin-tenet-bring
+title: "Tenet builder: I swear to bring"
+description: Roll, then choose an option, rewrite for clarity.
+dice: d6
+source: p. 69
+entries:
+  1: honor—valor
+  2: justice—revenge
+  3: faith—doubt
+  4: mercy—judgment
+  5: strength—compassion
+  6: truth—wisdom
+---
+table: paladin-tenet-to-for
+title: "Tenet builder: to—for the"
+description: Roll, then choose an option, rewrite for clarity.
+dice: d6
+source: p. 69
+entries:
+  1: forgotten—powerless
+  2: redeemable—irredeemable
+  3: reformers—traditionalists
+  4: devout—faithless
+  5: evil—defiled
+  6: leaders—people
+---
+table: paladin-tenet-despite
+title: "Tenet builder: despite—because of"
+description: Roll, then choose an option, rewrite for clarity.
+dice: d6
+source: p. 69
+entries:
+  1: my desire for...
+  2: "my trait, ..."
+  3: my arc to...
+  4: my background of...
+  5: my bond with...
+  6: my lack of...
+---
+table: ranger-trap-effect
+title: "Favorite traps: effect"
+description: Combine an effect, a trigger, and the word "trap" (poisonous bait trap).
+dice: d6
+source: p. 72
+entries:
+  1: stunning
+  2: falling
+  3: noisy
+  4: poisonous
+  5: entangling
+  6: injuring
+---
+table: ranger-trap-trigger
+title: "Favorite traps: trigger"
+description: Combine an effect, a trigger, and the word "trap" (poisonous bait trap).
+dice: d6
+source: p. 72
+entries:
+  1: tripwire
+  2: pressure plate
+  3: snare loop
+  4: bait
+  5: hidden
+  6: proximity
+---
+table: rogue-crime-severity
+title: "Criminal history: severity"
+description: "The crime: a severity and a nature; then your reputation from it."
+dice: d6
+source: p. 74
+entries:
+  1: petty
+  2: low-level
+  3: moderate
+  4: serious
+  5: severe
+  6: legendary
+---
+table: rogue-crime-nature
+title: "Criminal history: nature"
+description: "The crime: a severity and a nature; then your reputation from it."
+source: p. 74
+entries:
+  - theft
+  - fraud
+  - spying
+  - smuggling
+  - banditry
+  - kidnapping
+  - vandalism
+  - gambling
+  - bribery
+  - extortion
+  - arms dealing
+  - arson
+  - treason
+  - robbery
+  - assassination
+  - heist
+  - impersonation
+  - necromancy
+---
+table: rogue-crime-reputation
+title: "Criminal history: reputation"
+description: Your reputation from the crime.
+dice: d6
+source: p. 74
+entries:
+  1: barely remembered
+  2: small bounty
+  3: known name
+  4: hunted
+  5: infamous
+  6: most wanted
+---
+table: sorcerer-wild-surge-1
+title: Wild surge crucible (first table)
+description: Roll 1 on each table, smash them together, and interpret
+dice: d66
+both_ways: true
+source: p. 76
+entries:
+  11: skin
+  12: temperature
+  13: icy
+  14: smoke
+  15: rain
+  16: lightning
+  21: gust
+  22: sparks
+  23: rattle
+  24: tremor
+  25: color
+  26: scent
+  31: ground
+  32: fire
+  33: water
+  34: light
+  35: debris
+  36: flicker
+  41: creatures
+  42: growth
+  43: boom
+  44: effect
+  45: steps
+  46: levitation
+  51: cloud
+  52: invisibility
+  53: gloom
+  54: distortion
+  55: metal
+  56: eye
+  61: shadow
+  62: clock
+  63: twist
+  64: laughter
+  65: breath
+  66: hum
+---
+table: sorcerer-wild-surge-2
+title: Wild surge crucible (second table)
+description: Roll 1 on each table, smash them together, and interpret
+dice: d66
+both_ways: true
+source: p. 76
+entries:
+  11: birds
+  12: whispers
+  13: glowing
+  14: illusion
+  15: rapid
+  16: whirlwind
+  21: smell
+  22: static
+  23: hunger
+  24: image
+  25: emotion
+  26: glimmer
+  31: lifted
+  32: change
+  33: phrase
+  34: shock
+  35: sound
+  36: echo
+  41: shattering
+  42: scatter
+  43: feeling
+  44: pop
+  45: brief
+  46: shimmer
+  51: shift
+  52: size
+  53: surface
+  54: agitation
+  55: apparition
+  56: sparkle
+  61: notes
+  62: vision
+  63: voice
+  64: mark
+  65: glow
+  66: dazzle
+---
+table: summoner-vassal-form
+title: "Build-a-vassal: form"
+description: It's a ___ ___-like creature that I send ___ing toward my enemies. (The first blank.)
+source: p. 78
+entries:
+  - squat
+  - gangly
+  - robust
+  - lithe
+  - sleek
+  - imposing
+  - tall
+  - angular
+  - bulky
+  - rounded
+  - hunched
+  - gaunt
+---
+table: summoner-vassal-creature
+title: "Build-a-vassal: creature"
+description: It's a ___ ___-like creature that I send ___ing toward my enemies. (The second blank.)
+source: p. 78
+entries: [frog, bull, turtle, squid, cat, spider, chicken, snake, insect, jellyfish, ape, blob]
+---
+table: summoner-vassal-movement
+title: "Build-a-vassal: movement"
+description: It's a ___ ___-like creature that I send ___ing toward my enemies. (The third blank.)
+source: p. 78
+entries:  # data: the word with -ing, as the book's sentence reads
+  - {text: prowl, data: {ing: prowling}}
+  - {text: slither, data: {ing: slithering}}
+  - {text: leap, data: {ing: leaping}}
+  - {text: crawl, data: {ing: crawling}}
+  - {text: bound, data: {ing: bounding}}
+  - {text: gallop, data: {ing: galloping}}
+  - {text: glide, data: {ing: gliding}}
+  - {text: dash, data: {ing: dashing}}
+  - {text: skitter, data: {ing: skittering}}
+  - {text: lumber, data: {ing: lumbering}}
+  - {text: charge, data: {ing: charging}}
+  - {text: float, data: {ing: floating}}
+---
+table: swashbuckler-entanglement-kind
+title: "Past entanglements: left side"
+description: Pick 1 from each side and smash them together.
+source: p. 80
+entries:
+  - spurned
+  - obsessed
+  - vengeful
+  - treacherous
+  - jealous
+  - mysterious
+  - lifelong
+  - bitter
+  - adoring
+  - innocent
+  - ambitious
+  - secret
+---
+table: swashbuckler-entanglement-person
+title: "Past entanglements: right side"
+description: Pick 1 from each side and smash them together.
+source: p. 80
+entries:
+  - patron
+  - investigator
+  - paramour
+  - mentor
+  - faction
+  - relative
+  - partner
+  - rival
+  - fan
+  - friend
+  - muse
+  - protégé
+---
+table: swashbuckler-legend-first
+title: "The legend of...: first word"
+description: "What people have taken to calling you: one from each side. Columns Playful, Witty, Mysterious (each entry's data)."
+source: p. 81
+entries:
+  - {text: smiling, data: {column: Playful}}
+  - {text: red, data: {column: Playful}}
+  - {text: infallible, data: {column: Playful}}
+  - {text: dashing, data: {column: Playful}}
+  - {text: fantastic, data: {column: Playful}}
+  - {text: wondrous, data: {column: Playful}}
+  - {text: gallant, data: {column: Witty}}
+  - {text: artful, data: {column: Witty}}
+  - {text: sly, data: {column: Witty}}
+  - {text: silver, data: {column: Witty}}
+  - {text: azure, data: {column: Witty}}
+  - {text: gilded, data: {column: Witty}}
+  - {text: steel, data: {column: Mysterious}}
+  - {text: crimson, data: {column: Mysterious}}
+  - {text: gray, data: {column: Mysterious}}
+  - {text: silent, data: {column: Mysterious}}
+  - {text: midnight, data: {column: Mysterious}}
+  - {text: masked, data: {column: Mysterious}}
+---
+table: swashbuckler-legend-second
+title: "The legend of...: second word"
+description: "What people have taken to calling you: one from each side. Columns Abstract, Animal, Trade (each entry's data)."
+source: p. 81
+entries:
+  - {text: phantom, data: {column: Abstract}}
+  - {text: marvel, data: {column: Abstract}}
+  - {text: one, data: {column: Abstract}}
+  - {text: justice, data: {column: Abstract}}
+  - {text: enigma, data: {column: Abstract}}
+  - {text: mirage, data: {column: Abstract}}
+  - {text: robin, data: {column: Animal}}
+  - {text: hawk, data: {column: Animal}}
+  - {text: butterfly, data: {column: Animal}}
+  - {text: fox, data: {column: Animal}}
+  - {text: phoenix, data: {column: Animal}}
+  - {text: viper, data: {column: Animal}}
+  - {text: baron, data: {column: Trade}}
+  - {text: wanderer, data: {column: Trade}}
+  - {text: knight, data: {column: Trade}}
+  - {text: rake, data: {column: Trade}}
+  - {text: thief, data: {column: Trade}}
+  - {text: avenger, data: {column: Trade}}
+---
+table: warlock-patron-nature
+title: "Patron crucible: nature"
+description: Roll 2 on each table, smash them together, and interpret
+dice: d66
+both_ways: true
+source: p. 82
+entries:
+  11: cogs
+  12: abyss
+  13: scourge
+  14: veil
+  15: shadow
+  16: hollow
+  21: chimera
+  22: serpent
+  23: flame
+  24: outsider
+  25: green
+  26: balance
+  31: void
+  32: forge
+  33: phoenix
+  34: trickster
+  35: whisper
+  36: fiend
+  41: dead god
+  42: thorn
+  43: depths
+  44: tempest
+  45: reaper
+  46: storm
+  51: eternal
+  52: harbinger
+  53: tide
+  54: leviathan
+  55: prism
+  56: dragon
+  61: shroud
+  62: echo
+  63: starborn
+  64: light
+  65: dreamer
+  66: oddity
+---
+table: warlock-patron-desires
+title: "Patron crucible: desires"
+description: Roll 2 on each table, smash them together, and interpret
+dice: d66
+both_ways: true
+source: p. 82
+entries:
+  11: chaos
+  12: beauty
+  13: minds
+  14: wealth
+  15: rarities
+  16: destruction
+  21: secrets
+  22: fun
+  23: control
+  24: magic
+  25: everything
+  26: monuments
+  31: power
+  32: victory
+  33: judgment
+  34: unity
+  35: souls
+  36: biomass
+  41: worshipers
+  42: adoration
+  43: fear
+  44: fame
+  45: revenge
+  46: knowledge
+  51: promises
+  52: purity
+  53: progress
+  54: curios
+  55: truth
+  56: experiences
+  61: influence
+  62: life
+  63: territory
+  64: perfection
+  65: order
+  66: entropy
+---
+table: witch-words-of-power-1
+title: Words of power (first table)
+dice: d66
+both_ways: true
+source: p. 84
+entries:
+  11: spirit
+  12: grace
+  13: wither
+  14: path
+  15: star
+  16: color
+  21: wall
+  22: sleep
+  23: fire
+  24: gate
+  25: storm
+  26: wind
+  31: absorb
+  32: pain
+  33: adapt
+  34: break
+  35: dream
+  36: sun
+  41: ward
+  42: luck
+  43: shape
+  44: reduce
+  45: compel
+  46: silence
+  51: might
+  52: vigor
+  53: vex
+  54: open
+  55: obscure
+  56: cloud
+  61: blood
+  62: grave
+  63: time
+  64: move
+  65: ask
+  66: ice
+---
+table: witch-words-of-power-2
+title: Words of power (second table)
+dice: d66
+both_ways: true
+source: p. 84
+entries:
+  11: read
+  12: puzzle
+  13: call
+  14: lost
+  15: plant
+  16: life
+  21: reveal
+  22: guide
+  23: shackle
+  24: bind
+  25: sea
+  26: hunt
+  31: secret
+  32: stone
+  33: trick
+  34: voice
+  35: growth
+  36: travel
+  41: message
+  42: fable
+  43: speak
+  44: kindred
+  45: weather
+  46: beast
+  51: memory
+  52: know
+  53: aid
+  54: sanctum
+  55: food
+  56: instinct
+  61: light
+  62: truth
+  63: rebuke
+  64: blend
+  65: bird
+  66: poison
+---
+table: witch-herbalism-1
+title: Herbalism crucible (first word)
+description: Make an herb name from a word of each table. Herbalism crucible by Juniper Bloom, used with permission.
+dice: d66
+both_ways: true
+source: p. 85
+entries:
+  11: choke
+  12: star
+  13: sun
+  14: dream
+  15: mist
+  16: zap
+  21: sticky
+  22: stone
+  23: moon
+  24: feather
+  25: soot
+  26: blast
+  31: wool
+  32: dust
+  33: devil
+  34: wild
+  35: freeze
+  36: blood
+  41: smoke
+  42: snake
+  43: honey
+  44: mirror
+  45: sting
+  46: ink
+  51: shriek
+  52: mimic
+  53: goat
+  54: worm
+  55: steel
+  56: skunk
+  61: giggle
+  62: needle
+  63: night
+  64: swell
+  65: faerie
+  66: dragon
+---
+table: witch-herbalism-2
+title: Herbalism crucible (second word)
+description: Make an herb name from a word of each table. Herbalism crucible by Juniper Bloom, used with permission.
+dice: d66
+both_ways: true
+source: p. 85
+entries:
+  11: cap
+  12: lily
+  13: thistle
+  14: pod
+  15: stem
+  16: petal
+  21: wort
+  22: reed
+  23: bell
+  24: bud
+  25: shoot
+  26: bean
+  31: rose
+  32: flower
+  33: leaf
+  34: tongue
+  35: bark
+  36: tuber
+  41: bush
+  42: root
+  43: wood
+  44: berry
+  45: funnel
+  46: vine
+  51: shroom
+  52: spine
+  53: grass
+  54: lace
+  55: moss
+  56: seed
+  61: sprout
+  62: shade
+  63: thorn
+  64: bane
+  65: branch
+  66: weed
+---
+table: witch-hovel-descriptor
+title: "Homely hovel: descriptor"
+description: "Ideas for your hovel: one from each column."
+dice: d6
+source: p. 85
+entries:
+  1: charming
+  2: mysterious
+  3: rickety
+  4: unsettling
+  5: vibrant
+  6: whimsical
+---
+table: witch-hovel-place
+title: "Homely hovel: place"
+description: "Ideas for your hovel: one from each column."
+dice: d6
+source: p. 85
+entries:
+  1: castle
+  2: cottage
+  3: glade
+  4: manor
+  5: shack
+  6: temple
+---
+table: wizard-spell-style
+title: "Spell crucible: style"
+description: Roll 1 of each, choose 2, then add a school
+dice: d66
+both_ways: true
+source: p. 86
+entries:
+  11: binding
+  12: soothing
+  13: grasping
+  14: shielding
+  15: curious
+  16: shadowy
+  21: flaming
+  22: slow
+  23: dire
+  24: petrifying
+  25: ethereal
+  26: majestic
+  31: alluring
+  32: silent
+  33: dazzling
+  34: piercing
+  35: sense
+  36: frenzied
+  41: cryptic
+  42: withering
+  43: primal
+  44: toxic
+  45: thunderous
+  46: prismatic
+  51: freezing
+  52: shredding
+  53: "false"
+  54: harmonic
+  55: molten
+  56: wild
+  61: mesmerizing
+  62: unseen
+  63: expanding
+  64: swift
+  65: phantom
+  66: whispering
+---
+table: wizard-spell-essence
+title: "Spell crucible: essence"
+description: Roll 1 of each, choose 2, then add a school
+dice: d66
+both_ways: true
+source: p. 86
+entries:
+  11: oil
+  12: earth
+  13: lore
+  14: spirit
+  15: ash
+  16: barb
+  21: crystal
+  22: air
+  23: fire
+  24: lightning
+  25: acid
+  26: memory
+  31: slime
+  32: spore
+  33: shroud
+  34: stasis
+  35: sound
+  36: water
+  41: light
+  42: star
+  43: trick
+  44: siphon
+  45: thought
+  46: rift
+  51: gravity
+  52: smoke
+  53: sight
+  54: mist
+  55: bloom
+  56: poison
+  61: echo
+  62: death
+  63: bone
+  64: mirror
+  65: emotion
+  66: growth
+---
+table: wizard-spell-form
+title: "Spell crucible: form"
+description: Roll 1 of each, choose 2, then add a school
+dice: d66
+both_ways: true
+source: p. 86
+entries:
+  11: beacon
+  12: servant
+  13: vision
+  14: sentinel
+  15: ray
+  16: spray
+  21: ring
+  22: crown
+  23: bond
+  24: shift
+  25: guide
+  26: embers
+  31: chains
+  32: word
+  33: step
+  34: gate
+  35: wall
+  36: bolt
+  41: eye
+  42: aura
+  43: gust
+  44: tendril
+  45: wings
+  46: wave
+  51: lock
+  52: shield
+  53: swarm
+  54: pillar
+  55: claw
+  56: dream
+  61: bubble
+  62: hand
+  63: dance
+  64: explosion
+  65: anchor
+  66: field

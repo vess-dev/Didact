@@ -1,0 +1,9 @@
+# A chosen (or prefilled) entry's data applied by its path.
+chargen: pc
+title: A delver
+creates: pc
+modes: [random, guided]
+steps:
+  - choose_or_roll: {table: hoards, as: row}
+  - apply: {pool_dice: "@row.pool.dice", pool_kind: "@row.pool.kind"}
+  - name: {from: [Hal]}

@@ -1,0 +1,28 @@
+action: hit
+help: Roll the dice a value holds as text, plus a bonus.
+params:
+  die: {kind: text, default: d8}
+steps:
+  - let: {d: "@die", bonus: 2}
+  - roll: "{@d} + {@bonus}"
+    as: dealt
+  - message: "The hit deals {@dealt}."
+---
+action: best
+help: The better of a d8 and the die a value holds, in a set of rolls; and a set of one.
+params:
+  die: {kind: text, default: d6}
+steps:
+  - roll: "{d8, {@die}}kh1"
+    as: best
+  - roll: "{2d6}"
+    as: pair
+  - message: "best {@best}, pair {@pair}"
+---
+action: bare
+help: The text itself, which rolls nothing.
+params:
+  die: {kind: text, default: d8}
+steps:
+  - roll: "@die"
+    as: dealt

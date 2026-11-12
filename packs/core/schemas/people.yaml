@@ -1,0 +1,21 @@
+# System-agnostic fields every character has, whatever the game. System packs add their
+# mechanics in their own block (`mechanics.<system>`); these live in `fields` and stay open:
+# any other field can be added freely.
+type: character
+label: Character
+fields:
+  pronouns: {kind: text}
+  description: {kind: text, help: "Looks and manner, in a sentence or two."}
+  goal: {kind: text, help: "What they want right now."}
+---
+type: pc
+extends: character
+label: Player character
+fields:
+  player: {kind: text, help: "Who plays them (for party play)."}
+---
+type: npc
+extends: character
+label: Non-player character
+fields:
+  role: {kind: text, help: "Their place in the world: innkeeper, rival, patron, …"}

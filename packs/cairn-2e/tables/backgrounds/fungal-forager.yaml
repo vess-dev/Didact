@@ -1,0 +1,60 @@
+# Fungal Forager (backgrounds/fungal-forager): the background's two d6 tables.
+table: fungal-forager-1
+title: What strange fungus did you discover?
+dice: d6
+source: backgrounds/fungal-forager
+entries:
+  1:
+    text: "Shrieking Trumpet. When exposed to light, it screams so loudly that all nearby attacks (including your own) are impaired. 2 uses."
+    data:
+      gear: [{name: Shrieking Trumpet, uses: 2}]
+  2:
+    text: "Torch Fungus. When crushed, it creates a cold blue light for a short while. 2 uses."
+    data:
+      gear: [{name: Torch Fungus, uses: 2}]
+  3:
+    text: "Murderous Truffle. Pungent, highly toxic, and very rare (worth 50gp to assassins). Illegal pretty much everywhere. 1 use."
+    data:
+      gear: [{name: Murderous Truffle, uses: 1, note: worth 50gp to assassins}]
+  4:
+    text: "Hellcap. Exposure to its aroma causes intense nausea and vomiting. Either way, it clears the room. Bottled (1 use)."
+    data:
+      gear: [{name: Hellcap, uses: 1}]
+  5:
+    text: "Sproutcup. Ingest to shrink down to the size of a mouse. (Your belongings stay the same size.) You return to normal size within the hour, often in fits and starts. 1 use."
+    data:
+      gear: [{name: Sproutcup, uses: 1}]
+  6:
+    text: "Rootflower. A white fungus found only on corpses deep underground. Ingest to restore d6 WIL. You will dream of the dead and their stories. 1 use."
+    data:
+      gear: [{name: Rootflower, uses: 1}]
+---
+table: fungal-forager-2
+title: "What keeps you sane, even in utter darkness?"
+dice: d6
+source: backgrounds/fungal-forager
+entries:
+  1:
+    text: "Glowsnail: Casts a soft, bioluminescent light. Feeds on one ration every two days."
+    data:
+      gear: [Glowsnail]
+  2:
+    text: "Silk Moth Shawl: A weatherproof blanket, it can also douse a fire without being damaged."
+    data:
+      gear: [Silk Moth Shawl]
+  3:
+    text: "Milkflower: A gentle stimulant. Chewing it makes you immune to panic for the next hour. 3 uses."
+    data:
+      gear: [{name: Milkflower, uses: 3}]
+  4:
+    text: "Luxcompass: Hums softly as it moves closer to the Sun. Eventually the noise becomes unbearably loud."
+    data:
+      gear: [Luxcompass]
+  5:
+    text: "Sloth-Tarp: A tough and weatherproof fabric, useful for hanging off trees. When inside, you have +1 Armor."
+    data:
+      gear: [Sloth-Tarp]
+  6:
+    text: "Miner's Grease: Great for dislodging a gem, tool, or limb from a tight crack. Highly explosive. 3 uses."
+    data:
+      gear: [{name: Miner's Grease, uses: 3}]

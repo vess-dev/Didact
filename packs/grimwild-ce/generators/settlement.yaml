@@ -1,0 +1,43 @@
+# A settlement map (Settlement Maps, pp. 134-135): the GM draws the town's outline (a vague
+# border or a wall), then roads and notable buildings go in, minor (written in lower case) or
+# major (in capitals), each labelled from the building crucible (p. 135). The settlement itself
+# is labelled from the settlements crucible (p. 138); its roads join the buildings.
+generator: settlement
+title: A settlement map
+help: >-
+  A settlement, step by step: a label from the settlements crucible, minor or major, its outline
+  (a border or a wall), and its notable buildings, each minor or major and labelled from the
+  building crucible (choose them, or let the dice), joined by roads. buildings=<n> sets how many
+  (5); region=<place> puts it inside a place. Prefill by name: adjective, noun, size, outline,
+  building_size, building_adjective, building_noun.
+params:
+  buildings: {kind: int, default: 5, help: "How many notable buildings"}
+  region: {kind: text, default: "", help: "The place it lies in, e.g. loc:the-grimwild"}
+source: "pp. 134-135"
+steps:
+  - choose_or_roll: {table: settlements-crucible-1, as: adjective, prompt: "a word to label it (the first grid)"}
+  - choose_or_roll: {table: settlements-crucible-2, as: noun, prompt: "and what it is (the second grid)"}
+  - choose_or_roll: {from: [minor, major], as: size, prompt: "a minor or a major settlement"}
+  - choose_or_roll: {from: [border, wall], as: outline, prompt: "its outline: a vague border, or a wall (a barrier)"}
+  - let: {settlement_name: "{@adjective} {@noun}"}
+  - entity:
+      key: settlement
+      type: loc
+      name: "{@settlement_name}"
+      fields: {kind: settlement, size: "@size", outline: "@outline", region: "$region"}
+  - repeat: "$buildings"
+    steps:
+      - choose_or_roll: {from: [minor, major], as: building_size, prompt: "a minor building (2 tokens), or a major one (3 tokens), more important in the setting or story"}
+      - choose_or_roll: {table: building-crucible-1, as: building_adjective, prompt: "a word to label it (the first grid)"}
+      - choose_or_roll: {table: building-crucible-2, as: building_noun, prompt: "and what it is (the second grid)"}
+      - entity:
+          key: building
+          type: loc
+          name: "{@building_adjective} {@building_noun}"
+          fields: {kind: building, size: "@building_size", region: "@settlement"}
+  - map:
+      places: building
+      paths: {max: 2}
+      distances: ["next door", "down the road", "across town"]
+  - prompt: "Its roads are the paths between the buildings; passes let a road cross an area or a barrier. Add curiosities (rumors, happenings), barriers (rivers, walls) and areas (a lake, a district) as the story needs."
+  - prompt: "On a drawn map, write a minor building in lower case and a MAJOR one in capitals. Detail each: who works or lives there, and what's going on?"

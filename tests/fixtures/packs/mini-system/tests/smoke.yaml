@@ -1,0 +1,23 @@
+test: weather-always-lands
+table: weather
+times: 30
+---
+test: roll-under
+expr: "d20 <= @STR"
+vars: {STR: 10}
+got: "7"
+expect: true
+---
+test: fair-save
+odds: "d20 <= 10"
+chance: 0.5
+---
+test: play
+script:
+  - world new t --system {pack}
+  - campaign new c
+  - new pc Hero --fill
+  - do save who=hero attr=STR
+  - spawn troll
+  - do attack attacker=hero target=troll
+  - table roll poi-name --with poi=Keep

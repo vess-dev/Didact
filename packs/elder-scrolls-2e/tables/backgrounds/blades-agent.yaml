@@ -1,0 +1,24 @@
+# Blades Agent (backgrounds/blades-agent): the background's two d6 tables.
+table: blades-agent-1
+title: "How did you come to wear the Dragonguard's blade?"
+dice: d6
+source: backgrounds/blades-agent#how-did-you-come-to-wear-the-dragonguards-blade-roll-1d6
+entries:
+  1: "You were the last to walk out of a safehouse the Thalmor burned, your master's sword in your hands and her last orders in your ears. Once per day, re-roll a failed DEX save made to escape, evade pursuit, or slip a search."
+  2: "An old loremaster of the order taught you the dragon-script of the barrows. You can read the Dragon tongue carved on Word Walls and tomb doors, though you could never speak a word of it aloud, and you can always tell a Dragon Priest's tomb from a common barrow."
+  3: {text: "You were a spymaster's eyes before the order fell. Take a sealed dispatch of Thalmor movements (petty), worth a great deal to the right buyer — and the certain knowledge that the wrong one is already hunting you.", data: {gear: [{name: "Sealed dispatch of Thalmor movements", size: "petty"}]}}
+  4: {text: "You held a mountain pass alone against a Justiciar's patrol and lived. Your maximum HP is 1 higher; take the elven dagger (d6) of the last elf you killed there.", data: {extra_hp: true, gear: [{name: "Elven dagger", damage: "d6"}]}}
+  5: {text: "You hid for a year in the Ratway beneath Riften beside a half-mad archivist of the order who talked of nothing but dragons. Take his map of dragon mounds (petty), marking three barrows where the old dragons were buried. He may still be down there, if the Thalmor have not found him.", data: {gear: [{name: "Map of dragon mounds", size: "petty"}]}}
+  6: {text: "You broke a fellow Blade out of Northwatch Keep, the Thalmor's prison, at terrible cost. Take a Thalmor cell key (petty); the Blade you freed owes you their life, and is out there somewhere in Skyrim still.", data: {gear: [{name: "Thalmor cell key", size: "petty"}]}}
+---
+table: blades-agent-2
+title: "What marks you as one of the Blades?"
+dice: d6
+source: backgrounds/blades-agent#what-marks-you-as-one-of-the-blades-roll-1d6
+entries:
+  1: {text: "Dragonguard Katana: Your katana is older and finer than most, folded by an Akaviri smith of the first Dragonguard — masterwork (d10).", data: {upgrade: true, replaces: {name: "Akaviri katana", damage: "d8", note: "curved and ancient, a blade of the old Dragonguard"}, gear: [{name: "Dragonguard katana", damage: "d10", qualities: ["masterwork"], tempered: true, note: "folded by an Akaviri smith of the first Dragonguard"}]}}
+  2: {text: "Grandmaster's Token: A small enameled dragon-token of the order (petty). Shown to one who remembers the Blades, it makes their Reaction toward you one step better; shown to a Thalmor, one step worse.", data: {gear: [{name: "Grandmaster's Token", size: "petty"}]}}
+  3: {text: "Akaviri Bow: A recurved bow of dark horn (d6, bulky). You were trained to shoot from the saddle: loosing it from horseback is never Impaired.", data: {gear: [{name: "Akaviri Bow", damage: "d6", size: "bulky"}]}}
+  4: {text: "Hidden Sheath: A spring-rig worn up the sleeve (petty). Once per combat, draw a concealed blade and strike a foe who believed you unarmed: the attack is Enhanced.", data: {gear: [{name: "Hidden Sheath", size: "petty"}]}}
+  5: {text: "Dragon Annals: A heavy, hand-copied book of dragon-lore and Akaviri history. Spend a turn with it before you face a creature of the old age — a dragon, a Dragon Priest, a barrow's lord — and the Warden tells you its weakness.", data: {gear: [{name: "Dragon Annals", note: "a heavy, hand-copied book of dragon-lore and Akaviri history"}]}}
+  6: {text: "Cloud Ruler Cloak: A gray field cloak of the old temple guard, cut to hide armor and blade (petty). While you wear it and keep still in the wilds, you need not save to go unseen at a distance.", data: {gear: [{name: "Cloud Ruler Cloak", size: "petty"}]}}

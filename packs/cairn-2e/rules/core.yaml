@@ -1,0 +1,636 @@
+# The core rules (players-guide/core-rules): saves, combat, damage, morale, luck, panic, magic,
+# deprivation, Fatigue, healing and coins.
+check: save
+title: Save
+help: >-
+  Roll d20 against an attribute: at or under succeeds, a 1 always succeeds and a 20 always fails.
+  Opposed (two foes each trying to overcome the other): whoever is most at risk saves. Acting
+  together: `didact do save-together`.
+params:
+  who: ref
+  attr: {enum: [STR, DEX, WIL]}
+prompt: State the risk before rolling.
+roll: d20
+success: "@roll <= @who.$attr"
+auto: {1: success, 20: failure}
+source: players-guide/core-rules#saves
+---
+check: save-together
+title: Save together
+help: >-
+  Two characters acting together: whoever is most at risk saves, usually the one with the
+  lowest relevant attribute. This rolls against the lower of the two.
+params:
+  who: ref
+  partner: ref
+  attr: {enum: [STR, DEX, WIL]}
+prompt: State the risk before rolling.
+roll: d20
+success: "@roll <= min(@who.$attr, @partner.$attr)"
+auto: {1: success, 20: failure}
+source: players-guide/core-rules#saves
+---
+action: attack
+title: Attack
+help: >-
+  Attacks always hit. Roll the weapon die (impaired: d4; enhanced: d12; unarmed: always d4),
+  subtract armor, and take it from HP. HP to exactly 0 gives a PC a scar (applied: `scar`);
+  damage past 0 comes off STR, and the target saves STR (its new score) against critical damage:
+  a PC who fails is dying (`stabilize` within the hour), an NPC is dead, a detachment routed, and
+  the attacker's own critical effect follows. A doomed PC's next critical save decides. Two
+  weapons or several attackers: weapon='{d8, d6}kh1' (keep the highest; impaired or enhanced,
+  each die becomes a d4 or a d12). A panicked attacker's attacks are impaired. A helpless or
+  unaware target can't rely on HP: direct=true sends the damage to STR. Detachments: an
+  individual's attack on one is impaired unless it blasts; a detachment's attack on an individual
+  is enhanced (and blasts). Very distant targets: mode=impaired. An explicit mode wins.
+params:
+  attacker: ref
+  target: ref
+  weapon: {kind: dice, default: d6, help: "The damage die; two weapons or several attackers: '{d8, d6}kh1'"}
+  dice: {kind: int, optional: true, help: "How many dice the weapon combines, for impaired and enhanced attacks (default: 2 for a group like '{d6, d6}kh1', else 1)"}
+  mode: {enum: [normal, impaired, enhanced, unarmed], default: normal}
+  blast: {kind: flag, default: false, help: "A blast attack: run it once for each target"}
+  direct: {kind: flag, default: false, help: "A helpless or unaware target: the damage skips HP and goes to STR"}
+steps:
+  - let:
+      on_unit: "@target.type == 'detachment' and @attacker.type <> 'detachment' and not @blast"
+      by_unit: "@attacker.type == 'detachment' and @target.type <> 'detachment'"
+      panicked: "'panicked' in default(@attacker.conditions, '')"
+      count: "default(@dice, if(',' in '$weapon', 2, 1))"
+  - let: {how: "if(@mode <> 'normal', @mode, if(@on_unit or @panicked, 'impaired', if(@by_unit, 'enhanced', 'normal')))"}
+  - if: "@how == 'unarmed'"
+    then: [{roll: d4, as: damage}]
+    else:
+      - if: "@how == 'impaired'"
+        then: [{roll: "(@count)d4kh1", as: damage}]
+        else:
+          - if: "@how == 'enhanced'"
+            then: [{roll: "(@count)d12kh1", as: damage}]
+            else: [{roll: $weapon, as: damage}]
+  - let: {dealt: "max(0, @damage - default(@target.armor, 0))", before: "default(@target.hp, 0)"}
+  - if: "@direct"
+    then:
+      - let: {overflow: "@dealt"}
+      - message: "{@target.name} can't rely on HP: the damage goes straight to STR."
+    else:
+      - let: {overflow: "max(0, @dealt - @before)"}
+      - set: target.hp
+        op: "-="
+        value: "@dealt"
+      - if: "@before > 0 and @dealt == @before and @target.type == 'pc'"
+        then:
+          - do: scar
+            with: {who: "@target", lost: "@dealt"}
+  - if: "@overflow > 0"
+    then:
+      - set: target.STR
+        op: "-="
+        value: "@overflow"
+      - if: "@target.STR > 0"
+        then:
+          - check: save
+            with: {who: "@target", attr: STR}
+            as: critical
+          - if: "'doomed' in default(@target.conditions, '')"
+            then:
+              - set: target.conditions
+                op: "-="
+                value: doomed
+              - if: "@critical == 'failure'"
+                then:
+                  - message: "{@target.name} was doomed, and fails the critical damage save: they die horribly."
+                  - do: death
+                    with: {who: "@target"}
+                else:
+                  - message: "{@target.name} was doomed, and passes: the doom lifts."
+                  - do: attribute-reroll
+                    with: {who: "@target", attr: hp, dice: 3d6, value: stays}
+                    as: reroll
+                  - set: target.scars
+                    op: "+="
+                    value: "Doomed, survived: {@reroll.changed}"
+            else:
+              - if: "@critical == 'failure'"
+                then:
+                  - if: "@target.type == 'pc'"
+                    then:
+                      - set: target.conditions
+                        op: "+="
+                        value: critical
+                      - message: "{@target.name} takes critical damage: they can only crawl weakly, grasping for life. Given aid (bandages) they stabilize: `didact do stabilize who={@target.id}`; untreated, they die within the hour."
+                      - remind: "{@target.name} dies of critical damage unless stabilized (`didact do stabilize who={@target.id}`)"
+                        in: 1 hour
+                    else:
+                      - if: "@target.type == 'detachment'"
+                        then:
+                          - set: target.status
+                            value: routed
+                          - message: "{@target.name} takes critical damage: the detachment is routed or badly weakened. At 0 STR it is destroyed."
+                        else:
+                          - message: "{@target.name} fails the critical damage save (dead, at the Warden's discretion: a dying one can still be stabilized)."
+                          - do: death
+                            with: {who: "@target"}
+          - if: "@critical == 'failure' and default(@attacker.critical, '') <> ''"
+            then:
+              - message: "{@attacker.name}'s critical damage: {@attacker.critical}"
+  - if: "@how <> 'normal'"
+    then: ["The attack is {@how} ({@attacker.name} → {@target.name})."]
+  - message: "{@attacker.name} deals {@dealt} damage to {@target.name}."
+source: players-guide/core-rules#attacking--damage
+---
+action: blast-targets
+title: How many a blast hits
+help: >-
+  A blast affects every target in its area, rolled separately for each. If unsure how many
+  targets can be affected, roll the attack's damage die for the number.
+params:
+  weapon: {kind: dice, default: d6}
+steps:
+  - roll: $weapon
+    as: targets
+  - message: "The blast can catch up to {@targets} targets: run the attack once for each (`blast=true`)."
+source: players-guide/core-rules#attack-modifiers
+---
+action: attribute-damage
+title: Attribute damage
+help: >-
+  Damage outside combat (traps, falls, poison) comes off an attribute, usually STR, not HP.
+  Armor reduces it only when it applies. STR 0 is death, DEX 0 paralysis, WIL 0 delirium.
+params:
+  target: ref
+  attr: {enum: [STR, DEX, WIL], default: STR}
+  amount: {kind: dice, default: d6}
+  armor: {kind: flag, default: false, help: "Does armor apply? (a shield against a falling rock, not gas)"}
+steps:
+  - roll: $amount
+    as: damage
+  - let: {dealt: "max(0, @damage - if(@armor, default(@target.armor, 0), 0))"}
+  - set: target.$attr
+    op: "-="
+    value: "@dealt"
+  - message: "{@target.name} loses {@dealt} $attr."
+  - if: "'$attr' <> 'STR' and @target.$attr == 0"
+    then: ["Complete $attr loss: {@target.name} can't act until restored by extended rest (`didact do recover`) or extraordinary means."]
+source: players-guide/core-rules#attribute-loss
+---
+trigger: death
+title: Death
+help: Runs when STR reaches 0 (the STR field's on_zero hook), or when a critical damage save kills.
+on: manual
+params: {who: ref}
+steps:
+  - if: "@who.type == 'detachment'"
+    then:
+      - set: who.status
+        value: destroyed
+      - message: "{@who.name} is destroyed."
+    else:
+      - set: who.status
+        value: dead
+      - message: "{@who.name} is dead."
+      - if: "@who.type == 'pc'"
+        then:
+          - prompt: "A player whose character dies makes a new one (`didact char new`) or takes over a hireling; they join the party at once."
+        else:
+          - if: "@who.type == 'monster' or @who.type == 'npc'"
+            then:
+              - prompt: "If it fought the party, it's a casualty: at the enemies' first, and again when they're down to half their number, those left save morale (`didact do morale who=<one of them>`; a group that uses its leader's WIL: leader=<them> or wil=<n>)."
+source: players-guide/core-rules#character-death
+---
+check: morale
+title: Morale
+help: >-
+  Enemies save WIL to avoid fleeing at their first casualty and again when they lose half their
+  number. Some groups use their leader's WIL (leader=<record> or wil=<n>, as a Bandit's Loyal);
+  lone foes save when they're reduced to 0 HP. Morale doesn't affect PCs.
+params:
+  who: ref
+  leader: {kind: ref, optional: true, help: "A leader whose WIL the group uses"}
+  wil: {kind: int, optional: true, help: "The WIL to use instead (a Bandit leader's 13)"}
+before:
+  - if: "@who.type == 'pc'"
+    then:
+      - stop: "Morale does not affect PCs: they choose for themselves whether to fight or flee."
+  - let: {nerve: "default(@wil, default(@leader.WIL, @who.WIL))"}
+roll: d20
+success: "@roll <= @nerve"
+auto: {1: success, 20: failure}
+on:
+  failure: ["{@who.name} breaks and flees (or surrenders)."]
+  success: ["{@who.name} holds (WIL {@nerve})."]
+source: players-guide/core-rules#morale
+---
+check: retreat
+title: Retreat
+help: >-
+  Running away from a dire situation always takes a successful DEX save, as well as a safe
+  destination to run to. Without one, there's nowhere to retreat.
+params:
+  who: ref
+prompt: "Is there somewhere safe to run to? Without a safe destination there's no retreat."
+roll: d20
+success: "@roll <= @who.DEX"
+auto: {1: success, 20: failure}
+on:
+  success: ["{@who.name} gets away."]
+  failure: ["{@who.name} can't break away: still in the fight."]
+source: players-guide/core-rules#retreat
+---
+action: reaction
+title: Reaction
+help: Roll 2d6 for an NPC whose reaction to the party isn't obvious, and keep it on their sheet.
+params: {who: ref}
+steps:
+  - table: reactions
+    as: reaction
+  - set: who.disposition
+    value: "@reaction"
+  - message: "{@who.name} is {@reaction}."
+source: players-guide/core-rules#reactions
+---
+check: fate
+title: Die of Fate
+help: Roll 1d6 when an outcome is uncertain. 4 or more favors the PCs; 3 or under is bad luck.
+roll: d6
+success: "@roll >= 4"
+on:
+  success: [It favors the PCs.]
+  failure: [Bad luck for the PCs.]
+source: players-guide/core-rules#die-of-fate
+---
+check: panic
+title: Panic
+help: >-
+  Surrounded, in darkness, or facing their greatest fear, a character saves WIL or panics.
+  A panicked character has 0 HP, doesn't act in the first round, and their attacks are impaired.
+  alone=true: acting alone (bond 13, the wounded beast, means no panic then).
+params:
+  who: ref
+  alone: {kind: flag, default: false, help: "Acting alone"}
+roll: d20
+success: "@roll <= @who.WIL"
+auto: {1: success, 20: failure}
+on:
+  failure:
+    - if: >-
+        @alone and "You found a wounded beast in the forest but chose to ignore it. You see it
+        everywhere now, but only when you're alone. It looks sad but not angry. You cannot become
+        panicked when acting alone." in @who.bond
+      then: ["The wounded beast is there, sad but not angry: {@who.name} can't become panicked when acting alone."]
+      else:
+        - set: who.conditions
+          op: "+="
+          value: panicked
+        - set: who.hp
+          value: 0
+        - message: "{@who.name} panics: 0 HP, no action in the first round, attacks impaired. Overcoming it takes an action: `didact do steady who={@who.id}`."
+source: players-guide/procedures#panic
+---
+check: steady
+title: Overcome panic
+help: A panicked character uses their action to save WIL and overcome it.
+params: {who: ref}
+roll: d20
+success: "@roll <= @who.WIL"
+auto: {1: success, 20: failure}
+on:
+  success:
+    - if: "'panicked' in @who.conditions"
+      then:
+        - set: who.conditions
+          op: "-="
+          value: panicked
+    - message: "{@who.name} steadies (HP comes back with rest: `didact do rest who={@who.id}`)."
+  failure: ["{@who.name} is still panicked."]
+source: players-guide/procedures#panic
+---
+action: rest
+title: Rest a moment
+help: >-
+  A few moments' rest and a drink of water restores all HP, but may leave the party exposed; in
+  a dungeon, resting takes a turn (turn=true) and needs a light source and a safe spot. Danger
+  makes rest impossible. It can't bring HP back while deprived, panicked (0 HP) or carrying a
+  full inventory (0 HP), and it restores no Fatigue.
+params:
+  who: ref
+  danger: {kind: flag, default: false, help: "Present or oncoming danger"}
+  turn: {kind: flag, default: false, help: "A dungeon turn spent resting"}
+steps:
+  - if: "@danger"
+    then:
+      - stop: "Present or oncoming danger makes rest impossible."
+  - if: "'deprived' in @who.conditions"
+    then:
+      - stop: "{@who.name} is deprived and can't recover HP until the need is met."
+  - if: "'panicked' in @who.conditions"
+    then:
+      - stop: "{@who.name} is panicked and has 0 HP until they overcome it: `didact do steady who={@who.id}`."
+  - if: "@who.inventory.free <= 0"
+    then:
+      - stop: "{@who.name} carries a full inventory (10 slots): HP stays at 0 until they lighten the load."
+  - set: who.hp
+    value: "@who.hp.max"
+  - message: "{@who.name} catches their breath: HP back to {@who.hp.max}."
+  - if: "@turn"
+    then:
+      - reminder: "Resting took a turn: it needs a light source and a safe location, and restores no Fatigue (no one can safely make camp in a dungeon). Resting in place is lingering: `didact do dungeon-turn trigger=lingered`, then `didact time advance 1 turn`."
+source: players-guide/core-rules#healing--recovery
+---
+action: make-camp
+title: Make camp
+help: >-
+  The last watch of the day: each character (and mount) eats a Ration, a lookout rotation is set,
+  and those who rest safely remove all Fatigue (and HP comes back). An interrupted night, or a
+  deprived character, recovers nothing.
+params:
+  who: ref
+  interrupted: {kind: flag, default: false, help: "More than a minor interruption: no benefit"}
+steps:
+  - reminder: "Each character (and each mount) eats a Ration: `didact inv use {@who.id} Rations`. Set a lookout rotation; a small party risks sleeping unguarded or trades off over several days."
+  - if: "@interrupted"
+    then:
+      - stop: "{@who.name}'s sleep was interrupted: no Fatigue comes off tonight. (A night without real sleep can leave them deprived: `didact do deprive who={@who.id} need=sleep`.)"
+  - if: "'deprived' in @who.conditions"
+    then:
+      - stop: "{@who.name} is deprived: no Fatigue comes off and no HP comes back tonight. (Deprived only of sleep? This camp meets the need: `didact do relieve who={@who.id}` first.)"
+  - set: who.fatigue
+    value: 0
+  - if: "@who.inventory.free > 0 and not ('panicked' in @who.conditions)"
+    then:
+      - set: who.hp
+        value: "@who.hp.max"
+      - message: "{@who.name} sleeps safely: Fatigue cleared, HP restored."
+    else: ["{@who.name} sleeps safely: Fatigue cleared (HP stays at 0: a full inventory or panic)."]
+source: players-guide/procedures#make-camp
+---
+action: skip-camp
+title: Skip making camp
+help: >-
+  A party that skips the Make Camp action each adds a Fatigue and is deprived (of sleep).
+  Traveling sleep-deprived raises the terrain's Difficulty a step (travel-time sleepless=true).
+params: {who: ref}
+steps:
+  - message: "{@who.name} skips making camp: a Fatigue, and deprived of sleep."
+  - do: deprive
+    with: {who: "@who", need: sleep}
+    go_on: true
+  - reminder: "Traveling sleep-deprived raises the terrain Difficulty a step: `didact do travel-time … sleepless=true`."
+  - do: fatigue
+    with: {who: "@who"}
+source: players-guide/procedures#sleep
+---
+action: cast
+title: Cast a spell
+help: >-
+  Hold the spellbook in both hands and read it aloud, then add a Fatigue. Deprived or in danger,
+  a WIL save: failure brings consequences on par with the spell (more Fatigue, a destroyed
+  spellbook, injury, even death). Given time and safety, enhance=true makes it stronger (more
+  targets, more power) at no extra cost. A scroll (scroll=true) is petty, causes no Fatigue and
+  disappears after one use.
+params:
+  who: ref
+  spell: {kind: text, optional: true, help: "The spellbook or scroll"}
+  danger: {kind: flag, default: false, help: "In danger (combat, duress)"}
+  enhance: {kind: flag, default: false, help: "Enhance it: more targets, more power"}
+  scroll: {kind: flag, default: false, help: "Read from a scroll"}
+steps:
+  - if: "default(@spell, '') <> ''"
+    then: ["{@who.name} reads {@spell} aloud, both hands on it."]
+    else: ["{@who.name} reads the spell aloud, both hands on it."]
+  - if: "@danger or 'deprived' in @who.conditions"
+    then:
+      - check: save
+        with: {who: "@who", attr: WIL}
+        as: control
+      - if: "@control == 'failure'"
+        then: ["The spell slips out of {@who.name}'s control: consequences on par with its effect (more Fatigue, the spellbook destroyed, injury, even death)."]
+  - if: "@enhance"
+    then:
+      - if: "@danger"
+        then: ["Enhancing a spell takes time and safety: under duress, it's a risk the Warden weighs (the WIL save above)."]
+        else: ["Given time and safety, the spell is enhanced (more targets, more power) at no extra cost."]
+  - if: "@scroll"
+    then:
+      - message: "A scroll causes no Fatigue, and disappears after this one use."
+      - reminder: "It's gone: `didact inv use {@who.id} '{default(@spell, 'the scroll')}'` (or `inv drop`)."
+    else:
+      - message: "The spell is cast; its Fatigue goes into a free slot (with none free, an item must be dropped first)."
+      - do: fatigue
+        with: {who: "@who"}
+source: players-guide/core-rules#magic
+---
+check: trap
+title: Does the trap spring?
+help: An unwitting character triggers a trap by the fiction, or otherwise on 2-in-6.
+roll: d6
+success: "@roll <= 2"
+on:
+  success: ["The trap springs. Its damage comes off an attribute: `didact do attribute-damage target=… attr=DEX amount=d6`."]
+  failure: [The trap doesn't go off.]
+source: players-guide/procedures#traps
+---
+check: lost
+title: Getting lost
+help: >-
+  Traveling a trail, the party is lost on 2-in-6; through the wilderness, on 3-in-6; roads never.
+  The risk shifts with path Difficulty, maps, party skills and guides: shift=-1 makes it a step
+  less likely (a Fletchwind scout, a Beast Handler in their beasts' land), shift=1 more.
+params:
+  path: {enum: [road, trail, wilderness], default: trail}
+  shift: {kind: int, default: 0, help: "Steps more (+) or less (-) likely"}
+roll: d6
+success: "@roll > max(0, min(6, if(@path == 'road', 0, if(@path == 'trail', 2, 3)) + @shift))"
+on:
+  failure: ["The party is lost: recovering the way takes a Wilderness Action."]
+  success: [The party keeps its way.]
+source: players-guide/procedures#travel
+---
+action: fatigue
+title: Add Fatigue
+help: >-
+  Spells, deprivation and hard going add Fatigue: each fills an inventory slot until a full
+  night's rest in safety. With no free slot, the character must drop an item first.
+params:
+  who: ref
+  amount: {kind: int, default: 1}
+steps:
+  - if: "@who.inventory.free < @amount"
+    then:
+      - stop: "{@who.name} has {@who.inventory.free} free slot(s) for {@amount} Fatigue: drop an item first (`didact inv drop {@who.id} <item>`), then add it (`didact do fatigue who={@who.id} amount={@amount}`)."
+  - set: who.fatigue
+    op: "+="
+    value: "@amount"
+  - message: "{@who.name} adds {@amount} Fatigue."
+source: players-guide/core-rules#deprivation--fatigue
+---
+action: deprive
+title: Deprived
+help: >-
+  A character lacking a crucial need (food, water, rest, warmth) is deprived: they can't recover
+  HP, attributes or slots taken by Fatigue. Deprived for more than a day, they add a Fatigue for
+  each day. Run it once for each day the need goes unmet (or days=n for several): the first day
+  adds nothing, each later day a Fatigue.
+params:
+  who: ref
+  need: {kind: text, default: food}
+  days: {kind: int, default: 1, help: "Days of deprivation this counts"}
+steps:
+  - let: {was: "if('deprived' in @who.conditions, default(@who.deprived_days, 0), 0)"}
+  - let: {now: "@was + @days"}
+  - let: {owed: "max(0, @now - 1) - max(0, @was - 1)"}
+  - if: "not ('deprived' in @who.conditions)"
+    then:
+      - set: who.conditions
+        op: "+="
+        value: deprived
+  - set: who.deprived_days
+    value: "@now"
+  - message: "{@who.name} is deprived of $need (day {@now})."
+  - reminder: "Each further day: `didact do deprive who={@who.id} need=$need` (a Fatigue each day past the first). When the need is met: `didact do relieve who={@who.id}`."
+  - if: "@owed > 0"
+    then:
+      - do: fatigue
+        with: {who: "@who", amount: "@owed"}
+source: players-guide/core-rules#deprivation--fatigue
+---
+action: relieve
+title: Need met
+help: A deprived character's need is met; they can recover again (rest, make camp).
+params: {who: ref}
+steps:
+  - if: "not ('deprived' in @who.conditions)"
+    then:
+      - stop: "{@who.name} isn't deprived."
+  - set: who.conditions
+    op: "-="
+    value: deprived
+  - set: who.deprived_days
+    value: 0
+  - message: "{@who.name} is no longer deprived."
+  - if: "'walloped' in @who.conditions or 'mortal-wound' in @who.conditions"
+    then: ["A scar still heals: `didact do scar-heal who={@who.id} scar=…` when it does."]
+source: players-guide/core-rules#deprivation--fatigue
+---
+action: stabilize
+title: Stabilize
+help: >-
+  A PC who took critical damage can only crawl, and dies within the hour unless given aid (such
+  as bandages); a mortal wound kills in an hour unless healed. Aid stabilizes them: out of
+  danger, but out of action until they recover (`recover`: a week's rest with a healer).
+params:
+  who: ref
+  aid: {kind: text, default: bandages, help: "What stabilizes them"}
+steps:
+  - if: "'stabilized' in @who.conditions and not ('critical' in @who.conditions)"
+    then:
+      - stop: "{@who.name} is already stabilized."
+  - if: "not ('critical' in @who.conditions) and not ('mortal-wound' in @who.conditions)"
+    then:
+      - stop: "{@who.name} isn't dying: there's nothing to stabilize."
+  - if: "'critical' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: critical
+  - set: who.conditions
+    op: "+="
+    value: stabilized
+  - message: "With $aid, {@who.name} stabilizes: out of danger, but in recovery until a week's rest with a healer (`didact do recover who={@who.id}`)."
+  - reminder: "Spend the aid: `didact inv use <whoever gave it> Bandages`. The hour's reminder can go: `didact remind --cancel '{@who.name} dies'`."
+source: players-guide/core-rules#healing--recovery
+---
+action: recover
+title: Recover attributes
+help: >-
+  Attribute loss (critical damage and the like) is restored by a week's rest with a healer or
+  other expertise: medical healing costs 50gp in town (cost=0 when it's free; magic or faster
+  means cost more). It restores STR, DEX and WIL, ends critical damage, paralysis and delirium,
+  and brings the scars that heal "after recovery" to their end (walloped, hamstrung, a mortal
+  wound). A deprived character can't recover.
+params:
+  who: ref
+  cost: {kind: int, default: 50, help: "Gold paid (0 if free)"}
+steps:
+  - if: "@who.status == 'dead'"
+    then:
+      - stop: "{@who.name} is dead."
+  - if: "'deprived' in @who.conditions and not ('walloped' in @who.conditions) and not ('mortal-wound' in @who.conditions)"
+    then:
+      - stop: "{@who.name} is deprived and can't recover until the need is met (`didact do relieve who={@who.id}`)."
+  - if: "@cost > @who.gold"
+    then:
+      - stop: "{@who.name} has {@who.gold}gp; the healing costs {@cost}gp."
+  - if: "@cost > 0"
+    then:
+      - set: who.gold
+        op: "-="
+        value: "@cost"
+  - if: "'mortal-wound' in @who.conditions"
+    then:
+      - do: scar-heal
+        with: {who: "@who", scar: mortal-wound}
+  - if: "'walloped' in @who.conditions"
+    then:
+      - do: scar-heal
+        with: {who: "@who", scar: walloped}
+  - if: "'hamstrung' in @who.conditions"
+    then:
+      - do: scar-heal
+        with: {who: "@who", scar: hamstrung}
+  - set: who.STR
+    value: "@who.STR.max"
+  - set: who.DEX
+    value: "@who.DEX.max"
+  - set: who.WIL
+    value: "@who.WIL.max"
+  - if: "'critical' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: critical
+  - if: "'stabilized' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: stabilized
+  - if: "'paralyzed' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: paralyzed
+  - if: "'delirious' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: delirious
+  - message: "After a week's rest, {@who.name}'s attributes are restored ({@cost}gp)."
+  - if: "'broken-leg' in @who.conditions or 'broken-arm' in @who.conditions or 'broken-rib' in @who.conditions or 'broken-skull' in @who.conditions or 'diseased' in @who.conditions or 'deafened' in @who.conditions"
+    then: ["Scars that heal when the fiction says (a limb mended, a disease got over, extraordinary aid for deafness): `didact do scar-heal who={@who.id} scar=…` (conditions: {@who.conditions})."]
+  - reminder: "A week has passed: `didact time advance 1 week`."
+  - do: coins
+    with: {who: "@who"}
+    go_on: true
+source: players-guide/core-rules#healing--recovery
+---
+action: coins
+title: Coin weight
+help: >-
+  A bag of coins worth less than 100gp is petty and takes no slot. At 100gp or more the coins
+  take room (the coin-weight option: one slot, or a slot for each full 100gp). Run it after the
+  gold changes; the pack's own rules that spend gold do.
+params: {who: ref}
+steps:
+  - let:
+      slots: "if(@option.coin_weight == 'off', 0, if(@option.coin_weight == 'per-100', @who.gold // 100, if(@who.gold >= 100, 1, 0)))"
+      had: "default(@who.purse, 0)"
+  - if: "@slots - @had > @who.inventory.free"
+    then:
+      - stop: "{@who.name}'s {@who.gold}gp needs {@slots} slot(s) and there is no room: drop an item (`didact inv drop {@who.id} <item>`), leave some coin behind, then `didact do coins who={@who.id}`."
+  - if: "@slots <> @had"
+    then:
+      - set: who.purse
+        value: "@slots"
+  - if: "@slots == 0"
+    then: ["{@who.name}'s {@who.gold}gp is petty: no slot."]
+    else: ["{@who.name}'s {@who.gold}gp takes {@slots} slot(s)."]
+source: players-guide/character-creation#inventory-slots

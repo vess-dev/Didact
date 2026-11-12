@@ -1,0 +1,8 @@
+id: monolith-lite
+name: Monolith-style hack (fixture)
+kind: system
+version: 0.1.0
+description: A tiny hack of Cairn 2e in space, proving `extends`. Everything else comes from Cairn.
+requires: {packs: [core, cairn-2e]}
+extends: [cairn-2e]
+license: {spdx: CC0-1.0}

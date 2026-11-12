@@ -1,0 +1,55 @@
+# Outrider (backgrounds/outrider): the background's two d6 tables.
+table: outrider-1
+title: What personal code or principle do you uphold?
+dice: d6
+source: backgrounds/outrider
+entries:
+  1:
+    text: "No innocent blood: No bystander will come to harm on your watch. Take a Steadymade Buckler (+1 Armor). While holding this shield, you cannot be moved so long as both feet are planted on firm ground."
+    data:
+      gear: [{name: Steadymade Buckler, armor: 1}]
+  2:
+    text: "Revere the tools of death: Weapons are to be respected and maintained. Take a Wyrmbone Whetstone. Following a half-hour ritual sharpening, attacks with the weapon are enhanced until STR damage is dealt."
+    data:
+      gear: [Wyrmbone Whetstone]
+  3:
+    text: "To the death, always: You never back down from a fight, no matter the odds. Take a Death-Whistle, 1 charge. Its scream frightens away all who hear it (save WIL or flee). Recharge: Capture the final breath of a dying warrior."
+    data:
+      gear: [{name: Death-Whistle, uses: 1, recharge: Capture the final breath of a dying warrior.}]
+  4:
+    text: "Revere the dead: Death is a journey we all take, and it deserves respect. Take an extra 30gp. You always place two gold pieces on the eyelids of a slain foe. Somehow, you always find the coin."
+    data:
+      add: {gold: 30}
+  5:
+    text: "Loyalty to the work: Your word is your bond. Once you've accepted a job, you see it through to the end. Take a weathered Tally Stick. Once a vow is marked onto its face, the stick hardens (d8) until it is complete. The stick will snap in half if the vow is ever broken."
+    data:
+      gear: [Tally Stick]
+  6:
+    text: "Always pay your debts: You always repay what you owe, whether in coin or in kind. You expect nothing less from all others. Take a Blacked-Out Ledger, then roll a second time on the Bonds table."
+    data:
+      extra_bond: true
+      gear: [Blacked-Out Ledger]
+---
+table: outrider-2
+title: What breed is your horse?
+dice: d6
+source: backgrounds/outrider
+entries:
+  1:
+    text: "Heavy Destrier: A beast built for war, an imposing creature. 8 HP, 1 Armor, hooves (d10+d10), +2 slots."
+    data: {companion: heavy-destrier}
+  2:
+    text: "Blacklegged Dandy: Hardy and adaptable. Tough or Perilous terrain are one step easier. 6 HP. +4 slots."
+    data: {companion: blacklegged-dandy}
+  3:
+    text: "Rivertooth: Impressively strong, capable of carrying heavy loads. 4 HP. +6 slots (only +2 slots if carrying two people)."
+    data: {companion: rivertooth}
+  4:
+    text: "Piebald Cob: Intelligent, it can understand simple commands and even has an instinct for danger. 6 HP. +4 slots."
+    data: {companion: piebald-cob}
+  5:
+    text: "Linden White: Highly trained and agile, it can perform intricate maneuvers in a time of need (no DEX save to flee). 4 HP. +3 slots."
+    data: {companion: linden-white}
+  6:
+    text: "Stray Fogger: Wild but very fast (even in Tough terrain). Rides light. 4 HP. +2 slots."
+    data: {companion: stray-fogger}

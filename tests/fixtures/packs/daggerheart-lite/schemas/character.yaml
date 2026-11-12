@@ -1,0 +1,14 @@
+type: character
+fields:
+  agility: {kind: int, min: -1, max: 4, default: 1}
+  strength: {kind: int, min: -1, max: 4, default: 0}
+  finesse: {kind: int, min: -1, max: 4, default: 0}
+  class: {kind: enum, values: [Bard, Guardian, Ranger, Wizard]}
+  hope: {kind: resource, min: 0, max: 6, default: 2}
+  stress: {kind: counter, min: 0, max: 6, default: 0}
+---
+type: pc
+extends: character
+---
+type: npc
+extends: character

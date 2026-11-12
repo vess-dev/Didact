@@ -1,0 +1,353 @@
+# The Pitt (campaigns/05-the-pitt): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: the-pitt
+type: quest
+name: The Pitt
+tags: [the-pitt, frame, side-arc]
+goal: The ruins of Pittsburgh are a walled industrial hell. Lord Ashur, an ex-Brotherhood paladin, 
+  rules from Haven, an intact tower above the mills. His slaves work the forges in a rad-saturated 
+  haze, slowly becoming Trogs. His infant daughter is immune — her blood may be a cure, or a lie 
+  Ashur tells himself.
+date: Tuesday, 23 October 2277
+body: |-
+  *Pittsburgh survived the war and wishes it hadn't. A raider-run steel city where the slaves forge the weapons that keep them enslaved, and a healthy baby in a crib may hold a cure for the mutation that's eating everyone.*
+
+  ## GM notes
+
+  **Date.** Tuesday, 23 October 2277: a Fallout 3 side arc: that frame's date, or whenever Wernher finds the party. It is the calendar's start: a new campaign opens on it.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup The Pitt tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** A runaway slave named Wernher finds the party in the Capital Wasteland with a pitch: help him rescue his people. The way in is a train tunnel in the far northwest — one-way, trog-infested, no turning back. The party surrenders their gear at the gate and enters as slaves.
+
+  **Plot beats.**
+
+  1. The Rail Tunnel. The one-way crawl into the Pitt. Trogs harass the party the whole way. The party surrenders their gear at a Pitt Raider checkpoint; the Raider who takes their weapons keeps a single small item as tribute and the rest goes into a locked storage shed the party will need to break into later.
+  2. The Yard. Dropped into the slave pens at dawn. Midea pulls the party aside on the second shift and explains the resistance, the cure, and Wernher's version of events. She warns that Wernher is not entirely to be trusted. The Heat Clock starts ticking from here.
+  3. The Steelyard. The party is sent to collect steel ingots in the irradiated steelyard — the only way to earn standing with the raiders. Trogs and wildmen prowl the ruins. A full haul is worth ten ingots; a clever party can stash extras. Everett, the mill foreman, trades ingots for better gear.
+  4. Downtown. Downtown's skyscrapers are trog country. Mex guards the gate in — a sadistic raider with a rifle, mines, and a talent for making slaves disappear. Getting past him clean earns the party access to the scavenging runs Midea's resistance needs. Getting past him loud draws Heat.
+  5. The Hole. Winning Ashur's arena is the only sanctioned way out of the Yard. The fight is brutal — start with a detachment, end with a named opponent, and roll in the auto-axe. Victors are presented to Ashur personally. The party may accept his invitation to Haven as "new guests" and enter the keep under a clean flag.
+  6. Haven. Ashur's gated keep. The party meets Sandra Kundanika, sees Marie, and hears Ashur's pitch — the cure is in the baby's blood and he will not give her up. Sandra, privately, would hand over a stabilized vial if asked correctly. The Cure Clock begins ticking toward Wernher's breaking point.
+  7. The Decision. Wernher is ready to raid Haven and take Marie by force. Midea begs for a delay. The party has a window to steal the vial, extract Marie, negotiate with Ashur, or play all three sides against the fourth. What they do resolves the campaign.
+  8. Recovery. The gear shed. A final fight at the rail tunnel if the party is fleeing with Marie or the vial. Ashur's radio broadcast follows the party out of the Pitt no matter what they chose.
+
+  **Climax.**
+
+  Wernher wants the baby. Ashur wants the work to continue. Sandra wants both her daughter *and* the cure. Three endings:
+
+  - **Take Marie.** The slaves rise. The city burns for days. The party walks out with the cure and the baby. Ashur dies in his keep. Marie grows up in a safer place — the wasteland owes the party a debt they will remember.
+  - **Leave Marie, free the slaves.** Sandra hands over a stabilized vial under the table. Ashur lives but loses his workforce; the Pitt becomes a ghost town within a year.
+  - **Side with Ashur.** The resistance is crushed. Ashur rewards the party lavishly and names them citizens of his new nation. Wernher dies cursing their name. The cure is real, eventually, but years away.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "The Pitt"}' --auto` drafts the region, 6 places, 5 people, 3 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Bestiary** (Fallout 2e / Grimfall): Wildman → `wildman` / `trog`; Trog → `trog` / `trog`; Trog Brute → `trog-brute` / `trog`; Trog Savage → `trog-savage` / `trog`; Pitt Raider → `pitt-raider` / `raider`.
+
+  **Rewards in each system's catalog:** The Cure (Relic) (grimfall.the-cure-maries-blood); The Mauler (fallout-2e.the-mauler); The Metal Blaster (fallout-2e.metal-blaster · grimfall.metal-blaster); Ashur's Power Armor (fallout-2e.ashurs-power-armor · grimfall.ashurs-power-armor); Union Power Armor (fallout-2e.union-power-armor).
+source: campaigns/05-the-pitt#pitch
+---
+id: the-pitt-region
+type: loc
+name: The Pitt
+tags: [the-pitt, region]
+mechanics:
+  fallout-2e: {kind: region}
+  grimfall: {kind: region}
+body: ''
+source: campaigns/05-the-pitt#the-place--the-pitt
+---
+id: the-pitt-the-yard
+type: loc
+name: The Yard
+tags: [the-pitt, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The slave pens. Filthy, loud, no weapons allowed. Midea runs the resistance here.
+source: campaigns/05-the-pitt#the-place--the-pitt
+---
+id: the-pitt-the-steelyard
+type: loc
+name: The Steelyard
+tags: [the-pitt, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The irradiated scrapyard where slaves collect steel ingots. Trogs and wildmen prowl. Everett, the mill foreman, trades ingots for gear.
+source: campaigns/05-the-pitt#the-place--the-pitt
+---
+id: the-pitt-downtown-pitt
+type: loc
+name: Downtown Pitt
+tags: [the-pitt, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Ruined skyscrapers. Trogs nest in them. Mex guards the gate — sadistic, mine-happy, and armed with a rifle. Scavenging runs here supply Midea's resistance.
+source: campaigns/05-the-pitt#the-place--the-pitt
+---
+id: the-pitt-the-arena
+type: loc
+name: The Arena
+tags: [the-pitt, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Ashur's gladiatorial pit. A slave who wins the Hole earns freedom — or is supposed to.
+source: campaigns/05-the-pitt#the-place--the-pitt
+---
+id: the-pitt-uptown-and-haven
+type: loc
+name: Uptown & Haven
+tags: [the-pitt, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Ashur's gated keep. Luxury. The only clean air in the city.
+source: campaigns/05-the-pitt#the-place--the-pitt
+---
+id: the-pitt-the-pitt-underground
+type: loc
+name: The Pitt Underground
+tags: [the-pitt, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A hot-zone network of tunnels beneath the mill where the trogs breed.
+source: campaigns/05-the-pitt#the-place--the-pitt
+---
+id: the-pitt-mex
+type: monster
+name: Mex
+aliases: [Mex (Gate Guard)]
+knowledge: secret
+tags: [the-pitt, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: The Pitt'
+    hp: 10
+    armor: 1
+    STR: 13
+    DEX: 14
+    WIL: 10
+    attacks:
+    - name: assault rifle
+      damage: d10
+      qualities: [bulky]
+    - name: frag mines
+      damage: d10
+      qualities: [blast]
+    abilities:
+    - 'Mine Layer: The approach to his gate is mined; any PC who rushes in without scouting makes a DEX
+      save or takes d10 blast damage.'
+  grimfall:
+    tier: mook
+    role: brute
+    category: Predators & Horrors
+    senses:
+    - mismatched plate and war paint
+    - jeering and gunfire
+    - chems, smoke, unwashed bodies
+    traits: [cornered and unpredictable, hopped up on chems]
+    moves: [Spray and Pray, Take a Hostage]
+    wants: loot, caps, and a reputation — not a fair fight or to face the boss empty-handed
+    note: "A gang is a 4d pool led by a tough Raider Boss with better gear. Same bones, different colors:
+      Powder Gangers bring dynamite, Pitt Raiders bring auto-axes and chains, Far Harbor's Trappers fight
+      blind-calm in the Fog."
+body: |-
+  ## GM notes
+
+  **Mex** — sadistic Pitt Raider who guards the gate to Downtown. Rifle, mines, a short fuse.
+
+  Sadistic Pitt Raider who guards the gate to Downtown. Likes mines and watching slaves run.
+
+  Fallout 2e: 10 HP, 1 Armor, 13 STR, 14 DEX, 10 WIL, assault rifle (d10, bulky), frag mines (d10, blast).
+
+  Grimfall: its card is `grimfall.raider` (Raider), in this record's grimfall block.
+source: campaigns/05-the-pitt#mex-gate-guard
+---
+id: the-pitt-lord-ashur
+type: monster
+name: Lord Ashur
+aliases: [Lord Ashur (in T-45d)]
+knowledge: secret
+tags: [the-pitt, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: The Pitt'
+    hp: 16
+    armor: 3
+    STR: 15
+    DEX: 13
+    WIL: 16
+    attacks:
+    - name: Gatling laser
+      damage: d12
+      qualities: [blast, bulky]
+    - name: power fist
+      damage: d10
+      qualities: [bulky]
+    abilities:
+    - 'Visionary: Automatically passes the first Morale save of any combat. Speaks during the fight.'
+    - 'Weak Points: He wears no helmet — a called shot to his head (Impaired, as called shots are) ignores
+      his Armor — and he will not fire the Gatling laser with Marie or Sandra in the room.'
+  grimfall:
+    tier: boss
+    role: tactician
+    category: Faces of the Wasteland
+    fact: Ex-Brotherhood in patchwork plate, holding a city up with a vision and a Gatling laser. 
+      His fail state is the cure in the crib.
+body: |-
+  ## GM notes
+
+  **Lord Ashur** — ex-paladin, genuinely believes his project is mercy. Scarred, radiation-resistant, calm.
+
+  Ex-Brotherhood paladin, king of the Pitt, eerily calm under fire.
+
+  Fallout 2e: 16 HP, 3 Armor, 15 STR, 13 DEX, 16 WIL, Gatling laser (d12, blast, bulky), power fist (d10, bulky).
+
+  Grimfall: its card is `grimfall.lord-ashur` (Lord Ashur), in this record's grimfall block.
+source: campaigns/05-the-pitt#lord-ashur-in-t-45d
+---
+id: the-pitt-ashurs-hounds
+type: monster
+name: Ashur's Hounds
+knowledge: secret
+tags: [the-pitt, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: The Pitt'
+    hp: 4
+    STR: 12
+    DEX: 14
+    WIL: 5
+    attacks:
+    - {name: bite, damage: d6}
+    abilities:
+    - 'Pack Sense: On a Critical Damage result against a PC, the rest of the pack is Enhanced until that
+      PC moves.'
+  grimfall:
+    tier: mook
+    role: predator
+    category: Beasts & Vermin
+    senses: [ribs under mangy hide, low growls from three directions, wet dog and old blood]
+    traits: [circles before it commits, goes for the slowest]
+    moves: [Hamstring Bite, Bay the Alarm]
+    wants: food and the pack's safety — not fire or a thrown rock that connects
+    note: A pack is a 4d pool. Attack dogs answer a raider's whistle. A cyberdog — pre-war chrome 
+      skull, old soldier's manners — is tough, and remembers whoever last fed it.
+body: |-
+  ## GM notes
+
+  Attack dog detachment. Pit-trained on Pitt slaves.
+
+  Fallout 2e: 4 HP, 12 STR, 14 DEX, 5 WIL, bite (d6).
+
+  Grimfall: its card is `grimfall.mongrel-pack` (Mongrel Pack), in this record's grimfall block.
+source: campaigns/05-the-pitt#ashurs-hounds
+---
+id: the-pitt-sandra-kundanika
+type: npc
+name: Sandra Kundanika
+knowledge: secret
+tags: [the-pitt, cast]
+fields: {role: 'his wife, a doctor, holds the research notes'}
+body: |-
+  ## GM notes
+
+  **Sandra Kundanika** — his wife, a doctor, holds the research notes.
+source: campaigns/05-the-pitt#cast
+---
+id: the-pitt-marie
+type: npc
+name: Marie
+knowledge: secret
+tags: [the-pitt, cast]
+fields: {role: their infant daughter}
+body: |-
+  ## GM notes
+
+  **Marie** — their infant daughter. Immune.
+source: campaigns/05-the-pitt#cast
+---
+id: the-pitt-wernher
+type: npc
+name: Wernher
+knowledge: secret
+tags: [the-pitt, cast]
+fields: {role: the man who brought you}
+details: {wants: Wants the baby for the resistance. Wants revenge more.}
+body: |-
+  ## GM notes
+
+  **Wernher** — the man who brought you. Wants the baby for the resistance. Wants revenge more.
+source: campaigns/05-the-pitt#cast
+---
+id: the-pitt-midea
+type: npc
+name: Midea
+knowledge: secret
+tags: [the-pitt, cast]
+fields: {role: 'inside woman, tired, pragmatic'}
+body: |-
+  ## GM notes
+
+  **Midea** — inside woman, tired, pragmatic.
+source: campaigns/05-the-pitt#cast
+---
+id: the-pitt-krenshaw
+type: npc
+name: Krenshaw
+knowledge: secret
+tags: [the-pitt, cast]
+fields: {role: Ashur's second-in-command}
+body: |-
+  ## GM notes
+
+  **Krenshaw** — Ashur's second-in-command. Returns the gear of arena champions; watches Midea for the first sign of revolt.
+source: campaigns/05-the-pitt#cast
+---
+id: the-pitt-heat-clock
+type: track
+name: Heat Clock
+knowledge: secret
+tags: [the-pitt, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: (d6) Raider suspicion of the party. Ticks when the party commits open violence in Downtown, 
+  speaks to Midea where a raider can see, or wins in the Hole. At 6, Krenshaw locks down the Pitt — 
+  a raider detachment confronts the party on sight and the Steelyard becomes hostile territory.
+source: campaigns/05-the-pitt#clocks
+---
+id: the-pitt-cure-clock
+type: track
+name: Cure Clock
+knowledge: secret
+tags: [the-pitt, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4) How close the resistance is to forcing the issue. Ticks when the party accepts a package 
+  from Midea, smuggles a slave out of the Mill, or openly speaks against Ashur at his audience. At 
+  4, Wernher strikes whether the party is ready or not.
+source: campaigns/05-the-pitt#clocks

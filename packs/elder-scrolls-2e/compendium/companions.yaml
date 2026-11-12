@@ -1,0 +1,299 @@
+# Companions and mounts (players-guide/companions, mounts) and the creatures the backgrounds
+# bring (backgrounds/*), as records of their own: `didact spawn <id>`. Two weapons or limbs (the
+# book's d8+d8) keep the highest: '{d8, d8}kh1'.
+id: "sworn-housecarl"
+type: "companion"
+name: "Sworn Housecarl"
+hp: 5
+armor: 3
+STR: 13
+DEX: 9
+WIL: 8
+attacks:
+  - {name: "steel sword", damage: "d8"}
+  - {name: "greatsword", damage: "d10", qualities: ["two-handed"]}
+source: "players-guide/companions#sworn-housecarl-à-la-lydia--nord"
+category: "Nord"
+abilities:
+  - "Wears steel mail and carries a shield (3 Armor; 2 when she swaps the shield for the greatsword)."
+  - "A grim, dutiful warrior granted to a new Thane to guard them and their hall. Loyal to the death, blunt to a fault, and not above muttering that she is sworn to carry your burdens."
+  - "Starts at Loyalty 4 (the housecarl's oath). She will not leave without your word; she falls fast if you turn outlaw against her Hold."
+trick: "Shield-Sworn: once per combat, she steps between a PC and an incoming attack; that attack strikes her instead. (This is in addition to anything Command grants.)"
+loyalty: 4
+---
+id: "college-conjurer"
+type: "companion"
+name: "College Conjurer"
+hp: 3
+STR: 7
+DEX: 10
+WIL: 13
+attacks:
+  - {name: "iron dagger", damage: "d6"}
+source: "players-guide/companions#college-conjurer--breton"
+category: "Breton"
+abilities:
+  - "Wears College robes (no Armor) and carries the Spell Tome: Conjure Familiar (casting it costs a Fatigue as normal, and a WIL save under duress)."
+  - "A robed apprentice of the College of Winterhold, more comfortable among soul gems and summoning circles than people. Curious, careless of danger, and quietly arrogant."
+  - "Starts at Loyalty 3. Rises when you defend the arcane arts; falls if you side with those who'd burn mages (Thalmor zealots, torch-bearing mobs)."
+trick: "Call the Bound Blade: once per day, they call a bound sword (d8) into their hand without a Tome and without adding Fatigue; it lasts the scene."
+loyalty: 3
+---
+id: "khajiit-sellsword"
+type: "companion"
+name: "Khajiit Sellsword"
+hp: 4
+armor: 1
+STR: 11
+DEX: 13
+WIL: 8
+attacks:
+  - {name: "scimitar", damage: "d8"}
+  - {name: "hunting bow", damage: "d6"}
+source: "players-guide/companions#khajiit-sellsword--khajiit"
+category: "Khajiit"
+abilities:
+  - "Wears leather and furs (1 Armor). A wandering caravan-guard and blade-for-hire, all wit and watchfulness, used to being turned away at city gates. Will fight for coin first and friendship later."
+  - "Hired, not sworn — runs as a hireling (no Loyalty, takes Morale) until the party earns him, then starts at Loyalty 3. Pay him fairly and he stays; cheat him and he's gone by morning."
+trick: "Night-Eye: sees in the dark by the faintest starlight or the last ember of a torch, and warns the party of what waits there."
+loyalty: 3
+---
+id: "war-dog"
+type: "companion"
+name: "War-Dog"
+hp: 3
+armor: 1
+STR: 8
+DEX: 14
+WIL: 4
+attacks:
+  - {name: "bite", damage: "d6"}
+source: "players-guide/companions#war-dog-à-la-meeko"
+abilities:
+  - "A shaggy, half-wild hound that adopted you on the road — a stray won over with food, a hunter's dog, a Death Hound's gentler cousin. Fearless, devoted, quicker than it looks, and matted thick enough to turn a blade (1 Armor). It follows the animal-companion rules above."
+  - "Starts at Loyalty 4. A dog does not betray."
+trick: "Keen Nose: scents hidden foes, a hidden trap's oil and iron, or an ambush a room away, and warns with a low growl before the party walks into it."
+loyalty: 4
+---
+id: "dark-brotherhood-initiate"
+type: "companion"
+name: "Dark Brotherhood Initiate"
+hp: 4
+armor: 1
+STR: 9
+DEX: 13
+WIL: 11
+attacks:
+  - {name: "poisoned dagger", damage: "d6"}
+  - {name: "hunting bow", damage: "d6"}
+source: "players-guide/companions#dark-brotherhood-initiate--imperial"
+category: "Imperial"
+abilities:
+  - "Wears shrouded leathers (1 Armor). The dagger's venom forces a STR save on each hit: on a failure the target also loses 1 STR."
+  - "A soft-spoken killer newly sworn to the Dread Father Sithis, all manners and menace. Treats murder as a sacrament and finds the squeamish tiresome."
+  - "Starts at Loyalty 3. Rises when you embrace the contract and the kill; falls hard if you spare a sworn mark or break a given word — the Brotherhood does not forgive a broken oath."
+trick: "From the Shadows: the first strike on an unaware foe is Enhanced; if it drops them, no one nearby hears."
+loyalty: 3
+---
+id: "stronghold-hunter"
+type: "companion"
+name: "Stronghold Hunter"
+hp: 5
+armor: 2
+STR: 13
+DEX: 11
+WIL: 7
+attacks:
+  - {name: "war axe", damage: "d8"}
+  - {name: "hunting bow", damage: "d6"}
+source: "players-guide/companions#stronghold-hunter--orc-orsimer"
+category: "Orc (Orsimer)"
+abilities:
+  - "Wears Orcish mail (2 Armor). A stern hunter and smith from an Orc stronghold, out to prove themselves worthy of Malacath in the wider world. Honest, unbending, and contemptuous of cowards and oath-breakers."
+  - "Starts at Loyalty 3. Rises when you keep your word and fight honestly; falls when you lie, flee a fair fight, or shame their kin."
+trick: "Stronghold Fury: once per combat, when first reduced to 0 HP or when an ally falls, their next attack is Enhanced."
+loyalty: 3
+---
+id: "shadowmere"
+type: "companion"
+name: "Shadowmere"
+hp: 6
+armor: 1
+attacks:
+  - {name: "hooves", damage: "{d8, d8}kh1"}
+slots: 4
+trained: true
+abilities:
+  - "A companion mount: +4 slots; a fearless warhorse that never makes the startled-mount save and lets her rider charge as a daring maneuver (Enhanced)."
+  - "6 HP, 1 Armor, hooves d8+d8 when she fights of her own accord."
+  - "Near-undying: should Shadowmere be slain, she does not stay dead. Leave her be; by the next sunrise she rises from the nearest dark water, whole, and finds her way back to her rider."
+source: "players-guide/mounts#shadowmere"
+body: |
+  The Dark Brotherhood's black mare, with eyes like coals — a horse the Brotherhood swears cannot truly die.
+---
+id: "frost"
+type: "companion"
+name: "Frost"
+hp: 8
+attacks:
+  - {name: "hooves", damage: "{d10, d10}kh1"}
+slots: 4
+trained: true
+abilities:
+  - "A companion mount: +4 slots; 8 HP, hooves d10+d10. As a trained warhorse he never makes the startled-mount save, and a rider may charge from his back as a daring maneuver (Enhanced)."
+  - "Spirited and proud: Frost will not suffer a cruel hand, and a rider who mistreats him may find the bond — and the steadiness — gone."
+source: "players-guide/mounts#frost"
+body: |
+  A magnificent white warhorse of fine breeding, swift and bold — the prize of a Whiterun stable, taken by theft or by the favor of its owner.
+---
+id: "armored-husky"
+type: "companion"
+name: "Armored Husky"
+hp: 5
+armor: 1
+STR: 12
+DEX: 14
+WIL: 5
+attacks:
+  - {name: "bite", damage: "d8"}
+loyalty: 4
+trick: "It growls low when the undead or a vampire are near, before you can see them."
+abilities:
+  - "A war-dog from the Fort Dawnguard kennels, armored in a studded harness."
+source: "backgrounds/dawnguard-hunter"
+---
+id: "eager-apprentice"
+type: "companion"
+name: "Eager Apprentice"
+hp: "roll 1d6"
+armor: 1
+STR: "roll 3d6"
+DEX: "roll 3d6"
+WIL: "roll 3d6"
+attacks:
+  - {name: "dagger", damage: "d6"}
+loyalty: 3
+trick: "They have read every book you own, and can find any fact in them."
+abilities:
+  - "A gangly apprentice who carries your books and minds your tower."
+source: "backgrounds/court-wizard"
+---
+id: "old-hound"
+type: "companion"
+name: "The Old Hound"
+hp: "roll 1d6"
+armor: 0
+STR: "roll 3d6"
+DEX: "roll 3d6"
+WIL: "roll 3d6"
+attacks:
+  - {name: "bite", damage: "d6"}
+loyalty: 3
+trick: "It growls at what you cannot see."
+abilities:
+  - "The farm dog that followed you off the land; an animal companion (no gear, no Tomes; commanded by tone and gesture)."
+source: "backgrounds/farmhand"
+---
+id: "the-scamp-who-stayed"
+type: "companion"
+name: "The Scamp Who Stayed"
+hp: 2
+attacks:
+  - {name: "claws", damage: "d4"}
+abilities:
+  - "It cannot really fight, it steals shiny things, and it is very loud — but it will fetch, carry a message, or bite a sleeping guard's ankle on command."
+source: "backgrounds/conjurer"
+---
+id: "old-warhorse"
+type: "companion"
+name: "Old Warhorse"
+hp: 6
+STR: 14
+DEX: 10
+WIL: 4
+attacks:
+  - {name: "hooves", damage: "d8"}
+slots: 4
+trained: true
+abilities:
+  - "A scarred Skyrim horse that has carried you through two wars. It never startles at steel or fire, and it bites everyone but you."
+  - "Treats snow, ice and mountain (Perilous) terrain as one step easier."
+source: "backgrounds/sellsword"
+---
+id: "pack-mule"
+type: "companion"
+name: "Pack Mule"
+slots: 6
+qualities:
+  - "slow"
+abilities:
+  - "Cargo only: no travel relief, no riding into a fight."
+source: "backgrounds/merchant"
+---
+id: "pack-guar"
+type: "companion"
+name: "Pack-Guar"
+slots: 6
+qualities:
+  - "slow"
+abilities:
+  - "A plodding scaled beast of burden bought off Dunmer refugees. It never spooks at a shout and eats anything, but it hates the snow."
+source: "backgrounds/khajiit-smuggler"
+---
+id: "ice-wolf"
+type: "companion"
+name: "Ice Wolf"
+hp: "roll 1d6"
+armor: 0
+impaired_by:
+  - "frost"
+STR: "roll 3d6"
+DEX: "roll 3d6"
+WIL: "roll 3d6"
+attacks:
+  - {name: "bite", damage: "d6"}
+loyalty: 3
+trick: "It smells danger on the wind long before you see it."
+abilities:
+  - "A great ice wolf that chose to den near you and never left; an animal companion (no gear, no Tomes; commanded by tone and gesture). The Bestiary's Ice Wolf: frost attacks against it are Impaired."
+source: "backgrounds/skaal-hunter"
+---
+id: "hunting-hawk"
+type: "companion"
+name: "Hunting Hawk"
+hp: "roll 1d6"
+armor: 0
+STR: "roll 3d6"
+DEX: "roll 3d6"
+WIL: "roll 3d6"
+attacks:
+  - {name: "talons", damage: "d6"}
+loyalty: 3
+trick: "It scouts ahead and returns with what it saw."
+abilities:
+  - "A willing beast bound to your hunt by a Greenspeaker's teaching; an animal companion (no gear, no Tomes; commanded by tone and gesture)."
+source: "backgrounds/bosmer-hunter"
+---
+id: "caravan-guard"
+type: "hireling"
+name: "Caravan Guard"
+race: "Nord"
+role: "Sellsword (bodyguard)"
+wage: 10
+hp: "roll 1d6"
+STR: "roll 3d6"
+DEX: "roll 3d6"
+WIL: "roll 3d6"
+inventory:
+  - {name: "Spear", damage: "d8"}
+  - {name: "Leather armor", armor: 1, suit: 1}
+abilities:
+  - "A surly Nord who walks beside the mule. His wages are paid through the end of the week; after that it is 10 Septims a day, and he fights for you exactly as long as the pay keeps coming."
+source: "backgrounds/merchant"
+---
+id: "nocturnals-crow"
+type: "companion"
+name: "Nocturnal's Crow"
+abilities:
+  - "A black crow that will not leave you alone. It cannot fight, but it will carry a small object or a folded note to anyone you name within a day's flight."
+source: "backgrounds/nightingale"

@@ -1,0 +1,24 @@
+# Conjurer (backgrounds/conjurer): the background's two d6 tables.
+table: conjurer-1
+title: "What did you summon first?"
+dice: d6
+source: backgrounds/conjurer#what-did-you-summon-first-roll-1d6
+entries:
+  1: {text: "A familiar: a spectral wolf that licked your hand before it faded. Take a Spell Tome: Conjure Familiar. The wolf still comes unbidden to lie at your feet while you sleep, faint as smoke, and growls if anything creeps close.", data: {gear: [{name: "Spell Tome: Conjure Familiar"}]}}
+  2: {text: "A Flame Atronach, on your first clumsy try; it took your eyebrows with it, and they never grew back. Take a Spell Tome: Conjure Flame Atronach and a pouch of the fire salts it shed (2 uses): thrown, each bursts into flame (d6, blast).", data: {gear: [{name: "Spell Tome: Conjure Flame Atronach"}, {name: "Fire salts", uses: 2, damage: "d6", qualities: ["blast"], note: "thrown, each bursts into flame"}]}}
+  3: {text: "A scamp, from a Mages Guild primer two hundred years out of date. Take a Spell Tome: Summon Scamp — and the scamp's memory: it has shown up uninvited twice since.", data: {gear: [{name: "Spell Tome: Summon Scamp"}]}}
+  4: {text: "A clannfear, which you could not control until it had eaten your master's dog. Take a Spell Tome: Summon Clannfear, and a scar across your forearm shaped like its beak.", data: {gear: [{name: "Spell Tome: Summon Clannfear"}]}}
+  5: {text: "Your soul-trapping art, before any summons at all. Take a Spell Tome: Soul Trap and a lesser soul gem (petty), already filled.", data: {gear: [{name: "Spell Tome: Soul Trap"}, {name: "Lesser soul gem", size: "petty"}]}}
+  6: {text: "Nothing. Your first ritual failed, and something on the far side noticed the open door. Take a Spell Tome: Banish Daedra, salvaged from your master's panic, and a recurring dream of a door of red iron.", data: {gear: [{name: "Spell Tome: Banish Daedra"}]}}
+---
+table: conjurer-2
+title: "What did the veil leave on you?"
+dice: d6
+source: backgrounds/conjurer#what-did-the-veil-leave-on-you-roll-1d6
+entries:
+  1: "A Dremora's Name: You learned the true name of a Dremora of the Kyn, and it knows yours. Speak it once, and it comes, for a single fight, as the Dremora in the Bestiary — then it is free of you, and it remembers."
+  2: {text: "Binding Ring: A cinder-etched ring (petty) chased with Daedric script. Once per day, a servant you summon lasts until the next dawn instead of the end of the scene.", data: {gear: [{name: "Binding Ring", size: "petty"}]}}
+  3: "Caller's Mark: The Daedra know your sign. Once per day, speak it at a Daedra someone else has summoned: it must pass a WIL save or turn on its summoner for the rest of the scene."
+  4: {text: "Sigil Stone Shard: A cracked shard of a sigil stone (petty), pried from an Oblivion Gate that closed two centuries ago. It still hums with the Deadlands' heat. Once per day, cast a Conjuration spell without adding Fatigue.", data: {gear: [{name: "Sigil Stone Shard", size: "petty"}]}}
+  5: {text: "The Scamp Who Stayed: A scamp (2 HP, claws d4) that followed you home and will not go back. It cannot really fight, it steals shiny things, and it is very loud — but it will fetch, carry a message, or bite a sleeping guard's ankle on command.", data: {companion: "the-scamp-who-stayed"}}
+  6: {text: "Soul Gem Satchel: Two petty soul gems (petty), empty, wrapped in black velvet, and the knack of telling at a glance how large a soul any creature would make.", data: {gear: [{name: "Petty soul gem", size: "petty", note: "empty, wrapped in black velvet"}, {name: "Petty soul gem", size: "petty", note: "empty, wrapped in black velvet"}]}}

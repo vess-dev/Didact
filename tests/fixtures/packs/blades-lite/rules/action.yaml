@@ -1,0 +1,18 @@
+check: action
+help: Roll d6s equal to your rating and take the highest; with 0 dice roll 2d6 and take the lowest.
+params: {dice: {kind: int, default: 1}}
+roll: "if(@dice > 0, (@dice)d6, 2d6)"
+bands:
+  critical: "@dice > 0 and count(@roll.dice, 6) >= 2"
+  success: "if(@dice > 0, max(@roll.dice), min(@roll.dice)) == 6"
+  partial: "if(@dice > 0, max(@roll.dice), min(@roll.dice)) >= 4"
+  failure: else
+---
+action: tick
+params: {clock: ref, ticks: {kind: int, default: 1}}
+steps:
+  - set: clock.segments
+    op: "+="
+    value: "@ticks"
+  - if: "@clock.segments >= @clock.segments.size"
+    then: ["{@clock.name} is full!"]

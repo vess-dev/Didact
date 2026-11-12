@@ -1,0 +1,2611 @@
+# The frames, to pick one, and what the `frame` generator drafts for each: written by
+# fw_compendium.py, don't edit by hand.
+table: frames
+title: The campaign frames (pick one)
+source: campaigns/00-intro#which-campaign-where
+about: Opens {opens} ({main}).
+entries:
+- text: Fallout 3
+  data:
+    id: fallout-3
+    slug: fallout-3
+    region: fallout-3-region
+    main: Fallout 3
+    arcs: 'Operation: Anchorage, The Pitt, Broken Steel, Point Lookout, Mothership Zeta'
+    places: 16
+    cast: 14
+    threats: 4
+    clocks: 3
+    factions: 2
+    date: {year: 2277, month: 10, day: 23}
+    opens: Tuesday, 23 October 2277
+    why: two centuries after the war, the book's own default moment (Player's Guide, The 
+      Commonwealth of Ashes); Vault 112 has dreamed for 200 years
+    reaching: ''
+    notes: "Karma Clock: under Fallout 2e, the party record's karma ladder: `didact do karma party=<it>
+      shift=±1 why='…'`; under Grimfall, no ladder: karma is what the radio says about them, and it decides
+      who holds their warrant (Chapter 9)."
+    notes_fallout: "Karma Clock: the party record's karma ladder: `didact do karma party=<it> shift=±1
+      why='…'`."
+    notes_grimfall: 'Karma Clock: no ladder: karma is what the radio says about them, and it decides who
+      holds their warrant (Chapter 9).'
+- text: 'Fallout: New Vegas'
+  data:
+    id: fallout-new-vegas
+    slug: fallout-new-vegas
+    region: fallout-new-vegas-region
+    main: 'Fallout: New Vegas'
+    arcs: Dead Money, Honest Hearts, Old World Blues, Lonesome Road
+    places: 15
+    cast: 18
+    threats: 7
+    clocks: 4
+    factions: 9
+    date: {year: 2281, month: 10, day: 19}
+    opens: Wednesday, 19 October 2281
+    why: the year New Canaan burned (Vault 70) and Mister House is 261; the day the game it adapts 
+      opens, Joe Cobb's raid a day or two off
+    reaching: didact time set 'Wednesday, 19 October 2281'
+    notes: ''
+    notes_fallout: ''
+    notes_grimfall: ''
+- text: Fallout 4
+  data:
+    id: fallout-4
+    slug: fallout-4
+    region: fallout-4-region
+    main: Fallout 4
+    arcs: Automatron, Far Harbor, Vault-Tec Workshop, Nuka-World
+    places: 13
+    cast: 13
+    threats: 4
+    clocks: 3
+    factions: 4
+    date: {year: 2287, month: 10, day: 23}
+    opens: Sunday, 23 October 2287
+    why: the year Vault 111's last pod thawed (Vault 111); the day the game it adapts opens
+    reaching: didact time set 'Sunday, 23 October 2287'
+    notes: ''
+    notes_fallout: ''
+    notes_grimfall: ''
+- text: 'Operation: Anchorage'
+  data:
+    id: operation-anchorage
+    slug: operation-anchorage
+    region: operation-anchorage-region
+    main: Fallout 3
+    arcs: ''
+    places: 5
+    cast: 3
+    threats: 3
+    clocks: 2
+    factions: 2
+    date: {year: 2277, month: 10, day: 23}
+    opens: Tuesday, 23 October 2277
+    why: "a Fallout 3 side arc: that frame's date, or whenever it reaches the Outcasts' bunker"
+    reaching: ''
+    notes: ''
+    notes_fallout: ''
+    notes_grimfall: ''
+- text: The Pitt
+  data:
+    id: the-pitt
+    slug: the-pitt
+    region: the-pitt-region
+    main: Fallout 3
+    arcs: ''
+    places: 6
+    cast: 5
+    threats: 3
+    clocks: 2
+    factions: 2
+    date: {year: 2277, month: 10, day: 23}
+    opens: Tuesday, 23 October 2277
+    why: "a Fallout 3 side arc: that frame's date, or whenever Wernher finds the party"
+    reaching: ''
+    notes: ''
+    notes_fallout: ''
+    notes_grimfall: ''
+- text: Broken Steel
+  data:
+    id: broken-steel
+    slug: broken-steel
+    region: broken-steel-region
+    main: Fallout 3
+    arcs: ''
+    places: 4
+    cast: 4
+    threats: 2
+    clocks: 2
+    factions: 2
+    date: {year: 2277, month: 11, day: 6}
+    opens: Tuesday, 6 November 2277
+    why: two weeks after the Fallout 3 frame's climax, as both frames say; here two weeks after that
+      frame's date
+    reaching: didact time set 'Tuesday, 6 November 2277'
+    notes: ''
+    notes_fallout: ''
+    notes_grimfall: ''
+- text: Point Lookout
+  data:
+    id: point-lookout
+    slug: point-lookout
+    region: point-lookout-region
+    main: Fallout 3
+    arcs: ''
+    places: 7
+    cast: 4
+    threats: 4
+    clocks: 2
+    factions: 1
+    date: {year: 2277, month: 10, day: 23}
+    opens: Tuesday, 23 October 2277
+    why: "a Fallout 3 side arc: that frame's date, or whenever the Duchess Gambit docks"
+    reaching: ''
+    notes: ''
+    notes_fallout: ''
+    notes_grimfall: ''
+- text: Mothership Zeta
+  data:
+    id: mothership-zeta
+    slug: mothership-zeta
+    region: mothership-zeta-region
+    main: Fallout 3
+    arcs: ''
+    places: 8
+    cast: 6
+    threats: 1
+    clocks: 2
+    factions: 0
+    date: {year: 2277, month: 10, day: 23}
+    opens: Tuesday, 23 October 2277
+    why: "a Fallout 3 side arc: that frame's date, or whenever the beacon calls"
+    reaching: ''
+    notes: ''
+    notes_fallout: ''
+    notes_grimfall: ''
+- text: Dead Money
+  data:
+    id: dead-money
+    slug: dead-money
+    region: dead-money-region
+    main: 'Fallout: New Vegas'
+    arcs: ''
+    places: 6
+    cast: 1
+    threats: 4
+    clocks: 3
+    factions: 1
+    date: {year: 2281, month: 10, day: 19}
+    opens: Wednesday, 19 October 2281
+    why: "a New Vegas side arc: that frame's date, or whenever the broadcast lures the party"
+    reaching: didact time set 'Wednesday, 19 October 2281'
+    notes: 'Cloud Clock: under Fallout 2e, no timer: at each new zone, `didact table roll fallout-wasteland.cloud-clock`;
+      under Grimfall, no timer: the Cloud is a hot zone, +1t while you work in it; at each new zone `didact
+      table roll fallout-wasteland.cloud-clock`, and a surge marks Brawn.'
+    notes_fallout: 'Cloud Clock: no timer: at each new zone, `didact table roll fallout-wasteland.cloud-clock`.'
+    notes_grimfall: 'Cloud Clock: no timer: the Cloud is a hot zone, +1t while you work in it; at each
+      new zone `didact table roll fallout-wasteland.cloud-clock`, and a surge marks Brawn.'
+- text: Honest Hearts
+  data:
+    id: honest-hearts
+    slug: honest-hearts
+    region: honest-hearts-region
+    main: 'Fallout: New Vegas'
+    arcs: ''
+    places: 7
+    cast: 3
+    threats: 2
+    clocks: 2
+    factions: 3
+    date: {year: 2281, month: 10, day: 19}
+    opens: Wednesday, 19 October 2281
+    why: a New Vegas side arc; New Canaan burned in 2281 (Vault 70)
+    reaching: didact time set 'Wednesday, 19 October 2281'
+    notes: ''
+    notes_fallout: ''
+    notes_grimfall: ''
+- text: Old World Blues
+  data:
+    id: old-world-blues
+    slug: old-world-blues
+    region: old-world-blues-region
+    main: 'Fallout: New Vegas'
+    arcs: ''
+    places: 9
+    cast: 7
+    threats: 2
+    clocks: 2
+    factions: 0
+    date: {year: 2281, month: 10, day: 19}
+    opens: Wednesday, 19 October 2281
+    why: "a New Vegas side arc: that frame's date, or whenever the drive-in plays"
+    reaching: didact time set 'Wednesday, 19 October 2281'
+    notes: ''
+    notes_fallout: ''
+    notes_grimfall: ''
+- text: Lonesome Road
+  data:
+    id: lonesome-road
+    slug: lonesome-road
+    region: lonesome-road-region
+    main: 'Fallout: New Vegas'
+    arcs: ''
+    places: 8
+    cast: 2
+    threats: 2
+    clocks: 2
+    factions: 2
+    date: {year: 2281, month: 10, day: 19}
+    opens: Wednesday, 19 October 2281
+    why: "a New Vegas side arc: that frame's date, or whenever ED-E arrives"
+    reaching: didact time set 'Wednesday, 19 October 2281'
+    notes: 'Rad Clock: under Fallout 2e, no timer: on first entering each Divide zone, 1 Rad to each exposed
+      PC (`didact do rad who=<pc> source=hot-zone`; gear=halves for a radiation suit, gear=negates for
+      a sealed hazmat suit); under Grimfall, no timer: each Divide zone is a hot zone, `didact do rad
+      who=<pc> dose=zone` (+1t), or with `stat=` a rad mark.'
+    notes_fallout: 'Rad Clock: no timer: on first entering each Divide zone, 1 Rad to each exposed PC
+      (`didact do rad who=<pc> source=hot-zone`; gear=halves for a radiation suit, gear=negates for a
+      sealed hazmat suit).'
+    notes_grimfall: 'Rad Clock: no timer: each Divide zone is a hot zone, `didact do rad who=<pc> dose=zone`
+      (+1t), or with `stat=` a rad mark.'
+- text: Automatron
+  data:
+    id: automatron
+    slug: automatron
+    region: automatron-region
+    main: Fallout 4
+    arcs: ''
+    places: 4
+    cast: 4
+    threats: 4
+    clocks: 2
+    factions: 1
+    date: {year: 2287, month: 10, day: 23}
+    opens: Sunday, 23 October 2287
+    why: "a Fallout 4 side arc: that frame's date, or whenever the distress call comes"
+    reaching: didact time set 'Sunday, 23 October 2287'
+    notes: ''
+    notes_fallout: ''
+    notes_grimfall: ''
+- text: Far Harbor
+  data:
+    id: far-harbor
+    slug: far-harbor
+    region: far-harbor-region
+    main: Fallout 4
+    arcs: ''
+    places: 8
+    cast: 7
+    threats: 3
+    clocks: 3
+    factions: 3
+    date: {year: 2287, month: 10, day: 23}
+    opens: Sunday, 23 October 2287
+    why: "a Fallout 4 side arc: that frame's date, or whenever Valentine's agency calls"
+    reaching: didact time set 'Sunday, 23 October 2287'
+    notes: ''
+    notes_fallout: ''
+    notes_grimfall: ''
+- text: Vault-Tec Workshop
+  data:
+    id: vault-tec-workshop
+    slug: vault-tec-workshop
+    region: vault-tec-workshop-region
+    main: Fallout 4
+    arcs: ''
+    places: 10
+    cast: 3
+    threats: 3
+    clocks: 3
+    factions: 0
+    date: {year: 2287, month: 10, day: 23}
+    opens: Sunday, 23 October 2287
+    why: "a Fallout 4 side arc: that frame's date, or whenever Vault 88's broadcast is heard"
+    reaching: didact time set 'Sunday, 23 October 2287'
+    notes: ''
+    notes_fallout: ''
+    notes_grimfall: ''
+- text: Nuka-World
+  data:
+    id: nuka-world
+    slug: nuka-world
+    region: nuka-world-region
+    main: Fallout 4
+    arcs: ''
+    places: 9
+    cast: 9
+    threats: 5
+    clocks: 3
+    factions: 4
+    date: {year: 2287, month: 10, day: 23}
+    opens: Sunday, 23 October 2287
+    why: "a Fallout 4 side arc: that frame's date, or whenever the park's signal is heard"
+    reaching: didact time set 'Sunday, 23 October 2287'
+    notes: ''
+    notes_fallout: ''
+    notes_grimfall: ''
+- text: Fallout 76
+  data:
+    id: fallout-76
+    slug: fallout-76
+    region: fallout-76-region
+    main: Fallout 76
+    arcs: Wastelanders, Steel Dawn, Skyline Valley, Atlantic City
+    places: 16
+    cast: 6
+    threats: 6
+    clocks: 3
+    factions: 0
+    date: {year: 2102, month: 10, day: 23}
+    opens: Monday, 23 October 2102
+    why: Reclamation Day, 23 October 2102, as the frame says
+    reaching: didact time set 'Monday, 23 October 2102'
+    notes: ''
+    notes_fallout: ''
+    notes_grimfall: ''
+- text: Wastelanders
+  data:
+    id: wastelanders
+    slug: wastelanders
+    region: wastelanders-region
+    main: Fallout 76
+    arcs: ''
+    places: 13
+    cast: 23
+    threats: 5
+    clocks: 3
+    factions: 4
+    date: {year: 2103, month: 10, day: 23}
+    opens: Tuesday, 23 October 2103
+    why: "'a year after Reclamation Day', 'It is 2103' (the frame)"
+    reaching: didact time set 'Tuesday, 23 October 2103'
+    notes: ''
+    notes_fallout: ''
+    notes_grimfall: ''
+- text: Steel Dawn
+  data:
+    id: steel-dawn
+    slug: steel-dawn
+    region: steel-dawn-region
+    main: Fallout 76
+    arcs: ''
+    places: 9
+    cast: 11
+    threats: 6
+    clocks: 3
+    factions: 5
+    date: {year: 2104, month: 10, day: 23}
+    opens: Thursday, 23 October 2104
+    why: "'In 2104' (the frame); the day is Reclamation Day's"
+    reaching: didact time set 'Thursday, 23 October 2104'
+    notes: ''
+    notes_fallout: ''
+    notes_grimfall: ''
+- text: Skyline Valley
+  data:
+    id: skyline-valley
+    slug: skyline-valley
+    region: skyline-valley-region
+    main: Fallout 76
+    arcs: ''
+    places: 10
+    cast: 6
+    threats: 4
+    clocks: 3
+    factions: 2
+    date: {year: 2105, month: 10, day: 23}
+    opens: Friday, 23 October 2105
+    why: "'In 2105' (the frame); the day is Reclamation Day's"
+    reaching: didact time set 'Friday, 23 October 2105'
+    notes: ''
+    notes_fallout: ''
+    notes_grimfall: ''
+- text: Atlantic City
+  data:
+    id: atlantic-city
+    slug: atlantic-city
+    region: atlantic-city-region
+    main: Fallout 76
+    arcs: ''
+    places: 6
+    cast: 13
+    threats: 5
+    clocks: 3
+    factions: 4
+    date: {year: 2105, month: 10, day: 23}
+    opens: Friday, 23 October 2105
+    why: "'In 2105' (the frame); the day is Reclamation Day's"
+    reaching: didact time set 'Friday, 23 October 2105'
+    notes: ''
+    notes_fallout: ''
+    notes_grimfall: ''
+---
+table: frame-places
+title: A frame's places, by number (the frame generator)
+lookup: [frame, n]
+source: campaigns/00-intro#how-to-use-a-campaign-frame
+entries:
+  fallout-3:
+    1:
+      text: Vault 101
+      data: {id: vault-101}
+    2:
+      text: Megaton
+      data: {id: fallout-3-megaton}
+    3:
+      text: Galaxy News Radio
+      data: {id: fallout-3-galaxy-news-radio}
+    4:
+      text: The Mall
+      data: {id: fallout-3-the-mall}
+    5:
+      text: Rivet City
+      data: {id: fallout-3-rivet-city}
+    6:
+      text: Tenpenny Tower
+      data: {id: fallout-3-tenpenny-tower}
+    7:
+      text: Paradise Falls
+      data: {id: fallout-3-paradise-falls}
+    8:
+      text: Big Town
+      data: {id: fallout-3-big-town}
+    9:
+      text: Little Lamplight
+      data: {id: fallout-3-little-lamplight}
+    10:
+      text: The Pitt entrance
+      data: {id: fallout-3-the-pitt-entrance}
+    11:
+      text: The Jefferson Memorial
+      data: {id: fallout-3-the-jefferson-memorial}
+    12:
+      text: The Citadel
+      data: {id: fallout-3-the-citadel}
+    13:
+      text: Raven Rock
+      data: {id: fallout-3-raven-rock}
+    14:
+      text: Vault 87
+      data: {id: vault-87}
+    15:
+      text: Vault 112
+      data: {id: vault-112}
+    16:
+      text: The Glowing Zone
+      data: {id: fallout-3-the-glowing-zone}
+  fallout-new-vegas:
+    1:
+      text: Goodsprings
+      data: {id: fallout-new-vegas-goodsprings}
+    2:
+      text: Primm
+      data: {id: fallout-new-vegas-primm}
+    3:
+      text: Nipton
+      data: {id: fallout-new-vegas-nipton}
+    4:
+      text: Novac
+      data: {id: fallout-new-vegas-novac}
+    5:
+      text: Boulder City
+      data: {id: fallout-new-vegas-boulder-city}
+    6:
+      text: New Vegas Strip
+      data: {id: fallout-new-vegas-new-vegas-strip}
+    7:
+      text: Freeside
+      data: {id: fallout-new-vegas-freeside}
+    8:
+      text: Camp McCarran
+      data: {id: fallout-new-vegas-camp-mccarran}
+    9:
+      text: The Fort
+      data: {id: fallout-new-vegas-the-fort}
+    10:
+      text: Nellis AFB
+      data: {id: fallout-new-vegas-nellis-afb}
+    11:
+      text: Jacobstown
+      data: {id: fallout-new-vegas-jacobstown}
+    12:
+      text: Hidden Valley
+      data: {id: fallout-new-vegas-hidden-valley}
+    13:
+      text: Red Rock Canyon
+      data: {id: fallout-new-vegas-red-rock-canyon}
+    14:
+      text: HELIOS One
+      data: {id: fallout-new-vegas-helios-one}
+    15:
+      text: Hoover Dam
+      data: {id: fallout-new-vegas-hoover-dam}
+  fallout-4:
+    1:
+      text: Sanctuary Hills
+      data: {id: fallout-4-sanctuary-hills}
+    2:
+      text: Concord
+      data: {id: fallout-4-concord}
+    3:
+      text: Diamond City
+      data: {id: fallout-4-diamond-city}
+    4:
+      text: Goodneighbor
+      data: {id: fallout-4-goodneighbor}
+    5:
+      text: Cambridge Police Station
+      data: {id: fallout-4-cambridge-police-station}
+    6:
+      text: Fort Hagen
+      data: {id: fallout-4-fort-hagen}
+    7:
+      text: The Glowing Sea
+      data: {id: fallout-4-the-glowing-sea}
+    8:
+      text: The Old North Church
+      data: {id: fallout-4-the-old-north-church}
+    9:
+      text: The Prydwen
+      data: {id: fallout-4-the-prydwen}
+    10:
+      text: The Castle
+      data: {id: fallout-4-the-castle}
+    11:
+      text: The CIT Ruins / The Institute
+      data: {id: fallout-4-the-cit-ruins-the-institute}
+    12:
+      text: Spectacle Island
+      data: {id: fallout-4-spectacle-island}
+    13:
+      text: Covenant
+      data: {id: fallout-4-covenant}
+  operation-anchorage:
+    1:
+      text: Listening Post Bravo
+      data: {id: operation-anchorage-listening-post-bravo}
+    2:
+      text: The Chimera Depot
+      data: {id: operation-anchorage-the-chimera-depot}
+    3:
+      text: The Ice Camp
+      data: {id: operation-anchorage-the-ice-camp}
+    4:
+      text: The Pulse Field
+      data: {id: operation-anchorage-the-pulse-field}
+    5:
+      text: General Jingwei's Bunker
+      data: {id: operation-anchorage-general-jingweis-bunker}
+  the-pitt:
+    1:
+      text: The Yard
+      data: {id: the-pitt-the-yard}
+    2:
+      text: The Steelyard
+      data: {id: the-pitt-the-steelyard}
+    3:
+      text: Downtown Pitt
+      data: {id: the-pitt-downtown-pitt}
+    4:
+      text: The Arena
+      data: {id: the-pitt-the-arena}
+    5:
+      text: Uptown & Haven
+      data: {id: the-pitt-uptown-and-haven}
+    6:
+      text: The Pitt Underground
+      data: {id: the-pitt-the-pitt-underground}
+  broken-steel:
+    1:
+      text: Old Olney
+      data: {id: broken-steel-old-olney}
+    2:
+      text: The Presidential Metro
+      data: {id: broken-steel-the-presidential-metro}
+    3:
+      text: Adams AFB Exterior
+      data: {id: broken-steel-adams-afb-exterior}
+    4:
+      text: The Crawler
+      data: {id: broken-steel-the-crawler}
+  point-lookout:
+    1:
+      text: Point Lookout Pier & Boardwalk
+      data: {id: point-lookout-point-lookout-pier-and-boardwalk}
+    2:
+      text: Calvert Mansion
+      data: {id: point-lookout-calvert-mansion}
+    3:
+      text: Professor Calvert's Lighthouse
+      data: {id: point-lookout-professor-calverts-lighthouse}
+    4:
+      text: The Swamp
+      data: {id: point-lookout-the-swamp}
+    5:
+      text: The Ark & Dove Cathedral
+      data: {id: point-lookout-the-ark-and-dove-cathedral}
+    6:
+      text: The Sacred Bog
+      data: {id: point-lookout-the-sacred-bog}
+    7:
+      text: The Chinese Intelligence Bunker
+      data: {id: point-lookout-the-chinese-intelligence-bunker}
+  mothership-zeta:
+    1:
+      text: The Crash Site (Earth)
+      data: {id: mothership-zeta-the-crash-site-earth}
+    2:
+      text: Holding Cells
+      data: {id: mothership-zeta-holding-cells}
+    3:
+      text: Cryo Labs
+      data: {id: mothership-zeta-cryo-labs}
+    4:
+      text: Weapons Lab
+      data: {id: mothership-zeta-weapons-lab}
+    5:
+      text: Hangar Bay
+      data: {id: mothership-zeta-hangar-bay}
+    6:
+      text: Engineering
+      data: {id: mothership-zeta-engineering}
+    7:
+      text: The Observation Deck
+      data: {id: mothership-zeta-the-observation-deck}
+    8:
+      text: The Bridge
+      data: {id: mothership-zeta-the-bridge}
+  dead-money:
+    1:
+      text: The Villa
+      data: {id: dead-money-the-villa}
+    2:
+      text: The Police Station
+      data: {id: dead-money-the-police-station}
+    3:
+      text: The Clinic
+      data: {id: dead-money-the-clinic}
+    4:
+      text: The Residential District
+      data: {id: dead-money-the-residential-district}
+    5:
+      text: The Casino
+      data: {id: dead-money-the-casino}
+    6:
+      text: The Vault
+      data: {id: dead-money-the-vault}
+  honest-hearts:
+    1:
+      text: Angel Cave
+      data: {id: honest-hearts-angel-cave}
+    2:
+      text: Dead Horse Camp
+      data: {id: honest-hearts-dead-horse-camp}
+    3:
+      text: Sorrows Camp
+      data: {id: honest-hearts-sorrows-camp}
+    4:
+      text: White Legs Staging Ground
+      data: {id: honest-hearts-white-legs-staging-ground}
+    5:
+      text: Zion's Overlook
+      data: {id: honest-hearts-zions-overlook}
+    6:
+      text: The Three Marys
+      data: {id: honest-hearts-the-three-marys}
+    7:
+      text: A Pre-war Ranger Station
+      data: {id: honest-hearts-a-pre-war-ranger-station}
+  old-world-blues:
+    1:
+      text: The Sink
+      data: {id: old-world-blues-the-sink}
+    2:
+      text: The X-8 Research Center
+      data: {id: old-world-blues-the-x-8-research-center}
+    3:
+      text: The X-13 Stealth Lab
+      data: {id: old-world-blues-the-x-13-stealth-lab}
+    4:
+      text: The X-42 Giant Robo-Scorpion Warehouse
+      data: {id: old-world-blues-the-x-42-giant-robo-scorpion-warehouse}
+    5:
+      text: Higgs Village
+      data: {id: old-world-blues-higgs-village}
+    6:
+      text: The Think Tank Dome
+      data: {id: old-world-blues-the-think-tank-dome}
+    7:
+      text: Forbidden Zone Dome
+      data: {id: old-world-blues-forbidden-zone-dome}
+    8:
+      text: Little Yangtze
+      data: {id: old-world-blues-little-yangtze}
+    9:
+      text: The Crater Road
+      data: {id: old-world-blues-the-crater-road}
+  lonesome-road:
+    1:
+      text: The Canyon Wreckage
+      data: {id: lonesome-road-the-canyon-wreckage}
+    2:
+      text: The Hopeville Missile Base
+      data: {id: lonesome-road-the-hopeville-missile-base}
+    3:
+      text: The Courier's Mile
+      data: {id: lonesome-road-the-couriers-mile}
+    4:
+      text: Rawr's Cave
+      data: {id: lonesome-road-rawrs-cave}
+    5:
+      text: The Hanging Rock
+      data: {id: lonesome-road-the-hanging-rock}
+    6:
+      text: The High Road
+      data: {id: lonesome-road-the-high-road}
+    7:
+      text: The Cave of the Abaddon
+      data: {id: lonesome-road-the-cave-of-the-abaddon}
+    8:
+      text: The Silo Control Room
+      data: {id: lonesome-road-the-silo-control-room}
+  automatron:
+    1:
+      text: The Caravan Wreck
+      data: {id: automatron-the-caravan-wreck}
+    2:
+      text: Fort Hagen Satellite Array
+      data: {id: automatron-fort-hagen-satellite-array}
+    3:
+      text: The RobCo Sales & Service Center
+      data: {id: automatron-the-robco-sales-and-service-center}
+    4:
+      text: The Mechanist's Lair
+      data: {id: automatron-the-mechanists-lair}
+  far-harbor:
+    1:
+      text: Far Harbor town
+      data: {id: far-harbor-far-harbor-town}
+    2:
+      text: Acadia
+      data: {id: far-harbor-acadia}
+    3:
+      text: The Nucleus
+      data: {id: far-harbor-the-nucleus}
+    4:
+      text: Echo Lake Lumber Mill
+      data: {id: far-harbor-echo-lake-lumber-mill}
+    5:
+      text: The Vim! Pop Factory
+      data: {id: far-harbor-the-vim-pop-factory}
+    6:
+      text: The Cranberry Island Bog
+      data: {id: far-harbor-the-cranberry-island-bog}
+    7:
+      text: The National Park Visitor Center
+      data: {id: far-harbor-the-national-park-visitor-center}
+    8:
+      text: The Fog Condensers
+      data: {id: far-harbor-the-fog-condensers}
+  vault-tec-workshop:
+    1:
+      text: Main Entry
+      data: {id: vault-tec-workshop-main-entry}
+    2:
+      text: The Overseer's Suite
+      data: {id: vault-tec-workshop-the-overseers-suite}
+    3:
+      text: The Dormitories
+      data: {id: vault-tec-workshop-the-dormitories}
+    4:
+      text: The Cafeteria
+      data: {id: vault-tec-workshop-the-cafeteria}
+    5:
+      text: Experimental Pod A — The Phoropter
+      data: {id: vault-tec-workshop-experimental-pod-a-the-phoropter}
+    6:
+      text: Experimental Pod B — The Slot Machine
+      data: {id: vault-tec-workshop-experimental-pod-b-the-slot-machine}
+    7:
+      text: Experimental Pod C — The Soda Fountain
+      data: {id: vault-tec-workshop-experimental-pod-c-the-soda-fountain}
+    8:
+      text: Experimental Pod D — The Power Cycle 1000
+      data: {id: vault-tec-workshop-experimental-pod-d-the-power-cycle-1000}
+    9:
+      text: The Deep Caverns
+      data: {id: vault-tec-workshop-the-deep-caverns}
+    10:
+      text: The Settler Intake Bay
+      data: {id: vault-tec-workshop-the-settler-intake-bay}
+  nuka-world:
+    1:
+      text: The Gauntlet
+      data: {id: nuka-world-the-gauntlet}
+    2:
+      text: Nuka-Town USA
+      data: {id: nuka-world-nuka-town-usa}
+    3:
+      text: Dry Rock Gulch
+      data: {id: nuka-world-dry-rock-gulch}
+    4:
+      text: Galactic Zone
+      data: {id: nuka-world-galactic-zone}
+    5:
+      text: Kiddie Kingdom
+      data: {id: nuka-world-kiddie-kingdom}
+    6:
+      text: Safari Adventure
+      data: {id: nuka-world-safari-adventure}
+    7:
+      text: Nuka-World Transit Center
+      data: {id: nuka-world-nuka-world-transit-center}
+    8:
+      text: Nuka-Cola Bottling Plant
+      data: {id: nuka-world-nuka-cola-bottling-plant}
+    9:
+      text: The Power Plant
+      data: {id: nuka-world-the-power-plant}
+  fallout-76:
+    1:
+      text: Vault 76
+      data: {id: vault-76}
+    2:
+      text: Flatwoods
+      data: {id: fallout-76-flatwoods}
+    3:
+      text: Morgantown
+      data: {id: fallout-76-morgantown}
+    4:
+      text: Charleston
+      data: {id: fallout-76-charleston}
+    5:
+      text: Grafton
+      data: {id: fallout-76-grafton}
+    6:
+      text: Top of the World & Pleasant Valley
+      data: {id: fallout-76-top-of-the-world-and-pleasant-valley}
+    7:
+      text: Camp McClintock
+      data: {id: fallout-76-camp-mcclintock}
+    8:
+      text: Huntersville
+      data: {id: fallout-76-huntersville}
+    9:
+      text: The Ash Heap
+      data: {id: fallout-76-the-ash-heap}
+    10:
+      text: Watoga
+      data: {id: fallout-76-watoga}
+    11:
+      text: The Mire
+      data: {id: fallout-76-the-mire}
+    12:
+      text: The Cranberry Bog
+      data: {id: fallout-76-the-cranberry-bog}
+    13:
+      text: The Whitespring
+      data: {id: fallout-76-the-whitespring}
+    14:
+      text: Point Pleasant
+      data: {id: fallout-76-point-pleasant}
+    15:
+      text: Helvetia
+      data: {id: fallout-76-helvetia}
+    16:
+      text: The Silos
+      data: {id: fallout-76-the-silos}
+  wastelanders:
+    1:
+      text: The Wayward
+      data: {id: wastelanders-the-wayward}
+    2:
+      text: WV Lumber Co
+      data: {id: wastelanders-wv-lumber-co}
+    3:
+      text: Gauley Mine
+      data: {id: wastelanders-gauley-mine}
+    4:
+      text: The Overseer's House
+      data: {id: wastelanders-the-overseers-house}
+    5:
+      text: AVR Medical Center
+      data: {id: wastelanders-avr-medical-center}
+    6:
+      text: Foundation
+      data: {id: wastelanders-foundation}
+    7:
+      text: The Crater
+      data: {id: wastelanders-the-crater}
+    8:
+      text: Vault-Tec University
+      data: {id: wastelanders-vault-tec-university}
+    9:
+      text: Hornwright Industrial
+      data: {id: wastelanders-hornwright-industrial}
+    10:
+      text: Captain Fields' Bunker
+      data: {id: wastelanders-captain-fields-bunker}
+    11:
+      text: Grafton Steel
+      data: {id: wastelanders-grafton-steel}
+    12:
+      text: The Watoga Civic Center
+      data: {id: wastelanders-the-watoga-civic-center}
+    13:
+      text: Vault 79
+      data: {id: vault-79}
+  steel-dawn:
+    1:
+      text: Fort Atlas
+      data: {id: steel-dawn-fort-atlas}
+    2:
+      text: The Retreat
+      data: {id: steel-dawn-the-retreat}
+    3:
+      text: Dagger's Den
+      data: {id: steel-dawn-daggers-den}
+    4:
+      text: Foundation and the Crater
+      data: {id: steel-dawn-foundation-and-the-crater}
+    5:
+      text: The Enclave Research Facility
+      data: {id: steel-dawn-the-enclave-research-facility}
+    6:
+      text: The Uncanny Caverns
+      data: {id: steel-dawn-the-uncanny-caverns}
+    7:
+      text: Big Bend Tunnel
+      data: {id: steel-dawn-big-bend-tunnel}
+    8:
+      text: Vault 96
+      data: {id: vault-96}
+    9:
+      text: West Tek
+      data: {id: steel-dawn-west-tek}
+  skyline-valley:
+    1:
+      text: The Door Crash Site
+      data: {id: skyline-valley-the-door-crash-site}
+    2:
+      text: Vault 63 Transit Hub
+      data: {id: skyline-valley-vault-63-transit-hub}
+    3:
+      text: Skyline Drive
+      data: {id: skyline-valley-skyline-drive}
+    4:
+      text: Dark Hollow Manor
+      data: {id: skyline-valley-dark-hollow-manor}
+    5:
+      text: Vault 63
+      data: {id: vault-63}
+    6:
+      text: Shenandoah Visitor Center
+      data: {id: skyline-valley-shenandoah-visitor-center}
+    7:
+      text: Old Crimora Mines
+      data: {id: skyline-valley-old-crimora-mines}
+    8:
+      text: High Knob Lookout
+      data: {id: skyline-valley-high-knob-lookout}
+    9:
+      text: Research Sites Saxony, Bavaria, and Rhineland
+      data: {id: skyline-valley-research-sites-saxony-bavaria-and-rhineland}
+    10:
+      text: The Hawksbill Weather Station
+      data: {id: skyline-valley-the-hawksbill-weather-station}
+  atlantic-city:
+    1:
+      text: The Rose Room
+      data: {id: atlantic-city-the-rose-room}
+    2:
+      text: The Whitespring Refuge
+      data: {id: atlantic-city-the-whitespring-refuge}
+    3:
+      text: The Casino Quarter
+      data: {id: atlantic-city-the-casino-quarter}
+    4:
+      text: The Atlantic City Boardwalk
+      data: {id: atlantic-city-the-atlantic-city-boardwalk}
+    5:
+      text: The Flooded City Center
+      data: {id: atlantic-city-the-flooded-city-center}
+    6:
+      text: The Pine Barrens
+      data: {id: atlantic-city-the-pine-barrens}
+---
+table: frame-cast
+title: A frame's cast, by number (the frame generator)
+lookup: [frame, n]
+source: campaigns/00-intro#how-to-use-a-campaign-frame
+entries:
+  fallout-3:
+    1:
+      text: James
+      data: {id: fallout-3-james}
+    2:
+      text: Catherine
+      data: {id: fallout-3-catherine}
+    3:
+      text: Amata Almodovar
+      data: {id: fallout-3-amata-almodovar}
+    4:
+      text: The Overseer
+      data: {id: fallout-3-the-overseer}
+    5:
+      text: Three Dog
+      data: {id: fallout-3-three-dog}
+    6:
+      text: Mister Burke
+      data: {id: fallout-3-mister-burke}
+    7:
+      text: Sheriff Lucas Simms
+      data: {id: fallout-3-sheriff-lucas-simms}
+    8:
+      text: Elder Owyn Lyons
+      data: {id: fallout-3-elder-owyn-lyons}
+    9:
+      text: Sarah Lyons
+      data: {id: fallout-3-sarah-lyons}
+    10:
+      text: Star Paladin Cross
+      data: {id: fallout-3-star-paladin-cross}
+    11:
+      text: Scribe Rothchild
+      data: {id: fallout-3-scribe-rothchild}
+    12:
+      text: Dr. Madison Li
+      data: {id: fallout-3-dr-madison-li}
+    13:
+      text: Fawkes
+      data: {id: fallout-3-fawkes}
+    14:
+      text: Dogmeat
+      data: {id: fallout-3-dogmeat}
+  fallout-new-vegas:
+    1:
+      text: Doc Mitchell
+      data: {id: fallout-new-vegas-doc-mitchell}
+    2:
+      text: Sunny Smiles
+      data: {id: fallout-new-vegas-sunny-smiles}
+    3:
+      text: Victor
+      data: {id: fallout-new-vegas-victor}
+    4:
+      text: Yes Man
+      data: {id: fallout-new-vegas-yes-man}
+    5:
+      text: Caesar (Edward Sallow)
+      data: {id: fallout-new-vegas-caesar-edward-sallow}
+    6:
+      text: Colonel James Hsu
+      data: {id: fallout-new-vegas-colonel-james-hsu}
+    7:
+      text: General Lee Oliver
+      data: {id: fallout-new-vegas-general-lee-oliver}
+    8:
+      text: Ambassador Dennis Crocker
+      data: {id: fallout-new-vegas-ambassador-dennis-crocker}
+    9:
+      text: The King
+      data: {id: fallout-new-vegas-the-king}
+    10:
+      text: Elder Nolan McNamara
+      data: {id: fallout-new-vegas-elder-nolan-mcnamara}
+    11:
+      text: Pearl
+      data: {id: fallout-new-vegas-pearl}
+    12:
+      text: Veronica Santangelo
+      data: {id: fallout-new-vegas-veronica-santangelo}
+    13:
+      text: Arcade Gannon
+      data: {id: fallout-new-vegas-arcade-gannon}
+    14:
+      text: Craig Boone
+      data: {id: fallout-new-vegas-craig-boone}
+    15:
+      text: Lily Bowen
+      data: {id: fallout-new-vegas-lily-bowen}
+    16:
+      text: Raul Tejada
+      data: {id: fallout-new-vegas-raul-tejada}
+    17:
+      text: ED-E
+      data: {id: fallout-new-vegas-ed-e}
+    18:
+      text: Rex
+      data: {id: fallout-new-vegas-rex}
+  fallout-4:
+    1:
+      text: Codsworth
+      data: {id: fallout-4-codsworth}
+    2:
+      text: Preston Garvey
+      data: {id: fallout-4-preston-garvey}
+    3:
+      text: Piper Wright
+      data: {id: fallout-4-piper-wright}
+    4:
+      text: Nick Valentine
+      data: {id: fallout-4-nick-valentine}
+    5:
+      text: Mayor McDonough
+      data: {id: fallout-4-mayor-mcdonough}
+    6:
+      text: Paladin Danse
+      data: {id: fallout-4-paladin-danse}
+    7:
+      text: Proctor Ingram
+      data: {id: fallout-4-proctor-ingram}
+    8:
+      text: Deacon
+      data: {id: fallout-4-deacon}
+    9:
+      text: Glory
+      data: {id: fallout-4-glory}
+    10:
+      text: Dr. Brian Virgil
+      data: {id: fallout-4-dr-brian-virgil}
+    11:
+      text: Hancock
+      data: {id: fallout-4-hancock}
+    12:
+      text: Dogmeat
+      data: {id: fallout-4-dogmeat}
+    13:
+      text: John Hancock's brother (Mayor McDonough)
+      data: {id: fallout-4-john-hancocks-brother-mayor-mcdonough}
+  operation-anchorage:
+    1:
+      text: Protector McGraw
+      data: {id: operation-anchorage-protector-mcgraw}
+    2:
+      text: Specialist Olin
+      data: {id: operation-anchorage-specialist-olin}
+    3:
+      text: General Chase (AI)
+      data: {id: operation-anchorage-general-chase-ai}
+  the-pitt:
+    1:
+      text: Sandra Kundanika
+      data: {id: the-pitt-sandra-kundanika}
+    2:
+      text: Marie
+      data: {id: the-pitt-marie}
+    3:
+      text: Wernher
+      data: {id: the-pitt-wernher}
+    4:
+      text: Midea
+      data: {id: the-pitt-midea}
+    5:
+      text: Krenshaw
+      data: {id: the-pitt-krenshaw}
+  broken-steel:
+    1:
+      text: Elder Lyons
+      data: {id: broken-steel-elder-lyons}
+    2:
+      text: Sarah Lyons
+      data: {id: broken-steel-sarah-lyons}
+    3:
+      text: Scribe Rothchild
+      data: {id: broken-steel-scribe-rothchild}
+    4:
+      text: M.A.R.Go.T.
+      data: {id: broken-steel-margot}
+  point-lookout:
+    1:
+      text: Obadiah Blackhall
+      data: {id: point-lookout-obadiah-blackhall}
+    2:
+      text: Plik
+      data: {id: point-lookout-plik}
+    3:
+      text: Marguerite
+      data: {id: point-lookout-marguerite}
+    4:
+      text: Jackson
+      data: {id: point-lookout-jackson}
+  mothership-zeta:
+    1:
+      text: Sally
+      data: {id: mothership-zeta-sally}
+    2:
+      text: Paulson
+      data: {id: mothership-zeta-paulson}
+    3:
+      text: Toshiro Kago
+      data: {id: mothership-zeta-toshiro-kago}
+    4:
+      text: Colonel Hartigan
+      data: {id: mothership-zeta-colonel-hartigan}
+    5:
+      text: The Zetan Captain
+      data: {id: mothership-zeta-the-zetan-captain}
+    6:
+      text: Elliott Tercorien
+      data: {id: mothership-zeta-elliott-tercorien}
+  dead-money:
+    1:
+      text: Vera Keyes (voice)
+      data: {id: dead-money-vera-keyes-voice}
+  honest-hearts:
+    1:
+      text: Daniel
+      data: {id: honest-hearts-daniel}
+    2:
+      text: Follows-Chalk
+      data: {id: honest-hearts-follows-chalk}
+    3:
+      text: Waking Cloud
+      data: {id: honest-hearts-waking-cloud}
+  old-world-blues:
+    1:
+      text: Dr. Dala
+      data: {id: old-world-blues-dr-dala}
+    2:
+      text: Dr. 0
+      data: {id: old-world-blues-dr-0}
+    3:
+      text: Dr. 8
+      data: {id: old-world-blues-dr-8}
+    4:
+      text: Dr. Borous
+      data: {id: old-world-blues-dr-borous}
+    5:
+      text: Muggy
+      data: {id: old-world-blues-muggy}
+    6:
+      text: Roxie
+      data: {id: old-world-blues-roxie}
+    7:
+      text: The Sink's Auto-Doc
+      data: {id: old-world-blues-the-sinks-auto-doc}
+  lonesome-road:
+    1:
+      text: Waking Cloud's voice
+      data: {id: lonesome-road-waking-clouds-voice}
+    2:
+      text: A Marked Centurion
+      data: {id: lonesome-road-a-marked-centurion}
+  automatron:
+    1:
+      text: Isabel Cruz / The Mechanist
+      data: {id: automatron-isabel-cruz-the-mechanist}
+    2:
+      text: Ada
+      data: {id: automatron-ada}
+    3:
+      text: KL-E-O
+      data: {id: automatron-kl-e-o}
+    4:
+      text: Rogue Mister Handies
+      data: {id: automatron-rogue-mister-handies}
+  far-harbor:
+    1:
+      text: Allen Lee
+      data: {id: far-harbor-allen-lee}
+    2:
+      text: The Mariner
+      data: {id: far-harbor-the-mariner}
+    3:
+      text: Kasumi Nakano
+      data: {id: far-harbor-kasumi-nakano}
+    4:
+      text: High Confessor Tektus
+      data: {id: far-harbor-high-confessor-tektus}
+    5:
+      text: Sister Mai
+      data: {id: far-harbor-sister-mai}
+    6:
+      text: Old Longfellow
+      data: {id: far-harbor-old-longfellow}
+    7:
+      text: Nick Valentine
+      data: {id: far-harbor-nick-valentine}
+  vault-tec-workshop:
+    1:
+      text: Clem
+      data: {id: vault-tec-workshop-clem}
+    2:
+      text: The Vault-Tec Representative
+      data: {id: vault-tec-workshop-the-vault-tec-representative}
+    3:
+      text: Ezra Caldwell
+      data: {id: vault-tec-workshop-ezra-caldwell}
+  nuka-world:
+    1:
+      text: Mags Black
+      data: {id: nuka-world-mags-black}
+    2:
+      text: William Black
+      data: {id: nuka-world-william-black}
+    3:
+      text: Mason
+      data: {id: nuka-world-mason}
+    4:
+      text: Nisha
+      data: {id: nuka-world-nisha}
+    5:
+      text: Gage
+      data: {id: nuka-world-gage}
+    6:
+      text: Shank
+      data: {id: nuka-world-shank}
+    7:
+      text: Mackenzie Bridgeman
+      data: {id: nuka-world-mackenzie-bridgeman}
+    8:
+      text: Nuka-Cola Family Spokesbot ("Nick Nuka")
+      data: {id: nuka-world-nuka-cola-family-spokesbot-nick-nuka}
+    9:
+      text: Sierra Petrovita
+      data: {id: nuka-world-sierra-petrovita}
+  fallout-76:
+    1:
+      text: The Overseer
+      data: {id: fallout-76-the-overseer}
+    2:
+      text: Pennington
+      data: {id: fallout-76-pennington}
+    3:
+      text: Master Sergeant Gutsy
+      data: {id: fallout-76-master-sergeant-gutsy}
+    4:
+      text: The Grafton Mayor
+      data: {id: fallout-76-the-grafton-mayor}
+    5:
+      text: The Wise Mothman
+      data: {id: fallout-76-the-wise-mothman}
+    6:
+      text: The Dead
+      data: {id: fallout-76-the-dead}
+  wastelanders:
+    1:
+      text: The Overseer
+      data: {id: wastelanders-the-overseer}
+    2:
+      text: Davenport
+      data: {id: wastelanders-davenport}
+    3:
+      text: Duchess
+      data: {id: wastelanders-duchess}
+    4:
+      text: Mort
+      data: {id: wastelanders-mort}
+    5:
+      text: Sol
+      data: {id: wastelanders-sol}
+    6:
+      text: Polly
+      data: {id: wastelanders-polly}
+    7:
+      text: Paige
+      data: {id: wastelanders-paige}
+    8:
+      text: Aubrie Willem
+      data: {id: wastelanders-aubrie-willem}
+    9:
+      text: Penelope "Penny" Hornwright
+      data: {id: wastelanders-penelope-penny-hornwright}
+    10:
+      text: Captain Oliver Fields
+      data: {id: wastelanders-captain-oliver-fields}
+    11:
+      text: Meg Groberg
+      data: {id: wastelanders-meg-groberg}
+    12:
+      text: Rose
+      data: {id: wastelanders-rose}
+    13:
+      text: Lucky Lou
+      data: {id: wastelanders-lucky-lou}
+    14:
+      text: Gail
+      data: {id: wastelanders-gail}
+    15:
+      text: Ra-Ra
+      data: {id: wastelanders-ra-ra}
+    16:
+      text: Gentleman Johnny "Two-Guns" Weston
+      data: {id: wastelanders-gentleman-johnny-two-guns-weston}
+    17:
+      text: Lev
+      data: {id: wastelanders-lev}
+    18:
+      text: Roper
+      data: {id: wastelanders-roper}
+    19:
+      text: AC
+      data: {id: wastelanders-ac}
+    20:
+      text: Slick
+      data: {id: wastelanders-slick}
+    21:
+      text: Regs
+      data: {id: wastelanders-regs}
+    22:
+      text: Mercy
+      data: {id: wastelanders-mercy}
+    23:
+      text: Digger
+      data: {id: wastelanders-digger}
+  steel-dawn:
+    1:
+      text: Elder Roger Maxson
+      data: {id: steel-dawn-elder-roger-maxson}
+    2:
+      text: Scribe Valdez
+      data: {id: steel-dawn-scribe-valdez}
+    3:
+      text: Initiate Russell Dorsey
+      data: {id: steel-dawn-initiate-russell-dorsey}
+    4:
+      text: Marcia Leone
+      data: {id: steel-dawn-marcia-leone}
+    5:
+      text: Initiate Hewsen
+      data: {id: steel-dawn-initiate-hewsen}
+    6:
+      text: Initiate Ramirez
+      data: {id: steel-dawn-initiate-ramirez}
+    7:
+      text: Initiate Norland
+      data: {id: steel-dawn-initiate-norland}
+    8:
+      text: Dr. Edgar Blackburn
+      data: {id: steel-dawn-dr-edgar-blackburn}
+    9:
+      text: Dr. Farha
+      data: {id: steel-dawn-dr-farha}
+    10:
+      text: Jain
+      data: {id: steel-dawn-jain}
+    11:
+      text: Nellie
+      data: {id: steel-dawn-nellie}
+  skyline-valley:
+    1:
+      text: Cassidy "Cassie" Stolz
+      data: {id: skyline-valley-cassidy-cassie-stolz}
+    2:
+      text: Audrey Stolz
+      data: {id: skyline-valley-audrey-stolz}
+    3:
+      text: Hilda Stolz
+      data: {id: skyline-valley-hilda-stolz}
+    4:
+      text: Chief James Oberlin
+      data: {id: skyline-valley-chief-james-oberlin}
+    5:
+      text: Alyssa
+      data: {id: skyline-valley-alyssa}
+    6:
+      text: The Storm Goliaths
+      data: {id: skyline-valley-the-storm-goliaths}
+  atlantic-city:
+    1:
+      text: Vin Russo
+      data: {id: atlantic-city-vin-russo}
+    2:
+      text: Evelyn Russo
+      data: {id: atlantic-city-evelyn-russo}
+    3:
+      text: Abbie Russo
+      data: {id: atlantic-city-abbie-russo}
+    4:
+      text: Antonio Russo
+      data: {id: atlantic-city-antonio-russo}
+    5:
+      text: Concerta Lombardi
+      data: {id: atlantic-city-concerta-lombardi}
+    6:
+      text: Stanley Soriano
+      data: {id: atlantic-city-stanley-soriano}
+    7:
+      text: Gene
+      data: {id: atlantic-city-gene}
+    8:
+      text: Sloane Cao
+      data: {id: atlantic-city-sloane-cao}
+    9:
+      text: Mayor Tim Lane
+      data: {id: atlantic-city-mayor-tim-lane}
+    10:
+      text: Mother Charlotte
+      data: {id: atlantic-city-mother-charlotte}
+    11:
+      text: Veracio Cruz
+      data: {id: atlantic-city-veracio-cruz}
+    12:
+      text: Lennox
+      data: {id: atlantic-city-lennox}
+    13:
+      text: Orlando
+      data: {id: atlantic-city-orlando}
+---
+table: frame-threats
+title: A frame's threats, by number (the frame generator)
+lookup: [frame, n]
+source: campaigns/00-intro#how-to-use-a-campaign-frame
+entries:
+  fallout-3:
+    1:
+      text: Liberty Prime
+      data: {id: fallout-3-liberty-prime}
+    2:
+      text: Colonel Augustus Autumn
+      data: {id: fallout-3-colonel-augustus-autumn}
+    3:
+      text: President John Henry Eden
+      data: {id: fallout-3-president-john-henry-eden}
+    4:
+      text: Dr. Stanislaus Braun
+      data: {id: fallout-3-dr-stanislaus-braun}
+  fallout-new-vegas:
+    1:
+      text: Securitron (Mk I)
+      data: {id: fallout-new-vegas-securitron-mk-i}
+    2:
+      text: Securitron (Mk II)
+      data: {id: fallout-new-vegas-securitron-mk-ii}
+    3:
+      text: Fiend
+      data: {id: fallout-new-vegas-fiend}
+    4:
+      text: Benny
+      data: {id: fallout-new-vegas-benny}
+    5:
+      text: Vulpes Inculta
+      data: {id: fallout-new-vegas-vulpes-inculta}
+    6:
+      text: Legate Lanius
+      data: {id: fallout-new-vegas-legate-lanius}
+    7:
+      text: Mister House
+      data: {id: fallout-new-vegas-mister-house}
+  fallout-4:
+    1:
+      text: Kellogg
+      data: {id: fallout-4-kellogg}
+    2:
+      text: Shaun / Father
+      data: {id: fallout-4-shaun-father}
+    3:
+      text: Elder Arthur Maxson
+      data: {id: fallout-4-elder-arthur-maxson}
+    4:
+      text: Desdemona
+      data: {id: fallout-4-desdemona}
+  operation-anchorage:
+    1:
+      text: Chimera Tank
+      data: {id: operation-anchorage-chimera-tank}
+    2:
+      text: General Jingwei (AI)
+      data: {id: operation-anchorage-general-jingwei-ai}
+    3:
+      text: Sim-MP
+      data: {id: operation-anchorage-sim-mp}
+  the-pitt:
+    1:
+      text: Mex
+      data: {id: the-pitt-mex}
+    2:
+      text: Lord Ashur
+      data: {id: the-pitt-lord-ashur}
+    3:
+      text: Ashur's Hounds
+      data: {id: the-pitt-ashurs-hounds}
+  broken-steel:
+    1:
+      text: Vertibird Gunship
+      data: {id: broken-steel-vertibird-gunship}
+    2:
+      text: Enclave Sigma Squad Leader
+      data: {id: broken-steel-enclave-sigma-squad-leader}
+  point-lookout:
+    1:
+      text: Professor Calvert
+      data: {id: point-lookout-professor-calvert}
+    2:
+      text: Swamplurk Queen
+      data: {id: point-lookout-swamplurk-queen}
+    3:
+      text: Tobar the Ferryman
+      data: {id: point-lookout-tobar-the-ferryman}
+    4:
+      text: Desmond Lockheart
+      data: {id: point-lookout-desmond-lockheart}
+  mothership-zeta:
+    1:
+      text: Somah
+      data: {id: mothership-zeta-somah}
+  dead-money:
+    1:
+      text: Dog / God
+      data: {id: dead-money-dog-god}
+    2:
+      text: Dean Domino
+      data: {id: dead-money-dean-domino}
+    3:
+      text: Christine
+      data: {id: dead-money-christine}
+    4:
+      text: Father Elijah
+      data: {id: dead-money-father-elijah}
+  honest-hearts:
+    1:
+      text: Salt-Upon-Wounds
+      data: {id: honest-hearts-salt-upon-wounds}
+    2:
+      text: Joshua Graham
+      data: {id: honest-hearts-joshua-graham}
+  old-world-blues:
+    1:
+      text: Dr. Mobius
+      data: {id: old-world-blues-dr-mobius}
+    2:
+      text: Dr. Klein
+      data: {id: old-world-blues-dr-klein}
+  lonesome-road:
+    1:
+      text: Ulysses
+      data: {id: lonesome-road-ulysses}
+    2:
+      text: ED-E
+      data: {id: lonesome-road-ed-e}
+  automatron:
+    1:
+      text: Rust Devil Scavenger
+      data: {id: automatron-rust-devil-scavenger}
+    2:
+      text: Jezebel (a Robobrain head)
+      data: {id: automatron-jezebel-a-robobrain-head}
+    3:
+      text: The Mechanist (Throned)
+      data: {id: automatron-the-mechanist-throned}
+    4:
+      text: The Mechanist (Unseated)
+      data: {id: automatron-the-mechanist-unseated}
+  far-harbor:
+    1:
+      text: Atom Cleanser
+      data: {id: far-harbor-atom-cleanser}
+    2:
+      text: DiMA
+      data: {id: far-harbor-dima}
+    3:
+      text: Captain Avery
+      data: {id: far-harbor-captain-avery}
+  vault-tec-workshop:
+    1:
+      text: Vault-88 Radscorpion Queen
+      data: {id: vault-tec-workshop-vault-88-radscorpion-queen}
+    2:
+      text: Foreman Hunter
+      data: {id: vault-tec-workshop-foreman-hunter}
+    3:
+      text: Overseer Valery Barstow
+      data: {id: vault-tec-workshop-overseer-valery-barstow}
+  nuka-world:
+    1:
+      text: Pack Warrior
+      data: {id: nuka-world-pack-warrior}
+    2:
+      text: Disciple Blade
+      data: {id: nuka-world-disciple-blade}
+    3:
+      text: Operator Enforcer
+      data: {id: nuka-world-operator-enforcer}
+    4:
+      text: Mechanical Gunslinger
+      data: {id: nuka-world-mechanical-gunslinger}
+    5:
+      text: Colter
+      data: {id: nuka-world-colter}
+  fallout-76:
+    1:
+      text: Rose
+      data: {id: fallout-76-rose}
+    2:
+      text: David Thorpe
+      data: {id: fallout-76-david-thorpe}
+    3:
+      text: Morris Stevens, Progenitor Wendigo
+      data: {id: fallout-76-morris-stevens-progenitor-wendigo}
+    4:
+      text: SAC Cargobot
+      data: {id: fallout-76-sac-cargobot}
+    5:
+      text: SAC Vertibot
+      data: {id: fallout-76-sac-vertibot}
+    6:
+      text: MODUS
+      data: {id: fallout-76-modus}
+  wastelanders:
+    1:
+      text: Blood Eagle
+      data: {id: wastelanders-blood-eagle}
+    2:
+      text: Hijack
+      data: {id: wastelanders-hijack}
+    3:
+      text: The Motherlode
+      data: {id: wastelanders-the-motherlode}
+    4:
+      text: Secret Service Agent
+      data: {id: wastelanders-secret-service-agent}
+    5:
+      text: The Grim Reaper's Hallway
+      data: {id: wastelanders-the-grim-reapers-hallway}
+  steel-dawn:
+    1:
+      text: Dagger
+      data: {id: steel-dawn-dagger}
+    2:
+      text: Hellcat Mercenary
+      data: {id: steel-dawn-hellcat-mercenary}
+    3:
+      text: SODUS
+      data: {id: steel-dawn-sodus}
+    4:
+      text: Edgar Blackburn, Behemoth
+      data: {id: steel-dawn-edgar-blackburn-behemoth}
+    5:
+      text: Paladin Leila Rahmani
+      data: {id: steel-dawn-paladin-leila-rahmani}
+    6:
+      text: Knight Daniel Shin
+      data: {id: steel-dawn-knight-daniel-shin}
+  skyline-valley:
+    1:
+      text: Lost
+      data: {id: skyline-valley-lost}
+    2:
+      text: Hugo Stolz
+      data: {id: skyline-valley-hugo-stolz}
+    3:
+      text: Storm Goliath
+      data: {id: skyline-valley-storm-goliath}
+    4:
+      text: Alex Guerra
+      data: {id: skyline-valley-alex-guerra}
+  atlantic-city:
+    1:
+      text: Lombardi Mobster
+      data: {id: atlantic-city-lombardi-mobster}
+    2:
+      text: Showman
+      data: {id: atlantic-city-showman}
+    3:
+      text: Overgrown
+      data: {id: atlantic-city-overgrown}
+    4:
+      text: Lesser Devil
+      data: {id: atlantic-city-lesser-devil}
+    5:
+      text: Jersey Devil
+      data: {id: atlantic-city-jersey-devil}
+---
+table: frame-clocks
+title: A frame's clocks, by number (the frame generator)
+lookup: [frame, n]
+source: campaigns/00-intro#how-to-use-a-campaign-frame
+entries:
+  fallout-3:
+    1:
+      text: Purity Clock
+      data:
+        id: fallout-3-purity-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) The Enclave's approach. Ticks when the party first reaches the Memorial, when James
+          is named on open radio, when Dr. Li is recruited, and at each subsequent plot beat toward activation.
+          At 1–3 the Enclave is distant; at 4–5 they have scouts in the Wasteland; at 6 they assault the
+          Memorial. (Grimfall: roll the pool for each tick; at 0d, what the clock's end says happens.)"
+    2:
+      text: Eden Clock
+      data:
+        id: fallout-3-eden-clock
+        timer: true
+        pool: pressure
+        dice: 4
+        note: "(d4) President Eden's awareness of the party. Ticks when the party passes through an Enclave
+          checkpoint, when a named Enclave officer survives and returns a report, and when Three Dog broadcasts
+          a deed Eden would care about. At 4, Enclave strike teams hunt them on sight. (Grimfall: roll
+          the pool for each tick; at 0d, what the clock's end says happens.)"
+    3:
+      text: Karma Clock
+      data: {id: fallout-3-karma-clock, timer: false}
+  fallout-new-vegas:
+    1:
+      text: Dam Clock
+      data:
+        id: fallout-new-vegas-dam-clock
+        timer: true
+        pool: pressure
+        dice: 8
+        note: "(d12) The armies converge. Ticks when a PC publicly pledges to a faction, the party takes
+          an outlying asset (Khans, Brotherhood, Boomers, HELIOS One), a McCarran or Fort mission is completed,
+          or any FNV DLC reaches its climax. At 12, the Second Battle begins whether the party is ready
+          or not. (Grimfall: roll the pool for each tick; at 0d, what the clock's end says happens.)"
+    2:
+      text: Benny Clock
+      data:
+        id: fallout-new-vegas-benny-clock
+        timer: true
+        pool: pressure
+        dice: 4
+        note: "(d4) Benny's flight. Starts once the party has spoken to Manny Vargas. Ticks when the party
+          finishes a major Strip-facing scene without confronting Benny. At 4, Benny flees the Strip for
+          the Fort — where the Legion takes him prisoner, a gift kneeling in Caesar's tent. (Grimfall:
+          roll the pool for each tick; at 0d, what the clock's end says happens.)"
+    3:
+      text: Legion Frumentarii Clock
+      data:
+        id: fallout-new-vegas-legion-frumentarii-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) How many of Vulpes Inculta's spies the party has tripped. Ticks when a named Legion
+          agent escapes, a Legion-sympathizer NPC is left alive after questioning, or Vulpes himself is
+          seen and not killed. At 6, a four-man Legion hit team tries to assassinate the party during
+          a scene of the Overseer's pick. (Grimfall: roll the pool for each tick; at 0d, what the clock's
+          end says happens.)"
+    4:
+      text: Courier Clock
+      data:
+        id: fallout-new-vegas-courier-clock
+        timer: true
+        pool: pressure
+        dice: 8
+        note: "(d8, hidden, Overseer-only) Ticks when the party first enters a major settlement (Primm,
+          Novac, the Strip, the Fort, Camp McCarran, Nellis, Jacobstown, Hidden Valley). On each tick,
+          the Overseer narrates a letter, a rumor, or a voice that recognizes the PC as the Courier who
+          survived. At 8, the whole Mojave knows the story before the party walks in. (Grimfall: roll
+          the pool for each tick; at 0d, what the clock's end says happens.)"
+  fallout-4:
+    1:
+      text: Institute Clock
+      data:
+        id: fallout-4-institute-clock
+        timer: true
+        pool: pressure
+        dice: 8
+        note: "(d8) The Institute's readiness to act. Ticks when the party: visibly aids the Railroad
+          or Brotherhood, kills a named synth without concealing it, acquires a piece of the Signal Interceptor,
+          or is scanned by a Gen-3 infiltrator the party failed to identify. At 8, a Courser is dispatched
+          (Bestiary). (Grimfall: roll the pool for each tick; at 0d, what the clock's end says happens.)"
+    2:
+      text: Prydwen Clock
+      data:
+        id: fallout-4-prydwen-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) Brotherhood expansion. Ticks when the party accepts a Danse mission, refuses a Brotherhood
+          requisition, or witnesses a Brotherhood purge of ghouls or super mutants without intervening.
+          At 6, the Brotherhood sweeps a region the party cares about — a ghoul settlement, a synth safehouse,
+          a lucid super mutant's home. (Grimfall: roll the pool for each tick; at 0d, what the clock's
+          end says happens.)"
+    3:
+      text: Railroad Clock
+      data:
+        id: fallout-4-railroad-clock
+        timer: true
+        pool: pressure
+        dice: 4
+        note: "(d4, hidden) The Institute's net on the Railroad. Ticks when the party visits a Railroad
+          safehouse in clothing or company that marks them (Brotherhood plating, an unscrubbed Pip-Boy,
+          a known Institute synth companion), or when the Institute Clock ticks. At 4, a Railroad safehouse
+          the party has visited is raided, and an NPC the party knows dies. (Grimfall: roll the pool for
+          each tick; at 0d, what the clock's end says happens.)"
+  operation-anchorage:
+    1:
+      text: Glitch Clock
+      data:
+        id: operation-anchorage-glitch-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) The sim's varnish cracks. Ticks when the party kills a character the sim flagged as
+          a non-combatant, uses tactics not in the mission briefing, tries to leave the mapped play area,
+          or damages a fixed set piece. Each tick reveals a layer: 1 enemy reskin, 2 weather lock, 3 invisible
+          wall, 4 friendly fire enabled, 5 Chase goes off-script, 6 reality bleed. (Grimfall: roll the
+          pool for each tick; at 0d, what the clock's end says happens.)"
+    2:
+      text: Chase Clock
+      data:
+        id: operation-anchorage-chase-clock
+        timer: true
+        pool: pressure
+        dice: 4
+        note: "(d4) General Chase's patience with unorthodox tactics. Ticks when the party disobeys a
+          direct order from Chase, questions the mission briefing openly, or steals rather than sabotages.
+          At 4, he orders the party arrested by Sim-MPs. (Grimfall: roll the pool for each tick; at 0d,
+          what the clock's end says happens.)"
+  the-pitt:
+    1:
+      text: Heat Clock
+      data:
+        id: the-pitt-heat-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) Raider suspicion of the party. Ticks when the party commits open violence in Downtown,
+          speaks to Midea where a raider can see, or wins in the Hole. At 6, Krenshaw locks down the Pitt
+          — a raider detachment confronts the party on sight and the Steelyard becomes hostile territory.
+          (Grimfall: roll the pool for each tick; at 0d, what the clock's end says happens.)"
+    2:
+      text: Cure Clock
+      data:
+        id: the-pitt-cure-clock
+        timer: true
+        pool: pressure
+        dice: 4
+        note: "(d4) How close the resistance is to forcing the issue. Ticks when the party accepts a package
+          from Midea, smuggles a slave out of the Mill, or openly speaks against Ashur at his audience.
+          At 4, Wernher strikes whether the party is ready or not. (Grimfall: roll the pool for each tick;
+          at 0d, what the clock's end says happens.)"
+  broken-steel:
+    1:
+      text: Assault Clock
+      data:
+        id: broken-steel-assault-clock
+        timer: true
+        pool: pressure
+        dice: 8
+        note: "(d8) The Brotherhood timetable. Ticks when Sarah completes a briefing, when the Tesla Cannon
+          gains a working component, and when Rothchild certifies a party contribution to the attack plan.
+          At 8, Sarah attacks regardless of the party's readiness. (Grimfall: roll the pool for each tick;
+          at 0d, what the clock's end says happens.)"
+    2:
+      text: Orbital Clock
+      data:
+        id: broken-steel-orbital-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) Enclave satellite prep. Ticks when the party retrieves an Enclave encryption log,
+          destroys an Enclave relay without wiping it first, or is overheard discussing the assault plan
+          in a public settlement. At 6, the Enclave fires the orbital weapon at the Citadel — Overseer's
+          call whether it hits. (Grimfall: roll the pool for each tick; at 0d, what the clock's end says
+          happens.)"
+  point-lookout:
+    1:
+      text: Feud Clock
+      data:
+        id: point-lookout-feud-clock
+        timer: true
+        pool: pressure
+        dice: 4
+        note: "(d4) Lockheart vs. Calvert. Ticks when the party accepts a task from either faction, refuses
+          a bribe from either, or is seen on the other side's ground. Each tick the two sides escalate;
+          at 4, they'll try to use the party as the final weapon. (Grimfall: roll the pool for each tick;
+          at 0d, what the clock's end says happens.)"
+    2:
+      text: Swamp Clock
+      data:
+        id: point-lookout-swamp-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) The bog gets weirder. Ticks when the party chews a punga fruit, kills a swampfolk
+          elder, touches the Obelisk, or spends a watch unsheltered in the bog. Each tick, a new horror
+          surfaces: 1 punga dreams shared, 2 swampfolk multiply, 3 a whale on the beach, 4 a flood, 5
+          a storm. At 6, the Obelisk sings. (Grimfall: roll the pool for each tick; at 0d, what the clock's
+          end says happens.)"
+  mothership-zeta:
+    1:
+      text: Alien Alert Clock
+      data:
+        id: mothership-zeta-alien-alert-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) The ship's awareness. Ticks when the party fights loud (explosives, gunfire in a non-lab
+          corridor), thaws a prisoner from stasis, or trips a Zetan security panel. At 6, a Guardian patrol
+          sweeps every room. (Grimfall: roll the pool for each tick; at 0d, what the clock's end says
+          happens.)"
+    2:
+      text: Reactor Clock
+      data:
+        id: mothership-zeta-reactor-clock
+        timer: true
+        pool: pressure
+        dice: 4
+        note: "(d4) Starts once the party has sabotaged the generator. Ticks when the party damages another
+          ship system (gravity plating, coolant line, external hull), fires the main cannon, or detonates
+          a Zetan power cell. At 4, the ship begins to fall. (Grimfall: roll the pool for each tick; at
+          0d, what the clock's end says happens.)"
+  dead-money:
+    1:
+      text: Collar Clock
+      data:
+        id: dead-money-collar-clock
+        timer: true
+        pool: pressure
+        dice: 4
+        note: "(d4) Ticks when the party triggers an interference — entering a zone with an active broadcast
+          speaker, detonating explosives near the collars, crossing a radio dead zone. At 4, a PC of the
+          Overseer's choice takes d6 damage from the collar — any Scar that results is Concussed. Reset
+          to 0 when the party silences the nearest speaker or leaves the interference. (Grimfall: roll
+          the pool for each tick; at 0d, what the clock's end says happens.)"
+    2:
+      text: Elijah Clock
+      data:
+        id: dead-money-elijah-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) Elijah's patience. Ticks when the party mouths off on the radio. At 6, he cuts the
+          party loose: unless someone talks him back from it (a WIL save, and a reason he still needs
+          them), every collar fires in earnest — d12 damage to each PC, ignoring Armor — and the clock
+          resets to 3. (Grimfall: roll the pool for each tick; at 0d, what the clock's end says happens.)"
+    3:
+      text: Cloud Clock
+      data: {id: dead-money-cloud-clock, timer: false}
+  honest-hearts:
+    1:
+      text: War Clock
+      data:
+        id: honest-hearts-war-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) Graham's offensive timeline. Ticks when the party accepts or trains with Graham, when
+          a White Legs raid happens within the party's view, or when a named Dead Horse or Sorrows NPC
+          is killed. At 6, the Three Marys ambush fires whether the party is there or not. (Grimfall:
+          roll the pool for each tick; at 0d, what the clock's end says happens.)"
+    2:
+      text: Evacuation Clock
+      data:
+        id: honest-hearts-evacuation-clock
+        timer: true
+        pool: task
+        dice: 4
+        note: "(d4) Daniel's preparation. Ticks when the party completes a preparation (scouting the route
+          east, making shoes for children, clearing a bloatfly nest, finding a signal beacon). At 4, Daniel
+          can move the tribe. (Grimfall: roll the pool for each tick; at 0d, what the clock's end says
+          happens.)"
+  old-world-blues:
+    1:
+      text: Science Clock
+      data:
+        id: old-world-blues-science-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) The Think Tank's attention span. Ticks when the party refuses an experimental offer,
+          disagrees with a Think Tank member in audience, or returns to the Sink without a new specimen.
+          At 6, they try to \"upgrade\" the party without consent. (Grimfall: roll the pool for each tick;
+          at 0d, what the clock's end says happens.)"
+    2:
+      text: Mobius Clock
+      data:
+        id: old-world-blues-mobius-clock
+        timer: true
+        pool: pressure
+        dice: 4
+        note: "(d4) Mobius's opposition. Ticks when the party clears a lab, recovers a pre-war technology
+          the Think Tank will want, or is broadcast-at from the Forbidden Zone. Each tick, a new roboscorpion
+          patrol is loosed into a zone of the Overseer's pick. At 4, the patrols converge on the Sink
+          itself. (Grimfall: roll the pool for each tick; at 0d, what the clock's end says happens.)"
+  lonesome-road:
+    1:
+      text: Launch Clock
+      data:
+        id: lonesome-road-launch-clock
+        timer: true
+        pool: pressure
+        dice: 4
+        note: "(d4) Ulysses's ritual. Ticks when the party completes a Divide waypoint (the Hopeville
+          Silo, the High Road, the Courier's Mile) — and once more if they turn back, or rest a full day
+          inside the Divide. The party cannot reach him before it hits 3. At 4, missiles fly no matter
+          what — Overseer's pick of target. (Grimfall: roll the pool for each tick; at 0d, what the clock's
+          end says happens.)"
+    2:
+      text: Rad Clock
+      data: {id: lonesome-road-rad-clock, timer: false}
+  automatron:
+    1:
+      text: Army Clock
+      data:
+        id: automatron-army-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) The Mechanist's production line. Ticks when the party defeats a Mechanist patrol without
+          destroying the factory relay, leaves an intact Robobrain behind, or broadcasts on an open channel.
+          At 6, she sends an attack wave at the nearest settlement — party's home base, if they have one.
+          (Grimfall: roll the pool for each tick; at 0d, what the clock's end says happens.)"
+    2:
+      text: Isabel Clock
+      data:
+        id: automatron-isabel-clock
+        timer: true
+        pool: task
+        dice: 4
+        note: "(d4) Her grip on reality. Ticks when the party spares one of her robots or contacts her
+          by radio without naming her. Each tick is a new reveal: 1 doubts herself, 2 sets aside the megaphone,
+          3 asks for help, 4 ready to surrender if the party has not attacked her lair yet. (Grimfall:
+          roll the pool for each tick; at 0d, what the clock's end says happens.)"
+  far-harbor:
+    1:
+      text: Fog Clock
+      data:
+        id: far-harbor-fog-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) Condenser failure. Ticks when the party returns to Far Harbor without having tended
+          a condenser since their last visit (max one tick per return). Tending a condenser walks the
+          clock back one. At 6, the town evacuates. (Grimfall: roll the pool for each tick; at 0d, what
+          the clock's end says happens.)"
+    2:
+      text: Atom Clock
+      data:
+        id: far-harbor-atom-clock
+        timer: true
+        pool: pressure
+        dice: 4
+        note: "(d4) Tektus's sermon count. Ticks when the party challenges Atom doctrine inside the Nucleus,
+          interferes with a Cleanser's mission in Far Harbor, or is revealed to have accepted Far Harbor's
+          hospitality while inside the Nucleus. At 4, he declares holy war. (Grimfall: roll the pool for
+          each tick; at 0d, what the clock's end says happens.)"
+    3:
+      text: DiMA Clock
+      data:
+        id: far-harbor-dima-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) DiMA's secret works its way loose. Ticks when the party asks Avery about her past,
+          speaks DiMA's name inside Far Harbor, recovers a memory segment in the Memory Den, or is seen
+          leaving Acadia by a Harbor native. At 6, Acadia is exposed to both Far Harbor and Atom, whether
+          the party wants it or not. (Grimfall: roll the pool for each tick; at 0d, what the clock's end
+          says happens.)"
+  vault-tec-workshop:
+    1:
+      text: Experiment Clock
+      data:
+        id: vault-tec-workshop-experiment-clock
+        timer: true
+        pool: pressure
+        dice: 4
+        note: "(d4) Barstow's patience with the party's progress. Starts at 0; ticks when the party refuses
+          an experimental pod, frees a subject mid-experiment, or spends a Downtime Action on anything
+          other than her work. Completing an experimental pod walks it back one. At 4, she starts issuing
+          threats to the first Bond-NPC the party knows from outside the vault. (Grimfall: roll the pool
+          for each tick; at 0d, what the clock's end says happens.)"
+    2:
+      text: Tunnel Clock
+      data:
+        id: vault-tec-workshop-tunnel-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) Radscorpion intrusion from the deep caverns. Ticks when the party detonates explosives
+          in the caverns, breaches an unmapped wall, or leaves a scouting radscorpion alive to skitter
+          back to the nest. At 6, a queen breaks through a wall of the dormitories. (Grimfall: roll the
+          pool for each tick; at 0d, what the clock's end says happens.)"
+    3:
+      text: Mutiny Clock
+      data:
+        id: vault-tec-workshop-mutiny-clock
+        timer: true
+        pool: pressure
+        dice: 4
+        note: "(d4) Settler patience, once any settler has been strapped into a pod. Ticks when a settler
+          sees the party participate in an experiment, when a pod subject visibly deteriorates in front
+          of the others, or when Barstow publicly overrules the party on a settler's behalf. At 4, the
+          settlers revolt against Barstow and the party. (Grimfall: roll the pool for each tick; at 0d,
+          what the clock's end says happens.)"
+  nuka-world:
+    1:
+      text: Crown Clock
+      data:
+        id: nuka-world-crown-clock
+        timer: true
+        pool: pressure
+        dice: 4
+        note: "(d4) Gage's patience with the party's indecision about the Overboss seat. Ticks when the
+          party declines a gang's direct petition, refuses to hold court in Fizztop Grille, or pointedly
+          helps a caged trader in view of a gang boss. At 4, one of the three gangs installs its own Overboss
+          and treats the party as enemies. (Grimfall: roll the pool for each tick; at 0d, what the clock's
+          end says happens.)"
+    2:
+      text: Slave Clock
+      data:
+        id: nuka-world-slave-clock
+        timer: true
+        pool: pressure
+        dice: 4
+        note: "(d4) The traders caged in Nuka-Town USA. Ticks when the party walks past the cages without
+          acting, when a gang boss orders a public execution for sport, and when the party takes on an
+          Overboss task without negotiating for a prisoner's life first. Each tick is a death. The caged
+          traders are a named roster — Chip Morse, Mackenzie Bridgeman, Aaron Corbett, and others. At
+          4, Mackenzie is among the dead, and the Liberate the park ending loses its ally. (Grimfall:
+          roll the pool for each tick; at 0d, what the clock's end says happens.)"
+    3:
+      text: Commonwealth Clock
+      data:
+        id: nuka-world-commonwealth-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) If the party sides with the raiders. Ticks on each Commonwealth settlement raided,
+          sacked, or surrendered to a Nuka-World gang. At 6, a Minutemen relief force arrives at the park
+          gates. (Grimfall: roll the pool for each tick; at 0d, what the clock's end says happens.)"
+  fallout-76:
+    1:
+      text: Chorus Clock
+      data:
+        id: fallout-76-chorus-clock
+        timer: true
+        pool: pressure
+        dice: 8
+        note: "(d8) The scorchbeast hive mind learning the party's scent. Ticks when the party kills a
+          scorchbeast, enters a fissure site, brings a Scorched Detector back online, or spends a night
+          in the Cranberry Bog. At 8, the chorus turns on them: every Scorched anywhere in Appalachia
+          is Hostile on sight — no Reaction roll — and a scorchbeast hunts the party's camp every third
+          night, until the Queen dies. (Grimfall: roll the pool for each tick; at 0d, what the clock's
+          end says happens.)"
+    2:
+      text: DEFCON Clock
+      data:
+        id: fallout-76-defcon-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) The launch system's automated threat rating — the machine Eckhart fooled. Ticks when
+          a nuke is launched anywhere in Appalachia, when the party destroys a SAC cargobot, or when the
+          party fights Liberators or Scorched inside a military installation. At 6, the system judges
+          Appalachia a war zone: SAC dispatches a fresh keycard convoy (the next keycard is easy to find),
+          and every silo's security robots are rearmed to double strength. (Grimfall: roll the pool for
+          each tick; at 0d, what the clock's end says happens.)"
+    3:
+      text: MODUS Clock
+      data:
+        id: fallout-76-modus-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6, hidden) MODUS's suspicion. Ticks when the party lies to MODUS about an errand, damages
+          bunker property, wears Brotherhood or Free States colors into the bunker, or presses it about
+          the Enclave's civil war. At 6, MODUS seals the room the party stands in and begins pumping gas,
+          as it did to Eckhart's dissenters. The party has three rounds to break out or to talk it down
+          (a WIL save, which counts as WIL −4 unless someone holds a general's commission). (Grimfall:
+          roll the pool for each tick; at 0d, what the clock's end says happens.)"
+  wastelanders:
+    1:
+      text: Gold Fever Clock
+      data:
+        id: wastelanders-gold-fever-clock
+        timer: true
+        pool: pressure
+        dice: 8
+        note: "(d8) How far the rumor spreads. Ticks when the party talks about Vault 79 in the Wayward,
+          travels with a treasure hunter, lets a Free Radical or Blood Eagle escape a fight, or approaches
+          the vault's cave openly. At 8, a Blood Eagle war band reaches the vault the same day the party
+          does. (Grimfall: roll the pool for each tick; at 0d, what the clock's end says happens.)"
+    2:
+      text: Rivalry Clock
+      data:
+        id: wastelanders-rivalry-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) Foundation and the Crater edging toward war. Ticks when the party works openly for
+          one faction in the other's territory, when either side's caravan is hit, or when Hijack or Lev
+          acts. At 6, the feud goes hot: Crater raiders burn a Foundation outpost, the Settlers answer
+          in kind, and the faction the party has not chosen treats them as enemies. (Grimfall: roll the
+          pool for each tick; at 0d, what the clock's end says happens.)"
+    3:
+      text: Lockdown Clock
+      data:
+        id: wastelanders-lockdown-clock
+        timer: true
+        pool: pressure
+        dice: 4
+        note: "(d4, hidden; ticks only inside Vault 79) Ticks when a laser grid is tripped, a power line
+          fluctuates, or a turret alarm sounds. At 4, the vault seals every bulkhead and the Grim Reaper's
+          Hallway goes live behind the party. (Grimfall: roll the pool for each tick; at 0d, what the
+          clock's end says happens.)"
+  steel-dawn:
+    1:
+      text: Schism Clock
+      data:
+        id: steel-dawn-schism-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) The rift between Rahmani and Shin. Ticks when the party openly backs one commander
+          against the other's orders, when Brotherhood technology is lost to outsiders, when an initiate
+          dies on a mission, or when the Codex is broken in front of the ranks. At 6, the expedition splits
+          before the Climax: Shin's loyalists and Rahmani's followers stop taking each other's orders,
+          and the party must declare for one of them on the spot. (Grimfall: roll the pool for each tick;
+          at 0d, what the clock's end says happens.)"
+    2:
+      text: Hellstorm Clock
+      data:
+        id: steel-dawn-hellstorm-clock
+        timer: true
+        pool: pressure
+        dice: 4
+        note: "(d4) Launchers loose in Appalachia. Ticks when the party lets a Hellstorm stay in raider
+          hands, keeps one for itself, trades one away, or fails to recover it after a fight. At 4, a
+          raider warband levels a settlement the party cares about with Brotherhood missiles, and everyone
+          in Appalachia knows whose they were. (Grimfall: roll the pool for each tick; at 0d, what the
+          clock's end says happens.)"
+    3:
+      text: Mutagen Clock
+      data:
+        id: steel-dawn-mutagen-clock
+        timer: true
+        pool: pressure
+        dice: 8
+        note: "(d8, hidden) Blackburn's progress. Ticks each week the party does not find him, each time
+          another civilian disappears, and each time his Hellcats take a fight. At 8, Blackburn's refined
+          virus is ready: he walks out of Vault 96 already transformed, and West Tek begins shipping FEV.
+          (Grimfall: roll the pool for each tick; at 0d, what the clock's end says happens.)"
+  skyline-valley:
+    1:
+      text: Storm Clock
+      data:
+        id: skyline-valley-storm-clock
+        timer: true
+        pool: pressure
+        dice: 8
+        note: "(d8) The Storm spreading. Ticks each time a storm harvester is lost, each week the party
+          leaves the weather machine running, and each time Hugo's plans advance unopposed. At 8, the
+          Storm spills past Skyline Valley into the Ash Heap and the Cranberry Bog: lightning strikes
+          (d8, DEX save) on any exposed ridge, and Lost appearing wherever it rains. (Grimfall: roll the
+          pool for each tick; at 0d, what the clock's end says happens.)"
+    2:
+      text: Family Clock
+      data:
+        id: skyline-valley-family-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6, hidden) How much Audrey and Hilda know about Hugo. Ticks when the party finds evidence
+          of the Dark Hollow betrayal, reads Cassidy's journal, meets Alex, or recovers Oberlin's report.
+          At 6, Audrey confronts her father alone, and the Overseer decides whether she survives it. (Grimfall:
+          roll the pool for each tick; at 0d, what the clock's end says happens.)"
+    3:
+      text: Goliath Clock
+      data:
+        id: skyline-valley-goliath-clock
+        timer: true
+        pool: pressure
+        dice: 4
+        note: "(d4) Vault 63's guardian protocol. Ticks each time the party damages vault systems or fights
+          in the engineering sector. At 4, a Storm Goliath is dispatched against them — and if one is
+          destroyed, the engineering sector begins building its replacement. (Grimfall: roll the pool
+          for each tick; at 0d, what the clock's end says happens.)"
+  atlantic-city:
+    1:
+      text: Treaty Clock
+      data:
+        id: atlantic-city-treaty-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) The truce that keeps Acee's three powers from open war. Ticks when the party spills
+          blood on another faction's ground, humiliates a made man or a Showman, or carries Lombardi secrets
+          to the Munis (or the reverse). At 6, the treaty breaks: the Casino Quarter, the Boardwalk, and
+          City Hall go to war, and every faction wants the party on its side or dead. (Grimfall: roll
+          the pool for each tick; at 0d, what the clock's end says happens.)"
+    2:
+      text: Concerta Clock
+      data:
+        id: atlantic-city-concerta-clock
+        timer: true
+        pool: pressure
+        dice: 4
+        note: "(d4, hidden) Concerta learning that Antonio is not senile. Ticks when the party is seen
+          with a Russo in Acee, asks about the Devil's Blood lab, or leaves a hitman alive to report.
+          At 4, Concerta sends her best people to the Rose Room — not hitmen who jump the gun this time.
+          (Grimfall: roll the pool for each tick; at 0d, what the clock's end says happens.)"
+    3:
+      text: Withdrawal Clock
+      data:
+        id: atlantic-city-withdrawal-clock
+        timer: true
+        pool: pressure
+        dice: 6
+        note: "(d6) Abbie's hold on herself. Ticks each week without a dose or a cure, and each time her
+          father lies to her. At 6, Abbie goes missing, back to Acee and the one dealer who will sell
+          to her. (Grimfall: roll the pool for each tick; at 0d, what the clock's end says happens.)"
+---
+table: frame-factions
+title: A frame's factions, by number (the frame generator)
+lookup: [frame, n]
+source: campaigns/00-intro#how-to-use-a-campaign-frame
+entries:
+  fallout-3:
+    1:
+      text: Brotherhood of Steel
+      data: {id: brotherhood-of-steel}
+    2:
+      text: The Enclave
+      data: {id: enclave}
+  fallout-new-vegas:
+    1:
+      text: Brotherhood of Steel
+      data: {id: brotherhood-of-steel}
+    2:
+      text: New California Republic
+      data: {id: new-california-republic}
+    3:
+      text: Caesar's Legion
+      data: {id: caesars-legion}
+    4:
+      text: Mister House's New Vegas
+      data: {id: mister-houses-new-vegas}
+    5:
+      text: Great Khans
+      data: {id: great-khans}
+    6:
+      text: Boomers
+      data: {id: boomers}
+    7:
+      text: The Kings
+      data: {id: the-kings}
+    8:
+      text: Followers of the Apocalypse
+      data: {id: followers-of-the-apocalypse}
+    9:
+      text: Powder Gangers
+      data: {id: powder-gangers}
+  fallout-4:
+    1:
+      text: Brotherhood of Steel
+      data: {id: brotherhood-of-steel}
+    2:
+      text: Minutemen
+      data: {id: minutemen}
+    3:
+      text: The Railroad
+      data: {id: railroad}
+    4:
+      text: The Institute
+      data: {id: institute}
+  operation-anchorage:
+    1:
+      text: Brotherhood of Steel
+      data: {id: brotherhood-of-steel}
+    2:
+      text: Brotherhood Outcasts
+      data: {id: brotherhood-outcasts}
+  the-pitt:
+    1:
+      text: Pitt Raiders
+      data: {id: pitt-raiders}
+    2:
+      text: Pitt Slaves
+      data: {id: pitt-slaves}
+  broken-steel:
+    1:
+      text: Brotherhood of Steel
+      data: {id: brotherhood-of-steel}
+    2:
+      text: The Enclave
+      data: {id: enclave}
+  point-lookout:
+    1:
+      text: Brethren of the Punga
+      data: {id: brethren-of-the-punga}
+  dead-money:
+    1:
+      text: Brotherhood of Steel
+      data: {id: brotherhood-of-steel}
+  honest-hearts:
+    1:
+      text: White Legs
+      data: {id: white-legs}
+    2:
+      text: Dead Horses
+      data: {id: dead-horses}
+    3:
+      text: Sorrows
+      data: {id: sorrows}
+  lonesome-road:
+    1:
+      text: New California Republic
+      data: {id: new-california-republic}
+    2:
+      text: Caesar's Legion
+      data: {id: caesars-legion}
+  automatron:
+    1:
+      text: Rust Devils
+      data: {id: rust-devils}
+  far-harbor:
+    1:
+      text: Children of Atom
+      data: {id: children-of-atom}
+    2:
+      text: Far Harbor (town)
+      data: {id: far-harbor-town}
+    3:
+      text: Acadia
+      data: {id: acadia}
+  nuka-world:
+    1:
+      text: Minutemen
+      data: {id: minutemen}
+    2:
+      text: The Pack
+      data: {id: the-pack}
+    3:
+      text: The Disciples
+      data: {id: the-disciples}
+    4:
+      text: The Operators
+      data: {id: the-operators}
+  wastelanders:
+    1:
+      text: Settlers of Foundation
+      data: {id: settlers-of-foundation}
+    2:
+      text: Crater Raiders
+      data: {id: crater-raiders}
+    3:
+      text: Blood Eagles
+      data: {id: blood-eagles}
+    4:
+      text: Free Radicals
+      data: {id: free-radicals}
+  steel-dawn:
+    1:
+      text: Brotherhood of Steel
+      data: {id: brotherhood-of-steel}
+    2:
+      text: Settlers of Foundation
+      data: {id: settlers-of-foundation}
+    3:
+      text: Crater Raiders
+      data: {id: crater-raiders}
+    4:
+      text: Blood Eagles
+      data: {id: blood-eagles}
+    5:
+      text: Hellcat Company
+      data: {id: hellcat-company}
+  skyline-valley:
+    1:
+      text: Settlers of Foundation
+      data: {id: settlers-of-foundation}
+    2:
+      text: Blood Eagles
+      data: {id: blood-eagles}
+  atlantic-city:
+    1:
+      text: Responders
+      data: {id: responders}
+    2:
+      text: Lombardi Family
+      data: {id: lombardi-family}
+    3:
+      text: Munis
+      data: {id: munis}
+    4:
+      text: Showmen
+      data: {id: showmen}
+---
+table: cloud-clock
+title: 'Dead Money: the Cloud at a new zone'
+description: Roll at each new zone the party enters (the Cloud Clock).
+dice: d6
+source: campaigns/09-dead-money#clocks
+entries:
+  1-2: The fog surges and the whole zone deals 1d4 STR damage to any exposed PC.
+  3-6: No surge in this zone.

@@ -1,0 +1,10 @@
+table: careers
+dice: d3
+entries:
+  1: {text: Scout, data: {pay: 1000}}
+  2: {text: Merchant, data: {pay: 2000}}
+  3: {text: Marine, data: {pay: 1500}}
+---
+table: skills
+dice: d6
+entries: {1: Pilot, 2: Gunnery, 3: Broker, 4: Medic, 5: Streetwise, 6: Vacc Suit}

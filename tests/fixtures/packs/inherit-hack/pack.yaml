@@ -1,0 +1,11 @@
+id: inherit-hack
+name: Inherit Hack (fixture)
+kind: system
+version: 0.1.0
+description: A hack that sets some of its base's settings and keeps the others.
+requires: {packs: [core, inherit-base]}
+extends: [inherit-base]
+license: {spdx: CC0-1.0}
+settings:
+  torch_uses: 5
+  odds: {likely: 5}

@@ -1,0 +1,64 @@
+# A flavor sets the lethality, which sets the potions and the torches, which set the dark: three
+# steps. Wild sets the potions itself, nearer than its lethality would. The weather's default
+# sets the sky, and the sky the mood. Tides and moons imply each other.
+option: flavor
+title: Flavor
+choices:
+  bright: "Bright."
+  grim: "Grim: deadly."
+  wild: "Wild: deadly, with plenty of potions."
+default: bright
+implies:
+  grim: {lethality: deadly}
+  wild: {lethality: deadly, potions: plenty}
+---
+option: lethality
+title: Lethality
+choices: {gentle: "Gentle.", standard: "Standard.", deadly: "Deadly: scarce potions, and torches."}
+default: standard
+implies: {deadly: {potions: scarce, torches: true}}
+---
+option: potions
+title: Potions
+choices: {plenty: "Plenty.", common: "Common.", scarce: "Scarce."}
+default: common
+---
+option: torches
+title: Torches
+kind: flag
+help: "Torches burn out."
+implies: {on: {dark: true}}
+---
+option: dark
+title: The dark
+kind: flag
+help: "Unlit places are deadly."
+---
+option: weather
+title: Weather
+choices: {fair: "Fair.", storm: "Stormy: a grey sky."}
+default: storm
+implies: {storm: {sky: grey}}
+---
+option: sky
+title: Sky
+choices: {blue: "Blue: high spirits.", grey: "Grey: low spirits."}
+default: blue
+implies: {blue: {mood: high}, grey: {mood: low}}
+---
+option: mood
+title: Mood
+choices: {high: "High.", level: "Level.", low: "Low."}
+default: level
+---
+option: tides
+title: Tides
+kind: flag
+help: "The sea rises and falls."
+implies: {on: {moons: two}}
+---
+option: moons
+title: Moons
+choices: {one: "One moon.", two: "Two moons: the tides run."}
+default: one
+implies: {two: {tides: true}}

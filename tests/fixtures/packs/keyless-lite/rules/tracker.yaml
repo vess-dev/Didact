@@ -1,0 +1,4 @@
+action: make-tracker
+title: A tracker of kind track
+steps:
+  - entity: {type: track, name: Demo, fields: {kind: track, size: 2}}

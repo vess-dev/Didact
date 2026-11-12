@@ -1,0 +1,93 @@
+check: save
+title: Save
+help: Roll a d20 under an attribute; a 1 always succeeds and a 20 always fails.
+params: {who: ref, attr: {enum: [STR, DEX, WIL]}}
+prompt: State the risk before rolling.
+roll: d20
+success: "@roll <= @who.$attr"
+auto: {1: success, 20: failure}
+on:
+  failure: ["The risk comes true for {@who.name}."]
+---
+action: attack
+title: Attack
+help: Damage is the weapon die minus armor; past 0 HP it hits STR and forces a STR save.
+params: {attacker: ref, target: ref, weapon: {kind: dice, default: d6}}
+steps:
+  - roll: $weapon
+    as: damage
+  - let: {dealt: "max(0, @damage - @target.armor)"}
+  - let: {overflow: "max(0, @dealt - @target.hp)"}
+  - set: target.hp
+    op: "-="
+    value: "@dealt"
+  - if: "@overflow > 0"
+    then:
+      - set: "target.STR -= @overflow"
+      - check: save
+        with: {who: "@target", attr: STR}
+        as: critical
+      - if: "@critical == 'failure'"
+        then: ["{@target.name} takes critical damage."]
+  - message: "{@attacker.name} deals {@dealt} to {@target.name}."
+---
+check: scramble
+title: Scramble
+params: {who: ref}
+roll: "3d6>=6"
+success: "@roll >= 1"
+options:
+  push:
+    label: "Push: reroll all but 6s and 1s, gain 1 fatigue"
+    when: "@roll == 0"
+    steps:
+      - reroll: roll
+        keep_if: "@face == 6 or @face == 1"
+      - set: who.fatigue
+        op: "+="
+        value: 1
+---
+procedure: watch
+title: Wilderness watch
+params: {action: {enum: [travel, explore, camp]}}
+steps:
+  - prompt: Describe the terrain and the weather.
+  - if: "@action == 'travel'"
+    then:
+      - roll: d6
+        as: lost
+      - if: "@lost <= 2"
+        then: [The party is lost.]
+        else: [The trail holds.]
+  - table: weather
+    as: sky
+  - message: "Weather: {@sky}"
+  - reminder: Record torches and rations.
+---
+trigger: nightfall
+on: manual
+when: "true"
+steps: [Night falls.]
+---
+trigger: new-day
+on: time
+when: "@time.passed >= 86400"
+steps: ["A new day dawns: check rations."]
+---
+trigger: death
+title: Death
+help: Run by STR's on_zero hook.
+on: manual
+params: {who: ref}
+steps: ["{@who.name} is dead."]
+---
+procedure: level-up
+title: Level up
+params: {who: ref}
+steps:
+  - roll: d6
+    as: gain
+  - set: who.hp.max
+    op: "+="
+    value: "@gain"
+  - message: "{@who.name} grows: +{@gain} max HP."

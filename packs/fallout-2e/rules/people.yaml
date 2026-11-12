@@ -1,0 +1,258 @@
+# Companions, faction reputation, party karma and settlements (players-guide/companions;
+# overseers-guide/faction-reputation, party-karma, settlements): the step ladders clamp at their
+# ends (core-rules#step-ladders), and every move on them is the Overseer's, one step at a time.
+action: command
+title: The Command action
+help: >-
+  Once per combat, the PC whose companion it is may spend their own action to direct it: the
+  companion takes a clean action (attack, drag an ally to cover, read a terminal, hurl a grenade)
+  with Enhanced damage or a re-rolled save, as the fiction fits. weapon=<die> runs its attack,
+  Enhanced (target=<foe>). In a fight the table runs with `combat start`, a second command is
+  refused until the fight ends.
+params:
+  who: {kind: ref, help: "The PC giving the command (their action)"}
+  companion: ref
+  target: {kind: ref, optional: true, help: "Whom the companion attacks"}
+  weapon: {kind: dice, optional: true, help: "The companion's weapon die, for an attack"}
+steps:
+  - if: "default(@companion.owner, '') <> '' and @companion.owner <> @who.id"
+    then: ["{@companion.name} isn't {@who.name}'s companion: only their own PC can command them."]
+  - if: "default(@combat.round, 0) > 0 and 'command' in default(@who.once_per_combat, '')"
+    then:
+      - stop: "{@who.name} has commanded {@companion.name} once this fight already: the Command action is once per combat."
+  - if: "default(@combat.round, 0) > 0"
+    then:
+      - set: who.once_per_combat
+        op: "+="
+        value: command
+  - message: "{@who.name} spends their action to command {@companion.name} (once per combat)."
+  - if: "default(@target, '') <> '' and default(@weapon, '') <> ''"
+    then:
+      - do: attack
+        with: {attacker: "@companion", target: "@target", weapon: $weapon, mode: enhanced}
+    else: ["{@companion.name} takes a clean action: Enhanced damage on an attack (`didact do attack attacker={@companion.id} target=… weapon=… mode=enhanced`), or a failed save re-rolled."]
+  - if: "default(@companion.directive, '') <> ''"
+    then: ["{@companion.name}'s Directive stands: {@companion.directive}."]
+source: players-guide/companions#the-command-action
+---
+action: loyalty
+title: Loyalty
+help: >-
+  The Overseer raises or lowers a companion's Loyalty, a step at a time, after a significant
+  choice, a kept promise, a broken one, a shared Scar or a long silence: 1 Wary (leaves at the
+  next clean opportunity), 2 Tested (stays, complains), 3 Trusting (the default), 4 Devoted (won't
+  leave without a direct order), 5 True (once per session, takes a hit meant for its PC). A robot
+  companion has a Directive instead.
+params:
+  companion: ref
+  shift: {kind: int, default: 1, help: "Steps up (+) or down (−)"}
+  why: {kind: text, optional: true}
+steps:
+  - if: "default(@companion.directive, '') <> ''"
+    then:
+      - stop: "{@companion.name} is a robot: no Loyalty, a Directive ({@companion.directive}). The first violation brings a warning, the second an attempt to enforce it."
+  - let: {was: "default(@companion.loyalty, 3)"}
+  - let: {now: "max(1, min(5, @was + @shift))"}
+  - if: "@now == @was"
+    then:
+      - stop: "{@companion.name}'s Loyalty is already at the ladder's end ({@was}): the needle doesn't move, but say why in the fiction."
+  - set: companion.loyalty
+    value: "@now"
+  - let: {rung: "if(@now == 1, 'Wary: follows for now, and will leave at the next clean opportunity', if(@now == 2, 'Tested: stays, but complains, and won’t run into obvious death for the party', if(@now == 3, 'Trusting: a reliable ally', if(@now == 4, 'Devoted: puts themselves in harm’s way for a PC, and won’t leave without a direct order', 'True: will die for the party; once per session takes a hit meant for its PC'))))"}
+  - message: "{@companion.name}'s Loyalty: {@was} → {@now}, {@rung}."
+source: players-guide/companions#loyalty
+---
+action: reputation
+title: Faction reputation
+help: >-
+  The party's standing with a faction moves one step at a time, when a significant action is
+  witnessed, reported or proven: −2 Vilified (shot on sight), −1 Hostile (merchants refuse or
+  charge double), 0 Neutral, +1 Liked (10% discount, walk in armed), +2 Idolized (cost price, one
+  meaningful favor a session). Going up with one of an opposed pair moves its opposite down a
+  step when it hears of it (opposed=false when it doesn't). Routine combat with patrols doesn't
+  move it unless a survivor reports it.
+params:
+  who: {kind: ref, help: "The faction"}
+  shift: {kind: int, default: 1, help: "+1 or −1"}
+  why: {kind: text, optional: true, help: "What the faction noticed"}
+  opposed: {kind: flag, default: true, help: "The opposed faction hears of it"}
+steps:
+  - let: {was: "default(@who.reputation, 0)"}
+  - let: {now: "max(-2, min(2, @was + @shift))"}
+  - if: "@now == @was"
+    then:
+      - stop: "{@who.name} already stands at the ladder's end ({@was}): the needle doesn't move, but say why in the fiction."
+  - set: who.reputation
+    value: "@now"
+  - let: {rung: "if(@now == -2, 'Vilified: the faction shoots on sight; wanted posters exist', if(@now == -1, 'Hostile: distrusted; patrols are aggressive; merchants refuse or charge double', if(@now == 0, 'Neutral: no opinion either way', if(@now == 1, 'Liked: patrols wave, merchants give 10% off, the party walks into most holdings armed', 'Idolized: legend within the faction; merchants sell at cost; one meaningful favor per session'))))"}
+  - message: "{@who.name}: {@was} → {@now}, {@rung}."
+  - if: "@opposed and default(@who.opposed, '') <> '' and @shift > 0"
+    then:
+      - do: reputation
+        with: {who: "@who.opposed", shift: -1, why: "its opposite gained a step", opposed: false}
+  - if: "@opposed and default(@who.opposed, '') == '' and @shift > 0"
+    then: ["If {@who.name} is one of an opposed pair (NCR ↔ Legion, Brotherhood ↔ Enclave, Railroad ↔ Institute, Minutemen ↔ Raiders), its opposite drops a step when it hears of it (set the faction's `opposed` to do it by itself)."]
+  - reminder: "A PC whose background ties them to {@who.name} stands a step apart from the party, and loses a step faster when the party acts against it."
+source: overseers-guide/faction-reputation#moving-on-the-ladder
+---
+action: karma
+title: Party Karma
+help: >-
+  What the wasteland remembers about the party, from −3 Hated to +3 Messiah: at most one step a
+  session, and only for public acts a bystander could witness, survive and tell. Combat against
+  ferals, raiders, slavers and bandits doesn't move it. Strangers' Reaction rolls add it
+  (`didact do reaction … party=<record>`). It drifts toward 0 between arcs.
+params:
+  party: {kind: ref, help: "The party record (`didact new party \"The Party\"`)"}
+  shift: {kind: int, default: 1, help: "+1 or −1"}
+  why: {kind: text, help: "The public act"}
+steps:
+  - if: "default(@session, 0) > 0 and default(@party.karma_moved, 0) == @session"
+    then:
+      - stop: "Party Karma has moved once this session already (session {@session}): at most one step a session."
+  - let: {was: "default(@party.karma, 0)"}
+  - let: {now: "max(-3, min(3, @was + @shift))"}
+  - if: "@now == @was"
+    then:
+      - stop: "The party's karma is already {@was}, at the ladder's end."
+  - set: party.karma
+    value: "@now"
+  - if: "default(@session, 0) > 0"
+    then:
+      - set: party.karma_moved
+        value: "@session"
+  - let: {rung: "if(@now == -3, 'Hated: a wasteland boogeyman; strangers flee on sight; bounty hunters pick up the scent', if(@now == -2, 'Infamous: strangers default to Hostile; settlements bar the gate', if(@now == -1, 'Shady: strangers are Wary on first meeting', if(@now == 0, 'Anonymous: the wasteland has no opinion yet', if(@now == 1, 'Good: small favors offered', if(@now == 2, 'Honored: strangers default to Kind; a settler in need approaches unprompted', 'Messiah: a name spoken around settler campfires'))))))"}
+  - message: "Party Karma {@was} → {@now} ($why): {@rung}."
+  - if: "default(@session, 0) == 0"
+    then: ["At most one step a session: with no session started, don't move it again until the next one (`didact session start` lets the rule keep count)."]
+  - reminder: "At −2 or lower a bounty hunter takes the contract; at +2 or higher a pilgrim seeks the party out."
+source: overseers-guide/party-karma#moving-on-the-ladder
+---
+action: build
+title: Fill a building slot
+help: >-
+  Filling a settlement's building slot costs 200–600 caps (the Overseer sets it from the
+  fiction) and a Downtime Action, or the same in goods, labor and scavenging. Petty buildings
+  (jukeboxes, streetlamps, gardens, memorials) take no slot. A building that says "+1 Defense",
+  "+1 Industry" or "+1 Population" raises it (to 5 at most); conditional ones ("if paired with
+  Walls") are the Overseer's to apply. More filled slots than Population × 2 and one building
+  goes dark each season.
+params:
+  settlement: ref
+  building: {kind: text, help: "The building, as the settlement-buildings table names it"}
+  who: {kind: ref, optional: true, help: "Who pays (caps)"}
+  caps: {kind: int, default: 0, help: "The cost the Overseer set (200–600), or 0 when paid in goods and labor"}
+steps:
+  - table: settlement-buildings
+    with: {building: $building}
+    as: b
+  - let: {petty: "default(@b.petty, false)", filled: "count(@settlement.buildings)"}
+  - if: "not @petty and @filled >= default(@settlement.building_slots, 8)"
+    then:
+      - stop: "{@settlement.name}'s {default(@settlement.building_slots, 8)} building slots are full: repurpose or tear one down first."
+  - if: "@caps > 0"
+    then:
+      - if: "@caps > default(@who.caps, 0)"
+        then:
+          - stop: "The building costs {@caps} caps; {@who.name} has {default(@who.caps, 0)}."
+      - set: who.caps
+        op: "-="
+        value: "@caps"
+      - do: coins
+        with: {who: "@who"}
+        go_on: true
+  - if: "@petty"
+    then:
+      - set: settlement.petty_buildings
+        op: "+="
+        value: $building
+    else:
+      - set: settlement.buildings
+        op: "+="
+        value: $building
+  - message: "{@settlement.name} builds the $building: {@b.effect}"
+  - if: "default(@b.raises, '') == 'defense' and @settlement.defense < 5"
+    then:
+      - set: settlement.defense
+        op: "+="
+        value: 1
+  - if: "default(@b.raises, '') == 'industry' and @settlement.industry < 5"
+    then:
+      - set: settlement.industry
+        op: "+="
+        value: 1
+  - if: "default(@b.raises, '') == 'population' and @settlement.population < 5"
+    then:
+      - set: settlement.population
+        op: "+="
+        value: 1
+  - if: "default(@b.power, false)"
+    then: ["It needs power: a Power Generator powers one (small), three (medium) or six (fusion-core) electric buildings a week."]
+  - if: "count(@settlement.buildings) > @settlement.population * 2"
+    then: ["Upkeep: {count(@settlement.buildings)} filled slots against Population {@settlement.population} × 2: one building goes dark each season until the balance is restored."]
+  - reminder: "Filling a slot is a Downtime Action. `didact show {@settlement.id}` keeps the one-line record: Pop / Def / Ind and its slots."
+source: overseers-guide/settlements#building-slots
+---
+action: raid
+title: A raid
+help: >-
+  A raid is a combat scene the Overseer designs; when it matters, rate it 1–5 like Defense. The
+  party wins: no loss, and the Overseer may raise Defense by one. The party loses, or isn't there:
+  Population −1 and a building destroyed (the one nearest the breach; destroyed=<building>). A
+  Defense 3+ settlement with a militia building repels a raid rated 1 without the party, if it
+  has the numbers and the warning; a prepared one (an Observation Post) repels any raid rated
+  below its Defense.
+params:
+  settlement: ref
+  rating: {kind: int, default: 1, help: "The raid, 1 (a handful of thugs) to 5 (a Gunner company with a Vertibird)"}
+  won: {kind: flag, default: false, help: "The party (or the settlement) held"}
+  destroyed: {kind: text, optional: true, help: "The building lost"}
+  prepared: {kind: flag, default: false, help: "Warned a day early (an Observation Post) and ready"}
+steps:
+  - if: "@prepared and @rating < @settlement.defense"
+    then:
+      - stop: "{@settlement.name} was ready: a prepared settlement repels any raid rated below its Defense ({@rating} < {@settlement.defense})."
+  - if: "@won"
+    then:
+      - stop: "{@settlement.name} holds: no attribute loss. The Overseer may raise Defense by one (`didact set {@settlement.id} defense+=1`)."
+  - if: "@settlement.population > 1 and not ('Private Cottages' in @settlement.buildings and @settlement.population <= 2)"
+    then:
+      - set: settlement.population
+        op: "-="
+        value: 1
+    else: ["Population can't drop below 1 here (Private Cottages hold it, or it's already a handful of farmers)."]
+  - if: "default(@destroyed, '') <> ''"
+    then:
+      - if: "@destroyed in @settlement.buildings"
+        then:
+          - set: settlement.buildings
+            op: "-="
+            value: $destroyed
+        else:
+          - if: "@destroyed in @settlement.petty_buildings"
+            then:
+              - set: settlement.petty_buildings
+                op: "-="
+                value: $destroyed
+    else: ["A building is destroyed: the Overseer's pick, usually the one nearest the breach (`didact set {@settlement.id} buildings-='…'`)."]
+  - message: "{@settlement.name} loses the raid: Population {@settlement.population}."
+  - if: "'Memorial' in @settlement.petty_buildings"
+    then: ["The Memorial: settlers hold together; population loss from a critically bad raid is halved, rounded up."]
+  - reminder: "A critically bad loss may wipe the settlement out entirely. Raids come about once a season at Defense 1, once a year at Defense 5."
+source: overseers-guide/settlements#raids
+---
+action: upkeep
+title: Settlement upkeep
+help: >-
+  Each season: if the filled building slots outnumber Population × 2, one building goes dark
+  until the balance is restored; fusion-powered buildings need a new fusion core every four
+  weeks of continuous use or they go dark.
+params:
+  settlement: ref
+steps:
+  - let: {filled: "count(@settlement.buildings)", carried: "@settlement.population * 2"}
+  - if: "@filled > @carried"
+    then: ["{@settlement.name} runs {@filled} buildings on Population {@settlement.population} (carries {@carried}): one building goes dark this season until the balance is restored."]
+    else: ["{@settlement.name} carries its {@filled} building(s) (up to {@carried} at Population {@settlement.population})."]
+  - reminder: "Fusion-powered buildings need a new fusion core every four weeks of continuous use, or they go dark."
+source: overseers-guide/settlements#upkeep

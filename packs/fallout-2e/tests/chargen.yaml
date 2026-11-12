@@ -1,0 +1,124 @@
+# Character creation applies every background result, and the characters commit: unusual
+# bodies and their caps, companions and vehicles, a second Bond, the Overseer's picks, Stimpak
+# strength and immunities; hirelings both ways; growth through Training. Seeded.
+test: character-creation
+help: >-
+  Each part plays in a world of its own: random-characters-commit, unusual-bodies,
+  background-results, hirelings, growth-through-training. A fully random character of each kind
+  commits cleanly. An Eyebot's six slots and STR/DEX caps; a super mutant's immunities and 1d4
+  Stimpak; a ghoul's Radiant result; a Protectron's fire immunity and the replaced laser
+  taken off. Companions, a hireling and vehicles beside the character, a second Bond, the
+  Overseer's picks, a Stimpak's strength, power armor training and a Courier's max STR one lower. No XP: growth is a technique
+  from a Master at a Cost, or an acquisition; a Scar needs no draft.
+script:
+  - world new random-characters-commit --system {pack} --seed chargen
+  - campaign new random-characters-commit --seed chargen
+  - run: >-
+      char new --mode random --prefill '{"youngest": "no"}'
+    expect: "#c1 character from fallout-2e.pc"
+  - run: char commit c1
+    expect: committed
+  - run: >-
+      char new --mode random --prefill '{"background": "Vault Dweller", "youngest": "yes"}'
+    expect: ["+ thread Omen: ", "Read the Omen aloud"]
+  - run: char commit c2
+    expect: committed
+  - run: >-
+      char new --mode random --prefill '{"background": "Mister Handy", "youngest": "no", "name": "Codsworth"}'
+    expect: ["kind: robot", "immunities: [rads, rad-scars, chems, addiction]", "An unusual PC"]
+  - run: char commit c3
+    expect: "pc:codsworth"
+  - run: >-
+      char new --mode random --prefill '{"background": "Deathclaw", "youngest": "no", "name": "Grell"}'
+    expect: ["kind: deathclaw", "immunities: [stimpaks]"]
+  - run: char commit c4
+    expect: committed
+  - run: >-
+      char new --mode random --prefill '{"background": "Zetan", "youngest": "no", "name": "Vrex", "STR": 15, "DEX": 17}'
+    expect: ["kind: zetan", "Zetan's max STR is 12: the roll is lowered to it", "Zetan's max DEX is 16"]
+  - run: char commit c5
+    expect: committed
+  - world new unusual-bodies --system {pack} --seed bodies
+  - campaign new unusual-bodies --seed bodies
+  - run: >-
+      char new --mode random --prefill '{"background": "Eyebot", "youngest": "no", "eyebot_1": 2, "eyebot_2": 3, "name": "Chirp"}'
+    expect: ["slots_max: 6", "kind: robot"]
+  - run: char commit c6
+    expect: "pc:chirp"
+  - run: show chirp --detail full
+    expect: "Inventory slots 6"
+  - run: >-
+      char new --mode random --prefill '{"background": "Super Mutant", "youngest": "no", "super_mutant_1": 4, "super_mutant_2": 2, "name": "Ox"}'
+    expect: ["immunities: [rads, rad-scars, addiction, bleeding-out]", "stimpak_heal: 1d4"]
+  - run: char commit c7
+    expect: "pc:ox"
+  - run: >-
+      char new --mode random --prefill '{"background": "Ghoul", "youngest": "no", "ghoul_1": 1, "ghoul_2": 4, "name": "Hap"}'
+    expect: "immunities: [rad-scars, ambient-rads]"
+  - run: char commit c8
+    expect: "pc:hap"
+  - run: >-
+      char new --mode random --prefill '{"background": "Protectron", "youngest": "no", "protectron_1": 3, "protectron_2": 1, "name": "Unit"}'
+    expect: ["immunities: [rads, rad-scars, chems, addiction, fire]", "Wrist-mounted laser is off the inventory", "inventory: [Built-in chest floodlamp, Steel fists,"]
+  - run: char commit c9
+    expect: committed
+  - world new background-results --system {pack} --seed results
+  - campaign new background-results --seed results
+  - run: >-
+      char new --mode random --prefill '{"background": "Caravaneer", "youngest": "no", "caravaneer_1": 4, "caravaneer_2": 4, "name": "Tully"}'
+    expect: ["+ hireling Ruan [hireling-1]", "+ companion Barker [companion-1]", "+ vehicle Pack Brahmin [vehicle-1]", "owner: character"]
+  - run: char commit c10
+    expect: ["pc:tully", "hireling:ruan", "companion:barker", "vehicle:pack-brahmin"]
+  - run: show barker
+    expect: ["owner pc:tully", "loyalty 4"]
+  - run: show ruan
+    expect: ["role Gunhand", "wage 10", "armor 1"]
+  - run: inv add pack-brahmin Rope
+    expect: "Pack Brahmin"
+  - run: >-
+      char new --mode random --prefill '{"background": "Desert Ranger", "youngest": "no", "desert_ranger_1": 6, "desert_ranger_2": 3, "name": "Rye"}'
+    expect: ["+ thread Bond: ", "[bond-2]", "+ vehicle Pack Brahmin"]
+  - run: char commit c11
+    expect: committed
+  - run: >-
+      char new --mode random --prefill '{"background": "Brotherhood Outcast", "youngest": "no", "brotherhood_outcast_1": 4, "brotherhood_outcast_2": 3, "name": "Marsh"}'
+    expect: ["outcast-weapons:", "power_armor_trained: true", "immunities: [addiction]", "stimpak_heal: 2d6"]
+  - run: char commit c12
+    expect: "pc:marsh"
+  - run: >-
+      char new --mode random --prefill '{"background": "Chem Cook", "youngest": "no", "name": "Vex"}'
+    expect: "marketplace-chems:"
+  - run: char commit c13
+    expect: committed
+  - world new hirelings --system {pack} --seed hirelings
+  - campaign new hirelings --seed hirelings
+  - run: >-
+      char new fallout-2e.hireling --mode random --prefill '{"role": "Medic", "name": "Doc Pell"}'
+    expect: ["hireling Doc Pell: role: Medic, wage: 25", "physique", "vice"]
+  - run: char commit c14
+    expect: "hireling:doc-pell"
+  - run: >-
+      char new fallout-2e.hireling-background --mode random --prefill '{"background": "Scavver", "name": "Rook"}'
+    expect: ["hireling Rook: background: Scavver", "caps", "age: "]
+  - run: char commit c15
+    expect: "hireling:rook"
+  - world new growth-through-training --system {pack} --seed growth
+  - campaign new growth-through-training --seed growth
+  - new pc Lena --set STR=10 --set DEX=12 --set WIL=11 --set hp=4
+  - run: >-
+      char advance lena how=training technique='One-Handed Brace: with one hand free, once per combat one attack with a one-handed weapon is Enhanced'
+      master='a Ranger sniper' cost='beat her in a footrace'
+    expect: ["abilities: [] → [One-Handed Brace", "growth: [] → [Training: One-Handed Brace"]
+  - run: char commit c16
+    expect: "pc:lena advanced"
+  - run: char advance lena how=acquisition gained='a trained mongrel that points at danger'
+    expect: "Acquisition: a trained mongrel"
+  - run: char commit c17
+    expect: "pc:lena advanced"
+  - run: show lena
+    expect: "One-Handed Brace"
+  - run: >-
+      char new --mode random --prefill '{"background": "Courier", "youngest": "no", "courier_1": 5, "STR": 9, "name": "Six"}'
+    expect: ["Max STR -1, forever", "STR: 8"]
+  - run: char commit c18
+    expect: "pc:six"

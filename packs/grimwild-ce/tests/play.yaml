@@ -1,0 +1,43 @@
+# A smoke play: two adventurers (one made at random), a scene with thorns, a task pool and a
+# story roll. Seeded, so it plays the same every time.
+test: smoke-play
+script:
+  - world new wild --system {pack} --seed smoke
+  - campaign new first --seed smoke
+  - run: >-
+      char new --mode random --prefill '{"name": "Wren", "first_background": "Hunter"}'
+    expect: ["pc Wren: level: 1, xp: 0, backgrounds: [Hunter, ", "traits: [", "talents: ["]
+  - run: char commit c1
+    expect: "pc:wren"
+  - run: char check wren
+    expect: "checks out"
+  - new pc Kestrel --set brawn=2 --set agility=3 --set wits=1 --set presence=2
+  - session start
+  - scene new 'The goblin bridge'
+  - run: do action who=kestrel stat=agility thorns=1
+    expect: "→ "
+  - run: track new Goblins --kind pool --size 4
+    expect: "Goblins 4d"
+  - run: track roll goblins
+    expect: "Goblins"
+  - run: do story-roll question='Do more goblins come?'
+    expect: "→ "
+  - run: do mark who=kestrel stat=wits
+    expect: "takes a mark on wits"
+  - run: do rest who=kestrel
+    expect: "marks and harm are cleared"
+  - scene end
+  - session end --summary 'The bridge held.'
+  - run: do experience who=kestrel bonus
+    expect: ["takes a bonus XP", "level 2 is ready (`didact char advance pc:kestrel`)"]
+  - run: session start
+    expect: "session 2"
+  - run: session end --summary 'The goblins scattered.'
+    expect: "grimwild-ce.session-experience (Kestrel): pc:kestrel: xp += 1"
+  - run: >-
+      char advance kestrel --prefill '{"path": "Fighter", "talent_list": "Ranger"}'
+    expect: ["level: 1 → 2", "waiting for talent", "ranger-"]
+  - run: char roll c2
+    expect: ["Kestrel reaches level 2!", "talents: "]
+  - run: char commit c2
+    expect: ["pc:kestrel advanced: ", "level 1 → 2", "xp 3 → 1", "talents [] → [ranger-"]

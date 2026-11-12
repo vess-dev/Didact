@@ -1,0 +1,524 @@
+# Fallout 2e, Overseer's Guide: Vault & Ruin Seeds (CC BY-SA 4.0). The same procedure as
+# Cairn's dungeon seeds, so these keep the parent's dungeon-* ids and replace its tables. The
+# book's two-column tables are split into one table per column, rolled separately.
+table: dungeon-purpose-original-use
+title: 'Vault & Ruin Purpose: Original Use'
+description: Roll 1d20 for each column (dungeon-purpose-original-use, dungeon-purpose-built-by) and 
+  combine the results.
+dice: d20
+source: overseers-guide/vault-seeds#purpose-roll-1d20-twice
+entries:
+  1: Vault-Tec Social Experiment (see the example at the end of this chapter)
+  2: Nuclear Fallout Shelter, sold to paying families
+  3: Research Lab — pharmaceuticals, cybernetics, FEV
+  4: Weapons Test Site
+  5: Pre-war Corporate Executive Bunker
+  6: Biological Containment — FEV, pathogens, patient zero
+  7: Military Command & Control
+  8: Archive / Records Vault
+  9: Robotics Production Line
+  10: Power Armor Forge and Test Pit
+  11: Hidden Residence for a wealthy pre-war family
+  12: High-Security Financial Vault
+  13: Dream-Mapping / Psychological Research Facility
+  14: Quarantine Isolation Ward
+  15: Military Outpost, later squatted
+  16: Pre-war Satellite Uplink / Observatory
+  17: Pilgrimage Site, Children of Atom–adopted
+  18: Relic / Alien Artifact Containment
+  19: Rogue Broadcast Transmitter still running
+  20: Pre-war Treasure Vault — gold, bullion, patents
+---
+table: dungeon-purpose-built-by
+title: 'Vault & Ruin Purpose: Built By'
+description: Roll 1d20 for each column (dungeon-purpose-original-use, dungeon-purpose-built-by) and 
+  combine the results.
+dice: d20
+source: overseers-guide/vault-seeds#purpose-roll-1d20-twice
+entries:
+  1: Vault-Tec
+  2: RobCo Industries
+  3: West Tek
+  4: General Atomics International
+  5: Mass Fusion
+  6: Poseidon Energy
+  7: The U.S. Army Corps of Engineers
+  8: The Enclave (pre-war continuity office)
+  9: Nuka-Cola Corporation
+  10: A U.S. Army Anchorage veteran program
+  11: An old-money industrial dynasty
+  12: A pre-war Swiss-American consortium
+  13: The Big MT think-tank
+  14: A Followers-descended medical order
+  15: An NCR expeditionary scouting unit
+  16: A Hubologist splinter cell
+  17: The Atom cult
+  18: A pre-war Mothership Zeta research team
+  19: A front for the Commonwealth Institute of Technology (CIT)
+  20: A pre-war mob family laundering pre-war money
+---
+table: dungeon-construction-entrance
+title: 'Vault & Ruin Construction: Entrance'
+description: Roll 1d20 for each column (dungeon-construction-entrance, 
+  dungeon-construction-composition) and combine the results.
+dice: d20
+source: overseers-guide/vault-seeds#construction-roll-1d20-twice
+entries:
+  1: A deathclaw's lair, pre-war ruin beyond
+  2: A pre-war subway tunnel
+  3: Beneath a collapsed overpass
+  4: An old well shaft
+  5: A mass grave from the Great War
+  6: Behind a decontamination shower
+  7: Between two pre-war buildings
+  8: A cave opening disguising a pre-war blast door
+  9: Behind a Vault-Tec welcome poster
+  10: A cliff-face blast door
+  11: Inside a hollow pre-war statue
+  12: Behind a painted-over storefront wall
+  13: A pre-war mine shaft, re-drilled
+  14: Under a sand-drifted truck
+  15: Through a broken Nuka-Cola vending machine
+  16: A crashed Vertibird sunken into debris
+  17: Through a pre-war film-reel projection room
+  18: Under a pre-war highway bridge
+  19: An underwater tunnel, flooded at high tide
+  20: A veil of rad-mist at the edge of a Glow
+---
+table: dungeon-construction-composition
+title: 'Vault & Ruin Construction: Composition'
+description: Roll 1d20 for each column (dungeon-construction-entrance, 
+  dungeon-construction-composition) and combine the results.
+dice: d20
+source: overseers-guide/vault-seeds#construction-roll-1d20-twice
+entries:
+  1: Pre-war concrete
+  2: Riveted steel plate
+  3: Rebar & poured concrete
+  4: Corrugated steel
+  5: Sandbag & plywood
+  6: Lead-lined steel
+  7: Brick & mortar
+  8: Polished stainless vault steel
+  9: Concrete bunker slab
+  10: Alloy plate, Enclave manufacture
+  11: Aluminum paneling
+  12: Cinderblock
+  13: Raw bedrock shoring
+  14: Quonset-style sheet metal
+  15: Industrial tile over concrete
+  16: Vertibird aluminum & rivet
+  17: Acoustic paneling & bakelite
+  18: Reinforced I-beam
+  19: Rusted rebar & waterlogged plate
+  20: Prefab fallout-shelter panel
+---
+table: dungeon-ruination-condition
+title: 'Vault & Ruin Ruination: Condition'
+description: Roll 1d20 for each column (dungeon-ruination-condition, dungeon-ruination-cause) and 
+  combine the results.
+dice: d20
+source: overseers-guide/vault-seeds#ruination-roll-1d20-twice
+entries:
+  1: Corpse-strewn
+  2: Crumbling
+  3: Locked down
+  4: Desecrated
+  5: Devoured
+  6: Displaced
+  7: Divided
+  8: Frozen
+  9: Signal-haunted
+  10: Infested
+  11: Overgrown
+  12: Overpopulated
+  13: Petrified
+  14: Plundered
+  15: Poisoned
+  16: Scorched
+  17: Shrouded in mist
+  18: Submerged
+  19: Locked in time loop
+  20: Warped
+---
+table: dungeon-ruination-cause
+title: 'Vault & Ruin Ruination: Cause'
+description: Roll 1d20 for each column (dungeon-ruination-condition, dungeon-ruination-cause) and 
+  combine the results.
+dice: d20
+source: overseers-guide/vault-seeds#ruination-roll-1d20-twice
+entries:
+  1: Chemical accident
+  2: Ancient experiment
+  3: Cataclysmic flood
+  4: Civil war
+  5: Competing protocols
+  6: Consumed by a beast
+  7: Disease
+  8: Hedonism
+  9: Invasion
+  10: Long-term abandonment
+  11: Experiment gone wrong
+  12: Sealed over
+  13: Natural disaster
+  14: Natural erosion
+  15: Obfuscation
+  16: Overrun with monsters
+  17: Sudden climate change
+  18: Reactor coolant breach
+  19: Experimental chem leak
+  20: Unresolved pre-war broadcast
+---
+table: dungeon-traits-virtue
+title: 'Vault & Ruin Traits: Virtues'
+description: Roll 1d20 for each column (dungeon-traits-virtue, dungeon-traits-vice) and combine the 
+  results.
+dice: d20
+source: overseers-guide/vault-seeds#traits-roll-1d20-twice
+entries:
+  1: Compassionate
+  2: Courageous
+  3: Creative
+  4: Deductive
+  5: Honest
+  6: Incisive
+  7: Incorruptible
+  8: Individualistic
+  9: Loyal
+  10: Methodical
+  11: Polite
+  12: Practical
+  13: Resilient
+  14: Scholarly
+  15: Self-sufficient
+  16: Solid
+  17: Studious
+  18: Suave
+  19: Unwavering
+  20: Witty
+---
+table: dungeon-traits-vice
+title: 'Vault & Ruin Traits: Vices'
+description: Roll 1d20 for each column (dungeon-traits-virtue, dungeon-traits-vice) and combine the 
+  results.
+dice: d20
+source: overseers-guide/vault-seeds#traits-roll-1d20-twice
+entries:
+  1: Absent-minded
+  2: Aloof
+  3: Critical
+  4: Cynical
+  5: Greedy
+  6: Impulsive
+  7: Inflexible
+  8: Naive
+  9: Obstinate
+  10: Passive
+  11: Pedantic
+  12: Perfectionist
+  13: Sarcastic
+  14: Selfish
+  15: Skeptical
+  16: Stubborn
+  17: Superficial
+  18: Unfocused
+  19: Unimaginative
+  20: Vain
+---
+table: dungeon-agenda-goal
+title: 'Vault & Ruin Faction Agendas: Goal'
+description: Roll 1d20 for each column (dungeon-agenda-goal, dungeon-agenda-obstacle) and combine 
+  the results.
+dice: d20
+source: overseers-guide/vault-seeds#agendas-roll-1d20-twice
+entries:
+  1: Ascension
+  2: Creation
+  3: Destruction
+  4: Dominion
+  5: Enlightenment
+  6: Exploration
+  7: Growth
+  8: Innovation
+  9: Justice
+  10: Knowledge
+  11: Liberation
+  12: Peace
+  13: Power
+  14: Preservation
+  15: Protection
+  16: Redemption
+  17: Revenge
+  18: Survival
+  19: Transformation
+  20: Wealth
+---
+table: dungeon-agenda-obstacle
+title: 'Vault & Ruin Faction Agendas: Obstacle'
+description: Roll 1d20 for each column (dungeon-agenda-goal, dungeon-agenda-obstacle) and combine 
+  the results.
+dice: d20
+source: overseers-guide/vault-seeds#agendas-roll-1d20-twice
+entries:
+  1: Conflict
+  2: Corruption
+  3: Cost
+  4: Danger
+  5: Decay
+  6: Discord
+  7: Division
+  8: Dogma
+  9: Exposure
+  10: Factionalism
+  11: Fear
+  12: Ignorance
+  13: Incompetence
+  14: Injustice
+  15: Isolation
+  16: Opposition
+  17: Sacrifice
+  18: Stagnation
+  19: Tradition
+  20: Weakness
+---
+table: dungeon-die-drop
+title: Vault & Ruin Die Drop Table
+description: The face of each room die (6–20 d6) dropped on the vault or ruin's map. Then roll that 
+  room type's two tables.
+dice: d6
+source: overseers-guide/vault-seeds#die-drop-table
+entries:
+  1:
+    text: Monster
+    data: {room: monster, what: dungeon-monster-group, detail: dungeon-monster-activity}
+  2-3:
+    text: Lore
+    data: {room: lore, what: dungeon-lore-room-type, detail: dungeon-lore-clue}
+  4:
+    text: Special
+    data: {room: special, what: dungeon-special, detail: dungeon-special-feature}
+  5-6:
+    text: Trap
+    data: {room: trap, what: dungeon-trap, detail: dungeon-trap-trigger}
+---
+table: dungeon-monster-group
+title: 'Vault & Ruin Monster: Group'
+description: Roll 1d20 for each column (dungeon-monster-group, dungeon-monster-activity) and combine
+  the results.
+dice: d20
+source: overseers-guide/vault-seeds#monster-roll-1d20-twice
+entries:
+  1: Wasteland Beast
+  2: Apex Predator
+  3: Ghoul
+  4: Super Mutant
+  5: Raider
+  6: Settler
+  7: Faction Soldier
+  8: Tribal
+  9: Mirelurk
+  10: Pre-war Robot
+  11: Synth
+  12: Cultist
+  13: Parasite
+  14: Mutant Flora
+  15: Reptile
+  16: Vermin
+  17: Pre-war Remnant
+  18: Rogue Machine
+  19: Abomination
+  20: Wild Folk
+---
+table: dungeon-monster-activity
+title: 'Vault & Ruin Monster: Activity'
+description: Roll 1d20 for each column (dungeon-monster-group, dungeon-monster-activity) and combine
+  the results.
+dice: d20
+source: overseers-guide/vault-seeds#monster-roll-1d20-twice
+entries:
+  1: Building a nest
+  2: Devouring
+  3: Dying
+  4: Fighting
+  5: Growing
+  6: Holed up
+  7: Hiding
+  8: Killing
+  9: Mating
+  10: Mourning
+  11: Patrolling
+  12: Praying
+  13: Protecting something
+  14: Recuperating
+  15: Scheming
+  16: Sleeping
+  17: Stalking
+  18: Torturing
+  19: Training
+  20: Trapped
+---
+table: dungeon-lore-room-type
+title: 'Vault & Ruin Lore: Room Type'
+description: Roll 1d20 for each column (dungeon-lore-room-type, dungeon-lore-clue) and combine the 
+  results.
+dice: d20
+source: overseers-guide/vault-seeds#lore-roll-1d20-twice
+entries:
+  1: Armory
+  2: Barracks
+  3: Bath / Decon Chamber
+  4: Cistern
+  5: Boardroom
+  6: Morgue
+  7: Cafeteria
+  8: Dining Hall
+  9: Guard Station
+  10: Infirmary
+  11: Kitchen
+  12: Latrine
+  13: Library / Archive
+  14: Shrine
+  15: Workshop
+  16: Stable / Pen
+  17: Storage
+  18: Office
+  19: Server Vault
+  20: Reactor Room
+---
+table: dungeon-lore-clue
+title: 'Vault & Ruin Lore: Clue'
+description: Roll 1d20 for each column (dungeon-lore-room-type, dungeon-lore-clue) and combine the 
+  results.
+dice: d20
+source: overseers-guide/vault-seeds#lore-roll-1d20-twice
+entries:
+  1: Decay
+  2: Decor
+  3: Draft
+  4: Echoes
+  5: Footprints
+  6: Leavings
+  7: Flickering Light
+  8: Markings
+  9: Moisture
+  10: Noise
+  11: Paraphernalia
+  12: Residue
+  13: Scurrying
+  14: Signs
+  15: Smell
+  16: Stains
+  17: Tapping
+  18: Temperature
+  19: Vibrations
+  20: Writing
+---
+table: dungeon-special
+title: Vault & Ruin Special
+description: Roll 1d20 for each column (dungeon-special, dungeon-special-feature) and combine the 
+  results.
+dice: d20
+source: overseers-guide/vault-seeds#special-roll-1d20-twice
+entries:
+  1: Books / Tapes
+  2: Bridge
+  3: Contraption
+  4: Creature
+  5: Door
+  6: Flames
+  7: Furniture
+  8: Hole
+  9: Liquid
+  10: Mirror
+  11: Mural
+  12: Pool
+  13: Shadows
+  14: Smoke
+  15: Statue
+  16: Surface
+  17: Treasure
+  18: Voices
+  19: Wheel
+  20: Writing
+---
+table: dungeon-special-feature
+title: 'Vault & Ruin Special: Feature'
+description: Roll 1d20 for each column (dungeon-special, dungeon-special-feature) and combine the 
+  results.
+dice: d20
+source: overseers-guide/vault-seeds#special-roll-1d20-twice
+entries:
+  1: Ages
+  2: Alarms
+  3: Animates
+  4: Attracts
+  5: Charges
+  6: Closes
+  7: Falls
+  8: Glows
+  9: Grows
+  10: Illusion
+  11: Levitates
+  12: Locks
+  13: Opens
+  14: Reflects
+  15: Repels
+  16: Reveals
+  17: Shifts
+  18: Silences
+  19: Teleports
+  20: Transforms
+---
+table: dungeon-trap
+title: Vault & Ruin Trap
+description: Roll 1d20 for each column (dungeon-trap, dungeon-trap-trigger) and combine the results.
+dice: d20
+source: overseers-guide/vault-seeds#trap-roll-1d20-twice
+entries:
+  1: Ages
+  2: Burns
+  3: Captures
+  4: Carries
+  5: Confuses
+  6: Crushes
+  7: Irradiates
+  8: Cuts
+  9: Deafens
+  10: Drops
+  11: Drowns
+  12: Freezes
+  13: Glues
+  14: Hypnotizes
+  15: Impales
+  16: Infects
+  17: Lifts
+  18: Poisons
+  19: Shocks
+  20: Shoots
+---
+table: dungeon-trap-trigger
+title: 'Vault & Ruin Trap: Trigger'
+description: Roll 1d20 for each column (dungeon-trap, dungeon-trap-trigger) and combine the results.
+dice: d20
+source: overseers-guide/vault-seeds#trap-roll-1d20-twice
+entries:
+  1: Activating
+  2: Breaking
+  3: Crossing
+  4: Disturbing
+  5: Entering
+  6: Extinguishing
+  7: Focusing
+  8: Interacting
+  9: Lighting
+  10: Moving
+  11: Opening
+  12: Pulling
+  13: Pushing
+  14: Reading
+  15: Speaking
+  16: Stepping
+  17: Taking
+  18: Talking
+  19: Touching
+  20: Tripping

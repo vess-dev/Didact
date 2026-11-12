@@ -1,0 +1,6 @@
+type: character
+fields:
+  hp: {kind: resource, min: 0}
+---
+type: pc
+extends: character

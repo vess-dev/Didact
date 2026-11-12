@@ -1,0 +1,144 @@
+# The Canyon Junction Powderkeg and its story kit, The Door Under Junction (Running the
+# Wasteland): drop-in pieces the book gives whole. The factions, battlegrounds and faces are
+# compendium entries (compendium/powderkeg.yaml); these put them in play with their pools.
+generator: powderkeg
+title: The Canyon Junction Powderkeg
+help: >-
+  A drop-in sandbox: Canyon Junction, a water-rich crossroads town that everyone wants and no one
+  can hold, and its six factions, each goal a faction pool (listed as pool_1, pool_2 for `didact
+  faction turn`), rolled between sessions or whenever the story triggers them; in downtime, roll
+  them all, then pick one and run it dry. When one empties, the goal lands on screen, or the
+  faction moves against a rival, with a story roll in its favor deciding how it goes. Every other
+  faction reacts.
+source: running-the-wasteland/the-canyon-junction-powderkeg
+steps:
+  - entity:
+      key: town
+      type: loc
+      name: Canyon Junction
+      fields: {kind: settlement, description: "A water-rich crossroads town that everyone wants and no one can hold."}
+  - entity:
+      key: goal
+      type: track
+      name: Hire Guns
+      fields: {kind: pool, pool: campaign, value: {value: 4, max: 4}, note: "Junction Town Council's goal: it lands on screen, or the faction moves against a rival (`didact do faction-goal`)."}
+      links: [{rel: of, to: council-1}]
+  - let: {council_1: "@goal"}
+  - entity:
+      key: goal
+      type: track
+      name: The Well Runs Dry
+      fields: {kind: pool, pool: campaign, value: {value: 6, max: 6}, note: "Junction Town Council's goal: it lands on screen, or the faction moves against a rival (`didact do faction-goal`)."}
+      links: [{rel: of, to: council-1}]
+  - let: {council_2: "@goal"}
+  - entity: {key: council, from: junction-town-council, fields: {pool_1: "@council_1", pool_2: "@council_2"}}
+  - entity:
+      key: goal
+      type: track
+      name: Fortify the Crossing
+      fields: {kind: pool, pool: campaign, value: {value: 4, max: 4}, note: "NCR Garrison's goal: it lands on screen, or the faction moves against a rival (`didact do faction-goal`)."}
+      links: [{rel: of, to: garrison-1}]
+  - let: {garrison_1: "@goal"}
+  - entity:
+      key: goal
+      type: track
+      name: Crack Down on Smuggling
+      fields: {kind: pool, pool: campaign, value: {value: 6, max: 6}, note: "NCR Garrison's goal: it lands on screen, or the faction moves against a rival (`didact do faction-goal`)."}
+      links: [{rel: of, to: garrison-1}]
+  - let: {garrison_2: "@goal"}
+  - entity: {key: garrison, from: ncr-garrison, fields: {pool_1: "@garrison_1", pool_2: "@garrison_2"}}
+  - entity:
+      key: goal
+      type: track
+      name: Turn the Tribes
+      fields: {kind: pool, pool: campaign, value: {value: 6, max: 6}, note: "Legion Frumentarii's goal: it lands on screen, or the faction moves against a rival (`didact do faction-goal`)."}
+      links: [{rel: of, to: legion-1}]
+  - let: {legion_1: "@goal"}
+  - entity:
+      key: goal
+      type: track
+      name: Mark the Town for Caesar
+      fields: {kind: pool, pool: campaign, value: {value: 8, max: 8}, note: "Legion Frumentarii's goal: it lands on screen, or the faction moves against a rival (`didact do faction-goal`)."}
+      links: [{rel: of, to: legion-1}]
+  - let: {legion_2: "@goal"}
+  - entity: {key: legion, from: legion-frumentarii, fields: {pool_1: "@legion_1", pool_2: "@legion_2"}}
+  - entity:
+      key: goal
+      type: track
+      name: Seize the Reactor Tech
+      fields: {kind: pool, pool: campaign, value: {value: 4, max: 4}, note: "Brotherhood Recon Lance's goal: it lands on screen, or the faction moves against a rival (`didact do faction-goal`)."}
+      links: [{rel: of, to: lance-1}]
+  - let: {lance_1: "@goal"}
+  - entity:
+      key: goal
+      type: track
+      name: Vanish Back East
+      fields: {kind: pool, pool: campaign, value: {value: 6, max: 6}, note: "Brotherhood Recon Lance's goal: it lands on screen, or the faction moves against a rival (`didact do faction-goal`)."}
+      links: [{rel: of, to: lance-1}]
+  - let: {lance_2: "@goal"}
+  - entity: {key: lance, from: brotherhood-recon-lance, fields: {pool_1: "@lance_1", pool_2: "@lance_2"}}
+  - entity:
+      key: goal
+      type: track
+      name: Raid the Caravans
+      fields: {kind: pool, pool: campaign, value: {value: 4, max: 4}, note: "The Jackal Boys' goal: it lands on screen, or the faction moves against a rival (`didact do faction-goal`)."}
+      links: [{rel: of, to: jackals-1}]
+  - let: {jackals_1: "@goal"}
+  - entity:
+      key: goal
+      type: track
+      name: Buy Real Guns
+      fields: {kind: pool, pool: campaign, value: {value: 6, max: 6}, note: "The Jackal Boys' goal: it lands on screen, or the faction moves against a rival (`didact do faction-goal`)."}
+      links: [{rel: of, to: jackals-1}]
+  - let: {jackals_2: "@goal"}
+  - entity: {key: jackals, from: the-jackal-boys, fields: {pool_1: "@jackals_1", pool_2: "@jackals_2"}}
+  - entity:
+      key: goal
+      type: track
+      name: The Door Opens
+      fields: {kind: pool, pool: campaign, value: {value: 8, max: 8}, note: "Vault 113 (sealed)'s goal: it lands on screen, or the faction moves against a rival (`didact do faction-goal`)."}
+      links: [{rel: of, to: vault-1}]
+  - let: {vault_1: "@goal"}
+  - entity: {key: vault, from: vault-113-sealed, fields: {pool_1: "@vault_1"}}
+  - prompt: "Each faction lists its pools (pool_1, pool_2), so `didact faction turn` rolls them all; in downtime, roll them, then pick one and run it dry (`didact do faction-goal who=<faction> pool=<pool>`)."
+  - prompt: "Keep four to six factions in play, and replace any the story uses up. The first session: `didact gen run grimfall.door-under-junction`."
+---
+generator: door-under-junction
+title: "Story kit: The Door Under Junction"
+help: >-
+  A first session for the Powderkeg: Canyon Junction's well is failing, and the only pre-war
+  purifier for a hundred miles sits behind the vault door the town was built on. Its pressure
+  pools (6d The Well Runs Dry, roll it each dawn and whenever water is wasted or fought over; 4d
+  The Jackal Boys Come for the Tanks, roll it whenever the town looks weak), its faces, its site
+  (6d Crack Vault 113, the Overseer's deputy and a 4d Security Detail), its fail state and its
+  question: who gets the water?
+source: running-the-wasteland/story-kit-the-door-under-junction
+steps:
+  - entity:
+      key: pressure
+      type: track
+      name: The Well Runs Dry
+      fields: {kind: pool, pool: pressure, value: {value: 6, max: 6}, note: "Roll it each dawn, and whenever water is wasted or fought over. Fail state: at 0d the town turns on itself, and the Garrison declares martial law."}
+  - entity:
+      key: pressure
+      type: track
+      name: The Jackal Boys Come for the Tanks
+      fields: {kind: pool, pool: pressure, value: {value: 4, max: 4}, note: "Roll it whenever the town looks weak."}
+  - entity: {key: face, from: mayor-odalys-reyes}
+  - entity: {key: face, from: lt-cass-whitlow}
+  - entity: {key: face, from: mother}
+  - entity: {key: face, from: splint}
+  - entity:
+      key: door
+      type: track
+      name: Crack Vault 113
+      fields: {kind: pool, pool: task, value: {value: 6, max: 6}, suspense: 2, traits: [two centuries of corrosion], moves: [Lockout Protocol, Wake the Turrets]}
+  - entity: {key: deputy, from: the-overseers-deputy}
+  - entity:
+      key: detail
+      type: track
+      name: Security Detail
+      fields: {kind: pool, pool: task, value: {value: 4, max: 4}, note: "They believe it's still 2077."}
+  - prompt: "The hook, three ways: the Council hires you to open the door before the water quits; the NCR lieutenant wants to know what's down there before the Legion does; a Jackal runner sells you a stolen keycard and a bad feeling."
+  - prompt: "The site (a 5-point vault): The Door, 6d Crack Vault 113 (trait: two centuries of corrosion; moves: Lockout Protocol, Wake the Turrets). The Experiment: rationing, every chamber dispenses exactly enough for one fewer person than is standing in it. The Twist: the dwellers never died; they sleep in shifts, and the next shift is due. The Confrontation: the Overseer's deputy (elite · tactician) and a 4d Security Detail who believe it's still 2077. What Vault-Tec Left: a working purifier core, a major haul, and three hundred sleepers who will need the water too."
+  - prompt: "Fail state: the well hits 0d, the town turns on itself, and the Garrison declares martial law. The question the night is about: who gets the water?"

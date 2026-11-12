@@ -1,0 +1,10 @@
+type: pc
+label: Scoundrel
+fields:
+  playbook: {kind: text}
+  heritage: {kind: enum, values: [Akoros, Iruvia, Skovlan, Tycheros]}
+  hunt: {kind: int, min: 0, max: 4, default: 0}
+  finesse: {kind: int, min: 0, max: 4, default: 0}
+  prowl: {kind: int, min: 0, max: 4, default: 0}
+  skirmish: {kind: int, min: 0, max: 4, default: 0}
+  stress: {kind: counter, min: 0, max: 9, default: 0}

@@ -1,0 +1,94 @@
+# Character options (Chapters 3-5, 10): classes, talents, races, backgrounds, oaths; and the
+# things of Surviving Tamriel (Chapter 6) and Running Tamriel (Chapter 9) the compendium holds:
+# diseases, the Divines' blessings, factions. `talent` and `background` replace grimwild-ce's
+# types; grimwild-ce's `path` type is hidden (Grimscrolls has classes).
+type: class
+label: Class
+fields:
+  art: {kind: text, help: "Combat, Magic or Stealth; the curses wear their Prince (Molag Bal, Hircine)."}
+  tagline: {kind: text}
+  aka: {kind: list, help: "ALSO: other names for it."}
+  summary: {kind: text, help: "You're the one who…"}
+  engine: {kind: text, help: "The Core Talent's engine, in a few words: 5 Temper a session."}
+  core_talent: {kind: text, help: "The id of its Core Talent (its class's alone)."}
+  growth: {kind: text, help: "How the Core Talent grows."}
+  growth_levels: {kind: list, help: "The levels it grows at: 2, 4 and 6, or 3 and 6."}
+  talents: {kind: list, help: "The ids of its seven talents (open to every hero, the curses' to those with the blood)."}
+  first_talent: {kind: text, help: "The book's first talent to try."}
+  options: {kind: list, help: "Its [Optional] boxes: [{title, text}] (their lists are tables)."}
+  tables: {kind: list, help: "The ids of those tables."}
+guidance: "A class is a Core Talent with Growth (at levels 2, 4 and 6, or 3 and 6) and seven talents around it (Chapter 4; building a twenty-fourth, Chapter 10)."
+---
+type: talent
+label: Talent
+fields:
+  kind: {kind: enum, values: [core, class, curse, racial, birthsign, stone, voice], help: "core (a class's Core Talent), class (open to every hero), curse (needs the blood), racial, birthsign, stone (a standing stone's blessing), voice."}
+  class: {kind: text, help: "The class whose list it's on."}
+  race: {kind: text, help: "A racial talent's race."}
+  guardian: {kind: text, help: "A birthsign's Guardian (the Warrior, the Mage, the Thief), or the Wanderer."}
+  month: {kind: text, help: "A birthsign's month (the Serpent has none)."}
+  core: {kind: flag, help: "A class's Core Talent."}
+  growth: {kind: text, help: "How a Core Talent grows."}
+  levels: {kind: list, help: "The levels it grows at."}
+  restrictions: {kind: list, help: "Its tags (the italic sentence after its name): who can take it or what it needs first (Needs …, … only), when it works (Works …), or Optional (ask your table)."}
+  section_restriction: {kind: text, help: "Its section's [Restriction] strip (Chapter 5)."}
+guidance: >-
+  A talent never grants standing potency outside a narrow domain and never raises a stat. Its
+  pools run 2d-3d, its "always" covers only knowledge and vantage, and every strong trick is once
+  per session, push-priced, or given time. A racial or birthsign talent is lighter still: one
+  narrow edge, one gift a session (Chapter 10).
+---
+type: race
+label: Race
+fields:
+  tagline: {kind: text}
+  wises: {kind: list, help: "Three wises (swap any that don't fit how your hero was raised)."}
+  talent: {kind: text, help: "The id of its racial talent, in the blood whatever your upbringing."}
+  names: {kind: list, help: "A name, if you need one (Chapter 3's hero crucibles)."}
+guidance: "A race is one of a hero's two backgrounds: three wises and one racial talent (Chapter 5)."
+---
+type: background
+label: Background
+fields:
+  wises: {kind: list, help: "Three phrases that widen your vantage: what you know, notice, and get away with."}
+  skills: {kind: list, help: "The seven skills the old registers say it trains (class ids, Combat · Magic · Stealth): take your Core Talent from one and your later talents among the rest, to play it as the old books describe it."}
+  aka: {kind: list}
+guidance: "A background is a name and three wises (Chapter 3); rename freely."
+---
+type: oath
+label: Oath
+fields:
+  edge: {kind: text, help: "Always on: a permission or a thorn ignored, never a die."}
+  flaw: {kind: text, help: "A standing tangle: the first time each session it truly bites, take spark."}
+guidance: "An oath (Chapter 10, an option): an edge and a flaw, welded together. Break it for good and you lose the edge."
+---
+type: disease
+label: Disease
+fields:
+  carried_by: {kind: text, label: Carried by}
+  costs: {kind: text, help: "It costs you +1t…"}
+  condition: {kind: enum, values: [long-term, urgent, permanent], help: "What kind of condition it is."}
+  timer: {kind: int, min: 0, help: "An urgent one's timer pool, in dice."}
+  cure: {kind: text}
+guidance: "A disease is a long-term condition: +1t whenever it specifically gets in your way (Chapter 6). The two curses finish: an urgent timer, then the change."
+---
+type: divine
+label: Divine
+fields:
+  epithet: {kind: text}
+  blessing: {kind: text, help: "The blessing: a single boon, once, held until used or until the next session ends."}
+guidance: "Pray at a shrine: every ordinary disease you carry is cured, and you take that god's blessing (Chapter 6)."
+---
+type: faction
+label: Faction
+fields:
+  resources: {kind: list, help: "What it has: its assets, traits and relationships."}
+  goals: {kind: list, help: "Its goals, each a faction pool."}
+  standing: {kind: enum, values: [honored, trusted, stranger, watched, outlawed], default: stranger, help: "How it sees the party (or one hero who has earned a name): honored, trusted, stranger (the default), watched, outlawed (`didact do standing`)."}
+  pool_1: {kind: ref, to: track, help: "Its faction pools, rolled by `didact faction turn` (pool_1 … pool_6)."}
+  pool_2: {kind: ref, to: track}
+  pool_3: {kind: ref, to: track}
+  pool_4: {kind: ref, to: track}
+  pool_5: {kind: ref, to: track}
+  pool_6: {kind: ref, to: track}
+guidance: "A faction: its resources and goals, each goal a faction pool (4d, 6d, 8d) rolled between sessions or when the story triggers it, and its standing toward the party (Chapter 9)."

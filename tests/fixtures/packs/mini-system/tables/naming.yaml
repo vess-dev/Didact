@@ -1,0 +1,24 @@
+table: poi-name
+dice: d4
+refs: {noun: nouns, adjective: adjectives}
+entries:
+  1: "(The) {noun} {poi}"
+  2: "(The) {adjective} {poi}"
+  3: "{poi} of (the) {noun}"
+  4: "{adjective} {poi} of {1d4} {noun}s"
+---
+table: nouns
+dice: d6
+entries: {1: Ash, 2: Bone, 3: Crow, 4: Dusk, 5: Ember, 6: Frost}
+---
+table: adjectives
+dice: d6
+entries: {1: Amber, 2: Broken, 3: Cold, 4: Drowned, 5: Endless, 6: Fallen}
+---
+table: first-names
+dice: d8
+entries: {1: Brannoc, 2: Kael, 3: Hester, 4: Osric, 5: Wenna, 6: Tobin, 7: Ysolde, 8: Garrow}
+---
+table: surnames
+dice: d6
+entries: {1: Ashby, 2: Crane, 3: Mossfoot, 4: Pell, 5: Thatch, 6: Wick}

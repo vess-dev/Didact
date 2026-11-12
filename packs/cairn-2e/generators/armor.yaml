@@ -1,0 +1,17 @@
+# A piece of armor from the Marketplace (players-guide/marketplace#armor): chosen or rolled, as its
+# compendium entry has it. The book prices its goods but gives no die: every item is equally
+# likely. Name it anew if it has a story of its own.
+generator: armor
+title: A piece of armor
+help: >-
+  A piece of armor from the Marketplace (choose it, or let the dice): the Armor it gives, its
+  size and price. Prefill by name: armor, name.
+source: players-guide/marketplace#armor
+steps:
+  - choose_or_roll: {table: marketplace-armor, as: armor}
+  - let: {name: "@armor"}
+  - entity:
+      key: armor
+      from: "@armor.id"
+      name: "{@name}"
+  - prompt: "Whose was it, and what has it been through? Dents, a crest, a patched strap?"

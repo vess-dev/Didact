@@ -1,0 +1,7 @@
+id: options-lite
+name: Options (test pack)
+kind: system
+version: 0.1.0
+description: A small system whose variant rules are options a campaign chooses at session zero.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

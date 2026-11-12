@@ -1,0 +1,10 @@
+# Pick-lists from the rules chapters: vex's responses (Gameplay, p. 29). CC0 1.0.
+table: vex-responses
+title: "Vex responses"
+description: "Vex prompts an immediate, instinctive response: choose one, then interpret it (it usually lasts a beat or two). Your PC is driven by emotion, but you decide how it plays out. With random vex (grimdark), roll it. Each entry's data holds its id."
+source: "p. 29"
+entries:
+  - {text: "Fight: Lash out recklessly at the subject of your fear or hate.", data: {id: fight}}
+  - {text: "Flight: Run from the subject, taking whatever path nearest.", data: {id: flight}}
+  - {text: "Freeze: Stop in your tracks, with the emotion taking over your mind.", data: {id: freeze}}
+  - {text: "Freakout: Do something else to put yourself, others, or your surroundings in harm's way.", data: {id: freakout}}

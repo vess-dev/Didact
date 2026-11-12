@@ -1,0 +1,45 @@
+# The dice math of Grimfall's rolls, and every table landing.
+test: every-table
+help: Each table rolls cleanly (a lookup table once for each key).
+table: all
+times: 3
+---
+test: perfect-on-two-dice
+help: With 2d and no thorns, a perfect (a 6 on the highest die) comes up 11 times in 36 (The Core Engine, Rolls).
+odds: "2d6kh1 >= 6"
+chance: 0.3056
+tolerance: 0.005
+---
+test: a-thorn-cuts
+help: A thorn (a d8) cuts the result a step on a 7 or 8.
+odds: "1d8 >= 7"
+chance: 0.25
+---
+test: a-critical-on-three-dice
+help: A critical is more than one 6; on 3d, 16 times in 216.
+odds: "3d6>=6 >= 2"
+chance: 0.0741
+tolerance: 0.001
+---
+test: all-in-on-two-dice
+help: Going all in (Rooted, Better Criticals), 5s count as 6s, so 2d reads a perfect whenever a 5 or a 6 shows (20 in 36); 4s count as 1s, so there's no messy.
+odds: "2d6>=5 >= 1"
+chance: 0.5556
+tolerance: 0.001
+---
+test: the-weak-point-die
+help: Stat 2 and the Weak Point die (a third d6, added to the roll) reach a perfect 91 times in 216.
+odds: "3d6kh1 >= 6"
+chance: 0.4213
+tolerance: 0.001
+---
+test: dropped-deadlier
+help: With deadlier lethality the dropped story roll is 1d; a perfect (just out until the scene ends) is 1 in 6.
+odds: "1d6 >= 6"
+chance: 0.1667
+tolerance: 0.001
+---
+test: dropped-grim-on-two-dice
+help: The usual 2d dropped story roll comes up grim (a permanent condition, or the end) when no die beats a 3, 1 time in 4.
+odds: "2d6kh1 <= 3"
+chance: 0.25

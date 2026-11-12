@@ -1,0 +1,17 @@
+# A weapon from the Marketplace (players-guide/marketplace#weapons): chosen or rolled, as its
+# compendium entry has it. The book prices its goods but gives no die: every item is equally
+# likely. Name it anew if it has a story of its own.
+generator: weapon
+title: A weapon
+help: >-
+  A weapon from the Marketplace (choose it, or let the dice): its damage die, size and price.
+  Prefill by name: weapon, name.
+source: players-guide/marketplace#weapons
+steps:
+  - choose_or_roll: {table: marketplace-weapons, as: weapon}
+  - let: {name: "@weapon"}
+  - entity:
+      key: weapon
+      from: "@weapon.id"
+      name: "{@name}"
+  - prompt: "Does it have a story? Who made it, and what marks it? Name it if it's worth a name."

@@ -1,0 +1,15 @@
+chargen: pc
+title: Adventurer (point buy and class)
+creates: pc
+modes: [random, guided]
+steps:
+  - choose: {from: [fighter, wizard], as: class, field: class}
+  - point_buy:
+      fields: [STR, DEX, CON]
+      budget: 27
+      costs: {8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9}
+      default: [15, 14, 13]
+      as: abilities
+  - apply: {hp: "{if(@class == 'fighter', 10, 6) + floor((@character.CON - 10) / 2)}", level: 1}
+  - name: {from: [Bramble, Corin, Hollis, Merrow, Tace]}
+advance: {rule: level-up}

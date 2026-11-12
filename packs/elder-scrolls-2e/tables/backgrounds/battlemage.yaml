@@ -1,0 +1,24 @@
+# Battlemage (backgrounds/battlemage): the background's two d6 tables.
+table: battlemage-1
+title: "Where did you learn war-magic?"
+dice: d6
+source: backgrounds/battlemage#where-did-you-learn-war-magic-roll-1d6
+entries:
+  1: {text: "In the Imperial Legion, where battlemages march in the line. Take a Spell Tome: Lightning Bolt, and a soldier's welcome: any Legion camp will feed you and hear your news.", data: {gear: [{name: "Spell Tome: Lightning Bolt"}]}}
+  2: {text: "In a Stormcloak siege, learning fire by throwing it at gates. Take a Spell Tome: Flames, the grudging respect of every Nord who saw you do it, and the suspicion of every one who didn't.", data: {gear: [{name: "Spell Tome: Flames"}]}}
+  3: {text: "From an old Altmer war-mage who trained at Battlespire before Mehrunes Dagon's legions sacked it, more than two centuries ago. Take a Spell Tome: Fire Rune, and his eye for ground: before a fight you have time to prepare for, the Warden tells you where the enemy is most likely to come from.", data: {gear: [{name: "Spell Tome: Fire Rune"}]}}
+  4: {text: "In a mercenary war-band that prized results over rules. Take a Spell Tome: Frostbite, and a sellsword's habit: you always get half your fee up front.", data: {gear: [{name: "Spell Tome: Frostbite"}]}}
+  5: {text: "Under a Reachman warlord who burned for the Forsworn cause, before you turned your coat. Take a Spell Tome: Flame Cloak, and a long list of people in the Reach who want you dead.", data: {gear: [{name: "Spell Tome: Flame Cloak"}]}}
+  6: {text: "From a half-mad mentor who swore that steel and spell should never part. Take a Spell Tome: Oakflesh and his steel mace (d8), its head etched with warding runes.", data: {gear: [{name: "Spell Tome: Oakflesh"}, {name: "Steel mace", damage: "d8"}]}}
+---
+table: battlemage-2
+title: "What is your signature on the battlefield?"
+dice: d6
+source: backgrounds/battlemage#what-is-your-signature-on-the-battlefield-roll-1d6
+entries:
+  1: "Opening Volley: You lead with fire and follow with steel. Once per day, cast a Spell Tome in the first round of a fight without adding Fatigue."
+  2: {text: "Tome-Harness: A leather-and-steel harness that holds a Spell Tome open against your chest. You can read and cast from it with a one-handed weapon still in hand — though not with a shield or a torch.", data: {gear: [{name: "Tome-Harness"}]}}
+  3: "Spellbreaker's Eye: You read a hostile casting a heartbeat early. Once per day, when a spell is cast at you, make a DEX save: on a success you dive clear, and it misses you."
+  4: {text: "Shock Blade: A steel sword (d8, 1 charge) etched with a lightning enchantment. Spend the charge as you strike to make the blow Enhanced as lightning arcs from the edge. Recharge: a filled soul gem.", data: {gear: [{name: "Shock Blade", damage: "d8", charges: 1, recharge: "a filled soul gem"}]}}
+  5: {text: "Dwarven Helm: A bronze Dwemer helm (+1 Armor), bright under the dents, pried from a ruin's automaton guardian.", data: {gear: [{name: "Dwarven Helm", armor: 1}]}}
+  6: {text: "Veteran's Scars: A long war left its marks. Your maximum HP is 1 higher, and you need not save against fear at the sight of carnage.", data: {extra_hp: true}}

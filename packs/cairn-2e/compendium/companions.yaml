@@ -1,0 +1,162 @@
+# The creatures and vehicles the backgrounds give (backgrounds/*), as records of their own:
+# character creation makes them beside the character (`owner`), and `didact spawn <id>` makes
+# one in play. Two weapons or claws (the book's d6+d6) keep the highest: '{d6, d6}kh1'.
+id: falcon
+type: companion
+name: Falcon
+hp: 3
+STR: 5
+DEX: 16
+WIL: 4
+attacks:
+  - {name: claws, damage: "{d6, d6}kh1"}
+  - {name: bite, damage: d8}
+abilities:
+  - It only eats live game.
+source: backgrounds/fletchwind
+body: A Fletchwind's hunting falcon.
+---
+id: living-nightmare
+type: companion
+name: Living Nightmare
+attacks:
+  - {name: claws, damage: "{d8, d8}kh1"}
+abilities:
+  - It dwells within you but manifests whenever you are in danger; it has your Attributes and HP.
+  - It disappears on Critical Damage (you take 1d4 WIL damage), re-appearing again on the next full moon.
+source: backgrounds/half-witch
+---
+id: raven-familiar
+type: companion
+name: Raven Familiar
+hp: 8
+STR: 3
+DEX: 11
+WIL: 13
+attacks:
+  - {name: beak, damage: d6}
+abilities:
+  - It speaks as an intelligent being and is entirely devoted to you.
+source: backgrounds/half-witch
+---
+id: hollow-wolf
+type: companion
+name: Hollow Wolf
+hp: 5
+STR: 11
+DEX: 13
+WIL: 8
+attacks:
+  - {name: teeth, damage: d6}
+abilities:
+  - Loyal to you unto death.
+  - A great tunneler.
+source: backgrounds/prowler
+---
+id: homunculus
+type: companion
+name: Homunculus
+hp: 3
+STR: 4
+DEX: 13
+WIL: 5
+abilities:
+  - A miniature clay replica of you that follows your every command.
+  - It hates being enthralled to you and complains bitterly whenever possible.
+  - Any damage done to the homunculus is also done to you.
+source: backgrounds/aurifex
+---
+id: werewolf-form
+type: companion
+name: Werewolf Form
+hp: 8
+STR: 15
+DEX: 14
+attacks:
+  - {name: claws, damage: "{d6, d6}kh1"}
+  - {name: bite, damage: d8}
+abilities:
+  - Your WIL remains the same.
+  - You can turn at will (once per day) but must make a WIL save to revert.
+  - Anyone left alive from your attacks must make a WIL save to avoid infection.
+source: backgrounds/fieldwarden
+---
+id: young-donkey
+type: companion
+name: Young Donkey
+slots: 4
+qualities: [slow]
+source: backgrounds/kettlewright
+---
+id: stubborn-old-donkey
+type: companion
+name: Stubborn Old Donkey
+slots: 4
+abilities:
+  - Only +2 slots while it pulls the burial wagon.
+source: backgrounds/bonekeeper
+---
+id: burial-wagon
+type: vehicle
+name: Burial Wagon
+slots: 6
+qualities: [slow]
+note: The stubborn old donkey pulls it.
+source: backgrounds/bonekeeper
+---
+id: heavy-destrier
+type: companion
+name: Heavy Destrier
+hp: 8
+armor: 1
+slots: 2
+attacks:
+  - {name: hooves, damage: "{d10, d10}kh1"}
+abilities:
+  - A beast built for war, an imposing creature.
+source: backgrounds/outrider
+---
+id: blacklegged-dandy
+type: companion
+name: Blacklegged Dandy
+hp: 6
+slots: 4
+abilities:
+  - Hardy and adaptable. Tough or Perilous terrain are one step easier.
+source: backgrounds/outrider
+---
+id: rivertooth
+type: companion
+name: Rivertooth
+hp: 4
+slots: 6
+abilities:
+  - Impressively strong, capable of carrying heavy loads (only +2 slots if carrying two people).
+source: backgrounds/outrider
+---
+id: piebald-cob
+type: companion
+name: Piebald Cob
+hp: 6
+slots: 4
+abilities:
+  - Intelligent, it can understand simple commands and even has an instinct for danger.
+source: backgrounds/outrider
+---
+id: linden-white
+type: companion
+name: Linden White
+hp: 4
+slots: 3
+abilities:
+  - Highly trained and agile, it can perform intricate maneuvers in a time of need (no DEX save to flee).
+source: backgrounds/outrider
+---
+id: stray-fogger
+type: companion
+name: Stray Fogger
+hp: 4
+slots: 2
+abilities:
+  - Wild but very fast (even in Tough terrain). Rides light.
+source: backgrounds/outrider

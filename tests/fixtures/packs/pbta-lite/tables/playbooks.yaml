@@ -1,0 +1,5 @@
+table: playbooks
+entries:
+  - {text: Brainer, data: {cool: 1, hard: -1, hot: -1, sharp: 2, weird: 1, moves: [Deep brain scan, In-brain puppet strings, Unnatural lust transfixion]}}
+  - {text: Gunlugger, data: {cool: 1, hard: 2, hot: -1, sharp: 1, weird: -1, moves: [Battle-hardened, Fuck this shit, Insano like Drano]}}
+  - {text: Skinner, data: {cool: 1, hard: -1, hot: 2, sharp: 1, weird: -1, moves: [Breathtaking, Lost, Artful and gracious]}}

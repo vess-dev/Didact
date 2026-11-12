@@ -1,0 +1,58 @@
+# Greenwise (backgrounds/greenwise): the background's two d6 tables.
+table: greenwise-1
+title: How has the Wood failed you?
+dice: d6
+source: backgrounds/greenwise
+entries:
+  1:
+    text: "An ill-tempered forest spirit cursed you for stealing, marking you as an enemy of their kind. Take a Bezoar Stone. Ingesting it cures any poison (1 use, unless retrieved)."
+    data:
+      gear: [{name: Bezoar Stone, uses: 1, note: unless retrieved}]
+  2:
+    text: "A close friend disappeared into the forest. Now you see their face in any tea you brew. Take a Soporific Concoction (3 uses)."
+    data:
+      gear: [{name: Soporific Concoction, uses: 3}]
+  3:
+    text: "You were poisoned, losing your sense of taste and smell. You can now withstand noxious fumes and always carry Antitoxin (2 uses)."
+    data:
+      gear: [{name: Antitoxin, uses: 2}]
+  4:
+    text: "Your radical experiments turned your skin green, and you now gain nourishment as a plant. You don't need Rations, but a day without sufficient sunlight and water leaves you deprived."
+  5:
+    text: "Your impressive corpseflower won a local contest then promptly killed a judge. You fled, but not without the Prize Money (100gp) and a warrant for your arrest."
+    data:
+      add: {gold: 100}
+  6:
+    text: "You created a restorative tincture that also causes accidental infertility. Take a Healing Potion that completely restores STR. Only you know of its unintended side-effects."
+    data:
+      gear: [{name: Healing Potion, note: completely restores STR}]
+---
+table: greenwise-2
+title: What keeps you safe while in the Wood?
+dice: d6
+source: backgrounds/greenwise
+entries:
+  1:
+    text: "Amadou: A vermilion fungus that catches fire quite easily. 3 uses."
+    data:
+      gear: [{name: Amadou, uses: 3}]
+  2:
+    text: "Delphinium: Breathe water for up to one hour. 1 use, but can be divided into fractional doses."
+    data:
+      gear: [{name: Delphinium, uses: 1, note: can be divided into fractional doses}]
+  3:
+    text: "Tacky Stalk: A woody reed that hardens into a permanent adhesive when chewed. 2 uses."
+    data:
+      gear: [{name: Tacky Stalk, uses: 2}]
+  4:
+    text: "Wisp Lantern: Caged in wrought iron, provides a dim light so long as the wisp is able to feed on nearby pain and fear."
+    data:
+      gear: [Wisp Lantern]
+  5:
+    text: "Seed Bomb: A canvas sack filled with seeds that explode on impact. d6 damage (blast, 3 uses)."
+    data:
+      gear: [{name: Seed Bomb, damage: d6, uses: 3, qualities: [blast]}]
+  6:
+    text: "Briarvine: Entangles any creature up to horse size (STR to break free). Reusable."
+    data:
+      gear: [Briarvine]

@@ -1,0 +1,654 @@
+# The Marketplace (players-guide/marketplace): prices in gold pieces.
+---
+id: "shield"
+type: "item"
+name: "Shield"
+price: 10
+armor: 1
+note: "+1 Armor while held"
+source: "players-guide/marketplace#armor"
+---
+id: "helmet"
+type: "item"
+name: "Helmet"
+price: 10
+armor: 1
+note: "+1 Armor while worn"
+source: "players-guide/marketplace#armor"
+---
+id: "gambeson"
+type: "item"
+name: "Gambeson"
+price: 15
+armor: 1
+source: "players-guide/marketplace#armor"
+---
+id: "brigandine"
+type: "item"
+name: "Brigandine"
+price: 20
+armor: 1
+size: "bulky"
+source: "players-guide/marketplace#armor"
+---
+id: "chainmail"
+type: "item"
+name: "Chainmail"
+price: 40
+armor: 2
+size: "bulky"
+source: "players-guide/marketplace#armor"
+---
+id: "plate"
+type: "item"
+name: "Plate"
+price: 60
+armor: 3
+size: "bulky"
+source: "players-guide/marketplace#armor"
+---
+id: "dagger"
+type: "item"
+name: "Dagger"
+price: 5
+damage: "d6"
+source: "players-guide/marketplace#weapons"
+---
+id: "cudgel"
+type: "item"
+name: "Cudgel"
+price: 5
+damage: "d6"
+source: "players-guide/marketplace#weapons"
+---
+id: "sickle"
+type: "item"
+name: "Sickle"
+price: 5
+damage: "d6"
+source: "players-guide/marketplace#weapons"
+---
+id: "staff"
+type: "item"
+name: "Staff"
+price: 5
+damage: "d6"
+source: "players-guide/marketplace#weapons"
+---
+id: "spear"
+type: "item"
+name: "Spear"
+price: 10
+damage: "d8"
+source: "players-guide/marketplace#weapons"
+---
+id: "sword"
+type: "item"
+name: "Sword"
+price: 10
+damage: "d8"
+source: "players-guide/marketplace#weapons"
+---
+id: "mace"
+type: "item"
+name: "Mace"
+price: 10
+damage: "d8"
+source: "players-guide/marketplace#weapons"
+---
+id: "axe"
+type: "item"
+name: "Axe"
+price: 10
+damage: "d8"
+source: "players-guide/marketplace#weapons"
+---
+id: "flail"
+type: "item"
+name: "Flail"
+price: 10
+damage: "d8"
+source: "players-guide/marketplace#weapons"
+---
+id: "halberd"
+type: "item"
+name: "Halberd"
+price: 20
+damage: "d10"
+size: "bulky"
+source: "players-guide/marketplace#weapons"
+---
+id: "war-hammer"
+type: "item"
+name: "War Hammer"
+price: 20
+damage: "d10"
+size: "bulky"
+source: "players-guide/marketplace#weapons"
+---
+id: "long-sword"
+type: "item"
+name: "Long Sword"
+price: 20
+damage: "d10"
+size: "bulky"
+source: "players-guide/marketplace#weapons"
+---
+id: "sling"
+type: "item"
+name: "Sling"
+price: 5
+damage: "d6"
+source: "players-guide/marketplace#weapons"
+---
+id: "bow"
+type: "item"
+name: "Bow"
+price: 20
+damage: "d6"
+size: "bulky"
+source: "players-guide/marketplace#weapons"
+---
+id: "crossbow"
+type: "item"
+name: "Crossbow"
+price: 30
+damage: "d8"
+size: "bulky"
+source: "players-guide/marketplace#weapons"
+---
+id: "cart"
+type: "vehicle"
+name: "Cart"
+price: 30
+slots: 4
+qualities: ["bulky"]
+note: "pulled with both hands"
+source: "players-guide/marketplace#transport"
+---
+id: "wagon"
+type: "vehicle"
+name: "Wagon"
+price: 200
+slots: 8
+qualities: ["slow"]
+source: "players-guide/marketplace#transport"
+---
+id: "horse"
+type: "companion"
+name: "Horse"
+price: 75
+slots: 4
+source: "players-guide/marketplace#transport"
+---
+id: "mule"
+type: "companion"
+name: "Mule"
+price: 30
+slots: 6
+qualities: ["slow"]
+source: "players-guide/marketplace#transport"
+---
+id: "carriage-seat"
+type: "service"
+name: "Carriage Seat"
+price: 5
+source: "players-guide/marketplace#transport"
+---
+id: "ships-passage"
+type: "service"
+name: "Ship's Passage"
+price: 10
+source: "players-guide/marketplace#transport"
+---
+id: "room-and-board"
+type: "service"
+name: "Room & Board"
+price: 10
+note: "per night"
+source: "players-guide/marketplace#upkeep--recovery"
+---
+id: "private-room-and-board"
+type: "service"
+name: "Private Room & Board"
+price: 35
+note: "fits 4"
+source: "players-guide/marketplace#upkeep--recovery"
+---
+id: "stable-and-feed"
+type: "service"
+name: "Stable & Feed"
+price: 5
+note: "per night"
+source: "players-guide/marketplace#upkeep--recovery"
+---
+id: "medical-healing"
+type: "service"
+name: "Medical Healing"
+price: 50
+source: "players-guide/marketplace#upkeep--recovery"
+---
+id: "rations"
+type: "item"
+name: "Rations"
+price: 10
+uses: 3
+source: "players-guide/marketplace#upkeep--recovery"
+---
+id: "animal-feed"
+type: "item"
+name: "Animal Feed"
+price: 5
+uses: 3
+size: "bulky"
+source: "players-guide/marketplace#upkeep--recovery"
+---
+id: "air-bladder"
+type: "item"
+name: "Air Bladder"
+price: 5
+source: "players-guide/marketplace#gear"
+---
+id: "antitoxin"
+type: "item"
+name: "Antitoxin"
+price: 20
+source: "players-guide/marketplace#gear"
+---
+id: "bandages"
+type: "item"
+name: "Bandages"
+price: 30
+uses: 3
+source: "players-guide/marketplace#gear"
+---
+id: "bathing-goods"
+type: "item"
+name: "Bathing Goods"
+price: 5
+note: "soap, perfume, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "book"
+type: "item"
+name: "Book"
+price: 50
+source: "players-guide/marketplace#gear"
+---
+id: "caltrops"
+type: "item"
+name: "Caltrops"
+price: 10
+source: "players-guide/marketplace#gear"
+---
+id: "card-deck"
+type: "item"
+name: "Card Deck"
+price: 5
+source: "players-guide/marketplace#gear"
+---
+id: "chain"
+type: "item"
+name: "Chain"
+price: 10
+note: "10ft"
+source: "players-guide/marketplace#gear"
+---
+id: "chalk"
+type: "item"
+name: "Chalk"
+price: 1
+size: "petty"
+source: "players-guide/marketplace#gear"
+---
+id: "chest"
+type: "item"
+name: "Chest"
+price: 25
+source: "players-guide/marketplace#gear"
+---
+id: "chisel"
+type: "item"
+name: "Chisel"
+price: 5
+source: "players-guide/marketplace#gear"
+---
+id: "common-agents"
+type: "item"
+name: "Common Agents"
+price: 10
+note: "glue, grease, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "common-tools"
+type: "item"
+name: "Common Tools"
+price: 10
+note: "hammer, shovel, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "compass"
+type: "item"
+name: "Compass"
+price: 75
+source: "players-guide/marketplace#gear"
+---
+id: "complex-instruments"
+type: "item"
+name: "Complex Instruments"
+price: 50
+note: "bagpipes, fiddle, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "containers"
+type: "item"
+name: "Containers"
+price: 10
+note: "sack, waterskin, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "cooking-gear"
+type: "item"
+name: "Cooking Gear"
+price: 10
+note: "pots, utensils, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "costume-gear"
+type: "item"
+name: "Costume Gear"
+price: 15
+note: "face paint, disguise"
+source: "players-guide/marketplace#gear"
+---
+id: "dowsing-rod"
+type: "item"
+name: "Dowsing Rod"
+price: 15
+source: "players-guide/marketplace#gear"
+---
+id: "expeditionary-gear"
+type: "item"
+name: "Expeditionary Gear"
+price: 10
+note: "climbing spikes, pulley, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "fire-oil"
+type: "item"
+name: "Fire Oil"
+price: 10
+source: "players-guide/marketplace#gear"
+---
+id: "fishing-rod"
+type: "item"
+name: "Fishing Rod"
+price: 10
+source: "players-guide/marketplace#gear"
+---
+id: "games"
+type: "item"
+name: "Games"
+price: 10
+note: "cards, dice, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "gloves"
+type: "item"
+name: "Gloves"
+price: 20
+size: "petty"
+source: "players-guide/marketplace#gear"
+---
+id: "grappling-hook"
+type: "item"
+name: "Grappling Hook"
+price: 25
+source: "players-guide/marketplace#gear"
+---
+id: "lantern"
+type: "item"
+name: "Lantern"
+price: 10
+note: "relights 6 times per oil can"
+source: "players-guide/marketplace#gear"
+---
+id: "mirror"
+type: "item"
+name: "Mirror"
+price: 5
+source: "players-guide/marketplace#gear"
+---
+id: "net"
+type: "item"
+name: "Net"
+price: 10
+source: "players-guide/marketplace#gear"
+---
+id: "oil-can"
+type: "item"
+name: "Oil Can"
+price: 10
+uses: 6
+source: "players-guide/marketplace#gear"
+---
+id: "outdoor-comfort"
+type: "item"
+name: "Outdoor Comfort"
+price: 10
+note: "blanket, hammock, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "parchment"
+type: "item"
+name: "Parchment"
+price: 10
+uses: 3
+source: "players-guide/marketplace#gear"
+---
+id: "pole"
+type: "item"
+name: "Pole"
+price: 5
+note: "10ft"
+source: "players-guide/marketplace#gear"
+---
+id: "repellent"
+type: "item"
+name: "Repellent"
+price: 10
+note: "wolfsbane, mugwort, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "rope"
+type: "item"
+name: "Rope"
+price: 5
+note: "25ft"
+source: "players-guide/marketplace#gear"
+---
+id: "sedative"
+type: "item"
+name: "Sedative"
+price: 30
+source: "players-guide/marketplace#gear"
+---
+id: "sewing-kit"
+type: "item"
+name: "Sewing Kit"
+price: 20
+source: "players-guide/marketplace#gear"
+---
+id: "simple-instruments"
+type: "item"
+name: "Simple Instruments"
+price: 10
+note: "pipes, lute, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "smoking-pipe"
+type: "item"
+name: "Smoking Pipe"
+price: 15
+size: "petty"
+source: "players-guide/marketplace#gear"
+---
+id: "specialized-tools"
+type: "item"
+name: "Specialized Tools"
+price: 20
+note: "ink, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "spiked-boots"
+type: "item"
+name: "Spiked Boots"
+price: 15
+source: "players-guide/marketplace#gear"
+---
+id: "spyglass"
+type: "item"
+name: "Spyglass"
+price: 40
+source: "players-guide/marketplace#gear"
+---
+id: "tent"
+type: "item"
+name: "Tent"
+price: 20
+size: "bulky"
+note: "fits 2"
+source: "players-guide/marketplace#gear"
+---
+id: "thieving-tools"
+type: "item"
+name: "Thieving Tools"
+price: 25
+note: "lockpick, metal file, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "torch"
+type: "item"
+name: "Torch"
+price: 5
+uses: 3
+source: "players-guide/marketplace#gear"
+---
+id: "trap"
+type: "item"
+name: "Trap"
+price: 35
+damage: "d6"
+note: "d6 STR damage"
+source: "players-guide/marketplace#gear"
+---
+id: "whistle"
+type: "item"
+name: "Whistle"
+price: 15
+size: "petty"
+source: "players-guide/marketplace#gear"
+---
+id: "wilderness-clothes"
+type: "item"
+name: "Wilderness Clothes"
+price: 15
+size: "petty"
+note: "poncho, cloak, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "hire-alchemist"
+type: "service"
+name: "Alchemist (hireling)"
+price: 30
+note: "per day"
+role: "Alchemist"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-animal-handler"
+type: "service"
+name: "Animal Handler (hireling)"
+price: 5
+note: "per day"
+role: "Animal Handler"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-blacksmith"
+type: "service"
+name: "Blacksmith (hireling)"
+price: 15
+note: "per day"
+role: "Blacksmith"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-bodyguard"
+type: "service"
+name: "Bodyguard (hireling)"
+price: 10
+note: "per day"
+role: "Bodyguard"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-local-guide"
+type: "service"
+name: "Local Guide (hireling)"
+price: 5
+note: "per day"
+role: "Local Guide"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-lockpick"
+type: "service"
+name: "Lockpick (hireling)"
+price: 10
+note: "per day"
+role: "Lockpick"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-navigator"
+type: "service"
+name: "Navigator (hireling)"
+price: 10
+note: "per day"
+role: "Navigator"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-sailor"
+type: "service"
+name: "Sailor (hireling)"
+price: 5
+note: "per day"
+role: "Sailor"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-scholar"
+type: "service"
+name: "Scholar (hireling)"
+price: 20
+note: "per day"
+role: "Scholar"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-tracker"
+type: "service"
+name: "Tracker (hireling)"
+price: 5
+note: "per day"
+role: "Tracker"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-trapper"
+type: "service"
+name: "Trapper (hireling)"
+price: 5
+note: "per day"
+role: "Trapper"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-veteran-bodyguard"
+type: "service"
+name: "Veteran Bodyguard (hireling)"
+price: 20
+note: "per day"
+role: "Veteran Bodyguard"
+source: "players-guide/marketplace#hirelings-per-day"

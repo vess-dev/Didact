@@ -1,0 +1,5 @@
+type: pc
+label: Player character
+fields:
+  hp: {kind: int, min: 0, default: 6}
+  level: {kind: int, min: 0, default: 1}

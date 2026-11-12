@@ -1,0 +1,5 @@
+table: archetypes
+entries:
+  - {text: Laborer, data: {brawn: 3, agility: 2, intellect: 2, presence: 2, wounds: 13}}
+  - {text: Intellectual, data: {brawn: 2, agility: 1, intellect: 3, presence: 2, wounds: 8}}
+  - {text: Aristocrat, data: {brawn: 1, agility: 2, intellect: 2, presence: 3, wounds: 10}}

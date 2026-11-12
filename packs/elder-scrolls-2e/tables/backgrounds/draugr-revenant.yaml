@@ -1,0 +1,24 @@
+# Draugr Revenant (backgrounds/draugr-revenant): the background's two d6 tables.
+table: draugr-revenant-1
+title: "What woke you?"
+dice: d6
+source: backgrounds/draugr-revenant#what-woke-you-roll-1d6
+entries:
+  1: "An oath unfulfilled. You know exactly what you swore, and the Warden tells you. Once per day, re-roll a failed save made in pursuit of that oath."
+  2: "A broken ward. You served a Dragon Priest and woke when his ward broke. You can read the dragon-runes on a word wall, and once per session you may ask the Warden one true thing the old dead would know about a barrow, a priest, or a buried word."
+  3: "The duty of a tomb-warden, which rose with you. In a barrow, crypt, or ruin, you need not save to act in the first round of a fight."
+  4: "Death-magic, seated deep. Once per day, a fire or sacred attack against you strikes as an ordinary blow instead of an Enhanced one."
+  5: "A draugr lord's favor. You were thane to the lord in the sarcophagus beside yours, and his dead still know you: draugr that no one commands will not attack you first, and may heed a word from you."
+  6: "The long sleep. You can lie in any stone coffin or burial niche and become as still as the dead around you: no living thing notices you until you move."
+---
+table: draugr-revenant-2
+title: "What of the warrior you were endures?"
+dice: d6
+source: backgrounds/draugr-revenant#what-of-the-warrior-you-were-endures-roll-1d6
+entries:
+  1: {text: "Ancient Nord Bow: A horn-and-sinew bow (d6, bulky), buried at your side. The hand that draws it never tires or trembles.", data: {gear: [{name: "Ancient Nord Bow", damage: "d6", size: "bulky"}]}}
+  2: {text: "The Grave-Ward: A round shield of black iron from your barrow (+1 Armor), its rim carved with the names of the shield-wall you died in. Speak them before a fight, and one answers from the dark: a shade of your old shield-thane (3 HP, 1 Armor, ancient Nord sword d8) fights beside you for the scene (1 charge). Recharge: Lay the shield on a Nordic sarcophagus overnight.", data: {gear: [{name: "The Grave-Ward", armor: 1, charges: 1, recharge: "Lay the shield on a Nordic sarcophagus overnight.", note: "a round shield of black iron; its shade of your old shield-thane (3 HP, 1 Armor, ancient Nord sword d8) fights beside you for the scene"}]}}
+  3: {text: "The Old Steel: An ancient Nord war axe (d8) laid to rest with you. It never rusts, dulls, or breaks.", data: {gear: [{name: "The Old Steel", damage: "d8"}]}}
+  4: "The Death-Chill: The cold of the barrow clings to you. Once per day, lay a freezing touch on a foe in reach: it takes d6 and is slowed."
+  5: "The Word-Sense: You hear the hum of a word wall from far off and feel hallowed ground before you tread on it. You can find the way through any barrow by old memory."
+  6: "Deathless Resolve: What killed you the first time cannot stop you now. Once per day, when a failed save would keep you from acting — paralysis, the first-round DEX save, the old magic's compulsion — act anyway."

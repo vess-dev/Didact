@@ -1,0 +1,24 @@
+# Necromancer (backgrounds/necromancer): the background's two d6 tables.
+table: necromancer-1
+title: "How did you come to the forbidden art?"
+dice: d6
+source: backgrounds/necromancer#how-did-you-come-to-the-forbidden-art-roll-1d6
+entries:
+  1: {text: "At the College of Winterhold, which tolerates necromancy so long as it stays theory. Yours did not. Take a Spell Tome: Absorb Health, an old Mysticism primer from the Arcanaeum's back shelves that Urag gro-Shub is still looking for.", data: {gear: [{name: "Spell Tome: Absorb Health"}]}}
+  2: {text: "In Malkoran's circle, raising the war-dead in the halls of Kilkreath Temple while Meridia's beacon lay dark. Take a Spell Tome: Reanimate Corpse, and a dread of bright light you cannot explain.", data: {gear: [{name: "Spell Tome: Reanimate Corpse"}]}}
+  3: {text: "Alone, from a book you stole, the slow and dangerous way. Take a Spell Tome: Soul Trap, and an instinct for where bodies lie buried.", data: {gear: [{name: "Spell Tome: Soul Trap"}]}}
+  4: {text: "As a grieving spouse who would not let go. Take a Spell Tome: Raise Zombie and a soul gem holding someone you loved (petty). Once per day, the trapped soul whispers a true warning of danger nearby.", data: {gear: [{name: "Spell Tome: Raise Zombie"}, {name: "Soul gem holding someone you loved", size: "petty"}]}}
+  5: {text: "From a Volkihar vampire, who taught you the arts of the Soul Cairn in exchange for your blood. Take a Spell Tome: Conjure Boneman, and two neat scars at your throat.", data: {gear: [{name: "Spell Tome: Conjure Boneman"}]}}
+  6: {text: "From Molag Bal, in an abandoned house in Markarth, where you were chained until you said yes. Take a Spell Tome: Revenant, bound in something that is not leather. Once per campaign, you may ask the Lord of Domination to raise any corpse whole and obedient until the next dawn; the Warden sets his price.", data: {gear: [{name: "Spell Tome: Revenant"}]}}
+---
+table: necromancer-2
+title: "What is the centerpiece of your dark craft?"
+dice: d6
+source: backgrounds/necromancer#what-is-the-centerpiece-of-your-dark-craft-roll-1d6
+entries:
+  1: "The Faithful Thrall: Your servants guard their master. Once per combat, one of your raised servants throws itself in front of a blow meant for you, taking it instead."
+  2: {text: "Graverobber's Kit: A pry-bar, a spade, and a sack of quicklime (bulky). You can open a grave or a burial urn in an hour without a sound, and you know at a glance how long any corpse has been dead.", data: {gear: [{name: "Graverobber's Kit", size: "bulky"}]}}
+  3: {text: "Soul Lantern: A black iron lantern (petty, 1 charge) that cages a trapped soul. Spend the charge to raise one of your destroyed servants again on the spot. Recharge: empty a filled soul gem into it.", data: {gear: [{name: "Soul Lantern", size: "petty", charges: 1, recharge: "empty a filled soul gem into it"}]}}
+  4: "Grave-Chill: You smell of the tomb. Skeletons and zombies ignore you unless you attack them, or unless someone commands them otherwise."
+  5: {text: "The Phylactery: An iron-bound phylactery (petty, 1 use) holding a sliver of your own soul. The first time you would suffer Critical Damage, it shatters instead and you crawl free. Making another takes a filled black soul gem and a week's work.", data: {gear: [{name: "The Phylactery", size: "petty", uses: 1}]}}
+  6: {text: "Hunted by the Vigil: They know your name and your work: the Vigil of Stendarr counts you Hunted. But you carry a dead Vigilant's ledger (petty), naming every Vigil patrol and informant in the Holds.", data: {add: {rep_vigil: -2}, gear: [{name: "Dead Vigilant's ledger", size: "petty", note: "names every Vigil patrol and informant in the Holds"}]}}

@@ -1,0 +1,24 @@
+# Redguard Alik'r (backgrounds/redguard-alikr): the background's two d6 tables.
+table: redguard-alikr-1
+title: "What did the Alik'r make of you?"
+dice: d6
+source: backgrounds/redguard-alikr#what-did-the-alikr-make-of-you-roll-1d6
+entries:
+  1: {text: "You studied the Book of Circles under a sword-master of Sentinel, and carry your master's copy (petty). Once per combat, salute a single foe as your duel: your next attack against it alone is Enhanced.", data: {gear: [{name: "Book of Circles", size: "petty", note: "your master's copy"}]}}
+  2: "A scorpion's sting nearly killed you in the dunes, and you came out of the fever harder. You need not save against the venom of beasts — spiders, chaurus, scorpions — only against the poisons of men."
+  3: {text: "You rode with Kematu's band into Skyrim, hunting a traitor named Iman — who calls herself Saadia now, in Whiterun. Take a creased bounty writ (petty) and a coil of strong rope (30 ft). Whether you still want her dead is your affair.", data: {gear: [{name: "Bounty writ", size: "petty"}, {name: "Strong rope", note: "30 ft"}]}}
+  4: "You were born Ash'abah, of the shunned tribe who destroy the undead that other Redguards may not fight. Traditional Redguards will not share your fire, but no tomb can hide its dead from you: before you enter a barrow, crypt, or cellar, you know whether the dead inside are restless."
+  5: {text: "You crossed the Alik'r Desert on foot and lived. You can go two days without water before you are Deprived, and you carry a sand-glass compass (petty) that always points toward Hammerfell.", data: {gear: [{name: "Sand-glass compass", size: "petty"}]}}
+  6: {text: "A sword-saint's spirit judged you worthy at a forgotten shrine of the Ansei. Take an Ansei talisman (petty): once per day, re-roll any one failed save — but only while your cause is honorable.", data: {gear: [{name: "Ansei talisman", size: "petty"}]}}
+---
+table: redguard-alikr-2
+title: "What marks you as Ansei-sworn?"
+dice: d6
+source: backgrounds/redguard-alikr#what-marks-you-as-ansei-sworn-roll-1d6
+entries:
+  1: {text: "Singing Steel: An heirloom scimitar of folded Yokudan steel, masterwork (d10), in place of your starting scimitar. It rings a clear note when drawn, and every Redguard who hears it knows the family that forged it.", data: {upgrade: true, replaces: {name: "Scimitar", damage: "d8"}, gear: [{name: "Singing Steel", damage: "d10", qualities: ["masterwork"], tempered: true, note: "an heirloom scimitar of folded Yokudan steel"}]}}
+  2: {text: "The Dune-Dancer: Twin light shortswords (d6+d6, bulky). With both in hand, once per combat, take a second move on your turn to flank or close the distance.", data: {gear: [{name: "Twin shortswords", damage: "{d6, d6}kh1", size: "bulky"}]}}
+  3: {text: "Sash of Leki: A sash blessed in the name of Leki, Saint of the Spirit Sword (petty). Once per day, when a foe would strike you, make a DEX save; on a success, the blow misses.", data: {gear: [{name: "Sash of Leki", size: "petty"}]}}
+  4: {text: "The Honor-Bond: A signed oath-token of your sword school (petty). Any Redguard who reads it treats you as kin — their Reaction starts at Kind — and breaking your word shames you doubly.", data: {gear: [{name: "The Honor-Bond", size: "petty"}]}}
+  5: {text: "Alik'r Sand: A pouch of desert sand blessed by an Alik'r sand-wizard (3 uses). Flung into the air with a word, it whirls into a stinging veil for a few moments: no one sees through it, and you can slip away unseen.", data: {gear: [{name: "Alik'r Sand", uses: 3}]}}
+  6: "The Shehai: You have begun to learn the Spirit Sword of the Ansei. Once per day, a blade of your own will forms in your empty hand (d8) for the rest of the scene — magic, not steel, and it cannot be taken from you."

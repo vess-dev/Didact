@@ -1,0 +1,38 @@
+# Story arcs (Gameplay, p. 26): the book's example arcs, one column each.
+table: story-arcs
+title: "Story arcs"
+description: >-
+  Pick a group arc together, then a character arc: from these examples (a roll gives one of
+  each kind), detailed to fit your game, or your own. Keep it short. For struggles, get the
+  group's permission.
+dice: d8
+columns: [ambition, struggle, growth]
+source: "p. 26"
+entries:
+  1: [build a reputation, come unraveled, embrace change]
+  2: [explore the world, doubt convictions, escape my past]
+  3: [finish the mission, feed my vices, find belonging]
+  4: [make things right, flirt with betrayal, just enjoy life]
+  5: [satisfy desires, keep a secret, prove myself]
+  6: [uncover the truth, survive the storm, settle debts]
+  7: [spread the word, ignore the problem, make something new]
+  8: [expand power, burn at both ends, take charge]
+---
+# Bonds (Gameplay, p. 22): an intensity and a nature.
+table: bonds
+title: "Bonds"
+description: >-
+  Your dynamic with each PC: match an intensity and a nature (a roll gives one of each), or
+  write your own. Not necessarily reciprocal. When a bond changes, give a short vignette; the
+  other PC takes spark.
+dice: d6
+columns: [intensity, nature]
+labels: false
+source: "p. 22"
+entries:
+  1: [deep, affection]
+  2: [complex, camaraderie]
+  3: [growing, curiosity]
+  4: [lowkey, doubts]
+  5: [playful, respect]
+  6: [tense, rivalry]

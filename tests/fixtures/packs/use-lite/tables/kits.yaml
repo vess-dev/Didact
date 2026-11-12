@@ -1,0 +1,10 @@
+table: kits
+title: Kits
+dice: d1
+entries:
+  1:
+    text: A cutter's kit, short a laser
+    data:
+      gear: [Rope, {name: Laser, damage: d8}]
+      drop: [{name: Laser, damage: d8}]
+      parts: [{dice: 2}, {dice: 3}]

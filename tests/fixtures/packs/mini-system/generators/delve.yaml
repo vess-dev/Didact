@@ -1,0 +1,41 @@
+generator: delve
+title: A small delve
+help: Rooms dropped on a map, numbered from the entrance (a test of the generator steps).
+params: {note: {kind: text, default: ""}}
+steps:
+  - choose: {from: [Crypt, Cave], as: site}
+  - let: {site_name: "The {@site} Below"}
+  - entity: {key: site, type: loc, name: "{@site_name}", fields: {kind: dungeon, note: "$note"}}
+  - table: boons
+    as: boon
+    times: 3
+    distinct: true
+  - add: {to: "@site", field: boons, value: "@boon"}
+  - roll: d4+3
+    as: rooms
+  - repeat: "@rooms"
+    steps:
+      - table: room-drop
+        as: drop
+      - table: "{@drop.what}"
+        as: what
+      - table: "delve-{@drop.room}-detail"
+        as: detail
+      - if: "@drop.room == 'shrine'"
+        then:
+          - choose: {from: [ask, hide], as: offering}
+      - entity:
+          key: room
+          type: loc
+          name: "{@what}"
+          fields: {kind: room, feature: "{@what}, {@detail}", region: "@site"}
+  - map:
+      places: room
+      paths: {max: 3}
+      conditional: 5
+      hidden: 6
+      describe: [boons]
+      entrance: true
+      exit: true
+      number: "{@site_name}, room {@n}"
+  - prompt: Name each room.

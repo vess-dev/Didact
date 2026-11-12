@@ -1,0 +1,66 @@
+# Growth around the step-by-step draft (chargen/growth.yaml, `didact char advance <pc>`):
+# resolving a bond or an omen (wardens-guide/bonds-and-omens), and the between-sessions reminder
+# (players-guide/procedures#downtime, wardens-guide/growth).
+action: resolve-bond
+title: Resolve a bond
+help: >-
+  A PC resolves a bond by discovering the truth behind its mysteries or by solving its root
+  cause (they don't have to). Its thread is done and the bond leaves their sheet; growth of some
+  kind follows (`didact char advance <pc> source=bond`, where the Warden can also give a new
+  bond). A lifted Stone Heart weighs nothing any more.
+params:
+  who: ref
+  bond: {kind: ref, help: "The bond's thread, made with the character (`didact quest list`)"}
+steps:
+  - if: "default(@bond.goal, '') == ''"
+    then:
+      - stop: "{@bond.name} has no bond text (goal): name the bond's thread, e.g. `didact quest list`."
+  - if: "@bond.goal in @who.bond"
+    then:
+      - set: who.bond
+        op: "-="
+        value: "@bond.goal"
+    else: ["(That bond isn't on {@who.name}'s sheet: nothing to take off it.)"]
+  - set: bond.status
+    value: done
+  - if: "'Stone Heart' in @bond.goal and default(@who.burden, 0) > 0"
+    then:
+      - set: who.burden
+        value: 0
+      - message: "The debt is lifted: the Stone Heart weighs nothing now (`didact inv drop {@who.id} 'Stone Heart'` if it's gone)."
+  - message: "{@who.name} resolves a bond: {@bond.name}."
+  - prompt: "Growth of some kind follows: `didact char advance {@who.id} source=bond` (the Warden can create a new bond for them there)."
+source: wardens-guide/bonds-and-omens#bonds
+---
+action: resolve-omen
+title: Resolve an omen
+help: >-
+  An omen is resolved when the characters reveal the truth behind its origin or resolve its
+  dangers. Its thread is done, and growth follows: for the party as a collective, or for an
+  entangled individual (who=<pc>). An omen ignored comes to pass and wreaks its havoc.
+params:
+  omen: {kind: ref, help: "The omen's thread (`didact quest list`)"}
+  who: {kind: ref, optional: true, help: "The entangled PC who grows (left out: the party as a whole)"}
+steps:
+  - set: omen.status
+    value: done
+  - message: "The omen is resolved: {@omen.name}."
+  - if: "default(@who, '') <> ''"
+    then:
+      - prompt: "Growth for the entangled one: `didact char advance {@who} source=omen`."
+    else:
+      - prompt: "Growth for the party as a collective: `didact char advance <pc> source=omen` for each, or a change the Warden gives them all."
+source: wardens-guide/bonds-and-omens#omens
+---
+trigger: between-sessions
+title: Between sessions
+help: >-
+  When a session ends, for each PC: a Downtime Action, and whether anything met a growth
+  trigger.
+on: session_end
+for: pcs
+params: {who: ref}
+when: "@who.status <> 'dead'"
+steps:
+  - reminder: "Between sessions {@who.name} may take one Downtime Action somewhere safe and out of recovery (`didact do downtime who={@who.id} action=research|training|ties goal='…'`). Did the session meet a growth trigger (two of: a focused pattern of behavior, an obvious risk, a unique item, creature or entity), or resolve a bond or an omen? Then `didact char advance {@who.id}`."
+source: players-guide/procedures#downtime

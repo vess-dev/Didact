@@ -1,0 +1,24 @@
+# Cutpurse (backgrounds/cutpurse): the background's two d6 tables.
+table: cutpurse-1
+title: "What was your last good score?"
+dice: d6
+source: backgrounds/cutpurse#what-was-your-last-good-score-roll-1d6
+entries:
+  1: {text: "A drunk Legion paymaster on festival night. You lifted his whole purse before he hit the cobbles. Take 60 extra Septims and a wanted poster with your own face roughly sketched on it.", data: {add: {gold: 60}, gear: [{name: "Wanted poster", note: "your own face roughly sketched on it"}]}}
+  2: {text: "A rigged shell game outside the Bee and Barb, until a Black-Briar thug recognized the trick. You got away with the pot — 3d6 extra Septims — and a limp, and Maven's people still want their money.", data: {gold_dice: "3d6"}}
+  3: {text: "You sold the same \"enchanted\" ring to four buyers in one afternoon. Take a tray of paste-jewel fakes that pass for 200 Septims' worth to anyone who doesn't bite them, and four buyers in Whiterun who would like a word.", data: {gear: [{name: "Tray of paste-jewel fakes", note: "they pass for 200 Septims' worth to anyone who doesn't bite them"}]}}
+  4: {text: "You cut a noble's purse at a feast in the Blue Palace and walked out the front door. Take a stolen silk doublet (petty) good enough to pass for gentry, so long as no one looks too closely or too long.", data: {gear: [{name: "Silk doublet", size: "petty"}]}}
+  5: {text: "You picked a Vigilant of Stendarr's pocket and found a black soul gem (petty) you cannot fence and are afraid to keep. The Vigil confiscated it from someone — and someone is looking for it.", data: {gear: [{name: "Black soul gem", size: "petty"}]}}
+  6: {text: "A mark caught your wrist mid-cut, and hired you on the spot to lift something for him. You never learned his name, only the brass token (petty) he pressed on you, good for one favor from a stranger who will know it.", data: {gear: [{name: "Brass token", size: "petty"}]}}
+---
+table: cutpurse-2
+title: "What gets you clear when it goes wrong?"
+dice: d6
+source: backgrounds/cutpurse#what-gets-you-clear-when-it-goes-wrong-roll-1d6
+entries:
+  1: "Quick Fingers: A lifetime in the crowd. Once per day, re-roll a failed DEX save to pick a pocket, palm an object, or cut a purse unseen."
+  2: "The Crowd: You read a market like a ledger. In any throng or busy street, you can vanish from a single pursuer's sight as if you were never there."
+  3: {text: "Decoy Purse: A fat purse stuffed with lead slugs, one real Septim on top (petty). Drop it as you run: a pursuer must pass a WIL save or stop to snatch it up.", data: {gear: [{name: "Decoy Purse", size: "petty"}]}}
+  4: {text: "Smoke Pellet: An alchemist's trick-egg that bursts into a choking gray cloud (2 uses). Throw it down and slip away: attacks into or out of the cloud are Impaired until it clears.", data: {gear: [{name: "Smoke Pellet", uses: 2}]}}
+  5: "Sweet-Talk: A purse of small kindnesses and small bribes. Once per day, a guard, gatekeeper, or witness who would turn you in looks the other way instead — their Reaction toward you shifts one step better."
+  6: {text: "Bolthole Map: A grubby, much-folded chart of the back alleys, drains, and rooftop runs of three Hold cities, safe doors marked (petty). You always know the way out.", data: {gear: [{name: "Bolthole Map", size: "petty"}]}}

@@ -1,0 +1,8 @@
+# Only what has a `key:` (or an `as:`) can be named by a field: `kind: loc-1` stays as written.
+generator: camp
+title: A camp and its keeper
+steps:
+  - entity: {type: loc, name: The Camp, fields: {kind: loc-1}}
+  - entity: {type: loc, name: The Ford, fields: {kind: crossing}}
+    as: ford
+  - entity: {key: keeper, type: npc, name: The Keeper, fields: {home: "@ford", role: keeper-1}}

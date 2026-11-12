@@ -1,0 +1,226 @@
+# Character creation (players-guide/character-creation, unusual-pcs), random or step by step,
+# with every background result applied: +1 max HP, extra Septims, a masterwork piece in place
+# of the starting one, a Spell Tome of three, 20 Septims of Marketplace gear, the companions,
+# mount and hireling some backgrounds bring, the Housecarl's chosen result, a background's
+# faction ties, and an unusual background's nature. These replace cairn-2e's three chargens.
+chargen: pc
+title: An Elder Scrolls character
+help: >-
+  A background (d50; the five unusual ones only with the unusual-backgrounds option), a race and
+  its one trait, the background's gear and its two tables, 3d6 Septims, 3d6 STR, DEX and WIL in
+  order with one optional swap, 1d6 HP, the eight traits, a bond (also a thread to resolve), a
+  Standing Stone with the standing-stones option, an age of 2d20+10, an omen for the party's
+  youngest (read aloud, and a thread), and a name from the background. The background's results
+  apply, and its faction ties set the Reputation it starts with.
+creates: pc
+modes: [random, guided, template]
+steps:
+  - if: "@option.unusual_backgrounds"
+    then:
+      - choose_or_roll: {table: backgrounds, as: background, field: background}
+    else:
+      - choose_or_roll: {table: backgrounds-mortal, as: background, field: background}
+  # A race and its trait (chosen, or 1d10 down the list); a background that names its people (a
+  # Bosmer Hunter, a Telvanni Mage) fixes it, as Character Creation → Races says. A Dremora picks a race for the shape it wears, its trait suppressed.
+  - choose_or_roll: {table: races, as: race, field: race, answer: "@background.race", prompt: "Choose a race, or roll 1d10 down the list (the Dremora's trait is suppressed; a Briarheart is most likely a Breton of the Reach, a draugr a Nord)."}
+  - if: "default(@background.nature, 'mortal') == 'dremora'"
+    then:
+      - apply: {trait: "Suppressed: the Daedric nature overrides the {@race} trait."}
+    else:
+      - apply: {trait: "@race.trait"}
+      - add: {field: impaired_by, value: "@race.impaired_by"}
+  - apply: "@background.gear"
+  - apply: "@background.reputation"
+  - apply: {nature: "@background.nature", natural_armor: "@background.natural_armor"}
+  - add: {field: enhanced_by, value: "@background.enhanced_by"}
+  - roll: {gold: 3d6}
+  # The two background tables (the Housecarl sworn to no one yet chooses the second).
+  - roll_tables: "@background.table_1"
+  - if: "default(@housecarl_1.choose_next, false)"
+    then:
+      - choose_or_roll: {table: housecarl-2, as: housecarl_2, prompt: "No one, yet: choose your result on this table rather than rolling it."}
+      - apply: "@housecarl_2.gear"
+    else:
+      - roll_tables: "@background.table_2"
+  # What the two tables asked for (each flag lives on the result that gives it).
+  - let:
+      extra_hp: >-
+        default(@battlemage_2.extra_hp, false) or default(@blacksmith_1.extra_hp, false)
+        or default(@blades_agent_1.extra_hp, false) or default(@companion_1.extra_hp, false)
+        or default(@dawnguard_hunter_1.extra_hp, false) or default(@farmhand_1.extra_hp, false)
+        or default(@housecarl_1.extra_hp, false) or default(@khajiit_smuggler_1.extra_hp, false)
+        or default(@merchant_1.extra_hp, false) or default(@miner_1.extra_hp, false)
+        or default(@sailor_1.extra_hp, false) or default(@stormcloak_soldier_1.extra_hp, false)
+      gold_dice: >-
+        default(@argonian_shadowscale_1.gold_dice, default(@bandit_1.gold_dice,
+        default(@bard_1.gold_dice, default(@bosmer_hunter_1.gold_dice, default(@cutpurse_1.gold_dice,
+        default(@dunmer_ashlander_1.gold_dice, default(@farmhand_1.gold_dice,
+        default(@imperial_legionnaire_1.gold_dice, default(@merchant_1.gold_dice, '')))))))))
+      budget: "default(@merchant_1.gear_budget, 0)"
+      tomes: "default(@college_apprentice_1.tome_choice, '')"
+      companion: >-
+        default(@bosmer_hunter_1.companion, default(@conjurer_2.companion,
+        default(@court_wizard_2.companion, default(@dawnguard_hunter_2.companion,
+        default(@farmhand_2.companion, default(@khajiit_smuggler_2.companion,
+        default(@nightingale_2.companion, default(@sellsword_2.companion,
+        default(@skaal_hunter_1.companion, default(@background.companion, ''))))))))))
+      hireling: "default(@merchant_2.hireling, '')"
+  # "Take N extra Septims."
+  - if: "@gold_dice == '2d6'"
+    then:
+      - roll: 2d6
+        as: more_gold
+      - add: {field: gold, value: "@more_gold"}
+  - if: "@gold_dice == '3d6'"
+    then:
+      - roll: 3d6
+        as: more_gold
+      - add: {field: gold, value: "@more_gold"}
+  - if: "@gold_dice == '2d6*10'"
+    then:
+      - roll: 2d6*10
+        as: more_gold
+      - add: {field: gold, value: "@more_gold"}
+  # A masterwork or finer piece takes the place of the starting one of its kind.
+  - if: "default(@companion_1.upgrade, false)"
+    then: [{remove: {field: inventory, value: "@companion_1.replaces"}}]
+  - if: "default(@nord_reaver_2.upgrade, false)"
+    then: [{remove: {field: inventory, value: "@nord_reaver_2.replaces"}}]
+  - if: "default(@redguard_alikr_2.upgrade, false)"
+    then: [{remove: {field: inventory, value: "@redguard_alikr_2.replaces"}}]
+  - if: "default(@orc_stronghold_warrior_2.upgrade, false)"
+    then: [{remove: {field: inventory, value: "@orc_stronghold_warrior_2.replaces"}}]
+  - if: "default(@dawnguard_hunter_2.upgrade, false)"
+    then: [{remove: {field: inventory, value: "@dawnguard_hunter_2.replaces"}}]
+  - if: "default(@blades_agent_2.upgrade, false)"
+    then: [{remove: {field: inventory, value: "@blades_agent_2.replaces"}}]
+  - if: "default(@court_wizard_2.upgrade, false)"
+    then: [{remove: {field: inventory, value: "@court_wizard_2.replaces"}}]
+  # "Take a Spell Tome: Flames, Frostbite, or Sparks — your choice" (College Apprentice).
+  - if: "@tomes <> ''"
+    then:
+      - choose: {from: "@college_apprentice_1.tome_choice", as: tome, prompt: "Faralda's Spell Tome: your choice"}
+      - apply: [{name: "Spell Tome: {@tome}"}]
+  # "Take 20 Septims' worth of gear from the Marketplace" (a Merchant outfitter).
+  - repeat: 20
+    as: pick
+    steps:
+      - if: "@budget > 0"
+        then:
+          - table: gear-over-budget
+            with: {budget: "@budget"}
+            as: over
+          - choose: {table: marketplace-gear, as: bought, exclude: "@over.names", prompt: "20 Septims' worth of gear from the Marketplace: {@budget} left"}
+          - apply: "@bought.gear"
+          - let: {budget: "@budget - @bought.price"}
+  - roll: {each: [STR, DEX, WIL], dice: 3d6}
+  - swap: {among: [STR, DEX, WIL], optional: true}
+  - roll: {hp: 1d6}
+  - if: "@extra_hp"
+    then:
+      - apply: {hp: "{@character.hp + 1}"}
+      - message: "The background raises maximum HP by 1: {@character.hp}."
+  - roll_tables: [physique, skin, hair, face, speech, clothing, virtue, vice]
+  # Bonds: on the sheet and a thread to resolve (wardens-guide/bonds-and-omens).
+  - choose_or_roll: {table: bonds, as: bond}
+  - add: {field: bond, value: "@bond"}
+  - apply: "@bond.gear"
+  - entity: {key: bond, type: thread, name: "Bond: {@bond.name}", fields: {goal: "@bond"}, links: [{rel: of, to: character}]}
+    as: bond_thread
+  # Standing Stones, if the Warden uses them: roll 1d12 or choose (never the Serpent).
+  - if: "@option.standing_stones"
+    then:
+      - choose_or_roll: {table: standing-stones, as: stone, prompt: "A Standing Stone marks you (roll 1d12 or choose; the Serpent must be sought out in play)."}
+      - apply: {standing_stone: "@stone.stone"}
+      - if: "@stone.stone == 'The Apprentice'"
+        then:
+          - add: {field: enhanced_by, value: magic}
+  - roll: {age: 2d20+10}
+  - if: "@race == 'Altmer' or @race == 'Bosmer' or @race == 'Dunmer'"
+    then:
+      - prompt: "The Mer are long-lived: an Altmer, Bosmer or Dunmer may be far older than the dice say ({@character.age}); a Dunmer who remembers the Red Year has seen two centuries."
+  - choose: {from: ["yes", "no"], as: youngest, prompt: "Is this the party's youngest character? The youngest rolls an omen and reads it aloud."}
+  - if: "@youngest == 'yes'"
+    then:
+      - choose_or_roll: {table: omens, as: omen, field: omen}
+      - entity: {key: omen, type: thread, name: "Omen: {@omen.name}", fields: {goal: "@omen"}}
+        as: omen_thread
+      - prompt: "Read the omen aloud to the other players; the Warden weaves it into the setting (`didact do resolve-omen` when it's resolved)."
+  - name: {from: "@background.names"}
+  # Companions, the mount and the hireling: records of their own, beside the character. Those
+  # the book gives no fixed numbers roll the companion stat block here (1d6 HP, 3d6 each).
+  - if: "@companion == 'eager-apprentice' or @companion == 'old-hound' or @companion == 'ice-wolf' or @companion == 'hunting-hawk'"
+    then:
+      - roll: 1d6
+        as: c_hp
+      - roll: 3d6
+        as: c_str
+      - roll: 3d6
+        as: c_dex
+      - roll: 3d6
+        as: c_wil
+      - entity: {key: companion, from: "@companion", scope: campaign, fields: {owner: character, hp: "@c_hp", STR: "@c_str", DEX: "@c_dex", WIL: "@c_wil"}}
+        as: made_companion
+  - if: "@companion <> '' and @companion <> 'eager-apprentice' and @companion <> 'old-hound' and @companion <> 'ice-wolf' and @companion <> 'hunting-hawk'"
+    then:
+      - entity: {key: companion, from: "@companion", scope: campaign, fields: {owner: character}}
+        as: made_companion
+  - if: "@hireling <> ''"
+    then:
+      - roll: 1d6
+        as: h_hp
+      - roll: 3d6
+        as: h_str
+      - roll: 3d6
+        as: h_dex
+      - roll: 3d6
+        as: h_wil
+      - entity: {key: hireling, from: "@hireling", scope: campaign, fields: {hp: "@h_hp", STR: "@h_str", DEX: "@h_dex", WIL: "@h_wil"}}
+        as: made_hireling
+  - if: "@companion <> '' or @hireling <> ''"
+    then:
+      - prompt: "{@name} doesn't travel alone: once committed, `didact party add <it> --as companion` brings a companion along (a mount carries its own load: `didact inv add <it> …`); a hireling is paid by the day and saves morale."
+  - if: "default(@background.unusual, false)"
+    then:
+      - prompt: "An unusual background: its edges and costs are in Playing Unusual PCs (`didact rules` lists feed, drain, sunlight, transform, revert, reform, binding-mend, absorb-life). Clear it with the Warden."
+  - prompt: "Describe the character in a sentence or two, from their race, traits, background and bond."
+source: players-guide/character-creation#roll-or-choose-a-background
+---
+chargen: hireling
+title: A hireling
+help: >-
+  A role from the Marketplace's hirelings (with its daily wage in Septims), 3d6 for each
+  attribute and 1d6 HP, gear fit for their station, and all the Character Traits tables.
+creates: hireling
+modes: [random, guided]
+steps:
+  - choose_or_roll: {table: hireling-roles, as: role, field: role}
+  - apply: {wage: "@role.wage"}
+  - choose_or_roll: {table: races, as: race, field: race}
+  - roll: {each: [STR, DEX, WIL], dice: 3d6}
+  - roll: {hp: 1d6}
+  - roll_tables: [physique, skin, hair, face, speech, clothing, virtue, vice]
+  - name: {table: first-names}
+  - prompt: "Give them gear fit for a {@role} (their station), and pay their wage ({@character.wage} Septims a day). Hirelings take Morale saves and walk off when the Septims stop."
+source: players-guide/core-rules#hirelings
+---
+chargen: hireling-background
+title: A hireling from a background
+help: >-
+  The book's other way: a background and a name from it, its two tables, then Rations,
+  Septims, attributes, HP and age. The wage is the Warden's call (the Marketplace's hirelings
+  take 5–30 Septims a day).
+creates: hireling
+modes: [random, guided]
+steps:
+  - choose_or_roll: {table: backgrounds-mortal, as: background, field: background}
+  - choose_or_roll: {table: races, as: race, field: race, answer: "@background.race"}
+  - name: {from: "@background.names"}
+  - roll: {gold: 3d6}
+  - roll_tables: "@background.tables"
+  - apply: [{name: Rations, uses: 3}]
+  - roll: {each: [STR, DEX, WIL], dice: 3d6}
+  - roll: {hp: 1d6}
+  - roll: {age: 2d20+10}
+  - prompt: "Give them the rest of what their station calls for, and set their daily wage (the Marketplace's hirelings take 5–30 Septims a day): `didact set <them> wage=…`."
+source: players-guide/core-rules#hirelings

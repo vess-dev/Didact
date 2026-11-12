@@ -1,0 +1,246 @@
+# Adventure hooks (wardens-guide/adventure-hooks): the job-of-the-week generator's tables
+# (`didact gen run elder-scrolls-2e.adventure-hook`).
+table: hook-patron
+title: "The Patron"
+dice: d20
+source: wardens-guide/adventure-hooks#the-patron-d20
+entries:
+  1: "A Jarl's steward, hiring quietly so the court need not know the Jarl is worried."
+  2: "A Hold guard captain with a bounty notice and not enough swords to serve it."
+  3: "An innkeeper passing on a regular's trouble for the price of a room."
+  4: "A frightened farmer or miller who has scraped together what coin they can."
+  5: "A merchant or caravan-master who has lost goods, a guard, or a debtor."
+  6: "A College mage who needs something fetched, cleared, or quietly studied."
+  7: "A priest of the Divines (or a lone shrine-keeper) with a holy errand."
+  8: "A Companion at Jorrvaskr handing down a contract too small for the Circle."
+  9: "A Thieves Guild fixer (Delvin or Vex's sort) with a job and no questions."
+  10: "A Vigilant of Stendarr hunting a Daedra, a vampire, or a witch."
+  11: "A Stormcloak officer who needs a deniable hand in the war."
+  12: "An Imperial legate who needs the same, for the other side."
+  13: "A mysterious hooded stranger — a Daedric servant, or a Thalmor cut-out."
+  14: "A grieving relative seeking a body, a killer, or a stolen keepsake."
+  15: "A court wizard out of a Jarl's earshot, needing a delicate thing done."
+  16: "A stronghold chief (Orc) calling on outsiders for a clan matter."
+  17: "A bard or the Bards College chasing a lost verse, relic, or scandal."
+  18: "A fellow adventurer, dying or maimed, passing on their unfinished job."
+  19: "A courier with a sealed letter and no idea who sent it."
+  20: "Someone from the party's past. Warden's pick. The debt is real."
+---
+table: hook-task
+title: "The Task"
+description: "The kind of job; then roll its own d20 table (data.job)."
+dice: d6
+source: wardens-guide/adventure-hooks#the-task-d6-then-d20
+entries:
+  1: {text: "Clear — a place full of foes needs emptying.", data: {task: "Clear", job: "hook-clear"}}
+  2: {text: "Retrieve — a specific object must be recovered.", data: {task: "Retrieve", job: "hook-retrieve"}}
+  3: {text: "Hunt — a named creature or person must be killed or captured.", data: {task: "Hunt", job: "hook-hunt"}}
+  4: {text: "Escort / Deliver — a person, beast, or cargo must reach somewhere alive.", data: {task: "Escort / Deliver", job: "hook-escort"}}
+  5: {text: "Settle — a dispute (often Civil War) needs resolving, by words or otherwise.", data: {task: "Settle", job: "hook-settle"}}
+  6: {text: "Investigate — something is wrong, and the patron wants to know what.", data: {task: "Investigate", job: "hook-investigate"}}
+---
+table: hook-clear
+title: "The Task: Clear"
+dice: d20
+source: wardens-guide/adventure-hooks#clear-d20
+entries:
+  1: "A Nordic barrow has begun to stir; the draugr are wandering past its doors."
+  2: "Bandits have seized an old fort and are choking a trade road."
+  3: "A Falmer warren has spread up from a cave into a town's lower mine."
+  4: "A vampire nest is draining a hamlet one sleeper at a time."
+  5: "A Forsworn redoubt is raiding caravans out of the crags."
+  6: "A necromancer's coven has taken over a ruin and is raising the local dead."
+  7: "A giant (or a mammoth herd) has wandered onto grazing land."
+  8: "Skeevers and a chaurus nest have overrun a settlement's cellars and well."
+  9: "A Dwemer ruin's automatons have reactivated and seal off a needed passage."
+  10: "A frostbite-spider brood has webbed shut a mountain pass."
+  11: "A hagraven and her Forsworn have cursed a shrine the locals depend on."
+  12: "A warlock holed up in a tower is loosing summoned atronachs on travelers."
+  13: "A pack of wolves or a sabre cat is taking livestock and now children's dogs."
+  14: "Deserters of the war (either side) have turned bandit in a ruined mill."
+  15: "A Silver Hand band is squatting in a barrow the patron wants emptied."
+  16: "A troll (or two) has denned in a cave above a crucial mine shaft."
+  17: "Skooma smugglers have fortified a sea cave and corrupted the local guard."
+  18: "A spriggan grove has turned hostile and is strangling a logging camp."
+  19: "A dragon has taken a peak crowned by a word wall; the road below is now ash."
+  20: "A dragon priest stirs in his sealed temple, and his cultists gather."
+---
+table: hook-retrieve
+title: "The Task: Retrieve"
+dice: d20
+source: wardens-guide/adventure-hooks#retrieve-d20
+entries:
+  1: "A Dwemer artifact — a cog, a lexicon, an animunculus part — from a sealed ruin."
+  2: "A family's stolen heirloom — a sword, an amulet, a wedding band — taken by bandits."
+  3: "A stolen Spell Tome the College wants back before the wrong hands read it."
+  4: "A Jarl's looted gold or tax chest, hidden in a thieves' bolt-hole."
+  5: "An ancient claw-key needed to open a barrow's inner door."
+  6: "A dead adventurer's journal and map, lost with them in a crypt."
+  7: "A Daedric relic a cult is about to use; recover it first."
+  8: "A specific soul gem (a black one) a mage needs and will not explain why."
+  9: "A dragon priest's mask, sealed with its owner in his temple."
+  10: "A stolen meadery recipe / ledger worth a fortune to the right buyer."
+  11: "A holy relic of a Divine, looted from a sacked temple."
+  12: "A Nordic word-wall rubbing a scholar will pay handsomely to copy."
+  13: "A noble's incriminating letter, to be lifted from a locked study."
+  14: "A rare alchemical ingredient (a Glenmoril witch's head, nirnroot, a heart stone) from a deadly place."
+  15: "A smuggled crate a fence wants quietly pulled off a watched dock."
+  16: "An Elder Scroll fragment rumor — almost certainly a fake, but the patron is sure."
+  17: "A unique weapon the patron knows by name and history (see Unique Weapons)."
+  18: "A frozen corpse high on a mountain, who carried something the patron needs."
+  19: "A caged or enslaved person a reformer is paying to free, papers and all."
+  20: "Something sealed in a warded box, from a ruin the patron will not name."
+---
+table: hook-hunt
+title: "The Task: Hunt"
+dice: d20
+source: wardens-guide/adventure-hooks#hunt-d20
+entries:
+  1: "A named bandit chief with a price on his head, dead or alive."
+  2: "A vampire preying on a town under a false, friendly face."
+  3: "A werewolf killing by night; the patron does not know it is a neighbor."
+  4: "A rogue mage or necromancer the College has disavowed."
+  5: "A dragon newly landed near a settlement, terrorizing the roads."
+  6: "A Forsworn Briarheart leading raids out of the Reach."
+  7: "An escaped prisoner the Hold wants returned to its mine or its noose."
+  8: "A giant or sabre cat that has killed a hunter and must be put down."
+  9: "A Thalmor agent someone wants quietly gone (and someone else, kept alive)."
+  10: "A traitor in the war, marked for death by the side they sold out."
+  11: "A Dark Brotherhood contract — a name, a fee, and no questions about why."
+  12: "A hagraven that has cursed a family line for three generations."
+  13: "A frost troll denning on a pilgrim road to High Hrothgar."
+  14: "A conjurer binding atronachs and selling them to raiders."
+  15: "A Silver Hand captain the Companions want answered for in blood."
+  16: "A skooma kingpin poisoning a Hold from a hidden den."
+  17: "A revenant draugr lord that walks beyond its barrow on the dark of the moon."
+  18: "A wanted thief the Guild itself wants silenced for breaking the code."
+  19: "A spriggan matron or a Daedra loosed by a broken seal."
+  20: "A legend — a beast or outlaw the locals half-believe is a ghost."
+---
+table: hook-escort
+title: "The Task: Escort / Deliver"
+dice: d20
+source: wardens-guide/adventure-hooks#escort--deliver-d20
+entries:
+  1: "A merchant caravan crossing a Hold known for bandits and worse."
+  2: "A priest or pilgrim bound for a far shrine through dangerous country."
+  3: "A noble's heir traveling between courts in a contested Hold."
+  4: "A prisoner to be walked to a Jarl's justice without being sprung."
+  5: "A bard going to a feast in a town that hates their last patron."
+  6: "A sealed dispatch the war's other side would kill to read."
+  7: "A wagon of supplies to a fort, a College, or a snowed-in village."
+  8: "A terrified witness who must reach a Hold's court alive to testify."
+  9: "A College courier carrying something that must not be jostled or opened."
+  10: "A defector from one war faction crossing to the other under a flag."
+  11: "A Khajiit caravan barred from the city gates, needing safe passage outside."
+  12: "A body to be carried home for proper burial through the wilds."
+  13: "A healer going to a plague-struck steading no one else will enter."
+  14: "A bride or groom (a marriage of two feuding clans) and their dowry."
+  15: "A tame or rare beast — a horse, a sabre cat cub, a mammoth calf — to a buyer."
+  16: "A child orphaned by the war, to be delivered to kin in another Hold."
+  17: "A Dwemer device to a mage, kept intact and unsprung the whole way."
+  18: "A condemned innocent the patron believes is being framed."
+  19: "A tax collector on a circuit through hostile, half-rebel country."
+  20: "A mysterious passenger whose name the patron will not give."
+---
+table: hook-settle
+title: "The Task: Settle"
+dice: d20
+source: wardens-guide/adventure-hooks#settle-d20
+entries:
+  1: "Two farmsteads are about to come to blows over a moved boundary stone."
+  2: "A Stormcloak and an Imperial family in one village are tearing it apart."
+  3: "A Jarl and a rival claimant both want the party to back their right to the seat."
+  4: "A mine is struck — owner and miners each want the party's muscle."
+  5: "A guild and the city guard are escalating; someone wants a quiet truce."
+  6: "A clan blood-feud (wergild) could be paid off — or settled with steel."
+  7: "Two caravan companies both claim the same road and the same toll."
+  8: "A Dunmer quarter and the Nords of a city are one insult from a riot."
+  9: "A debt binds three parties; an honest arbitrator could untangle it."
+  10: "A Forsworn cell offers a truce to one steading the others want refused."
+  11: "A bandit chief wants to surrender; the Hold wants him hanged; a fair trial is possible."
+  12: "A war muster is bullying a neutral village for men and grain."
+  13: "A shrine is claimed by both the Divines' priests and a Daedric cult."
+  14: "Two heirs dispute a homestead a dead relative left to \"the worthy.\""
+  15: "A Thalmor demand (hand over a Talos-worshipper) splits a town that protects him."
+  16: "A dragon's lair sits between two Holds that each want the other to deal with it."
+  17: "A water source or warm spring is being dammed by an upstream rival."
+  18: "A marriage alliance between feuding houses needs a neutral hand to broker it."
+  19: "A deserters' camp wants amnesty; the war faction wants them made an example."
+  20: "A conflict the party themselves started, come back around. Warden's pick."
+---
+table: hook-investigate
+title: "The Task: Investigate"
+dice: d20
+source: wardens-guide/adventure-hooks#investigate-d20
+entries:
+  1: "A caravan vanished on a safe stretch of road — no bodies, no wreckage."
+  2: "A whole village fell silent overnight; the last letter out spoke of nightmares."
+  3: "A barrow's seal was found broken from the inside."
+  4: "Livestock and then a hunter turned up bloodless near a \"friendly\" manor."
+  5: "A word wall on a peak has begun to hum, and dragons circle it at dusk."
+  6: "A shrine's blessing has soured; pilgrims who pray there sicken."
+  7: "A noble has not been seen in a week and his steward grows evasive."
+  8: "A mine collapse uncovered a sealed Dwemer door — and the diggers won't go near it."
+  9: "Strange lights and chanting rise nightly from an abandoned tower."
+  10: "A string of disappearances all touched the same inn, the same night of the week."
+  11: "A plague is spreading faster than any natural sickness should."
+  12: "A trusted guard captain is suspected of taking Forsworn (or Thalmor) coin."
+  13: "A dead adventurer's map points to a ruin no records name."
+  14: "A child keeps describing, in detail, a crypt no child could have entered."
+  15: "A meadery's rivals are dying of \"accidents\"; the patron fears the Black-Briars."
+  16: "A College apprentice vanished into the Midden, leaving only scorched notes."
+  17: "Two Jarls' couriers carry the same forged seal; someone is playing both Holds."
+  18: "A frozen body on a glacier wears clothing centuries out of date — and isn't decayed."
+  19: "A dragon burial mound has gone empty, the earth thrown outward."
+  20: "Something the elders will not speak of. Only the children talk, and only in whispers."
+---
+table: hook-complication
+title: "Complications"
+dice: d10
+source: wardens-guide/adventure-hooks#complications-d10
+entries:
+  1: "The patron is lying about the target or the reason."
+  2: "A rival party (or a faction) is after the same thing."
+  3: "The patron can't pay in full up front, or at all."
+  4: "The place is deeper, older, or more haunted than advertised."
+  5: "A faction the party has history with is tangled up in it."
+  6: "The \"target\" has a sympathetic reason for being where they are."
+  7: "A clock is ticking — the party has far less time than they were told."
+  8: "The job can't be done as described — the place is sealed, the target has moved, or the road is closed."
+  9: "Succeeding will compromise a companion, a friend, or the party's standing."
+  10: "A relic or Daedric interest is involved, and someone else wants it badly."
+---
+table: hook-location
+title: "Location"
+dice: d12
+source: wardens-guide/adventure-hooks#location-d12
+entries:
+  1: "A Nordic barrow — draugr, traps, claw-doors, a word wall in the deep."
+  2: "A Dwemer ruin — bronze automatons, steam, Falmer in the dark below."
+  3: "A bandit-held fort or watchtower astride a road."
+  4: "A frozen cave or ice cavern — trolls, frostbite spiders, a buried thing."
+  5: "A Forsworn redoubt in the crags of the Reach."
+  6: "A wilderness expanse — open tundra, a pine wood, a glacier, a mountain pass."
+  7: "A walled Hold city and its under-streets, docks, or sewers."
+  8: "A farmstead, mine, or logging camp out in the country."
+  9: "A Daedric shrine or a cursed grove where a Prince's hand lies heavy."
+  10: "A ruined or working temple of the Divines or the old Nordic dead."
+  11: "A noble manor or Jarl's hall — politics, guards, and locked rooms."
+  12: "Solstheim — ash, the Skaal, Telvanni towers, the reach of Miraak (DLC)."
+---
+table: hook-reward
+title: "Reward"
+dice: d10
+source: wardens-guide/adventure-hooks#reward-d10
+entries:
+  1: "Septims: 2d6 × 50, straight coin."
+  2: "Gear: a Marketplace item worth up to ~200 Septims the patron has spare (a suit of plate, a Skyrim horse, a wagon)."
+  3: "A Scroll or potions: a single-use Scroll, or 1d4 useful potions."
+  4: "A Skill Book (Warden's pick, scene-appropriate)."
+  5: "A Relic (Warden's pick from Relics)."
+  6: "Faction Reputation up one step with a friendly faction (toward Trusted/Sworn)."
+  7: "Renown: a public deed worth one step of Renown (toward Known/Renowned), or a Bounty cleared in this Hold."
+  8: "Standing or favor: a settlement, Thane, or Jarl now owes the party a real debt."
+  9: "A contact and a map — a new ally who owes the party their life, and a lead on a further adventure."
+  10: "A unique item and a string attached: generous pay (a named weapon, armor, or artifact) and a secondary hook comes with it."

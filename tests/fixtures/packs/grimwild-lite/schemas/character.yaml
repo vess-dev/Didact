@@ -1,0 +1,5 @@
+type: pc
+label: Player character
+fields:
+  paths: {kind: list}
+  bloodied: {kind: flag, default: false}

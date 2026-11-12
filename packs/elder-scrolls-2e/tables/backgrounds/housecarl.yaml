@@ -1,0 +1,24 @@
+# Housecarl (backgrounds/housecarl): the background's two d6 tables.
+table: housecarl-1
+title: "Whom did you swear to protect, and what became of them?"
+dice: d6
+source: backgrounds/housecarl#whom-did-you-swear-to-protect-and-what-became-of-them-roll-1d6
+entries:
+  1: "A Jarl who still lives, and still trusts you. You travel on their leave: in their Hold the guards treat you as one of their own (Reaction one step better), and the Jarl will always grant you one hearing."
+  2: {text: "A Thane, knifed in the dark by an assassin you never saw. You kept the killer's black Shrouded glove (petty), and you sleep light now: no one comes upon you unawares while you rest. The Dark Brotherhood knows you kept it.", data: {gear: [{name: "Shrouded glove", size: "petty"}]}}
+  3: {text: "A young heir you carried out of a burning longhouse. They are hidden somewhere safe, and only you know where. Take the house signet (petty) they pressed into your hand and their father's steel war axe (d8).", data: {gear: [{name: "House signet", size: "petty"}, {name: "Steel war axe", damage: "d8"}]}}
+  4: {text: "A Jarl deposed in the Civil War. Your oath outlived their power, and you carry their steel shield, still painted with their fallen colors (+1 Armor). Soldiers of both sides respect a housecarl who stayed.", data: {gear: [{name: "Steel shield", armor: 1, note: "still painted with your deposed Jarl's colors"}]}}
+  5: {text: "A Thane of the Rift who belonged to Maven Black-Briar in all but name, so in the end you served Maven. Take a purse of hush money (50 Septims) and her favor: once, in the Rift, the guard will look the other way for you. Maven will call the debt in someday.", data: {add: {gold: 50}}}
+  6: {text: "No one — yet. Your oath is unspoken, your shield unbloodied, and you are hungry to prove it. Your maximum HP is 1 higher, and you choose your result on the table below rather than rolling it.", data: {extra_hp: true, choose_next: true}}
+---
+table: housecarl-2
+title: "What is the mark of your service?"
+dice: d6
+source: backgrounds/housecarl#what-is-the-mark-of-your-service-roll-1d6
+entries:
+  1: "Bulwark Oath: The housecarl's creed. Once per combat, when an attack would strike an ally beside you, throw yourself in its path: the blow strikes you instead, and it is Impaired."
+  2: {text: "Blade of Office: A heavy greatsword (d10, bulky, two-handed) lent from your lord's own armory, the blade that once stood behind the high seat. Drawn in a Jarl's hall, it silences the room. Lose it, and you lose your lord's good word.", data: {gear: [{name: "Blade of Office", damage: "d10", size: "bulky", qualities: ["two-handed"]}]}}
+  3: "Hold Guard's Bearing: Years standing the gate. Nothing smaller than a horse can shove you aside or knock you down, and while you hold a doorway or a narrow stair, only one foe at a time can reach past you."
+  4: {text: "Steward's Keys: An iron ring of keys to your lord's hall, strongroom, and the Hold's cells (petty). They still turn, until someone thinks to change the locks.", data: {gear: [{name: "Steward's Keys", size: "petty"}]}}
+  5: "Steadfast Heart: While anyone you are sworn to protect is within sight, you need not save against fear, charm, or anything that would drive you from their side."
+  6: {text: "Hall Shield: A great round shield blessed at your Hold's temple (+1 Armor). Once per day, plant it and set your feet: the next attack against you is Impaired.", data: {gear: [{name: "Hall Shield", armor: 1}]}}

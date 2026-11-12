@@ -1,0 +1,56 @@
+# Characters (Gameplay, pp. 20-31; Adventurers, pp. 44-51).
+type: character
+label: Character
+fields:
+  brawn: {kind: int, min: 1, max: 3, default: 1, label: Brawn, help: "Power, menace and toughness (physical)."}
+  agility: {kind: int, min: 1, max: 3, default: 1, label: Agility, help: "Precision, athleticism and reflexes (physical)."}
+  wits: {kind: int, min: 1, max: 3, default: 1, label: Wits, help: "Smarts, trickery and reading situations (mental)."}
+  presence: {kind: int, min: 1, max: 3, default: 1, label: Presence, help: "Influence, willpower and reading people (mental)."}
+  marks: {kind: list, help: "Marked stats: +1t on the next roll with that stat, which clears it (with lasting marks, only a rest does). A second mark is harm."}
+  harm: {kind: list, help: "bloodied (+1t Brawn/Agility), rattled (+1t Wits/Presence), desperate (+1t on all), dropped."}
+  conditions: {kind: list, help: "Specific maladies, often with a pool: '4d poisoned → harm', 'broken arm'."}
+  spark: {kind: int, min: 0, max: 2, default: 0, help: "Spend before any roll for +1d each; at most 2, kept between sessions."}
+  thread: {kind: int, min: 0, default: 2, help: "Spend to add story details beyond set dressing; 2 each session (Bardic Lore and some talents give more)."}
+  xp: {kind: int, min: 0, default: 0, label: XP, help: "1 after each session (the GM can give 1 more for a standout one); the next level comes when the boxes filled equal it, twice that with slow progression or focused growth (`didact char advance`)."}
+  level: {kind: int, min: 0, max: 7, default: 1, label: Level, help: "1 to 7 (0 only with the level 0 option); each brings a talent, and the core talent grows at some (`didact char advance`)."}
+  stat_raised: {kind: flag, default: false, help: "Stat progression (an option): a stat raised instead of a talent, once per character."}
+  path: {kind: text}
+  talents: {kind: list, help: "The path's core talent, then one more at creation and one each level: from any path's list (not another core, nor the path's own half core), the background talents, or with the GM's OK a legacy talent."}
+  backgrounds: {kind: list, help: "Two backgrounds."}
+  heritage: {kind: text, help: "Culture, ancestry and homeland (p. 49), e.g. 'Orcs of the Verdant Boglands'; it can be one of the backgrounds."}
+  wises: {kind: list, help: "Three wises from each background."}
+  traits: {kind: list, help: "Two you are and one you definitely aren't ('not quiet')."}
+  desires: {kind: list, help: "Two you truly want and one you don't ('not wealth')."}
+  features: {kind: list, help: "Three distinctive features others notice."}
+  bonds: {kind: list, help: "One towards each PC: intensity + nature, e.g. 'playful rivalry with the Rogue'."}
+  arcs: {kind: list, help: "One or two character arcs (the party's group arc is kept with the party: `gen run grimwild-ce.party`)."}
+  arcana: {kind: list, help: "Magic items: minor, major or mythic."}
+  path_notes: {kind: list, help: "What your path's page has you decide: a bard's songs, a paladin's tenets, a summoner's vassal, a wizard's theorems, the core talent's growth, …"}
+  skills: {kind: list, help: "A rogue's skill set (Expertise, p. 74: three, +1 at levels 3 and 6), or the two skills of Natural Moxie."}
+  bastions: {kind: list, help: "A psion's bastions of psionic power (Awakened Mind, p. 70: two, +1 at levels 3 and 6)."}
+  magic: {kind: list, help: "A sorcerer's magic paths and techniques (Sorcery, p. 76: any 4 with at least 1 of each, +1 at levels 2, 4 and 6)."}
+  words: {kind: list, help: "A witch's words of power (Hidden Magic, p. 84: 6 from the crucible, +2 at levels 2, 4 and 6)."}
+  aspects: {kind: list, help: "A summoner's vassal's aspects (Vassal, p. 78: 1, +1 at levels 3 and 6)."}
+  touchstones: {kind: list, help: "An artificer's known touchstones (Infusion, p. 54: 6 from the arcana crucibles, +2 at levels 2, 4 and 6)."}
+  omens: {kind: list, help: "Augury (p. 63): the 2d rolled before each session; replace any rolled d6 with one, then erase it."}
+  tokens: {kind: int, min: 0, default: 0, help: "Exploration tokens (p. 130): 3 each when the GM expands the map, 1-3 for a significant discovery; spent on points and paths, and gone once the map is expanded."}
+  plan: {kind: text, help: "Plan ahead (expanded downtime, p. 141): a few words on the preparation made; a special thread for story details from it, lost when time passes again."}
+  grew: {kind: flag, default: false, help: "Cozy fantasy (p. 187): changed a bond or completed a story arc this session, for +1 XP at its end."}
+  retiring: {kind: flag, default: false, help: "Retiring (p. 28): alive but deeply scarred after being dropped; if dropped again, they perish."}
+  side: {kind: flag, default: false, help: "A side character (solo party mode, p. 195): no path or core talent, no XP or levels, no spark or thread, and harm instead of marks."}
+guidance: >-
+  Two backgrounds (three wises each), traits and desires (two yes, one no), three features, a
+  path with its core talent plus one more talent, what the core talent has you choose, stats of 1
+  each plus 4 points (max 3), one or two arcs, and a bond to each PC. Make one with `didact char
+  new`; level up with `didact char advance`.
+---
+type: pc
+extends: character
+label: Player character
+---
+type: npc
+extends: character
+label: Non-player character
+fields:
+  role: {kind: text}
+  tier: {kind: enum, values: [mook, tough, elite, boss]}

@@ -1,0 +1,391 @@
+# Chems, food and drink, addiction and perk magazines (players-guide/core-rules#addiction,
+# #chems, #perk-magazines; marketplace#medical--chems, #alcohol, #consumables; crafting#cooking-
+# recipes; overseers-guide/perk-magazines). Chems are petty, consumed on use and never cause Rads;
+# every dose of an addictive one forces a STR save.
+action: chem
+title: Take a chem
+help: >-
+  A dose of a medical supply or chem (the `chems` table says what it does): healing STR (a
+  Stimpak 1d6, a super mutant's 1d4; no Stimpaks for a deathclaw), Rads cleared, Fatigue added,
+  an addiction cured, or an effect for a scene or a combat. An addictive chem forces a STR save
+  (Ultrajet's counts as STR −2): a failure means addicted. An addicted PC's dose clears that
+  addiction's Fatigue for the day. Robots get nothing from chems. While Deprived, a chem heals
+  nothing: no STR, no Rad and no Fatigue cleared (core-rules#chems); a Stimpak still stabilizes
+  someone dying (`didact do stabilize`). A second dose of the same addictive chem in one session
+  counts by itself while a session is open (`didact session start`), or with again=true at a table
+  that doesn't open sessions; the second-dose option makes it addict automatically. A background's medkit (the Medi-Kit,
+  the Followers Medical Kit, the Combat Medkit: 3 uses in one slot) heals 1d6 STR a use as a
+  Stimpak, with every rule a Stimpak has. The dose (or the kit's use) is spent from the inventory
+  of whoever gives it (by=), else from the one who takes it.
+params:
+  who: ref
+  chem: {enum: [Stimpak, Super Stimpak, RadAway, Rad-X, Antivenom, Healing powder, Addictol, Fixer, Med-X, Psycho, Buffout, Mentats, Berry Mentats, Jet, Turbo, Day Tripper, Calmex, Overdrive, Steady, Cateye, Hydra, Ultrajet, Medi-Kit, Followers Medical Kit, Combat Medkit]}
+  by: {kind: ref, optional: true, help: "Who gives the dose, if not the one who takes it (their inventory spends it)"}
+  addiction: {kind: text, optional: true, help: "Addictol / Fixer: the addiction it breaks"}
+  again: {kind: flag, default: false, help: "A second dose of this chem in the same session, at a table that doesn't open sessions (with one open, the rule counts)"}
+steps:
+  - if: "default(@who.kind, 'human') == 'robot' or 'chems' in default(@who.immunities, '')"
+    then:
+      - stop: "Chems don't affect {@who.name}: no benefit, and no addiction."
+  - table: chems
+    with: {chem: $chem}
+    as: c
+  - let: {stimpak: "@chem == 'Stimpak' or default(@c.stimpak, false)"}
+  - if: "(@stimpak or @chem == 'Super Stimpak') and ('stimpaks' in default(@who.immunities, '') or default(@who.kind, 'human') == 'deathclaw')"
+    then:
+      - stop: "No Stimpaks for {@who.name}, nor anything that heals as one: a deathclaw's biology is too different (a large amount of fresh meat restores 1d6 STR once a day: `didact do consume who={@who.id} food='Fresh meat'`)."
+  - if: "(@chem == 'Addictol' or @chem == 'Fixer') and (default(@addiction, '') == '' or not (default(@addiction, '') in @who.addictions))"
+    then:
+      - stop: "$chem breaks one addiction: name it (addiction=<chem>; {@who.name}'s addictions: {@who.addictions})."
+  - let: {heal: "default(@c.heal, '')", deprived: "'deprived' in default(@who.conditions, '')"}
+  - if: "@heal <> '' and @deprived"
+    then: ["{@who.name} is Deprived: the $chem heals nothing until the lack is remedied (a Stimpak still stabilizes someone dying: `didact do stabilize who={@who.id} aid=Stimpak`)."]
+  - if: "@heal == 'full' and not @deprived"
+    then:
+      - set: who.STR
+        value: "@who.STR.max"
+      - message: "$chem: {@who.name}'s STR is back to {@who.STR.max}."
+  - if: "@heal <> '' and @heal <> 'full' and not @deprived"
+    then:
+      - let: {die: "if(@stimpak and default(@who.stimpak_heal, '') <> '', @who.stimpak_heal, @heal)"}
+      - if: "@die == '2d6'"
+        then: [{roll: 2d6, as: healed}]
+        else:
+          - if: "@die == '1d4' or @die == 'd4'"
+            then: [{roll: 1d4, as: healed}]
+            else: [{roll: 1d6, as: healed}]
+      - set: who.STR
+        value: "min(@who.STR.max, @who.STR + @healed)"
+      - message: "$chem heals {@healed} STR: {@who.name} is at {@who.STR}/{@who.STR.max}."
+  - if: "default(@c.clear_rads, 0) > 0"
+    then:
+      - do: clear-rads
+        with: {who: "@who", amount: "@c.clear_rads", by: $chem}
+        go_on: true
+  - if: "default(@c.rad_x, false)"
+    then:
+      - set: who.rad_x
+        value: true
+      - message: "Rad-X: the next Rad {@who.name} would take, from any source, is negated."
+  - if: "default(@c.cure, false)"
+    then:
+      - set: who.addictions
+        op: "-="
+        value: "@addiction"
+      - message: "$chem breaks {@who.name}'s addiction to {@addiction} on the spot: no more morning Fatigue for it."
+  - if: "default(@c.effect, '') <> ''"
+    then: ["$chem: {@who.name} — {@c.effect}."]
+  - if: "@chem == 'Psycho' or @chem == 'Overdrive'"
+    then:
+      - if: "@chem == 'Overdrive' and 'overdrive' in default(@who.once_per_session, '')"
+        then: ["Only one Overdrive dose per session has any effect: this one does nothing."]
+        else:
+          - set: who.conditions
+            op: "+="
+            value: "{if(@chem == 'Psycho', 'psycho', 'overdrive')}"
+          - if: "@chem == 'Overdrive'"
+            then:
+              - set: who.once_per_session
+                op: "+="
+                value: overdrive
+          - reminder: "The attack rule reads it for this combat: it comes off when the fight ends (`didact combat end`), or by hand when the table plays the fight without `combat start`: `didact set {@who.id} conditions-={if(@chem == 'Psycho', 'psycho', 'overdrive')}`."
+  - if: "@chem == 'Buffout' or @chem == 'Med-X'"
+    then:
+      - set: who.conditions
+        op: "+="
+        value: "{if(@chem == 'Buffout', 'buffout', 'med-x')}"
+      - reminder: "It lasts the scene: it comes off when the scene ends (`didact scene end`), or by hand when the table keeps no scenes: `didact set {@who.id} conditions-={if(@chem == 'Buffout', 'buffout', 'med-x')}`."
+  - if: "default(@c.fatigue, 0) > 0"
+    then:
+      - message: "$chem adds {@c.fatigue} Fatigue after use."
+      - do: fatigue
+        with: {who: "@who", amount: "@c.fatigue"}
+        go_on: true
+  - if: "default(@c.addictive, false)"
+    then:
+      - let: {second: "@again or (default(@session, 0) > 0 and '$chem' in default(@who.session_doses, ''))"}
+      - if: "'addiction' in default(@who.immunities, '') or default(@who.kind, 'human') == 'super-mutant'"
+        then: ["{@who.name} cannot become addicted: the dose burns off before it can hook them."]
+        else:
+          - if: "'$chem' in default(@who.addictions, '')"
+            then:
+              - if: "@deprived"
+                then: ["{@who.name} is already addicted to $chem, but Deprived: the dose can't clear that addiction's Fatigue until the lack is remedied."]
+                else:
+                  - message: "{@who.name} is already addicted to $chem: the dose clears that addiction's Fatigue for today (the next morning without one brings it back)."
+                  - if: "default(@who.fatigue, 0) > 0"
+                    then:
+                      - set: who.fatigue
+                        op: "-="
+                        value: 1
+            else:
+              - if: "@second and @option.second_dose"
+                then:
+                  - set: who.addictions
+                    op: "+="
+                    value: $chem
+                  - message: "A second dose of $chem this session: {@who.name} is addicted, no save (the second-dose option)."
+                else:
+                  - check: save
+                    with: {who: "@who", attr: STR, bonus: "default(@c.save_bonus, 0)"}
+                    as: hooked
+                  - if: "@hooked == 'failure'"
+                    then:
+                      - set: who.addictions
+                        op: "+="
+                        value: $chem
+                      - message: "{@who.name} is addicted to $chem: a Fatigue every morning until the next dose (`didact do cure-addiction` to break it)."
+                    else: ["{@who.name} takes the $chem without getting hooked."]
+                  - if: "@second"
+                    then: ["A second dose of the same chem in one session tempts fate: the Overseer may rule it addicts automatically, no save."]
+      - if: "default(@session, 0) > 0 and not ('$chem' in default(@who.session_doses, ''))"
+        then:
+          - set: who.session_doses
+            op: "+="
+            value: $chem
+  - do: spend-item
+    with: {who: "{if(default(@by, '') <> '', @by, @who.id)}", item: $chem}
+source: players-guide/core-rules#addiction
+---
+action: consume
+title: Eat or drink
+help: >-
+  Food and drink (the `consumables` table): soft drinks heal HP at once, a cooked meal restores
+  full HP (and clears a Fatigue or a Rad, or more), every alcoholic drink heals 1 HP and adds a
+  Fatigue the next morning, dirty water adds a Rad, any meal stands in for a Ration's use. A
+  deathclaw restores 1d6 STR once a day from a large amount of fresh meat. Dry Mouth (a Rad Scar)
+  gets nothing from cooked meals. While Deprived nothing heals or clears (core-rules#chems): when
+  the meal or the drink is the very thing the character lacked (Deprived of food, or of water),
+  meets_need=true ends the Deprivation first, and then it heals. What's eaten is spent from the
+  pack when it's carried (a Ration's use from Rations; a deathclaw's meal costs two), not when
+  it's found, hunted or bought on the spot.
+params:
+  who: ref
+  food: {enum: [Purified water, Dirty water, Nuka-Cola, Nuka-Cherry, Nuka-Grape, Nuka-Cola Orange, Sunset Sarsaparilla, Beer, Whiskey, Wine, Moonshine, Wasteland tequila, Vodka, Nuka-Cola Dark, Ration, Vault-Tec ration pack, Brahmin Steak, Radstag Stew, Mirelurk Cakes, Yao Guai Roast, Deathclaw egg, Fresh meat]}
+  meets_need: {kind: flag, default: false, help: "Deprived of food (and this is a meal) or of water (and this is water): the need is met before anything else"}
+steps:
+  - if: "default(@who.kind, 'human') == 'robot'"
+    then:
+      - stop: "{@who.name} doesn't eat or drink."
+  - table: consumables
+    with: {food: $food}
+    as: f
+  - if: "@meets_need and 'deprived' in default(@who.conditions, '') and (default(@f.meal, false) or default(@f.water, '') <> '')"
+    then:
+      - do: relieve
+        with: {who: "@who"}
+        go_on: true
+  - let: {deprived: "'deprived' in default(@who.conditions, '')", cooked: "default(@f.cooked, false)"}
+  - if: "@cooked and 'Dry Mouth' in default(@who.rad_scars, '')"
+    then:
+      - stop: "{@who.name} can no longer taste food (Dry Mouth): no benefit from a cooked meal beyond the meal itself."
+  - if: "@deprived and (default(@f.hp, 0) > 0 or default(@f.full_hp, false) or default(@f.full_str, false) or default(@f.clear_fatigue, 0) > 0 or default(@f.deathclaw_heal, '') <> '')"
+    then: ["{@who.name} is Deprived: $food heals nothing until the lack is remedied (when it is the lack itself, a meal for the hungry or water for the thirsty: meets_need=true)."]
+  - if: "default(@f.deathclaw_heal, '') <> '' and not @deprived"
+    then:
+      - if: "default(@who.kind, 'human') <> 'deathclaw'"
+        then: ["A meal of fresh meat: it heals only a deathclaw."]
+        else:
+          - roll: 1d6
+            as: fed
+          - set: who.STR
+            value: "min(@who.STR.max, @who.STR + @fed)"
+          - message: "{@who.name} gorges on fresh meat: {@fed} STR back ({@who.STR}/{@who.STR.max}). Once per day only."
+  - if: "default(@f.hp, 0) > 0 and not @deprived"
+    then:
+      - set: who.hp
+        value: "min(@who.hp.max, @who.hp + @f.hp)"
+      - message: "$food heals {@f.hp} HP: {@who.name} is at {@who.hp}/{@who.hp.max}."
+  - if: "default(@f.full_hp, false) and not @deprived"
+    then:
+      - set: who.hp
+        value: "@who.hp.max"
+      - message: "$food: full HP ({@who.hp.max})."
+  - if: "default(@f.full_str, false) and not @deprived"
+    then:
+      - set: who.STR
+        value: "@who.STR.max"
+      - message: "$food: full STR ({@who.STR.max})."
+  - if: "default(@f.clear_fatigue, 0) > 0 and default(@who.fatigue, 0) > 0 and not @deprived"
+    then:
+      - set: who.fatigue
+        op: "-="
+        value: "@f.clear_fatigue"
+      - message: "$food clears a Fatigue."
+  - if: "default(@f.clear_rads, 0) > 0"
+    then:
+      - do: clear-rads
+        with: {who: "@who", amount: "@f.clear_rads", by: $food}
+        go_on: true
+  - if: "default(@f.rads, 0) > 0"
+    then:
+      - do: rad
+        with: {who: "@who", amount: "@f.rads", source: water}
+        go_on: true
+  - if: "default(@f.alcohol, false)"
+    then:
+      - set: who.hangover
+        op: "+="
+        value: 1
+      - message: "{@who.name} drinks: a Fatigue the next morning."
+  - if: "default(@f.effect, '') <> ''"
+    then: ["$food: {@f.effect}."]
+  - if: "default(@f.meal, false) and @deprived"
+    then: ["A meal: if {@who.name} was Deprived of food, the need is met: `didact do relieve who={@who.id}`."]
+  - if: "default(@f.water, '') <> '' and @deprived"
+    then: ["A drink of water: if {@who.name} was Deprived of water, the need is met: `didact do relieve who={@who.id}` (purified water restores all HP on a short rest; dirty water restores it anyway, with its Rad)."]
+  - do: spend-item
+    with:
+      who: "@who"
+      item: "{if('$food' == 'Ration', 'Rations', '$food')}"
+      spend: "{if(default(@who.kind, 'human') == 'deathclaw' and ('$food' == 'Ration' or '$food' == 'Vault-Tec ration pack'), 2, 1)}"
+source: players-guide/marketplace#consumables
+---
+trigger: chems-wear-off-after-a-scene
+title: A scene's chems wear off
+help: "When a scene ends, Buffout and Med-X, which last one scene, come off every PC."
+on: scene_end
+for: pcs
+params: {who: ref}
+when: "'buffout' in @who.conditions or 'med-x' in @who.conditions"
+steps:
+  - if: "'buffout' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: buffout
+      - message: "The scene is over: {@who.name}'s Buffout wears off."
+  - if: "'med-x' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: med-x
+      - message: "The scene is over: {@who.name}'s Med-X wears off."
+source: players-guide/marketplace#chems
+---
+trigger: addiction-morning
+title: Withdrawal and hangovers
+help: >-
+  Each morning, an addicted PC gains 1 Fatigue for each addiction (until a dose that day), and
+  each drink taken since the last morning adds 1 Fatigue.
+on: time
+for: pcs
+params: {who: ref}
+when: "@time.day > (@time.seconds - @time.passed) // 86400 + 1 and (count(@who.addictions) > 0 or default(@who.hangover, 0) > 0) and @who.status <> 'dead'"
+steps:
+  - let: {owed: "count(@who.addictions) + default(@who.hangover, 0)"}
+  - if: "default(@who.hangover, 0) > 0"
+    then:
+      - message: "The morning after: {@who.hangover} Fatigue for {@who.name}'s drinking."
+      - set: who.hangover
+        value: 0
+  - if: "count(@who.addictions) > 0"
+    then: ["Morning withdrawal for {@who.name} ({@who.addictions}): a Fatigue for each addiction until a dose (`didact do chem who={@who.id} chem=<it>` clears that addiction's Fatigue)."]
+  - do: fatigue
+    with: {who: "@who", amount: "@owed"}
+    go_on: true
+source: players-guide/core-rules#addiction
+---
+action: cure-addiction
+title: Cure an Addiction
+help: >-
+  A Downtime Action: 50 caps at a clinic (method=clinic; a settlement Clinic gives a free try:
+  cost=0), or a full week in a safe place with a companion willing to sit with them
+  (method=week). Then a WIL save: on a success the addiction is broken and the morning Fatigue
+  stops; on a failure it deepens, and this addiction can't be tried again until the next
+  Downtime. Addictol / Fixer cures one at once (`didact do chem`); a full week refusing doses may
+  end it at the Overseer's discretion.
+params:
+  who: ref
+  addiction: {kind: text, help: "The chem they're addicted to"}
+  method: {enum: [clinic, week], default: clinic}
+  cost: {kind: int, default: 50, help: "Caps for the clinic (0 at a settlement Clinic's free try)"}
+steps:
+  - if: "not (@addiction in default(@who.addictions, ''))"
+    then:
+      - stop: "{@who.name} isn't addicted to $addiction (addictions: {@who.addictions})."
+  - if: "@method == 'clinic' and @cost > default(@who.caps, 0)"
+    then:
+      - stop: "{@who.name} has {default(@who.caps, 0)} caps; the clinic costs {@cost}."
+  - if: "@method == 'clinic' and @cost > 0"
+    then:
+      - set: who.caps
+        op: "-="
+        value: "@cost"
+      - do: coins
+        with: {who: "@who"}
+        go_on: true
+  - if: "@method == 'week'"
+    then: ["A full week somewhere safe, with a companion sitting with {@who.name}: `didact time advance 1 week`."]
+  - check: save
+    with: {who: "@who", attr: WIL}
+    as: will
+  - if: "@will == 'success'"
+    then:
+      - set: who.addictions
+        op: "-="
+        value: $addiction
+      - message: "{@who.name} breaks the $addiction addiction: the morning Fatigue stops."
+    else: ["The $addiction addiction deepens: {@who.name} can't try to break this one again until their next Downtime."]
+source: players-guide/procedures#cure-an-addiction
+---
+action: read-magazine
+title: Read a Perk Magazine
+help: >-
+  Reading takes one turn in a safe, quiet space (never in combat or while Deprived) and consumes
+  the copy: the reader gains its perk in one of five Perk Slots. With all five full the reader
+  must swap one out (swap=<perk>): it's gone until a fresh copy of its magazine is read. A PC
+  may refuse to read and carry, gift or sell the magazine instead. The perk comes from the
+  magazine-perks table (perk=<name> for a magazine the book doesn't list). A fight the table runs
+  with `combat start` counts by itself; fighting=true says so for one played without it. The copy
+  read is taken from the reader's inventory, or from the inventory of whoever lends it (by=).
+params:
+  who: ref
+  by: {kind: ref, optional: true, help: "Whose copy it is, if not the reader's: it's consumed all the same"}
+  magazine: {kind: text, help: "The magazine, by its compendium name (its perk is looked up: `didact table show magazine-perks`)"}
+  perk: {kind: text, optional: true, help: "The perk, for a magazine the book doesn't list (homebrew)"}
+  swap: {kind: text, optional: true, help: "With five perks already: the one to forget"}
+  safe: {kind: flag, default: true, help: "A safe, quiet space"}
+  fighting: {kind: flag, default: false, help: "In a fight the table plays without `combat start`"}
+steps:
+  - if: "@fighting or default(@combat.round, 0) > 0 or not @safe"
+    then:
+      - stop: "Reading a magazine takes a turn in a safe, quiet space: not in combat, not under threat."
+  - if: "'deprived' in default(@who.conditions, '')"
+    then:
+      - stop: "{@who.name} is Deprived and can't take in a magazine until the lack is remedied."
+  - if: "default(@perk, '') <> ''"
+    then:
+      - let: {gained: "@perk", effect: "''"}
+    else:
+      - table: magazine-perks
+        with: {magazine: $magazine}
+        as: taught
+      - let: {gained: "@taught.perk", effect: "@taught"}
+  - if: "@gained in @who.perks"
+    then:
+      - stop: "{@who.name} already knows {@gained}: the copy isn't consumed unless read (give it to another PC, carry it, or sell it)."
+  - if: "count(@who.perks) >= 5 and default(@swap, '') == ''"
+    then:
+      - stop: "{@who.name}'s five Perk Slots are full ({@who.perks}): reading means swapping one out (swap=<perk>), or refusing to read."
+  - if: "default(@swap, '') <> ''"
+    then:
+      - if: "not (@swap in @who.perks)"
+        then:
+          - stop: "{@who.name} has no perk $swap to forget (perks: {@who.perks})."
+      - set: who.perks
+        op: "-="
+        value: $swap
+      - message: "{@who.name} forgets $swap to make room: it's gone until a fresh copy of its magazine is read."
+  - set: who.perks
+    op: "+="
+    value: "@gained"
+  - message: "{@who.name} reads $magazine and gains {@gained} ({count(@who.perks)} of 5 Perk Slots). The copy is consumed: torn, dog-eared, annotated to death."
+  - if: "@effect <> ''"
+    then: ["The perk: {@effect}"]
+  - if: "'Intelligence Bobblehead' in @who.inventory"
+    then: ["The Intelligence Bobblehead: {@who.name} may ask the Overseer one additional free question about the world."]
+  - do: spend-item
+    with: {who: "{if(default(@by, '') <> '', @by, @who.id)}", item: $magazine}
+  - reminder: "Reading took a turn: `didact time advance 1 turn`."
+source: overseers-guide/perk-magazines#rules

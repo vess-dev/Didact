@@ -1,0 +1,593 @@
+# Character creation pick-lists and crucibles (Adventurers, pp. 44-51). Crucibles are d66:
+# the first die is the row, the second the column, read both ways (31 or 13).
+table: party-concepts
+title: Party concepts
+description: Choose 2 that you see your party as and 1 that you definitely aren't.
+source: p. 44
+entries:
+  - Conquerors
+  - Disciples
+  - Explorers
+  - Heroes
+  - Mercenaries
+  - Merchants
+  - Mystics
+  - Outsiders
+  - Renegades
+  - Scholars
+  - Scoundrels
+  - Wardens
+---
+table: traits
+title: Traits
+description: Choose 2 you very much are and 1 you definitely aren't.
+source: p. 46
+entries:
+  - brave
+  - caring
+  - confident
+  - curious
+  - gentle
+  - honest
+  - honorable
+  - persistent
+  - protective
+  - quiet
+  - rash
+  - stubborn
+---
+table: desires
+title: Desires
+description: Choose 2 you truly desire and 1 you definitely don't.
+source: p. 46
+entries:
+  - belonging
+  - glory
+  - harmony
+  - honor
+  - justice
+  - knowledge
+  - love
+  - power
+  - renown
+  - thrills
+  - wealth
+  - wisdom
+---
+table: backgrounds
+title: Common backgrounds
+description: "The 18 common backgrounds; each entry's data holds its AKA names and three wises (compendium: the background's id)."
+about: "Wises: {wises}. Also known as: {aka}."
+source: p. 48
+entries:
+  - text: Charlatan
+    data:
+      id: charlatan
+      aka: [Spy, Swindler]
+      wises: [social graces, spotting marks, timely misdirects]
+  - text: Clergy
+    data:
+      id: clergy
+      aka: [Cultist, Priest]
+      wises: [allegories, signs of sin, faiths of the world]
+  - text: Commoner
+    data:
+      id: commoner
+      aka: [Farmer, Villager]
+      wises: [local customs, practical wisdom, superstitions]
+  - text: Crafter
+    data:
+      id: crafter
+      aka: [Artisan, Smith]
+      wises: [crafting quality, trade contracts, wear and tear]
+  - text: Drifter
+    data:
+      id: drifter
+      aka: [Explorer, Vagabond]
+      wises: [chance meetings, faraway tales, lay of the land]
+  - text: Eccentric
+    data:
+      id: eccentric
+      aka: [Hermit, Recluse]
+      wises: [hard truths, random facts, strange snacks]
+  - text: Entertainer
+    data:
+      id: entertainer
+      aka: [Storyteller, Minstrel]
+      wises: [legends & tales, crowd behaviors, stage presence]
+  - text: Healer
+    data:
+      id: healer
+      aka: [Herbalist, Physicker]
+      wises: [comfort foods, signs of ailment, herbal properties]
+  - text: Hunter
+    data:
+      id: hunter
+      aka: [Pathfinder, Trapper]
+      wises: [survival, tracks, wildlife behavior]
+  - text: Investigator
+    data:
+      id: investigator
+      aka: [Guard, Gumshoe]
+      wises: [seedy areas, connecting the dots, body language]
+  - text: Mariner
+    data:
+      id: mariner
+      aka: [Pirate, Sailor]
+      wises: [nautical lore, seafaring, weather patterns]
+  - text: Mystic
+    data:
+      id: mystic
+      aka: [Occultist, Seer]
+      wises: [ancient prophecies, leylines, symbology]
+  - text: Noble
+    data:
+      id: noble
+      aka: [Aristocrat, Diplomat]
+      wises: [diplomacy, influential contacts, luxuries]
+  - text: Ragamuffin
+    data:
+      id: ragamuffin
+      aka: [Cutpurse, Urchin]
+      wises: [hidden paths, rumors, street smarts]
+  - text: Sage
+    data:
+      id: sage
+      aka: [Lorekeeper, Scholar]
+      wises: [ancient histories, peoples of the world, philosophy]
+  - text: Scoundrel
+    data:
+      id: scoundrel
+      aka: [Brigand, Thief]
+      wises: [escape routes, signs of weakness, shady connections]
+  - text: Trader
+    data:
+      id: trader
+      aka: [Merchant, Peddler]
+      wises: [cultural tastes, people's desires, rare goods]
+  - text: Warrior
+    data:
+      id: warrior
+      aka: [Sellsword, Soldier]
+      wises: [battle plans, improvised weapons, war stories]
+---
+table: heritage-folk
+title: "Heritage crucible: folk"
+description: Roll 1 of each (folk, mood, land), choose 2-3, then interpret
+dice: d66
+both_ways: true
+source: p. 49
+entries:
+  11: Vagrants
+  12: Birdfolk
+  13: Wayfarers
+  14: Goblins
+  15: Islanders
+  16: Fisherfolk
+  21: Riders
+  22: Clans
+  23: Seafarers
+  24: Tribes
+  25: Keepers
+  26: Settlers
+  31: Gnomes
+  32: Pilgrims
+  33: Turtlefolk
+  34: Citizens
+  35: Marauders
+  36: Carvers
+  41: Dwarves
+  42: Tieflings
+  43: Giants
+  44: Dragonborn
+  45: Tradesfolk
+  46: Valleyfolk
+  51: Nomads
+  52: Cityfolk
+  53: Humans
+  54: Halflings
+  55: Merchants
+  56: Skywatchers
+  61: Elves
+  62: Orcs
+  63: Forestfolk
+  64: Cavefolk
+  65: Raiders
+  66: Outcasts
+---
+table: heritage-mood
+title: "Heritage crucible: mood"
+description: Roll 1 of each (folk, mood, land), choose 2-3, then interpret
+dice: d66
+both_ways: true
+source: p. 49
+entries:
+  11: Twisted
+  12: Steel
+  13: Verdant
+  14: Golden
+  15: Emerald
+  16: Burning
+  21: Lush
+  22: Floating
+  23: Crimson
+  24: Shattered
+  25: Haunted
+  26: Enchanted
+  31: Scorched
+  32: Echoing
+  33: Misty
+  34: Glimmering
+  35: Distant
+  36: Silent
+  41: Rolling
+  42: Bountiful
+  43: Great
+  44: Sunken
+  45: Coastal
+  46: Gloomy
+  51: Abyssal
+  52: Desolate
+  53: Rocky
+  54: Windswept
+  55: Howling
+  56: Eternal
+  61: Feral
+  62: Serene
+  63: Whispering
+  64: Grim
+  65: Prosperous
+  66: Restless
+---
+table: heritage-land
+title: "Heritage crucible: land"
+description: Roll 1 of each (folk, mood, land), choose 2-3, then interpret
+dice: d66
+both_ways: true
+source: p. 49
+entries:
+  11: Peaks
+  12: Confederacy
+  13: Fjords
+  14: Coast
+  15: Badlands
+  16: Boglands
+  21: Kingdom
+  22: Wilds
+  23: Marsh
+  24: Isles
+  25: Thickets
+  26: Jungletown
+  31: Desert
+  32: Canyons
+  33: Highlands
+  34: Caverns
+  35: Fenlands
+  36: Borderlands
+  41: Plains
+  42: North
+  43: Moors
+  44: Ruins
+  45: Hollows
+  46: Underworld
+  51: Sea
+  52: Meadows
+  53: Outposts
+  54: Cliffs
+  55: Boomtown
+  56: Riverlands
+  61: Glaciers
+  62: Sands
+  63: Wastelands
+  64: Coalition
+  65: Blightlands
+  66: Groves
+---
+table: expanded-wises
+title: Expanded wises
+description: "Columns: Civil, Social, Historical, Natural, Mystical, Practical (each entry's data)."
+dice: d66
+both_ways: true
+source: p. 49
+entries:
+  11: {text: laws of the land, data: {column: Civil}}
+  12: {text: gambling, data: {column: Social}}
+  13: {text: notable figures, data: {column: Historical}}
+  14: {text: cartography, data: {column: Natural}}
+  15: {text: arcane theory, data: {column: Mystical}}
+  16: {text: cooking, data: {column: Practical}}
+  21: {text: bureaucracy, data: {column: Civil}}
+  22: {text: banter, data: {column: Social}}
+  23: {text: lost relics, data: {column: Historical}}
+  24: {text: natural danger, data: {column: Natural}}
+  25: {text: pacts & binding, data: {column: Mystical}}
+  26: {text: smuggling, data: {column: Practical}}
+  31: {text: the press, data: {column: Civil}}
+  32: {text: leadership, data: {column: Social}}
+  33: {text: ceremonial rites, data: {column: Historical}}
+  34: {text: pests & plague, data: {column: Natural}}
+  35: {text: cosmology, data: {column: Mystical}}
+  36: {text: clockwork, data: {column: Practical}}
+  41: {text: business, data: {column: Civil}}
+  42: {text: showmanship, data: {column: Social}}
+  43: {text: festivities, data: {column: Historical}}
+  44: {text: overland travel, data: {column: Natural}}
+  45: {text: local spirits, data: {column: Mystical}}
+  46: {text: jury-rigging, data: {column: Practical}}
+  51: {text: taboo, data: {column: Civil}}
+  52: {text: blending in, data: {column: Social}}
+  53: {text: architecture, data: {column: Historical}}
+  54: {text: unnatural beasts, data: {column: Natural}}
+  55: {text: divine order, data: {column: Mystical}}
+  56: {text: makeshift gear, data: {column: Practical}}
+  61: {text: politics, data: {column: Civil}}
+  62: {text: networking, data: {column: Social}}
+  63: {text: theater & arts, data: {column: Historical}}
+  64: {text: seeds & harvest, data: {column: Natural}}
+  65: {text: esoterica, data: {column: Mystical}}
+  66: {text: humors, data: {column: Practical}}
+---
+table: group-building-questions
+title: Group-building questions
+description: A question from one of the four lists. Try swapping "you" and "I" in these questions—flip it around if it's more interesting!
+source: p. 50
+entries:
+  - {table: group-questions-history}
+  - {table: group-questions-feelings}
+  - {table: group-questions-tensions}
+  - {table: group-questions-futures}
+---
+table: group-questions-history
+title: Questions about shared history
+source: p. 50
+entries:
+  - What secret did I tell you that you’ve never dared to share with anyone else?
+  - When we first met, what mistake did I make that still embarrasses me?
+  - What did we steal together, and how did it bring us closer?
+  - When did I save you from something, and what did it cost me?
+  - What moment made you decide you could trust me, even if you didn’t want to?
+---
+table: group-questions-feelings
+title: Questions about feelings and impressions
+source: p. 50
+entries:
+  - What’s something about me that annoys you, but you’d miss if I were gone?
+  - What’s a time I surprised you by being braver or softer than you expected?
+  - What’s a rumor about me you half believe, but you’re too afraid to ask if it’s true?
+  - When have I pushed you away, and how did it hurt?
+  - What do you envy about me, even if you’d never admit it out loud?
+---
+table: group-questions-tensions
+title: Questions about tensions and challenges
+source: p. 50
+entries:
+  - What’s a lie I told you that you’re still pretending to believe?
+  - What’s a promise I broke that you haven’t forgiven me for?
+  - When have I let you down, and how did you learn to work around me?
+  - What’s something dangerous you think I’m hiding from the group?
+  - What about me makes you feel like you’re walking on thin ice?
+---
+table: group-questions-futures
+title: Questions about shared futures
+source: p. 50
+entries:
+  - What’s a dream I have that you think is foolish, but still want to help me achieve?
+  - What do you hope I’ll never find out about your plans?
+  - What do you think our journey will turn me into, and does that scare you?
+  - When this is all over, where do you imagine us going together?
+  - What’s something you think we’ll regret, but we’ll do it anyway?
+---
+table: character-personality
+title: "Character crucible: personality"
+dice: d66
+both_ways: true
+source: p. 51
+entries:
+  11: blunt
+  12: mellow
+  13: astute
+  14: fierce
+  15: humble
+  16: bold
+  21: curious
+  22: formal
+  23: pious
+  24: stoic
+  25: meticulous
+  26: severe
+  31: charming
+  32: aloof
+  33: jovial
+  34: mean
+  35: vibrant
+  36: careless
+  41: kind
+  42: ambitious
+  43: reserved
+  44: naive
+  45: crafty
+  46: timid
+  51: earnest
+  52: solemn
+  53: cagey
+  54: mysterious
+  55: stubborn
+  56: sour
+  61: shrewd
+  62: pragmatic
+  63: arrogant
+  64: lazy
+  65: pleasant
+  66: cynical
+---
+table: character-clothing
+title: "Character crucible: clothing"
+dice: d66
+both_ways: true
+source: p. 51
+entries:
+  11: ill-fitting
+  12: pristine
+  13: tight
+  14: finely-tailored
+  15: frayed
+  16: ceremonial
+  21: loose-fitting
+  22: dirty
+  23: flowing
+  24: threadbare
+  25: coarse
+  26: fancy
+  31: outrageous
+  32: comfortable
+  33: stained
+  34: patched
+  35: fashionable
+  36: exotic
+  41: faded
+  42: patchwork
+  43: austere
+  44: well-worn
+  45: grass-stained
+  46: strange
+  51: plain
+  52: flamboyant
+  53: mottled
+  54: weathered
+  55: dusty
+  56: practical
+  61: elaborate
+  62: crumpled
+  63: out-of-place
+  64: rugged
+  65: billowing
+  66: secondhand
+---
+table: character-voice
+title: "Character crucible: voice"
+dice: d66
+both_ways: true
+source: p. 51
+entries:
+  11: lilting
+  12: clear
+  13: gravelly
+  14: pleasant
+  15: commanding
+  16: piercing
+  21: melodious
+  22: resonant
+  23: hearty
+  24: sharp
+  25: raspy
+  26: murmuring
+  31: soft
+  32: rumbling
+  33: measured
+  34: well-spoken
+  35: soothing
+  36: shrill
+  41: crackling
+  42: calm
+  43: barking
+  44: confident
+  45: nasally
+  46: velvety
+  51: whispering
+  52: booming
+  53: growling
+  54: earnest
+  55: pompous
+  56: monotone
+  61: roaring
+  62: carries
+  63: sing-song
+  64: quiet
+  65: breathy
+  66: hoarse
+---
+table: character-body
+title: "Character crucible: body"
+dice: d66
+both_ways: true
+source: p. 51
+entries:
+  11: curvy
+  12: scrawny
+  13: sturdy
+  14: sober
+  15: old-timer
+  16: sage
+  21: young
+  22: slender
+  23: lean
+  24: grizzled
+  25: beautiful
+  26: wrinkled
+  31: rail-thin
+  32: thick
+  33: athletic
+  34: upstart
+  35: over the hill
+  36: fresh faced
+  41: solid
+  42: hulking
+  43: bony
+  44: in their prime
+  45: distinguished
+  46: hale & hearty
+  51: lithe
+  52: ripped
+  53: petite
+  54: old & leathery
+  55: doddering
+  56: venerable
+  61: gangly
+  62: compact
+  63: sharp
+  64: wizened
+  65: spry
+  66: distinguished
+---
+table: character-eyes
+title: "Character crucible: eyes"
+dice: d66
+both_ways: true
+source: p. 51
+entries:
+  11: tormented
+  12: joyous
+  13: hard
+  14: glowing
+  15: stern
+  16: calculating
+  21: haunted
+  22: kind
+  23: dead
+  24: animal
+  25: piercing
+  26: brooding
+  31: questioning
+  32: sharp
+  33: eager
+  34: shifty
+  35: gentle
+  36: lifeless
+  41: shrouded
+  42: sad
+  43: smoldering
+  44: cunning
+  45: hollow
+  46: weary
+  51: knowing
+  52: wise
+  53: warm
+  54: wild
+  55: sparkling
+  56: bright
+  61: fiery
+  62: haunting
+  63: searing
+  64: soulful
+  65: glassy
+  66: unreadable

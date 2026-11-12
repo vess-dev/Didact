@@ -1,0 +1,32 @@
+id: grimwild-ce
+name: Grimwild (Community Edition)
+kind: system
+version: 1.0.0
+description: >-
+  Grimwild: Community Edition, cinematic fantasy adventure: action rolls where the highest d6
+  sets the result and thorns cut it, diminishing pools, the damage ladder, paths and talents,
+  the story roll and crucibles, monsters and arcana.
+requires: {packs: [core]}
+license:
+  spdx: CC0-1.0
+  redistributable: true
+  attribution: >-
+    Grimwild: Community Edition (Preview 5.3), lead developer Chancey Scott (Groov Games); its
+    text is dedicated to the public domain via CC0 1.0. Based on Grimwild by J. D. Maxwell /
+    Oddity Press, used under CC BY 4.0, subject to the original's non-commercial derivative
+    terms. No graphic assets are included. The book marks four contributed pieces "used with
+    permission": the Herbalism crucible by Juniper Bloom (p. 85), the Red Dragon example by
+    @zach.labounty (p. 120), community assets after @Studious (p. 143) and solo rules after
+    @slander.x (pp. 192-195).
+source:
+  title: "Grimwild: Community Edition (Preview 5.3)"
+  pages: 217
+settings:
+  factions:
+    turn: faction-turn  # `didact faction turn` rolls each faction's pools (rules/factions.yaml)
+  combat:
+    mode: popcorn
+    round_one: >-
+      There's no turn order in Grimwild: describe the impending danger and ask how the PCs
+      respond, or follow their lead; the world acts through what they do, foreshadowing, and
+      suspense spent on impact moves.

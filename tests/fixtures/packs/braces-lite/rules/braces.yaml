@@ -1,0 +1,9 @@
+# `{{` and `}}` write a brace itself, in any text Didact fills in.
+action: brag
+title: Show the command
+params: {who: ref}
+steps:
+  - let: {quest: The Lost Key, shown: "{{{@who.name}}}"}
+  - message: >-
+      {@who.name} runs `didact gen run hunt --prefill '{{"quest": "{@quest}"}}'`.
+  - "In braces: {@shown}; a lone } stays."

@@ -1,0 +1,9 @@
+id: inherit-heir
+name: Inherit Heir (fixture)
+kind: system
+version: 0.1.0
+description: A hack of a hack.
+requires: {packs: [core, inherit-hack]}
+extends: [inherit-hack]
+license: {spdx: CC0-1.0}
+settings: {flares: 2}

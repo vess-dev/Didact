@@ -1,0 +1,20 @@
+table: weather
+title: Summer weather
+dice: d6
+source: "Mini System p. 3"
+entries:
+  1-2: Clear
+  3-4: {text: Rain, data: {travel: slow}}
+  5: {text: Storm, then: [{table: lightning}]}
+  6: {text: Two fronts, roll: 2}
+---
+table: lightning
+dice: d4
+entries: {1-3: Thunder rolls, 4: A tree splits}
+---
+table: winter
+title: Winter weather
+dice: d6
+entries:
+  1-5: Bitter cold
+  6: {text: Extreme, repeat: {text: Catastrophic, data: {travel: impossible}}}

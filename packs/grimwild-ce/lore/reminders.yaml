@@ -1,0 +1,67 @@
+# Grimwild reminders: they come up when play mentions their keys.
+lore: moxie-principles
+title: Playing with Moxie
+kind: preference
+constant: true
+priority: 90
+content: >-
+  Grimwild: roll only when it's risky and every outcome moves the story; assume competence;
+  set thorns by gut (0-2 is typical); no partial successes (a messy is a full success with a
+  full problem); follow the fiction with pools, and never let a pool lead where it isn't fun.
+source: "p. 6-11"
+---
+lore: thorns-reminder
+keys: [thorn, thorns, cut]
+kind: rule-reminder
+recursive: false
+content: "Grimwild thorns: d8s added for difficulty; each 7-8 cuts the result a step (perfect → messy → grim → disaster). Criticals (two 6s) can't be cut."
+source: "p. 11"
+---
+lore: spark-reminder
+keys: [spark]
+kind: rule-reminder
+recursive: false
+content: "Grimwild spark: at most 2, kept between sessions; spend before any roll for +1d each. Take it for a tangle, a disaster, a resolved arc, a quarrel, or an ally's bond with you changing."
+source: "p. 12"
+---
+lore: pools-reminder
+keys: [pool, pools]
+kind: rule-reminder
+recursive: false
+content: "Grimwild pools: roll every die, drop each 1-3; at 0d the event happens. 2d short, 4d medium, 8d long. Task pool dropped nothing? Push (a mark, drop 1d) or pivot (a secondary effect): `didact track roll <pool>`."
+source: "p. 18-19"
+---
+lore: damage-reminder
+keys: [mark, harm, bloodied, rattled, desperate, dropped]
+kind: rule-reminder
+recursive: false
+content: "Grimwild damage: a mark gives +1t on the next roll with that stat; a second mark is harm. Bloodied (Brawn/Agility) and rattled (Wits/Presence) +1t on related rolls; a second bloodied, or a second rattled, is desperate (+1t on all); harm that would make you desperate again drops you."
+source: "p. 27-28"
+---
+lore: gm-principles
+title: GM with Moxie
+kind: preference
+constant: true
+priority: 80
+content: >-
+  Grimwild GM: map fiction to rules (weight follows narrative importance; the fiction wins);
+  make rulings to fill gaps (when in doubt, a story roll); pace it cinematically (cut to the
+  action, suggest montages); follow the players' lead (arcs: drama, dilemmas, opportunities).
+  Use the moves or don't; give impact moves teeth (split one into lesser effects, hit several
+  PCs, or take suspense and hit later); have the players narrate, even on a grim; be endlessly
+  curious.
+source: "pp. 90-91"
+---
+lore: suspense-reminder
+keys: [suspense]
+kind: rule-reminder
+recursive: false
+content: "Grimwild suspense: the GM takes it for skipping a prompted impact move and for a suspense move (`didact do suspense-move`); Didact adds it at pre-session (1), for the party's rest reset (2), a sorcerer's curse and an interrupt's messy (1). The GM spends it to prompt an impact move at any time (a PC it hits directly gets a defense roll) or to drop 1d from a pool that dropped nothing. Each challenge keeps 2 of its own for moves relating to it. `didact do suspense`."
+source: "pp. 96, 104"
+---
+lore: advancement-reminder
+keys: [level up, leveling, experience, xp]
+kind: rule-reminder
+recursive: false
+content: "Grimwild experience: 1 XP after each session (Didact gives it), 1 bonus for a standout one; level L to L+1 takes L+1 XP (twice with slow progression or focused growth). `didact char advance <pc>`: a talent from any list (not another core, nor the path's own half core), the core talent's growth at its levels, or with stat progression +1 to a stat once. Levels stop at 7 (3 at smaller scale, in low or cozy fantasy), then talents switch at milestones."
+source: "pp. 31, 52, 172-177"

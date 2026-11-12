@@ -1,0 +1,201 @@
+# Places (Surviving the Wasteland, The Long Road; Running the Wasteland, Vaults & Ruins and
+# Settlements Worth Saving). Each replaces the parent's generator of the same id (region,
+# settlement, community-asset; site becomes the vault) or is Grimfall's own (vault, community).
+# Everything on the map gets a two-word label: the generators seed it from the GM crucible ("when
+# you need the seed of an answer"), a word from each column's row.
+generator: region
+title: Expand the map
+help: >-
+  The map grows the way rumor does: when the GM calls to expand it, everyone at the table, GM
+  included, takes 3 exploration tokens (`didact do tokens`) and spends them going around:
+  settlements, sites and dangers (1 token minor, 2 major), curiosities, barriers and areas (3; the
+  GM adds them free), joined by paths (major roads 2, minor trails 1, rough scrambles free), with a
+  waypoint for each day of hard travel. Everything gets a two-word label (Glowing Orchard, Drowned
+  Underpass, Jackal Country). Here the dice place the points when nobody chooses, labelled from the
+  GM crucible. points=<n> sets how many (6). Prefill by name: region_name, point, first, second.
+source: "surviving-the-wasteland/the-long-road; surviving-the-wasteland/the-long-road#the-token-menu"
+params:
+  points: {kind: int, default: 6, help: "How many points to place"}
+steps:
+  - let: {region_name: "The Wasteland"}
+  - entity:
+      key: region
+      type: loc
+      name: "{@region_name}"
+      fields: {kind: region}
+  - repeat: "$points"
+    steps:
+      - choose_or_roll: {table: region-points, as: point, prompt: "a point to place: a settlement, site or danger, minor (1 token) or major (2)"}
+      - table: gm-crucible-1
+        as: first_row
+      - choose_or_roll: {from: "@first_row.words", as: first, prompt: "its two-word label's first word"}
+      - table: gm-crucible-2
+        as: second_row
+      - choose_or_roll: {from: "@second_row.words", as: second, prompt: "and its second"}
+      - entity:
+          key: point
+          type: loc
+          name: "{@first} {@second}"
+          fields: {kind: "@point.point", size: "@point.size", region: "@region"}
+  - map:
+      places: point
+      paths: {max: 3}
+      distances: ["1 day", "2 days", "3 days"]
+      describe: [region-paths]
+      entrance: true
+  - prompt: "The GM draws the first road in; nobody knows the whole wasteland. Label the map as the table likes (Glowing Orchard, Drowned Underpass, Jackal Country), and add curiosities, barriers and areas (3 tokens; the GM adds them free) as the story opens new ground."
+  - prompt: "Expanding it again: everyone, the GM included, takes 3 exploration tokens (`didact do tokens who=<pc> take=3`); survivors earn 1-3 for a real discovery, and can spend thread as a token when a wise or story arc explains how they knew."
+---
+generator: settlement
+title: A settlement map
+help: >-
+  Settlement maps work the same at street scale: roads (1 token) and notable buildings, minor (2
+  tokens, written lower-case on the map) or major (3 tokens, in CAPITALS), each with a two-word
+  label (here seeded from the GM crucible). buildings=<n> sets how many (5); region=<place> puts it
+  inside a place. Prefill by name: first, second, building, building_first, building_second.
+source: surviving-the-wasteland/the-long-road#the-token-menu
+params:
+  buildings: {kind: int, default: 5, help: "How many notable buildings"}
+  region: {kind: text, default: "", help: "The place it lies in, e.g. loc:the-wasteland"}
+steps:
+  - table: gm-crucible-1
+    as: first_row
+  - choose_or_roll: {from: "@first_row.words", as: first, prompt: "the settlement's two-word label: a first word"}
+  - table: gm-crucible-2
+    as: second_row
+  - choose_or_roll: {from: "@second_row.words", as: second, prompt: "and a second"}
+  - entity:
+      key: settlement
+      type: loc
+      name: "{@first} {@second}"
+      fields: {kind: settlement, region: "$region"}
+  - repeat: "$buildings"
+    steps:
+      - choose_or_roll: {table: settlement-buildings, as: building, prompt: "a notable building: minor (2 tokens) or major (3)"}
+      - table: gm-crucible-1
+        as: building_row_1
+      - choose_or_roll: {from: "@building_row_1.words", as: building_first, prompt: "its label's first word"}
+      - table: gm-crucible-2
+        as: building_row_2
+      - choose_or_roll: {from: "@building_row_2.words", as: building_second, prompt: "and its second"}
+      - entity:
+          key: building
+          type: loc
+          name: "{@building_first} {@building_second}"
+          fields: {kind: building, size: "@building.size", region: "@settlement"}
+  - map:
+      places: building
+      paths: {max: 2}
+      distances: ["next door", "down the road", "across town"]
+  - prompt: "Its roads are the paths between the buildings (1 token each). On a drawn map, a minor building is written lower-case and a MAJOR one in capitals. Who works or lives in each, and what's going on? A settlement the party plants a flag in is a community: `didact gen run grimfall.community`."
+---
+generator: vault
+title: A vault (a 5-point site)
+help: >-
+  Build a vault, or any delve, as a 5-point site: the GM places the Reward first, then everyone
+  spends exploration tokens on the rest (rooms 1 token minor, 2 major): The Door (Entrance),
+  The Experiment (Puzzle), The Twist (Hitch), The Confrontation (Showdown), What Vault-Tec Left
+  (Reward). The vault crucible says what they were testing and what it became; then number the
+  vault. region=<place> puts it inside a place. Prefill by name: testing, became, number.
+source: "running-the-wasteland/vaults-and-ruins; running-the-wasteland/vaults-and-ruins#vault-crucible"
+params:
+  region: {kind: text, default: "", help: "The place it lies in, e.g. loc:the-wasteland"}
+steps:
+  - choose_or_roll: {table: vault-testing, as: testing, prompt: "what they were testing"}
+  - choose_or_roll: {table: vault-became, as: became, prompt: "what it became"}
+  - ask: {as: number, prompt: "number the vault (Vault 113)"}
+  - entity:
+      key: vault
+      type: loc
+      name: "Vault {@number}"
+      fields: {kind: vault, testing: "@testing", became: "@became", region: "$region"}
+  # The GM places the Reward first.
+  - entity:
+      key: reward
+      type: loc
+      name: "Vault {@number}: What Vault-Tec Left"
+      fields: {kind: point, point: reward, region: "@vault"}
+  - entity:
+      key: door
+      type: loc
+      name: "Vault {@number}: The Door"
+      fields: {kind: point, point: entrance, region: "@vault"}
+      links: [{rel: path, to: experiment-1}]
+  - entity:
+      key: experiment
+      type: loc
+      name: "Vault {@number}: The Experiment"
+      fields: {kind: point, point: puzzle, region: "@vault"}
+      links: [{rel: path, to: twist-1}]
+  - entity:
+      key: twist
+      type: loc
+      name: "Vault {@number}: The Twist"
+      fields: {kind: point, point: hitch, region: "@vault"}
+      links: [{rel: path, to: confrontation-1}]
+  - entity:
+      key: confrontation
+      type: loc
+      name: "Vault {@number}: The Confrontation"
+      fields: {kind: point, point: showdown, region: "@vault"}
+      links: [{rel: path, to: "@reward"}]
+  - prompt: "What Vault-Tec Left (the Reward, placed first): the haul, the truth, and usually a hook to the next site. The Door (Entrance): getting in is its own story (the terminal, the password, the thing nesting in the gear room). The Experiment (Puzzle): every vault was testing something ({@testing}); meet it as a problem that can't just be shot. The Twist (Hitch): what two centuries did to the test ({@became}). The Confrontation (Showdown): the fight or reckoning the vault has waited two hundred years to have."
+  - prompt: "Then everyone spends exploration tokens on the rest: rooms 1 token (minor) or 2 (major); here the points run door, experiment, twist, confrontation, reward (`didact link <point> path <point>` to change it). Its challenges and threats: `didact gen run grimfall.challenge`, `grimfall.foe`; its haul: `grimfall.treasure`."
+---
+generator: site
+title: A site map (Grimfall's are vaults)
+help: "Grimfall builds a vault or any delve as a 5-point site: `didact gen run grimfall.vault`."
+steps:
+  - stop: "Grimfall builds a vault, or any delve, as a 5-point site: `didact gen run grimfall.vault` (The Door, The Experiment, The Twist, The Confrontation, What Vault-Tec Left)."
+source: running-the-wasteland/vaults-and-ruins
+---
+generator: community
+title: A settlement worth saving
+help: >-
+  When the party plants a flag (a fortified diner, a rebuilt water tower) it becomes a community,
+  and it grows on a Stockpile pool: trade hauls into it (a minor haul +2d, a major +4d, a mythic
+  +8d); when time passes, roll it, and every die that drops pays toward the next asset, minor (4:
+  a wall, a clinic, a bar with a name) or major (8: a working reactor, a caravan company, a radio
+  mast). Here its Stockpile starts with the first haul traded in. Prefill by name: name, haul,
+  asset, tier.
+source: running-the-wasteland/settlements-worth-saving
+creates: loc
+steps:
+  - name: {prompt: "the community: a fortified diner, a rebuilt water tower"}
+  - apply: {kind: community, paid: 0}
+  - choose_or_roll: {from: [minor, major, mythic], as: haul, prompt: "the first haul traded in (minor +2d, major +4d, mythic +8d)"}
+  - let: {dice: "if(@haul == 'mythic', 8, if(@haul == 'major', 4, 2))"}
+  - entity:
+      key: stockpile
+      type: track
+      name: "{@name}'s Stockpile"
+      fields: {kind: pool, pool: resource, value: {value: "@dice", max: "@dice"}, note: "Trade hauls into it (`didact do stockpile … act=trade haul=…`); when time passes, roll it (`act=roll`): every die that drops pays toward the next asset."}
+      links: [{rel: of, to: character}]
+  - apply: {stockpile: "@stockpile"}
+  - ask: {as: asset, field: next_asset, prompt: "the first asset it pays toward: a wall, a clinic, a bar with a name; a working reactor, a caravan company, a radio mast"}
+  - choose_or_roll: {from: [minor, major], as: tier, field: asset_tier, prompt: "minor (4) or major (8)"}
+  - prompt: "When time passes, roll the Stockpile (`didact do stockpile community=<community> act=roll`): every die that drops pays toward {@asset}. Give every asset a face (the barkeep, the militia sergeant, the DJ: `didact gen run grimfall.community-asset`), and the raiders something to regret. When raiders come, play it out, but don't erase the players' work: damage to an asset costs a die or two of stockpile to fix (`act=repair dice=1`)."
+---
+generator: community-asset
+title: A community asset, and its face
+help: >-
+  An asset of a community: minor (4: a wall, a clinic, a bar with a name) or major (8: a working
+  reactor, a caravan company, a radio mast that reaches the whole region), paid for from its
+  Stockpile. Give every asset a face (the barkeep, the militia sergeant, the DJ). Prefill by name:
+  tier, name, face, job.
+source: running-the-wasteland/settlements-worth-saving
+creates: loc
+steps:
+  - choose_or_roll: {from: [minor, major], as: tier, prompt: "minor (costs 4) or major (costs 8)"}
+  - name: {prompt: "the asset: a wall, a clinic, a bar with a name; a working reactor, a caravan company, a radio mast that reaches the whole region"}
+  - apply: {kind: asset, asset_tier: "@tier"}
+  - ask: {as: job, prompt: "who its face is to it: the barkeep, the militia sergeant, the DJ"}
+  - table: survivor-names
+    as: face
+  - entity:
+      key: face
+      type: npc
+      name: "{@face}"
+      fields: {role: "@job"}
+      links: [{rel: represents, to: character}]
+  - prompt: "{@face}, its {@job}: give them a want and a tell (`didact about <npc> wants='…'`). Pay for it from the Stockpile: `didact do stockpile community=<community> act=plan asset='{@name}' tier={@tier}`."

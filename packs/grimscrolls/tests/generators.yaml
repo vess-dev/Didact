@@ -1,0 +1,136 @@
+# Every generator, all the way to records: the dice decide what the prefill doesn't (the book has
+# no name or label tables for places, so those are prefilled). Seeded, so it plays the same.
+test: every-generator
+help: Each of Grimscrolls' twenty-two generators runs and commits; a Bestiary threat comes into play with its pools (a pack's one pool, a boss's linked parts with its 2 bonus suspense once, a fail state's timer, an elite's one pool with its own 2), and a haul can be a Reliquary relic with its first pool.
+script:
+  - world new tam --system {pack} --seed generators
+  - campaign new first --seed generators
+  - run: >-
+      gen run grimscrolls.npc --auto --prefill '{"name": "Hrefna Stone-Tally"}'
+    expect: "npc Hrefna Stone-Tally"
+  - run: gen commit g1
+    expect: "npc:hrefna-stone-tally"
+  - run: >-
+      gen run grimscrolls.monster --auto --prefill '{"name": "Barrow Wight"}'
+    expect: "monster Barrow Wight"
+  - run: gen commit g2
+    expect: "monster:barrow-wight"
+  - run: >-
+      gen run grimscrolls.follower --auto --prefill '{"name": "Lydia"}'
+    expect: "Lydia"
+  - run: gen commit g3
+    expect: "lydia"
+  - run: gen run grimscrolls.party --auto
+    expect: ["party-concepts: ", "group-building-questions: ", "lore The company"]
+  - run: gen commit g4
+    expect: committed
+  - run: >-
+      gen run grimscrolls.faction --auto --prefill '{"name": "The Split-Tusk Clan", "goal_1": "Raid the Toll Road", "goal_2": "Arm Themselves Properly"}'
+    expect: ["faction The Split-Tusk Clan", "track Raid the Toll Road"]
+  - run: gen commit g5
+    expect: "faction:the-split-tusk-clan"
+  - run: >-
+      gen run grimscrolls.talent --auto --prefill '{"name": "Iron Lung", "body": "Once per session, hold your breath through smoke, ash or deep water for a scene."}'
+    expect: "Iron Lung"
+  - run: gen commit g6
+    expect: committed
+  - run: >-
+      gen run grimscrolls.arcana --auto --prefill '{"name": "The Pilgrim Lantern"}'
+    expect: "arcana The Pilgrim Lantern: tier: "
+  - run: gen commit g7
+    expect: "arcana:the-pilgrim-lantern"
+  - run: >-
+      gen run grimscrolls.region --auto --prefill '{"region_name": "The Pale", "label": ["Drowned Shrine", "Giant Pasture", "Smugglers Stair", "Frost Gate", "Old Fort", "Wolf Hollow"]}'
+    expect: ["loc The Pale: kind: region", "Drowned Shrine"]
+  - run: gen commit g8
+    expect: "loc:the-pale"
+  - run: >-
+      gen run grimscrolls.settlement --auto --prefill '{"town": "Greywatch", "label": ["Moot Hall", "Toll Gate", "Old Shrine", "Caravan Yard", "Legion Post"]}'
+    expect: "Moot Hall"
+  - run: gen commit g9
+    expect: "loc:greywatch"
+  - run: >-
+      gen run grimscrolls.site --auto --prefill '{"site_name": "Sealed Barrow"}'
+    expect: "Sealed Barrow"
+  - run: gen commit g10
+    expect: committed
+  - run: >-
+      gen run grimscrolls.community-asset --auto --prefill '{"name": "A Smithy", "face": "Gerda the smith", "job": "the smith"}'
+    expect: "A Smithy"
+  - run: gen commit g11
+    expect: "npc:gerda-the-smith"
+  - run: >-
+      gen run grimscrolls.holding --auto --prefill '{"name": "Lakeview Manor"}'
+    expect: "track Lakeview Manor: Stores"
+  - run: gen commit g12
+    expect: "loc:lakeview-manor"
+  - run: >-
+      gen run grimscrolls.quest --auto --prefill '{"name": "Close the Gate"}'
+    expect: ["phases: [4, 4, 6]", "track Close the Gate: peril: kind: pool, pool: pressure, phases: [4, 4]"]
+  - run: gen commit g13
+    expect: committed
+  - run: >-
+      gen run grimscrolls.ritual --auto --prefill '{"name": "Seal the Barrow", "intent": "seal the barrow under the Moot Hall", "anchor": ["a black soul gem", "the full of Secunda", "the Speaker oath"]}'
+    expect: "Seal the Barrow"
+  - run: gen commit g14
+    expect: committed
+  - run: >-
+      gen run grimscrolls.treasure --auto --prefill '{"name": "The Jarl Hoard"}'
+    expect: "The Jarl Hoard"
+  - run: gen commit g15
+    expect: committed
+  - run: >-
+      gen run grimscrolls.weapon --auto --prefill '{"name": "Nord War Axe", "styles": "heavy, sweeping"}'
+    expect: "item Nord War Axe"
+  - run: gen commit g16
+    expect: "item:nord-war-axe"
+  - run: >-
+      gen run grimscrolls.challenge --auto --prefill '{"name": "Cross the Pass Before the Storm", "dice": 6}'
+    expect: "track Cross the Pass Before the Storm: kind: pool, pool: task, value: {…}, suspense: 2"
+  - run: gen commit g17
+    expect: committed
+  - run: >-
+      gen run grimscrolls.linked-challenge --auto --prefill '{"whole": "The Dragon Over the Pass", "parts": 2, "part": ["Its Wings", "The Dragon"], "dice": [6, 8]}'
+    expect: ["Its Wings: kind: pool, pool: task, value: {…}, suspense: 2", "The Dragon: kind: pool, pool: task, value: {…}, suspense: 0"]
+  - run: gen commit g18
+    expect: committed
+  - run: >-
+      gen run grimscrolls.battleground --auto --prefill '{"name": "The Barrow Hall"}'
+    expect: "loc The Barrow Hall: kind: battleground, threats: ["
+  - run: gen commit g19
+    expect: "loc:the-barrow-hall"
+  - run: gen run grimscrolls.door-under-greywatch --auto
+    expect: "The Seal Wears Thin"
+  - run: gen commit g20
+    expect: committed
+  - run: gen run grimscrolls.greywatch --auto
+    expect: ["faction The Barrow Under the Moot Hall", "track The Seal Wears Thin"]
+  - run: gen commit g21
+    expect: "faction:the-greywatch-moot"
+  - run: faction turn
+    expect: "The Seal Wears Thin"
+  - run: >-
+      gen run grimscrolls.foe --auto --prefill '{"creature": "Dragon"}'
+    expect: ["monster Dragon", "track Dragon: The Dragon: kind: pool, pool: task, value: {…}, suspense: 2", "track Dragon: Its Wings: kind: pool, pool: task, value: {…}, suspense: 0", "track Dragon: Its Thu'um"]
+  - run: gen commit g22
+    expect: ["monster:dragon", "track:dragon-the-dragon"]
+  - run: >-
+      gen run grimscrolls.foe --auto --prefill '{"creature": "Oblivion Gate"}'
+    expect: ["track Oblivion Gate: What Comes Through", "track Oblivion Gate: The Gate Stands: kind: pool, pool: timer"]
+  - run: gen commit g23
+    expect: "track:oblivion-gate-the-gate-stands"
+  - run: >-
+      gen run grimscrolls.foe --auto --prefill '{"creature": "Draugr"}'
+    expect: ["monster Draugr", "track Draugr: kind: pool, pool: task, value: {…}, suspense: 0", "as its Note gives it"]
+  - run: gen commit g24
+    expect: "track:draugr"
+  - run: >-
+      gen run grimscrolls.treasure --auto --prefill '{"size": "major", "kind_of": "a relic", "relic": "Skeleton Key", "name": "The Key"}'
+    expect: ["arcana Skeleton Key", "track Skeleton Key: The Key Wanders: kind: pool, pool: timer"]
+  - run: gen commit g25
+    expect: ["arcana:skeleton-key", "track:skeleton-key-the-key-wanders"]
+  - run: >-
+      gen run grimscrolls.foe --auto --prefill '{"creature": "Mammoth"}'
+    expect: ["track Mammoth: kind: pool, pool: task, value: {…}, suspense: 2", "An elite: a challenge unto itself, 6d", "challenge=<its id>`: it shares the card's name"]
+  - run: gen commit g26
+    expect: ["monster:mammoth", "track:mammoth"]

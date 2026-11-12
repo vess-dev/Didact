@@ -1,0 +1,14 @@
+check: duality
+help: Hope and Fear d12s plus a trait against a difficulty; matching dice are a critical success.
+params: {who: ref, trait: {enum: [agility]}, difficulty: {kind: int, default: 12}}
+roll: "hope:1d12 + fear:1d12 + @who.$trait"
+bands:
+  critical: "@roll.hope == @roll.fear"
+  success-with-hope: "@roll >= @difficulty and @roll.hope > @roll.fear"
+  success-with-fear: "@roll >= @difficulty"
+  failure-with-hope: "@roll.hope > @roll.fear"
+  failure-with-fear: else
+on:
+  critical: [{set: "who.hope += 1"}]
+  success-with-hope: [{set: "who.hope += 1"}]
+  failure-with-hope: [{set: "who.hope += 1"}]

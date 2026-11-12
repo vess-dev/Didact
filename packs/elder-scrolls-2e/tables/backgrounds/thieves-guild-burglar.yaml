@@ -1,0 +1,24 @@
+# Thieves Guild Burglar (backgrounds/thieves-guild-burglar): the background's two d6 tables.
+table: thieves-guild-burglar-1
+title: "How did the Guild first take you in?"
+dice: d6
+source: backgrounds/thieves-guild-burglar#how-did-the-guild-first-take-you-in-roll-1d6
+entries:
+  1: {text: "Brynjolf caught you lifting a purse in the Riften market and put you to work at his stall instead of calling the guards. Take a satchel of Falmer Blood Elixir (6 bottles) — colored water, but you know the patter that sells it to the gullible for 1d6 Septims a bottle. You also owe Maven Black-Briar a cut of every score, and her collectors always find you.", data: {gear: [{name: "Falmer Blood Elixir", uses: 6, note: "colored water; it sells to the gullible for 1d6 Septims a bottle"}]}}
+  2: {text: "You came up an orphan in the Ratway and never knew another roof. You never lose your way in a sewer, undercroft, or warren, and you carry a tarnished iron key to a forgotten back door into the Cistern.", data: {gear: [{name: "Tarnished iron key", note: "to a forgotten back door into the Cistern"}]}}
+  3: {text: "You ran stolen silver through the Riften canals for the Guild's fence. Take a coil of knotted climbing rope (30 ft); once per day, re-roll a failed DEX save to climb or to squeeze through somewhere you shouldn't fit.", data: {gear: [{name: "Knotted climbing rope", note: "30 ft"}]}}
+  4: {text: "An older burglar took you on as her shadow until a job went bad and the guards took her. You inherited her glass cutter and her debts; she is still rotting in a Hold jail, waiting for you to spring her.", data: {gear: [{name: "Glass cutter"}]}}
+  5: {text: "You picked the wrong pocket — a Nightingale's — and were spared on a whim. Take a black hood (petty) and the cold certainty that the Guild has an inner circle you have only glimpsed.", data: {gear: [{name: "Black hood", size: "petty"}]}}
+  6: {text: "You lifted a Thalmor courier's strongbox on the road out of Solitude and walked away with more than your share. Take 80 extra Septims in cut gems (petty) and a name worth something in the Flagon — and a rival in the Cistern who wants the gems back, and a Justiciar who wants the letters you burned.", data: {gear: [{name: "Cut gems", size: "petty", note: "worth 80 Septims"}]}}
+---
+table: thieves-guild-burglar-2
+title: "What is the tool of your trade?"
+dice: d6
+source: backgrounds/thieves-guild-burglar#what-is-the-tool-of-your-trade-roll-1d6
+entries:
+  1: {text: "Guild Picks: A fine set of picks from Tonilia's stock that never snaps on an honest lock. Once per day, open one mundane lock without a save or a sound.", data: {gear: [{name: "Guild Picks", note: "a fine set from Tonilia's stock"}]}}
+  2: {text: "Muffled Boots: Soft Guild leathers soled in felt (petty). You need not save to move unheard across a hard floor.", data: {gear: [{name: "Muffled Boots", size: "petty"}]}}
+  3: {text: "Fence's Loupe: A jeweler's glass (petty). With a turn's study you can name the true worth and origin of any gem, coin, or trinket — and which fence in Skyrim will buy it quietly.", data: {gear: [{name: "Fence's Loupe", size: "petty"}]}}
+  4: {text: "Bottle of Distraction: A potter's flask that shatters with a clatter like a dropped tray (1 use). Throw it, and every eye in the room turns the other way for a moment.", data: {gear: [{name: "Bottle of Distraction", uses: 1}]}}
+  5: {text: "Grappling Hook: An iron claw on thirty feet of silk line, for the high windows of Riften's rich.", data: {gear: [{name: "Grappling hook", note: "on thirty feet of silk line"}]}}
+  6: {text: "Hush Powder: A pinch of gray dust the Guild's alchemist swears by (3 uses). Blown into a lock or a hinge, it silences it for the scene; blown in a face, that foe must pass a STR save or double over choking, its next attack Impaired.", data: {gear: [{name: "Hush Powder", uses: 3}]}}

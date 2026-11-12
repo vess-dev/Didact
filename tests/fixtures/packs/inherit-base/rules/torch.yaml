@@ -1,0 +1,4 @@
+# The base's rule reads the settings of the game being played: a hack's, when one is.
+action: torch
+steps:
+  - "torches: {@settings.torch_uses}; likely: {default(@settings.odds.likely, 'unset')}; even: {default(@settings.odds.even, 'unset')}"

@@ -1,0 +1,166 @@
+# The Marketplace as tables (players-guide/marketplace), for the weapon, armor and gear
+# generators and the backgrounds that buy from it. Each entry's `data.id` is its compendium
+# entry (compendium/marketplace.yaml); prices in Septims.
+table: marketplace-weapons
+title: "Marketplace: weapons"
+description: "The book gives no die for the Marketplace: each item here is equally likely."
+source: players-guide/marketplace#weapons
+entries:
+  - {text: "Dagger", data: {id: "dagger"}}
+  - {text: "Hatchet", data: {id: "hatchet"}}
+  - {text: "Club", data: {id: "club"}}
+  - {text: "Staff", data: {id: "staff"}}
+  - {text: "Sword", data: {id: "sword"}}
+  - {text: "Mace", data: {id: "mace"}}
+  - {text: "War axe", data: {id: "war-axe"}}
+  - {text: "Spear", data: {id: "spear"}}
+  - {text: "Greatsword", data: {id: "greatsword"}}
+  - {text: "Battleaxe", data: {id: "battleaxe"}}
+  - {text: "Warhammer", data: {id: "warhammer"}}
+  - {text: "Sling", data: {id: "sling"}}
+  - {text: "Bow", data: {id: "bow"}}
+  - {text: "Crossbow", data: {id: "crossbow"}}
+  - {text: "Quiver of arrows or bolts", data: {id: "quiver-of-arrows-or-bolts"}}
+---
+table: marketplace-armor
+title: "Marketplace: armor"
+description: "The book gives no die for the Marketplace: each item here is equally likely."
+source: players-guide/marketplace#armor
+entries:
+  - {text: "Shield", data: {id: "shield"}}
+  - {text: "Helmet", data: {id: "helmet"}}
+  - {text: "Light armor", data: {id: "light-armor"}}
+  - {text: "Fur jerkin", data: {id: "fur-jerkin"}}
+  - {text: "Hide armor", data: {id: "hide-armor"}}
+  - {text: "Leather armor", data: {id: "leather-armor"}}
+  - {text: "Studded leather armor", data: {id: "studded-leather-armor"}}
+  - {text: "Mail", data: {id: "mail"}}
+  - {text: "Chain mail", data: {id: "chain-mail"}}
+  - {text: "Scale mail", data: {id: "scale-mail"}}
+  - {text: "Banded steel cuirass", data: {id: "banded-steel-cuirass"}}
+  - {text: "Plate", data: {id: "plate"}}
+---
+table: marketplace-gear
+title: "Marketplace: gear"
+description: "The book gives no die for the Marketplace: each item here is equally likely."
+source: players-guide/marketplace#gear
+entries:
+  - {text: "Antitoxin", data: {id: "antitoxin", price: 20, gear: [{name: "Antitoxin", uses: 1, note: "cures one venom"}]}}
+  - {text: "Bandages", data: {id: "bandages", price: 30, gear: [{name: "Bandages", uses: 3}]}}
+  - {text: "Bathing goods", data: {id: "bathing-goods", price: 5, gear: [{name: "Bathing goods", note: "soap, perfume, etc."}]}}
+  - {text: "Bedroll & outdoor comfort", data: {id: "bedroll-and-outdoor-comfort", price: 10, gear: [{name: "Bedroll & outdoor comfort", note: "blanket, hammock, etc."}]}}
+  - {text: "Book", data: {id: "book", price: 50, gear: [{name: "Book", note: "blank or mundane"}]}}
+  - {text: "Caltrops", data: {id: "caltrops", price: 10, gear: [{name: "Caltrops"}]}}
+  - {text: "Chain", data: {id: "chain", price: 10, gear: [{name: "Chain", note: "10 ft"}]}}
+  - {text: "Chalk", data: {id: "chalk", price: 1, gear: [{name: "Chalk", size: "petty"}]}}
+  - {text: "Chest", data: {id: "chest", price: 25, gear: [{name: "Chest"}]}}
+  - {text: "Chisel", data: {id: "chisel", price: 5, gear: [{name: "Chisel"}]}}
+  - {text: "Climbing gear", data: {id: "climbing-gear", price: 10, gear: [{name: "Climbing gear", note: "spikes, pulley, pitons"}]}}
+  - {text: "Common agents", data: {id: "common-agents", price: 10, gear: [{name: "Common agents", note: "glue, grease, pitch, etc."}]}}
+  - {text: "Common tools", data: {id: "common-tools", price: 10, gear: [{name: "Common tools", note: "hammer, shovel, etc."}]}}
+  - {text: "Containers", data: {id: "containers", price: 10, gear: [{name: "Containers", note: "sack, waterskin, etc."}]}}
+  - {text: "Cooking gear", data: {id: "cooking-gear", price: 10, gear: [{name: "Cooking gear", note: "pots, utensils, etc."}]}}
+  - {text: "Costume gear", data: {id: "costume-gear", price: 15, gear: [{name: "Costume gear", note: "face paint, disguise"}]}}
+  - {text: "Fishing rod", data: {id: "fishing-rod", price: 10, gear: [{name: "Fishing rod"}]}}
+  - {text: "Grappling hook", data: {id: "grappling-hook", price: 25, gear: [{name: "Grappling hook"}]}}
+  - {text: "Lantern", data: {id: "lantern", price: 10, gear: [{name: "Lantern"}]}}
+  - {text: "Lockpicks", data: {id: "lockpicks", price: 25, gear: [{name: "Lockpicks", note: "thieving tools; picks, metal file, etc."}]}}
+  - {text: "Lute", data: {id: "lute", price: 10, gear: [{name: "Lute", note: "simple instrument"}]}}
+  - {text: "Drum", data: {id: "drum", price: 10, gear: [{name: "Drum", note: "simple instrument"}]}}
+  - {text: "Flute", data: {id: "flute", price: 10, gear: [{name: "Flute", note: "simple instrument"}]}}
+  - {text: "Mirror", data: {id: "mirror", price: 5, gear: [{name: "Mirror"}]}}
+  - {text: "Net", data: {id: "net", price: 10, gear: [{name: "Net"}]}}
+  - {text: "Oil flask", data: {id: "oil-flask", price: 10, gear: [{name: "Oil flask", uses: 6, note: "refills a lantern"}]}}
+  - {text: "Parchment & ink", data: {id: "parchment-and-ink", price: 10, gear: [{name: "Parchment & ink", uses: 3}]}}
+  - {text: "Pole", data: {id: "pole", price: 5, gear: [{name: "Pole", note: "10 ft"}]}}
+  - {text: "Repellent", data: {id: "repellent", price: 10, gear: [{name: "Repellent", note: "frostbite-spider ward, etc."}]}}
+  - {text: "Rope", data: {id: "rope", price: 5, gear: [{name: "Rope", note: "25 ft"}]}}
+  - {text: "Sedative", data: {id: "sedative", price: 30, gear: [{name: "Sedative"}]}}
+  - {text: "Sewing kit", data: {id: "sewing-kit", price: 20, gear: [{name: "Sewing kit"}]}}
+  - {text: "Spiked boots", data: {id: "spiked-boots", price: 15, gear: [{name: "Spiked boots", note: "for ice"}]}}
+  - {text: "Spyglass", data: {id: "spyglass", price: 40, gear: [{name: "Spyglass"}]}}
+  - {text: "Tent", data: {id: "tent", price: 20, gear: [{name: "Tent", size: "bulky", note: "fits 2"}]}}
+  - {text: "Torch", data: {id: "torch", price: 5, gear: [{name: "Torch", uses: 3}]}}
+  - {text: "Trap", data: {id: "trap", price: 35, gear: [{name: "Trap", note: "d6 STR damage", damage: "d6"}]}}
+  - {text: "Whistle", data: {id: "whistle", price: 15, gear: [{name: "Whistle", size: "petty"}]}}
+  - {text: "Wilderness clothes", data: {id: "wilderness-clothes", price: 15, gear: [{name: "Wilderness clothes", size: "petty", note: "cloak, fur hood, etc."}]}}
+---
+table: gear-over-budget
+title: "Marketplace gear over a budget"
+description: "For a background that buys from the gear table with a budget (a Merchant outfitter's 20 Septims' worth): the gear that costs more than the Septims left, to rule out."
+lookup: budget
+source: players-guide/marketplace#gear
+entries:
+  0: {text: "Gear costing more than the 0 Septims left", data: {names: ["Antitoxin", "Bandages", "Bathing goods", "Bedroll & outdoor comfort", "Book", "Caltrops", "Chain", "Chalk", "Chest", "Chisel", "Climbing gear", "Common agents", "Common tools", "Containers", "Cooking gear", "Costume gear", "Drum", "Fishing rod", "Flute", "Grappling hook", "Lantern", "Lockpicks", "Lute", "Mirror", "Net", "Oil flask", "Parchment & ink", "Pole", "Repellent", "Rope", "Sedative", "Sewing kit", "Spiked boots", "Spyglass", "Tent", "Torch", "Trap", "Whistle", "Wilderness clothes"]}}
+  1-4: {text: "Gear costing more than the 1-4 Septims left", data: {names: ["Antitoxin", "Bandages", "Bathing goods", "Bedroll & outdoor comfort", "Book", "Caltrops", "Chain", "Chest", "Chisel", "Climbing gear", "Common agents", "Common tools", "Containers", "Cooking gear", "Costume gear", "Drum", "Fishing rod", "Flute", "Grappling hook", "Lantern", "Lockpicks", "Lute", "Mirror", "Net", "Oil flask", "Parchment & ink", "Pole", "Repellent", "Rope", "Sedative", "Sewing kit", "Spiked boots", "Spyglass", "Tent", "Torch", "Trap", "Whistle", "Wilderness clothes"]}}
+  5-9: {text: "Gear costing more than the 5-9 Septims left", data: {names: ["Antitoxin", "Bandages", "Bedroll & outdoor comfort", "Book", "Caltrops", "Chain", "Chest", "Climbing gear", "Common agents", "Common tools", "Containers", "Cooking gear", "Costume gear", "Drum", "Fishing rod", "Flute", "Grappling hook", "Lantern", "Lockpicks", "Lute", "Net", "Oil flask", "Parchment & ink", "Repellent", "Sedative", "Sewing kit", "Spiked boots", "Spyglass", "Tent", "Trap", "Whistle", "Wilderness clothes"]}}
+  10-14: {text: "Gear costing more than the 10-14 Septims left", data: {names: ["Antitoxin", "Bandages", "Book", "Chest", "Costume gear", "Grappling hook", "Lockpicks", "Sedative", "Sewing kit", "Spiked boots", "Spyglass", "Tent", "Trap", "Whistle", "Wilderness clothes"]}}
+  15-19: {text: "Gear costing more than the 15-19 Septims left", data: {names: ["Antitoxin", "Bandages", "Book", "Chest", "Grappling hook", "Lockpicks", "Sedative", "Sewing kit", "Spyglass", "Tent", "Trap"]}}
+  20-24: {text: "Gear costing more than the 20-24 Septims left", data: {names: ["Bandages", "Book", "Chest", "Grappling hook", "Lockpicks", "Sedative", "Spyglass", "Trap"]}}
+---
+table: hireling-roles
+title: "Hirelings (per day)"
+description: "The Marketplace's hirelings and their daily wages in Septims. The book gives no die: each is equally likely."
+source: players-guide/marketplace#hirelings-per-day
+entries:
+  - {text: "Alchemist", data: {wage: 30}}
+  - {text: "Court scholar / sage", data: {wage: 20}}
+  - {text: "Mage-for-hire", data: {wage: 20}}
+  - {text: "Blacksmith", data: {wage: 15}}
+  - {text: "Sellsword (bodyguard)", data: {wage: 10}}
+  - {text: "Lockpick (thief)", data: {wage: 10}}
+  - {text: "Navigator", data: {wage: 10}}
+  - {text: "Veteran housecarl (veteran bodyguard)", data: {wage: 20}}
+  - {text: "Local guide", data: {wage: 5}}
+  - {text: "Stablehand (animal handler)", data: {wage: 5}}
+  - {text: "Sailor", data: {wage: 5}}
+  - {text: "Tracker / hunter", data: {wage: 5}}
+  - {text: "Trapper", data: {wage: 5}}
+---
+table: marketplace-transport
+title: "Marketplace: transport and mounts"
+description: "The book gives no die for the Marketplace: each item here is equally likely."
+source: players-guide/marketplace#transport--mounts
+entries:
+  - {text: "Cart", data: {id: "cart", price: 30}}
+  - {text: "Wagon", data: {id: "wagon", price: 200}}
+  - {text: "Horse", data: {id: "horse", price: 75}}
+  - {text: "Skyrim horse", data: {id: "skyrim-horse", price: 150}}
+  - {text: "Mule", data: {id: "mule", price: 30}}
+  - {text: "Carriage seat", data: {id: "carriage-seat", price: 5}}
+  - {text: "Ship's passage", data: {id: "ships-passage", price: 10}}
+---
+table: marketplace-upkeep
+title: "Marketplace: upkeep and recovery"
+description: "The book gives no die for the Marketplace: each item here is equally likely."
+source: players-guide/marketplace#upkeep--recovery
+entries:
+  - {text: "Room & board at an inn", data: {id: "room-and-board-at-an-inn", price: 10}}
+  - {text: "Private room & board", data: {id: "private-room-and-board", price: 35}}
+  - {text: "Stable & feed", data: {id: "stable-and-feed", price: 5}}
+  - {text: "Temple healing", data: {id: "temple-healing", price: 50}}
+  - {text: "Rations", data: {id: "rations", price: 10}}
+  - {text: "Animal feed", data: {id: "animal-feed", price: 5}}
+---
+table: marketplace-alchemy
+title: "Marketplace: alchemy and soul gems"
+description: "The book gives no die for the Marketplace: each item here is equally likely."
+source: players-guide/marketplace#alchemy--soul-gems
+entries:
+  - {text: "Common reagent", data: {id: "common-reagent", price: 5}}
+  - {text: "Uncommon reagent", data: {id: "uncommon-reagent", price: 15}}
+  - {text: "Prized reagent", data: {id: "prized-reagent", price: 50}}
+  - {text: "Potion of Healing", data: {id: "potion-of-healing", price: 30}}
+  - {text: "Potion of Greater Healing", data: {id: "potion-of-greater-healing", price: 80}}
+  - {text: "Potion of Cure Disease", data: {id: "potion-of-cure-disease", price: 20}}
+  - {text: "Potion of Resist Fire", data: {id: "potion-of-resist-fire", price: 25}}
+  - {text: "Potion of Resist Frost", data: {id: "potion-of-resist-frost", price: 25}}
+  - {text: "Potion of Resist Shock", data: {id: "potion-of-resist-shock", price: 25}}
+  - {text: "Coating poison", data: {id: "coating-poison", price: 30}}
+  - {text: "Empty bottle", data: {id: "empty-bottle", price: 1}}
+  - {text: "Petty soul gem", data: {id: "petty-soul-gem", price: 40}}
+  - {text: "Lesser soul gem", data: {id: "lesser-soul-gem", price: 80}}
+  - {text: "Common soul gem", data: {id: "common-soul-gem", price: 150}}
+  - {text: "Greater soul gem", data: {id: "greater-soul-gem", price: 350}}
+  - {text: "Grand soul gem", data: {id: "grand-soul-gem", price: 500}}
+  - {text: "Black soul gem", data: {id: "black-soul-gem", price: 750}}

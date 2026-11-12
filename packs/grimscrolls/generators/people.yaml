@@ -1,0 +1,293 @@
+# People, threats and powers: Grimscrolls's own procedures where the book gives one, replacing
+# grimwild-ce's generators of the same ids (npc, monster, party, faction), and the follower
+# (Speechcraft's Allure; solo play) and the Greywatch story kit. The book has few name tables (a
+# race's two names): where there's none, a generator waits for a name; prefill it.
+generator: npc
+title: A person of Tamriel
+help: >-
+  A person, step by step: a race and a background (their wises come along), two traits and a
+  desire, what they wear, what they'd never trade and what the road already took (the hero
+  crucibles), a tier and a role for when it comes to a fight, and a name (a race's names offered).
+  Prefill by name: race, background, traits, desire, wearing, keepsake, loss, tier, role, name.
+source: "building-a-hero/creation-step-by-step; the-bestiary/introduction"
+creates: npc
+steps:
+  - choose_or_roll: {table: races, as: race, field: race, prompt: "their race"}
+  - choose_or_roll: {table: backgrounds, as: background, field: background, prompt: "their trade, a background (its three wises come with it)"}
+  - add: {field: backgrounds, value: "@race"}
+  - add: {field: backgrounds, value: "@background"}
+  - add: {field: wises, value: "@race.wises"}
+  - add: {field: wises, value: "@background.wises"}
+  - choose_or_roll: {table: traits, as: traits, count: 2, field: traits, prompt: "two traits they are"}
+  - choose_or_roll: {table: desires, as: desire, prompt: "what they want"}
+  - add: {field: desires, value: "@desire"}
+  - choose_or_roll: {table: hero-wearing, as: wearing, prompt: "what they're wearing"}
+  - choose_or_roll: {table: hero-never-trade, as: keepsake, prompt: "what they'd never trade"}
+  - choose_or_roll: {table: hero-road-took, as: loss, prompt: "what the road already took"}
+  - apply:
+      details:
+        looks: "{@wearing}"
+        wants: "@desire"
+        history: "would never trade {@keepsake}; the road took {@loss}"
+  - choose_or_roll: {table: combat-tiers, as: tier, prompt: "their tier, if it comes to a fight"}
+  - choose_or_roll: {table: combat-roles, as: role, prompt: "how they fight"}
+  - apply: {tier: "@tier.id", role: "@role.id"}
+  - name: {from: "@race.names", prompt: "a name (the crucibles offer, for the {@race}: {@race.names}; or your own)"}
+  - prompt: "They want {@desire}: what do they want from the party, and what would they do to get it? If it comes to a fight: {@tier.id}, {@role.id} (`didact compendium show grimscrolls.{@role.id}`); a group of them is a pool (a pack of mooks 4d, a knot of toughs 6d)."
+---
+generator: monster
+title: A threat
+help: >-
+  A threat, as the Bestiary writes them: a tier (a mook is fodder, a pack one 4d pool; a tough
+  falls one at a time, a knot of them 6d; an elite is a 6d challenge; a boss owns the scene at 8d,
+  or as a linked challenge), a role (how it fights and what makes it falter), an idea from the GM
+  crucible, and a name. Then its senses, traits, moves, what it wants with a turn, and a Note.
+  Prefill by name: tier, role, idea, name.
+source: "the-bestiary/introduction; running-tamriel/challenges"
+creates: monster
+steps:
+  - choose_or_roll: {table: combat-tiers, as: tier, prompt: "its tier: it sets its presence"}
+  - choose_or_roll: {table: combat-roles, as: role, prompt: "its role: how it fights, and what makes it falter"}
+  - table: gm-crucible
+    as: idea
+  - name: {prompt: "what it is ({@tier.id} {@role.id}; the GM crucible offers {@idea})"}
+  - apply: {tier: "@tier.id", role: "@role.id"}
+  - if: "@tier.id == 'boss'"
+    then:
+      - prompt: "A boss owns the scene at 8d, or as a linked challenge: parts that each carry their own pool, traits and moves (`didact set <threat> pools+='…'`), and a fail state that ends the fight the bad way (`fail='…'`)."
+    else:
+      - prompt: "Its pool: {if(@tier.id == 'mook', 'a pack of mooks is one pool, usually 4d (one good roll clears several)', if(@tier.id == 'tough', 'toughs fall one at a time; a knot of them is a pool, usually 6d', 'an elite is a challenge by itself, usually 6d'))}. Write it in the Note: `didact set <threat> note='…'`."
+  - prompt: "Its senses: something seen, something heard, something smelled (`sights`, `sounds`, `smells`); two or three traits (standing facts that bend what heroes can try) and two or three moves (Capitalized Like Titles; a pool a move inflicts in parentheses); what it wants, with a turn (not what it fears, or what would make it stop). Enemies never roll: its danger is thorns, stakes, suspense and the size of its pool. Elites and bosses framed as challenges bring 2 bonus suspense."
+---
+generator: foe
+title: A threat in play
+help: >-
+  Put a Bestiary threat in play: its card (a threat or a Face of Tamriel) and its pools. Enemies
+  never roll: a dangerous foe is a task pool, and hurting it rolls the pool (`didact track roll`);
+  at 0d it's beaten. A pack of mooks is a single pool (usually 4d), a knot of toughs too (usually
+  6d); an elite is a challenge unto itself (usually 6d); a boss owns the scene at 8d, or as a
+  linked challenge whose parts each carry their own pool, traits and moves, with a fail state.
+  Elites and bosses framed as challenges bring 2 bonus suspense of their own, a linked challenge
+  once (kept on its first part). The card's Note gives its own pool when it has one. Prefill by
+  name: creature.
+source: "the-bestiary/introduction; running-tamriel/challenges; running-tamriel/combat-rulings"
+steps:
+  - choose_or_roll: {table: bestiary, as: creature, prompt: "the threat (`didact compendium find grimscrolls.<name>`)"}
+  - entity: {key: card, from: "@creature.id"}
+  - let:
+      whole: "{@creature}"
+      challenge: "@creature.tier == 'elite' or @creature.tier == 'boss'"
+  - if: "@creature.parts > 0"
+    then:
+      - entity:
+          key: part
+          type: track
+          name: "{@whole}: {@creature.part.1.name}"
+          fields: {kind: pool, pool: task, value: {value: "@creature.part.1.dice", max: "@creature.part.1.dice"}, suspense: 2, linked: "{@whole}", note: beaten, traits: "{default(@creature.part.1.traits, '')}"}
+          links: [{rel: of, to: "@card"}]
+      - entity:
+          key: part
+          type: track
+          name: "{@whole}: {@creature.part.2.name}"
+          fields: {kind: pool, pool: task, value: {value: "@creature.part.2.dice", max: "@creature.part.2.dice"}, suspense: 0, linked: "{@whole}", note: beaten, traits: "{default(@creature.part.2.traits, '')}"}
+          links: [{rel: of, to: "@card"}]
+      - if: "@creature.parts >= 3"
+        then:
+          - entity:
+              key: part
+              type: track
+              name: "{@whole}: {@creature.part.3.name}"
+              fields: {kind: pool, pool: task, value: {value: "@creature.part.3.dice", max: "@creature.part.3.dice"}, suspense: 0, linked: "{@whole}", note: beaten, traits: "{default(@creature.part.3.traits, '')}"}
+              links: [{rel: of, to: "@card"}]
+      - if: "default(@creature.fail.dice, 0) > 0"
+        then:
+          - entity:
+              key: fail
+              type: track
+              name: "{@whole}: {@creature.fail.name}"
+              fields: {kind: pool, pool: timer, value: {value: "@creature.fail.dice", max: "@creature.fail.dice"}, note: "{@creature.fail.text}"}
+              links: [{rel: of, to: "@card"}]
+      - prompt: "A linked challenge: each part is a task pool with its own traits and moves (its card: `didact show <card>`); beat the parts that lock the whole to reach it, as its Note says. Its 2 bonus suspense comes once, kept on the first part (`didact do suspense spend=1 challenge=<part>`). Its fail state: {default(@creature.fail.text, 'see the card')}"
+    else:
+      - entity:
+          key: pool
+          type: track
+          name: "{@whole}"
+          fields: {kind: pool, pool: task, value: {value: "@creature.dice", max: "@creature.dice"}, suspense: "{if(@challenge, 2, 0)}", note: beaten}
+          links: [{rel: of, to: "@card"}]
+      - if: "@challenge"
+        then:
+          - prompt: "{if(@creature.tier == 'elite', 'An elite', 'A boss')}: a challenge unto itself, {@creature.dice}d, with 2 bonus suspense of its own for moves relating to it (`didact do suspense spend=1 challenge=<its id>`: it shares the card's name)."
+        else:
+          - prompt: "{if(@creature.tier == 'mook', 'Mooks are fodder: one good roll clears several, and the pack is this one task pool', 'Toughs fall one at a time: a knot of them is this pool')} ({@creature.dice}d{if(@creature.usual, ', the usual for its tier', ', as its Note gives it')}); a pool of mooks or toughs is just a pool, no bonus suspense."
+  - prompt: "Hurt it and roll its pool (`didact track roll <pool>`); at 0d it's beaten. It hits back through impact moves (its moves) on the heroes' messy and grim rolls, and whenever the GM spends suspense; a move a hero didn't invite gets a defense roll. Its Note has its variants and the trick that beats it (`didact show <card>`, by its id when its pool shares the name)."
+---
+generator: follower
+title: A follower
+help: >-
+  Someone who stayed (Speechcraft's Allure; a lone hero's follower in solo play): a housecarl, a
+  hired blade, a devoted admirer, a hound that chose you. 3 tricks and 2 flaws; roll 3d for their
+  tricks, 1d otherwise; two damage boxes, marked (any mark) and hurt (any harm), and they can
+  always leave a scene when hurt. Each PC adds a reciprocal bond with them. Prefill by name:
+  tricks, flaws, name.
+source: "the-classes/speechcraft#allure; running-tamriel/running-solo-and-duet"
+creates: npc
+steps:
+  - choose_or_roll: {from: [carry, distract, fight, guard, perform, rescue, scout, search, track, warn], as: tricks, count: 3, field: tricks, prompt: "3 tricks (rolled at 3d)"}
+  - choose_or_roll: {from: [aggressive, clumsy, grumpy, insatiable, jumpy, noisy, overprotective, proud, unruly], as: flaws, count: 2, field: flaws, prompt: "2 flaws"}
+  - apply: {role: follower}
+  - name: {prompt: "who they are: a housecarl, a hired blade, a devoted admirer, a hound that chose you (a name)"}
+  - prompt: "They roll 3d for their tricks ({@tricks}), 1d otherwise; two damage boxes, marked (any mark) and hurt (any harm: `didact set <follower> hurt+=…`), and they can always leave a scene when hurt. Each PC adds a reciprocal bond with them. If you lose them, another finds you in time; the GM may let you take Allure again for 3 more tricks and another hurt box."
+---
+generator: party
+title: The company
+help: >-
+  Build the party first, then the people in it: when (one of Tamriel's bad years, or a quiet
+  decade between), 2 concepts that fit your party and 1 that definitely doesn't, a group arc (the
+  next stretch of road, not the destination), and group-building questions. Kept as a constant
+  lore entry the brief always carries. Prefill by name: era, concepts (a list of 2), not_concept,
+  group_arc.
+source: "building-a-hero/the-party; building-a-hero/the-twenty-one-backgrounds#group-building-questions"
+steps:
+  - choose_or_roll: {table: eras, as: era, prompt: "when: one of the bad years Tamriel's stories cluster around, or a quiet decade between; and say where you are when the story starts"}
+  - choose_or_roll: {table: party-concepts, as: concepts, count: 2, prompt: "2 concepts that fit your party"}
+  - choose_or_roll: {table: party-concepts, as: not_concept, exclude: "@concepts", prompt: "and 1 that definitely doesn't"}
+  - choose_or_roll: {table: group-arcs, as: group_arc, prompt: "a group arc: the next stretch of road, not the destination (the book's examples; or your own)"}
+  - table: group-building-questions
+    times: 3
+    distinct: true
+    as: questions
+  - entity:
+      key: party
+      type: lore
+      name: The company
+      fields: {keys: [party, the party, company, group arc], kind: lore, constant: true}
+      body: "The company: {@concepts}; definitely not {@not_concept}. When: {@era}. Its group arc: {@group_arc}. Each hero also has one or two character arcs of their own."
+  - prompt: "At session zero or around a campfire, each player asks the player to their left one of these: {@questions}."
+  - prompt: "Then build the heroes to fit (`didact char new`), and finish with the last job you pulled together as a group montage roll (`didact do montage who=<hero>`, 2d each)."
+---
+generator: faction
+title: A faction
+help: >-
+  A faction (Running Tamriel): its resources (what it has) and its goals, each tracked with a
+  faction pool rolled between sessions or whenever the story triggers it (4d, 6d or 8d), listed
+  on it as pool_1, pool_2 for `didact faction turn`; and its standing toward the party (a
+  stranger, by default). The book has no faction names: prefill them. Prefill by name: name,
+  goal_1, pool_1, goal_2, pool_2.
+source: "running-tamriel/the-greywatch-powderkeg"
+creates: faction
+steps:
+  - name: {prompt: "the faction: a hold's court, a guild, a Great House, a clan, a cult"}
+  - ask: {as: goal_1, prompt: "a goal it's working toward (Hire Swords, Crack Down on Smuggling)"}
+  - choose_or_roll: {from: [4, 6, 8], as: pool_1, prompt: "its faction pool's dice"}
+  - entity:
+      key: goal
+      type: track
+      name: "{@goal_1}"
+      fields: {kind: pool, pool: campaign, value: {value: "@pool_1", max: "@pool_1"}, note: "the goal lands on screen, or the faction moves against a rival (`didact do faction-goal`)"}
+      links: [{rel: of, to: character}]
+  - apply: {pool_1: "@goal", standing: stranger}
+  - ask: {as: goal_2, prompt: "a second goal"}
+  - choose_or_roll: {from: [4, 6, 8], as: pool_2, prompt: "its faction pool's dice"}
+  - entity:
+      key: goal
+      type: track
+      name: "{@goal_2}"
+      fields: {kind: pool, pool: campaign, value: {value: "@pool_2", max: "@pool_2"}, note: "the goal lands on screen, or the faction moves against a rival (`didact do faction-goal`)"}
+      links: [{rel: of, to: character}]
+  - apply: {pool_2: "@goal"}
+  - prompt: "Its resources: `didact set <faction> resources+='…'`. Roll its pools between sessions or when the story triggers them (`didact faction turn`); in downtime, roll them all, then pick one and run it dry. Its standing toward the party: `didact do standing who=<faction> shift=±1`."
+---
+generator: door-under-greywatch
+title: "Story kit: The Door Under Greywatch"
+help: >-
+  A first session for the Greywatch Powderkeg: the seal under the Moot Hall is failing, the dead
+  in the old barrow are restless, and the only claw that opens the door is in the wrong hands.
+  Makes its pressure pools, its faces, the barrow door's challenge, and the Reckoning's dragon
+  priest's lieutenant with his Honor Guard; prompts the hook, the Riddle, the Twist, the Hoard,
+  the fail state and the question.
+source: "running-tamriel/the-gms-prep-kit#the-door-under-greywatch"
+steps:
+  - entity:
+      key: pressure
+      type: track
+      name: The Seal Wears Thin
+      fields: {kind: pool, pool: pressure, value: {value: 6, max: 6}, note: "roll it each midnight, and whenever anyone digs, prays, or bleeds in the cellar; at 0d, the fail state"}
+  - entity:
+      key: pressure
+      type: track
+      name: The Split-Tusks Come for the Toll
+      fields: {kind: pool, pool: pressure, value: {value: 4, max: 4}, note: "roll it whenever the town looks distracted"}
+  - entity: {key: face, from: hrefna-stone-tally}
+  - entity: {key: face, from: varo-callidus}
+  - entity: {key: face, from: ancalime}
+  - entity: {key: face, from: jzarro}
+  - entity:
+      key: door
+      type: track
+      name: Open the Sealed Barrow
+      fields: {kind: pool, pool: task, value: {value: 6, max: 6}, suspense: 2, traits: [three rings and a claw-shaped lock], moves: [Wrong Combination, Wake the Niches], note: "The Door (Entrance)"}
+  - entity:
+      key: lieutenant
+      type: monster
+      name: The Dragon Priest's Lieutenant
+      fields: {tier: elite, role: blaster, note: "The Reckoning, with the Honor Guard that has stood watch since before the Empire."}
+  - entity:
+      key: guard
+      type: track
+      name: Honor Guard
+      fields: {kind: pool, pool: task, value: {value: 4, max: 4}, note: "The Reckoning: an Honor Guard that has stood watch since before the Empire"}
+  - prompt: "The hook, three ways: the Moot hires you to find out why the hall's cellar is freezing in high summer; the Legion's centurion wants to know what's down there before the Bear's Friends do; a Khajiit from the caravan sells you a golden claw and a bad feeling."
+  - prompt: "The site: the Door (6d Open the Sealed Barrow: three rings and a claw-shaped lock; Wrong Combination, Wake the Niches). The Riddle: the barrow was built to keep something in, and every ward faces the wrong way for a tomb. The Twist: the townsfolk's grandparents knew, and have been feeding the seal ever since; with what, nobody will say. The Reckoning: a dragon priest's lieutenant (elite, blaster) and a 4d Honor Guard. The Hoard: a word wall, a major relic, and a seal that needs feeding again by winter."
+  - prompt: "Fail state: the seal hits 0d: the cold comes up through the floor, the barrow empties into the street, and the Legion declares the town lost. The question the night is about: what is a town allowed to do to stay safe?"
+---
+generator: talent
+title: A new talent, made with the GM
+help: >-
+  Building your own (Chapter 10): a talent never grants standing potency outside a narrow domain
+  and never raises a stat. Its pools run 2d-3d, its "always" covers only knowledge and vantage,
+  and every strong trick is once per session, push-priced, or given time. A racial or birthsign
+  talent is lighter still: one narrow edge, one gift a session. The talent made joins the
+  level-up's lists (a record of type talent).
+source: "options-and-dials/building-your-own#talents"
+creates: talent
+steps:
+  - choose: {from: [a class talent, a gift of blood or stars], as: kind, prompt: "a class's talent, or a racial or birthsign gift (lighter still: one narrow edge, one gift a session)"}
+  - if: "@kind == 'a class talent'"
+    then:
+      - choose: {table: classes, as: class, prompt: "the class whose list it joins"}
+      - apply: {kind: class, class: "@class.key"}
+    else:
+      - apply: {kind: racial}
+  - choose: {from: [a pool (2d-3d), a once-per-session trick, a push-priced trick, a given-time trick, an always (knowledge and vantage only)], as: gives, prompt: "what it gives"}
+  - ask: {as: body, field: body, prompt: "what it does, in the book's terms (+1d, +1t, a pool, a mark, potency, given time, push yourself, interrupt, once per session), in a short paragraph"}
+  - name: {prompt: "its name"}
+  - prompt: "With the GM: measured against Chapter 4, is it a talent, or set dressing? It never raises a stat, and grants no standing potency outside a narrow domain."
+---
+generator: arcana
+title: A relic
+help: >-
+  Building your own (Chapter 10): pick a function (attack, enhance, hinder, influence, protect,
+  restore, reveal, summon, transform, traverse) and a form, name it, and give it three touchstones
+  and one Limit that bites (a pool, a price, a Prince's attention, or a person who wants it back).
+  Set its tier by the tier gate; an expendable punches one tier up. Prefill by name: tier,
+  expendable, function, limit, name.
+source: "options-and-dials/building-your-own#relics; the-reliquary/introduction#the-tier-gate"
+creates: arcana
+steps:
+  - choose_or_roll: {from: [minor, major, mythic], as: tier, field: tier, prompt: "its tier, by the tier gate"}
+  - choose_or_roll: {from: ["no", "yes"], as: expendable, prompt: "a single-use find (×1)? It punches one tier up"}
+  - if: "@expendable == 'yes'"
+    then: [apply: {expendable: true}]
+  - choose_or_roll: {table: arcana-functions, as: function, prompt: "its function"}
+  - apply: {function: "@function.id"}
+  - choose_or_roll: {from: [a pool, a price, "a Prince's attention", a person who wants it back], as: limit, prompt: "its one Limit that bites"}
+  - if: "@limit == 'a pool'"
+    then:
+      - if: "@tier == 'minor'"
+        then: [apply: {pool: 2}]
+      - if: "@tier == 'major'"
+        then: [apply: {pool: 4}]
+  - name: {prompt: "a name and a form that fits ({@tier}, {@function.id})"}
+  - prompt: "Three touchstones, evocative phrases that bound what it can be stretched to do (`didact set <relic> touchstones+='…'`), and its Limit ({@limit}): `limit='…'`. A named relic is one of a kind."
+  - prompt: "The tier gate: {if(@tier == 'minor', 'a narrow edge: set-dressing vantage, a thorn it ignores, +1d in a narrow circumstance, a 2d pool for a spell-sized trick, or a once-per-session trick; never potent', if(@tier == 'major', 'a broad edge (+1d whenever it is the right tool, or permissions nobody else has) plus an engine: a once-per-session potent use, a 4d power pool, or both', 'no cap but the judgment of the table: ritual-level deeds, any number of potent tricks; it counts as its own ritual anchors'))}."

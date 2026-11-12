@@ -1,0 +1,643 @@
+# grimwild-ce's play rules that Grimscrolls changes (the same ids replace them): switching a
+# talent, downtime and its actions (Surviving Tamriel: Downtime), armor for everyone and active
+# vigilance (Options & Dials), carousing (a downtime action here), and vex (Chapter 2: you
+# pick the response; grimwild-ce's random vex and its flavors' riders have no place here).
+# grimwild-ce's vigor pool is hidden: every hero carries potions (rules/survival.yaml).
+action: switch-talent
+title: Switch a talent
+help: >-
+  Swap a talent for another: at story milestones once a hero is at the smaller scale's level cap,
+  after retraining one in downtime with a master who charges for it (Pursue a goal), or to take a
+  curse's talent at once by trading away the last talent you gained (a hero turned in play). A
+  Core Talent is its class's alone; the curses' lists need the blood; racial and birthsign talents
+  sit outside your levels, and a standing stone's blessing goes with another stone
+  (`didact do take-stone`).
+params:
+  who: ref
+  drop: {kind: text, help: "The talent given up (its id)"}
+  take: {kind: text, help: "The new talent (its id)"}
+  why: {kind: text, optional: true}
+steps:
+  - if: "not (@drop in @who.talents)"
+    then:
+      - stop: "{@who.name} has no talent {@drop} (talents: {@who.talents})."
+  - if: "@take in @who.talents"
+    then:
+      - stop: "{@who.name} already has {@take}."
+  - set: who.talents
+    op: "-="
+    value: $drop
+  - set: who.talents
+    op: "+="
+    value: $take
+  - message: "{@who.name} switches {@drop} for {@take}."
+  - message: "A Core Talent is its class's alone, the curses' talents need the blood, and racial and birthsign talents aren't swapped: if {@take} is one of those, put {@drop} back (`didact undo`)."
+  - do: talent-pool-gone
+    with: {who: "@who", talent: $drop}
+  - do: talent-pool
+    with: {who: "@who", talent: $take}
+  - if: "default(@why, '') <> ''"
+    then: ["Why: {@why}."]
+source: "the-classes/introduction; surviving-tamriel/downtime; surviving-tamriel/the-two-curses; options-and-dials/tone-dials#scale"
+---
+procedure: talent-pool
+title: The pool a talent brings
+help: >-
+  A talent with a pool of its own, made at once and the sheet pointed at it, so the session's
+  reset refreshes it: Juggernaut's 2d Armor, Poisoner's 4d Poisons, Mage Armor's 2d Flesh,
+  Magic Resistance's 2d Resistance, Oblivion Binding's 2d Unbinding, Reflect Spell's 2d
+  Reflection, Ward Absorb's 2d Ward, Unhindered's 2d Leathers, Shrouded's 2d Disguise, Investor's
+  3d Credit, Unearthly Will's 2d Will, Animal Vigor's 2d Hide; the curses' talents bring The Blood
+  (3d) and the Bloodlust timer (3d). The same pools character creation and leveling up make
+  (chargen/pc.yaml).
+params:
+  who: ref
+  talent: {kind: text}
+steps:
+  - if: "@talent == 'heavy-armor-juggernaut'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}'s Armor"
+          fields: {kind: pool, pool: resource, value: {value: 2, max: 2}, note: "Juggernaut: in heavy armor, when physical harm would land on you, roll it and the blow glances off (a second pool beside Plate); each session."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.juggernaut
+        value: "@made"
+      - message: "{@who.name}'s 2d Armor ({@made.id}): the sheet points at it."
+  - if: "@talent == 'alchemy-poisoner'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}'s Poisons"
+          fields: {kind: pool, pool: resource, value: {value: 4, max: 4}, note: "Poisoner: roll it for a dose (paralysis, frenzy, fear, silence, weakness, a loosened tongue); each session."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.poisons
+        value: "@made"
+      - message: "{@who.name}'s 4d Poisons ({@made.id}): the sheet points at it."
+  - if: "@talent == 'alteration-mage-armor'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}'s Flesh"
+          fields: {kind: pool, pool: resource, value: {value: 2, max: 2}, note: "Mage Armor: wearing no armor, when physical harm would land on you, roll it; each session."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.flesh
+        value: "@made"
+      - message: "{@who.name}'s 2d Flesh ({@made.id}): the sheet points at it."
+  - if: "@talent == 'alteration-magic-resistance'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}'s Resistance"
+          fields: {kind: pool, pool: resource, value: {value: 2, max: 2}, note: "Magic Resistance: when you would suffer from magic, roll it to shrug the effect off; when it empties, your next action is potent; each session."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.resistance
+        value: "@made"
+      - message: "{@who.name}'s 2d Resistance ({@made.id}): the sheet points at it."
+  - if: "@talent == 'conjuration-oblivion-binding'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}'s Unbinding"
+          fields: {kind: pool, pool: power, value: {value: 2, max: 2}, note: "Oblivion Binding: roll it to interrupt anything a summoned Daedra, a raised corpse or a restless spirit is doing; each session."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.unbinding
+        value: "@made"
+      - message: "{@who.name}'s 2d Unbinding ({@made.id}): the sheet points at it."
+  - if: "@talent == 'mysticism-reflect-spell'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}'s Reflection"
+          fields: {kind: pool, pool: power, value: {value: 2, max: 2}, note: "Reflect Spell: roll it to interrupt hostile magic as it's cast; on a perfect, turn it back; each session."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.reflection
+        value: "@made"
+      - message: "{@who.name}'s 2d Reflection ({@made.id}): the sheet points at it."
+  - if: "@talent == 'restoration-ward-absorb'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}'s Ward"
+          fields: {kind: pool, pool: resource, value: {value: 2, max: 2}, note: "Ward Absorb: when a spell, a breath or a shout would strike you, roll it to stop the magic at the ward; each session."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.ward
+        value: "@made"
+      - message: "{@who.name}'s 2d Ward ({@made.id}): the sheet points at it."
+  - if: "@talent == 'light-armor-unhindered'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}'s Leathers"
+          fields: {kind: pool, pool: resource, value: {value: 2, max: 2}, note: "Unhindered: in light armor, when physical harm would land on you, roll it; each session."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.leathers
+        value: "@made"
+      - message: "{@who.name}'s 2d Leathers ({@made.id}): the sheet points at it."
+  - if: "@talent == 'light-armor-shrouded'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}'s Disguise"
+          fields: {kind: pool, pool: resource, value: {value: 2, max: 2}, note: "Shrouded: roll it to pass at a glance for someone you're not; each session."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.disguise
+        value: "@made"
+      - message: "{@who.name}'s 2d Disguise ({@made.id}): the sheet points at it."
+  - if: "@talent == 'mercantile-investor'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}'s Credit"
+          fields: {kind: pool, pool: resource, value: {value: 3, max: 3}, note: "Investor: roll it to call in what the trade owes you; at 0d you've overdrawn; each session."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.credit
+        value: "@made"
+      - message: "{@who.name}'s 3d Credit ({@made.id}): the sheet points at it."
+  - if: "@talent == 'vampire-unearthly-will'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}'s Will"
+          fields: {kind: pool, pool: resource, value: {value: 2, max: 2}, note: "Unearthly Will: when you'd be rattled, vexed or gripped by magic of the mind, roll it and you aren't; each session."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.will
+        value: "@made"
+      - message: "{@who.name}'s 2d Will ({@made.id}): the sheet points at it."
+  - if: "@talent == 'werewolf-animal-vigor'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}'s Hide"
+          fields: {kind: pool, pool: resource, value: {value: 2, max: 2}, note: "Animal Vigor: roll it when physical harm would land on the wolf (not silver); fresh each time you change."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.hide
+        value: "@made"
+      - message: "{@who.name}'s 2d Hide ({@made.id}): the sheet points at it."
+  - if: "@talent == 'vampire-sanguinare-vampiris'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}'s Blood"
+          fields: {kind: pool, pool: power, value: {value: 3, max: 3}, note: "Sanguinare Vampiris: The Blood at 3d, never grows; it comes back only by feeding (`didact do feed`)."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.blood
+        value: "@made"
+      - message: "{@who.name}'s 3d Blood ({@made.id}): the sheet points at it."
+  - if: "@talent == 'werewolf-lycanthropy'"
+    then:
+      - entity:
+          type: track
+          name: "{@who.name}'s Bloodlust"
+          fields: {kind: pool, pool: timer, value: {value: 3, max: 3}, note: "Lycanthropy: the Bloodlust timer starts at 3d, and you never gain more changes per session (`didact do change`)."}
+          links: [{rel: of, to: "@who"}]
+        as: made
+      - set: who.bloodlust
+        value: "@made"
+      - set: who.changes
+        value: "1/1"
+      - message: "{@who.name}'s 3d Bloodlust ({@made.id}): the sheet points at it."
+source: "the-classes/heavy-armor#juggernaut; the-classes/alchemy#poisoner; the-classes/alteration#mage-armor; the-classes/alteration#magic-resistance; the-classes/conjuration#oblivion-binding; the-classes/mysticism#reflect-spell; the-classes/restoration#ward-absorb; the-classes/light-armor#unhindered; the-classes/light-armor#shrouded; the-classes/mercantile#investor; the-classes/vampire#unearthly-will; the-classes/werewolf#animal-vigor; the-classes/introduction#the-curses"
+---
+procedure: talent-pool-gone
+title: A talent's pool, given up with it
+help: "A talent switched out takes its pool with it: the sheet lets the pool go (the record is the GM's to remove)."
+params:
+  who: ref
+  talent: {kind: text}
+steps:
+  - if: "@talent == 'heavy-armor-juggernaut' and default(@who.juggernaut, '') <> ''"
+    then:
+      - prompt: "{@who.name}'s Armor goes with the talent (remove its record: `didact rm {@who.juggernaut}`)."
+      - unset: who.juggernaut
+  - if: "@talent == 'alchemy-poisoner' and default(@who.poisons, '') <> ''"
+    then:
+      - prompt: "{@who.name}'s Poisons goes with the talent (remove its record: `didact rm {@who.poisons}`)."
+      - unset: who.poisons
+  - if: "@talent == 'alteration-mage-armor' and default(@who.flesh, '') <> ''"
+    then:
+      - prompt: "{@who.name}'s Flesh goes with the talent (remove its record: `didact rm {@who.flesh}`)."
+      - unset: who.flesh
+  - if: "@talent == 'alteration-magic-resistance' and default(@who.resistance, '') <> ''"
+    then:
+      - prompt: "{@who.name}'s Resistance goes with the talent (remove its record: `didact rm {@who.resistance}`)."
+      - unset: who.resistance
+  - if: "@talent == 'conjuration-oblivion-binding' and default(@who.unbinding, '') <> ''"
+    then:
+      - prompt: "{@who.name}'s Unbinding goes with the talent (remove its record: `didact rm {@who.unbinding}`)."
+      - unset: who.unbinding
+  - if: "@talent == 'mysticism-reflect-spell' and default(@who.reflection, '') <> ''"
+    then:
+      - prompt: "{@who.name}'s Reflection goes with the talent (remove its record: `didact rm {@who.reflection}`)."
+      - unset: who.reflection
+  - if: "@talent == 'restoration-ward-absorb' and default(@who.ward, '') <> ''"
+    then:
+      - prompt: "{@who.name}'s Ward goes with the talent (remove its record: `didact rm {@who.ward}`)."
+      - unset: who.ward
+  - if: "@talent == 'light-armor-unhindered' and default(@who.leathers, '') <> ''"
+    then:
+      - prompt: "{@who.name}'s Leathers goes with the talent (remove its record: `didact rm {@who.leathers}`)."
+      - unset: who.leathers
+  - if: "@talent == 'light-armor-shrouded' and default(@who.disguise, '') <> ''"
+    then:
+      - prompt: "{@who.name}'s Disguise goes with the talent (remove its record: `didact rm {@who.disguise}`)."
+      - unset: who.disguise
+  - if: "@talent == 'mercantile-investor' and default(@who.credit, '') <> ''"
+    then:
+      - prompt: "{@who.name}'s Credit goes with the talent (remove its record: `didact rm {@who.credit}`)."
+      - unset: who.credit
+  - if: "@talent == 'vampire-unearthly-will' and default(@who.will, '') <> ''"
+    then:
+      - prompt: "{@who.name}'s Will goes with the talent (remove its record: `didact rm {@who.will}`)."
+      - unset: who.will
+  - if: "@talent == 'werewolf-animal-vigor' and default(@who.hide, '') <> ''"
+    then:
+      - prompt: "{@who.name}'s Hide goes with the talent (remove its record: `didact rm {@who.hide}`)."
+      - unset: who.hide
+  - if: "@talent == 'vampire-sanguinare-vampiris' and default(@who.blood, '') <> ''"
+    then:
+      - prompt: "{@who.name}'s Blood goes with the talent (remove its record: `didact rm {@who.blood}`)."
+      - unset: who.blood
+  - if: "@talent == 'werewolf-lycanthropy' and default(@who.bloodlust, '') <> ''"
+    then:
+      - prompt: "{@who.name}'s Bloodlust goes with the talent (remove its record: `didact rm {@who.bloodlust}`)."
+      - unset: who.bloodlust
+source: "the-classes/introduction"
+---
+action: carouse
+title: Carouse (a downtime action)
+help: "Carousing is a downtime action in Grimscrolls: give a vignette of how you unwind, and take spark (`didact do downtime who=… act=carouse`)."
+params:
+  who: ref
+steps:
+  - prompt: "Carouse (downtime): give a vignette of how {@who.name} unwinds: the mead hall, the Arena, the chapel, a drinking contest with a stranger named Sam."
+  - do: take-spark
+    with: {who: "@who", why: carousing}
+    go_on: true
+source: "surviving-tamriel/downtime"
+---
+action: downtime
+title: Downtime
+help: >-
+  When time passes (a month in a city, a winter at the guild hall), per-session talents refresh,
+  potions refill, marks and harm clear with the long rest, and each hero picks one downtime action,
+  or two different ones if they sold off a haul (`also=`): rest (shake every non-permanent
+  condition), venture (a story roll), carouse (a vignette and spark), pursue a goal (its task
+  pool: `project=` names it, made the first time; `goal=` an existing pool, a guild's Rise), plan
+  ahead (a special thread: `plan=`). A plan ahead is lost when time passes again. Meanwhile the
+  GM rolls the faction pools, then picks one and runs it dry.
+params:
+  who: ref
+  act: {enum: [rest, venture, carouse, pursue, plan]}
+  also: {enum: [rest, venture, carouse, pursue, plan], optional: true, help: "A second, different action, when a haul was sold off"}
+  plan: {kind: text, optional: true, help: "Plan ahead: a few words on the preparation"}
+  goal: {kind: ref, to: track, optional: true, help: "Pursue a goal: its task pool, already made (a guild's Rise in the Guild)"}
+  project: {kind: text, optional: true, help: "Pursue a goal: the project (build the house, forge the blade, retrain a talent); its task pool is made the first time"}
+  dice: {kind: int, default: 4, help: "A new project's task pool: 2d short, 4d medium, 6d stubborn, 8d long"}
+steps:
+  - if: "'$also' <> '' and '$also' == '$act'"
+    then:
+      - stop: "Selling off a haul gives two different downtime actions, not {@act} twice."
+  - if: "default(@who.plan, '') <> ''"
+    then:
+      - set: who.plan
+        value: "''"
+      - message: "Time passes: {@who.name}'s plan-ahead thread is lost."
+  - set: who.marks
+    value: []
+  - set: who.harm
+    value: []
+  - message: "{@who.name}'s marks and harm clear with the long break."
+  - do: talent-resets
+    with: {who: "@who"}
+  - if: "default(@who.potions, '') <> ''"
+    then:
+      - do: refresh
+        with: {pool: "@who.potions"}
+      - message: "{@who.name}'s potions refill in downtime."
+  - if: "default(@goal, '') <> ''"
+    then:
+      - do: downtime-action
+        with: {who: "@who", act: $act, plan: $plan, goal: "@goal"}
+    else:
+      - do: downtime-action
+        with: {who: "@who", act: $act, plan: $plan, project: $project, dice: "@dice"}
+  - if: "'$also' <> ''"
+    then:
+      - if: "default(@goal, '') <> ''"
+        then:
+          - do: downtime-action
+            with: {who: "@who", act: $also, plan: $plan, goal: "@goal"}
+        else:
+          - do: downtime-action
+            with: {who: "@who", act: $also, plan: $plan, project: $project, dice: "@dice"}
+  - prompt: "The GM, once for the whole downtime: roll the faction pools (`didact faction turn`), then pick one and run it dry (`didact do faction-goal who=<faction> pool=<pool>`). Tamriel moves while you sleep: campaign pools roll, and give the stretch three sensory details, one of them strange."
+source: "surviving-tamriel/downtime; surviving-tamriel/the-long-road#the-passage-of-time; surviving-tamriel/potions; the-core-engine/damage-and-recovery#downtime"
+---
+procedure: downtime-action
+title: A downtime action
+help: "One of the downtime actions: rest, venture, carouse, pursue a goal, plan ahead."
+params:
+  who: ref
+  act: {enum: [rest, venture, carouse, pursue, plan]}
+  plan: {kind: text, optional: true}
+  goal: {kind: ref, to: track, optional: true}
+  project: {kind: text, optional: true}
+  dice: {kind: int, default: 4}
+steps:
+  - if: "'$act' == 'rest'"
+    then:
+      - set: who.lingering
+        value: []
+      - prompt: "Rest: {@who.name} shakes every non-permanent condition (the GM may rule that a long-term one lingers): take each off (`didact set {@who.id} conditions-='…'`). Conditions now: {@who.conditions}."
+  - if: "'$act' == 'venture'"
+    then:
+      - check: story-roll
+        with: {question: "How does the venture go (odd jobs, a guild contract, a solo errand)?"}
+        as: venture
+      - if: "@venture == 'perfect'"
+        then: ["Venture: a perfect: a minor haul, a rumor, or a new ally."]
+        else: ["Venture: on a messy or worse, it's complicated."]
+  - if: "'$act' == 'carouse'"
+    then:
+      - prompt: "Carouse: give a vignette of how {@who.name} unwinds: the mead hall, the Arena, the chapel, a drinking contest with a stranger named Sam."
+      - do: take-spark
+        with: {who: "@who", why: carousing}
+        go_on: true
+  - if: "'$act' == 'pursue'"
+    then:
+      - if: "default(@goal, '') <> ''"
+        then:
+          - do: pursue-roll
+            with: {who: "@who", goal: "@goal"}
+        else:
+          - if: "default(@project, '') <> ''"
+            then:
+              - entity:
+                  type: track
+                  name: "{@who.name}: $project"
+                  fields: {kind: pool, pool: task, value: {value: "@dice", max: "@dice"}, note: done}
+                  links: [{rel: of, to: "@who"}]
+                as: project_pool
+              - do: pursue-roll
+                with: {who: "@who", goal: "@project_pool"}
+            else:
+              - prompt: "Pursue a goal: a project with a task pool, rolled each time {@who.name} picks this (build the house, forge the blade, retrain a wise or a talent with a master who charges for it): `didact do downtime who={@who.id} act=pursue project='<the project>'` (`dice=` its pool, 4d unless said: 2d short, 6d stubborn, 8d long); the same name rolls the same pool the next time. A guild's Rise: `goal=<it>`."
+  - if: "'$act' == 'plan'"
+    then:
+      - if: "default(@plan, '') <> ''"
+        then:
+          - set: who.plan
+            value: $plan
+          - message: "Plan ahead: {@who.name} prepares ({@plan}): a special thread, on top of the usual two, usable only on details from that preparation; lost when time passes again."
+        else:
+          - prompt: "Plan ahead: write a few words about how {@who.name} prepares: `didact set {@who.id} plan='…'`."
+source: "surviving-tamriel/downtime"
+---
+procedure: pursue-roll
+title: A goal pursued
+help: "Pursue a goal: its task pool rolls each time you pick this; at 0d it's done."
+params:
+  who: ref
+  goal: {kind: ref, to: track}
+steps:
+  - if: "@goal.value <= 0"
+    then:
+      - stop: "{@goal.name} is already done."
+  - pool: "@goal"
+    as: progress
+  - message: "Pursue a goal: {@who.name} works on {@goal.name} ({@progress.left}d left)."
+  - if: "@progress.empty"
+    then:
+      - prompt: "{@goal.name} is done (a talent retrained: `didact do switch-talent who={@who.id} drop=… take=…`; a wise: `didact set {@who.id} wises-='…' wises+='…'`; a guild's Rise: a rank and something real, and a guild-master who now knows {@who.name}'s name; it fills again with the next contract)."
+source: "surviving-tamriel/downtime"
+---
+action: armor
+title: Armor for everyone
+help: >-
+  An option (Options & Dials): light armor gives a 1d Armor pool each session, heavy armor 2d.
+  After a physical consequence lands, roll it to lessen the consequence, as a messy defense would.
+  The armor talents (Plate, Juggernaut, Unhindered, Mage Armor, Animal Vigor) still avoid harm
+  outright; this rule only lessens it, and a hero with an armor talent uses that instead. The pool
+  is the sheet's own (`armor_pool`, made at character creation) unless `pool=` names another.
+params:
+  who: ref
+  pool: {kind: ref, to: track, optional: true, help: "The Armor pool rolled (left out: the sheet's own)"}
+steps:
+  - if: "not @option.armor"
+    then:
+      - stop: "Armor for everyone is an option (`didact campaign profile armor=on`); without it, armor is vantage, and the armor talents are the crunchy exceptions."
+  - if: >-
+      'heavy-armor-plate' in @who.talents or 'heavy-armor-juggernaut' in @who.talents
+      or 'light-armor-unhindered' in @who.talents or 'alteration-mage-armor' in @who.talents
+      or 'werewolf-animal-vigor' in @who.talents
+    then:
+      - stop: "{@who.name} has an armor talent, and uses that instead: it avoids the harm outright (roll its pool: `didact track roll <pool>`)."
+  - if: "default(@pool, '') <> ''"
+    then:
+      - do: armor-roll
+        with: {who: "@who", pool: "@pool"}
+    else:
+      - if: "default(@who.armor_pool, '') == ''"
+        then:
+          - stop: "Name the Armor pool (`pool=<track>`), or point {@who.name}'s sheet at it: `didact set {@who.id} armor_pool=<track>`."
+      - do: armor-roll
+        with: {who: "@who", pool: "@who.armor_pool"}
+source: "options-and-dials/gear-and-survival#armor-for-everyone"
+---
+procedure: armor-roll
+title: An Armor pool, rolled
+help: "After a physical consequence lands, roll it to lessen the consequence, as a messy defense would; it's back each session."
+params:
+  who: ref
+  pool: {kind: ref, to: track}
+steps:
+  - if: "@pool.value <= 0"
+    then:
+      - stop: "{@pool.name} is spent until the next session."
+  - pool: "@pool"
+    as: rolled
+  - message: "{@who.name}'s armor lessens the physical consequence, as a messy defense would: the GM lessens it ({@pool.name}: {@rolled.left}d left)."
+source: "options-and-dials/gear-and-survival#armor-for-everyone"
+---
+check: vigilance
+title: Active vigilance
+help: >-
+  An option (Options & Dials): when a hidden danger is in play, the spotlighted PC makes a story
+  roll shaped by their vantage (`dice`: 2, 3 when a wise or talent fits, 1 when it doesn't;
+  `thorns`): perfect, a reveal; messy, a hint; grim, the strike lands (the GM spends suspense, and
+  the target gets a defense roll). A talent that guarantees a hint turns a grim into a hint; one
+  that guarantees a reveal turns a messy or a grim into one (`guarantee`).
+params:
+  who: ref
+  dice: {kind: int, default: 2}
+  thorns: {kind: int, default: 0}
+  guarantee: {enum: [none, hint, reveal], default: none, help: "A talent that always gives at least a hint (Eagle Eye, Light Foot…) or a reveal (Dwarven Smithing, A burglar's eye…)"}
+before:
+  - if: "not @option.active_vigilance"
+    then:
+      - stop: "Active vigilance is an option (`didact campaign profile active-vigilance=on`); without it, nobody rolls to notice: the GM picks a reveal, a hint or a strike by vantage (`didact table show vigilance`)."
+  - roll: "(@dice)d6"
+    as: roll
+  - if: "@thorns > 0"
+    then:
+      - roll: "(@thorns)d8"
+        as: thorn
+  - let: {cuts: "if(@thorns > 0, count(@thorn.dice, 7) + count(@thorn.dice, 8), 0)"}
+  - let: {level: "if(max(@roll.dice) == 6 or count(@roll.dice, 6) >= 2, 3, if(max(@roll.dice) >= 4, 2, 1)) - if(count(@roll.dice, 6) >= 2, 0, @cuts)"}
+  - let: {result: "if(@level >= 3 or '$guarantee' == 'reveal', 3, if(@level == 2 or '$guarantee' == 'hint', 2, 1))"}
+  - if: "'$guarantee' == 'reveal' and @level < 3"
+    then: ["A talent that guarantees a reveal turns this {if(@level == 2, 'messy', 'grim')} into one."]
+  - if: "'$guarantee' == 'hint' and @level < 2"
+    then: ["A talent that guarantees a hint turns this grim into a hint."]
+bands:
+  reveal: "@result >= 3"
+  hint: "@result == 2"
+  strike: else
+on:
+  reveal: ["Reveal: {@who.name} sees it plainly."]
+  hint: ["Hint: one shot at intuition; a correct read is a reveal."]
+  strike: ["Strike: it lands. The GM spends suspense (`didact do suspense spend=1`), and {@who.name} gets a defense roll."]
+source: "options-and-dials/table-tools#active-vigilance; running-tamriel/vigilance; the-core-engine/vantage#vigilance"
+---
+action: vex
+title: Vex
+help: >-
+  A flash of hot emotion, from an impact move (Hit Hard) on its own or with a mark or harm:
+  fight, flight, freeze, or freak out. You pick how it plays; it lasts a beat or two. Mead and ale
+  shrug off one vex (Chapter 6's draughts).
+params:
+  who: ref
+  response: {enum: [fight, flight, freeze, freak-out], optional: true, help: "How it plays, once picked"}
+steps:
+  - if: "'$response' == ''"
+    then:
+      - prompt: "{@who.name} takes vex, a flash of hot emotion: pick how it plays (fight, flight, freeze, or freak out); it lasts a beat or two."
+    else:
+      - message: "{@who.name} takes vex: $response, for a beat or two."
+source: "the-core-engine/damage-and-recovery#vex"
+---
+# The suspense moves (Running Tamriel: the eight moves), in place of grimwild-ce's: Build Up gives
+# every hero their spark itself (`for: pcs`), where the parent prompts one command per hero.
+action: suspense-move
+title: A suspense move
+help: >-
+  The GM's suspense moves: Build Up (a vignette before the storm: every PC adds a detail and takes
+  spark, you take suspense), Clue In (cut away to show the players what their characters can't
+  see; take suspense), Foreshadow (telegraph danger for free; if it goes unaddressed, it lands),
+  Resolve (hand the party a way out and take suspense).
+params:
+  move: {enum: [build-up, clue-in, foreshadow, resolve]}
+steps:
+  - if: "'$move' == 'foreshadow'"
+    then: ["Foreshadow: telegraph the danger for free (the flagstones here are a different color; something in the wall niche has blue eyes); if it goes unaddressed, it lands."]
+    else:
+      - if: "'$move' == 'build-up'"
+        then:
+          - prompt: "Build Up: a vignette before the storm (the dragon's shadow crosses the valley and goes on: how do you spend the hour before it comes back?): every PC adds a detail, and takes spark."
+          - for: pcs
+            as: member
+            steps:
+              - do: take-spark
+                with: {who: "@member", why: "build up"}
+                go_on: true
+      - if: "'$move' == 'clue-in'"
+        then:
+          - prompt: "Clue In: cut away to show the players what their characters can't see (we see the justiciar fold the letter, smile, and send for her soldiers)."
+      - if: "'$move' == 'resolve'"
+        then:
+          - prompt: "Resolve: hand the party a way out (the guard squints, decides you must be the new recruits, and waves you through)."
+      - do: suspense
+        with: {take: 1, why: "$move"}
+source: "running-tamriel/the-gms-half-of-the-engine"
+---
+# Supplies (an option), in place of grimwild-ce's day-by-day reminder: every hero's pool is rolled
+# by one command (`for: pcs`), and Beast of Burden keeps one die a roll (never a pool's last;
+# one when the whole party rolls at once).
+action: supplies
+title: Supplies
+help: >-
+  Supplies (an option): each hero has a 4d Supplies resource pool (arrows, rations, torches, the
+  little things): roll it after heavy use (`who=` that hero's), and as time passes away from
+  towns (every hero's at once); at 0d, hunger and cold start writing the thorns. Beast of Burden:
+  when Supplies are rolled, one die that would drop stays, unless it's that pool's last; when the
+  whole party rolls at once, it is still one die.
+params:
+  who: {kind: ref, optional: true, help: "Only this hero's (after heavy use)"}
+steps:
+  - if: "not @option.supplies"
+    then:
+      - stop: "Supplies are an option (`didact campaign profile supplies=on`)."
+  - let: {packer: false, kept: 0}
+  - for: pcs
+    as: member
+    steps:
+      - if: "'athletics-beast-of-burden' in @member.talents"
+        then:
+          - let: {packer: true}
+  - if: "default(@who, '') <> ''"
+    then:
+      - if: "default(@who.supplies, '') == ''"
+        then:
+          - stop: "{@who.name}'s sheet points at no Supplies pool: `didact set {@who.id} supplies=<track>`."
+      - do: supplies-roll
+        with: {who: "@who", pool: "@who.supplies", keep: "@packer"}
+    else:
+      - for: pcs
+        as: member
+        steps:
+          - if: "default(@member.supplies, '') <> ''"
+            then:
+              - do: supplies-roll
+                with: {who: "@member", pool: "@member.supplies", keep: "@packer and @kept == 0"}
+                as: used
+                go_on: true
+              - if: "default(@used.kept, 0) > 0"
+                then:
+                  - let: {kept: 1}
+source: "options-and-dials/gear-and-survival#supplies; the-classes/athletics#beast-of-burden"
+---
+procedure: supplies-roll
+title: A Supplies pool, rolled
+help: "Use it, then roll it: the use always works, and the roll only shows how much is left; at 0d, hunger and cold start writing the thorns. Beast of Burden keeps one die that would drop, unless it's that pool's last (`keep`)."
+params:
+  who: ref
+  pool: {kind: ref, to: track}
+  keep: {kind: flag, default: false, help: "Beast of Burden in the party: one die that would drop stays, unless it's that pool's last"}
+steps:
+  - let: {kept: 0}
+  - if: "@pool.value <= 0"
+    then: ["{@who.name}'s {@pool.name} is out: hunger and cold write the thorns."]
+    else:
+      - pool: "@pool"
+        as: used
+      - if: "@keep and @used.dropped > 0 and @used.left > 0"
+        then:
+          - do: pool-regain
+            with: {pool: "@pool", n: 1}
+          - let: {kept: 1}
+          - message: "Beast of Burden: one die that would drop stays, not the pool's last: you packed extra."
+      - message: "{@pool.name}: {if(@kept > 0, @used.left + 1, @used.left)}d left{if(@used.empty, ': hunger and cold start writing the thorns', '')}."
+source: "options-and-dials/gear-and-survival#supplies; the-classes/athletics#beast-of-burden"
+---
+trigger: supplies-day
+title: "Supplies: time passes away from towns"
+help: "With the supplies option, every hero's 4d Supplies pool is rolled after heavy use, and as time passes away from towns; at 0d, hunger and cold start writing the thorns."
+on: time
+when: "@option.supplies and @time.passed >= 86400"
+steps:
+  - prompt: "Supplies (an option): time passes; away from towns, roll every hero's Supplies pool: `didact do supplies`. At 0d, hunger and cold start writing the thorns."
+source: "options-and-dials/gear-and-survival#supplies"

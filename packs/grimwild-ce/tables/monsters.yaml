@@ -1,0 +1,1213 @@
+# Grimwild: Community Edition (Preview 5.3), Chapter 5: Monsters A-Z (pp. 146-171). CC0 1.0.
+# Every monster block's table, in book order, then any extra tables of the same block.
+# Instructions printed in a heading's brackets ("(Roll 2)") are in `description`.
+#
+# Tables printed in 2 or 3 columns:
+# - When the columns hold different kinds of words read together (an adjective and a noun, a
+#   contest and its reward), `columns` rolls each column once.
+# - When the columns only continue one list, the table is a d66 read both ways (`both_ways`), the
+#   book's rule for 2- and 3-column tables (p. 5): one die picks the row, the other the column
+#   (1-3 and 4-6 for two columns; 1-2, 3-4 and 5-6 for three), "or switch them".
+table: basilisk-hiding-spots
+title: "Hiding Spots"
+dice: d6
+source: "p. 146"
+entries:
+  1: "Beneath a crumbling, but still-used bridge."
+  2: "Within the rotting carcass of a fallen dragon."
+  3: "On the fifth floor of a derelict watchtower."
+  4: "In a field full of half-eaten bear statues."
+  5: "Within a maze of rusted, echoing pipes."
+  6: "Among the twisted roots of a giant tree."
+---
+table: behir-unearthed-by
+title: "Unearthed by…"
+dice: d6
+source: "p. 146"
+entries:
+  1: "Landslide during a massive thunderstorm."
+  2: "Generational flood wiping out whole villages."
+  3: "Earthquake toppling castle walls."
+  4: "Collapse of a silver mine, forcing it to flee."
+  5: "Lich's minions dug too deep."
+  6: "Adventurers left an almost empty dungeon."
+---
+table: carcass-crawler-feeding-grounds
+title: "Feeding Grounds"
+dice: d6
+source: "p. 146"
+entries:
+  1: "The remnants of a horrific battle."
+  2: "The result of a successful death cult."
+  3: "A recently thawed graveyard."
+  4: "A plague that killed herds of farm animals."
+  5: "A fleet of invasion ships dashed against rocks."
+  6: "Mass sacrifices to it, worshiped as a god."
+---
+table: chimera-hybrid-heads
+title: "Hybrid Heads"
+description: "Roll 3 times. A d66 read both ways: one die picks the row, the other the column (1–2, 3–4, 5–6)."
+dice: d66
+both_ways: true
+source: "p. 146"
+entries:
+  11-12: "wolverine"
+  13-14: "rhino"
+  15-16: "vampire bat"
+  21-22: "dingo"
+  23-24: "baboon"
+  25-26: "sloth"
+  31-32: "anteater"
+  33-34: "mantis"
+  35-36: "jackal"
+  41-42: "condor"
+  43-44: "alligator"
+  45-46: "gila monster"
+  51-52: "rattlesnake"
+  53-54: "ostrich"
+  55-56: "pangolin"
+  61-62: "platypus"
+  63-64: "mongoose"
+  65-66: "cobra"
+---
+table: chuul-eldritch-mutations-crucible
+title: "Eldritch Mutations Crucible"
+description: "Roll each column and put the two words together."
+dice: d6
+columns: [first, second]
+labels: false
+source: "p. 147"
+entries:
+  1: ["acidic", "shell"]
+  2: ["spiked", "eyestalks"]
+  3: ["reflective", "wings"]
+  4: ["extendable", "antennae"]
+  5: ["glowing", "tail"]
+  6: ["magic-sensing", "claws"]
+---
+table: cockatrice-migrations
+title: "Migrations"
+dice: d6
+source: "p. 147"
+entries:
+  1: "Onto an island, home to a monastery."
+  2: "Into a small hamlet, everyone stuck indoors."
+  3: "Into a valley, an important trade crossroad."
+  4: "Throughout a city, absolute chaos ensuing."
+  5: "Down into mines, trapping miners inside."
+  6: "Aboard a large ship anchored in the bay."
+---
+table: couatl-sacred-task
+title: "Sacred Task"
+dice: d6
+source: "p. 147"
+entries:
+  1: "Retrieve a sacred artifact, your sword."
+  2: "Protect a chosen one, your enemy."
+  3: "Find ancient knowledge, your secret."
+  4: "Teach you a forgotten language."
+  5: "Stop you from destroying the world."
+  6: "Tricked by a devil into destroying you."
+---
+table: cyclops-cyclopean-curses
+title: "Cyclopean Curses"
+dice: d6
+source: "p. 147"
+entries:
+  1: "It can only see at night."
+  2: "It can only venture outside in the rain."
+  3: "Its every footstep causes a tremor."
+  4: "It's terrified of small mammals."
+  5: "It can never stop walking."
+  6: "It's lonely, the last of its kind."
+---
+table: demon-balor-death-throes
+title: "Death Throes"
+description: "Roll twice."
+dice: d6
+source: "p. 148"
+entries:
+  1: "Devastating explosion, reducing all to ash."
+  2: "Brilliant flash, blinding all that witness it."
+  3: "Lava geysers erupt from the ground."
+  4: "Hellfire meteors bombard the area."
+  5: "Blazing cyclone and molten rain wreak havoc."
+  6: "A portal to the abyss opens, compelling entrance."
+---
+table: demon-glabrezu-wishes-granted
+title: "Wishes Granted (with ruin soon to follow)"
+dice: d6
+source: "p. 148"
+entries:
+  1: "Love, leading to the death of their beloved."
+  2: "Wealth, leading to never-satiated greed."
+  3: "Wisdom, leading to a descent into madness."
+  4: "Victory, leading to guilt on how it was won."
+  5: "Beauty, leading to horror as it fades even a little."
+  6: "Fame, leading to jealousy from those close."
+---
+table: demon-vrock-spore-effects
+title: "Spore Effects"
+dice: d6
+source: "p. 148"
+entries:
+  1: "Betrayal, poisoning trust between allies."
+  2: "Terror, causing reckless desperation."
+  3: "Visions, twisting allies into horrors."
+  4: "Rage, swelling into extreme bloodlust."
+  5: "Envy, breeding treacherous ambition."
+  6: "Heroism, turning into self-sacrificial madness."
+---
+table: devil-barbed-summoned-into
+title: "Summoned into…"
+dice: d6
+source: "p. 149"
+entries:
+  1: "Royal wedding, meant to seal a fragile peace."
+  2: "Public execution, meant to crush rebellion."
+  3: "Temple consecration, meant to ward off evil."
+  4: "Feast marking the end of a great famine."
+  5: "Trial of a beloved noble, accused of treason."
+  6: "Coronation of a hesitant ruler, full of doubt."
+---
+table: devil-chain-imprisoned-within
+title: "Imprisoned within…"
+dice: d6
+source: "p. 149"
+entries:
+  1: "Labyrinthine halls of the mad queen."
+  2: "Cursed portrait in a lavish hall."
+  3: "Steamy, opulent bathhouse in the capital."
+  4: "Reliquary of a respected temple."
+  5: "Trade guild vault, sealed with powerful runes."
+  6: "Winding forest pathways surrounding town."
+---
+table: devil-horned-broken-summoning-circles
+title: "Broken Summoning Circles"
+dice: d6
+source: "p. 149"
+entries:
+  1: "In a temple by a priest who lost their faith."
+  2: "In a farmhouse by a grief-stricken mother."
+  3: "In a tower by a wizard consumed with jealousy."
+  4: "In the study of a hero haunted by failure."
+  5: "In a tavern by a minstrel obsessed with fame."
+  6: "In a cobbler's cellar, by a long-held prisoner."
+---
+table: devil-imp-impish-snares
+title: "Impish Snares"
+dice: d6
+source: "p. 149"
+entries:
+  1: "Spoon that makes food taste slightly rotten."
+  2: "Quill that weaves insults into messages."
+  3: "Candle that goes out at the worst time."
+  4: "Map that shifts landmarks and roads."
+  5: "Compass that always points towards fun."
+  6: "Doll that moves to a new spot each night."
+---
+table: dire-bear-territory-woes
+title: "Territory Woes"
+dice: d6
+source: "p. 150"
+entries:
+  1: "It has far too many cubs."
+  2: "Grand hunt has been called for it."
+  3: "Another dire apex predator has arrived."
+  4: "Civilization encroaches on its borders."
+  5: "Totemic wards restrict its roaming grounds."
+  6: "Goblins wage war against orcs on its lands."
+---
+table: dire-centipede-home-tunnels
+title: "Home Tunnels"
+dice: d6
+source: "p. 150"
+entries:
+  1: "Tunnels filled with towering mushrooms."
+  2: "The ruins of a lavish underground palace."
+  3: "Enormous cavern full of bioluminescence."
+  4: "Through the bones of a buried giant."
+  5: "Flooded sea caves, where it hunts for sharks."
+  6: "Through twisting roots of colossal trees."
+---
+table: dire-crab-dire-hermit-crab-shells
+title: "Dire Hermit Crab Shells"
+dice: d6
+source: "p. 150"
+entries:
+  1: "Sunken pirate ship, now haunted."
+  2: "Fallen castle turret, filled with explosives."
+  3: "Giant's skull, with a gleaming gold tooth."
+  4: "Whale ribcage, covered in barnacles."
+  5: "Gnomish submarine, still water-tight."
+  6: "Iron cauldron once used by a giant."
+---
+table: dire-crocodile-worshipers
+title: "Worshipers (The croc’s totally unaware)"
+dice: d6
+source: "p. 150"
+entries:
+  1: "Local fishers, who see it as the god of floods."
+  2: "Cultists, who offer sacrifices."
+  3: "Water elementals, believing it guards the river."
+  4: "Merfolk, who live alongside it."
+  5: "Hill giants, envious of its eternal hunger."
+  6: "Swamp hags, believing it gives them magic."
+---
+table: dire-eagle-unique-eyries
+title: "Unique Eyries"
+dice: d6
+source: "p. 151"
+entries:
+  1: "Spire of a still-occupied wizard's tower."
+  2: "Atop a giant redwood tree, the tallest in the world."
+  3: "Rocky outcrop above a foggy elephant graveyard."
+  4: "Desolate mesatop, bones surrounding the nest."
+  5: "Between the stone arches of an ancient bridge."
+  6: "In the hand of an enormous carved statue."
+---
+table: dire-shark-destroyed-ships
+title: "Destroyed Ships"
+dice: d6
+source: "p. 151"
+entries:
+  1: "Royal flagship, crown jewels still aboard."
+  2: "War galleon, with the spoils of war."
+  3: "Passenger liner, still barely floating."
+  4: "Submarine, the survivors in a deep sea cave."
+  5: "Ghost ship, having cursed the waters for decades."
+  6: "Orcish warship, fused to its back by dark magic."
+---
+table: dire-spider-dire-spider-varieties
+title: "Dire Spider Varieties"
+dice: d6
+source: "p. 151"
+entries:
+  1: "Netcaster, trapping from far away."
+  2: "Jumping, catching prey off-guard with a leap."
+  3: "Longlegs, moving quickly through foliage."
+  4: "Pitdweller, striking from well-hidden holes."
+  5: "Waterglider, skimming across marshes."
+  6: "Divingbell, living completely underwater."
+---
+table: dire-wolf-lunar-behaviors
+title: "Lunar Behaviors"
+dice: d6
+source: "p. 151"
+entries:
+  1: "New moon, restless border patrols."
+  2: "Crescent, young grow unruly."
+  3: "Full moon, deafening howls."
+  4: "Gibbous, pack dominance shifts."
+  5: "Blood moon, rampage outside their borders."
+  6: "Blue moon, dire wolf litter is born."
+---
+table: dislocation-beast-bizarre-phenomena
+title: "Bizarre Phenomena"
+dice: d6
+source: "p. 152"
+entries:
+  1: "Mundane sounds, completely out of place."
+  2: "Fleeting reflections from alternate worlds."
+  3: "Shadows elongate unnaturally and linger."
+  4: "Echoes ricochet unpredictably."
+  5: "Colors bleed into neighboring hues."
+  6: "Invisible ripples that distort vision."
+---
+table: doppelganger-identities-you-know
+title: "Identities You Know"
+dice: d6
+source: "p. 152"
+entries:
+  1: "Noble's trusted adviser, met last winter."
+  2: "The second-to-last person the PCs met."
+  3: "Old flame of a PC, thought long dead."
+  4: "Wandering monk, seen only days ago."
+  5: "Previous PC, from this campaign or another."
+  6: "Executed thief, now walking free."
+---
+table: dragon-hoarding-instincts
+title: "Hoarding Instincts (besides gold)"
+dice: d6
+source: "p. 152"
+entries:
+  1: "Scrolls filled with lost languages."
+  2: "Crown jewels of forgotten kingdoms."
+  3: "Gravestones of great heroes."
+  4: "Maps of the world."
+  5: "Weapons forged in time of great need."
+  6: "Holy symbols of fallen gods."
+---
+table: elemental-air-form-personality
+title: "Form & Personality"
+dice: d6
+source: "p. 153"
+entries:
+  1: "Swirling cyclone, erratic and wild."
+  2: "Floating cloud, serene and evasive."
+  3: "Tornado, furious and unstoppable."
+  4: "Dust devil, sneaky and persistent."
+  5: "Gusty winds, playful and mischievous."
+  6: "Zephyr, kind but undependable."
+---
+table: elemental-earth-biome-personality
+title: "Biome & Personality"
+dice: d6
+source: "p. 153"
+entries:
+  1: "Forest, rooted and protective."
+  2: "Badlands, harsh and unforgiving."
+  3: "Mountains, proud and resilient."
+  4: "Caves, brooding and watchful."
+  5: "Mudflats, slow but determined."
+  6: "Grasslands, patient and enduring."
+---
+table: elemental-fire-ignition-personality
+title: "Ignition & Personality"
+dice: d6
+source: "p. 153"
+entries:
+  1: "Lightning strike, violent and ephemeral."
+  2: "Ritual flame, sacred and commanding."
+  3: "Forge fire, controlled and powerful."
+  4: "Coal embers, patient and smoldering."
+  5: "Wildfire, ravenous and unrestrained."
+  6: "Funeral pyre, solemn and determined."
+---
+table: elemental-water-water-source-personality
+title: "Water Source & Personality"
+dice: d6
+source: "p. 153"
+entries:
+  1: "Tidal pool, playful and fickle."
+  2: "Raging rapids, relentless and reckless."
+  3: "Murky swamp, deceptive and suffocating."
+  4: "Rain, gentle and melancholic."
+  5: "Geyser, frustrated and volatile."
+  6: "Oasis, welcoming and mysterious."
+---
+table: ettin-unlikely-protector-of
+title: "Unlikely Protector of…"
+dice: d6
+source: "p. 154"
+entries:
+  1: "Three old witches, who use it as a bodyguard."
+  2: "Ragtag group of orphans that saved it."
+  3: "Goblins, because they worship it as a god."
+  4: "Hamlet of farmers, who feed it."
+  5: "Wandering circus, using it as a bouncer."
+  6: "Hermit, friends with both heads."
+---
+table: ettercap-webbed-domains
+title: "Webbed Domains"
+dice: d6
+source: "p. 154"
+entries:
+  1: "Bramble patch, every inch covered in webs."
+  2: "Long, narrow, winding canyons."
+  3: "Massive, abandoned library in the capital."
+  4: "Granaries abandoned during the famine."
+  5: "Derelict shipwreck, sails webbed over."
+  6: "Sunken pitfall in the middle of the woods."
+---
+table: fey-dryad-arboreal-lineage
+title: "Arboreal Lineage"
+dice: d6
+source: "p. 155"
+entries:
+  1: "Weeping willow, shy but playful."
+  2: "Oak, stern and steadfast."
+  3: "Maple, sweet and protective."
+  4: "Ash, resilient and wise."
+  5: "Elm, mournful but warm-hearted."
+  6: "Yew, resilient and vengeful."
+---
+table: fey-faery-fairy-circles
+title: "Fairy Circles"
+dice: d6
+source: "p. 155"
+entries:
+  1: "Mushrooms glowing faintly in the dusk."
+  2: "Ring of sunflowers in a grassy field."
+  3: "Fallen leaves after a rain."
+  4: "Precarious pebble towers, defying gravity."
+  5: "Dancing fireflies in a glowing spiral."
+  6: "Ring of acorns around a sapling."
+---
+table: fey-redcap-warband-bosses
+title: "Warband Bosses"
+dice: d6
+source: "p. 155"
+entries:
+  1: "Goretooth, feared even by its kin."
+  2: "Bloodsoak, who bathes in blood."
+  3: "Rotfoot, who would rule the fey."
+  4: "Nocap, the hatless one."
+  5: "Redeyes, born of a murder most foul."
+  6: "Feybane, who is called betrayer."
+---
+table: fey-satyr-contests-rewards
+title: "Contests & Rewards"
+description: "Roll each column: a contest and its reward."
+dice: d6
+columns: [contest, reward]
+source: "p. 155"
+entries:
+  1: ["singing", "rare liquor"]
+  2: ["dance-off", "gold key to nothing"]
+  3: ["eating pies", "deed to an inn"]
+  4: ["duel of wits", "curse to give someone"]
+  5: ["tug-of-war", "black eye"]
+  6: ["archery", "half a treasure map"]
+---
+table: gargoyle-odd-wards
+title: "Odd Wards"
+dice: d6
+source: "p. 156"
+entries:
+  1: "Door that must remain opened."
+  2: "Throne meant for a fallen king."
+  3: "Gate that seemingly leads nowhere."
+  4: "Altar long without its god."
+  5: "Bell tower, never once chimed."
+  6: "Empty stepwell, its community now dust."
+---
+table: gelatinous-cube-aberrations
+title: "Aberrations"
+dice: d6
+source: "p. 156"
+entries:
+  1: "Hollow center filled with flaming, sloshing gel."
+  2: "Charged with crackling electric arcs."
+  3: "Constantly shifting in prismatic colors."
+  4: "Packed with razor-sharp hunks of metal."
+  5: "Swarm of dice-sized cubes."
+  6: "Impossibly dense, slow, and indestructible."
+---
+table: genie-genie-twists
+title: "Genie Twists"
+dice: d6
+source: "p. 156"
+entries:
+  1: "Tries to destroy itself with the wish."
+  2: "Tries too hard to improve the wish."
+  3: "Makes the wish somehow achieve the opposite."
+  4: "Mishears, changing one letter in the wish."
+  5: "Splits the wish around unevenly."
+  6: "Can't actually grant wishes, but will not admit it."
+---
+table: gibbering-mouther-voices-in-the-chaos
+title: "Voices in the Chaos"
+dice: d6
+source: "p. 156"
+entries:
+  1: "Familiar voices calling your name."
+  2: "Fragments of broken promises."
+  3: "Pleas for help and forgiveness."
+  4: "Mocking tones from an old enemy."
+  5: "Chants from forgotten rituals."
+  6: "Your own voice, screaming your thoughts."
+---
+table: golem-golem-construction
+title: "Golem Construction"
+dice: d6
+source: "p. 157"
+entries:
+  1: "Clay, with a malleable form."
+  2: "Iron, with a strong magnetic pull."
+  3: "Crystal, refracting light into dazzling shards."
+  4: "Jade, with a mind and will of its own."
+  5: "Flesh, forming tiny flesh or blood golems if cut."
+  6: "Wood, regrowing damaged parts quickly."
+---
+table: gorgon-metallic-variation
+title: "Metallic Variation"
+dice: d6
+source: "p. 157"
+entries:
+  1: "Titanium, light and incredibly fast."
+  2: "Lead, slow but nearly indestructible."
+  3: "Steel, covered in sharp spikes."
+  4: "Silver, blindingly reflecting light."
+  5: "Brass, emitting an unsettling hum."
+  6: "Bronze, resisting all magic."
+---
+table: grick-side-effects-of-magical-experimentation
+title: "Side Effects of Magical Experimentation"
+dice: d6
+source: "p. 157"
+entries:
+  1: "Cloaks the whole area in darkness."
+  2: "Bursts into blinding light when it strikes."
+  3: "Releases a cloud of sleep gas when struck."
+  4: "Lets out shrill, echoing whistles."
+  5: "Absorbs all sound into utter silence."
+  6: "Tentacles stretch three times normal length."
+---
+table: griffon-people-it-terrorizes
+title: "People It Terrorizes"
+dice: d6
+source: "p. 157"
+entries:
+  1: "Satyrs, drawn by their celebrations."
+  2: "Hags, which it hunts for sport."
+  3: "Shepherds, raiding their flocks."
+  4: "Merchant caravans, curious about their carts."
+  5: "Hunters, in revenge for killing kin."
+  6: "Bandits, scaring them out of its lands."
+---
+table: giant-fire-seat-of-power
+title: "Seat of Power"
+description: "Roll each column and put the two together."
+dice: d6
+columns: [first, second]
+labels: false
+source: "p. 158"
+entries:
+  1: ["charred stone bastion", "island in a lava river"]
+  2: ["grand obsidian spire", "sheer volcanic cliffside"]
+  3: ["ash-choked estate", "billowing caldera rim"]
+  4: ["steamy sulfur baths", "center of a vast plain"]
+  5: ["basalt cathedral", "beneath magma-falls"]
+  6: ["clanging forgeworks", "sulfuric cave system"]
+---
+table: giant-frost-unexpected-locations
+title: "Unexpected Locations"
+dice: d6
+source: "p. 158"
+entries:
+  1: "Entire tower built around it, keeping it frozen."
+  2: "Steps through a portal and onto a sandy beach."
+  3: "Riding on a floating iceberg towards a port city."
+  4: "In a grand wizard's laboratory."
+  5: "Emerging from a bizarre mid-spring blizzard."
+  6: "Tied down in the middle of a vast desert."
+---
+table: giant-hill-quirks
+title: "Quirks"
+dice: d6
+source: "p. 159"
+entries:
+  1: "Always brewing up a brand new stew."
+  2: "Hoards small, shiny objects—like mirrors."
+  3: "Roams with a large pack of stray dogs."
+  4: "Exceptionally rotund, even for a hill giant."
+  5: "Extremely short, for a hill giant."
+  6: "Thinks even the slightest odd thing is hilarious."
+---
+table: giant-storm-arrives-alongside
+title: "Arrives alongside…"
+dice: d6
+source: "p. 159"
+entries:
+  1: "Hurricane, sweeping away defiance."
+  2: "Twin tornadoes, ripping apart the unrepentant."
+  3: "Hailstorm, battering the guilty into confession."
+  4: "Lightning storm, searing away deceit."
+  5: "Torrential downpour, washing away corruption."
+  6: "Waterspouts, dragging wrongdoers to judgment."
+---
+table: hag-night-night-spell-crucible
+title: "Night Spell Crucible"
+description: "Make 3 spells. Each roll gives a word from each column: together, a spell."
+dice: d6
+columns: [first, second]
+labels: false
+source: "p. 160"
+entries:
+  1: ["shrouded", "gloom"]
+  2: ["shivering", "touch"]
+  3: ["whispering", "glimmer"]
+  4: ["muted", "aura"]
+  5: ["bleak", "breath"]
+  6: ["eerie", "moan"]
+---
+table: hag-sea-sea-spell-crucible
+title: "Sea Spell Crucible"
+description: "Make 3 spells. Each roll gives a word from each column: together, a spell."
+dice: d6
+columns: [first, second]
+labels: false
+source: "p. 160"
+entries:
+  1: ["swelling", "shanty"]
+  2: ["rippling", "groan"]
+  3: ["gurgling", "grip"]
+  4: ["foamy", "ebb"]
+  5: ["surging", "wave"]
+  6: ["salty", "current"]
+---
+table: hag-storm-storm-spell-crucible
+title: "Storm Spell Crucible"
+description: "Make 3 spells. Each roll gives a word from each column: together, a spell."
+dice: d6
+columns: [first, second]
+labels: false
+source: "p. 160"
+entries:
+  1: ["tattered", "torrent"]
+  2: ["crackling", "clap"]
+  3: ["biting", "arc"]
+  4: ["howling", "boom"]
+  5: ["thunderous", "flash"]
+  6: ["surging", "chant"]
+---
+table: hag-swamp-swamp-spell-crucible
+title: "Swamp Spell Crucible"
+description: "Make 3 spells. Each roll gives a word from each column: together, a spell."
+dice: d6
+columns: [first, second]
+labels: false
+source: "p. 160"
+entries:
+  1: ["squelching", "mire"]
+  2: ["oozing", "leech"]
+  3: ["reeking", "smother"]
+  4: ["rotting", "swallow"]
+  5: ["sinking", "pull"]
+  6: ["writhing", "cloud"]
+---
+table: hell-hound-call-to-hunt
+title: "Call to Hunt"
+dice: d6
+source: "p. 161"
+entries:
+  1: "Pursuing souls marked by broken oaths."
+  2: "Stalking souls escaped from the underworld."
+  3: "Hunting traitors who betrayed their own kin."
+  4: "Tracking those who spilled innocent blood."
+  5: "Hounding those who flee from justice."
+  6: "Wrongly on the trail of the completely innocent."
+---
+table: hippogriff-chosen-riders
+title: "Chosen Riders"
+dice: d6
+source: "p. 161"
+entries:
+  1: "Legendary thief who helped it escape."
+  2: "Outcast noble seeking redemption."
+  3: "Ranger who patrols distant borders."
+  4: "Wicked hag that it thinks is a hero."
+  5: "Normal farmer that it was raised by."
+  6: "Gnoll that nursed it back to health."
+---
+table: hydra-unique-head-regrowths
+title: "Unique Head Regrowths"
+dice: d6
+source: "p. 161"
+entries:
+  1: "Sludge head, which spews a poisonous fog."
+  2: "Only the skull, filled with necrotic energy."
+  3: "Eyeless head, which can read minds."
+  4: "Beautiful head with a hypnotic singsong."
+  5: "Horned head that can ram with force."
+  6: "The cut head rolls away to form a new hydra."
+---
+table: kraken-how-it-wants-to-shape-the-future
+title: "How It Wants to Shape the Future"
+dice: d6
+source: "p. 162"
+entries:
+  1: "Send dreams to coastal villagers to found a cult."
+  2: "Spread a plague to turn people into deep-sea thralls."
+  3: "Create a new volcano to house its fiery lair."
+  4: "Steal memories from sailors to gain their knowledge."
+  5: "Manipulate pirates to awaken its mate."
+  6: "Sink an island of people who no longer worship it."
+---
+table: lamia-false-renown
+title: "False Renown"
+dice: d6
+source: "p. 162"
+entries:
+  1: "Whispers that prophecies fall from their lips."
+  2: "Claimed to show past secrets through dreams."
+  3: "Rumored to bind with honeyed promises."
+  4: "Fabled to recall lost souls from death’s grasp."
+  5: "Promised to reveal one’s deepest purpose."
+  6: "Songs tell of dreams woven into reality."
+---
+table: land-shark-where-the-tunnel-ends
+title: "Where the Tunnel Ends"
+dice: d6
+source: "p. 162"
+entries:
+  1: "A forgotten city, from an unknown civilization."
+  2: "A vast cavern, illuminated by pulsing light."
+  3: "A maze of roots, below a truly ancient tree."
+  4: "An abandoned mine, that met a disastrous end."
+  5: "A hidden homestead, clearly still used by someone."
+  6: "A fungal network, illuminated by its mushrooms."
+---
+table: manticore-symbiotic-pairings
+title: "Symbiotic Pairings"
+dice: d6
+source: "p. 163"
+entries:
+  1: "Wyvern, hunts down injured prey."
+  2: "Hill giant, makes for a comfortable bed."
+  3: "Basilisk, waits to petrify escaping targets."
+  4: "Minotaur, lets it lair in the labyrinth."
+  5: "Chimera, a tense hunting pact."
+  6: "Underscourge, follows along from below."
+---
+table: medusa-curse-origins
+title: "Curse Origins"
+dice: d6
+source: "p. 163"
+entries:
+  1: "Vanity, punished by a mirror that never reflects."
+  2: "Lies, broke a promise made in desperation"
+  3: "Greed, forced to forever protect the relic it stole."
+  4: "Paranoia, having been betrayed countless times."
+  5: "Jealousy, spawned from unfulfilled longing."
+  6: "Hubris, having believed itself above the gods."
+---
+table: mephit-types-of-mephit
+title: "Types of Mephit"
+description: "A d66 read both ways: one die picks the row, the other the column (1–2, 3–4, 5–6)."
+dice: d66
+both_ways: true
+source: "p. 163"
+entries:
+  11-12: "magma"
+  13-14: "steam"
+  15-16: "mud"
+  21-22: "lightning"
+  23-24: "ooze"
+  25-26: "ore"
+  31-32: "plant"
+  33-34: "ash"
+  35-36: "water"
+  41-42: "ice"
+  43-44: "dust"
+  45-46: "smoke"
+  51-52: "earth"
+  53-54: "wood"
+  55-56: "wind"
+  61-62: "salt"
+  63-64: "fire"
+  65-66: "mist"
+---
+table: mimic-object-forms
+title: "Object Forms"
+dice: d6
+source: "p. 163"
+entries:
+  1: "Simple, like a barrel, rug, or bookshelf."
+  2: "Tricky, like a door, book, or cupboard."
+  3: "Inviting, like a plush chair, bed, or vanity table."
+  4: "Horrific, like a doll, mask, or coffin."
+  5: "Nostalgic, like a children's toy, old hat, or lute."
+  6: "Necessary, like a toilet, staircase, or well."
+---
+table: minotaur-labyrinth-layouts
+title: "Labyrinth Layouts"
+dice: d6
+source: "p. 164"
+entries:
+  1: "Intricate sewer system of the ancient capital."
+  2: "Thorn-choked paths hiding mischievous fey."
+  3: "Tunnels of a sea cave, half-filled with water."
+  4: "Stone paths lined with fragile mirrors."
+  5: "Deep stepwell with various paths cut off."
+  6: "Enchanted woods with shifting pathways."
+---
+table: naga-forbidden-knowledge
+title: "Forbidden Knowledge"
+description: "Roll 3 & interpret. Each roll gives a word from each of the three columns."
+dice: d6
+columns: [first, second, third]
+labels: false
+source: "p. 164"
+entries:
+  1: ["secret", "scrolls of", "immortality"]
+  2: ["twisted", "visions of", "soulbinding"]
+  3: ["false", "rites of", "necromancy"]
+  4: ["true", "pacts of", "teleportation"]
+  5: ["blasphemous", "elixirs of", "polymorphing"]
+  6: ["shattered", "ciphers of", "godhood"]
+---
+table: nightmare-wrathful-riders
+title: "Wrathful Riders"
+dice: d6
+source: "p. 164"
+entries:
+  1: "Exiled knight, who did nothing wrong."
+  2: "Betrayed queen, who deserved what she got."
+  3: "Hanged poet, whose words rang too true."
+  4: "Wayward prince, who will never go home."
+  5: "Desperate rebel, the last one alive."
+  6: "Bitter seer, whose warnings were ignored."
+---
+table: ochre-jelly-newly-split-jellies
+title: "Newly Split Jellies (It’s not sticky)"
+dice: d6
+source: "p. 164"
+entries:
+  1: "Azure jelly, with a freezing touch."
+  2: "Crimson jelly, shrieks and bleeds when it's struck."
+  3: "Verdant jelly, spreads carnivorous plant life."
+  4: "Mercury jelly, perfectly reflects its surroundings."
+  5: "Spectral jelly, shimmers like a mirage."
+  6: "Onyx jelly, leaves a trail of thick, bubbling tar."
+---
+table: ogre-chosen-leader-of-the
+title: "Chosen Leader of the…"
+dice: d6
+source: "p. 165"
+entries:
+  1: "Trolls, after marrying their chieftain."
+  2: "Hill goblins, fearing its wrath."
+  3: "Swamp spirits, bound to its will."
+  4: "Wild fey, attracted by its savagery."
+  5: "Hill giants, who think it's a genius."
+  6: "Other ogres, a small army of them."
+---
+table: otyugh-filthy-accomplices
+title: "Filthy Accomplices"
+dice: d6
+source: "p. 165"
+entries:
+  1: "Spewing animated fungus swarms."
+  2: "Driven forward by a cult of ruin."
+  3: "Controlled by city sanitation workers."
+  4: "Followed by a horde of plague-ridden rats."
+  5: "Ridden by a foul goblin shaman."
+  6: "Possessed by a fallen druid's spirit."
+---
+table: owlbear-victims-still-fresh
+title: "Victims, Still Fresh"
+dice: d6
+source: "p. 165"
+entries:
+  1: "Scholar, face down, drawings strewn about."
+  2: "Cultist, dead in a tree without a scratch on them."
+  3: "Messenger, half-eaten scroll in hand."
+  4: "Farmer, holding a wilted bouquet."
+  5: "Smuggler, clutching a vial of purple poison."
+  6: "Performer, in full costume, mask still on."
+---
+table: pegasus-carried-messages
+title: "Carried Messages"
+dice: d6
+source: "p. 165"
+entries:
+  1: "Royal summons, sealed with enchanted wax."
+  2: "Love letter filled with terrible poetry."
+  3: "Battle plan hastily scrawled."
+  4: "Desperate plea from a sworn enemy."
+  5: "Ransom note tied with black string."
+  6: "Official declaration of invasion."
+---
+table: phoenix-alchemical-powers
+title: "Alchemical Powers"
+description: "Roll 2 per part secured. A d66 read both ways: one die picks the row, the other the column (1–3 left, 4–6 right)."
+dice: d66
+both_ways: true
+source: "p. 166"
+entries:
+  11-13: "Immunity to fire"
+  14-16: "Flaming touch"
+  21-23: "Cure any disease"
+  24-26: "Slip between realities"
+  31-33: "Massive, fiery wings"
+  34-36: "Fiery rebuke aura"
+  41-43: "Resurrection"
+  44-46: "Cinder trail"
+  51-53: "Telepathy"
+  54-56: "Flame divination"
+  61-63: "Summon firelings"
+  64-66: "Blazing speed"
+---
+table: rakshasa-influence-networks
+title: "Influence Networks"
+dice: d6
+source: "p. 166"
+entries:
+  1: "Thieves guild. Fits in perfectly."
+  2: "Merchant coalition. Sold their soul for it."
+  3: "Pirate fleet. Won it in a duel."
+  4: "Noble house. Happily married into it."
+  5: "Mercenary band. Controls it from afar."
+  6: "Spy ring. Works for four different sides."
+---
+table: remorhaz-worms-of-dark-prophecy
+title: "Worms of Dark Prophecy"
+dice: d6
+source: "p. 166"
+entries:
+  1: "ROUSE THE SLUMBERING GODS ENTOMBED"
+  2: "SEVER THE SACRED BONDS OF BLOOD AND ROOT"
+  3: "DEVOUR THE HEART OF THE HERO FORETOLD"
+  4: "UNSEAL THE CRYPT OF THE NAMELESS KING"
+  5: "TORCH THE ROOTS OF THE WORLD TREE"
+  6: "SILENCE THE BELLS OF THE ETERNAL CITY"
+---
+table: roc-potential-egg-buyers
+title: "Potential Egg Buyers"
+dice: d6
+source: "p. 167"
+entries:
+  1: "Dying empress, who will feed on it to live."
+  2: "Dragon, who will use it to barter for its life."
+  3: "Ancient lich, who will create its greatest minion."
+  4: "Storm giant, who will raise it as a mount."
+  5: "Infamous pirate, who sees it as a future skyship."
+  6: "Druidic order, who will unleash it on the world."
+---
+table: roper-how-it-survives-scrutiny
+title: "How It Survives Scrutiny"
+dice: d6
+source: "p. 167"
+entries:
+  1: "Mimics dripping water, distant echoes."
+  2: "Moves incredibly quickly when not watched."
+  3: "Makes you feel like you are being watched."
+  4: "Absorbs light, creating longer shadows."
+  5: "Stays deathly still, even under attack."
+  6: "Leaves no trace of its previous meals."
+---
+table: rustmaw-residual-effects-of-eating-arcana
+title: "Residual Effects of Eating Arcana"
+dice: d6
+source: "p. 167"
+entries:
+  1: "Glows in the dark."
+  2: "Leaves a trail of sparks behind it."
+  3: "Floats slightly above the ground."
+  4: "Speaks in very basic terms."
+  5: "Vibrates like a tuning fork when struck."
+  6: "Is completely invisible."
+---
+table: shambling-mound-buried-within
+title: "Buried Within"
+dice: d6
+source: "p. 167"
+entries:
+  1: "Grand druid, sleeping within a cocoon."
+  2: "Ancient coffin, sealing away a cursed vampire."
+  3: "Nearly endless amount of animated skeletons."
+  4: "Mask of twisted vines that whispers riddles."
+  5: "Fey gateway, pulsing with otherworldly energy."
+  6: "Warbanner of the true queen."
+---
+table: sphinx-wish-choices
+title: "Wish Choices"
+dice: d6
+source: "p. 168"
+entries:
+  1: "Ask any yes or no question."
+  2: "Ask for any one item and it is yours."
+  3: "Ask to be any age you would like—forever?"
+  4: "Ask for any one being to cease to be."
+  5: "Ask for any one being to be brought back."
+  6: "Ask for a chance to correct a single regret."
+---
+table: sphinx-riddle
+title: "Riddle"
+description: "Roll 3, choose 1 or 2, pose it as a riddle. If relatively close, accept the answer. The riddle lines come in three groups of six: each roll gives one line from each group."
+dice: d6
+columns: [first, second, third]
+labels: false
+source: "p. 168"
+entries:
+  1: ["It flows but has no shape.", "It's cold but not frozen.", "It grows when light dims."]
+  2: ["It grows taller, then vanishes.", "It's bright but not hot.", "It follows you on sunny days."]
+  3: ["It travels far but takes no steps.", "It hums when the world is still.", "It stares back from still waters."]
+  4: ["It burns but leaves no ashes.", "It's full but never complete.", "It's buried but not dead."]
+  5: ["It counts the moments but has no hands.", "It's fleeting but always returns.", "It's a silent companion."]
+  6: ["It falls but makes no sound.", "It's hidden in plain sight.", "It's a path without end."]
+---
+table: troll-overlooked-lairs
+title: "Overlooked Lairs"
+dice: d6
+source: "p. 168"
+entries:
+  1: "Abandoned mill, half-sunk in the swamp."
+  2: "Ruined bathhouse, flooded with muck."
+  3: "Crumbling fort lost in dense woods."
+  4: "Hollowed-out tree astride a grain field."
+  5: "Ruined chapel overtaken by brambles."
+  6: "Rocky cave behind a waterfall."
+---
+table: underscourge-collapses
+title: "Collapses…"
+dice: d6
+source: "p. 168"
+entries:
+  1: "Farmer’s pasture, full of cows."
+  2: "Town square during a festival."
+  3: "Noble’s garden, during a feast."
+  4: "Bustling mine, just as they struck the motherlode."
+  5: "General's tent, after a glorious victory."
+  6: "Royal cemetery, as the king is laid to rest."
+---
+table: undead-ghast-bygone-plagues
+title: "Bygone Plagues"
+dice: d6
+source: "p. 169"
+entries:
+  1: "The Weeping Rot, turning flesh to black ooze."
+  2: "The Crimson Blight, causing veins to burst."
+  3: "The Ashen Grip, hardening limbs into stone."
+  4: "The Vile Verdancy, growing plants from wounds."
+  5: "The Choking Miasma, filling lungs with sludge."
+  6: "The Thorned Decay, sprouting barbs from skin."
+---
+table: undead-ghost-unfinished-business
+title: "Unfinished Business"
+description: "Roll 3, interpret. Each roll gives a word from each of the three columns."
+dice: d6
+columns: [first, second, third]
+labels: false
+source: "p. 169"
+entries:
+  1: ["heirloom", "confession", "vendetta"]
+  2: ["estate", "vow", "guilt"]
+  3: ["portrait", "denial", "betrayal"]
+  4: ["key", "hidden", "murder"]
+  5: ["diary", "whisper", "burden"]
+  6: ["relic", "promise", "obsession"]
+---
+table: undead-lich-overly-grandiose-dark-rituals
+title: "Overly Grandiose Dark Rituals"
+dice: d6
+source: "p. 169"
+entries:
+  1: "Enslave every soul in the realm to its will."
+  2: "Steal the life essence of the royal bloodline."
+  3: "Summon the Bonegrinder, eater of legends."
+  4: "Sing the song that will end the world."
+  5: "Raise a necropolis from which to rule."
+  6: "Twist the vast forests into a maze of undead trees."
+---
+table: undead-vampire-siring-intentions
+title: "Siring Intentions"
+dice: d6
+source: "p. 170"
+entries:
+  1: "Punish them for betraying your trust."
+  2: "Offer them a twisted redemption."
+  3: "Teach them the vanity of mortal life."
+  4: "Preserve their forbidden love."
+  5: "Trap them in unending regret."
+  6: "Use them to control those they once loved."
+---
+table: undead-vampire-path
+title: "Path"
+description: "Roll 2d6 (pick 1) for path/core. A d66 read both ways: one die picks the row, the other the column (1–3 left, 4–6 right)."
+dice: d66
+both_ways: true
+source: "p. 170"
+entries:
+  11-13: "Bard"
+  14-16: "Paladin"
+  21-23: "Berserker"
+  24-26: "Ranger"
+  31-33: "Cleric"
+  34-36: "Rogue"
+  41-43: "Druid"
+  44-46: "Sorcerer"
+  51-53: "Fighter"
+  54-56: "Warlock"
+  61-63: "Monk"
+  64-66: "Wizard"
+---
+table: undead-vampire-power
+title: "Power"
+description: "For every 50 years of unlife, roll a new power and weakness."
+dice: d6
+source: "p. 170"
+entries:
+  1: "Bat, mist, or wolf form"
+  2: "Mesmerising Gaze"
+  3: "Cling to walls"
+  4: "Preternatural speed"
+  5: "Lifesense"
+  6: "Call vermin"
+---
+table: undead-vampire-weakness
+title: "Weakness"
+description: "For every 50 years of unlife, roll a new power and weakness."
+dice: d6
+source: "p. 170"
+entries:
+  1: "Holy symbols"
+  2: "Garlic"
+  3: "Running water"
+  4: "Lacking reflection"
+  5: "Invitation only"
+  6: "Extreme thirst"
+---
+table: undead-wight-cursed-armaments
+title: "Cursed Armaments"
+dice: d6
+source: "p. 170"
+entries:
+  1: "Heartstealer, a blade that drains courage."
+  2: "Mindpiercer, a spear that devours memories."
+  3: "Blackhelm, a helm that compels obedience."
+  4: "Soulcrusher, a mace that fills with dread."
+  5: "Rise, a sword that raises new wights."
+  6: "Wailer, a spiked chain that binds spirits to it."
+---
+table: undead-wraith-horrific-origins
+title: "Horrific Origins"
+dice: d6
+source: "p. 170"
+entries:
+  1: "Untold number of dead from the war."
+  2: "Royal court and family massacred during a coup."
+  3: "Serial killer's decades long reign of terror."
+  4: "Massacre of innocent \"monstrous\" village."
+  5: "Plague spread by one person jumping ship."
+  6: "Community's noble sacrifice going unnoticed."
+---
+table: unicorn-blessings
+title: "Blessings"
+dice: d6
+source: "p. 171"
+entries:
+  1: "Five more healthy years of old age."
+  2: "Sixth sense for when you're being deceived."
+  3: "Immunity to poisons and diseases."
+  4: "You can understand any language."
+  5: "Cleanse any water you touch of impurities."
+  6: "Always know the direction to home."
+---
+table: will-o-wisp-secrets-to-reveal
+title: "Secrets to Reveal"
+dice: d6
+source: "p. 171"
+entries:
+  1: "Final resting place of a hero never mourned."
+  2: "Wooden mask marked with a lost clan's sigil."
+  3: "Secret names of the will-o'-wisps."
+  4: "Undying flame hidden in the swamp’s heart."
+  5: "Waterlogged diary with half-legible confessions."
+  6: "Still-beating heart buried within twisted roots."
+---
+table: wyvern-wyvern-masters
+title: "Wyvern Masters"
+dice: d6
+source: "p. 171"
+entries:
+  1: "Gorrak, infamous sky pirate."
+  2: "Laraen, rogue mage bent on vengeance."
+  3: "Zurak, black-market smuggler of wyvern eggs."
+  4: "Tylara, a druid wielding the power of storms."
+  5: "Drazul, assassin for the highest bidder."
+  6: "Serdrak, mercenary lord of the skies."
+---
+table: yeti-under-the-ice
+title: "Under the Ice"
+dice: d6
+source: "p. 171"
+entries:
+  1: "City frozen in time, its bells still ringing."
+  2: "Souls wandering, lost beneath the ice."
+  3: "Portal to a realm of eternal winter."
+  4: "Cursed blade locked in unmelting ice."
+  5: "Phoenix stuck in a cycle of death and rebirth."
+  6: "Balor shackled in ice-forged chains."

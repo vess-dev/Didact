@@ -1,0 +1,234 @@
+# Options & Dials (Chapter 10), with Chapter 2's slower road, Chapter 9's Sheogorath's dial and
+# solo play. Everything is off unless the table turns it on at session zero, except coin and
+# potions, which are on by default and listed so they can be dialed. Where Grimscrolls has
+# grimwild-ce's option under the same name (scale, lethality, flavor, armor, supplies, …), it
+# replaces the parent's by id; the parent's options with no place here (magic, wealth,
+# vigor-pool, lasting marks, random vex, random bonds, expanded downtime) are hidden in
+# pack.yaml, and the dials Grimscrolls names its own way have their own ids: `wild-magic`,
+# `coin`, `potions`.
+option: scale
+title: "Tone dial: scale"
+ask: "The scale of the game: standard, smaller, or larger?"
+choices:
+  standard: "As the book has it."
+  smaller: "Smaller: more rolls are risky or impossible, mooks are rare and every foe is a threat, and levels cap at 3 (swap talents at story milestones instead: `didact do switch-talent`). Keep stat progression out of small-scale games."
+  larger: "Larger: fewer rolls are risky, mooks are waded through and toughs fall a few at a time, heroes start at level 3 (character creation gains levels 2 and 3 as leveling up does), and bosses have a secret to overcome, not just a bigger pool."
+default: standard
+source: "options-and-dials/tone-dials#scale"
+---
+option: lethality
+title: "Tone dial: lethality"
+ask: "How deadly: softer, standard, or deadlier?"
+choices:
+  softer: "Softer: low stakes often, even in fights against weak foes; dropped is a 3d story roll; permanent conditions are rare; potions flow (softer potions)."
+  standard: "As the book has it: a dropped hero makes a 2d story roll."
+  deadlier: "Deadlier: high and dire stakes often; a desperate hero also carries an urgent condition (4d Bleeding Out); dropped is a 1d story roll; no coming back; potions at 2d (grimmer potions)."
+default: standard
+implies:
+  softer: {potions: softer}
+  deadlier: {potions: grimmer}
+source: "options-and-dials/tone-dials#lethality"
+---
+option: wild-magic
+title: "Tone dial: wild magic"
+kind: flag
+ask: "Does magic bite back for everyone (wild magic), not just Destruction?"
+help: "Magic bites back for everyone, not just Destruction: any spellcasting roll with two or more 1s, thorns included, goes wrong: a 1d story roll for the collateral, a dark omen (the GM takes suspense), or a roll of a 6d Corruption pool (at 0d, a trait, desire, bond, or look turns for the worse). Rolls with `spell` set it off by themselves (`didact do backlash … kind=wild`). Off, only Destruction's own spells backlash."
+source: "options-and-dials/tone-dials#wild-magic"
+---
+option: flavor
+title: "Flavors of Tamriel"
+ask: "Point the dials at a subgenre: standard, the grim north, pulp heroics, Great House politics, or Daedric weird?"
+choices:
+  standard: "The chronicles' own mix: high adventure on the surface, a dry sense of humor about itself, and something old and sad under the snow."
+  grim-north: "The grim north: deadlier, supplies, and hard country (Chapter 6's exposure rules, front and center)."
+  pulp-heroics: "Pulp heroics: softer, and the larger scale."
+  great-house-politics: "Great House politics: the smaller scale, and factions front and center."
+  daedric-weird: "Daedric weird: wild magic, and Sheogorath's dial on."
+default: standard
+implies:
+  grim-north: {lethality: deadlier, supplies: true}      # deadlier sets grimmer potions in turn
+  pulp-heroics: {lethality: softer, scale: larger}       # softer sets softer potions in turn
+  great-house-politics: {scale: smaller}
+  daedric-weird: {wild-magic: true, sheogorath: true}
+source: "options-and-dials/tone-dials#flavors-of-tamriel; unbound/how-to-read-this#the-tone-dial"
+---
+option: law-of-the-land
+title: "Tone dial: the law of the land"
+ask: "Enforce an era's hard rules: none, Vvardenfell (3E 427), Cyrodiil (3E 433), or Skyrim (4E 201)?"
+choices:
+  none: "No era's hard rules enforced."
+  vvardenfell: "Vvardenfell, 3E 427: the Blight closes Red Mountain and the Temple hunts heretics."
+  cyrodiil: "Cyrodiil, 3E 433: necromancy is banned by the Mages Guild, and gates to Oblivion open outside every city."
+  skyrim: "Skyrim, 4E 201: Talos worship is a crime, the Thalmor carry the warrants, and dragons are real again."
+default: none
+source: "options-and-dials/tone-dials#the-law-of-the-land"
+---
+option: sheogorath
+title: "Sheogorath's dial"
+kind: flag
+ask: "Does Tamriel get strange (Sheogorath's dial)?"
+help: "Tamriel gets strange: when things tip (a critical on a story roll, a disaster in the middle of nowhere), roll a thorn on the Madgod's crucible, or choose, and play it absolutely straight (`didact do madness`)."
+source: "running-tamriel/sheogoraths-dial"
+---
+option: coin
+title: "Coin (on by default)"
+kind: flag
+default: true
+ask: "Does every hero carry a personal 4d Coin pool (on by default; off: money is pure vantage)?"
+help: "Every hero carries a personal 4d Coin power pool, rolled when you spend big (`didact do spend-coin`); selling off a minor haul adds +2d (max 8d). Turn it off and money is pure vantage: walking-around septims are set dressing, and serious wealth moves only in hauls."
+source: "options-and-dials/gear-and-survival#coin-on-by-default; surviving-tamriel/coin-and-barter"
+---
+option: potions
+title: "Potions (on by default)"
+ask: "Potions: standard (3d), grimmer (2d), yourself only, one pool the whole party shares, or softer (4d)?"
+choices:
+  standard: "A 3d Potions pool per hero clears one harm with a breather, on yourself or an ally (`didact do potion`)."
+  grimmer: "Grimmer: 2d."
+  self-only: "Grimmer: only yourself."
+  shared: "Grimmer: a single pool the whole party shares."
+  softer: "Softer: 4d, refilled by any real rest, and a draught poured into a dropped ally adds +1d to their story roll (`didact do dropped … draught`)."
+default: standard
+source: "options-and-dials/gear-and-survival#potions-on-by-default; surviving-tamriel/potions"
+---
+option: soul-fed
+title: "Soul-fed, or not"
+ask: "Do the hungriest relics refill only on a filled soul gem (soul-fed), or every session (softer)?"
+choices:
+  soul-fed: "As the book has it: a relic's pool refreshes each session, unless its card says soul-fed; then it comes back only when a filled soul gem is spent on it (a common soul 2d, a grand soul fills it)."
+  softer: "Softer: every relic's pool refreshes each session, and soul gems are just treasure."
+default: soul-fed
+source: "options-and-dials/gear-and-survival#soul-fed-or-not; the-reliquary/introduction#charges-and-souls"
+---
+option: weapon-styles
+title: "Weapon styles"
+kind: flag
+ask: "Does each signature weapon carry two descriptors?"
+help: "Give each signature weapon two descriptors (heavy, sweeping · quick, concealable · elegant, temperamental): vantage, not stats; describe using them and the thorns follow (`didact gen run grimscrolls.weapon`)."
+source: "options-and-dials/gear-and-survival#weapon-styles"
+---
+option: armor
+title: "Armor for everyone"
+kind: flag
+ask: "Does armor give an Armor pool to anyone wearing it?"
+help: "Light armor gives a 1d Armor pool each session, heavy armor 2d: after a physical consequence lands, roll it to lessen the consequence, as a messy defense would (`didact do armor`). Light armor carries the Lightly Armored condition (it hinders delicate movement); heavy carries Heavily Armored (loud, slow, and no swimming). The armor talents still avoid harm outright; a hero with one uses that instead."
+source: "options-and-dials/gear-and-survival#armor-for-everyone"
+---
+option: supplies
+title: "Supplies"
+kind: flag
+ask: "Can the heroes run out of supplies?"
+help: "Each hero has a 4d Supplies resource pool (arrows, rations, torches, the little things): roll it after heavy use, and as time passes away from towns; at 0d, hunger and cold start writing the thorns."
+source: "options-and-dials/gear-and-survival#supplies"
+---
+option: encumbrance
+title: "Encumbrance"
+kind: flag
+ask: "Are there carrying limits?"
+help: "Each hero carries 2 + Brawn slots of gear beyond armor and main weapons: most gear takes a slot, small items half, large or bulky ones two or more. Beast of Burden and the Steed Stone laugh at this rule."
+source: "options-and-dials/gear-and-survival#encumbrance"
+---
+option: rest-resets
+title: "Rest resets"
+kind: flag
+ask: "Do per-session talents reset on a real rest instead of each session?"
+help: "When the group rests: everyone takes spark, per-session talents and thread reset, some conditions fade, and the GM takes 2 suspense (`didact do rest`). Better for marathon sessions and open-table play."
+source: "options-and-dials/pacing-and-growth#rest-resets"
+---
+option: milestone-levels
+title: "Milestone levels"
+kind: flag
+ask: "Skip XP, and level when a group arc resolves meaningfully?"
+help: "No XP: the company levels when a group arc resolves meaningfully (`didact char advance <hero>`)."
+source: "options-and-dials/pacing-and-growth#milestone-levels"
+---
+option: focused-growth
+title: "Focused growth"
+kind: flag
+ask: "Slash XP boxes before filling them, with a bonus XP when the session hits the party concept dead-on?"
+help: "Slash XP boxes before filling them (double the road), but award a bonus XP when the session hits the party concept dead-on (`didact do experience who=… why=theme`)."
+source: "options-and-dials/pacing-and-growth#focused-growth"
+---
+option: slow-progression
+title: "A slower road"
+kind: flag
+ask: "A slower road: slash each XP box before filling it (twice the XP to level)?"
+help: "Slash each XP box before filling it: each level takes twice the XP (level 4 to 5: 10 XP)."
+source: "the-core-engine/experience"
+---
+option: level-zero
+title: "Level 0: the prisoner"
+kind: flag
+ask: "Do heroes start at level 0, as prisoners?"
+help: "Start in the cart, the cell, or the hold of a prison ship: a race, a birthsign, and a background, but no Core Talent, and 3 stat points instead of 4. The Core Talent and the last point arrive after the first session (`didact char advance <hero>` once it has 1 XP)."
+source: "options-and-dials/pacing-and-growth#level-0-the-prisoner"
+---
+option: stat-progression
+title: "Stat progression"
+kind: flag
+ask: "Can a hero forgo a level's talent to raise a stat by 1 (the one lifetime bump)?"
+help: "For long campaigns: when you level up, you can forgo the new talent to raise a stat by 1 (max 3). It counts as the hero's one lifetime bump. Keep it out of small-scale games."
+source: "options-and-dials/pacing-and-growth#stat-progression"
+---
+option: by-the-book
+title: "By the book"
+kind: flag
+ask: "Strict parity with Grimwild's heroes: the racial talent or the birthsign's at creation, the other at level 2?"
+help: "Begin with your racial talent or your birthsign's, and take the other at level 2 in place of that level's talent."
+source: "options-and-dials/pacing-and-growth#by-the-book"
+---
+option: stones-from-the-start
+title: "Stones from the start"
+kind: flag
+ask: "Does each hero begin having laid a hand on one standing stone?"
+help: "Each hero begins having already laid a hand on one standing stone. Suits a company that has traveled together a while."
+source: "options-and-dials/pacing-and-growth#stones-from-the-start"
+---
+option: register-training
+title: "Register training"
+kind: flag
+ask: "Do heroes take talents only from their background's seven skills until level 4?"
+help: "For tighter archetypes, a hero may take talents only from the seven skills of their background until level 4. The battlemage stays a battlemage a little longer."
+source: "options-and-dials/pacing-and-growth#register-training"
+---
+option: oaths
+title: "Oaths & tenets"
+kind: flag
+ask: "May each hero take one oath at creation (an edge and a flaw, welded together)?"
+help: "At creation, each hero may take one oath: the edge is always on (a permission or a thorn ignored, never a die); the flaw is a standing tangle (the first time each session it truly bites, take spark). Break the oath for good and you lose the edge; the people you swore to will have opinions."
+source: "options-and-dials/oaths-and-tenets"
+---
+option: token-initiative
+title: "Token initiative"
+kind: flag
+ask: "Use token initiative in intense moments?"
+help: "If freeform spotlight stalls: at the start of an intense moment, give each player 2 tokens; spend one before each story beat (usually an action roll); when everyone's spent out, all tokens refresh."
+source: "options-and-dials/table-tools#token-initiative"
+---
+option: tick-pools
+title: "Tick pools"
+kind: flag
+ask: "Use tick pools alongside ordinary pools?"
+help: "A predictable pool, usually 2d-4d: it never rolls, and drops exactly 1d whenever triggered (`didact do tick`). For countdowns the table should read like a clock."
+source: "options-and-dials/table-tools#tick-pools"
+---
+option: writers-room
+title: "Writers' room"
+kind: flag
+ask: "Loosen authorship (details need no vantage; anyone can offer an impact move against their own hero)?"
+help: "Thread and tangle details no longer need vantage; any player can offer an impact move against their own hero (taking spark, as a tangle) or add a detail to the world, and only details that help the party cost thread."
+source: "options-and-dials/table-tools#writers-room"
+---
+option: active-vigilance
+title: "Active vigilance"
+kind: flag
+ask: "Should vigilance be a story roll instead of the GM's judgment?"
+help: "The spotlighted PC makes a story roll, shaped by their vantage: perfect a reveal, messy a hint, grim the strike lands (`didact do vigilance`); a talent that guarantees a hint turns a grim into a hint, one that guarantees a reveal turns a messy or a grim into one."
+source: "options-and-dials/table-tools#active-vigilance"
+---
+option: solo
+title: "Solo and duet play"
+kind: flag
+ask: "Playing solo (or GM-less): the two guardrails?"
+help: "On a messy, make an impact move only if you're in a challenge, in a quest's last task pool, or holding 3+ suspense (otherwise take suspense); on a disaster or at dire stakes, take the usual consequences and roll your quest's peril pool too. Give a lone hero a follower (`didact gen run grimscrolls.follower`), lean on montage rolls, and let story rolls answer what a second player would have; side characters: `didact char new grimscrolls.side-character`."
+source: "running-tamriel/running-solo-and-duet"

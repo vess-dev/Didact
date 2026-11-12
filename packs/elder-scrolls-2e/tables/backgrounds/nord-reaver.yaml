@@ -1,0 +1,24 @@
+# Nord Reaver (backgrounds/nord-reaver): the background's two d6 tables.
+table: nord-reaver-1
+title: "What did the raiding life leave you?"
+dice: d6
+source: backgrounds/nord-reaver#what-did-the-raiding-life-leave-you-roll-1d6
+entries:
+  1: "A skald made a song of your last stand, and it is sung from Dawnstar to Winterhold. Nords who hear your name treat you one step better on the Reaction ladder — and every crew you ever robbed knows it too."
+  2: "A spear took your eye on a foreign shore. You misjudge distance — your ranged attacks are Impaired — but you no longer flinch: you need not save against fear."
+  3: {text: "You slew a bull horker on the ice and wear its hide. Take a horker-hide cloak (petty, counts as warm clothing) and a carved tusk worth 1d6 × 10 Septims to the right buyer.", data: {gear: [{name: "Horker-hide cloak", size: "petty", note: "counts as warm clothing"}, {name: "Carved tusk", note: "worth 1d6 × 10 Septims to the right buyer"}]}}
+  4: "Your grandmother remembered the old tongue and taught it to you at her knee. You can read the ancient Nord runes on standing stones and barrow walls, and the dragon-claw doors of the old tombs hold no riddle you cannot work out."
+  5: {text: "A rival clan burned your hall. Take their chieftain's war-horn: sounded, it is heard for miles, and every warrior of that clan knows it — and hunts whoever carries it.", data: {gear: [{name: "War-horn", note: "a rival chieftain's; heard for miles"}]}}
+  6: "You wintered alone on a skerry in the Sea of Ghosts after a wreck, and came back wrong. You can go three days without food before you are Deprived, you no longer dream, and something that was on that rock followed you home."
+---
+table: nord-reaver-2
+title: "What does your crew know you for?"
+dice: d6
+source: backgrounds/nord-reaver#what-does-your-crew-know-you-for-roll-1d6
+entries:
+  1: {text: "Wolf-Cleaver: Your forefather's notched battleaxe, borne on a hundred raids — masterwork (d12, bulky, two-handed). It takes the place of your starting battleaxe. Your kin want it back in the family's hands.", data: {upgrade: true, replaces: {name: "Battleaxe", damage: "d10", size: "bulky", qualities: ["two-handed"]}, gear: [{name: "Wolf-Cleaver", damage: "d12", size: "bulky", qualities: ["two-handed", "masterwork"], tempered: true, note: "your forefather's notched battleaxe"}]}}
+  2: "The Mead-Oath: You can drink any rival under the table. You need not save against drink, drugged cups, or skooma, and folk trust a word you give over horns."
+  3: {text: "Frostbite: A pair of hunting axes (d6+d6, bulky) won in a duel on the ice. Their edges hold a faint chill; they never rust and never dull.", data: {gear: [{name: "Frostbite", damage: "{d6, d6}kh1", size: "bulky", note: "a pair of hunting axes; they never rust and never dull"}]}}
+  4: "Shield-Biter: When your blood is up, you bite the rim of your shield like the berserks of old. Once per combat, your next attack is Enhanced — and until your next turn, so is every attack against you."
+  5: "Sea-Wolf: A battered six-oared longboat hidden in a cove on the northern coast, and yours to sail. Along the coast and across the Sea of Ghosts, the party can travel by water where the roads fail."
+  6: {text: "Bone-Singer: A drum of the old Hold, stretched with sabre-cat hide. Beat it over the slain and the dead lie quiet. Beat the stroke on a hard march, and once per day the party shrugs off the Fatigue that bad weather would add.", data: {gear: [{name: "Bone-Singer", note: "a drum of the old Hold, stretched with sabre-cat hide"}]}}

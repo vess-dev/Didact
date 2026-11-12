@@ -1,0 +1,6 @@
+test: play
+script:
+  - world new t --system {pack}
+  - campaign new c
+  - new pc Ingrid --fill
+  - do skill who=ingrid attr=agility skill=2

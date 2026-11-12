@@ -1,0 +1,16 @@
+check: skill
+help: Attribute + skill d6s; each 6 is a success. Push to reroll all but 6s and 1s; 1s become stress.
+params: {who: ref, attr: {enum: [strength, agility]}, skill: {kind: int, default: 0}}
+roll: "(@who.$attr + @skill)d6>=6"
+success: "@roll >= 1"
+options:
+  push:
+    label: "Push: reroll everything but 6s and 1s"
+    steps:
+      - reroll: roll
+        keep_if: "@face == 6 or @face == 1"
+      - let: {banes: "count(@roll.dice, 1)"}
+      - set: who.stress
+        op: "+="
+        value: "@banes"
+      - message: "{@banes} bane(s): {@banes} stress."

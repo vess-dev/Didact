@@ -1,0 +1,685 @@
+# The 17 paths (Adventurers, pp. 45, 52-87): each with its core talent, path talents,
+# optional extras and crucible tables. Talent text: talents.yaml.
+id: artificer
+type: path
+name: Artificer
+aka: [enchanter, tinkerer, inventor]
+core_talent: artificer-infusion
+talents:
+  - artificer-animate-objects
+  - artificer-artificial-parts
+  - artificer-grenades
+  - artificer-magnum-opus
+  - artificer-mischief-maker
+  - artificer-trap-making
+  - artificer-wandslinger
+options:
+  - title: Everything Arcana
+    label: Optional
+    text: |-
+      You can reflavor any of your path talents to actually be the effects of magical gizmos you’ve created. Toss in some magitech buzzwords that almost make sense, and use them to sound like you know what you’re talking about—perfect for baffling the less inventive. You can teach others to use them, though doing so always carries risk. If any of these gizmos is ever lost, you can recreate them with some effort during any downtime.
+      Magitechnobabble: smash together, and ramble on.
+    tables: [artificer-magitechnobabble-prefix, artificer-magitechnobabble-suffix]
+  - title: Constructs and Homunculi
+    text: |-
+      Looking for a magical companion you found or created? Use the Animal Companion talent from the ranger path (pg. 73), and pick from the tricks and flaws below.
+      TRICKS: distract—fight—guard—rescue—retrieve—scout—search—talk—trace—signal
+      FLAWS: clumsy—defiant—dimwitted—noisy—overprotective—powered—scary—unreliable
+tables: [artificer-magitechnobabble-prefix, artificer-magitechnobabble-suffix]
+extra_path: true
+source: p. 54
+body: |-
+  You shape the world with your creations, blending ingenuity, craftsmanship, and magic to forge and enchant wonders.
+---
+id: bard
+type: path
+name: Bard
+aka: [orator, warlord, chronicler]
+tagline: Stirring the soul with song or deed.
+summary: Spend inspiration to bolster your allies, and influence foes to turn the tide.
+core_talent: bard-inspiration
+talents:
+  - bard-bardic-lore
+  - bard-dynamic-entrance
+  - bard-folk-hero
+  - bard-forked-tongue
+  - bard-friendly-face
+  - bard-jack-of-all-trades
+  - bard-wordplay
+options:
+  - title: Inspiration Method
+    label: Optional
+    text: Where does your power to influence others come from? Choose any 2 from the following that you know, and 1 that you're learning.
+    choices:
+      - Violin
+      - Oratory
+      - Martial Ability
+      - Panpipes
+      - Flute
+      - Cutting Wit
+      - Lyre
+      - Ocarina
+      - Accordion
+      - Limericks
+      - Proverbs
+      - Dance
+      - Aesops
+      - Lute
+      - Style
+      - Singing
+      - Harmonica
+      - Drums
+  - title: Song Composition
+    label: Optional
+    text: |-
+      Many bards use music to channel their innate power to inspire and influence others. Use the crucible on the right to build the bardic songs you know.
+      Style: This is how you feel when you're performing the song.
+      Tune: This is the familiar form that anyone will recognize.
+      Impact: This is how the song magically influences others.
+    tables: [bard-song-style, bard-song-tune, bard-song-impact]
+tables: [bard-song-style, bard-song-tune, bard-song-impact]
+extra_path: false
+source: p. 56
+body: |-
+  You spin tales and songs that stir emotions, inspire bravery, and turn simple deeds into legends.
+---
+id: berserker
+type: path
+name: Berserker
+aka: [juggernaut, reaver, warbringer]
+tagline: Blood, mettle, and the sounds of battle.
+summary: Fly into a frenzy to wade through foes and lay waste to your enemies.
+core_talent: berserker-frenzy
+talents:
+  - berserker-fearsome
+  - berserker-flesh-wounds
+  - berserker-into-the-fray
+  - berserker-joyful-warrior
+  - berserker-mighty
+  - berserker-overkill
+  - berserker-warcry
+options:
+  - title: Frenzy Source
+    label: Optional
+    text: Where does your wild power and ability to withstand pain come from? Choose 2 and smash them together to form the source, and 1 that you have a disdain for.
+    choices:
+      - Ritualistic preparation
+      - Trained tolerance to pain
+      - Long consumption of strange substances
+      - Drawing power from ancestral spirits
+      - Drawing primal power from the wild
+      - Channeling memories you'll never forget
+      - Visions of horrific or heroic scenes
+      - Deep meditative focus
+      - Blood pact with a kindred force
+      - Your abilities are a strange mystery
+      - Binding your spirit to a physical totem
+      - A suppressed entity overtakes you
+  - title: Scars
+    label: Optional
+    text: Your ability to ignore pain has led you to take far more damage than most warriors. What scars do you bear that show your reckless nature? Choose 3 that you show off.
+    choices:
+      - Crookedly broken nose
+      - Web of deep cut scars
+      - Permanently split knuckles
+      - Empty eye socket
+      - Smashed teeth
+      - Cauliflower ears
+      - Wild, ripped hair
+      - Muscles knotted like iron
+      - Several missing fingers
+      - Jagged burn lines
+      - Gouged claw marks
+      - Runic scarring from magic
+      - Torn earlobe or ear tips
+      - Deep, cauterized wound
+      - Cracked jawline
+      - Crushed foot
+      - Busted in skull
+      - Not even a scratch on you
+extra_path: false
+source: p. 58
+body: |-
+  You don't just fight—you crush anything and everything in your path until nothing stands before you.
+---
+id: cleric
+type: path
+name: Cleric
+aka: [priest, zealot, chosen]
+tagline: Faith is stronger than any blade.
+summary: Use your rites pools to call upon your god, wielding their divine magic.
+core_talent: cleric-channel-divinity
+talents:
+  - cleric-blessed
+  - cleric-devout
+  - cleric-healer
+  - cleric-iron-will
+  - cleric-rings-false
+  - cleric-sermons
+  - cleric-shepherd
+options:
+  - title: Create Your God
+    text: Create your god by naming them and giving them a thematic title—their epithet (e.g. Zerenda, Goddess of Storms). Write down 3 tenets, the guidance from your god that you are expected to follow while spreading their word, then choose 1 of the following to create their domain of influence, or make your own.
+    choices:
+      - Storms
+      - Mercy
+      - Revelry
+      - Justice
+      - Trickery
+      - Sea
+      - Life
+      - Radiance
+      - Moon
+      - Death
+      - Travel
+      - War
+      - Magic
+      - Hunt
+      - Knowledge
+      - Nature
+      - Luck
+      - Crafting
+  - title: Learn Your Rites
+    text: Decide your place in your god's flock. What is your mission, and what rites have you learned to help you achieve your goal? Choose 1 major rite, and 2 minor rites from the following, or make your own.
+    choices:
+      - "Blessing. Magic: Bless a warhammer. Walk on water. Fill the forlorn duke's heart with hope."
+      - "Divination. Magic: Find a safe path. Reveal where the thief is hiding. Know tomorrow's weather."
+      - "Dominion. Magic: Convince someone to help. Make someone forget. Calm an angry mob."
+      - "Healing. Magic: Heal a broken bone. Relieve someone of stress. Stop the bleeding."
+      - "Warding. Magic: Shield an ally from harm. Block a doorway. Create sentries."
+      - "Wrath. Magic: Shatter a foe's weapon. Blind a traitor. Curse a heretic with misfortune."
+extra_path: false
+source: p. 60
+body: |-
+  You serve as a conduit for the divine, channeling holy power to safeguard the faithful and do your god's bidding.
+---
+id: druid
+type: path
+name: Druid
+aka: [shapeshifter, grovekeeper, wildling]
+tagline: The fury of nature—untamed and relentless.
+summary: Use your wild shape pool to take bestial forms and learn their abilities.
+core_talent: druid-wild-shape
+talents:
+  - druid-augury
+  - druid-awaken
+  - druid-kindred-spirits
+  - druid-primal-growth
+  - druid-primordial-bonds
+  - druid-true-shape
+  - druid-windcaller
+options:
+  - title: Druidic Tells
+    label: Optional
+    text: "Druids often exhibit tells—sometimes several—that reflect their deep connection with nature, such as animalistic traits or plant-like appearances. Even in a fantasy world, someone so attuned to nature is bound to attract attention, offering potential new vantage, outside assistance, or even opportunities for tangles. Below are some ideas for features:"
+    tables: [druid-tells]
+  - title: Wild Talents
+    label: Examples
+    text: Below are some examples of beasts that have wild talents. Already existing talents are listed with a page number reference. Others are made for that beast. If a wild talent feels more like set dressing in the current scene, just include it as flavor, instead.
+    choices:
+      - "Chimpanzee: Relentless (Ranger, pg. 73)"
+      - "Wolf: Keen Senses (Ranger, pg. 73)"
+      - "Spider: Wall climbing"
+      - "Turtle: Bulwark (Fighter, pg. 65)"
+      - "Octopus: Shape & color mimicking"
+      - "Cheetah: Incredibly fast sprinting"
+      - "Bear: Flesh Wounds (Berserker, pg. 59)"
+      - "Eagle: Flight (Background, pg. 89)"
+      - "Snake: Poisoner (Rogue, pg. 75)"
+      - "Lion: Fearsome (Berserker, pg. 59)"
+      - "Rabbit: Lucky (Swashbuckler, pg. 81)"
+      - "Fox: Lurker (Rogue, pg. 75)"
+      - "Shark: Aquatic (Background, pg. 89)"
+      - "Ape: Mighty (Berserker, pg. 59)"
+      - "Honey Badger: Iron Will (Cleric, pg. 61)"
+      - "Rhino: Bigger than a bear"
+tables: [druid-tells]
+extra_path: false
+source: p. 62
+body: |-
+  You transform into beasts and channel the spirit of the wild, embracing the untamed power of the natural world.
+---
+id: fighter
+type: path
+name: Fighter
+aka: [blademaster, warrior, sergeant]
+tagline: Resolve honed with every strike.
+summary: Spend mastery to fight with unparalleled expertise in your chosen style.
+core_talent: fighter-weapon-mastery
+talents:
+  - fighter-arcane-training
+  - fighter-bulwark
+  - fighter-control
+  - fighter-got-your-back
+  - fighter-measured-tones
+  - fighter-swift-recovery
+  - fighter-tactician
+options:
+  - title: Weapon Origin
+    label: Optional
+    text: For many fighters, their weapon is an important part of their past. Give your weapon some character and it will become a character itself in the story. Roll d66 twice on the table below to give your weapon, or each of your weapons, its own small story. You can also choose, or make up your own.
+    tables: [fighter-weapon-origin]
+  - title: Combat Maneuvers
+    label: Advice
+    text: Action rolls let you flavor combat however you like—don’t just swing a sword or jab a spear. Lean into the dramatic flowing nature of combat. Use mastery for setups and secondary effects to remove thorns or shift the fight. Don’t tunnel vision on the kill, either—use your actions to change the battle to end it faster! Of course, anyone can try these, but as a fighter, you should master them.
+    choices:
+      - "Blind: Cloud their vision to leave them vulnerable."
+      - "Disarm: Take their weapon to stop their advance."
+      - "Knockdown: Put them on the ground to gain the upper hand."
+      - "Pin down: Trap them in a position to keep them from acting or escaping."
+      - "Pull: Drag them into danger or out of position."
+      - "Push: Shove them away to protect allies or disrupt their own lines."
+      - "Sunder: Break their gear to limit their options or get around their defenses."
+      - "Unnerve: Leave them shaken and questioning their choices."
+tables: [fighter-weapon-origin]
+extra_path: false
+source: p. 64
+body: |-
+  You become one with your weapon, and through it, you find your real purpose in this life.
+---
+id: monk
+type: path
+name: Monk
+aka: [martial artist, mystic, wanderer]
+tagline: Perfection is a journey, not a destination.
+summary: Spend flow to act with mystical grace and stop foes in their tracks.
+core_talent: monk-discipline
+talents:
+  - monk-healing-hands
+  - monk-lightning-reflexes
+  - monk-mind-over-matter
+  - monk-redirect
+  - monk-resonance
+  - monk-tether
+  - monk-there-is-no-try
+options:
+  - title: Martial Arts Style
+    label: Optional
+    text: |-
+      It's based on the ___ concept of... [choose 1 or 2]
+      It features stances and moves like... [choose 3]
+      It often makes use of ___ weapons like... [choose 2]
+    tables: [monk-style-concept, monk-style-moves, monk-style-weapons]
+tables: [monk-style-concept, monk-style-moves, monk-style-weapons]
+extra_path: false
+source: p. 66
+body: |-
+  You channel your discipline into grace, and precision, as you follow your never-ending journey towards perfection.
+---
+id: paladin
+type: path
+name: Paladin
+aka: [crusader, champion, justiciar]
+tagline: An Oath taken, a burden willingly carried.
+summary: Spend smite to overcome challenges with the power of your conviction.
+core_talent: paladin-oathsworn
+talents:
+  - paladin-aegis
+  - paladin-authority
+  - paladin-challenge
+  - paladin-dauntless
+  - paladin-divine-blessing
+  - paladin-guardian
+  - paladin-rebuke
+options:
+  - title: Swear Your Oath
+    text: |-
+      At character creation, or over the first few sessions, detail the Three Tenets that form the core of your oath. Write your own specific tenets (below), or use the table (next page) to create ones that you can explore through play. To write your own:
+      - Choose a character detail or two, such as a trait, bond, or background.
+      - Link it to a short, actionable phrase. It should naturally arise from the fiction occasionally and present you with dilemmas. Work with the GM to ensure this as you write it.
+
+      Rank the tenets in order of importance. If they ever conflict, following a higher one avoids violating a lower one. You must uphold your tenets, or risk violation. They are absolutes, but they can evolve as it makes sense or best serves the fiction (and game at the table). When you violate a tenet, slash its box. For a second or severe violation, fill in the box—it is in heavy violation.
+
+      You break a tenet when you violate it again while in heavy violation (filled box). You can no longer atone for that tenet. Breaking two tenets makes you an Oathbreaker (below). Atonement for tenets in violation require great deeds. The deed must outweigh the severity of the violation itself—ask the other players if unsure. Once completed, clear the box.
+  - title: Oathbreaker
+    text: You lose the Oathsworn talent, but may choose the Adventurer’s Talented core talent in its place. Redemption requires an appropriate ritual or mythic deed. Success restores your core talent while allowing you to keep one path talent gained from breaking your oath. Redemption is possible only once.
+  - title: Tenet Builder
+    text: (Roll, then choose an option, rewrite for clarity.)
+    tables: [paladin-tenet-bring, paladin-tenet-to-for, paladin-tenet-despite]
+tables: [paladin-tenet-bring, paladin-tenet-to-for, paladin-tenet-despite]
+extra_path: false
+source: p. 68
+body: |-
+  You have unwavering dedication to your oath, which you can wield to shape the world.
+---
+id: psion
+type: path
+name: Psion
+aka: [mentalist, seer, telepath]
+core_talent: psion-awakened-mind
+talents:
+  - psion-echo
+  - psion-foresight
+  - psion-mind-blast
+  - psion-psychic-warrior
+  - psion-reader
+  - psion-shift-form
+  - psion-tumultuous-mind
+options:
+  - title: Instability
+    text: |-
+      Each potent spell pulls at the threads in your mind, making your magic harder to control. You add thorns to all psionic spellcasting based on your instability, tracked by looking at the thorns on the lowest line you have marked. Consider what this progressive unraveling of your psyche looks like.
+      [Figure: the instability track, marked from the top row down. The +0t row has one slot, plus two grey ones (gained at levels 3 and 6); the +1t row has two; the +2t row has one.]
+  - title: Bastions
+    text: Within your mind lie bastions of psionic power. As you grow stronger, you break down their walls, unlocking your true potential. These powers take shape as visions, psychic phenomena, and even physical manifestations in the form of ectoplasm—pure essence of creation.
+    choices:
+      - "Biodynamics • Altering and enhancing your own body. Power: Heal your broken arm,. Hold your breath for hours. Run faster than a horse."
+      - "Clairsentience • Gaining knowledge from the collective unconscious. Power: Sense a hidden truth. See into someone's dreams. Find the way home."
+      - "Metacreation • Creating objects from ectoplasm, pure mental energy. Power: Forge a glowing sword. Build a bridge of thought. Shape armor from pure will."
+      - "Psychokinesis • Manipulating energy and force. Power: Shatter a boulder. Push an enemy back. Lift a heavy object with your mind."
+      - "Telepathy • Mind-to-mind communication, manipulation, and control. Power: Read someone's thoughts. Calm an angry mob. Implant a fleeting suggestion."
+      - "Transposition • Movement and manipulation of space. Power: Teleport across a room. Switch places with an ally. Freeze someone in place."
+extra_path: true
+source: p. 70
+body: |-
+  You unlock the limitless power of the mind, bending thought, will, and reality through focus and discipline.
+---
+id: ranger
+type: path
+name: Ranger
+aka: [beastmaster, pathfinder, trapper]
+tagline: No escape, no mercy, only the chase.
+summary: Tag a foe as your quarry to learn about, track, and slay your chosen enemy.
+core_talent: ranger-quarry
+talents:
+  - ranger-animal-companion
+  - ranger-keen-senses
+  - ranger-relentless
+  - ranger-scout-ahead
+  - ranger-seasoned-hunter
+  - ranger-sharpshooter
+  - ranger-trophies
+options:
+  - title: Favorite Traps
+    label: Optional
+    text: Combine and interpret an effect, trigger, and the word "trap" (poisonous bait trap) to make three traps you commonly use while hunting or scouting. These aren't limitations, just options ready to use when you need to lay a trap.
+    tables: [ranger-trap-effect, ranger-trap-trigger]
+  - title: Tell-Tale Signs of Weakness
+    label: Advice
+    text: "When you tag a powerful quarry, use your resources to find a weakness, figure out how you can exploit it. These are some vulnerabilities you may discover:"
+    choices:
+      - "Fire Sensitivity: Flinches near flames, avoids heat, dry or cracked skin."
+      - "Bright Light Weakness: Cloudy eyes, avoids light, panics near flashes."
+      - "Vulnerable Anatomy: Exposed weak points, protects soft areas."
+      - "Poison Susceptibility: Sluggish breathing, avoids carrion, soft or delicate skin."
+      - "Tunnel Vision: Fixates on a target, oblivious to surroundings, struggles to adapt."
+      - "Poor Mobility: Heavy tracks, slow movement, struggles on uneven terrain."
+      - "Sound Sensitivity: Wince at noises, large twitching ears, avoids loud terrain."
+      - "Slow-minded: Delayed reactions, struggles to recognize threats, easily tricked."
+      - "Predictable Instincts: Easily baited or lured, overcommits."
+tables: [ranger-trap-effect, ranger-trap-trigger]
+extra_path: false
+source: p. 72
+body: |-
+  You stalk unseen through the terrain, tracking prey with deadly precision and striking them when they’re weakest.
+---
+id: rogue
+type: path
+name: Rogue
+aka: [assassin, cutpurse, infiltrator]
+tagline: A whisper in the dark, then a quiet end.
+summary: Use your competence pool to grasp victory from the jaws of defeat.
+core_talent: rogue-expertise
+talents:
+  - rogue-distraction
+  - rogue-eldritch-affinity
+  - rogue-lurker
+  - rogue-mastermind
+  - rogue-opportunist
+  - rogue-poisoner
+  - rogue-weasel
+options:
+  - title: Thieves' Guild
+    label: Optional
+    text: |-
+      Many rogues learned their trade from a thieves' guild, underground network or criminal ring. These are all one form of a guild or another, whether formal or not.
+      Thieves' Guild: Choose 2 that describes your guild and 1 that really doesn't.
+    choices:
+      - like family
+      - elite training
+      - cultish
+      - turf-obsessed
+      - heroes
+      - mercenaries
+      - mystics
+      - outsiders
+      - influential
+      - just business
+      - in the open
+      - follows code
+  - title: Criminal History
+    label: Optional
+    text: |-
+      Given their skill set, a rogue either learned their trade by way of crime or possess the skills to make an excellent criminal, for which there's no lack of opportunities. As you start your adventuring career, it's likely you have some lingering criminal history, a past that can come back to haunt you in quite fun, dramatic ways. Create one or more past crimes by setting the crime (severity & nature), your reputation from it, and your own reaction about the crime.
+      REACTION: I did what I had to do—I was set up—It was a misunderstanding—I'll do it again—I completely forgot I did that—I've made peace with it—Never again.
+    tables: [rogue-crime-severity, rogue-crime-nature, rogue-crime-reputation]
+tables: [rogue-crime-severity, rogue-crime-nature, rogue-crime-reputation]
+extra_path: false
+source: p. 74
+body: |-
+  You live an operate in the margins, striking unseen and disappearing before anyone knows you were there.
+---
+id: sorcerer
+type: path
+name: Sorcerer
+aka: [channeler, elementalist, stormcaller]
+tagline: Magic flows like blood, powerful and wild.
+summary: Use your magic in near infinite ways, but be careful of magical twists.
+core_talent: sorcerer-sorcery
+talents:
+  - sorcerer-eldritch-growth
+  - sorcerer-maelstrom
+  - sorcerer-magic-sense
+  - sorcerer-metamagic
+  - sorcerer-spelleater
+  - sorcerer-wisps
+  - sorcerer-wrath
+options:
+  - title: Wild Surge
+    label: Optional
+    text: |-
+      As your chosen magical twist, or when the GM Complicates Things with your magic, you may trigger a wild surge—raw magic spirals out of your control. Make a story roll (usually 2d) to see what happens. Effects should complicate the scene, but usually don't reach the level of a full impact move. They might stem from your touchstones, raw magical essence, or something random. Use the crucible below or ask around your group for ideas.
+      Wild Surge Crucible: Roll 1 on each table, smash them together, and interpret
+    tables: [sorcerer-wild-surge-1, sorcerer-wild-surge-2]
+tables: [sorcerer-wild-surge-1, sorcerer-wild-surge-2]
+extra_path: false
+source: p. 76
+body: |-
+  You are a conduit for ancient and unpredictable forces, shaping spells out of the raw magic that flows through you.
+---
+id: summoner
+type: path
+name: Summoner
+aka: [caller, binder, planeswalker]
+core_talent: summoner-vassal
+talents:
+  - summoner-binding-word
+  - summoner-fierce-protector
+  - summoner-ley-magic
+  - summoner-monster-menagerie
+  - summoner-pocket-plane
+  - summoner-portal-network
+  - summoner-shared-soul
+options:
+  - title: Aspects
+    label: Examples
+    text: Below are some examples of planar creatures and their aspects. Existing talents are listed with a page number reference. Others are made for that beast. If the idea of your summoned eidolon has more aspects than those available, ask your GM about "donating" the PC's own, adding them to the vassal instead.
+    choices:
+      - "Dragon: Eldritch Growth (Sorcerer, pg. 77)"
+      - "Ghost: Otherworldly Form (Warlock,pg. 83)"
+      - "Demon: Knowing Gaze (Warlock, pg. 83)"
+      - "Pixie: Arcane Training (Fighter, pg. 65)"
+      - "Air Elemental: Windcaller (Druid, pg. 63)"
+      - "Oozeling: Shift Form (Psion, pg. 71)"
+      - "Unicorn: Healing Hands (Monk, pg. 67)"
+      - "Shadow: Lurker (Rogue, pg. 75)"
+      - "Zombie Swarm: Bulwark (Fighter, pg. 65)"
+      - "Warrior Spirit: Guardian (Paladin, pg. 69)"
+      - "Treant: Primal Growth (Druid, pg. 63)"
+      - "Tentacles: Fearsome (Berserker, pg. 59)"
+  - title: Build-a-Vassal
+    label: Optional
+    text: |-
+      Your summons are from a different plane—a different reality, and their form shifts and shapes to conform to the material plane. Use the crucible below to discover the basic form of your vassal.
+      It's a ___ ___-like creature that I send ___ing toward my enemies.
+    tables: [summoner-vassal-form, summoner-vassal-creature, summoner-vassal-movement]
+tables: [summoner-vassal-form, summoner-vassal-creature, summoner-vassal-movement]
+extra_path: true
+source: p. 78
+body: |-
+  You pull a creature from the essence of another plane to protect yourself and bring ruin to your enemies.
+---
+id: swashbuckler
+type: path
+name: Swashbuckler
+aka: [fencer, duelist, buccaneer]
+core_talent: swashbuckler-panache
+talents:
+  - swashbuckler-audacity
+  - swashbuckler-fancy-footwork
+  - swashbuckler-improvise
+  - swashbuckler-lucky
+  - swashbuckler-natural-moxie
+  - swashbuckler-provoke
+  - swashbuckler-the-legend-of
+options:
+  - title: Past Entanglements
+    label: Optional
+    text: A Swashbuckler is known by their past. Whose life is intertwined with the story of your deeds? Choose 2 people important in your tales by picking 1 from each side and smashing them together, and 1 more vital to your story that you don't know yet.
+    tables: [swashbuckler-entanglement-kind, swashbuckler-entanglement-person]
+  - title: Creed
+    label: Optional
+    text: Many thrilling duelists have a code, a rule they never break, a line they will never cross, or a proverb they live their life by. How devoted to it are you? Choose up to 2 below, or create your own.
+    choices:
+      - all's fair in love and war
+      - wield the sword of justice
+      - accept every challenge
+      - coin is meant to be spent
+      - infamous is still famous
+      - gentleman even in dire times
+      - honor is only for the dead
+      - a good story beats any reward
+      - never kill the helpless
+      - death before dishonor
+      - the best plan is no plan at all
+      - only a fair fight measures skill
+tables:
+  - swashbuckler-entanglement-kind
+  - swashbuckler-entanglement-person
+  - swashbuckler-legend-first
+  - swashbuckler-legend-second
+extra_path: true
+source: p. 80
+body: |-
+  You fight with swagger, skill, and a smile, turning every clash into a daring performance, with luck ever by your side.
+---
+id: warlock
+type: path
+name: Warlock
+aka: [magus, occultist, pactmaker]
+tagline: Power always demands a hefty price.
+summary: Bargain with your patron for Eldritch Talents, but beware their fickle nature.
+core_talent: warlock-pact
+talents:
+  - warlock-affliction
+  - warlock-blood-rituals
+  - warlock-knowing-gaze
+  - warlock-magus
+  - warlock-otherworldly-form
+  - warlock-visions
+  - warlock-wayfarer
+options:
+  - title: Eldritch Magic
+    text: You channel your patron's power; your magic and gifted Eldritch Talents (and their options) must align with their nature. The trappings on both act as set dressing. Remember, your 3d story roll may be temporarily lowered if you fail your expectations.
+  - title: Patron Creation
+    text: |-
+      Roll or choose 2 natures and 2 desires below, then assign a distinct color or visual signature to your patron's influence that act as their trappings. Decide how they communicate (telepathy, signs, projection), and how many followers (many, few, one) they have. Give this powerful, otherworldly being a name, describe what you know of them, and establish the bond between you.
+      Patron Crucible: Roll 2 on each table, smash them together, and interpret
+    tables: [warlock-patron-nature, warlock-patron-desires]
+tables: [warlock-patron-nature, warlock-patron-desires]
+extra_path: false
+source: p. 82
+body: |-
+  You have made a pact—power in exchange for service, a pact that may prove to be a double-edged sword.
+---
+id: witch
+type: path
+name: Witch
+aka: [sibyl, oracle, shaman]
+core_talent: witch-hidden-magic
+talents:
+  - witch-bailiwick
+  - witch-evil-eye
+  - witch-familiar
+  - witch-herbalism
+  - witch-homely-hovel
+  - witch-soothsayer
+  - witch-wonder-magnet
+options:
+  - title: Afflictions
+    label: Optional
+    text: Witches are odd and mysterious spellcasters, some with strange maladies. This affliction is something you've grown accustomed to, and while it can inflict thorns and introduce tangles, it shouldn't be debilitating. What is your strange afflictions and how did you get it? Choose 1 or make up your own.
+    choices:
+      - plagued by your own shadow
+      - empty eye sockets
+      - skeletal body wasting away
+      - special diet, such as only raw meat
+      - haunted by ancestral ghosts
+      - putrid smell that follows everywhere
+  - title: The Language
+    text: The language of the universe is more than words as we know them. Feelings, thoughts, and reagents also form the syllables. Use the crucible below or come up with your own Words of Power to fit your witch.
+    tables: [witch-words-of-power-1, witch-words-of-power-2]
+tables:
+  - witch-words-of-power-1
+  - witch-words-of-power-2
+  - witch-herbalism-1
+  - witch-herbalism-2
+  - witch-hovel-descriptor
+  - witch-hovel-place
+extra_path: true
+source: p. 84
+body: |-
+  You are blessed with the knowledge of old magic, wielding the ability to speak the language of the universe.
+---
+id: wizard
+type: path
+name: Wizard
+aka: [diviner, evoker, abjurer]
+tagline: Arcane knowledge, wielded with precision.
+summary: Use the spell theorems you've learned to call precise magic to your hands.
+core_talent: wizard-spellcraft
+talents:
+  - wizard-alchemist
+  - wizard-archivist
+  - wizard-colleagues
+  - wizard-component-pouch
+  - wizard-countermagic
+  - wizard-mastered-theorem
+  - wizard-specialty-school
+options:
+  - title: Schools of Magic
+    choices:
+      - "Abjuration: Protects, blocks, dispels, or banishes."
+      - "Conjuration: Summons creatures, objects, and portals."
+      - "Divination: Reveals information, predicts the future, and reads minds."
+      - "Enchantment: Charms, influences, and curses sentient creatures."
+      - "Evocation: Creates and controls elemental and magical forces."
+      - "Illusion: Generates false images and sensory deceptions."
+      - "Necromancy: Manipulates life, death, and the undead."
+      - "Transmutation: Transforms matter and alters physical properties."
+  - title: Spell Crucible
+    text: Roll 1 of each, choose 2, then add a school
+    tables: [wizard-spell-style, wizard-spell-essence, wizard-spell-form]
+  - title: Creating Spell Theorems
+    text: |-
+      Use the spell crucible to randomly determine a style, essence, and form, by rolling 2d on each section. Assign 1d to the column and 1d to the row (or reverse the two) to find two touchstone words, then choose your favorite. Pick two out of these three (style+essence, style+form, essence+form) for the spell name, or theorem.
+      Pick a magic school for the theorem to determine its general function. The mechanical effect is decided in the moment, and can change with each casting.
+      Example Roll: wild + fire + sentinel. This gives us a some interesting options:
+      wild fire (evocation) → This could blast the area with uncontrollable fire.
+      fire sentinel (transmutation) → This could turn your form to fire.
+      wild sentinel (conjuration) → This could summon a bear to fight along side you.
+tables: [wizard-spell-style, wizard-spell-essence, wizard-spell-form]
+extra_path: false
+source: p. 86
+body: |-
+  You wield arcane power through precise knowledge, casting spells from an ever-expanding repertoire.

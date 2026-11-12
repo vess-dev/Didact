@@ -1,0 +1,283 @@
+# Playing unusual PCs (players-guide/unusual-pcs): the vampire's feeding, drain and the sun, the
+# changes (Beast Form, the Vampire Lord) and reverting, the Dremora's return from Oblivion and
+# its binding-master's mending, and the draugr revenant's life drawn from a kill.
+action: feed
+title: A vampire feeds
+help: >-
+  Once per day, a vampire feeds by biting a sleeping, willing or helpless victim: all Fatigue
+  clears and the Deprived condition is shed, as a full night's rest would. The living victim
+  survives, drained and weak, losing 1d4 STR (it returns with rest). Feeding is the only thing
+  that lifts a vampire's hunger.
+params:
+  who: ref
+  victim: {kind: ref, optional: true, help: "Who is fed upon (they lose 1d4 STR)"}
+steps:
+  - if: "default(@who.nature, 'mortal') <> 'vampire'"
+    then:
+      - stop: "{@who.name} isn't a vampire."
+  - if: "'feed' in @who.used_today"
+    then:
+      - stop: "{@who.name} has fed today: The Blood Sustains once a day (the next dawn renews it)."
+  - set: who.used_today
+    op: "+="
+    value: feed
+  - set: who.fatigue
+    value: 0
+  - if: "'deprived' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: deprived
+      - set: who.deprived_days
+        value: 0
+  - message: "{@who.name} feeds: all Fatigue clears and the Deprived condition lifts, as a full night's rest would."
+  - if: "default(@victim, '') <> ''"
+    then:
+      - roll: 1d4
+        as: drained
+      - set: victim.STR
+        op: "-="
+        value: "@drained"
+      - message: "{@victim.name} survives, drained and weak: {@drained} STR (it returns with rest)."
+    else: ["The victim loses 1d4 STR, which returns with rest: `didact do attribute-damage target=<them> amount=1d4`."]
+  - if: "'sunlit' in @who.conditions"
+    then: ["Still in direct sunlight: {@who.name} is Deprived again while they stand in it (`didact do sunlight who={@who.id} state=out` in shade)."]
+source: players-guide/unusual-pcs#edges
+---
+action: drain
+title: A vampire's drain
+help: >-
+  A vampire's bite or draining touch is an unarmed attack that deals d6 and ignores Armor. Once
+  per combat, or whenever the victim is willing or helpless, the HP it deals is restored to the
+  vampire (never above its maximum); on a willing or helpless victim the drain is Enhanced. In
+  direct sunlight it restores no HP. In a fight the table runs with `combat start`, the restoring
+  drain is counted (a second one that fight restores nothing); otherwise restore=false says it's
+  spent. The Vampire Lord's drain touch (lord=true) deals d8, and its HP always comes back.
+params:
+  who: ref
+  target: ref
+  helpless: {kind: flag, default: false, help: "A willing or helpless victim: Enhanced, and it always restores"}
+  restore: {kind: flag, default: true, help: "Does it restore HP (once per combat, or a willing or helpless victim)"}
+  lord: {kind: flag, default: false, help: "The Vampire Lord's drain touch: d8, and it always restores"}
+steps:
+  - if: "default(@who.nature, 'mortal') <> 'vampire'"
+    then:
+      - stop: "{@who.name} isn't a vampire."
+  - if: "@lord and not ('transformed' in @who.conditions)"
+    then:
+      - stop: "{@who.name} isn't in the Vampire Lord's form (`didact do transform who={@who.id}`)."
+  - do: attack
+    with: {attacker: "@who", target: "@target", weapon: "{if(@lord, 'd8', 'd6')}", pierce: 3, mode: "{if(@helpless, 'enhanced', 'normal')}"}
+    as: bite
+  - let: {fighting: "default(@combat.round, 0) > 0", always: "@helpless or @lord"}
+  - let: {spent: "@fighting and 'drain' in default(@who.once_per_combat, '')"}
+  - if: "(@always or (@restore and not @spent)) and not ('sunlit' in @who.conditions) and @bite.dealt > 0"
+    then:
+      - let: {gain: "max(0, min(@bite.dealt, @who.hp.max - @who.hp))"}
+      - set: who.hp
+        op: "+="
+        value: "@gain"
+      - message: "The drain restores {@gain} HP to {@who.name} (never above the maximum)."
+      - if: "@fighting and not @always"
+        then:
+          - set: who.once_per_combat
+            op: "+="
+            value: drain
+  - if: "@spent and not @always and @bite.dealt > 0"
+    then: ["{@who.name}'s restoring drain is spent this fight: no HP comes back (a willing or helpless victim's always does)."]
+  - if: "'sunlit' in @who.conditions"
+    then: ["In direct sunlight the drain restores no HP."]
+source: players-guide/unusual-pcs#edges
+---
+action: sunlight
+title: A vampire in the sun
+help: >-
+  While standing in direct sunlight a vampire is Deprived (no HP, attributes or Fatigue
+  recovered) and its drain restores no HP. Heavy cloth and shade hold it off; an open noon sky
+  does not. state=in when they step into it, state=out when they reach shade or dusk.
+params:
+  who: ref
+  state: {enum: [in, out], default: in}
+steps:
+  - if: "default(@who.nature, 'mortal') <> 'vampire'"
+    then:
+      - stop: "{@who.name} isn't a vampire: the sun is no bane to them."
+  - if: "@state == 'in'"
+    then:
+      - if: "not ('sunlit' in @who.conditions)"
+        then:
+          - set: who.conditions
+            op: "+="
+            value: sunlit
+      - if: "not ('deprived' in @who.conditions)"
+        then:
+          - set: who.conditions
+            op: "+="
+            value: deprived
+      - message: "Sunlight withers {@who.name}: Deprived while they stand in it, and the drain restores nothing."
+    else:
+      - if: "'sunlit' in @who.conditions"
+        then:
+          - set: who.conditions
+            op: "-="
+            value: sunlit
+      - if: "'deprived' in @who.conditions and default(@who.deprived_days, 0) == 0 and default(@who.cold_watches, 0) == 0"
+        then:
+          - set: who.conditions
+            op: "-="
+            value: deprived
+      - message: "Out of the sun, {@who.name} is no longer withered by it (any hunger or other need still stands)."
+source: players-guide/unusual-pcs#costs--drawbacks
+---
+action: transform
+title: Take a form
+help: >-
+  Transformations are once per day (the Ring of Hircine lets a werewolf or werebear change
+  without limit: ring=true) and last a scene; their powers work once per transformation. Beast
+  Form (werewolf: claws d6+d6 or bite d8; werebear: claws d8+d8 or bite d8; +1 Armor from hide)
+  or the Vampire Lord (claws d8+d8 or drain d8 ignoring Armor, +1 Armor, hovering; it costs a
+  Fatigue). Transformed, gear falls away (only enchanted rings and amulets still work): no
+  weapons, no Spell Tomes, no looting or locks, and for a beast no speech and no rest.
+params:
+  who: ref
+  ring: {kind: flag, default: false, help: "The Ring of Hircine: change without the once-per-day limit"}
+steps:
+  - let: {nature: "default(@who.nature, 'mortal')"}
+  - if: "@nature <> 'werewolf' and @nature <> 'werebear' and @nature <> 'vampire'"
+    then:
+      - stop: "{@who.name} has no form to take: Beast Form is the beast-blooded's, the Vampire Lord a vampire's who accepted Molag Bal's deeper gift."
+  - if: "'transformed' in @who.conditions"
+    then:
+      - stop: "{@who.name} is already Transformed."
+  - if: "'change' in @who.used_today and not (@ring and @nature <> 'vampire')"
+    then:
+      - stop: "{@who.name} has already changed today: once per day (the next dawn renews it)."
+  - if: "@nature == 'vampire'"
+    then:
+      - prompt: "Only a vampire who accepted Molag Bal's deeper gift (from Lord Harkon, or from Serana) can take the Vampire Lord's form."
+      - do: fatigue
+        with: {who: "@who"}
+  - set: who.used_today
+    op: "+="
+    value: change
+  - set: who.conditions
+    op: "+="
+    value: transformed
+  - if: "@nature == 'werewolf'"
+    then: ["Beast Form: claws d6+d6 (`didact do attack attacker={@who.id} target=… weapon=2d6kh1`) or a bite d8; +1 Armor from thick hide; terrifying speed (every path counts as Easy); not staggered by mortal blows. Once per transformation, the Howl of Terror: every enemy who hears it saves WIL or flees for the round. Revert at the scene's end, or earlier on a WIL save (`didact do revert who={@who.id}`)."]
+  - if: "@nature == 'werebear'"
+    then: ["Werebear Beast Form: claws d8+d8 (`didact do attack attacker={@who.id} target=… weapon=2d8kh1`) or a bite d8; +1 Armor from heavy hide; mighty but lumbering (no terrifying speed). Once per transformation, a bellowing roar: every enemy who hears it saves WIL or flees for the round. Revert at the scene's end, or earlier on a WIL save (`didact do revert who={@who.id}`)."]
+  - if: "@nature == 'vampire'"
+    then: ["The Vampire Lord: claws d8+d8 (`didact do attack attacker={@who.id} target=… weapon=2d8kh1`) or a drain touch d8 ignoring Armor, the HP it deals restored (`didact do drain who={@who.id} target=… lord=true`); +1 Armor from unnatural hide; it hovers, out of reach of grounded foes who can't reach up. Once per transformation, raise a nearby corpse as a servant (3 HP, its own weapon or d4) until the scene's end. Fire stays Enhanced against it, and it is as helpless in sunlight. It lasts the scene."]
+  - message: "{@who.name} is Transformed: worn gear and Spell Tomes fall away (only enchanted rings and amulets still function)."
+source: players-guide/unusual-pcs#a-note-before-you-begin
+---
+action: revert
+title: Revert from a form
+help: >-
+  A form ends at the scene's end. To revert early from Beast Form, pass a WIL save (early=true;
+  a Glenmoril witch's totem lets a werewolf revert at will once a day: totem=true). After a beast
+  reverts, it must feed on a fresh kill before the next watch ends, or be Deprived until it does.
+params:
+  who: ref
+  early: {kind: flag, default: false, help: "Revert before the scene ends (Beast Form: a WIL save)"}
+  totem: {kind: flag, default: false, help: "The Glenmoril totem: revert at will, no save, once a day"}
+steps:
+  - if: "not ('transformed' in @who.conditions)"
+    then:
+      - stop: "{@who.name} isn't Transformed."
+  - let: {nature: "default(@who.nature, 'mortal')", beast: "default(@who.nature, 'mortal') == 'werewolf' or default(@who.nature, 'mortal') == 'werebear'"}
+  - if: "@early and @beast and @totem"
+    then:
+      - if: "'totem' in @who.used_today"
+        then:
+          - stop: "The totem's once-a-day revert is spent: a WIL save it is (`didact do revert who={@who.id} early=true`)."
+      - set: who.used_today
+        op: "+="
+        value: totem
+      - message: "The Glenmoril totem: {@who.name} reverts at will, no save needed."
+    else:
+      - if: "@early and @beast"
+        then:
+          - check: save
+            with: {who: "@who", attr: WIL}
+            as: hold
+          - if: "@hold == 'failure'"
+            then:
+              - stop: "The beast keeps hold of {@who.name}: they stay Transformed until the scene ends."
+  - set: who.conditions
+    op: "-="
+    value: transformed
+  - message: "{@who.name} returns to their own shape."
+  - if: "@beast"
+    then:
+      - remind: "{@who.name} must have fed on a fresh kill by the end of the next watch, or be Deprived until they do (`didact do deprive who={@who.id} need=a fresh kill`)"
+        in: 1 watch
+      - message: "The hunger after the hunt: {@who.name} must feed on a fresh kill before the next watch ends, or be Deprived until they do."
+source: players-guide/unusual-pcs#beast-form
+---
+action: reform
+title: A Dremora returns
+help: "A Dremora banished at 0 STR re-forms in Oblivion and may return to play after a season (a new arc), at the Warden's leave: whole again, a season's reconstitution behind it."
+params: {who: ref}
+steps:
+  - if: "default(@who.nature, 'mortal') <> 'dremora'"
+    then:
+      - stop: "Only a Dremora returns from Oblivion."
+  - if: "@who.status <> 'banished'"
+    then:
+      - stop: "{@who.name} isn't banished."
+  - set: who.status
+    value: active
+  - set: who.STR
+    value: "@who.STR.max"
+  - set: who.DEX
+    value: "@who.DEX.max"
+  - set: who.WIL
+    value: "@who.WIL.max"
+  - set: who.hp
+    value: "@who.hp.max"
+  - message: "{@who.name} re-forms and crosses the Barrier again, whole: a season has passed in Oblivion."
+  - reminder: "A season has passed for them: `didact time advance …` if the party waited, or let the fiction bring them back."
+source: players-guide/unusual-pcs#edges-2
+---
+action: binding-mend
+title: A binding-master's craft
+help: "A Dremora's wounds and lost STR are repaired by Conjuration, Daedric rites, or a binding-master's craft: a Downtime Action with a willing conjurer restores 1d6 STR."
+params: {who: ref}
+steps:
+  - if: "default(@who.nature, 'mortal') <> 'dremora'"
+    then:
+      - stop: "This craft mends only a Dremora; the living go to a healer (`didact do recover`)."
+  - if: "'deprived' in @who.conditions"
+    then:
+      - stop: "{@who.name} is deprived and can't recover until the need is met."
+  - roll: 1d6
+    as: mend
+  - set: who.STR
+    op: "+="
+    value: "@mend"
+  - message: "A willing conjurer's binding-craft knits {@who.name}'s vestige: {@mend} STR restored (a Downtime Action)."
+source: players-guide/unusual-pcs#costs--drawbacks-3
+---
+action: absorb-life
+title: A draugr revenant absorbs a life
+help: "A draugr revenant recovers lost STR by absorbing the life of a creature it slays: a kill restores 1d6 STR, once per day."
+params: {who: ref}
+steps:
+  - if: "default(@who.nature, 'mortal') <> 'draugr-revenant'"
+    then:
+      - stop: "Only a draugr revenant draws its strength from a kill."
+  - if: "'absorb-life' in @who.used_today"
+    then:
+      - stop: "{@who.name} has drawn a life today: once per day (the next dawn renews it)."
+  - set: who.used_today
+    op: "+="
+    value: absorb-life
+  - roll: 1d6
+    as: life
+  - set: who.STR
+    op: "+="
+    value: "@life"
+  - message: "{@who.name} draws the dying creature's life into dry flesh: {@life} STR restored."
+source: players-guide/unusual-pcs#costs--drawbacks-4

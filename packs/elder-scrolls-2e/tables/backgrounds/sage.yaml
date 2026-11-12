@@ -1,0 +1,24 @@
+# Sage (backgrounds/sage): the background's two d6 tables.
+table: sage-1
+title: "What did a lifetime of study leave in you?"
+dice: d6
+source: backgrounds/sage#what-did-a-lifetime-of-study-leave-in-you-roll-1d6
+entries:
+  1: "A memory like an unburned library. You forget nothing you read or are told. Once per session, declare that you \"read of this once,\" and the Warden tells you one true, useful fact about a creature, place, ruin, or relic before you."
+  2: "The patience of dead tongues. Given a turn to study, you can puzzle out Dwemer, Falmer, old Nordic, and Daedric scripts, and the dragon-runes on a barrow's word wall — though you cannot hear the Words in them."
+  3: "The lore of the unnatural. You can always name a creature and recall its bane. Once per day, shout a foe's weakness to your allies: the next attack each of them makes against it is Enhanced."
+  4: "A well-read caution. Before you set foot in a barrow, a Dwemer ruin, or a tower, the Warden tells you what kind of traps its builders favored."
+  5: "A debt of correspondence. Scholars, librarians, and court wizards across Skyrim owe you letters and favors. Once per session, name a learned contact who can be reached for a book, a translation, a place to study, or a quiet word in the right ear."
+  6: {text: "The arcane, learned but never quite mastered. Take a Spell Tome: Clairvoyance, and the knack of naming any Spell Tome's school, rank, and quirk at a glance.", data: {gear: [{name: "Spell Tome: Clairvoyance"}]}}
+---
+table: sage-2
+title: "What volume never leaves your side?"
+dice: d6
+source: backgrounds/sage#what-volume-never-leaves-your-side-roll-1d6
+entries:
+  1: {text: "The Annotated Catalogue: A fat, dog-eared index of everything you have ever read (petty). In any library, you find what you are looking for in a turn instead of a day.", data: {gear: [{name: "The Annotated Catalogue", size: "petty"}]}}
+  2: {text: "Dwemer Lexicon: A heavy cube of inscribed Dwarven metal (bulky) that hums faintly near old machines. You cannot read it — but Septimus Signus, the mad scholar camped on the ice north of Winterhold, would give almost anything for it.", data: {gear: [{name: "Dwemer Lexicon", size: "bulky"}]}}
+  3: {text: "The Book of the Dragonborn: A copy of the old treatise (petty), its margins crowded with your notes on the prophecy. You know more of the Dragonborn legends than anyone outside High Hrothgar.", data: {gear: [{name: "The Book of the Dragonborn", size: "petty"}]}}
+  4: {text: "The Histories, Unexpurgated: Several banned volumes bound as one harmless-looking tome (petty), holding truths the Thalmor would burn. Quote the right line and a learned listener warms to you; quote it to the wrong one and you are a heretic.", data: {gear: [{name: "The Histories, Unexpurgated", size: "petty"}]}}
+  5: {text: "A Warded Journal: A locked, self-writing diary entrusted to you by a mage who vanished (petty). Once per session, ask it one question: the Warden gives a true but cryptic answer, in a hand not your own.", data: {gear: [{name: "A Warded Journal", size: "petty"}]}}
+  6: {text: "A Treatise on Restoration: A slim, careful study of the healing art (petty). You never mastered the spells, but you know the theory cold: once per day, talk a wounded companion through binding a wound to restore 1d4 STR.", data: {gear: [{name: "A Treatise on Restoration", size: "petty"}]}}

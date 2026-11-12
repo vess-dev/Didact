@@ -1,0 +1,24 @@
+# Farmhand (backgrounds/farmhand): the background's two d6 tables.
+table: farmhand-1
+title: "What drove you off the land?"
+dice: d6
+source: backgrounds/farmhand#what-drove-you-off-the-land-roll-1d6
+entries:
+  1: {text: "A debt. You owe a Jarl's steward, or a Black-Briar agent, for a bad harvest, and a farmhand's wage will never pay it. Take the tally-stick of it (petty), and the resolve to earn that coin on Skyrim's roads or die owing it.", data: {gear: [{name: "Tally-stick", size: "petty", note: "of your debt"}]}}
+  2: {text: "The war. One army burned the farm and the other took the grain. You saved your father's hunting bow (d6, bulky) from the ashes, and have not missed a meal you could shoot since.", data: {gear: [{name: "Hunting bow", damage: "d6", size: "bulky"}]}}
+  3: {text: "A dragon, the same black terror that burned Helgen, on its way north. It left the steading a smoking ruin, and you alone walked away. Your maximum HP is 1 higher, and after that day you need not save against fear of a dragon.", data: {extra_hp: true}}
+  4: "Wolves. A pack came down out of the pines on the herd, and you put three of them down with the woodaxe. You need not save to stand your ground against a charging beast."
+  5: {text: "A dream you could not shake: a Thane's hall, a name worth singing, being more than the mud you were born to. You sold what little you had for a road-stake. Take 2d6 × 10 extra Septims.", data: {gold_dice: "2d6*10"}}
+  6: {text: "The barrow at the field's edge. Something climbed out of it one winter night and dragged your uncle down. You fled with your life and the iron dragon-claw it dropped in the snow (petty): the key to some barrow's inner door. You have not dared go back to learn which.", data: {gear: [{name: "Iron dragon-claw", size: "petty", note: "the key to some barrow's inner door"}]}}
+---
+table: farmhand-2
+title: "What did the farm leave in your hands?"
+dice: d6
+source: backgrounds/farmhand#what-did-the-farm-leave-in-your-hands-roll-1d6
+entries:
+  1: {text: "The Long Scythe: A reaper's scythe (d10, bulky, two-handed), re-hafted for the road. It takes a man as easily as rye, and every farmer who sees it knows exactly where you came from.", data: {gear: [{name: "The Long Scythe", damage: "d10", size: "bulky", qualities: ["two-handed"]}]}}
+  2: "Plain Folk's Welcome: A farmer's manners and an honest face. At any croft, farmstead, or village you are taken for one of their own, and they will feed and shelter you for a day's work."
+  3: "Ox-Strong: A lifetime of hauling, lifting, and breaking sod. You need not save to lift, drag, or force what a strong farmhand could move with effort — a fallen beam, a stuck gate, a mired cart."
+  4: {text: "Shepherd's Sling: A sling (d6) and a pouch of good round stones, and the eye of one who spent years driving crows off the corn.", data: {gear: [{name: "Shepherd's Sling", damage: "d6"}]}}
+  5: "Land-Sense: You know an animal's temper before it bolts or charges, read the sky a watch ahead, and can always find water, forage, or shelter in settled country."
+  6: {text: "The Old Hound: The farm dog that followed you off the land. Treat it as your companion (see Companions): bite (d6), no Armor, and one trick — it growls at what you cannot see.", data: {companion: "old-hound"}}

@@ -1,0 +1,156 @@
+id: grimfall
+name: Grimfall
+kind: system
+version: 0.1.0
+description: >-
+  Grimfall: a Fallout hack of Grimwild, by way of Grimwild: Community Edition. Survivors in the
+  irradiated bones of the old world: action rolls where the highest d6 sets the result and d8
+  thorns cut it, diminishing pools, the damage ladder with lingering rad marks, seven
+  S.P.E.C.I.A.L. classes built on Core Perk engines (Might, Grit, Sway, devices, Cool, Luck dice
+  and the Weak Point die) and over two hundred more perks, stimpaks, chems, caps and hauls,
+  downtime, standing, settlements worth saving, the Bestiary, the Armory's relics, unique weapons
+  and armors, and the options and dials, playable in Didact.
+requires: {packs: [core, grimwild-ce]}
+extends: [grimwild-ce]
+# What Grimfall drops of Grimwild: CE's (whatever it replaces by id is never hidden). Grimfall's book
+# replaces the parent's text wholesale, so every compendium entry (paths, talents, monsters, arcana,
+# backgrounds), table, reference section and glossary term goes, but the bonds table (intensity +
+# nature: the book's own examples are its words). Of the rules, only those with no place here go;
+# the rest are inherited and read the same: the faction pools (faction-turn, faction-pool,
+# faction-pool-roll, faction-goal), tick, tokens, reset-suspense, the pre-session and rest-reset
+# triggers, the story oracle and the npc type. The site generator stays replaced by a stop naming
+# Grimfall's vault (the book calls a delve a 5-point site).
+hides:
+  type: [path, talent]
+  table: ["*", "!bonds"]
+  action: [reset, switch-talent, carouse, vigor]
+  procedure: [twist, talent-resets]
+  trigger: [scene-end-sword-and-sorcery, scene-end-noblebright]
+  option: [magic, lasting-marks, random-vex, random-bonds, vigor-pool, wealth, expanded-downtime]
+  entry: ["*"]
+  generator: [potion, talent]
+  reference: ["*"]
+  term: ["*"]
+license:
+  spdx: LicenseRef-Grimfall
+  redistributable: true
+  attribution: >-
+    CREDITS & LICENSE. Grimfall is an unofficial, non-commercial fan work, adapted from Grimwild by
+    J. D. Maxwell (Oddity Press), used under the Creative Commons Attribution 4.0 International
+    license (CC BY 4.0 — creativecommons.org/licenses/by/4.0), by way of Grimwild: Community Edition
+    (lead developer Chancey Scott, Groov Games). Fallout and its settings, creatures, and trademarks
+    belong to Bethesda Softworks. Grimfall is not endorsed by or affiliated with Bethesda Softworks,
+    Oddity Press, or the Community Edition team. Play it at your table, change it, pass it on — just
+    don't sell it.
+source:
+  title: Grimfall
+  sections:
+    - war-never-changes/introduction
+    - war-never-changes/whats-in-this-book
+    - war-never-changes/what-you-need
+    - war-never-changes/how-to-read-this
+    - war-never-changes/classes-are-archetypes-not-factions-not-species
+    - war-never-changes/how-we-play
+    - war-never-changes/the-tone-dial
+    - the-core-engine/introduction
+    - the-core-engine/rolls
+    - the-core-engine/stats
+    - the-core-engine/spark
+    - the-core-engine/vantage
+    - the-core-engine/working-together
+    - the-core-engine/pools
+    - the-core-engine/thread-and-tangles
+    - the-core-engine/damage-and-recovery
+    - the-core-engine/experience
+    - the-core-engine/science-not-sorcery
+    - the-core-engine/stakes
+    - the-core-engine/the-engine-at-the-table
+    - building-a-survivor/introduction
+    - building-a-survivor/the-party
+    - building-a-survivor/creation-step-by-step
+    - building-a-survivor/stats-and-special
+    - building-a-survivor/backgrounds-of-the-wasteland
+    - building-a-survivor/people-of-the-wastes
+    - building-a-survivor/uniforms-and-factions
+    - building-a-survivor/machines-and-strangers
+    - the-classes/introduction
+    - the-classes/the-sledge
+    - the-classes/the-pathfinder
+    - the-classes/the-everlast
+    - the-classes/the-charmer
+    - the-classes/the-inventor
+    - the-classes/the-ace
+    - the-classes/the-longshot
+    - the-perk-compendium/introduction
+    - the-perk-compendium/sledge-perks
+    - the-perk-compendium/pathfinder-perks
+    - the-perk-compendium/everlast-perks
+    - the-perk-compendium/charmer-perks
+    - the-perk-compendium/inventor-perks
+    - the-perk-compendium/ace-perks
+    - the-perk-compendium/longshot-perks
+    - surviving-the-wasteland/introduction
+    - surviving-the-wasteland/rads
+    - surviving-the-wasteland/stimpaks
+    - surviving-the-wasteland/chems
+    - surviving-the-wasteland/caps-and-barter
+    - surviving-the-wasteland/the-long-road
+    - surviving-the-wasteland/downtime
+    - the-bestiary/introduction
+    - the-bestiary/beasts-and-vermin
+    - the-bestiary/predators-and-horrors
+    - the-bestiary/the-factions-under-arms
+    - the-bestiary/machines-of-the-old-world
+    - the-bestiary/synths-and-strangers
+    - the-bestiary/bosses-of-the-wasteland
+    - the-bestiary/cryptids-and-oddities
+    - the-bestiary/faces-of-the-wasteland
+    - the-bestiary/named-threats-and-legends
+    - the-armory/introduction
+    - the-armory/relics-of-the-old-world
+    - the-armory/minor-relics
+    - the-armory/major-relics
+    - the-armory/mythic-relics
+    - the-armory/unique-weapons
+    - the-armory/minor-weapons
+    - the-armory/major-weapons
+    - the-armory/mythic-weapons
+    - the-armory/unique-armors
+    - the-armory/minor-armors
+    - the-armory/major-armors
+    - the-armory/mythic-armors
+    - running-the-wasteland/introduction
+    - running-the-wasteland/the-gms-half-of-the-engine
+    - running-the-wasteland/combat-rulings
+    - running-the-wasteland/vigilance
+    - running-the-wasteland/running-solo-and-duet
+    - running-the-wasteland/challenges
+    - running-the-wasteland/battlegrounds
+    - running-the-wasteland/the-canyon-junction-powderkeg
+    - running-the-wasteland/standing
+    - running-the-wasteland/vaults-and-ruins
+    - running-the-wasteland/settlements-worth-saving
+    - running-the-wasteland/the-overseers-prep-kit
+    - running-the-wasteland/story-kit-the-door-under-junction
+    - running-the-wasteland/wild-wasteland
+    - options-and-dials/introduction
+    - options-and-dials/gear-and-survival
+    - options-and-dials/pacing-and-growth
+    - options-and-dials/table-tools
+    - options-and-dials/quirks
+    - options-and-dials/tone-dials
+    - options-and-dials/watching-the-stacks
+    - options-and-dials/building-your-own
+# A hack's settings go on top of its base's, key by key: grimwild-ce's `factions` (the faction turn
+# is its `faction-turn`) is inherited as it is; Grimfall restates `combat` in its own words, and
+# its `names` tables stand in for the parent's.
+settings:
+  combat:
+    mode: popcorn
+    round_one: >-
+      There are no turns in Grimfall: the spotlight moves like a camera, not a queue. Enemies never
+      roll: frame the danger and ask how the survivors respond, or follow their lead; the world hits
+      back through impact moves on their messy and grim rolls, and whenever the GM spends suspense
+      (a move they didn't invite gets a defense roll). A dangerous foe is a task pool: `didact gen
+      run grimfall.foe` puts one in play.
+  names: {npc: survivor-names, vault-file: survivor-vault-names}

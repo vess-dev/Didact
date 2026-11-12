@@ -1,0 +1,218 @@
+# Grimwild: Community Edition (Preview 5.3), Chapter 6: Game Options (pp. 172-187), with the slow
+# progression of p. 31, expanded downtime (p. 141) and the solo rules (pp. 192-195). CC0 1.0.
+# The setting dials (magic, scale, lethality), the flavors of fantasy and the optional rules, as
+# options a campaign chooses at session zero (`didact session zero`, then `didact campaign profile
+# lethality=deadly supplies=on`). The rules, character creation and generators read them
+# (`@option.lethality`; `@option.rest_resets` for rest-resets), and the brief carries the GM what
+# they can't enforce. A flavor implies the options its rules tweaks name outright: grimdark's and
+# low fantasy's 1d story roll when dropped is deadly lethality (their dials sit at the lethal end),
+# low fantasy's max level of 3 is the smaller scale, "slow XP progression" is slow progression, and
+# grimdark's marks, vex and bonds tweaks are options of their own. Sword & sorcery's 1d dropped
+# roll is its own (its lethality dial says you're strong enough to meet the danger, so it doesn't
+# bring deadly's urgent conditions), and so are its other tweaks, cozy fantasy's level cap and XP,
+# noblebright's and high fantasy's starting levels and arcana: the rules read `@option.flavor`.
+# The rest of each flavor's tweaks are guidance, in its text.
+option: magic
+title: "Setting dial: magic"
+ask: "How does magic sit in your world: standard (available, not ubiquitous), rare, none, common or dangerous?"
+choices:
+  standard: "Base Grimwild: magic available, but not ubiquitous."
+  rare: "Rare magic: limit the party to one magic user, if any. Potent spells can't open new opportunities; they act only as normal spells with broader impact, often with more risk. Establish before your game if magical healing exists."
+  none: "No magic: all magical paths are removed, as is arcana; reflavor talents as skill and technology as needed. Consider dialing down lethality, or the Vigor Pool optional rule, to make up for the lack of magical healing, unless you want a gritty tone."
+  common: "Common magic: arcana are more plentiful in the world, and more talents are magical in nature. PCs start with 1 minor arcana, and the story of where it came from."
+  dangerous: "Dangerous magic: all spells can trigger a magical twist (as sorcerer) when two or more 1s are rolled (`didact do action … spell`): a wild surge (a 1d story roll for the collateral damage), a dark omen (the GM takes +1 suspense), or a 6d Corruption pool (at 0d, change a trait, desire, bond or appearance negatively)."
+default: standard
+source: "p. 172"
+---
+option: scale
+title: "Setting dial: scale"
+ask: "The scale of the game: standard, smaller (village folk) or larger (mythic heroes)?"
+choices:
+  standard: "Base Grimwild."
+  smaller: "Smaller scale: more rolls have risk, and are judged impossible. Mooks are rare, with even common enemies posing a threat. The max level for PCs is 3, though talents can be switched out after in-game milestones (`didact do switch-talent`). Avoid stat progression."
+  larger: "Larger scale: fewer rolls have risk and are judged impossible. Mooks are waded through freely as set dressing, and toughs taken a few at a time; bosses are epic in their own right, with a catch or secret to overcoming them. PCs start at level 3 (character creation gains levels 2 and 3 as leveling up does)."
+default: standard
+source: "p. 173"
+---
+option: lethality
+title: "Setting dial: lethality"
+ask: "How deadly should it be: gentle (less lethal), standard, or deadly (more lethal)?"
+choices:
+  gentle: "Less lethal: low stakes more often, even in combat if the heroes aren't against strong foes. PCs rarely have permanent conditions, and resurrection is possible. A dropped PC makes a 3d story roll."
+  standard: "Base Grimwild: more durable than the commoners around them, but a few bad calls can still leave them on the ground. A dropped PC makes a 2d story roll."
+  deadly: "More lethal: high and dire stakes more often; when weapons appear, death could happen at any moment. Healing often takes longer, and resurrection is impossible. A desperate PC gets an urgent condition that leads to dropped (4d bleeding out, 6d blacking out), and a dropped PC makes a 1d story roll."
+default: standard
+source: "p. 173"
+---
+option: flavor
+title: "Flavor of fantasy"
+ask: "Which flavor of fantasy: heroic (the default), grimdark, low, sword-and-sorcery, noblebright, high or cozy?"
+choices:
+  heroic: "Heroic Fantasy: Use this flavor when you want classic heroic journeys where courage, loyalty, and resolve are tested. The default Grimwild rules are geared for a darker Heroic Fantasy. GMs should be mindful of keeping consequences varied, but otherwise there are no rules changes."
+  grimdark: "Grimdark: Use this flavor when you want stories of moral ambiguity and characters pushed to their limits by an uncaring world. Rules tweaks: The effect of potency is scaled down. Casting magic comes with higher risk (thorns) or stakes. Magic healing is rare or non-existent. When dropped, make a 1d story roll. Marks only clear on rest. Vex responses are random. PC bonds are rolled randomly. Supplies (Optional Rule, pg. 175)."
+  low: "Low Fantasy: Use this flavor when you want tense, small-scale stories where preparation, vigilance, and relationships matter more than raw power. Rules tweaks: The effect of potency is scaled down. Limited to 1 magic user, if any. Magic use comes with higher risk or stakes. When dropped, make a 1d story roll. Vigilance is more important, and is focused on hint more than strike or reveal. Social fallout from vex is increased. Encumbrance (Optional Rule, pg. 175). Wealth (Optional Rule, pg. 176). Slow XP progression, max level of 3. Consequences stick around longer. Factions play a major role."
+  sword-and-sorcery: "Sword & Sorcery: Use this flavor when you want high-action adventures driven by risk, greed, nerve, and luck. Rules tweaks: No magic, or rare and dangerous magic (Setting dials, pg. 172) Make a 1d story roll when dropped. Clear marks and harm after each scene. Vex happens more often, but social fallout from vex responses is lessened. Each PC has a 4d Renown campaign timer, spreading their legend. Those in the greater world will come to know their names. Mooks require no roll to take out. Slow xp progression, but carousing earns +1 XP. Vigor Pool (Optional Rule, pg. 174)."
+  noblebright: "Noblebright: Use this flavor when you want hopeful stories where courage changes the course of events. Rules tweaks: PCs begin at 2nd level with 1 minor arcana. Make a 3d story roll when dropped. Should a PC die, the player has full control of the end of their story. Stakes for physical combat are often lower, while those for social conflicts are higher. Rattled clears after any intense scene. Social fallout from vex is increased."
+  high: "High Fantasy: Use this flavor when you want grand stories of destiny, wonder, and world-shaping events. Rules tweaks: PCs begin at 3rd level with 2 minor arcana or 1 major arcana, as well as a story about where they came from. Mooks require no roll to take out, while toughs can be taken a few at a time. Bosses are linked challenges, usually with a trick to overcoming them. More rolls are automatic successes. Token Initiative (Optional Rule, pg. 174). This helps keep narrative balance when more rolls are automatically successful."
+  cozy: "Cozy Fantasy: Use this flavor when you want warm, character-driven stories about belonging and growth. Rules tweaks: Low stakes is the default. Normal stakes and higher must be declared. PCs and allies only die in meaningful ways, nearly always outside of conflict. Slow XP progression. Changing a bond or completing a story arc in the session earns +1 XP. Characters can’t progress past level 3. Once PCs reach major milestones, they’re allowed to switch out one talent with another."
+default: heroic
+implies:
+  grimdark: {lethality: deadly, supplies: true, lasting-marks: true, random-vex: true, random-bonds: true}
+  low: {lethality: deadly, scale: smaller, encumbrance: true, wealth: true, slow-progression: true}
+  sword-and-sorcery: {vigor-pool: true, slow-progression: true}
+  noblebright: {lethality: gentle}
+  high: {scale: larger, token-initiative: true}
+  cozy: {slow-progression: true}
+source: "pp. 181-187"
+---
+# Grimdark's rules tweaks that change the rules (p. 182), as options of their own: grimdark sets
+# them, and any campaign can pick them.
+option: lasting-marks
+title: "Marks only clear on rest (grimdark)"
+kind: flag
+ask: "Do marks only clear on rest (a marked stat keeps its thorn until then)?"
+help: "Marks only clear on rest: rolling with a marked stat still adds its thorn, but doesn't clear the mark (`didact do rest` does)."
+source: "p. 182"
+---
+option: random-vex
+title: "Vex responses are random (grimdark)"
+kind: flag
+ask: "Are vex responses random?"
+help: "Vex responses are random: `didact do vex` rolls fight, flight, freeze or freakout instead of letting the player choose."
+source: "p. 182"
+---
+option: random-bonds
+title: "PC bonds are rolled randomly (grimdark)"
+kind: flag
+ask: "Are PC bonds rolled randomly?"
+help: "PC bonds are rolled randomly: character creation rolls each bond's intensity and nature (`didact table roll bonds`)."
+source: "p. 182"
+---
+option: token-initiative
+title: "Token initiative (optional rule)"
+kind: flag
+ask: "Use token initiative in intense moments?"
+help: "At the start of an intense moment, give each player 2 tokens; a player spends one before a story beat (usually an action roll), and when all are spent everyone regains theirs, so everyone gets the same screen time."
+source: "p. 174"
+---
+option: rest-resets
+title: "Rest resets (optional rule)"
+kind: flag
+ask: "Should talents reset on rests rather than each session?"
+help: "Talents no longer reset each session, but during rests and other narrative breaks: the PCs take spark, reset their talents and thread, and heal; the GM takes 2 suspense, and some conditions fade (`didact do rest`)."
+source: "p. 174"
+---
+option: stat-progression
+title: "Stat progression (optional rule)"
+kind: flag
+ask: "Can a PC forgo a talent at a new level to raise a stat?"
+help: "When a PC levels up, they can forgo a talent to increase a stat by 1, to a max of 3, once per character. Avoid it for smaller scale games."
+source: "p. 174"
+---
+option: vigor-pool
+title: "Vigor pool (optional rule)"
+kind: flag
+ask: "Does each PC have a Vigor pool (for games without healing magic)?"
+help: "Each PC has a 3d Vigor resource pool: when the PCs have a moment to catch their breath, roll it to clear 1 harm. It refreshes after an extended rest or downtime."
+source: "p. 174"
+---
+option: armor
+title: "Armor (optional rule)"
+kind: flag
+ask: "Does armor give an Armor pool?"
+help: "Light armor gives a 1d Armor resource pool each session (and Lightly Armored), heavy armor 2d (and Heavily Armored, and swimming is likely impossible): after a physical consequence, roll it to lessen the consequence, as a messy defense roll. Without this rule, armor is vantage and set dressing."
+source: "p. 175"
+---
+option: supplies
+title: "Supplies (optional rule)"
+kind: flag
+ask: "Can the PCs run out of supplies?"
+help: "Each PC has a 4d Supplies resource pool for common items and rations: roll it with heavy use, and as time passes outside of civilization."
+source: "p. 175"
+---
+option: encumbrance
+title: "Encumbrance (optional rule)"
+kind: flag
+ask: "Are there carrying limits?"
+help: "Each PC has space for 2 + Brawn in gear, main armor and weapons aside: small items take ½ a slot, most gear 1, large or bulky items 2 or more."
+source: "p. 175"
+---
+option: wealth
+title: "Wealth (optional rule)"
+kind: flag
+ask: "Do the PCs carry coin as a pool?"
+help: "Each PC has a 4d Coins power pool: roll it for larger purchases, or drop 1d then roll for huge expenses; selling off treasure adds +2d (max 8d)."
+source: "p. 176"
+---
+option: weapon-styles
+title: "Weapon styles (optional rule)"
+kind: flag
+ask: "Do PCs' weapons have weapon styles?"
+help: "PC weapons have 2 descriptors, their weapon styles (`didact gen run grimwild-ce.weapon`): a reminder of how the weapon affects the fiction and its vantage."
+source: "p. 176"
+---
+option: level-zero
+title: "Level 0 (optional rule)"
+kind: flag
+ask: "Do PCs start at level 0 (beginners)?"
+help: "PCs start with no core talent and only 3 extra stat points, and level up after 1 experience, gaining their core talent and last stat point."
+source: "p. 176"
+---
+option: slow-progression
+title: "Slow progression"
+kind: flag
+ask: "A slower pace: slash each XP box before filling it (twice the XP to level)?"
+help: "For a slower pace, slash each XP box before filling it: each level takes twice the XP (level 4 to 5: 10 XP). Low fantasy, sword & sorcery and cozy fantasy play with it, and focused growth builds on it."
+source: "p. 31"
+---
+option: milestone-levels
+title: "Milestone levels (optional rule)"
+kind: flag
+ask: "Do PCs level up at milestones instead of by XP?"
+help: "No XP after sessions: the party levels up after the meaningful completion of a major group story arc; what counts is up to the group, and ultimately the GM."
+source: "p. 177"
+---
+option: focused-growth
+title: "Focused growth (optional rule)"
+kind: flag
+ask: "Should experience be tied to the story's themes?"
+help: "Slow progression (it takes twice the XP to level), with a chance for an extra XP at the end of each session for what happened in the game, often tied to the party concept or the campaign's themes (`didact do experience who=… why=theme`)."
+source: "p. 177"
+---
+option: active-vigilance
+title: "Active vigilance (optional rule)"
+kind: flag
+ask: "Should vigilance be a story roll?"
+help: "When the GM uses vigilance, the spotlighted PC makes a story roll affected by their vantage: on a perfect they get a reveal, on a messy a hint, on a grim the GM strikes."
+source: "p. 177"
+---
+option: tick-pools
+title: "Tick pools (optional rule)"
+kind: flag
+ask: "Use tick pools alongside diminishing pools?"
+help: "A predictable pool, usually 2d-4d: when triggered it drops exactly 1d, and is never rolled. Use them alongside standard pools, not in their place."
+source: "p. 177"
+---
+option: writers-room
+title: "Writers' room (optional rule)"
+kind: flag
+ask: "Can players add details beyond their vantage?"
+help: "Story details added with tangles and thread don't need to be connected to PC vantage: PCs can offer their own impact moves to gain spark, and expand the world with their own details; only details that benefit the party cost thread."
+source: "p. 177"
+---
+# Expanded downtime (Exploring the Grimwild, p. 141) replaces carousing by selling off treasure and
+# extended rest healing with downtime actions.
+option: expanded-downtime
+title: "Expanded downtime"
+kind: flag
+ask: "Use expanded downtime (downtime actions instead of carousing and extended rest healing)?"
+help: "When time passes, each PC picks a downtime action (two if they sell off treasure): rest, plan ahead, pursue a goal, unwind or venture (`didact do downtime who=… act=unwind`). Carousing by selling off treasure and extended rest healing are replaced by them."
+source: "p. 141"
+---
+# The solo rules (Extras, pp. 192-195): guardrails that replace the GM.
+option: solo
+title: "Solo rules"
+kind: flag
+ask: "Are you playing solo (the solo rules' guardrails: questions on a messy, peril on a disaster)?"
+help: "Solo play: on a messy, make an impact move only if you're in a scene with a challenge, in the last task pool of a quest, or have 3 or more suspense (else take suspense); on a disaster or with dire stakes, also roll a peril pool or take harm. Impact moves can come from `didact table roll solo-consequences --with stakes=normal`. Side characters (solo party mode) are made with `didact char new grimwild-ce.side-character`."
+source: "pp. 192-195"

@@ -1,0 +1,118 @@
+# Standing in the world (wardens-guide/faction-reputation, renown-and-infamy, settlements,
+# getting-started): the ladders, the tracked factions, the buildings, and session zero.
+table: reputation-ladder
+title: "Faction Reputation"
+description: "Each faction's standing with a character, −2 to +2; one step at a time, on witnessed or reported deeds (`didact do reputation`)."
+lookup: step
+source: wardens-guide/faction-reputation#the-ladder
+entries:
+  "-2": {text: "Hunted: Attacked on sight by the faction.", data: {name: "Hunted"}}
+  "-1": {text: "Distrusted: Watched, overcharged, barred from the inner circle.", data: {name: "Distrusted"}}
+  0: {text: "Unknown: Default.", data: {name: "Unknown"}}
+  1: {text: "Trusted: Discounts, tolerated armed, given minor work.", data: {name: "Trusted"}}
+  2: {text: "Sworn: Treated as one of their own; one meaningful favor per session.", data: {name: "Sworn"}}
+---
+table: factions
+title: "The tracked factions"
+description: "The factions worth a ledger, by id (`didact do reputation … faction=<id>`), with what each wants and its sworn opposite. Greybeards and Blades oppose each other only once the Blades' demand is spoken; the Thalmor distrust nearly everyone."
+lookup: faction
+source: wardens-guide/faction-reputation#the-tracked-factions
+entries:
+  "companions": {text: "The Companions: warriors-for-hire out of Jorrvaskr in Whiterun, heirs to Ysgramor's old band; they want honest work, a good fight, and to keep the secret that their inner Circle runs with wolves. They take all comers who can swing a blade, and judge you by your nerve, not your name.", data: {name: "The Companions"}}
+  "college": {text: "The College of Winterhold: Skyrim's lone sanctuary for the magical arts, resolutely independent, tolerating even necromancy in the name of study; they want knowledge and to be left alone by the Nords who hate them. They welcome anyone who can prove a spell, and care nothing for race or politics.", data: {name: "The College of Winterhold"}}
+  "thieves_guild": {text: "The Thieves Guild: the Children of the Shadows under the Ragged Flagon in Riften, a crime-ring in long decline; they want coin, leverage, and their cut of every illicit trade in Skyrim. They recruit the light-fingered through a tryout and trust no one who has not done a job, but a proven earner is family.", data: {name: "The Thieves Guild", opposed: "guards"}}
+  "dark_brotherhood": {text: "The Dark Brotherhood: assassins-for-hire sworn to the Dread Father Sithis, nearly extinct and hiding in the Falkreath Sanctuary; they want contracts honored, the Five Tenets kept, and the old fear of their name restored. Outsiders meet them only by spilling blood for them; they treat a recruit as kin and a betrayer as carrion.", data: {name: "The Dark Brotherhood"}}
+  "stormcloaks": {text: "The Stormcloaks: the Sons and Daughters of Skyrim under Ulfric out of Windhelm; they want the Empire gone, Skyrim free, and Talos worshipped in the open. They warm to Nords and to anyone who'll fight the Legion, and look hard at elves and Imperials.", data: {name: "The Stormcloaks", opposed: "legion"}}
+  "legion": {text: "The Imperial Legion: the Empire's army under General Tullius out of Castle Dour in Solitude; they want the rebellion crushed and the province held together under law. They take any able recruit regardless of blood, prize discipline, and distrust open Talos zealots.", data: {name: "The Imperial Legion", opposed: "stormcloaks"}}
+  "greybeards": {text: "The Greybeards: the silent masters of the Voice atop High Hrothgar; they want peace and the Way of the Voice kept. They are reverent toward one marked by destiny and cold toward the merely curious.", data: {name: "The Greybeards"}}
+  "blades": {text: "The Blades: the dwindled dragonslayers regrouping at Sky Haven Temple; they want every dragon dead, the Greybeards' master Paarthurnax among them. They will follow a Dragonborn anywhere and have little time for anyone else.", data: {name: "The Blades"}}
+  "dawnguard": {text: "The Dawnguard: Isran's reformed vampire-hunters out of Fort Dawnguard in the Rift; they want the Volkihar stopped before they blot out the sun. They arm any willing hand against the undead, but a vampire among the party will be smelled out and turned on.", data: {name: "The Dawnguard", opposed: "volkihar"}}
+  "volkihar": {text: "The Volkihar: Lord Harkon's ancient vampire court on its island off Haafingar; they want the sun darkened forever and Tamriel theirs by night. They are contemptuous of mortals and of thin-blooded vampires alike, and open their gates only to one offered the gift of a Vampire Lord.", data: {name: "The Volkihar", opposed: "dawnguard"}}
+  "vigil": {text: "The Vigil of Stendarr: warrior-priests of the Divine of mercy out of the Hall of the Vigilant near Dawnstar; they want every Daedra, vampire, werewolf, and witch in Skyrim destroyed, and they cure disease for free. They are friendly to the clean and the faithful and quick to suspect anyone who reeks of the beast or the bargain.", data: {name: "The Vigil of Stendarr", opposed: "daedric_cults"}}
+  "bards_college": {text: "The Bards College: the institute of song and history in Solitude; they want their craft kept alive, the Poetic Edda preserved, and a place at every noble's table. Studiously neutral in the war, they welcome anyone with a tale to tell or a service to render.", data: {name: "The Bards College"}}
+  "forsworn": {text: "The Forsworn: the Madmen of the Reach, native Reachfolk under the imprisoned King Madanach; they want the Nords and the Empire driven from the Reach and their old kingdom restored. They are hostile on sight to nearly everyone, revere their hagravens, and trust only one who has bled for their cause in the dark of Cidhna Mine.", data: {name: "The Forsworn"}}
+  "thalmor": {text: "The Thalmor: the High Elf supremacists of the Aldmeri Dominion under First Emissary Elenwen, with their embassy above Solitude; they want Mer ascendant over Man, the worship of Talos stamped out, and the Civil War kept burning to bleed both sides. They are not joinable, they distrust nearly everyone, and pleasing them costs you almost everywhere else.", data: {name: "The Thalmor"}}
+  "skaal": {text: "The Skaal: the All-Maker-worshipping Nord tribe of Solstheim under Chief Fanari Strong-Voice; they want to live in harmony with the land, guard the secret of forging Stalhrim, and be left in peace by Hircine and Herma-Mora alike. They are wary of all outsiders and slow to trust, but loyal beyond measure once a stranger proves a friend to the village.", data: {name: "The Skaal"}}
+  "guards": {text: "The city guards: every Hold's guard is the Thieves Guild's natural foe; a thief in good standing is a marked figure to the law.", data: {name: "The city guards", opposed: "thieves_guild"}}
+  "daedric_cults": {text: "The Daedric cults: the Vigil exists to burn out Daedra-worship, witches, and the undead; pleasing a Daedric Prince earns their hatred.", data: {name: "The Daedric cults", opposed: "vigil"}}
+---
+table: renown-ladder
+title: "Renown & Infamy"
+description: "The party's name with the common folk, −3 to +3: one step per session at most, public deeds only (`didact do renown`)."
+lookup: renown
+source: wardens-guide/renown-and-infamy#the-ladder
+entries:
+  "-3": {text: "Reviled: Flee or attack on sight.", data: {name: "Reviled"}}
+  "-2": {text: "Infamous: Strangers default Hostile.", data: {name: "Infamous"}}
+  "-1": {text: "Suspect: Strangers default Wary.", data: {name: "Suspect"}}
+  0: {text: "Unknown: Default.", data: {name: "Unknown"}}
+  1: {text: "Known: Small favors offered.", data: {name: "Known"}}
+  2: {text: "Renowned: Strangers default Kind.", data: {name: "Renowned"}}
+  3: {text: "Hero of Skyrim: Legendary; doors open everywhere.", data: {name: "Hero of Skyrim"}}
+---
+table: renown-reactions
+title: "Renown and a stranger's first Reaction"
+description: "Renown never adds to the dice: it decides where a stranger's Reaction starts (`didact do stranger-reaction`)."
+lookup: renown
+source: wardens-guide/renown-and-infamy#how-it-shapes-stranger-reactions
+entries:
+  "-3": {text: "Reviled: strangers flee or reach for a weapon before a word is spoken.", data: {start: "Hostile", roll: false}}
+  "-2": {text: "Infamous: skip the roll; strangers start Hostile.", data: {start: "Hostile", roll: false}}
+  "-1": {text: "Suspect: skip the roll; strangers start Wary.", data: {start: "Wary", roll: false}}
+  0: {text: "Unknown: roll the Reaction as usual.", data: {roll: true}}
+  1: {text: "Known: roll as usual; on Curious or better, the stranger offers some small favor (a drink, a warning, a better price).", data: {roll: true}}
+  2: {text: "Renowned: skip the roll; strangers start Kind.", data: {start: "Kind", roll: false}}
+  3: {text: "Hero of Skyrim: skip the roll; strangers start Helpful, and doors open everywhere.", data: {start: "Helpful", roll: false}}
+---
+table: settlement-buildings
+title: "Settlement buildings"
+description: "What a Nord steading might plausibly pile onto a cleared plot: each building and what it does (petty ones take no slot). The Warden may invent others."
+lookup: building
+source: wardens-guide/settlements#building-slots
+entries:
+  "Palisade & Gate": {text: "Defense +1. Required for any Defense above 2.", data: {group: "Defense", petty: false}}
+  "Watchtower": {text: "+1 Defense if paired with a Palisade. Lookouts stand rotating watches; raids are spotted one watch early.", data: {group: "Defense", petty: false}}
+  "Guard Post": {text: "Defense +1. A named, paid warrior on a shift schedule. The militia's weapons step up one tier.", data: {group: "Defense", petty: false}}
+  "Barracks": {text: "+1 Defense. Quarters a small standing guard. The settlement may field a detachment in its own defense without the party present.", data: {group: "Defense", petty: false}}
+  "Armory & Forge-rack": {text: "+1 Defense. The militia's gear steps up one tier, and a PC in good standing may draw one common weapon from the marketplace list per visit (limit one per PC per season).", data: {group: "Defense", petty: false}}
+  "Farm Plots": {text: "+1 Prosperity. Rations are free for the party in good standing. Crops fail in an Extreme weather week or a hard winter.", data: {group: "Production & Prosperity", petty: false}}
+  "Livestock Pen": {text: "+1 Population. The settlement feeds itself; caravans and herders stop here freely.", data: {group: "Production & Prosperity", petty: false}}
+  "Mill": {text: "+1 Prosperity. Produces trade-grade timber or flour as a standing resource; a river or steady wind helps.", data: {group: "Production & Prosperity", petty: false}}
+  "Mine": {text: "+1 Prosperity. A passive trickle: a Downtime Action here yields ore and the odd raw gem. Stalls if the vein runs dry (Warden's call).", data: {group: "Production & Prosperity", petty: false}}
+  "Apothecary's Garden": {text: "petty building. A plot of alchemy reagents. A PC may gather a handful of common ingredients here each visit without foraging.", data: {group: "Production & Prosperity", petty: true}}
+  "Trading Post": {text: "+1 Prosperity. Caravans route through automatically; the resident merchant restocks when the party visits, and a PC may sell one unused item at full market price once per session.", data: {group: "Production & Prosperity", petty: false}}
+  "Smithy": {text: "+1 Prosperity. Unlocks the Smithing Downtime Action on-site — see Player's Guide → Crafting. A resident smith may temper one piece of the party's gear per visit.", data: {group: "Craft & Hearth", petty: false}}
+  "Alchemy Lab": {text: "Unlocks the Alchemy Downtime Action on-site. A potion or poison brewed here costs half the usual reagents per batch.", data: {group: "Craft & Hearth", petty: false}}
+  "Arcane Enchanter": {text: "Unlocks the Enchanting Downtime Action on-site, given a filled soul gem (see Crafting). Often built only where a College mage or hedge-wizard has settled.", data: {group: "Craft & Hearth", petty: false}}
+  "Cookfire & Smokehouse": {text: "Raw meat from the bestiary becomes lasting rations here; attached to Farm Plots or a Pen, it keeps every settler fed.", data: {group: "Craft & Hearth", petty: false}}
+  "Longhouse / Mead Hall": {text: "The settlement's heart. Reaction rolls on a first visit shift one step better, and the party may always hear a fresh rumor here, Warden's pick. A PC may make a Downtime Strengthening Ties action with the whole settlement here.", data: {group: "Hearth & Hall", petty: false}}
+  "Temple / Shrine to the Divines": {text: "A priest tends the sick: settlers recover Attribute loss in three days instead of a week, and a visiting PC may receive a free Cure Disease blessing once per visit. The town automatically passes WIL saves against panic during a raid.", data: {group: "Hearth & Hall", petty: false}}
+  "Inn": {text: "A bed for travelers and a hearth for gossip. Reaction rolls on a first visit shift one step better; caravans and wayfarers carry the settlement's name abroad (a slow trickle toward local renown).", data: {group: "Hearth & Hall", petty: false}}
+  "Bard's Hearth": {text: "petty building. A resident skald or a visiting bard. The settlement's defending detachment automatically passes its first Morale save per raid; spirits hold and stories spread.", data: {group: "Hearth & Hall", petty: true}}
+  "Cottages": {text: "+1 Population. Without beds, new settlers do not stay. May be built more than once; each fills a slot.", data: {group: "Folk & Land", petty: false}}
+  "Stable & Paddock": {text: "petty building. Quarters mounts and remounts; the party may keep horses here between journeys and a fresh mount is available when they set out.", data: {group: "Folk & Land", petty: true}}
+  "Steward's House": {text: "The settlement runs itself in the party's absence: the steward keeps up repairs and hires hands, and once per season a new building can be raised without a PC spending a Downtime Action (the Septims must still be paid).", data: {group: "Folk & Land", petty: false}}
+  "Standing Watch-beacon": {text: "Raids are spotted a full day early. With a day's warning, a settlement of Defense 3 or more can turn back a raid on its own (see Raids), the defenders having dug in and barred the doors.", data: {group: "Folk & Land", petty: false}}
+---
+table: starting-the-party
+title: "Why you're together"
+dice: d6
+source: wardens-guide/getting-started#starting-the-party
+entries:
+  1: "Caravan guards. You hired on to escort a merchant's wagons across a Hold. The pay is fair, the road is long, and something is following the train."
+  2: "Barrow expedition. A scholar, a Jarl's steward, or a treasure-hunter pulled you together to crack open a sealed Nordic tomb. You split what you find — if you walk back out."
+  3: "Bound for the block. You were all caught up in the same Imperial sweep — rebels, bandits, and the simply unlucky, chained in the same cart. When the chance to run comes, you take it together."
+  4: "Guild hopefuls. You each came to the same hall — Jorrvaskr, the College, the Ragged Flagon — to be let in. They won't take you until you prove yourselves on one job, together."
+  5: "Conscripts and recruits. A muster (Stormcloak or Legion), a Hold militia, or a Vigil patrol threw you into the same unit. Brothers- and sisters-in-arms before you ever chose to be."
+  6: "A debt or a vow. You all owe the same person, or swore the same oath, and they have called it in. The job is not optional; the company is."
+---
+table: tone-dial
+title: "The Tone Dial"
+description: "Where the table puts its pin at session zero (the tone option)."
+lookup: tone
+source: wardens-guide/getting-started#the-tone-dial
+entries:
+  "Heroic": "The party are the heroes the songs will name. Dragons fall. Jarls owe favors. Violence is cinematic, evil is clear, and the right people win in the end. Lean light on Bounty and disease; let the party be larger than life."
+  "Adventurous": "The default. Capable but mortal adventurers earning coin and a name one job at a time — barrows, bandits, bounties, the odd dragon. Wins are real but partial; the world keeps turning whether or not the party shows up."
+  "Gritty": "Skyrim is poor, cold, and at war. Coin is tight, the dead are many, and every faction wants something. Heroes get Scars and make enemies. Sympathy is rationed; the right choice usually costs."
+  "Grim": "A hard land in a hard year. Hypothermia, plague, vampires, and a war that grinds up everyone it touches. Survival is the story. A barrow is a tomb you might not leave. Violence is ugly and consequences last."

@@ -1,0 +1,5 @@
+id: base-a
+name: Base A (fixture)
+kind: system
+version: 1.2.0
+license: {spdx: CC0-1.0}

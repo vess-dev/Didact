@@ -1,0 +1,599 @@
+# The classes' engines (Chapter 4): spending a Core Talent's well, casting with each school's
+# economy, regaining magic, naming a quarry, the werewolf's change and the feeding of both
+# curses. The wells live on the sheet (`uses` fields) and refill by themselves each session
+# (talent-resets) or scene (scene-wells); the pools are tracks the sheet points at.
+action: spend
+title: Spend from a well
+help: >-
+  Spend from your Core Talent's well (or a school's): Temper, Wind, Edge, Guard, Might, Focus,
+  Draughts, Momentum, Evasion, Quarries, Favors, Sway, Changes; Alteration's spells and potent
+  spells; Mysticism's potent spells before strain. Says what the well buys. Might drops that many
+  more dice from what the blow hit (`pool=`), up to 2 on a single blow. Per-session wells refill
+  when a new session starts, per-scene ones with every scene.
+params:
+  who: ref
+  well: {enum: [temper, wind, edge, guard, might, focus, draughts, spells, potent, unstrained, momentum, evasion, quarries, favors, sway, changes]}
+  n: {kind: int, default: 1, help: "How many"}
+  pool: {kind: ref, to: track, optional: true, help: "Might: the pool the blow hit (a foe's, or a task pool): it drops that many more dice"}
+steps:
+  - if: "default(@who.$well.max, 0) == 0"
+    then:
+      - stop: "{@who.name} has no $well: it's a class's well (`didact show {@who.id}`)."
+  - if: "@n < 1"
+    then:
+      - stop: "Spend 1 or more."
+  - if: "@who.$well < @n"
+    then:
+      - stop: "{@who.name} has {@who.$well} $well left, not {@n}."
+  - if: "'$well' == 'might' and @n > 2"
+    then:
+      - stop: "Might drops up to 2 more dice on a single blow, however many pools it struck."
+  - set: who.$well
+    op: "-="
+    value: "@n"
+  - message: "{@who.name}'s $well: {@n} spent, {@who.$well} of {@who.$well.max} left."
+  - if: "'$well' == 'temper'"
+    then: ["Say I worked on that about one piece of gear in the scene: the edge bites (a weapon roll that just succeeded adds a critical effect), the plate holds (physical harm on the wearer lands as a mark), or I know that make (for the scene, no one takes thorns from that foe's arms, armor or plating)."]
+  - if: "'$well' == 'wind'"
+    then: ["Wind: dig deep (pay for pushing yourself: `didact do push who={@who.id} pay=wind`), outpace (ignore every thorn on a roll from distance, footing, load, weather or exhaustion), or cover ground (be where you need to be; you can assist or protect from anywhere in the scene)."]
+  - if: "'$well' == 'edge'"
+    then: ["Edge, after a blade roll succeeds: a critical effect: greater effect (the foe's pool drops 1d before it rolls), a secondary effect (the disarm, the bind, the cut that turns them), or a setup for whoever strikes next."]
+  - if: "'$well' == 'guard'"
+    then: ["Guard: brace (a defense roll ignores every thorn: `didact do defense … brace`), bash (a perfect or messy defense answers with the shield: knock them back, down, or the weapon out of their hand), cover (one defense roll for every ally beside you), or stepping in for an ally hit by their own roll's consequence."]
+  - if: "'$well' == 'might'"
+    then:
+      - if: "default(@pool, '') <> ''"
+        then:
+          - pool: "@pool"
+            mode: drop
+            drop: "@n"
+            as: struck
+          - message: "The follow-through nobody gets up from: {@pool.name} drops {@n}d more ({@struck.left}d left)."
+        else: ["Might: the blow drops {@n} more dice from the pool it hit (`pool=` drops them)."]
+  - if: "'$well' == 'focus'"
+    then: ["Focus: ignore a roll's thorns from being outnumbered or one imposing foe; a maneuver (declare disarm, throw, lock a limb, turn their momentum: on a perfect or messy, it happens); or a potent feat of body and breath (1 more to bring along someone you're touching)."]
+  - if: "'$well' == 'draughts'"
+    then: ["The Satchel: a draught you brewed earlier does what a spell of its recipe would do, no roll, no words, for whoever uses it ({@who.recipes}); 2 for a potent one (enough for the whole party, strong enough to last the scene, or fit to mend harm)."]
+  - if: "'$well' == 'spells' or '$well' == 'potent'"
+    then: ["Alteration: cast with `didact do cast who={@who.id} school=alteration spell=…` (it spends them itself)."]
+  - if: "'$well' == 'unstrained'"
+    then: ["Mysticism: a potent spell before strain sets in (`didact do cast who={@who.id} school=mysticism potent` spends it itself)."]
+  - if: "'$well' == 'momentum'"
+    then: ["Momentum: before a roll on the move, remove that many thorns (`didact do action … momentum={@n}` spends them itself; remove every thorn and they come back as Momentum dice)."]
+  - if: "'$well' == 'evasion'"
+    then: ["Evasion: sidestep (after a defense against something a body could dodge, raise the result one step), in and out (a strike that came up messy: the GM banks suspense instead of the impact move), or slip away (break from a melee, a grapple or a closing ring, no roll, no parting blow)."]
+  - if: "'$well' == 'quarries'"
+    then: ["The Hunt: name the quarry with `didact do quarry who={@who.id} target=…` (it spends this itself)."]
+  - if: "'$well' == 'favors'"
+    then: ["Favors, no roll: I bought one earlier, I know a person, hired hands (outside help until the scene ends), or appraise (ask two); or spend 1 and roll Presence (`didact do action who={@who.id} stat=presence`) for a potent feat of dealmaking, or to interrupt an impact move coin could stop."]
+  - if: "'$well' == 'sway'"
+    then: ["Sway, no roll: raise an ally's die result by 1, calm or provoke someone's vex, or talk an ally down from a mark (clear it); or spend 1 and roll Presence for a potent feat of persuasion, to interrupt an impact move that hinges on a decision, or to talk an ally out of rattled (clear it). Never on yourself."]
+  - if: "'$well' == 'changes'"
+    then: ["Beast Blood: change with `didact do change who={@who.id}` (it spends this itself)."]
+source: "the-classes/introduction#wells-and-dice; the-classes/armorer; the-classes/athletics; the-classes/blade; the-classes/block; the-classes/blunt; the-classes/hand-to-hand; the-classes/alchemy; the-classes/acrobatics; the-classes/light-armor; the-classes/mercantile; the-classes/speechcraft"
+---
+action: cast
+title: Cast a spell
+help: >-
+  A spell by its school's own economy, then its roll. Alteration (Wits): a formula you know; a
+  spell spends one of the session's spells, a potent one a potent spell; one cast without risk
+  needs no roll and costs nothing, unless it's potent or it mends someone. Destruction
+  (Presence): your elements and forms; always at risk and always a roll; push yourself for a
+  potent spell; two or more 1s set off backlash (not with Novice Destruction). Illusion
+  (Presence): one of yours not yet spent; once cast it's spent until the next session (unless
+  cast without risk and not potent); given time it's potent. Mysticism (Wits): your disciplines;
+  your first potent spells each session are free, then strain: the second puts +1t on all your
+  spellcasting after it, the third makes that +2t and is your last.
+  Restoration: a rite, a power pool rolled in place of a stat (drop 1d for a potent spell); a
+  riskless spell succeeds, but every casting rolls its pool. Wild magic (an option) makes any of
+  them go wrong on two or more 1s.
+params:
+  who: ref
+  school: {enum: [alteration, destruction, illusion, mysticism, restoration]}
+  spell: {kind: text, optional: true, help: "The formula, the illusion, the touchstones, the discipline or the rite"}
+  potent: {kind: flag, default: false, help: "A potent spell"}
+  riskless: {kind: flag, default: false, help: "No risk: no roll (a Restoration rite still rolls its pool)"}
+  mends: {kind: flag, default: false, help: "It mends someone: it counts against the session even without risk"}
+  rite: {kind: ref, to: track, optional: true, help: "Restoration: the rite's pool (left out: the major rite)"}
+  thorns: {kind: int, default: 0}
+  spark: {kind: int, default: 0}
+  talent: {kind: flag, default: false}
+  setup: {kind: flag, default: false}
+  relic: {kind: flag, default: false}
+  draught: {kind: flag, default: false}
+  assist: {kind: int, default: 0}
+  reckless: {kind: flag, default: false, help: "Master Destruction's floodgates on a potent spell: 5s count as 6s, but 4s count as 1s, and two or more 1s, those 4s included, is backlash"}
+  stakes: {enum: [low, regular, high, dire], optional: true}
+steps:
+  - let:
+      alteration: "'alteration-formulae' in @who.talents or 'alteration-novice-alteration' in @who.talents"
+      destruction: "'destruction-the-elements' in @who.talents or 'destruction-novice-destruction' in @who.talents"
+      illusion: "'illusion-glamour' in @who.talents or 'illusion-novice-illusion' in @who.talents"
+      mysticism: "'mysticism-the-old-way' in @who.talents or 'mysticism-novice-mysticism' in @who.talents"
+      restoration: "'restoration-the-rites' in @who.talents or 'restoration-novice-restoration' in @who.talents"
+  - let:
+      can: >-
+        if('$school' == 'alteration', @alteration, if('$school' == 'destruction', @destruction,
+        if('$school' == 'illusion', @illusion, if('$school' == 'mysticism', @mysticism, @restoration))))
+      stakes_now: "if('$stakes' <> '', '$stakes', 'regular')"
+      strains: "'$school' == 'mysticism' and @potent and default(@who.unstrained, 0) < 1"
+  - if: "not @can"
+    then:
+      - stop: "{@who.name} has no $school spellcasting (the class, or its Novice talent). A scroll lets anyone cast its one spell once, and a staff carries its own: roll it as a relic."
+  # ---- Alteration: formulae, spells and potent spells
+  - if: "'$school' == 'alteration'"
+    then:
+      - if: "default(@spell, '') <> '' and not (@spell in @who.formulae)"
+        then:
+          - stop: "{@who.name} doesn't know {@spell} (formulae: {@who.formulae})."
+      - if: "@potent"
+        then:
+          - if: "default(@who.potent, 0) < 1"
+            then:
+              - stop: "{@who.name} has no potent spells left this session."
+          - set: who.potent
+            op: "-="
+            value: 1
+          - message: "A potent spell: {@who.potent} left this session."
+        else:
+          - if: "not @riskless or @mends"
+            then:
+              - if: "default(@who.spells, 0) < 1"
+                then:
+                  - stop: "{@who.name} has no spells left this session."
+              - set: who.spells
+                op: "-="
+                value: 1
+              - message: "A spell: {@who.spells} left this session."
+            else: ["Cast without risk: no roll, and it doesn't count against the session."]
+  # ---- Illusion: the Twelve, spent until the next session
+  - if: "'$school' == 'illusion'"
+    then:
+      - if: "default(@spell, '') == ''"
+        then:
+          - stop: "Name the illusion: `spell=` one of {@who.illusions}."
+      - if: "not (@spell in @who.illusions)"
+        then:
+          - stop: "{@who.name} doesn't know {@spell} (illusions: {@who.illusions})."
+      - if: "@spell in @who.spent"
+        then:
+          - stop: "{@spell} is spent until the next session."
+      - if: "not @riskless or @potent"
+        then:
+          - set: who.spent
+            op: "+="
+            value: $spell
+          - message: "{@spell} is spent until the next session."
+        else: ["Cast without risk: no roll, and {@spell} isn't spent."]
+      - if: "@potent"
+        then: ["A potent illusion: given time, a quiet beat to weave it; or push yourself to weave one that way on the spot (`didact do push who={@who.id} stat=…` after it resolves). It holds a crowd, or a greater mind for a beat or two (it loses its next move and rolls its pool)."]
+  # ---- Mysticism: potent by strain
+  - if: "'$school' == 'mysticism'"
+    then:
+      - if: "default(@spell, '') <> '' and not (@spell in @who.disciplines)"
+        then:
+          - stop: "{@spell} isn't one of {@who.name}'s disciplines ({@who.disciplines})."
+      - if: "@potent"
+        then:
+          - if: "not ('mysticism-the-old-way' in @who.talents)"
+            then:
+              - stop: "Novice Mysticism is never potent."
+          - if: "default(@who.unstrained, 0) > 0"
+            then:
+              - set: who.unstrained
+                op: "-="
+                value: 1
+              - message: "A potent spell before strain sets in ({@who.unstrained} more this session)."
+            else:
+              - if: "default(@who.strain, 0) >= 2"
+                then:
+                  - stop: "{@who.name} has cast their last potent spell this session (strain +2t)."
+              - message: "A potent spell by strain: it is cast at the strain {@who.name} carries now, and its own lands after it."
+  # ---- Destruction: always at risk; push for potent
+  - if: "'$school' == 'destruction'"
+    then:
+      - if: "@riskless"
+        then:
+          - stop: "Destruction is never safe: its spells always carry risk and always need a roll."
+      - if: "@potent and not ('destruction-the-elements' in @who.talents)"
+        then:
+          - stop: "Novice Destruction is never potent."
+      - if: "@potent"
+        then: ["A potent Destruction spell: push yourself (`didact do push who={@who.id} stat=…` after it resolves), unless you regained one without the push."]
+  # ---- Restoration: a rite's power pool
+  - if: "'$school' == 'restoration'"
+    then:
+      - if: "default(@rite, '') == '' and default(@who.rite_1, '') == ''"
+        then:
+          - stop: "{@who.name} has no rite pool on the sheet: name it (`rite=<track>`)."
+      - if: "@riskless"
+        then:
+          - if: "default(@rite, '') <> ''"
+            then:
+              - do: rite-roll
+                with: {pool: "@rite", potent: "@potent"}
+            else:
+              - do: rite-roll
+                with: {pool: "@who.rite_1", potent: "@potent"}
+          - message: "A riskless spell succeeds without question, but every casting rolls its pool."
+        else:
+          - if: "default(@rite, '') <> ''"
+            then:
+              - check: pool-action
+                with: {who: "@who", pool: "@rite", drop: "if(@potent, 1, 0)", spell: true, thorns: "@thorns", spark: "@spark", talent: "@talent", setup: "@setup", relic: "@relic", draught: "@draught", assist: "@assist", stakes: "@stakes_now"}
+            else:
+              - check: pool-action
+                with: {who: "@who", pool: "@who.rite_1", drop: "if(@potent, 1, 0)", spell: true, thorns: "@thorns", spark: "@spark", talent: "@talent", setup: "@setup", relic: "@relic", draught: "@draught", assist: "@assist", stakes: "@stakes_now"}
+      - if: "@potent"
+        then: ["A potent spell: the pool dropped 1d first (Healing: knit bone, and harm clears)."]
+  # ---- The roll (all but Restoration)
+  - if: "'$school' <> 'restoration'"
+    then:
+      - if: "@riskless and '$school' <> 'destruction'"
+        then: ["No risk, no roll: it just works."]
+        else:
+          - check: action
+            with:
+              who: "@who"
+              stat: "if('$school' == 'alteration' or '$school' == 'mysticism', 'wits', 'presence')"
+              thorns: "@thorns"
+              spark: "@spark"
+              talent: "@talent"
+              setup: "@setup"
+              relic: "@relic"
+              draught: "@draught"
+              assist: "@assist"
+              reckless: "@reckless"
+              spell: true
+              backlash: "'$school' == 'destruction' and 'destruction-the-elements' in @who.talents"
+              stakes: "@stakes_now"
+            as: cast_roll
+  # ---- Mysticism's strain lands after the spell that takes it
+  - if: "@strains"
+    then:
+      - set: who.strain
+        op: "+="
+        value: 1
+      - message: "Strain: +{@who.strain}t on all {@who.name}'s spellcasting from now until the session ends{if(@who.strain >= 2, '; that potent spell was the last', '')}."
+source: "the-core-engine/magicka; the-classes/introduction#magic-for-everyone; the-classes/alteration; the-classes/destruction; the-classes/illusion; the-classes/mysticism; the-classes/restoration"
+---
+procedure: rite-roll
+title: A rite's pool, rolled for a riskless spell
+help: "A riskless Restoration spell succeeds without question, but every casting rolls its pool (drop 1d first for a potent one)."
+params:
+  pool: {kind: ref, to: track}
+  potent: {kind: flag, default: false}
+steps:
+  - if: "@pool.value <= 0"
+    then:
+      - stop: "{@pool.name} is empty until the next session."
+  - pool: "@pool"
+    drop: "if(@potent, 1, 0)"
+    as: rolled
+  - message: "{@pool.name}: {@rolled.left}d left."
+source: "the-classes/restoration#the-rites"
+---
+action: regain-magic
+title: Regain magic
+help: >-
+  Wherever a rule lets you regain magic (Highborn, the Mage and the Apprentice, the Atronach,
+  Recovery, the Apprentice Stone, a Magicka draught, Julianos's blessing), choose one: a spent
+  spell, a spent illusion, 2d of a magic pool (a rite, Thrall, Familiar, Risen, Unbinding,
+  Reflection, Ward, Resistance, Flesh: never an alchemist's draughts, Poisons, Potions, Blood or a
+  relic's charge), one step of strain, or a potent Destruction spell without the push. A spent
+  potent spell comes back only when the rule says so (Recovery: `what=potent`). With the
+  Atronach Stone's blessing you can't regain magic by any other means.
+params:
+  who: ref
+  what: {enum: [spell, potent, illusion, pool, strain, destruction]}
+  illusion: {kind: text, optional: true, help: "The spent illusion that comes back"}
+  pool: {kind: ref, to: track, optional: true, help: "The magic pool that gains 2d (never past where it started)"}
+  why: {kind: text, optional: true, help: "What lets you: Highborn, the Mage, Recovery, a Magicka draught, …"}
+steps:
+  - if: "'the-atronach-stone' in @who.talents and default(@why, '') <> 'the Atronach Stone'"
+    then:
+      - stop: "While {@who.name} holds the Atronach Stone's blessing, they can't regain magic by any other means."
+  - if: "'$what' == 'spell'"
+    then:
+      - if: "default(@who.spells.max, 0) == 0"
+        then:
+          - stop: "{@who.name} casts no spells by the session (Alteration's)."
+      - set: who.spells
+        op: "+="
+        value: 1
+      - message: "{@who.name} regains a spent spell ({@who.spells} of {@who.spells.max})."
+  - if: "'$what' == 'potent'"
+    then:
+      - if: "default(@who.potent.max, 0) == 0"
+        then:
+          - stop: "{@who.name} has no potent spells by the session (Alteration's)."
+      - set: who.potent
+        op: "+="
+        value: 1
+      - message: "A spent potent spell comes back (only when the rule says so: Recovery's once)."
+  - if: "'$what' == 'illusion'"
+    then:
+      - if: "default(@illusion, '') == '' or not (@illusion in @who.spent)"
+        then:
+          - stop: "Name a spent illusion: `illusion=` one of {@who.spent}."
+      - set: who.spent
+        op: "-="
+        value: $illusion
+      - message: "{@illusion} is no longer spent."
+  - if: "'$what' == 'pool'"
+    then:
+      - if: "default(@pool, '') == ''"
+        then:
+          - stop: "Name the magic pool: `pool=<track>` (a rite, Thrall, Familiar, Risen, Unbinding, Reflection, Ward, Resistance, Flesh)."
+      - do: pool-regain
+        with: {pool: "@pool", n: 2}
+  - if: "'$what' == 'strain'"
+    then:
+      - if: "default(@who.strain, 0) < 1"
+        then:
+          - stop: "{@who.name} has no strain to lift."
+      - set: who.strain
+        op: "-="
+        value: 1
+      - message: "One step of strain lifts: +{@who.strain}t now."
+  - if: "'$what' == 'destruction'"
+    then: ["{@who.name}'s next potent Destruction spell needs no push."]
+  - if: "default(@why, '') <> ''"
+    then: ["By: {@why}."]
+source: "the-classes/introduction#regaining-magic; blood-stars-and-stones/blood-the-ten-races#altmer; blood-stars-and-stones/stars-the-thirteen-signs; blood-stars-and-stones/stones-the-standing-stones; the-classes/restoration#recovery; options-and-dials/watching-the-stacks#refunded-magic"
+---
+procedure: pool-regain
+title: Dice back into a pool
+help: "A pool regains dice, never past where it started (its size)."
+params:
+  pool: {kind: ref, to: track}
+  n: {kind: int, default: 1}
+steps:
+  - let: {back: "min(@pool.value.max, @pool.value + @n)"}
+  - set: pool.value.value
+    value: "@back"
+  - set: pool.fields.status
+    value: active
+  - message: "{@pool.name}: {@back}d of {@pool.value.max}d."
+source: "the-core-engine/pools"
+---
+action: quarry
+title: Name a quarry
+help: >-
+  The Hunt (Marksman): once per session (+1 at levels 3 and 6), name one foe as your quarry (a
+  creature, a person, or a single pack that fights as one pool) that you've had a look at or
+  found the trail of. It stays your quarry for the session, and whenever you or an ally
+  researches, tracks or attacks it, add the Hunter's die to the roll (`didact do action …
+  hunter`): on a 6, a critical effect.
+params:
+  who: ref
+  target: {kind: text, help: "The quarry"}
+steps:
+  - if: "default(@who.quarries.max, 0) == 0"
+    then:
+      - stop: "{@who.name} doesn't run The Hunt (Marksman)."
+  - if: "default(@who.quarries, 0) < 1"
+    then:
+      - stop: "{@who.name} has named every quarry this session allows."
+  - set: who.quarries
+    op: "-="
+    value: 1
+  - set: who.quarry
+    op: "+="
+    value: $target
+  - message: "{@who.name} names {@target} as quarry for the session: the Hunter's die on every roll that researches, tracks or attacks it (`didact do action … hunter`)."
+  - table: marksman-tell-tale-signs
+    as: sign
+  - prompt: "Tell-tale signs (optional): name what you noticed, e.g. {@sign}."
+source: "the-classes/marksman#the-hunt"
+---
+action: change
+title: The change (Beast Blood)
+help: >-
+  Once per session (+1 at levels 3 and 6; Lycanthropy never more), or in the moment you become
+  bloodied (`bloodied`), you can change for a scene. As the wolf: Brawn and Agility count as 3,
+  Wits and Presence as 1, you ignore thorns from your own harm, you can pull off potent feats of
+  the hunt, you can't speak, cast or use tools, and you take only aggressive, forward actions.
+  The change runs on the Bloodlust timer: rolled when you change (that first roll never empties
+  it) and after each potent feat (`didact do bloodlust`); feeding puts back 1d. At 0d you change
+  back, spent (mark Brawn). Totem of the Moon: at night, under either moon, your first change of
+  the session doesn't count against your limit (`night`).
+params:
+  who: ref
+  bloodied: {kind: flag, default: false, help: "In the moment you become bloodied"}
+  night: {kind: flag, default: false, help: "At night, under either moon (Totem of the Moon: the first change of the session doesn't count)"}
+steps:
+  - if: "default(@who.bloodlust, '') == ''"
+    then:
+      - stop: "{@who.name} has no Bloodlust timer on the sheet (a werewolf's, made at creation)."
+  - if: "default(@who.changed, false)"
+    then:
+      - stop: "{@who.name} is already the wolf."
+  - let: {moon: "@night and 'werewolf-totem-of-the-moon' in @who.talents and not default(@who.moon_change, false)"}
+  - let: {free: "@bloodied or @moon"}
+  - if: "not @free and default(@who.changes, 0) < 1"
+    then:
+      - stop: "{@who.name} has changed as often as this session allows (unless in the moment they become bloodied: `bloodied`)."
+  - if: "not @free"
+    then:
+      - set: who.changes
+        op: "-="
+        value: 1
+  - if: "@moon and not @bloodied"
+    then:
+      - set: who.moon_change
+        value: true
+      - message: "Totem of the Moon: at night, the first change of the session doesn't count against the limit."
+  - set: who.changed
+    value: true
+  - do: refresh
+    with: {pool: "@who.bloodlust"}
+  - do: bloodlust-roll
+    with: {pool: "@who.bloodlust", first: true}
+  - message: "{@who.name} changes for the scene: Brawn and Agility count as 3, Wits and Presence as {if('werewolf-totem-of-the-moon' in @who.talents, '2 (or your own, if lower), with patience and cunning', 1)}; no speech, spells or tools; only aggressive, forward actions; potent feats of the hunt (`didact do bloodlust who={@who.id}` after each)."
+  - if: "'werewolf-animal-vigor' in @who.talents"
+    then:
+      - if: "default(@who.hide, '') <> ''"
+        then:
+          - do: refresh
+            with: {pool: "@who.hide"}
+          - message: "Animal Vigor: a fresh 2d Hide for the wolf this change: roll it when physical harm would land on the wolf (not silver)."
+        else: ["Animal Vigor: a 2d Hide pool for the wolf this change (`didact do refresh pool=<hide>`; `didact set {@who.id} hide=<it>` lets Didact refresh it): roll it when physical harm would land on the wolf (not silver)."]
+source: "the-classes/werewolf#beast-blood; the-classes/werewolf"
+---
+procedure: bloodlust-roll
+title: The Bloodlust timer, rolled
+help: "Roll the Bloodlust timer; the roll when you change never empties it."
+params:
+  pool: {kind: ref, to: track}
+  first: {kind: flag, default: false}
+steps:
+  - pool: "@pool"
+    as: rolled
+  - if: "@first and @rolled.empty"
+    then:
+      - set: pool.value.value
+        value: 1
+      - set: pool.fields.status
+        value: active
+      - message: "The first roll never empties it: {@pool.name} stays at 1d."
+source: "the-classes/werewolf#beast-blood"
+---
+action: bloodlust
+title: Roll the Bloodlust
+help: "After each potent feat as the wolf, roll the Bloodlust timer; at 0d you change back, spent (mark Brawn), unclothed, and wherever the hunt left you."
+params:
+  who: ref
+steps:
+  - if: "not default(@who.changed, false)"
+    then:
+      - stop: "{@who.name} isn't the wolf."
+  - do: bloodlust-roll
+    with: {pool: "@who.bloodlust"}
+    as: roll
+  - if: "@roll.rolled.empty"
+    then:
+      - do: change-back
+        with: {who: "@who"}
+source: "the-classes/werewolf#beast-blood"
+---
+action: change-back
+title: Change back
+help: >-
+  At 0d Bloodlust (or with Totem of the Moon whenever you choose), you change back: spent (mark
+  Brawn), unclothed, and wherever the hunt left you. Animal Vigor: one harm you took in beast
+  form fades to a mark. The change also ends with the scene.
+params:
+  who: ref
+  chosen: {kind: flag, default: false, help: "Totem of the Moon: changing back by choice, not spent"}
+steps:
+  - if: "not default(@who.changed, false)"
+    then:
+      - stop: "{@who.name} isn't the wolf."
+  - set: who.changed
+    value: false
+  - if: "@chosen"
+    then:
+      - if: "not ('werewolf-totem-of-the-moon' in @who.talents)"
+        then: ["Only Totem of the Moon changes back by choice; otherwise the change runs until Bloodlust hits 0d or the scene ends."]
+      - message: "{@who.name} changes back."
+    else:
+      - message: "{@who.name} changes back: spent, unclothed, and wherever the hunt left them."
+      - do: mark
+        with: {who: "@who", stat: brawn}
+  - if: "'werewolf-animal-vigor' in @who.talents"
+    then: ["Animal Vigor: one harm taken in beast form fades to a mark (`didact set {@who.id} harm-=… marks+=…`)."]
+source: "the-classes/werewolf#beast-blood; the-classes/werewolf#animal-vigor"
+---
+trigger: wolf-scene-end
+title: The change ends with the scene
+help: "A werewolf changes for a scene: when it ends, they change back."
+on: scene_end
+for: pcs
+when: "default(@who.changed, false)"
+params:
+  who: ref
+steps:
+  - do: change-back
+    with: {who: "@who"}
+source: "the-classes/werewolf#beast-blood"
+---
+action: feed
+title: Feed
+help: >-
+  A vampire's Blood comes back only by feeding: a sip from the willing, the sleeping or the
+  charmed puts back 2d; drinking someone dry refills it, and is murder. Either way the GM takes
+  suspense (marks on a neck, a rumor in the market), except for the first sip of each session
+  (you'd arranged it) and Blood Healing on a foe in the thick of it (it also clears all marks and
+  one harm). A werewolf feeding on a fresh kill takes a beat and puts back 1d of Bloodlust (2d
+  with Savage Feeding, which once per change also clears all marks and one harm).
+params:
+  who: ref
+  how: {enum: [sip, dry], default: sip, help: "A vampire's: a sip (2d), or drinking someone dry (refills it; it's murder)"}
+  foe: {kind: flag, default: false, help: "Blood Healing: on a foe you've beaten, pinned or charmed, in the thick of it"}
+steps:
+  - if: "default(@who.blood, '') == '' and default(@who.bloodlust, '') == ''"
+    then:
+      - stop: "{@who.name} doesn't feed: it's the curses' (The Blood, Beast Blood)."
+  - if: "default(@who.blood, '') <> ''"
+    then:
+      - if: "'$how' == 'dry'"
+        then:
+          - do: refresh
+            with: {pool: "@who.blood"}
+          - message: "{@who.name} drinks someone dry: the Blood refills, and it is murder."
+        else:
+          - do: pool-regain
+            with: {pool: "@who.blood", n: 2}
+          - message: "A sip puts back 2d."
+      - if: "'starving' in @who.conditions"
+        then:
+          - set: who.conditions
+            op: "-="
+            value: starving
+          - message: "{@who.name} isn't starving anymore."
+      - if: "@foe and 'vampire-blood-healing' in @who.talents"
+        then:
+          - set: who.marks
+            value: []
+          - message: "Blood Healing: all {@who.name}'s marks clear, and one harm (`didact set {@who.id} harm-=…`). Nobody mourns a bandit: the GM takes no suspense for it."
+        else:
+          - if: "not default(@who.fed, false) and '$how' == 'sip'"
+            then:
+              - set: who.fed
+                value: true
+              - message: "The first sip of the session: {@who.name} had arranged it, and the GM takes no suspense."
+            else:
+              - do: suspense
+                with: {take: 1, why: "a vampire feeds: marks on a neck, a rumor in the market, a Vigilant with a list"}
+    else:
+      - if: "not default(@who.changed, false)"
+        then:
+          - stop: "{@who.name} feeds as the wolf, on a fresh kill."
+      - do: pool-regain
+        with: {pool: "@who.bloodlust", n: "if('werewolf-savage-feeding' in @who.talents, 2, 1)"}
+      - message: "Feeding takes a beat and puts back {if('werewolf-savage-feeding' in @who.talents, 2, 1)}d of Bloodlust."
+      - if: "'werewolf-savage-feeding' in @who.talents"
+        then: ["Savage Feeding: once per change, it also clears all marks and one harm (`didact set {@who.id} marks=[] harm-=…`)."]
+source: "the-classes/vampire#the-blood; the-classes/vampire#blood-healing; the-classes/werewolf#beast-blood; the-classes/werewolf#savage-feeding"
+---
+action: starve
+title: Starving (a vampire at 0d Blood)
+help: >-
+  At 0d Blood a vampire is starving: +1t on everything until they feed, and it shows in their
+  face. Under the open sun they take +1t on everything and can't roll Blood at all; fire lands
+  one step heavier.
+params:
+  who: ref
+steps:
+  - if: "default(@who.blood, '') == ''"
+    then:
+      - stop: "{@who.name} has no Blood pool."
+  - if: "'starving' in @who.conditions"
+    then:
+      - stop: "{@who.name} is already starving."
+  - set: who.conditions
+    op: "+="
+    value: starving
+  - message: "{@who.name} is starving: +1t on everything until they feed (the rolls add it), and it shows in their face."
+source: "the-classes/vampire#the-blood"

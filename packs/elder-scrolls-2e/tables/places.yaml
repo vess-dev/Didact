@@ -1,0 +1,605 @@
+# Naming places, factions and realms (wardens-guide/naming-procedures). The formulas keep
+# cairn-2e's ids and slots ({noun}, {adjective}, {poi}, {group}, {rulers}), so its
+# generators name Skyrim's places with Skyrim's words.
+table: poi-name
+title: "Names formula"
+description: "A POI's name. {poi} is the kind of place (Barrow, Cairn, Crypt, Tomb, Ruin, Hall, Watch, Tower, Fort, Keep, Hold, Mine, Pass, Bridge, Camp, Den, Cave, Falls, Stead, Mire, Stone, Shrine), e.g. `--with poi=Barrow`; for a region, its terrain or a synonym. Left out, a terrain synonym fills it. (The) and (the) are optional."
+dice: d6
+refs: {noun: "nouns", adjective: "adjectives", poi: "terrain-synonyms"}
+source: wardens-guide/naming-procedures#names-formula
+entries:
+  1: "(The) {noun} {poi}"
+  2: "(The) {adjective} {poi}"
+  3: "{poi} of (the) {noun}"
+  4: "{adjective} {poi} of (the) {noun}"
+  5: "(The) {noun} {adjective} {poi}"
+  6: "{poi} of (the) {adjective} {noun}"
+---
+table: poi-names
+title: "POI names"
+description: "A finished POI name in one roll: the names formula, each d6 row with and without its optional 'the'. Pass the kind of place, e.g. `--with poi=Barrow`; left out, a terrain synonym fills it. Generators use this one."
+refs: {noun: "nouns", adjective: "adjectives", poi: "terrain-synonyms"}
+source: wardens-guide/naming-procedures#generating-a-name
+entries:
+  - "The {noun} {poi}"
+  - "{noun} {poi}"
+  - "The {adjective} {poi}"
+  - "{adjective} {poi}"
+  - "{poi} of the {noun}"
+  - "{poi} of {noun}"
+  - "{adjective} {poi} of the {noun}"
+  - "{adjective} {poi} of {noun}"
+  - "The {noun} {adjective} {poi}"
+  - "{noun} {adjective} {poi}"
+  - "{poi} of the {adjective} {noun}"
+  - "{poi} of {adjective} {noun}"
+---
+table: place-names
+title: "Place names"
+description: "A whole place name in one roll: the names formula (each d6 row with and without its optional 'the'), with a terrain synonym as the POI, as the book suggests for naming a region by its land."
+refs: {noun: "nouns", adjective: "adjectives", poi: "terrain-synonyms"}
+source: wardens-guide/naming-procedures#generating-a-name
+entries:
+  - "The {noun} {poi}"
+  - "{noun} {poi}"
+  - "The {adjective} {poi}"
+  - "{adjective} {poi}"
+  - "{poi} of the {noun}"
+  - "{poi} of {noun}"
+  - "{adjective} {poi} of the {noun}"
+  - "{adjective} {poi} of {noun}"
+  - "The {noun} {adjective} {poi}"
+  - "{noun} {adjective} {poi}"
+  - "{poi} of the {adjective} {noun}"
+  - "{poi} of {adjective} {noun}"
+---
+table: adjectives
+title: "Adjectives"
+dice: d100
+source: wardens-guide/naming-procedures#adjectives
+entries:
+  1: "Aging"
+  2: "Amber"
+  3: "Ancient"
+  4: "Angry"
+  5: "Ashen"
+  6: "Bare"
+  7: "Battered"
+  8: "Bitter"
+  9: "Blackened"
+  10: "Blazing"
+  11: "Bleak"
+  12: "Blighted"
+  13: "Blistered"
+  14: "Bloody"
+  15: "Blustery"
+  16: "Brisk"
+  17: "Broken"
+  18: "Broad"
+  19: "Calm"
+  20: "Cold"
+  21: "Choking"
+  22: "Cloven"
+  23: "Crimson"
+  24: "Copper"
+  25: "Cracked"
+  26: "Crawling"
+  27: "Crumbling"
+  28: "Cruel"
+  29: "Dark"
+  30: "Deep"
+  31: "Dead"
+  32: "Dampened"
+  33: "Deathly"
+  34: "Dismal"
+  35: "Distant"
+  36: "Dreary"
+  37: "Drowned"
+  38: "Echoing"
+  39: "Empty"
+  40: "Endless"
+  41: "Fierce"
+  42: "Fallen"
+  43: "Flaming"
+  44: "Foggy"
+  45: "Forbidden"
+  46: "Forgotten"
+  47: "Forsaken"
+  48: "Fragile"
+  49: "Frayed"
+  50: "Frostbitten"
+  51: "Furious"
+  52: "Gaping"
+  53: "Gleaming"
+  54: "Glowing"
+  55: "Granite"
+  56: "Grim"
+  57: "Grizzled"
+  58: "Hazy"
+  59: "Hidden"
+  60: "Hollow"
+  61: "Hoary"
+  62: "Jagged"
+  63: "Lone"
+  64: "Lonely"
+  65: "Luminous"
+  66: "Lurking"
+  67: "Lustrous"
+  68: "Mournful"
+  69: "Misty"
+  70: "Moonlit"
+  71: "Muddy"
+  72: "Narrow"
+  73: "Ominous"
+  74: "Overgrown"
+  75: "Pale"
+  76: "Frozen"
+  77: "Plunging"
+  78: "Ragged"
+  79: "Rotting"
+  80: "Salty"
+  81: "Savage"
+  82: "Shifting"
+  83: "Shimmering"
+  84: "Shining"
+  85: "Shivering"
+  86: "Shrouded"
+  87: "Silent"
+  88: "Sinking"
+  89: "Snowbound"
+  90: "Smoky"
+  91: "Soggy"
+  92: "Sour"
+  93: "Sunken"
+  94: "Stained"
+  95: "Starved"
+  96: "Stinking"
+  97: "Sundered"
+  98: "Weeping"
+  99: "Whispering"
+  100: "Withered"
+---
+table: nouns
+title: "Nouns"
+dice: d100
+source: wardens-guide/naming-procedures#nouns
+entries:
+  1: "Abyss"
+  2: "Alliance"
+  3: "Amber"
+  4: "Ash"
+  5: "Aurora"
+  6: "Bastion"
+  7: "Bear"
+  8: "Black"
+  9: "Blight"
+  10: "Blood"
+  11: "Bone"
+  12: "Bright"
+  13: "Chasm"
+  14: "Crag"
+  15: "Crow"
+  16: "Crown"
+  17: "Crack"
+  18: "Crimson"
+  19: "Dawn"
+  20: "Darkness"
+  21: "Dragon"
+  22: "Dead"
+  23: "Death"
+  24: "Decay"
+  25: "Dusk"
+  26: "Desolation"
+  27: "Despair"
+  28: "Daedra"
+  29: "Dirt"
+  30: "Doom"
+  31: "Doorway"
+  32: "Echo"
+  33: "Ember"
+  34: "Fate"
+  35: "Fear"
+  36: "Fire"
+  37: "Flame"
+  38: "Folly"
+  39: "Frost"
+  40: "Fury"
+  41: "Ghost"
+  42: "Giant"
+  43: "Glacier"
+  44: "Glimmer"
+  45: "God"
+  46: "Gold"
+  47: "Green"
+  48: "Harmony"
+  49: "Harvest"
+  50: "Haunt"
+  51: "Haven"
+  52: "Horror"
+  53: "Iron"
+  54: "Island"
+  55: "Jarl"
+  56: "King"
+  57: "Mammoth"
+  58: "Life"
+  59: "Light"
+  60: "Marble"
+  61: "Mist"
+  62: "Mold"
+  63: "Moon"
+  64: "Mud"
+  65: "Nightmare"
+  66: "North"
+  67: "Peril"
+  68: "Pine"
+  69: "Raven"
+  70: "Rag"
+  71: "Rain"
+  72: "Ice"
+  73: "Red"
+  74: "Refuge"
+  75: "Regret"
+  76: "Rot"
+  77: "Ruin"
+  78: "Shadow"
+  79: "Silver"
+  80: "Skull"
+  81: "Sky"
+  82: "Smoke"
+  83: "Snow"
+  84: "Sorrow"
+  85: "Spark"
+  86: "Stone"
+  87: "Storm"
+  88: "Sun"
+  89: "Tempest"
+  90: "Terror"
+  91: "Thorn"
+  92: "Thunder"
+  93: "Troll"
+  94: "Tundra"
+  95: "Valor"
+  96: "War"
+  97: "Wind"
+  98: "Winter"
+  99: "Whisper"
+  100: "Wolf"
+---
+table: terrain-synonyms-barrows
+title: "Terrain synonyms: Barrows"
+source: wardens-guide/naming-procedures#terrain-synonyms
+entries:
+  - "Crypt"
+  - "Cairn"
+  - "Catacomb"
+  - "Tomb"
+  - "Ossuary"
+  - "Dead-hall"
+---
+table: terrain-synonyms-bogs
+title: "Terrain synonyms: Bogs / Marsh"
+source: wardens-guide/naming-procedures#terrain-synonyms
+entries:
+  - "Mire"
+  - "Morass"
+  - "Fen"
+  - "Slough"
+  - "Wetland"
+  - "Moor"
+---
+table: terrain-synonyms-canyons
+title: "Terrain synonyms: Canyons"
+source: wardens-guide/naming-procedures#terrain-synonyms
+entries:
+  - "Ravine"
+  - "Chasm"
+  - "Gorge"
+  - "Gulf"
+  - "Gulch"
+  - "Defile"
+---
+table: terrain-synonyms-caverns
+title: "Terrain synonyms: Caverns"
+source: wardens-guide/naming-procedures#terrain-synonyms
+entries:
+  - "Grotto"
+  - "Hollow"
+  - "Tunnel"
+  - "Delve"
+  - "Cave"
+  - "Deep"
+---
+table: terrain-synonyms-cliffs
+title: "Terrain synonyms: Cliffs"
+source: wardens-guide/naming-procedures#terrain-synonyms
+entries:
+  - "Precipice"
+  - "Face"
+  - "Crag"
+  - "Bluff"
+  - "Escarpment"
+  - "Steep"
+---
+table: terrain-synonyms-dwemer-ruins
+title: "Terrain synonyms: Dwemer Ruins"
+source: wardens-guide/naming-procedures#terrain-synonyms
+entries:
+  - "Depths"
+  - "Halls"
+  - "Deep-forge"
+  - "Workings"
+  - "Undercroft"
+  - "Mechanism"
+---
+table: terrain-synonyms-farmlands
+title: "Terrain synonyms: Farmlands"
+source: wardens-guide/naming-procedures#terrain-synonyms
+entries:
+  - "Holding"
+  - "Acreage"
+  - "Steading"
+  - "Grange"
+  - "Field"
+  - "Croft"
+---
+table: terrain-synonyms-forest
+title: "Terrain synonyms: Forest (pine)"
+source: wardens-guide/naming-procedures#terrain-synonyms
+entries:
+  - "Woods"
+  - "Woodland"
+  - "Weald"
+  - "Taiga"
+  - "Grove"
+  - "Pinewood"
+---
+table: terrain-synonyms-glaciers
+title: "Terrain synonyms: Glaciers / Ice"
+source: wardens-guide/naming-procedures#terrain-synonyms
+entries:
+  - "Floe"
+  - "Drift"
+  - "Sheet"
+  - "Pack-ice"
+  - "Frost-field"
+---
+table: terrain-synonyms-hills
+title: "Terrain synonyms: Hills"
+source: wardens-guide/naming-procedures#terrain-synonyms
+entries:
+  - "Hillock"
+  - "Mound"
+  - "Knoll"
+  - "Fell"
+  - "Slope"
+  - "Rise"
+---
+table: terrain-synonyms-hot-springs
+title: "Terrain synonyms: Hot Springs"
+source: wardens-guide/naming-procedures#terrain-synonyms
+entries:
+  - "Steam"
+  - "Vents"
+  - "Geysers"
+  - "Sulfur-pools"
+  - "Warm-fens"
+---
+table: terrain-synonyms-lakes
+title: "Terrain synonyms: Lakes"
+source: wardens-guide/naming-procedures#terrain-synonyms
+entries:
+  - "Tarn"
+  - "Loch"
+  - "Pool"
+  - "Mere"
+  - "Lagoon"
+  - "Water"
+---
+table: terrain-synonyms-mountains
+title: "Terrain synonyms: Mountains"
+source: wardens-guide/naming-procedures#terrain-synonyms
+entries:
+  - "Peaks"
+  - "Range"
+  - "Summit"
+  - "Pinnacle"
+  - "Horn"
+  - "Throat"
+---
+table: terrain-synonyms-passes
+title: "Terrain synonyms: Passes"
+source: wardens-guide/naming-procedures#terrain-synonyms
+entries:
+  - "Gap"
+  - "Saddle"
+  - "Col"
+  - "Defile"
+  - "Notch"
+  - "Crossing"
+---
+table: terrain-synonyms-plains
+title: "Terrain synonyms: Plains / Tundra"
+source: wardens-guide/naming-procedures#terrain-synonyms
+entries:
+  - "Flats"
+  - "Heath"
+  - "Expanse"
+  - "Lowlands"
+  - "Veldt"
+  - "Reach"
+---
+table: terrain-synonyms-river
+title: "Terrain synonyms: Rivers"
+source: wardens-guide/naming-procedures#terrain-synonyms
+entries:
+  - "Stream"
+  - "Brook"
+  - "Runnel"
+  - "Creek"
+  - "Channel"
+  - "Ford"
+---
+table: terrain-synonyms-sea
+title: "Terrain synonyms: Sea / Coast"
+source: wardens-guide/naming-procedures#terrain-synonyms
+entries:
+  - "Shore"
+  - "Coast"
+  - "Seaboard"
+  - "Foreshore"
+  - "Sound"
+  - "Ghost-sea"
+---
+table: terrain-synonyms-valley
+title: "Terrain synonyms: Valley"
+source: wardens-guide/naming-procedures#terrain-synonyms
+entries:
+  - "Dale"
+  - "Vale"
+  - "Basin"
+  - "Glen"
+  - "Gorge"
+  - "Hollow"
+---
+table: terrain-synonyms
+title: "Terrain synonyms"
+description: "The book has no die: consult the row for the terrain (roll terrain-synonyms-<terrain>). Rolled, a row at random gives one of its synonyms; data.terrain names the row."
+source: wardens-guide/naming-procedures#terrain-synonyms
+entries:
+  - {table: "terrain-synonyms-barrows", data: {terrain: "Barrows"}}
+  - {table: "terrain-synonyms-bogs", data: {terrain: "Bogs / Marsh"}}
+  - {table: "terrain-synonyms-canyons", data: {terrain: "Canyons"}}
+  - {table: "terrain-synonyms-caverns", data: {terrain: "Caverns"}}
+  - {table: "terrain-synonyms-cliffs", data: {terrain: "Cliffs"}}
+  - {table: "terrain-synonyms-dwemer-ruins", data: {terrain: "Dwemer Ruins"}}
+  - {table: "terrain-synonyms-farmlands", data: {terrain: "Farmlands"}}
+  - {table: "terrain-synonyms-forest", data: {terrain: "Forest (pine)"}}
+  - {table: "terrain-synonyms-glaciers", data: {terrain: "Glaciers / Ice"}}
+  - {table: "terrain-synonyms-hills", data: {terrain: "Hills"}}
+  - {table: "terrain-synonyms-hot-springs", data: {terrain: "Hot Springs"}}
+  - {table: "terrain-synonyms-lakes", data: {terrain: "Lakes"}}
+  - {table: "terrain-synonyms-mountains", data: {terrain: "Mountains"}}
+  - {table: "terrain-synonyms-passes", data: {terrain: "Passes"}}
+  - {table: "terrain-synonyms-plains", data: {terrain: "Plains / Tundra"}}
+  - {table: "terrain-synonyms-river", data: {terrain: "Rivers"}}
+  - {table: "terrain-synonyms-sea", data: {terrain: "Sea / Coast"}}
+  - {table: "terrain-synonyms-valley", data: {terrain: "Valley"}}
+---
+table: group-types
+title: "Group types"
+dice: d20
+source: wardens-guide/naming-procedures#group-types
+entries:
+  1: "Brotherhood"
+  2: "Circle"
+  3: "Clan"
+  4: "Coalition"
+  5: "College"
+  6: "Company"
+  7: "Covenant"
+  8: "Dominion"
+  9: "Guild"
+  10: "Hand"
+  11: "Horde"
+  12: "League"
+  13: "Legion"
+  14: "Order"
+  15: "Pact"
+  16: "Sons (of)"
+  17: "Sworn"
+  18: "Vigil"
+  19: "Watch"
+  20: "Coven"
+---
+table: faction-name
+title: "Faction names formula"
+description: "A faction's name. (The) and (the) are optional."
+dice: d6
+refs: {noun: "nouns", adjective: "adjectives", group: "group-types"}
+source: wardens-guide/naming-procedures#faction-names-formula
+entries:
+  1: "(The) {noun} {group}"
+  2: "(The) {adjective} {group}"
+  3: "{group} of (the) {noun}"
+  4: "{adjective} {group} of (the) {noun}"
+  5: "(The) {noun} {adjective} {group}"
+  6: "{group} of (the) {adjective} {noun}"
+---
+table: faction-names
+title: "Faction names"
+description: "A finished faction name in one roll: the faction names formula, each d6 row with and without its optional 'the'."
+refs: {noun: "nouns", adjective: "adjectives", group: "group-types"}
+source: wardens-guide/naming-procedures#faction-names-formula
+entries:
+  - "The {noun} {group}"
+  - "{noun} {group}"
+  - "The {adjective} {group}"
+  - "{adjective} {group}"
+  - "{group} of the {noun}"
+  - "{group} of {noun}"
+  - "{adjective} {group} of the {noun}"
+  - "{adjective} {group} of {noun}"
+  - "The {noun} {adjective} {group}"
+  - "{noun} {adjective} {group}"
+  - "{group} of the {adjective} {noun}"
+  - "{group} of {adjective} {noun}"
+---
+table: realm-name
+title: "Realm names formula"
+description: "A realm's name ({rulers} is the realm type: Hold, Jarldom, …). (The) and (the) are optional; any part may be the dominant terrain synonym."
+dice: d6
+refs: {noun: "nouns", adjective: "adjectives", rulers: "ruler-types"}
+source: wardens-guide/naming-procedures#realm-names-formula
+entries:
+  1: "(The) {noun} {rulers}"
+  2: "(The) {adjective} {rulers}"
+  3: "{rulers} of (the) {noun}"
+  4: "{adjective} {rulers} of (the) {noun}"
+  5: "(The) {noun} {adjective} {rulers}"
+  6: "{rulers} of (the) {adjective} {noun}"
+---
+table: realm-names
+title: "Realm names"
+description: "A finished realm name in one roll: the realm names formula, each d6 row with and without its optional 'the'."
+refs: {noun: "nouns", adjective: "adjectives", rulers: "ruler-types"}
+source: wardens-guide/naming-procedures#realm-names-formula
+entries:
+  - "The {noun} {rulers}"
+  - "{noun} {rulers}"
+  - "The {adjective} {rulers}"
+  - "{adjective} {rulers}"
+  - "{rulers} of the {noun}"
+  - "{rulers} of {noun}"
+  - "{adjective} {rulers} of the {noun}"
+  - "{adjective} {rulers} of {noun}"
+  - "The {noun} {adjective} {rulers}"
+  - "{noun} {adjective} {rulers}"
+  - "{rulers} of the {adjective} {noun}"
+  - "{rulers} of {adjective} {noun}"
+---
+table: ruler-types
+title: "Realm types"
+description: "The kind of realm and its rule (cairn-2e's id, which its realm generator rolls)."
+dice: d20
+source: wardens-guide/naming-procedures#realm-types
+entries:
+  1: "Hold"
+  2: "Reach"
+  3: "Mark"
+  4: "Confederation"
+  5: "Domain"
+  6: "Jarldom"
+  7: "Empire"
+  8: "Fiefdom"
+  9: "Grand Duchy"
+  10: "High Kingdom"
+  11: "Hegemony"
+  12: "Kingdom"
+  13: "Moot"
+  14: "Dominion"
+  15: "Protectorate"
+  16: "Realm"
+  17: "Regency"
+  18: "Free March"
+  19: "Stronghold"
+  20: "Union"

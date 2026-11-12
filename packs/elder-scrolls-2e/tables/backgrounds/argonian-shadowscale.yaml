@@ -1,0 +1,24 @@
+# Argonian Shadowscale (backgrounds/argonian-shadowscale): the background's two d6 tables.
+table: argonian-shadowscale-1
+title: "What did the Hist and the Shadowscales make of you?"
+dice: d6
+source: backgrounds/argonian-shadowscale#what-did-the-hist-and-the-shadowscales-make-of-you-roll-1d6
+entries:
+  1: "Water-born. You can lie hidden beneath the surface of any lake, river, or harbor for as long as you like and rise where no one is watching; few think to look below."
+  2: "The silent kill, drilled into you from the egg. A foe you drop before it knows you are there dies without a sound, and its fall wakes no one."
+  3: {text: "Hist sap, your reward for a first contract. Take a vial of it (1 use): drink it to fall into a brief trance, waking with 1d6 STR restored and a vision the Warden describes.", data: {gear: [{name: "Hist sap", uses: 1}]}}
+  4: "Trained to vanish, not to win. Once per day, in dim light or smoke, slip from sight; foes lose track of you until you next attack or are touched."
+  5: {text: "A deserter. A contract went wrong and you broke from the sect. Take a sealed purse of 3d6 extra Septims, your final payment, and the quiet certainty that someone remembers a Shadowscale who ran.", data: {gold_dice: "3d6"}}
+  6: {text: "The marsh's poisons. Take a vial of deathbell poison (3 uses): coat a blade, and the next creature it wounds must pass a STR save or be Slowed until the fight ends, its blood thick and cold.", data: {gear: [{name: "Deathbell poison", uses: 3}]}}
+---
+table: argonian-shadowscale-2
+title: "What is your trade-craft?"
+dice: d6
+source: backgrounds/argonian-shadowscale#what-is-your-trade-craft-roll-1d6
+entries:
+  1: {text: "Reader of Locks: A roll of fine lockpicks and clever claws. Given a quiet minute, you need not save to open an ordinary lock, and you feel a trap's tension before it springs.", data: {gear: [{name: "Fine lockpicks"}]}}
+  2: "The Drowned Path: You know every way water moves through a city. You can enter a guarded place by cistern, sewer, or harbor, where its walls and gates count for nothing."
+  3: "Whisper-Step: On floors that creak or shallows that splash, you alone pass in silence, and hounds do not catch your scent."
+  4: "Egg-Kin: You are not quite the last of the Shadowscales: Veezara of the Falkreath Sanctuary is another. He would know your sign on sight, and hide you from anyone but the Family itself."
+  5: {text: "Black Sting: A slim ebony throwing knife (d6), marked with Sithis's hand. Thrown from cover at an unguarded throat, it ignores 1 Armor.", data: {gear: [{name: "Black Sting", damage: "d6"}]}}
+  6: "Marsh-Speech: You speak Jel, the tongue of the Saxhleel that no outsider can follow, and you know the hand-signs the Argonian dockhands of Windhelm use to pass warnings under a Nord's nose."

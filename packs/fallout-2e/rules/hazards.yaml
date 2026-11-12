@@ -1,0 +1,219 @@
+# Hazards (players-guide/hazards): falling, drowning, fire, electrocution, cold and heat,
+# explosions, venom and gas. Environmental harm hits an attribute, not HP; armor helps only when
+# it realistically would. When a hazard and the fiction disagree, trust the fiction, and call a
+# hazard save only when the fiction has raised the stakes. Rad zones are `rad-zone` (rads.yaml).
+action: fall
+title: Falling
+help: >-
+  Every full 10 ft fallen rolls 1d6 STR damage (under 10 ft, nothing). A DEX save to land right
+  halves the total (round down). Landing on something soft (water, mud, a pile of coats) rolls one
+  fewer d6 (at least 1d6); on something hard (rebar, rocks, a skylight) one more. A Shock
+  Absorber armor mod passes the save automatically: one noted on worn armor counts by itself
+  (`didact do craft … item=<armor>` notes it), absorber=true says so otherwise.
+params:
+  who: ref
+  feet: {kind: int, help: "How far they fall"}
+  landing: {enum: [normal, soft, hard], default: normal}
+  absorber: {kind: flag, default: false, help: "A Shock Absorber armor mod not noted on the armor"}
+steps:
+  - let: {tens: "@feet // 10"}
+  - let: {absorbing: "@absorber or ('Shock Absorber' in default(@who.inventory.mods, '') and not ('Shock Absorber' in default(@who.inventory.backpack.mods, '')))"}
+  - if: "@tens < 1"
+    then:
+      - stop: "Under 10 ft: scraped knees, no save and no damage."
+  - let: {count: "max(1, @tens + if(@landing == 'soft', -1, if(@landing == 'hard', 1, 0)))"}
+  - roll: "(@count)d6"
+    as: fall
+  - if: "@absorbing"
+    then:
+      - let: {landed: "'success'"}
+      - message: "The Shock Absorber passes the DEX save by itself."
+    else:
+      - check: save
+        with: {who: "@who", attr: DEX}
+        as: landed
+  - let: {dealt: "if(@landed == 'success', @fall // 2, @fall)"}
+  - if: "@landed == 'success'"
+    then: ["{@who.name} lands right: the damage is halved ({@fall} → {@dealt})."]
+  - do: attribute-damage
+    with: {target: "@who", attr: STR, amount: "@dealt"}
+source: players-guide/hazards#falling
+---
+action: drown
+title: Drowning
+help: >-
+  A PC holds their breath for three rounds (heavy armor, a full pack or unconsciousness shortens
+  the grace: grace=n). Every round after, a STR save: on a fail, 1d6 STR damage. Run it each round
+  under water (round=n) until they reach air or are pulled out. A robot doesn't breathe, but full
+  submersion fries an unsealed chassis in 1d6 rounds.
+params:
+  who: ref
+  round: {kind: int, default: 1, help: "How many rounds under water, this one included"}
+  grace: {kind: int, default: 3, help: "Rounds they can hold their breath"}
+steps:
+  - if: "default(@who.kind, 'human') == 'robot'"
+    then:
+      - stop: "{@who.name} doesn't breathe, but full submersion fries an unsealed chassis in 1d6 rounds (`didact roll 1d6`): the Overseer counts them."
+  - if: "@round <= @grace"
+    then:
+      - stop: "{@who.name} holds their breath (round {@round} of {@grace})."
+  - check: save
+    with: {who: "@who", attr: STR}
+    as: breath
+  - if: "@breath == 'failure'"
+    then:
+      - do: attribute-damage
+        with: {target: "@who", attr: STR, amount: 1d6}
+    else: ["{@who.name} holds on, this round."]
+  - reminder: "Every round after this, until they reach air: `didact do drown who={@who.id} round={@round + 1}`. A PC in power armor with a dead core climbs out slowly or drowns."
+source: players-guide/hazards#drowning
+---
+action: fire
+title: Fire
+help: >-
+  A PC on fire takes 1d4 STR damage a round until it's put out (an action: drop and roll, jump in
+  water, smother it). Inside a sustained flame (a flamethrower, a burning building, a crashed
+  Vertibird: sustained=true), a DEX save each round they stay, or they catch fire. Armor doesn't
+  apply unless it's rated against fire.
+params:
+  who: ref
+  sustained: {kind: flag, default: false, help: "Inside a sustained flame: save DEX or catch fire"}
+steps:
+  - if: "@sustained and not ('burning' in @who.conditions)"
+    then:
+      - check: save
+        with: {who: "@who", attr: DEX}
+        as: dodge
+      - if: "@dodge == 'success'"
+        then:
+          - stop: "{@who.name} keeps clear of the flames this round."
+      - set: who.conditions
+        op: "+="
+        value: burning
+      - message: "{@who.name} catches fire."
+  - if: "not ('burning' in @who.conditions)"
+    then:
+      - set: who.conditions
+        op: "+="
+        value: burning
+  - do: attribute-damage
+    with: {target: "@who", attr: STR, amount: 1d4}
+  - reminder: "Each round on fire: `didact do fire who={@who.id}`. Putting it out takes their action: `didact set {@who.id} conditions-=burning`."
+source: players-guide/hazards#fire
+---
+action: electrocution
+title: Electrocution
+help: >-
+  A live wire, a ruptured fusion core, a Tesla arc: 1d6 STR damage and a DEX save, dropping
+  whatever's in hand on a fail. Metal armor doesn't help (it conducts); rubber soles, Insulated
+  Weave and a grounded power armor frame do (grounded=true: no damage).
+params:
+  who: ref
+  grounded: {kind: flag, default: false, help: "Rubber soles, Insulated Weave, a grounded frame"}
+steps:
+  - if: "@grounded"
+    then:
+      - stop: "{@who.name} is grounded: the current passes them by."
+  - do: attribute-damage
+    with: {target: "@who", attr: STR, amount: 1d6}
+  - check: save
+    with: {who: "@who", attr: DEX}
+    as: grip
+  - if: "@grip == 'failure'"
+    then: ["{@who.name} drops whatever was in their hand."]
+source: players-guide/hazards#electrocution
+---
+action: exposure
+title: Cold, heat and exposure
+help: >-
+  Cold or Hot weather without shelter: Deprived after a watch, and each further watch without
+  shelter adds 1 Fatigue (watch=n counts the watches so far, this one included). Caught without
+  shelter in Extreme weather (blizzard, firestorm, rad storm), a PC is Deprived at once. Robots
+  don't suffer cold or heat this way.
+params:
+  who: ref
+  weather: {enum: [Cold, Hot, Extreme], default: Cold}
+  watch: {kind: int, default: 1, help: "Watches without shelter so far, this one included"}
+steps:
+  - if: "default(@who.kind, 'human') == 'robot'"
+    then:
+      - stop: "{@who.name}'s chassis doesn't freeze or bake this way (the Overseer may still say otherwise)."
+  - if: "@weather == 'Extreme' or @watch == 1"
+    then:
+      - if: "not ('deprived' in @who.conditions)"
+        then:
+          - do: deprive
+            with: {who: "@who", need: shelter}
+  - if: "@watch >= 2"
+    then:
+      - message: "Another watch without shelter: a Fatigue."
+      - do: fatigue
+        with: {who: "@who"}
+  - reminder: "Frostbite, heatstroke and dust-lung are narrative: if exposure gets severe, the Overseer may apply a Scar. Next watch without shelter: `didact do exposure who={@who.id} weather=$weather watch={@watch + 1}`."
+source: players-guide/hazards#cold-heat-and-exhaustion
+---
+check: explosion
+title: Near an explosion
+help: >-
+  Outside the blast but close enough to be shaken: a DEX save; on a fail, knocked prone and the
+  next attack is Impaired from the ringing. A wall, a hard corner or a ditch lets a PC ignore the
+  first near-miss per scene. In the blast, it's the attack's blast rule (`didact do attack …
+  blast=true`).
+params: {who: ref}
+roll: d20
+success: "@roll == 1 or (@roll < 20 and @roll <= @who.DEX)"
+on:
+  failure: ["{@who.name} is knocked prone, ears ringing: their next attack is Impaired (mode=impaired)."]
+  success: ["{@who.name} keeps their feet."]
+source: players-guide/hazards#explosions
+---
+action: venom
+title: Venom
+help: >-
+  Creature venoms work as each creature's entry says. A venom with no rule of its own: a STR save
+  each round for 1d6 rounds (round=1 rolls how many), 1d6 STR damage on each failure. Antivenom
+  cures any of them.
+params:
+  who: ref
+  round: {kind: int, default: 1, help: "Which round of the venom this is"}
+steps:
+  - if: "@round == 1"
+    then:
+      - roll: 1d6
+        as: rounds
+      - message: "The venom works for {@rounds} round(s)."
+  - check: save
+    with: {who: "@who", attr: STR}
+    as: resist
+  - if: "@resist == 'failure'"
+    then:
+      - do: attribute-damage
+        with: {target: "@who", attr: STR, amount: 1d6}
+  - reminder: "Each round the venom lasts: `didact do venom who={@who.id} round={@round + 1}`; Antivenom ends it (`didact do chem who={@who.id} chem=Antivenom`)."
+source: players-guide/hazards#poison-and-gas
+---
+action: gas
+title: Inhaled toxins
+help: >-
+  Pre-war gas, chem smoke, a hot rad cloud: 1 WIL damage per round of exposure, and a WIL save to
+  avoid any hallucinatory effects. Gas masks and sealed armor halve or negate it (gear=halves:
+  every second round, gear=negates). Robots don't breathe.
+params:
+  who: ref
+  gear: {enum: [none, halves, negates], default: none}
+  round: {kind: int, default: 1, help: "Which round of exposure this is"}
+steps:
+  - if: "default(@who.kind, 'human') == 'robot'"
+    then:
+      - stop: "{@who.name} doesn't breathe: immune to inhaled gas and smoke."
+  - if: "@gear == 'negates' or (@gear == 'halves' and @round % 2 == 0)"
+    then:
+      - stop: "{@who.name}'s mask or seals keep this round's gas out."
+  - do: attribute-damage
+    with: {target: "@who", attr: WIL, amount: 1}
+  - check: save
+    with: {who: "@who", attr: WIL}
+    as: mind
+  - if: "@mind == 'failure'"
+    then: ["{@who.name} hallucinates: the Overseer says what they see."]
+source: players-guide/hazards#poison-and-gas

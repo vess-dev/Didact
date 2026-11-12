@@ -1,0 +1,25 @@
+check: yes-no
+title: Yes or no?
+help: d6 plus the odds (very-unlikely −2 … very-likely +2); a twist on a separate 6.
+params:
+  question: {kind: text, optional: true}
+  odds: {enum: [very-unlikely, unlikely, even, likely, very-likely], default: even}
+roll:
+  answer: "d6 + @{settings.odds.$odds}"
+  twist: d6
+bands:
+  "Yes, and…": "@answer >= 6"
+  "Yes": "@answer == 5"
+  "Yes, but…": "@answer == 4"
+  "No, but…": "@answer == 3"
+  "No": "@answer == 2"
+  "No, and…": else
+flags:
+  twist: "@twist == 6"
+on:
+  twist:
+    - table: action
+      as: action
+    - table: theme
+      as: theme
+    - message: "Twist: something unexpected ({@action} · {@theme})."

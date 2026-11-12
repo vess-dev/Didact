@@ -1,0 +1,110 @@
+# Every table lands, the lookups answer, and the odds of the new checks are what the book says.
+test: every-table
+help: Each table in the pack rolls cleanly (a lookup table once for each key).
+table: all
+times: 3
+---
+test: disease-lookup
+help: A disease looks up by its id, with its name and its one effect.
+table: diseases
+with: {disease: sanguinare-vampiris}
+times: 1
+---
+test: soul-gem-lookup
+table: soul-gems
+with: {gem: grand}
+times: 1
+---
+test: skill-book-perk-lookup
+table: skill-book-perks
+with: {book: Aevar Stone-Singer}
+times: 1
+---
+test: background-d50
+help: The d50 lands each of the fifty backgrounds; the mortal table (unusual-backgrounds off) the first 45.
+table: backgrounds
+times: 60
+---
+test: unusual-background-odds
+help: "Five of the d50's fifty are unusual: a 10% chance."
+odds: "d50 >= 46"
+chance: 0.1
+tolerance: 0.001
+---
+test: save-odds
+help: "A save at or under 12 on a d20: 12 in 20 (the 1 always succeeds, the 20 always fails)."
+odds: "d20 <= 12"
+chance: 0.6
+tolerance: 0.001
+---
+test: beast-claws-keep-the-higher
+help: "A beast's d8+d8 (weapon=2d8kh1): keep the higher, so 5 or more 3 times in 4."
+odds: "2d8kh1 >= 5"
+chance: 0.75
+tolerance: 0.001
+---
+test: two-weapons-keep-the-higher
+help: "A d8 and a d6 at once: 6 or more on either, 1 − (5/8)(5/6)."
+odds: "{d8, d6}kh1 >= 6"
+chance: 0.4792
+tolerance: 0.001
+---
+test: impaired-two-dice
+help: "Two weapons, impaired: each becomes a d4, keep the higher (3 or more 3 times in 4)."
+odds: "2d4kh1 >= 3"
+chance: 0.75
+tolerance: 0.001
+---
+test: enhanced-is-a-d12
+help: "Enhanced: d12, 7 or more half the time."
+odds: "d12 >= 7"
+chance: 0.5
+tolerance: 0.001
+---
+test: raid-at-defense-1
+help: "Each season a d6 over Defense brings a raid: at Defense 1, 5 seasons in 6."
+odds: "d6 > 1"
+chance: 0.8333
+tolerance: 0.001
+---
+test: raid-at-defense-5
+help: "At Defense 5, 1 season in 6: once in a year and a half."
+odds: "d6 > 5"
+chance: 0.1667
+tolerance: 0.001
+---
+test: mount-left-in-the-wild
+help: "A mount tied in the wild is gone on the Die of Fate's 3 or under: half the time."
+odds: "d6 <= 3"
+chance: 0.5
+tolerance: 0.001
+---
+test: brew-yield
+help: "A brew yields 1d4 doses: 3 or more half the time."
+odds: "d4 >= 3"
+chance: 0.5
+tolerance: 0.001
+---
+test: fall-thirty-feet
+help: "Every full 10 ft fallen is 1d6 STR: 30 ft averages 10.5, and 12 or more about 37.5% of the time."
+odds: "3d6 >= 12"
+chance: 0.375
+tolerance: 0.001
+---
+test: hoard-jackpot
+help: "The hoard's d100: the jackpot (100) 1 time in 100."
+odds: "d100 >= 100"
+chance: 0.01
+tolerance: 0.001
+---
+test: npc-race-nords-doubled
+help: "Nords are doubled on the NPC race d12: 2 in 12."
+odds: "d12 <= 2"
+chance: 0.1667
+tolerance: 0.001
+---
+test: tempered-die-steps
+help: A tempered d10 steps up to a d12, the cap.
+expr: "step(d10, 1)"
+got: "12"
+expect: 12

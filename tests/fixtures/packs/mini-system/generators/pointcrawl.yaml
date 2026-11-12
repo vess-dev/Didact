@@ -1,0 +1,21 @@
+generator: pointcrawl
+title: A small pointcrawl
+help: A region with a few places, joined by paths.
+params: {size: {kind: int, default: 4}}
+steps:
+  - choose_or_roll: {table: terrain, as: terrain}
+  - entity: {key: region, type: loc, name: "The {@terrain} Reach", fields: {kind: region}}
+  - repeat: "@size"
+    as: i
+    steps:
+      - table: adjectives
+        as: adjective
+      - table: nouns
+        as: noun
+      - entity:
+          key: poi
+          type: loc
+          name: "The {@adjective} {@noun}"
+          fields: {kind: poi, region: "@region"}
+  - map: {places: poi, paths: {max: 3}, watches: {short: 1, medium: 2, long: 3}, hidden: 6}
+  - prompt: What would draw people to this region?

@@ -1,0 +1,863 @@
+# The Main Quest — The Dragon Crisis (campaigns/01-the-main-quest): written by es_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Elder Scrolls 2e's numbers, and Grimscrolls'
+# card where its Bestiary or its Faces has the threat) and clocks.
+id: the-main-quest
+type: quest
+name: The Main Quest
+aliases: [The Main Quest — The Dragon Crisis]
+tags: [the-main-quest, frame, main-campaign]
+goal: |-
+  It is 4E 201. The dragons, gone from Skyrim for centuries and dismissed as legend, have returned — and at their head wheels Alduin, the great black World-Eater, eldest child of Akatosh, who is raising the long-dead dragons from their burial mounds one by one. The old prophecies say he means to devour the world.
+
+  The party is caught at the heart of it from the first hour: prisoners in a cart bound for the headsman's block at Helgen when Alduin himself burns the town to the ground. They escape into a Skyrim split by civil war and haunted by a thing out of legend. Somewhere along the way — at a watchtower, over a dragon's corpse — it becomes plain that one of them is touched by something old: when a dragon dies near them, its strength does not simply gutter out. The Greybeards name it from their mountain. The Blades, the last of an ancient order of dragonslayers, name it too, and they have spent their lives waiting for it.
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  *You went to the block in chains, and the headsman's axe was already rising when the sky tore open and a black shape the size of a longhouse came down on Helgen. They say the dragons are gone from the world. They are wrong, and you are one of the few left alive who has seen one. Now the wise are looking at you strangely, the Greybeards are calling your name down the mountain in a voice that shakes the snow loose, and an old order of dragonslayers wants you to do the one thing no living soul has done in an age: kill the World-Eater and make it stay dead.*
+
+  ## GM notes
+
+  **Date.** Sundas, 17 Last Seed 4E 201: the day Helgen burns, the frame's Arrival, in the year the book sets (4E 201). It is the calendar's start: a new campaign opens on it.
+
+  **The frame's text:** `didact rules lookup the main quest pitch` (and `stakes`, `tone touchstones`, `arrival`, `plot beats`, `the elder scroll dragonrend`, `the place`, `cast`, `clocks`, `threats`, `rewards`, `climax`).
+
+  **Stakes.** Alduin cannot be killed the way a man or a beast is killed — and not by the party alone. To bring him down the party must wake an ancient secret out of an Elder Scroll, win allies among dragons and dead heroes, hunt the World-Eater across the bridge between worlds into the land of the honored dead, and there strike the blow that the heroes of the Merethic dawn could only postpone. If they fail, he feeds on the souls of Sovngarde and then on the world. Along the way the party must also decide what the victory is worth: whether to halt a civil war for a truce, and whether to spare the old dragon who taught mortals the Voice. This is a frame for the whole arc, from the cart at Helgen to the last duel in Sovngarde.
+
+  **Arrival.** A cart, four prisoners, bound hands, a cold morning road into **Helgen** in Falkreath Hold. One of the party was caught crossing the border at the wrong moment; the rest were taken with them or with the Stormcloak ambush the Imperials sprang the day before. **General Tullius** and the High Elf **Elenwen** watch from the walls. The list is read. The block is wet. The axe goes up —
+
+  — and **Alduin** comes out of the mountains, black against the sky, and Helgen begins to burn. In the chaos the party runs, freed by either the Stormcloak **Ralof** or the Imperial soldier **Hadvar** (whichever they trust; this also seeds the **Civil War** frame), and fights down through Helgen Keep — scavenging their first real gear from a footlocker, past panicked soldiers, a nest of frostbite spiders, and a bear in the escape tunnel — and out into open country, the dragon already gone north. Down the road is **Riverwood**, and beyond it **Whiterun**, where a Jarl will want to hear that a dragon just burned a town off the map.
+
+  **Plot beats.**
+
+  1. **Helgen & the Road to Whiterun.** *Goal:* get out alive and warn someone who matters. *Scene:* escape Helgen Keep; reach **Riverwood** (the smith Alvor, Hadvar's uncle, or the mill-owner Gerdur, Ralof's sister, gives the party their first proper supplies and begs them to carry word to the Jarl). At Riverwood the local tale of a stolen **Golden Claw** points up the mountain to **Bleak Falls Barrow** — and Whiterun's court wizard wants something from that same barrow. *Branch:* warn the Jarl first, or detour to the barrow first; tell Ralof's people or Hadvar's people (a first nudge toward a Civil War side).
+  2. **Bleak Falls Barrow.** *Goal:* recover the **Dragonstone**, an ancient stone tablet the court wizard **Farengar Secret-Fire** needs to map where dragons are buried. *Obstacle:* bandits in the upper ruin, then the awakened dead — the pillar-rotation puzzle (the carved animals match the fallen stones), the spider-choked corridor, and the **Draugr Overlord** who holds the Dragonstone and guards a glowing **Word Wall** the party cannot read. *Scene:* the party touches the Word Wall and *hears* something in the dragon-tongue but takes nothing from it — the first hint that the Voice is real and not theirs. *Branch:* return the Golden Claw to Riverwood (renown, a small reward) or keep it.
+  3. **Dragon Rising.** *Goal:* deliver the Dragonstone to Whiterun and report the dragon. *Scene:* at **Dragonsreach**, Farengar and a watchful stranger (**Delphine**, in disguise) take the stone — and word comes that a dragon has landed at the **Western Watchtower**. The party rides out with the housecarl **Irileth** and the guard, and kills the dragon **Mirmulnir**. *The turn:* as the dragon dies, its flesh burns away and its strength flows into one of the party — they have **absorbed a dragon's soul**, and everyone present knows what that means. Far up the mountain, the Greybeards' Voice rolls across all of Skyrim, calling that PC's name. *Reward:* **Thane of Whiterun**; the housecarl **Lydia** (a companion — see Rewards) and the right to buy a house in the city.
+  4. **The Way of the Voice.** *Goal:* answer the Greybeards' summons. *Scene:* the long climb of the **7,000 Steps** above **Ivarstead** (an optional supply errand from Klimmek; a frost troll in the pass, and carved tablets along the way that tell how mortals learned the Voice) to **High Hrothgar**, where **Arngeir** and the silent Greybeards test the Dragonborn. *The Voice, made vivid:* the Greybeards demonstrate the Thu'um and it is plainly a force the party will never command — they meditate on it, the party endures it. Arngeir sends them to recover the **Horn of Jurgen Windcaller** from the barrow of **Ustengrav** as proof of their resolve. *Branch:* the party may treat the Greybeards as the whole answer, or already be wondering who else hunts dragons.
+  5. **A Blade in the Dark.** *Goal:* find the Horn — and find out who left a note in its place. *Scene:* at **Ustengrav** the Horn is gone, replaced by a message: *meet at the Sleeping Giant Inn, Riverwood.* There the innkeeper drops her disguise — she is **Delphine**, one of the last **Blades**. She returns the Horn and makes the party a darker offer: dragons are *resurrecting* from their burial mounds, and she can predict the next. They travel to the mound at **Kynesgrove** and witness **Alduin** himself tear a dead dragon — **Sahloknir** — back out of the earth (Alduin cannot be touched here; he flies off). The party kills Sahloknir. Delphine, convinced, names the party Dragonborn and her suspicion: the **Thalmor** know something. *Reward:* return the Horn to Arngeir for the Greybeards' full welcome; Delphine's alliance.
+  6. **Diplomatic Immunity & Alduin's Wall.** *Goal:* learn what the ancients knew about killing Alduin. *Scene:* infiltrate the **Thalmor Embassy** above Solitude (a guest-list party, a smuggled-gear caper, a quiet theft of the ambassador's files) to learn the Thalmor are also hunting an old man — **Esbern**, the last Blades loremaster — in the **Ratway** under Riften. Rescue him, and the reunited Blades lead the party to **Sky Haven Temple**, beyond the **Karthspire** (a Forsworn-held canyon; see Threats). Inside, **Alduin's Wall** — an Akaviri carving — tells how the ancient Nords brought the World-Eater down: not with steel alone, but with a power that could pull a dragon out of the sky and make it *mortal* and *afraid*. They called it **Dragonrend**, and it is lost. *Reward:* the Blades' katana **Dragonbane** is found in the temple. *Major branch — the war:* if Skyrim's civil war is in the party's way (it blocks the trap at Beat 9), the Greybeards can host a truce — **Season Unending** — where the party brokers a ceasefire between Tullius and Ulfric. This is also the doorway into the **Civil War** frame.
+  7. **The Throat of the World & the Elder Scroll.** *Goal:* recover Dragonrend the only way left — from an **Elder Scroll**. *Scene:* climb past High Hrothgar to the summit and meet **Paarthurnax**, the ancient dragon who leads the Greybeards and once served Alduin before turning against him. He reveals the **Time-Wound**, a scar in time at the summit where the ancient heroes first used Dragonrend against Alduin — and that an **Elder Scroll** read there can let a mind reach across the centuries and *witness* the lost power. Finding the Scroll is its own delve: the College of Winterhold's librarian and the half-mad scholar **Septimus Signus** point the party down through **Alftand** into the vast underground twilight of **Blackreach**, to the **Tower of Mzark**, where a Dwemer orrery yields the **Elder Scroll (Dragon)**. *Reward:* the Elder Scroll; passage through Blackreach (a wonder in itself). *Optional branch — Paarthurnax's life:* the Blades will, sooner or later, demand the party kill Paarthurnax for his ancient crimes. Refusing costs the Blades' support; obeying costs an irreplaceable ally for the finale. Leave the choice with the party (see **Climax**).
+  8. **Alduin's Bane — the Time-Wound.** *Goal:* learn Dragonrend and see it loosed, once, to break Alduin. *Scene:* the party reads the **Elder Scroll** at the Time-Wound. The world unspools backward: they witness the three ancient heroes — **Gormlaith, Hakon, and Felldir** — wield Dragonrend and drive Alduin off at the dawn of history. The vision *is* the weapon: having seen it, the party (through the Dragonborn, or as a one-time ritual the Warden narrates) can invoke Dragonrend **this once, in this place**. Alduin, drawn by the disturbance in time, descends to stop them — and the party, with Paarthurnax fighting beside them, grounds the World-Eater and beats him bloody. He does not die. He flees, beaten for the first time in an age, north and east toward his secret stronghold. *No player Shout results from this* — Dragonrend is spent with the vision; what the party gains is knowledge of *where Alduin draws his strength*, and that he can be hurt. *Reward:* Paarthurnax as a sworn ally; the certainty that Alduin is mortal.
+  9. **The Fallen — the Trap at Dragonsreach.** *Goal:* capture a living dragon and wring Alduin's hiding place out of it. *Scene:* the wise reveal that **Dragonsreach** in Whiterun was *built* to hold a dragon — the great wooden yoke on the **Great Porch** was a dragon-trap in the old days. Paarthurnax and Esbern give the party the name of a dragon loyal enough to Alduin to know where he hides: **Odahviing**. The party convinces the Jarl of Whiterun to bait the trap (this is where an unsettled **Civil War** must first be paused via Season Unending). *The set-piece:* the party lures Odahviing to the porch, fights him down to half his strength in the open hall, and **springs the trap** — the ancient yoke slams shut on the dragon's neck. *This is staged entirely in the fiction:* the party's job is to survive the fight and trip the mechanism; no Shout and no player rule is required to close it. *Branch:* interrogate the caged Odahviing. He respects strength; beaten and impressed, he agrees to carry the party to **Skuldafn**, Alduin's mountain temple, which no mortal can otherwise reach. *Reward:* **Odahviing** as a dragon ally (see Rewards & Threats).
+  10. **The World-Eater's Eyrie — Skuldafn.** *Goal:* reach Alduin's portal and follow him through it. *Scene:* Odahviing flies the party (alone — no hirelings or mounts) to **Skuldafn**, a ruined dragon-priest temple high in the eastern mountains, guarded by a circling **Dragon**, a _detachment_ of **draugr**, and the dragon priest **Nahkriin** who holds the key. *Obstacle:* fight across the courtyard and up the temple steps; the pictograph puzzle on the locked door; the duel with Nahkriin for his staff. *The turn:* Nahkriin's staff powers the **portal arch**; activating it opens the way to **Sovngarde**, the Nordic afterlife where Alduin has fled to feed on the souls of the honored dead. The party steps through. *Reward:* the dragon-priest mask **Nahkriin** (see Rewards — and warn the party that Skuldafn cannot be reached again once they step through; whatever they leave there is lost for good).
+  11. **Sovngarde & Dragonslayer.** *Goal:* end the World-Eater for good, with allies at the party's side. *Scene:* Sovngarde is a misted golden country, and the mist is Alduin's snare — it swallows the souls of the brave so he can devour them. The party crosses it (a lost soul — a Stormcloak newly fallen in the war — explains the trick), duels the gate-guardian **Tsun** for the right to enter the **Hall of Valor**, and there finds **Ysgramor** and the three ancient heroes — **Gormlaith, Hakon, and Felldir** — who first beat Alduin. They join the party. *Climax:* the heroes' Voices tear away Alduin's protecting mist, the party grounds him a final time, and — with the three heroes fighting at their side — the party lands the killing blow on the World-Eater. See **Climax** below. *Reward:* the world saved; the party walks back into Skyrim as the slayers of the World-Eater.
+
+  **Climax.**
+
+  Two reckonings: a question of conscience before the end, and the last battle itself.
+
+  ### The Paarthurnax Question (after Beat 8, before Skuldafn)
+
+  The Blades will demand the death of **Paarthurnax** for crimes committed at the dawn of history. The party chooses:
+
+  - **Refuse.** Keep faith with the ancient dragon. The Blades withdraw their support and will not lift a hand for the rest of the arc — but **Paarthurnax stays their ally**, and the table keeps its mentor. Most parties refuse; let the cost (no Blades) and the reward (the old dragon's counsel, now and after) both be real.
+  - **Obey.** Climb to the summit and kill Paarthurnax (use his stat block above). The Blades resume their support — but give **no reward**, and the party has lost its mentor for good. A grim, lawful choice; do not punish it with Warden disapproval, but let the empty summit speak.
+
+  ### Dragonslayer — the last battle in Sovngarde
+
+  Alduin waits in the misted Shadowed Vale of Sovngarde, feeding on the souls he has snared. The party has crossed the bridge, won the Hall of Valor, and gathered their allies. Resolutions turn on *who stands with them*:
+
+  - **With the heroes.** The three ancient heroes' Voices tear away Alduin's mist and pin the World-Eater to the ground (Dragonrend, supplied by allies — never by a PC). While they Shout he is no longer beyond reach: he cannot fly, and he can be hurt. The party closes — **Dragonbane** biting deep, the heroes' blades beside their own — and lands the killing blow. Alduin is destroyed; his soul cannot be absorbed (he is no ordinary dragon). The world is saved; the mist clears; the snared souls go free. **Tsun** returns the party to the Throat of the World as legends, **Hero of Skyrim** (+3 Renown). This is the intended ending.
+  - **Without the heroes.** If the party somehow reaches Alduin without recruiting Gormlaith, Hakon, and Felldir (they refused Tsun, fled the Hall, or skipped the recruitment), Alduin keeps his mist and his flight — and simply will not stay down. The party cannot win the fight as written; they are driven back to the bridge to regroup and *go recruit the heroes*. There is no path to victory that the party walks alone — the whole arc is about gathering allies, and the finale enforces it.
+  - **The cost of the climb.** Sovngarde is the land of the dead, and the party fights at the edge of it. A PC who falls here (0 STR) may, at the Warden's discretion and the table's taste, *remain* in the Hall of Valor among the honored dead — a heroic death that still counts toward the World-Eater's defeat, the survivor(s) carrying the tale home.
+
+  When Alduin falls, the Dragon Crisis ends. The party walks back into a Skyrim still at war (or freshly at peace, if they settled it) — scarred, renowned, and free to take up the **Civil War**, the **Companions**, the **College**, the **Thieves Guild**, the **Dark Brotherhood**, a **Daedric** bargain, or the troubles of **Dawnguard** and far **Solstheim**. The dragons that remain are leaderless now; some, like Odahviing, may even be reasoned with. The World-Eater is gone from the world — for this age.
+
+  **Also in the frame:** The Elder Scroll & Dragonrend (how the "lost power" works) (`didact rules lookup the main quest …`).
+
+  **The frame's records.** `didact gen run elder-scrolls-skyrim.frame --prefill '{"frame": "The Main Quest"}' --auto` drafts the region, 13 places, 15 people, 3 threats, its factions and its clocks, for the world's system; `gen commit` writes them.
+
+  **Not trackers.** The War in the Way: not a die but the state of the civil war: while the war is unsettled and Whiterun contested, the Jarl won't lend Dragonsreach for the trap (Beat 9 is blocked) until Season Unending or one side wins; run it from the Civil War frame, or by fiat.
+
+  **Bestiary** (Elder Scrolls 2e / Grimscrolls): Dragon → `dragon` / `dragon`; Frost Dragon → `frost-dragon` / `dragon`; Elder Dragon → `elder-dragon` / `dragon`; Ancient Dragon → `ancient-dragon` / `dragon`; Draugr → `draugr` / `draugr`; Draugr Overlord → `draugr-overlord` / `draugr`; Draugr Deathlord → `draugr-deathlord` / `draugr`; Dragon Priest → `dragon-priest` / `dragon-priest`; Skeleton → `skeleton` / `skeleton`; Frostbite Spider → `frostbite-spider` / `frostbite-spider`; Frost Troll → `frost-troll` / `troll`; Bear → `bear` / `bear`; Wolf → `wolf` / `wolf-pack`; Bandit → `bandit` / `bandits`; Forsworn → `forsworn` / `forsworn`; Forsworn Briarheart → `forsworn-briarheart` / (no Grimscrolls card); Hagraven → `hagraven` / `hagraven`; Falmer → `falmer` / `falmer`; Chaurus → `chaurus` / `chaurus`; Thalmor Justiciar → `thalmor-justiciar` / `thalmor-justiciars`; Dwarven Spider → `dwarven-spider` / `dwarven-spider`; Dwarven Sphere → `dwarven-sphere` / `dwarven-sphere`.
+
+  **Rewards in each system's catalog:** Dragonbane (elder-scrolls-2e.dragonbane · grimscrolls.dragonbane); The Nahkriin mask (elder-scrolls-2e.nahkriin · grimscrolls.dragon-priest-mask); Sworn Housecarl (elder-scrolls-2e.sworn-housecarl); The Elder Scroll (Dragon) (grimscrolls.an-elder-scroll).
+source: campaigns/01-the-main-quest#pitch
+---
+id: the-main-quest-region
+type: loc
+name: Skyrim, the Mountain, and the Bridge of Worlds
+tags: [the-main-quest, region]
+mechanics:
+  elder-scrolls-2e: {kind: region}
+body: |-
+  ## GM notes
+
+  A whole province, plus two stranger places at the end.
+source: campaigns/01-the-main-quest#the-place--skyrim-the-mountain-and-the-bridge-of-worlds
+---
+id: the-main-quest-helgen
+type: loc
+name: Helgen
+tags: [the-main-quest, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  A walled town in Falkreath Hold, now a smoking ruin. The campaign's spark; the keep's escape tunnel is the party's first dungeon.
+source: campaigns/01-the-main-quest#the-place--skyrim-the-mountain-and-the-bridge-of-worlds
+---
+id: the-main-quest-riverwood
+type: loc
+name: Riverwood
+tags: [the-main-quest, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  A river-mill village under Bleak Falls Barrow. Alvor (Imperial-leaning) and Gerdur (Stormcloak kin) outfit the party; the Sleeping Giant Inn is Delphine's front (Beat 5).
+source: campaigns/01-the-main-quest#the-place--skyrim-the-mountain-and-the-bridge-of-worlds
+---
+id: the-main-quest-whiterun-and-dragonsreach
+type: loc
+name: Whiterun & Dragonsreach
+tags: [the-main-quest, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  The Jewel of the North, neutral in the war under **Jarl Balgruuf the Greater**. Dragonsreach is the court, the dragon-trap on the Great Porch (Beat 9), and the seat of Farengar's research. **Jorrvaskr** (the Companions) and the **Skyforge** stand nearby.
+source: campaigns/01-the-main-quest#the-place--skyrim-the-mountain-and-the-bridge-of-worlds
+---
+id: the-main-quest-western-watchtower
+type: loc
+name: Western Watchtower
+tags: [the-main-quest, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  A ruined tower on Whiterun's tundra; the site of the Mirmulnir fight and the soul-absorption (Beat 3).
+source: campaigns/01-the-main-quest#the-place--skyrim-the-mountain-and-the-bridge-of-worlds
+---
+id: the-main-quest-high-hrothgar-and-the-7-000-steps
+type: loc
+name: High Hrothgar & the 7,000 Steps
+tags: [the-main-quest, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  The Greybeards' monastery near the summit of the **Throat of the World**, reached by the long stair above **Ivarstead**. Cold, silent, immense (Beat 4, and the truce of Beat 6).
+source: campaigns/01-the-main-quest#the-place--skyrim-the-mountain-and-the-bridge-of-worlds
+---
+id: the-main-quest-the-throat-of-the-world
+type: loc
+name: The Throat of the World
+tags: [the-main-quest, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  (*summit*) Above High Hrothgar: Paarthurnax's perch and the **Time-Wound** (Beats 7–8). The highest place in Skyrim.
+source: campaigns/01-the-main-quest#the-place--skyrim-the-mountain-and-the-bridge-of-worlds
+---
+id: the-main-quest-the-thalmor-embassy-and-the-ratway
+type: loc
+name: The Thalmor Embassy & the Ratway
+tags: [the-main-quest, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  The High-Elf legation above Solitude (a social/stealth caper) and the rat-warren under Riften where Esbern hides (Beat 6).
+source: campaigns/01-the-main-quest#the-place--skyrim-the-mountain-and-the-bridge-of-worlds
+---
+id: the-main-quest-the-karthspire-and-sky-haven-temple
+type: loc
+name: The Karthspire & Sky Haven Temple
+tags: [the-main-quest, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  A Forsworn-held canyon in the Reach guarding the Akaviri blood-sealed door to **Sky Haven Temple**, home of the Blades and **Alduin's Wall** — and the sword **Dragonbane** (Beat 6).
+source: campaigns/01-the-main-quest#the-place--skyrim-the-mountain-and-the-bridge-of-worlds
+---
+id: the-main-quest-alftand-blackreach-the-tower-of-mzark
+type: loc
+name: Alftand → Blackreach → the Tower of Mzark
+tags: [the-main-quest, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  A frozen Dwemer ruin that drops into Blackreach, an enormous fungal cavern-world beneath Skyrim, lit by glowing motes. The Tower of Mzark holds the **Elder Scroll** (Beat 7). Falmer, chaurus, and Dwarven automatons throughout.
+source: campaigns/01-the-main-quest#the-place--skyrim-the-mountain-and-the-bridge-of-worlds
+---
+id: the-main-quest-skuldafn
+type: loc
+name: Skuldafn
+tags: [the-main-quest, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  Alduin's dragon-priest temple, high in the eastern mountains, reachable only on a dragon's back. Draugr, a guardian Dragon, **Nahkriin**, and the portal to Sovngarde (Beat 10).
+source: campaigns/01-the-main-quest#the-place--skyrim-the-mountain-and-the-bridge-of-worlds
+---
+id: the-main-quest-sovngarde
+type: loc
+name: Sovngarde
+tags: [the-main-quest, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  The Nordic hall of the honored dead: a misted valley, the **Hall of Valor**, the whale-bone bridge guarded by **Tsun**. Alduin feeds here. The final battlefield (Beat 11).
+source: campaigns/01-the-main-quest#the-place--skyrim-the-mountain-and-the-bridge-of-worlds
+---
+id: the-main-quest-mirmulnir
+type: monster
+name: Mirmulnir
+aliases: [Mirmulnir (the Watchtower dragon)]
+knowledge: secret
+tags: [the-main-quest, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Main Quest'
+    hp: 12
+    armor: 2
+    STR: 16
+    DEX: 13
+    WIL: 16
+    attacks:
+    - {name: bite, damage: d10}
+    - name: breath
+      damage: d8
+      qualities: [blast]
+    abilities:
+    - "A detachment: individuals' attacks on it are Impaired (unless blast); its attacks on individuals
+      are Enhanced and blast."
+    critical: as Dragon. When it dies, its flesh burns away and the Dragonborn absorbs its soul — 
+      narrate the rush of strength and the distant Voice of the Greybeards.
+  grimscrolls:
+    category: Bosses of Tamriel
+    tier: boss
+    role: blaster
+    sights: a shadow crossing the whole valley
+    sounds: a roar that arrives before the sound of wings
+    smells: scorched pine and hot stone
+    pools:
+    - name: The Dragon
+      dice: 8
+      traits: armored in scale and pride, and reachable only once it is grounded
+      moves: [Bite and Toss, Tail Sweep]
+    - name: Its Wings
+      dice: 6
+      traits: bring it down with arrows, a ballista, a rival's challenge, or a Shout that names it 
+        mortal
+      moves: [Strafe the Line, Wheel Away]
+    - name: Its Thu'um
+      dice: 4
+      traits: fire or frost in a single word; break its breath and you break its concentration
+      moves: [Breath of Fire, Shout the Ranks Apart]
+    fail: It takes to the sky with someone in its jaws — or it finishes the town it came for.
+    wants: dominion, tribute, and to be answered — a dragon challenged or flattered in its own 
+      tongue may prefer talk to killing
+    note: "A linked challenge (6d + 4d + 8d): the Dragon itself is locked until it is grounded or goaded
+      down. **Frost** dragons trade fire for ice. **Blood**, **Elder**, and **Ancient** dragons add a
+      die to each part in turn; a **Revered** or **Legendary** one drains what it bites. A dragon's soul
+      does not rest: unless a Dragonborn takes it, the bones can be raised again."
+body: |-
+  ## GM notes
+
+  *the Watchtower dragon*
+
+  The first dragon the party fights on the ground (Beat 3), at the Western Watchtower with Irileth and a handful of Whiterun guards (run the guards as a friendly detachment that soaks a breath or two). Breathes fire.
+
+  Elder Scrolls 2e: 12 HP, 2 Armor, 16 STR, 13 DEX, 16 WIL, bite (d10), breath (d8, blast), detachment.
+
+  The frame runs it as the Bestiary's Dragon (`elder-scrolls-2e.dragon`); the numbers are the same.
+
+  Grimscrolls: its card is `grimscrolls.dragon` (Dragon), in this record's grimscrolls block.
+source: campaigns/01-the-main-quest#mirmulnir-the-watchtower-dragon
+---
+id: the-main-quest-sahloknir
+type: monster
+name: Sahloknir
+aliases: [Sahloknir (the Kynesgrove dragon)]
+knowledge: secret
+tags: [the-main-quest, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Main Quest'
+    hp: 12
+    armor: 2
+    STR: 16
+    DEX: 13
+    WIL: 16
+    attacks:
+    - {name: bite, damage: d10}
+    - name: breath
+      damage: d8
+      qualities: [blast]
+    abilities:
+    - "A detachment: individuals' attacks on it are Impaired (unless blast); its attacks on individuals
+      are Enhanced and blast."
+    - A sweep of its tail knocks those behind it flat unless they pass a STR save.
+    critical: the breath engulfs the target; they are set ablaze or frozen fast, and must be dragged
+      clear.
+  grimscrolls:
+    category: Bosses of Tamriel
+    tier: boss
+    role: blaster
+    sights: a shadow crossing the whole valley
+    sounds: a roar that arrives before the sound of wings
+    smells: scorched pine and hot stone
+    pools:
+    - name: The Dragon
+      dice: 8
+      traits: armored in scale and pride, and reachable only once it is grounded
+      moves: [Bite and Toss, Tail Sweep]
+    - name: Its Wings
+      dice: 6
+      traits: bring it down with arrows, a ballista, a rival's challenge, or a Shout that names it 
+        mortal
+      moves: [Strafe the Line, Wheel Away]
+    - name: Its Thu'um
+      dice: 4
+      traits: fire or frost in a single word; break its breath and you break its concentration
+      moves: [Breath of Fire, Shout the Ranks Apart]
+    fail: It takes to the sky with someone in its jaws — or it finishes the town it came for.
+    wants: dominion, tribute, and to be answered — a dragon challenged or flattered in its own 
+      tongue may prefer talk to killing
+    note: "A linked challenge (6d + 4d + 8d): the Dragon itself is locked until it is grounded or goaded
+      down. **Frost** dragons trade fire for ice. **Blood**, **Elder**, and **Ancient** dragons add a
+      die to each part in turn; a **Revered** or **Legendary** one drains what it bites. A dragon's soul
+      does not rest: unless a Dragonborn takes it, the bones can be raised again."
+body: |-
+  ## GM notes
+
+  *the Kynesgrove dragon*
+
+  Run as a Dragon, but resurrected at full vigor by Alduin in front of the party. Alduin himself cannot be harmed in this scene — he is established as untouchable until the Time-Wound. He resurrects Sahloknir, mocks the party, and flies off; the party fights Sahloknir alone (Beat 5).
+
+  Elder Scrolls 2e: the Bestiary's Dragon (`elder-scrolls-2e.dragon`), as the frame runs it: its numbers are copied here.
+
+  Grimscrolls: its card is `grimscrolls.dragon` (Dragon), in this record's grimscrolls block.
+source: campaigns/01-the-main-quest#sahloknir-the-kynesgrove-dragon
+---
+id: the-main-quest-nahkriin
+type: monster
+name: Nahkriin
+aliases: [Nahkriin (the gatekeeper of Skuldafn)]
+knowledge: secret
+tags: [the-main-quest, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Main Quest'
+    hp: 12
+    armor: 1
+    STR: 8
+    DEX: 13
+    WIL: 18
+    attacks:
+    - {name: life-draining touch, damage: d8}
+    - name: elemental bolt
+      damage: d8
+      qualities: [blast]
+    impaired_by: [magic]
+    critical: a death-curse strikes the target for 1d6 WIL. When he falls he drops the Nahkriin mask
+      and the portal-staff.
+  grimscrolls:
+    category: Bosses of Tamriel
+    tier: boss
+    role: blaster
+    sights: a coffin lid thrown the length of the hall
+    sounds: a dry voice Shouting in the dragon tongue
+    smells: lightning and embalming salts
+    pools:
+    - name: The Priest
+      dice: 8
+      traits: adrift above the floor, warded, and always backing away
+      moves: [Lightning Down the Hall, Shout the Ranks Apart]
+    - name: The Thralls in the Walls
+      dice: 6
+      traits: draugr who rise in shifts to feed their lord their own life
+      moves: [Burst from the Niches, Kneel and Feed]
+    - name: The Staff
+      dice: 4
+      traits: a wall of storm across the floor, and an atronach to hold the gap
+      moves: [Wall of Storms, Atronach in the Gap]
+    fail: It leaves the barrow with its dead behind it, and the nearest hold has a master it did not
+      choose.
+    wants: to rule again in the dragons' name — and never to see its mask on a living face
+    note: "A linked challenge (6d + 4d + 8d): the Priest is locked while its thralls stand. Break the
+      Staff or corner the Priest for a setup. Each is named for its mask, which outlasts it. **Morokei**
+      of Labyrinthian holds the Staff of Magnus (+1t to work magic near him). **Nahkriin** keeps Alduin's
+      portal at Skuldafn. **Hevnoraak** planned his own return, and the ghost jailing him in Valthume
+      wants help."
+body: |-
+  ## GM notes
+
+  *the gatekeeper of Skuldafn*
+
+  The masked priest who holds the staff that powers Alduin's portal at Skuldafn (Beat 10). Magic against it is Impaired; immune to poison; it backpedals, throws Destruction bolts, raises nearby draugr, and shields itself with wards.
+
+  Elder Scrolls 2e: 12 HP, 1 Armor, 8 STR, 13 DEX, 18 WIL, life-draining touch (d8), elemental bolt (d8, blast).
+
+  The frame runs it as the Bestiary's Dragon Priest (`elder-scrolls-2e.dragon-priest`); the numbers are the same.
+
+  Grimscrolls: its card is `grimscrolls.dragon-priest` (Dragon Priest), in this record's grimscrolls block.
+source: campaigns/01-the-main-quest#nahkriin-the-gatekeeper-of-skuldafn
+---
+id: the-main-quest-tsun
+type: monster
+name: Tsun
+aliases: [Tsun (the guardian of the bridge)]
+knowledge: secret
+tags: [the-main-quest, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Main Quest'
+    hp: 15
+    armor: 3
+    STR: 18
+    DEX: 14
+    WIL: 16
+    attacks:
+    - {name: ancient battleaxe, damage: d10}
+    - name: Shout
+      damage: d8
+      qualities: [blast]
+    abilities:
+    - He fights honorably and yields the moment a PC drops to 0 HP or lands a telling blow, then 
+      steps aside and salutes. His Shout knocks a struck target back (STR save or prone). Run him as
+      a hard but winnable single-foe duel, not a fight to the death.
+fields:
+  role: shield-thane of Shor, guardian of the whale-bone bridge into the Hall of Valor
+body: |-
+  ## GM notes
+
+  **Tsun** — shield-thane of Shor, guardian of the whale-bone bridge into the Hall of Valor; duels the party for the right to pass (stat block in Threats).
+
+  Shield-thane of Shor, who guards the whale-bone bridge to the Hall of Valor in Sovngarde (Beat 11). He fights the party not to kill but to test — a duel for the right to pass.
+
+  Elder Scrolls 2e: 15 HP, 3 Armor, 18 STR, 14 DEX, 16 WIL, ancient battleaxe (d10), Shout (d8, blast).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/01-the-main-quest#tsun-the-guardian-of-the-bridge
+---
+id: the-main-quest-odahviing
+type: monster
+name: Odahviing
+aliases: [Odahviing (the dragon ally)]
+knowledge: secret
+tags: [the-main-quest, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Main Quest'
+    hp: 16
+    armor: 3
+    STR: 16
+    DEX: 13
+    WIL: 18
+    attacks:
+    - {name: bite, damage: d10}
+    - name: Fire Breath
+      damage: d10
+      qualities: [blast]
+    abilities:
+    - "A detachment: individuals' attacks on it are Impaired (unless blast); its attacks on individuals
+      are Enhanced and blast."
+    - 'As an ally (from Beat 10 on): caged and impressed, Odahviing carries the party to Skuldafn (the
+      only way there) and, over its courtyard, can be asked for one strafing pass: a Fire Breath attack
+      (d10, blast) across a group of enemies. He will not follow them through the portal — no dragon can.
+      He is an ally, not a controllable PC mount with its own sheet.'
+    impaired_by: [fire]
+  grimscrolls:
+    category: Bosses of Tamriel
+    tier: boss
+    role: blaster
+    sights: a shadow crossing the whole valley
+    sounds: a roar that arrives before the sound of wings
+    smells: scorched pine and hot stone
+    pools:
+    - name: The Dragon
+      dice: 8
+      traits: armored in scale and pride, and reachable only once it is grounded
+      moves: [Bite and Toss, Tail Sweep]
+    - name: Its Wings
+      dice: 6
+      traits: bring it down with arrows, a ballista, a rival's challenge, or a Shout that names it 
+        mortal
+      moves: [Strafe the Line, Wheel Away]
+    - name: Its Thu'um
+      dice: 4
+      traits: fire or frost in a single word; break its breath and you break its concentration
+      moves: [Breath of Fire, Shout the Ranks Apart]
+    fail: It takes to the sky with someone in its jaws — or it finishes the town it came for.
+    wants: dominion, tribute, and to be answered — a dragon challenged or flattered in its own 
+      tongue may prefer talk to killing
+    note: "A linked challenge (6d + 4d + 8d): the Dragon itself is locked until it is grounded or goaded
+      down. **Frost** dragons trade fire for ice. **Blood**, **Elder**, and **Ancient** dragons add a
+      die to each part in turn; a **Revered** or **Legendary** one drains what it bites. A dragon's soul
+      does not rest: unless a Dragonborn takes it, the bones can be raised again."
+fields:
+  role: a great red dragon, proud and loyal to Alduin until the party out-fights and out-thinks him
+body: |-
+  ## GM notes
+
+  **Odahviing** — a great red dragon, proud and loyal to Alduin until the party out-fights and out-thinks him. Trapped at Dragonsreach, he becomes the party's mount to Skuldafn and a grudging ally (stat block in Threats).
+
+  As an enemy (the Dragonsreach fight, Beat 9): a proud red dragon loyal to Alduin. Fight him down to roughly half his HP on the Great Porch, then the ancient yoke is sprung in the fiction and the fight ends with his neck pinned — do not require a save or a Shout to close the trap; the party's task is to survive and trip the mechanism. He breathes fire, and fire damage against him is Impaired.
+
+  Elder Scrolls 2e: 16 HP, 3 Armor, 16 STR, 13 DEX, 18 WIL, bite (d10), Fire Breath (d10, blast), detachment.
+
+  The frame runs it as the Bestiary's Elder Dragon (`elder-scrolls-2e.elder-dragon`); the numbers are the same.
+
+  Grimscrolls: its card is `grimscrolls.dragon` (Dragon), in this record's grimscrolls block.
+source: campaigns/01-the-main-quest#odahviing-the-dragon-ally
+---
+id: the-main-quest-alduin
+type: monster
+name: Alduin
+aliases: ['Alduin, the World-Eater (final boss)', 'Alduin, the World-Eater']
+knowledge: secret
+tags: [the-main-quest, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Main Quest'
+    hp: 18
+    armor: 3
+    STR: 18
+    DEX: 14
+    WIL: 18
+    attacks:
+    - {name: bite, damage: d12}
+    - name: breath
+      damage: d10
+      qualities: [blast]
+    - name: meteor storm
+      damage: d8
+      qualities: [blast]
+    abilities:
+    - "A detachment: individuals' attacks on it are Impaired (unless blast); its attacks on individuals
+      are Enhanced and blast."
+    - Beyond reach until Dragonrend. In the Time-Wound battle (Beat 8) and the Sovngarde finale 
+      (Beat 11), Dragonrend is supplied by the Elder Scroll's vision and then by the three ancient 
+      heroes; while they Shout in concert, Alduin is forced to earth and the party can fight him as 
+      a grounded foe. Without that allied power he simply wheels overhead and flies off again, as he
+      does at Helgen and Kynesgrove. No player Shout is ever required or granted.
+    impaired_by: [fire, frost]
+    critical: he devours the target's soul. They die, and their soul is his — unless he is slain 
+      before the fight ends, which sets it free.
+  grimscrolls:
+    category: Named Threats & Legends
+    tier: boss
+    role: blaster
+    sights: a black shape putting out the stars
+    sounds: a Shout that makes the sky rain fire
+    smells: ash on a barrow wind
+    pools:
+    - name: Alduin
+      dice: 8
+      traits: nothing harms him on the wing, and nothing kills him in the mortal world
+      moves: [Fire from a Burning Sky, Seize and Toss]
+    - name: His Risen Kin
+      dice: 6
+      traits: dragons Shouted back out of their burial mounds
+      moves: [Raise the Mound, Send a Dragon in His Stead]
+    - name: The Soul-Snare
+      dice: 6
+      traits: a mist across Sovngarde where he hunts the honored dead
+      moves: [Devour the Lost, Draw the Mist Back]
+    fail: He is fed. He returns from Sovngarde greater than the old heroes found him, and there is 
+      no second prophecy.
+    wants: 'dominion over the world he was made to end — pride is the flaw: clear his mist and he comes
+      in a rage'
+    note: "A linked challenge (6d + 6d + 8d), and a campaign's last act. Without Dragonrend, the mortal-made
+      Shout that forces a dragon to know death, his pool can't drop. In the mortal world it can't drop
+      below 1d: beaten there, he flees by the portal at Skuldafn. He dies only in Sovngarde, with the
+      mist Shouted clear and the three heroes who first banished him beside you. No one takes his soul."
+fields: {role: 'the World-Eater, eldest dragon, firstborn of Akatosh'}
+body: |-
+  ## GM notes
+
+  **Alduin** — the World-Eater, eldest dragon, firstborn of Akatosh; raises the dead dragons and means to devour the world. The campaign's final foe (stat block in Threats).
+
+  The firstborn of Akatosh, devourer of the world. Fire and frost damage against him are Impaired. He breathes both, calls down a storm of burning stones, and can raise a slain dragon to fight beside him.
+
+  Elder Scrolls 2e: 18 HP, 3 Armor, 18 STR, 14 DEX, 18 WIL, bite (d12), breath (d10, blast), meteor storm (d8, blast), detachment (as in the Bestiary).
+
+  Elder Scrolls 2e's Bestiary has the same stat block: `elder-scrolls-2e.alduin`.
+
+  Grimscrolls: its card is `grimscrolls.alduin-the-world-eater` (Alduin, the World-Eater), in this record's grimscrolls block.
+source: campaigns/01-the-main-quest#alduin-the-world-eater-final-boss
+---
+id: the-main-quest-paarthurnax
+type: monster
+name: Paarthurnax
+aliases: [Paarthurnax (optional — only if the Blades' ultimatum is obeyed)]
+knowledge: secret
+tags: [the-main-quest, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Main Quest'
+    hp: 18
+    armor: 3
+    STR: 18
+    DEX: 13
+    WIL: 18
+    attacks:
+    - {name: bite, damage: d12}
+    - name: Fire Breath
+      damage: d10
+      qualities: [blast]
+    abilities:
+    - "A detachment: individuals' attacks on it are Impaired (unless blast); its attacks on individuals
+      are Enhanced and blast."
+  grimscrolls:
+    tier: boss
+    role: blaster
+    fact: "The old dragon on the Throat of the World: master of the Greybeards, once Alduin's lieutenant,
+      overcoming his own nature daily by meditation. He will trade Shouts and philosophy till dawn, and
+      the Blades want him dead for crimes older than writing. (4E 201)"
+fields: {role: the ancient dragon who leads the Greybeards from the summit}
+body: |-
+  ## GM notes
+
+  **Paarthurnax** — the ancient dragon who leads the Greybeards from the summit; once Alduin's lieutenant, he rebelled and taught mortals the Voice. Slow, sad, wise. The party's greatest dragon ally — *unless* the Blades force the issue (stat block in Threats, for the optional fight only).
+
+  The party's mentor and greatest dragon ally. Provide this block only if the party chooses to kill him for the Blades (see Climax). He does not fight back in earnest against those he counts as kin — but he is an Ancient Dragon's equal if cornered. Killing him forfeits his counsel and weighs on the table; the Blades give no reward (their support resuming is the only "gain").
+
+  Elder Scrolls 2e: 18 HP, 3 Armor, 18 STR, 13 DEX, 18 WIL, bite (d12), Fire Breath (d10, blast), detachment.
+
+  Grimscrolls: its Face is `grimscrolls.paarthurnax` (Paarthurnax), in this record's grimscrolls block.
+source: campaigns/01-the-main-quest#paarthurnax-optional--only-if-the-blades-ultimatum-is-obeyed
+---
+id: the-main-quest-arngeir
+type: npc
+name: Arngeir
+knowledge: secret
+tags: [the-main-quest, cast]
+fields:
+  role: spokesman of the Greybeards and the only one of the four who speaks freely (the others' 
+    Voices would level the room)
+mechanics:
+  grimscrolls:
+    tier: elite
+    role: blaster
+    fact: Four old monks at High Hrothgar who keep the Way of the Voice, of whom only Arngeir can 
+      speak without wrecking the room. They teach a Dragonborn and tell everyone else to go home. 
+      (4E 201)
+body: |-
+  ## GM notes
+
+  **Arngeir** — spokesman of the **Greybeards** and the only one of the four who speaks freely (the others' Voices would level the room). Stern, devout, the party's tutor in the Way of the Voice. Hosts the Season Unending truce.
+
+  Grimscrolls: its Face is `grimscrolls.the-greybeards` (The Greybeards), in this record's grimscrolls block.
+source: campaigns/01-the-main-quest#cast
+---
+id: the-main-quest-delphine
+type: npc
+name: Delphine
+knowledge: secret
+tags: [the-main-quest, cast]
+fields: {role: one of the last Blades}
+mechanics:
+  grimscrolls:
+    tier: elite
+    role: tactician
+    fact: 'Innkeeper at Riverwood and one of the last Blades, alive because she trusts no one: she once
+      killed a whole Thalmor assassination team. She tests you before she tells you anything, and wants
+      every dragon dead, the friendly one included. (4E 201)'
+body: |-
+  ## GM notes
+
+  **Delphine** — one of the last **Blades**; sharp, suspicious, hidden as a Riverwood innkeeper. Tests the party, reforms the order, and later demands Paarthurnax's death.
+
+  Grimscrolls: its Face is `grimscrolls.delphine` (Delphine), in this record's grimscrolls block.
+source: campaigns/01-the-main-quest#cast
+---
+id: the-main-quest-esbern
+type: npc
+name: Esbern
+knowledge: secret
+tags: [the-main-quest, cast]
+fields: {role: 'the last Blades loremaster, hiding in the Ratway'}
+body: |-
+  ## GM notes
+
+  **Esbern** — the last Blades loremaster, hiding in the Ratway; the man who reads Alduin's Wall and knows where the World-Eater draws his strength. Frail, brilliant, half-broken by years of running.
+source: campaigns/01-the-main-quest#cast
+---
+id: the-main-quest-jarl-balgruuf-the-greater
+type: npc
+name: Jarl Balgruuf the Greater
+knowledge: secret
+tags: [the-main-quest, cast]
+fields: {role: Jarl of Whiterun}
+body: |-
+  ## GM notes
+
+  **Jarl Balgruuf the Greater** — Jarl of Whiterun; tries to keep his Hold out of the war while a dragon burns the countryside. Makes the party Thane; reluctantly lends Dragonsreach for the trap.
+source: campaigns/01-the-main-quest#cast
+---
+id: the-main-quest-ralof
+type: npc
+name: Ralof
+knowledge: secret
+tags: [the-main-quest, cast]
+fields:
+  role: 'with Hadvar: the Stormcloak and the Imperial soldier who each offer to lead the party out of
+    Helgen'
+body: |-
+  ## GM notes
+
+  **Ralof / Hadvar** — the Stormcloak and the Imperial soldier who each offer to lead the party out of Helgen. Whichever the party follows seeds the **Civil War** frame.
+source: campaigns/01-the-main-quest#cast
+---
+id: the-main-quest-hadvar
+type: npc
+name: Hadvar
+knowledge: secret
+tags: [the-main-quest, cast]
+fields:
+  role: 'with Ralof: the Stormcloak and the Imperial soldier who each offer to lead the party out of Helgen'
+body: |-
+  ## GM notes
+
+  **Ralof / Hadvar** — the Stormcloak and the Imperial soldier who each offer to lead the party out of Helgen. Whichever the party follows seeds the **Civil War** frame.
+source: campaigns/01-the-main-quest#cast
+---
+id: the-main-quest-gormlaith-golden-hilt
+type: npc
+name: Gormlaith Golden-Hilt
+knowledge: secret
+tags: [the-main-quest, cast]
+fields:
+  role: 'with Hakon One-Eye and Felldir the Old: the three ancient heroes who first beat Alduin, now in
+    the Hall of Valor'
+body: |-
+  ## GM notes
+
+  **Gormlaith Golden-Hilt, Hakon One-Eye, Felldir the Old** — the three ancient heroes who first beat Alduin, now in the Hall of Valor. They join the party for the last battle, and *their* Voices are Dragonrend in the finale.
+source: campaigns/01-the-main-quest#cast
+---
+id: the-main-quest-hakon-one-eye
+type: npc
+name: Hakon One-Eye
+knowledge: secret
+tags: [the-main-quest, cast]
+fields:
+  role: 'with Gormlaith Golden-Hilt and Felldir the Old: the three ancient heroes who first beat Alduin,
+    now in the Hall of Valor'
+body: |-
+  ## GM notes
+
+  **Gormlaith Golden-Hilt, Hakon One-Eye, Felldir the Old** — the three ancient heroes who first beat Alduin, now in the Hall of Valor. They join the party for the last battle, and *their* Voices are Dragonrend in the finale.
+source: campaigns/01-the-main-quest#cast
+---
+id: the-main-quest-felldir-the-old
+type: npc
+name: Felldir the Old
+knowledge: secret
+tags: [the-main-quest, cast]
+fields:
+  role: 'with Gormlaith Golden-Hilt and Hakon One-Eye: the three ancient heroes who first beat Alduin,
+    now in the Hall of Valor'
+body: |-
+  ## GM notes
+
+  **Gormlaith Golden-Hilt, Hakon One-Eye, Felldir the Old** — the three ancient heroes who first beat Alduin, now in the Hall of Valor. They join the party for the last battle, and *their* Voices are Dragonrend in the finale.
+source: campaigns/01-the-main-quest#cast
+---
+id: the-main-quest-general-tullius
+type: npc
+name: General Tullius
+knowledge: secret
+tags: [the-main-quest, cast]
+fields: {role: 'with Ulfric Stormcloak: the leaders of the two sides of the civil war'}
+mechanics:
+  grimscrolls:
+    tier: elite
+    role: tactician
+    fact: 'Military governor of Skyrim at Castle Dour, sent to end a rebellion with too few legionaries.
+      Nord custom baffles him and the Thalmor disgust him: show him a way to hurt them inside the treaty
+      and he finds the men. (4E 201)'
+body: |-
+  ## GM notes
+
+  **General Tullius & Ulfric Stormcloak** — the leaders of the two sides of the civil war; present at Helgen, and across the table at Season Unending. Their war is the backdrop and the one obstacle that can block the trap at Dragonsreach.
+
+  Grimscrolls: its Face is `grimscrolls.general-tullius` (General Tullius), in this record's grimscrolls block.
+source: campaigns/01-the-main-quest#cast
+---
+id: the-main-quest-ulfric-stormcloak
+type: npc
+name: Ulfric Stormcloak
+knowledge: secret
+tags: [the-main-quest, cast]
+fields: {role: 'with General Tullius: the leaders of the two sides of the civil war'}
+mechanics:
+  grimscrolls:
+    tier: elite
+    role: brute
+    fact: 'Jarl of Windhelm, schooled by the Greybeards, who challenged the High King to a duel and Shouted
+      him down: his Voice staggers a rank (+1t for a beat). Whether he is a hero or a usurper depends
+      on the hall you ask in. (4E 201)'
+body: |-
+  ## GM notes
+
+  **General Tullius & Ulfric Stormcloak** — the leaders of the two sides of the civil war; present at Helgen, and across the table at Season Unending. Their war is the backdrop and the one obstacle that can block the trap at Dragonsreach.
+
+  Grimscrolls: its Face is `grimscrolls.ulfric-stormcloak` (Ulfric Stormcloak), in this record's grimscrolls block.
+source: campaigns/01-the-main-quest#cast
+---
+id: the-main-quest-the-world-eaters-hunger
+type: track
+name: The World-Eater's Hunger
+knowledge: secret
+tags: [the-main-quest, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: (d6) Alduin's growing power as he resurrects the dead. Ticks once each time a new dragon 
+  attacks a settlement or a named dragon is resurrected (Mirmulnir, Sahloknir, each random dragon 
+  the Warden drops on a town), and once whenever the party spends a whole session away from the main
+  quest. At 1–3, dragon attacks are rare and the roads are merely dangerous. At 4–5, dragons appear 
+  at burial mounds and over villages; the dead walk more boldly. At 6, the sky is wrong everywhere —
+  dragon attacks are constant background dread until the party reaches Skuldafn. The clock stops 
+  mattering once the party steps through the portal.
+source: campaigns/01-the-main-quest#clocks
+---
+id: the-main-quest-the-blades-patience
+type: track
+name: The Blades' Patience
+knowledge: secret
+tags: [the-main-quest, clock]
+kind: clock
+size: 4
+value: {value: 1, size: 4}
+note: (d4, starting at 1) How hard Delphine and Esbern press for Paarthurnax's death. Ticks the 
+  first time the party meets Paarthurnax, again when they recover the Elder Scroll, and again after 
+  the Time-Wound. At 4, the Blades issue the ultimatum (see Climax → The Paarthurnax Question) and 
+  withhold their support until it is answered.
+source: campaigns/01-the-main-quest#clocks
+---
+id: the-main-quest-the-war-in-the-way
+type: track
+name: The War in the Way
+knowledge: secret
+tags: [the-main-quest, clock]
+kind: counter
+min: 0
+value: 0
+note: "(Civil War standing) Not a die — the state of the civil war. While the war is unsettled and Whiterun
+  is contested, the Jarl will not risk Dragonsreach on a dragon-trap (Beat 9 is blocked) until the party
+  brokers Season Unending or one side wins outright. Resolve the war, or buy a truce, before the trap.
+  [not a die but the state of the civil war: while the war is unsettled and Whiterun contested, the Jarl
+  won't lend Dragonsreach for the trap (Beat 9 is blocked) until Season Unending or one side wins; run
+  it from the Civil War frame, or by fiat]"
+source: campaigns/01-the-main-quest#clocks

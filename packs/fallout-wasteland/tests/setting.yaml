@@ -1,0 +1,78 @@
+# The setting's tests: its tables land (each lookup cell once), and it plays under both Fallout
+# systems: the calendar, lore, the frames and vaults as text, one frame started and one vault
+# found, with each system's numbers and each system's trackers, and a frame on its own date.
+test: every-table
+table: all
+times: 3
+---
+test: under-fallout-2e
+help: "A Fallout 2e world with the setting: Fallout 3 started on the calendar's first day, its clocks as clocks, a vault found."
+script:
+  - world new cw --system fallout-2e --seed smoke
+  - pack enable fallout-wasteland
+  - campaign new purity --seed smoke
+  - run: time show
+    expect: "Tuesday, 23 October 2277 (fall)"
+  - run: lore scan 'The Enclave watches from Raven Rock while we hunt for the G.E.C.K.'
+    expect: ["lore:the-enclave", "lore:the-geck", "lore:wasteland-tone"]
+  - run: rules lookup fallout 3 clocks
+    expect: "Fallout 3: Clocks (fallout-wasteland.fallout-3-clocks"
+  - run: define geck
+    expect: "**G.E.C.K.** (fallout-wasteland)"
+  - run: "gen run fallout-wasteland.frame --prefill '{\"frame\": \"Fallout 3\"}' --auto"
+    expect: ["Fallout 3 opens Tuesday, 23 October 2277: the campaign's today.", "[clock-2] track Eden Clock", "Not trackers: Karma Clock: the party record's karma ladder"]
+  - run: gen commit g1
+    expect: "committed: 40 records (quest:fallout-3"
+  - run: track list --gm
+    expect: ["Eden Clock 0/4", "Purity Clock 0/6"]
+  - run: show 'Colonel Autumn' --gm
+    expect: ["fallout-2e: HP 10/10 · armor 2 · STR 14 · DEX 15 · WIL 14", "mechanics.grimfall.tier: elite"]
+  - run: show 'Three Dog' --gm
+    expect: "role: Galaxy News Radio host"
+  - run: "gen run fallout-wasteland.vault --prefill '{\"vault\": \"Vault 43\"}' --auto"
+    expect: ["monster The Panther", "monster Ghoulified Keeper", "the checklist"]
+  - run: gen commit g2
+    expect: "committed: 3 records (loc:vault-43"
+  - run: time advance 1 day
+    expect: ["Wednesday, 24 October 2277 (fall)", "weather-fall"]
+---
+test: under-grimfall
+help: "A Grimfall world with the setting: Fallout 76 started and the campaign moved to its date, its clocks as pools, Grimfall's cards on its threats."
+script:
+  - world new ap --system grimfall --seed smoke
+  - pack enable fallout-wasteland
+  - campaign new reclamation --seed smoke
+  - run: rules lookup vault 76
+    expect: "Vault 76 (fallout-wasteland.vault-76"
+  - run: "gen run fallout-wasteland.frame --prefill '{\"frame\": \"Fallout 76\"}' --auto"
+    expect: ["Before its first session the campaign moves there: `didact time set 'Monday, 23 October 2102'`", "kind: pool", "--prefill '{\"frame\": \"<the arc>\"}'"]
+  - run: gen commit g1
+    expect: "committed: 33 records (quest:fallout-76"
+  - run: time set 'Monday, 23 October 2102'
+    expect: "Monday, 23 October 2102 (fall)"
+  - run: track list --gm
+    expect: ["Chorus Clock 8d", "DEFCON Clock 6d", "MODUS Clock 6d"]
+  - run: show 'Morris Stevens, Progenitor Wendigo' --gm
+    expect: ["grimfall: category Predators & Horrors · role predator · tier tough", "mechanics.fallout-2e.hp: 12"]
+  - run: track roll chorus-clock
+    expect: "Chorus Clock"
+  - run: "gen run fallout-wasteland.vault --prefill '{\"vault\": \"Vault 63\"}' --auto"
+    expect: ["monster The Lost", "Under Grimfall it is a 5-point site"]
+---
+test: a-frame-on-its-own-date
+help: "A campaign opens on a frame's date, leap days are there, and once play has begun a frame behind the campaign is said to be past."
+script:
+  - world new mojave --system fallout-2e --seed dates
+  - pack enable fallout-wasteland
+  - run: campaign new courier --seed dates --date 'Wednesday, 19 October 2281'
+    expect: "Wednesday, 19 October 2281 (fall)"
+  - run: "gen run fallout-wasteland.frame --prefill '{\"frame\": \"Fallout: New Vegas\"}' --auto"
+    expect: "Fallout: New Vegas opens Wednesday, 19 October 2281: the campaign's today."
+  - run: campaign new leap --date '29 February 2280'
+    expect: "Sunday, 29 February 2280 (winter)"
+  - campaign new later --seed dates
+  - run: time advance 1457 days
+    expect: "Wednesday, 19 October 2281 (fall)"
+  - session start
+  - run: "gen run fallout-wasteland.frame --prefill '{\"frame\": \"Fallout 3\"}' --auto"
+    expect: "and the campaign is past it: play has begun"

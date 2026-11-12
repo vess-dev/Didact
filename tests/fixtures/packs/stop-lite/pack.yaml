@@ -1,0 +1,7 @@
+id: stop-lite
+name: Stop (test pack)
+kind: system
+version: 0.1.0
+description: "Generators that stop: one because of a campaign option, one because this game has none."
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

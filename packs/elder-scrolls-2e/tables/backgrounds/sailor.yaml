@@ -1,0 +1,24 @@
+# Sailor (backgrounds/sailor): the background's two d6 tables.
+table: sailor-1
+title: "What did the cold seas teach you?"
+dice: d6
+source: backgrounds/sailor#what-did-the-cold-seas-teach-you-roll-1d6
+entries:
+  1: "Sea-legs. You need not save to keep your feet on a pitching deck, on ice, or on wet stone."
+  2: "The Solstheim run. You crewed the Northern Maiden between Windhelm and Raven Rock under Gjalund Salt-Sage. You know the ash-choked coast of Solstheim and the Dunmer who live on it, and Gjalund will always give you passage for a song."
+  3: "The coast trade. You crewed an East Empire Company trader between Solitude and Windhelm, and learned which cargo \"falls overboard.\" You know every smuggler's cove on the northern coast, and which harbormasters take a cut."
+  4: {text: "The wreck. A wreck on the rocks left you the only soul to swim the freezing surf to shore. Your maximum HP is 1 higher, you need not save to swim in cold, rough, or dark water, and you can hold your breath twice as long as anyone should.", data: {extra_hp: true}}
+  5: {text: "The Blackblood Marauders. Pirates out of Broken Oar Grotto, on the Haafingar coast, took your ship, and you cut your way clear. Take a boarding cutlass (d8) and the Marauders' watchword, which will get you aboard any pirate ship on the Sea of Ghosts as a friend, until they learn what you did.", data: {gear: [{name: "Boarding cutlass", damage: "d8"}]}}
+  6: "Something under the hull. Out in the fog you saw the slaughterfish scatter, and something far larger turn beneath the keel. It marked you. Once per day, while in the water or fighting at its edge, re-roll a failed save."
+---
+table: sailor-2
+title: "What got you through the worst crossing?"
+dice: d6
+source: backgrounds/sailor#what-got-you-through-the-worst-crossing-roll-1d6
+entries:
+  1: {text: "Harpoon Line: Forty feet of tarred line for your harpoon. A creature the harpoon strikes is caught on the line, and must pass a STR save to tear free before it can move away from you.", data: {gear: [{name: "Harpoon line", note: "forty feet of tarred line"}]}}
+  2: {text: "Salt-Reckoner: A worn sea-chart and a sailor's nose for weather (petty). You always know the way at sea, and you find the safe channel through fog, floe, or reef before it finds you.", data: {gear: [{name: "Salt-Reckoner", size: "petty"}]}}
+  3: {text: "The Knotted Cord: A length of good rope and ten years of knots (petty). You tie a knot that holds any load or any prisoner, rig a block-and-tackle to lift a great weight, and need not save to climb a rope or rigging.", data: {gear: [{name: "The Knotted Cord", size: "petty"}]}}
+  4: "Deck-Hand's Welcome: A sailor's word and a tar-stained kit. At any dock, fishing camp, or harbor inn from Solitude to Raven Rock you find a berth, a meal, and word from the water."
+  5: {text: "Jug of Mead: A stoneware jug of the strong stuff sailors drink against the cold (3 uses). A swallow before a fight makes your first attack Enhanced. Refilled at any dockside tavern for a few Septims.", data: {gear: [{name: "Jug of Mead", uses: 3, recharge: "refilled at any dockside tavern for a few Septims"}]}}
+  6: {text: "The Drowned Man's Ring: A frost-bitten ring you pried from a body washed up on the ice (petty). Since you put it on, you breathe water as easily as air, and sometimes, in fog, you hear someone calling its owner's name.", data: {gear: [{name: "The Drowned Man's Ring", size: "petty"}]}}

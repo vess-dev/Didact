@@ -1,0 +1,9 @@
+id: hide-base
+name: Hide Base (fixture)
+kind: system
+version: 1.0.0
+description: A base system for a hack to replace and hide parts of.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}
+settings:
+  names: {npc: names, place: places}

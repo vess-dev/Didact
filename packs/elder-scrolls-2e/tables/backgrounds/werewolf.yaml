@@ -1,0 +1,24 @@
+# Werewolf (backgrounds/werewolf): the background's two d6 tables.
+table: werewolf-1
+title: "How did the Beast Blood take you?"
+dice: d6
+source: backgrounds/werewolf#how-did-the-beast-blood-take-you-roll-1d6
+entries:
+  1: {text: "A Glenmoril witch poured the blood for you, in exchange for a service you have not yet repaid. Take her totem (petty): once per day, you may revert from Beast Form at will, no save needed.", data: {gear: [{name: "Glenmoril totem", size: "petty"}]}}
+  2: "On the run. You took the bite running, and the running stayed in you. Even in mortal shape, you can outrun any mortal pursuer on foot, and you need not save to run down a fleeing man."
+  3: "Deep. Your wolf runs close to the surface. Once per transformation, one attack with your claws strikes as d8+d8 instead of d6+d6."
+  4: "Under both moons. When Masser and Secunda are full together, the Warden may have you change unbidden — but on such nights you may take Beast Form twice, not once."
+  5: "In a Silver Hand ambush that killed your pack-mate beside you. You smell silver, and the men who carry it, before you see them: the Silver Hand can never take you by surprise."
+  6: "In a dream of Hircine's hunting grounds. Once per day, re-roll a failed save made while hunting, fleeing, or fighting in the wild — but your next kill is owed to the Prince as tribute."
+---
+table: werewolf-2
+title: "What of you survives the change?"
+dice: d6
+source: backgrounds/werewolf#what-of-you-survives-the-change-roll-1d6
+entries:
+  1: {text: "Hunter's Bow: A hunting bow (d6, bulky) for the shape with hands. A quarry you have wounded with an arrow cannot hide from your nose until it has bathed or crossed running water.", data: {gear: [{name: "Hunter's Bow", damage: "d6", size: "bulky"}]}}
+  2: {text: "Totem of the Pack: A carved wolf-totem (petty). Once per transformation, in place of the Howl of Terror, howl up a spectral wolf (3 HP, bite d6) that hunts beside you until the scene ends.", data: {gear: [{name: "Totem of the Pack", size: "petty"}]}}
+  3: "The Hunt-Sense: The curse sharpened all your senses, not just the wolf's. You name a creature by its spoor and tell a wound's age by its smell, and you can smell fear, sickness, and blood on anyone near you."
+  4: {text: "Wolf-Bone Ward: A charm of wolf-bone (petty). Once per day, a silver attack against you strikes as an ordinary blow instead of an Enhanced one.", data: {gear: [{name: "Wolf-Bone Ward", size: "petty"}]}}
+  5: {text: "Pack-Mate's Ring: The iron ring of a fallen pack-mate (petty), and a promise made to them. While you wear it, the hunger cannot hold you down: going unfed leaves you Deprived as usual, but you still recover HP.", data: {gear: [{name: "Pack-Mate's Ring", size: "petty"}]}}
+  6: "Kyne's Favor: You keep the Old Ways under the curse. Once per day, an ordinary beast — a wolf, a bear, a sabre cat — must pass a WIL save or run beside you as kin for the rest of the scene."

@@ -1,0 +1,120 @@
+# The Elder Scrolls 2e terms, for `didact define <term>` (reference/rules.md, players-guide and
+# wardens-guide). A term here replaces cairn-2e's of the same name (Background, Petty, Cost,
+# Companion, Relic, Scroll, Warden); cairn-2e's Spellbook is hidden (a Spell Tome here); its
+# other terms (Save, Fatigue, Detachment, the seed and Downtime vocabulary) stand as they are.
+- term: Septim
+  aliases: [Septims]
+  definition: "Skyrim's coin, at Cairn's gold-piece values. A character starts with 3d6; a pouch of fewer than 100 is petty."
+  see: [coins]
+- term: Petty
+  definition: "An item that takes no inventory slot, like a ring or a pouch of fewer than 100 Septims (more takes room: the coin-weight option)."
+  see: [coins]
+- term: Cost
+  definition: "What a Downtime Milestone takes: Septims, resources (a filled soul gem, timber), reputation, or a loss (a finger, a soul, a Relic). A WIL save can reduce or avoid it when the Warden states the risk."
+  see: [downtime]
+- term: Race
+  definition: "One of the ten peoples of Tamriel (Nord, Imperial, Breton, Redguard, Altmer, Bosmer, Dunmer, Orsimer, Khajiit, Argonian), each with one minor, lasting trait. It shapes how others treat a character, never their calling."
+  see: [power]
+- term: Background
+  definition: "Who a character was: one of fifty (d50; the last five unusual), each with a name list, starting gear and two d6 tables. A background tied to a faction starts its Reputation at +1."
+- term: Standing Stone
+  aliases: [Stone]
+  definition: "Optional (off by default): one of thirteen Stones marks a character with a minor blessing, rolled (1d12) or chosen at creation; the Serpent must be sought out. Only one at a time, changed by visiting another in play."
+  see: [visit-stone, power]
+- term: Spell Tome
+  aliases: [Tome]
+  definition: "Cairn's spellbook: one spell, one inventory slot, sorted into a school (a flavor label). Cast with both hands, read aloud, adding a Fatigue; anyone can cast any rank."
+  see: [cast]
+- term: Skill Book
+  definition: "A rare volume whose lesson sticks: read in one turn somewhere safe and quiet, it is consumed and grants one small, permanent perk. Five Skill-Book slots; a sixth means forgetting one."
+  see: [read-book]
+- term: Perk
+  definition: "What a Skill Book teaches: a named trick, a save you no longer need to make, a narrow re-roll, +1 maximum HP. No perk ever adds to a save."
+  see: [read-book]
+- term: Once per day
+  definition: "Until the next dawn: the commonest limit on a power (race traits, Standing Stones, perks, feeding, a transformation, magical STR healing)."
+  see: [power, new-dawn]
+- term: Healing has limits
+  definition: "Magic (spell, potion, Relic, blessing) mends a given creature's STR only once per day; more that day restores HP only. Bandages, a surgeon's kit and a poultice are craft, not counted."
+  see: [heal]
+- term: Disease
+  aliases: [Diseased]
+  definition: "Contracted on a failed STR save when a source wounds or exposes you; one ongoing effect until cured. Any one cure (a temple night, a Potion of Cure Disease, a shrine, a Vigilant) clears them all."
+  see: [disease, cure-disease]
+- term: Sanguinare Vampiris
+  definition: "The seed of vampirism, from a vampire's draining bite or spell: max HP 1 lower, and uncured for three days it becomes Vampirism."
+  see: [disease, become-vampire]
+- term: Vampirism
+  definition: "Molag Bal's curse: immune to mundane disease, fire Enhanced against you, Deprived in sunlight and by a day unfed, feeding and draining. Lifted only by Falion's rite or by taking on Lycanthropy."
+  see: [feed, drain, sunlight, cure-vampirism]
+- term: Lycanthropy
+  aliases: [Beast Blood]
+  definition: "Hircine's curse, taken on willingly by drinking a werewolf's (or werebear's) blood in ritual: immune to mundane disease, Beast Form once a day, silver Enhanced against you. Ended only at Ysgramor's Tomb, or by Vampirism."
+  see: [become-werewolf, transform, cure-lycanthropy]
+- term: Transformed
+  definition: "In Beast Form or the Vampire Lord's: the form's attacks, +1 Armor from hide, no gear, Spell Tomes or rest; a scene long, its powers once per transformation."
+  see: [transform, revert]
+- term: Dremora
+  definition: "An unusual PC: a lesser Daedra bound into Mundus. No mortal needs, immune to disease, always acts in the first round; banished (not killed) at 0 STR, back after a season; mended only by binding-craft."
+  see: [death, reform, binding-mend]
+- term: Draugr Revenant
+  aliases: [Revenant]
+  definition: "An unusual PC: an awakened Nordic dead. No mortal needs, immune to disease and fear, 1 Armor unarmored; fire and Restoration turned on the undead are Enhanced; mends only in a barrow or by a kill."
+  see: [recover, absorb-life]
+- term: Briarheart
+  definition: "An unusual PC: a Forsworn warrior whose heart a hagraven replaced with a briar. Needs no sleep; dies at once if the briar is pulled; the matron holds a leash."
+- term: Slowed
+  definition: "Frost-numbed: on its next turn a creature can move or act, not both."
+- term: Ablaze
+  definition: "On fire: 1d4 STR each round until someone spends an action putting it out. Armor doesn't help unless rated against fire."
+  see: [ablaze]
+- term: Lingering
+  definition: "A venom that keeps working: a fresh STR save at the start of each of the victim's next three turns, 1 STR on each failure, until a save succeeds."
+  see: [venom, venom-tick]
+- term: Tempered
+  aliases: [Temper, Masterwork]
+  definition: "Improved once at a forge: a weapon's die one step (to d12), body armor +1 (to 3). Masterwork gear comes already tempered."
+  see: [temper]
+- term: Material tier
+  definition: "Iron, Steel, Dwarven, Elven, Orcish, Glass, Ebony, Nordic or Stalhrim, Dragonbone, Daedric: lighter, finer and costlier, never past the caps (Armor 3, d12)."
+- term: Soul Gem
+  definition: "A crystal that traps a soul: petty or lesser (1 charge), common or greater (2), grand or black (3; greater and up can power a constant worn enchantment). A black gem holds a thinking being's soul, and is taboo."
+  see: [enchant, recharge]
+- term: Relic
+  definition: "A magic item: no Fatigue to use, charges that run out, and a Recharge condition. One made at an enchanter takes its charges from the soul gem and recharges with another."
+  see: [enchant, recharge]
+- term: Scroll
+  definition: "A one-use Spell Tome: petty, no Fatigue, gone after the casting."
+  see: [cast]
+- term: Daedric Artifact
+  definition: "A Prince's own weapon, armor or curio: placed deliberately, as a quest's reward or a campaign's hinge, never shop stock."
+- term: Companion
+  definition: "Someone (or some beast) who travels with a PC for reasons beyond coin: 1d6 HP, 3d6 attributes, 1 Armor, one weapon, one trick, Loyalty. One active per PC; the Command action once per combat."
+  see: [loyalty, command]
+- term: Loyalty
+  definition: "A companion's bond to the party, 1 Wary, 2 Tested, 3 Trusting (the default), 4 Devoted, 5 Sworn; the Warden moves it one step at a time."
+  see: [loyalty]
+- term: Command
+  definition: "Once per combat, a PC spends their own action to direct their companion: one clean action, Enhanced or with a re-rolled save."
+  see: [command]
+- term: Faction Reputation
+  aliases: [Reputation]
+  definition: "What one organized group thinks of the party: −2 Hunted, −1 Distrusted, 0 Unknown, +1 Trusted, +2 Sworn (a favor a session). One step per witnessed beat; rising with one faction drops its sworn enemy a step."
+  see: [reputation]
+- term: Renown
+  aliases: [Infamy, Renown & Infamy]
+  definition: "What the common folk think of the party: −3 Reviled to +3 Hero of Skyrim, one shared dial kept on the party record, one step per session, moved only by public deeds. It sets where a stranger's Reaction starts; between arcs it drifts toward 0."
+  see: [renown, reaction, renown-drift]
+- term: Bounty
+  definition: "Septims a Hold's guards demand for a witnessed crime there, per Hold. Pay it, serve the time, or leave the Hold long enough."
+  see: [bounty, pay-bounty, clear-bounty]
+- term: Hold
+  definition: "One of Skyrim's nine regions under a Jarl (Whiterun, Haafingar, Eastmarch, the Rift, the Reach, Falkreath, Hjaalmarch, the Pale, Winterhold), and Solstheim under Raven Rock."
+- term: Jarl
+  definition: "The ruler of a Hold: a settlement answers to them in taxes, levies and law, and their favor is real protection."
+- term: Homestead
+  aliases: [Steading]
+  definition: "A settlement the party builds: Population, Defense and Prosperity 1–5 (1 plus its buildings), eight building slots, a raid when a season's d6 beats Defense."
+  see: [build, settlement-season, raid-outcome]
+- term: Warden
+  definition: "The game master, as in Cairn: a neutral arbiter who portrays Skyrim's rules, situations and people clearly."

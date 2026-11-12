@@ -1,0 +1,24 @@
+# Telvanni Mage (backgrounds/telvanni-mage): the background's two d6 tables.
+table: telvanni-mage-1
+title: "Where did your power come from?"
+dice: d6
+source: backgrounds/telvanni-mage#where-did-your-power-come-from-roll-1d6
+entries:
+  1: {text: "You outlived your master the proper Telvanni way: he is gone, his library is yours, and no one asks how. Take his Spell Tome: Firebolt, and the cold composure of one who has buried a rival.", data: {gear: [{name: "Spell Tome: Firebolt"}]}}
+  2: {text: "You studied the ash and fire of Red Mountain, and the ash-storms of Solstheim that still fall from it. Take a Spell Tome: Ash Shell and a heart stone (petty) dug from the Solstheim ash: pressed to any staff or charged Relic, it restores one charge, then crumbles.", data: {gear: [{name: "Spell Tome: Ash Shell"}, {name: "Heart stone", size: "petty"}]}}
+  3: {text: "You distilled raw magicka into your own flesh in the old, discouraged way. Take a Spell Tome: Equilibrium, and a wizard's gaunt and hungry look: on any day you cast a spell, you need no food at all.", data: {gear: [{name: "Spell Tome: Equilibrium"}]}}
+  4: {text: "You mastered the binding of Oblivion before you could be bothered to be civil. Take a Spell Tome: Conjure Flame Atronach, and a Telvanni name the Dremora know: Dremora who hear it will talk before they fight, if only to bargain.", data: {gear: [{name: "Spell Tome: Conjure Flame Atronach"}]}}
+  5: {text: "You served Master Neloth at Tel Mithryn and survived it. Take a Spell Tome: Magelight, and a letter of reference from Neloth that is mostly insults — though any Telvanni will recognize the hand.", data: {gear: [{name: "Spell Tome: Magelight"}]}}
+  6: {text: "You read the Old Ways in a Telvanni library older than the College of Winterhold. Take a Spell Tome: Dispel, a Mysticism primer the Synod would dearly like to confiscate.", data: {gear: [{name: "Spell Tome: Dispel"}]}}
+---
+table: telvanni-mage-2
+title: "What marks you as Telvanni, and not some hedge-mage?"
+dice: d6
+source: backgrounds/telvanni-mage#what-marks-you-as-telvanni-and-not-some-hedge-mage-roll-1d6
+entries:
+  1: "The Master's Tongue: You speak with a House lord's flat certainty. Once per day, re-roll a failed WIL save made to command, overawe, or dismiss someone you plainly consider beneath you."
+  2: {text: "Spore-Pod: A seed-pod from a Telvanni tower (petty, 1 use). Plant it, water it, and speak the word: by morning a small tower of living fungus stands there, big enough to shelter a party, with a door that opens only for you. It withers in a month.", data: {gear: [{name: "Spore-Pod", size: "petty", uses: 1}]}}
+  3: {text: "Telvanni Staff: A crooked staff of bone and spore-wood (d6, 2 charges). Spend a charge to paralyze a foe you can see: it must pass a STR save or be frozen rigid until the end of the next round. Recharge: a filled soul gem.", data: {gear: [{name: "Telvanni Staff", damage: "d6", charges: 2, recharge: "a filled soul gem"}]}}
+  4: "Levitation: Your tower had no stairs. Once per day, rise and drift for a few moments: cross a chasm, reach a high window, or float down from any height unharmed. Levitation is outlawed in the Empire; the Telvanni never stopped."
+  5: {text: "The Mouth's Seal: The seal of a Telvanni Mouth (petty), a House councilor's voice. Dunmer who see it treat you with respect, or fear; in Raven Rock and in Windhelm's Gray Quarter you can always find lodging and a courier.", data: {gear: [{name: "The Mouth's Seal", size: "petty"}]}}
+  6: {text: "The Forbidden Volume: A heavy book in Daedric script that you stole from your master (bulky). You cannot read it yet — but three wizards have offered you a fortune for it, and a fourth has tried to kill you.", data: {gear: [{name: "The Forbidden Volume", size: "bulky"}]}}

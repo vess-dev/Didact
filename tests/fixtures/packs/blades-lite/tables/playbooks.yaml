@@ -1,0 +1,5 @@
+table: playbooks
+entries:
+  - {text: Cutter, data: {hunt: 1, finesse: 0, prowl: 0, skirmish: 2}}
+  - {text: Lurk, data: {hunt: 0, finesse: 1, prowl: 2, skirmish: 0}}
+  - {text: Hound, data: {hunt: 2, finesse: 0, prowl: 1, skirmish: 0}}

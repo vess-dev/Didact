@@ -1,0 +1,14 @@
+type: character
+fields:
+  hp: {kind: resource, min: 0}
+  inventory: {kind: slots, capacity: 6}
+---
+type: pc
+extends: character
+---
+# A type of the pack's own that is a thing one carries: it extends an item type.
+type: manual
+extends: core.item
+label: Training manual
+fields:
+  skill: {kind: text, help: "What it teaches."}

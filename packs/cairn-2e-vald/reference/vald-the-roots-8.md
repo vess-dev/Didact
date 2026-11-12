@@ -1,0 +1,15 @@
+---
+id: vald-the-roots-8
+title: "The Roots"
+tags: [vald]
+source: wardens-guide/vald#the-roots
+---
+The **Roots** is a realm of mystery and horror underground, indifferent to the arbitrary divisions of the aboveground civilizations. Below, labyrinthine hollows stretch for immeasurable distances, connecting humble town sewers to far-flung ruins beyond the borders. Only the brave or foolish dare enter the Roots in search of forgotten Relics or profound wealth, and the few that do return whisper of the indescribable horrors and evil intelligence guarding these lost treasures. Stories tell of adventurers lost for centuries in the depths, only to emerge claiming that just a few hours have passed. Others claim to have made a week-long journey above ground in just one day, traveling through the tunnels beneath.
+
+Entrances to the Roots, known as _Gates_, are scattered across the lands and are usually hidden or protected by powerful forces. Further, Gates cannot be opened without a proper key or alchemical pattern, and once opened, _can never be shut again._ Folk histories recount their openings as omens of great misfortunes, where creatures more vile than the darkest nightmare slink through, devouring nearby homes and villages. Others tell of great heroes raising their swords against these terrors, sealing away the Gates beneath rubble, mountains, lakes, or other impenetrable barriers.
+
+What _is_ known is that the Roots are made of vast underground caves as large as an emptied ocean, without even a hint of sunlight. A variety of fungal growths provide weak light in some places, as do various minerals and strange, shallow pits of blue flame. Very little is known about these pits other than that they are tended to by terrible three-eyed Ogres who thirst for blood as if it were the sweetest wine. The various creatures and wild animals that survive in such harsh conditions have developed natural means to live in utter darkness, adapting their eyesight to function in even the dimmest light or eschewing vision altogether.
+
+Of the various peoples and tribes, it is said they speak a harsh, guttural speech, sprinkled with familiar words and phrases. Their warriors carry weapons that spin of their own volition, glowing brighter with each rotation. When the blades are finally released, their heated edges can split flesh and even rock with deadly ease. To date, no one has successfully parlayed with the _People Who Live Below_. Some contend that there are bustling towns, cities, and even great palaces in the Roots! Of course, few scholars believe them, and those that do have been ostracized into obscurity by their peers. Still, explorers cannot deny the ancient husks of impressive architecture found throughout the Roots, the ancient cities and enormous ships of an unimaginable world. Hazy reports claim that one such ruin, a gargantuan ziggurat boasting hundreds of levels, still flickers with light and life. These rumors have yet to be substantiated.
+
+Today, most know to avoid any mention of Gates, or keys, or related alchemy. But of course, there are always those that cannot resist its draw...

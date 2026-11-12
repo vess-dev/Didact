@@ -1,0 +1,659 @@
+# Magic and treasure roll tables (roll-tables/relics, spell-tomes, skill-books,
+# unique-weapons, unique-armors): each entry's `data.id` is its compendium entry. `relics`
+# and `spellbooks` keep cairn-2e's ids (its relic and spellbook generators, replaced here,
+# roll them).
+table: relics
+title: "Relics"
+description: "What kind of Relic (d6: amulet, ring, staff or oddment, or something greater), then that kind's table, which a kind rolls on by itself, chosen or rolled: each relic's data.id is its compendium entry. At most one Relic per session under normal circumstances."
+dice: d6
+source: roll-tables/relics#what-kind-of-relic-d6
+entries:
+  1-2: {text: "An amulet — roll on Amulets", then: [{table: "relics-amulets"}]}
+  3-4: {text: "A ring — roll on Rings", then: [{table: "relics-rings"}]}
+  5: {text: "A staff, crown, or oddment — roll on Staves & Oddments", then: [{table: "relics-staves-oddments"}]}
+  6: {text: "Something greater — roll on Greater Relics, or place one deliberately", then: [{table: "relics-greater"}]}
+---
+table: relics-amulets
+title: "Relics: amulets"
+dice: d10
+source: roll-tables/relics#amulets-d10
+entries:
+  1: {text: "Gauldur Amulet, Health Fragment", data: {id: "gauldur-amulet-health-fragment", name: "Gauldur Amulet, Health Fragment"}}
+  2: {text: "Gauldur Amulet, Magicka Fragment", data: {id: "gauldur-amulet-magicka-fragment", name: "Gauldur Amulet, Magicka Fragment"}}
+  3: {text: "Gauldur Amulet, Stamina Fragment", data: {id: "gauldur-amulet-stamina-fragment", name: "Gauldur Amulet, Stamina Fragment"}}
+  4: {text: "Saarthal Amulet", data: {id: "saarthal-amulet", name: "Saarthal Amulet"}}
+  5: {text: "Savos Aren's Amulet", data: {id: "savos-arens-amulet", name: "Savos Aren's Amulet"}}
+  6: {text: "Necromancer's Amulet", data: {id: "necromancers-amulet", name: "Necromancer's Amulet"}}
+  7: {text: "Amulet of Mara", data: {id: "amulet-of-mara", name: "Amulet of Mara"}}
+  8: {text: "Amulet of Articulation", data: {id: "amulet-of-articulation", name: "Amulet of Articulation"}}
+  9: {text: "Charmed Necklace", data: {id: "charmed-necklace", name: "Charmed Necklace"}}
+  10: {text: "Locket of Saint Jiub", data: {id: "locket-of-saint-jiub", name: "Locket of Saint Jiub"}}
+---
+table: relics-rings
+title: "Relics: rings"
+dice: d10
+source: roll-tables/relics#rings-d10
+entries:
+  1: {text: "The Bond of Matrimony", data: {id: "the-bond-of-matrimony", name: "The Bond of Matrimony"}}
+  2: {text: "Muiri's Ring", data: {id: "muiris-ring", name: "Muiri's Ring"}}
+  3: {text: "Ring of the Erudite", data: {id: "ring-of-the-erudite", name: "Ring of the Erudite"}}
+  4: {text: "Ring of the Beast", data: {id: "ring-of-the-beast", name: "Ring of the Beast"}}
+  5: {text: "Ring of Bloodlust", data: {id: "ring-of-bloodlust", name: "Ring of Bloodlust"}}
+  6: {text: "Ring of the Hunt", data: {id: "ring-of-the-hunt", name: "Ring of the Hunt"}}
+  7: {text: "Ring of the Moon", data: {id: "ring-of-the-moon", name: "Ring of the Moon"}}
+  8: {text: "Ahzidal's Ring of Arcana", data: {id: "ahzidals-ring-of-arcana", name: "Ahzidal's Ring of Arcana"}}
+  9: {text: "Ahzidal's Ring of Necromancy", data: {id: "ahzidals-ring-of-necromancy", name: "Ahzidal's Ring of Necromancy"}}
+  10: {text: "Bone Hawk Ring", data: {id: "bone-hawk-ring", name: "Bone Hawk Ring"}}
+---
+table: relics-staves-oddments
+title: "Relics: staves and oddments"
+dice: d8
+source: roll-tables/relics#staves--oddments-d8
+entries:
+  1: {text: "Aetherial Staff", data: {id: "aetherial-staff", name: "Aetherial Staff"}}
+  2: {text: "Eye of Melka", data: {id: "eye-of-melka", name: "Eye of Melka"}}
+  3: {text: "Spider Control Rod", data: {id: "spider-control-rod", name: "Spider Control Rod"}}
+  4: {text: "Helm of Yngol", data: {id: "helm-of-yngol", name: "Helm of Yngol"}}
+  5: {text: "Bloodworm Helm", data: {id: "bloodworm-helm", name: "Bloodworm Helm"}}
+  6: {text: "Diadem of the Savant", data: {id: "diadem-of-the-savant", name: "Diadem of the Savant"}}
+  7: {text: "Model Ship", data: {id: "model-ship", name: "Model Ship"}}
+  8: {text: "Kyne's Token (see Unique Armors)", data: {id: "kynes-token", name: "Kyne's Token"}}
+---
+table: relics-greater
+title: "Relics: greater relics"
+dice: d4
+source: roll-tables/relics#greater-relics-d4
+entries:
+  1: {text: "The Gauldur Amulet", data: {id: "the-gauldur-amulet", name: "The Gauldur Amulet"}}
+  2: {text: "The White Phial", data: {id: "the-white-phial", name: "The White Phial"}}
+  3: {text: "Staff of Magnus", data: {id: "staff-of-magnus", name: "Staff of Magnus"}}
+  4: {text: "The Jagged Crown", data: {id: "the-jagged-crown", name: "The Jagged Crown"}}
+---
+table: relics-daedric
+title: "Relics: wondrous Daedric Artifacts"
+dice: d4
+source: roll-tables/relics#wondrous-daedric-artifacts-d4
+entries:
+  1: {text: "Oghma Infinium", data: {id: "oghma-infinium", name: "Oghma Infinium"}}
+  2: {text: "Skeleton Key", data: {id: "skeleton-key", name: "Skeleton Key"}}
+  3: {text: "Azura's Star", data: {id: "azuras-star", name: "Azura's Star"}}
+  4: {text: "The Black Star", data: {id: "the-black-star", name: "The Black Star"}}
+---
+table: unique-weapons-daedric
+title: "Unique weapons: the Daedric Artifacts"
+dice: d10
+source: roll-tables/unique-weapons#the-daedric-artifacts-d10
+entries:
+  1: {text: "Mehrunes' Razor", data: {id: "mehrunes-razor"}}
+  2: {text: "Mace of Molag Bal", data: {id: "mace-of-molag-bal"}}
+  3: {text: "Volendrung", data: {id: "volendrung"}}
+  4: {text: "Dawnbreaker", data: {id: "dawnbreaker"}}
+  5: {text: "Ebony Blade", data: {id: "ebony-blade"}}
+  6: {text: "Wabbajack", data: {id: "wabbajack"}}
+  7: {text: "Sanguine Rose", data: {id: "sanguine-rose"}}
+  8: {text: "Skull of Corruption", data: {id: "skull-of-corruption"}}
+  9: {text: "Goldbrand", data: {id: "goldbrand"}}
+  10: {text: "The Rueful Axe", data: {id: "the-rueful-axe"}}
+---
+table: unique-weapons-skyrim
+title: "Unique weapons: named weapons of Skyrim"
+dice: d20
+source: roll-tables/unique-weapons#named-weapons-of-skyrim-d20
+entries:
+  1: {text: "Chillrend", data: {id: "chillrend"}}
+  2: {text: "Dragonbane", data: {id: "dragonbane"}}
+  3: {text: "Nightingale Blade", data: {id: "nightingale-blade"}}
+  4: {text: "Nightingale Bow", data: {id: "nightingale-bow"}}
+  5: {text: "Gauldur Blackblade", data: {id: "gauldur-blackblade"}}
+  6: {text: "Gauldur Blackbow", data: {id: "gauldur-blackbow"}}
+  7: {text: "The Pale Blade", data: {id: "the-pale-blade"}}
+  8: {text: "Eduj", data: {id: "eduj"}}
+  9: {text: "Okin", data: {id: "okin"}}
+  10: {text: "Ghostblade", data: {id: "ghostblade"}}
+  11: {text: "Windshear", data: {id: "windshear"}}
+  12: {text: "Wuuthrad", data: {id: "wuuthrad"}}
+  13: {text: "Headman's Cleaver", data: {id: "headmans-cleaver"}}
+  14: {text: "Bolar's Oathblade", data: {id: "bolars-oathblade"}}
+  15: {text: "Keening", data: {id: "keening"}}
+  16: {text: "Blade of Woe", data: {id: "blade-of-woe"}}
+  17: {text: "Dawnguard Rune Axe", data: {id: "dawnguard-rune-axe"}}
+  18: {text: "Bloodthorn", data: {id: "bloodthorn"}}
+  19: {text: "Steel Battleaxe of Fiery Souls", data: {id: "steel-battleaxe-of-fiery-souls"}}
+  20: {text: "Valdr's Lucky Dagger", data: {id: "valdrs-lucky-dagger"}}
+---
+table: unique-weapons-solstheim
+title: "Unique weapons: the Dawnguard and Dragonborn"
+dice: d10
+source: roll-tables/unique-weapons#named-weapons-of-the-dawnguard--dragonborn-d10
+entries:
+  1: {text: "Auriel's Bow", data: {id: "auriels-bow"}}
+  2: {text: "Zephyr", data: {id: "zephyr"}}
+  3: {text: "Harkon's Sword", data: {id: "harkons-sword"}}
+  4: {text: "Bloodskal Blade", data: {id: "bloodskal-blade"}}
+  5: {text: "Miraak's Sword", data: {id: "miraaks-sword"}}
+  6: {text: "Miraak's Staff", data: {id: "miraaks-staff"}}
+  7: {text: "Dwarven Black Bow of Fate", data: {id: "dwarven-black-bow-of-fate"}}
+  8: {text: "Bloodscythe & Soulrender", data: {id: "bloodscythe-and-soulrender"}}
+  9: {text: "Hoarfrost", data: {id: "hoarfrost"}}
+  10: {text: "Glass Bow of the Stag Prince", data: {id: "glass-bow-of-the-stag-prince"}}
+---
+table: unique-armors-daedric
+title: "Unique armors: the Daedric Artifacts"
+dice: d6
+source: roll-tables/unique-armors#the-daedric-artifacts-d6
+entries:
+  1: {text: "Spellbreaker", data: {id: "spellbreaker"}}
+  2: {text: "Ebony Mail", data: {id: "ebony-mail"}}
+  3: {text: "Savior's Hide", data: {id: "saviors-hide"}}
+  4: {text: "Masque of Clavicus Vile", data: {id: "masque-of-clavicus-vile"}}
+  5: {text: "Ring of Hircine", data: {id: "ring-of-hircine"}}
+  6: {text: "Ring of Namira", data: {id: "ring-of-namira"}}
+---
+table: unique-armors-masks
+title: "Unique armors: Dragon Priest masks of Skyrim"
+dice: d8
+source: roll-tables/unique-armors#dragon-priest-masks-of-skyrim-d8
+entries:
+  1: {text: "Hevnoraak", data: {id: "hevnoraak"}}
+  2: {text: "Krosis", data: {id: "krosis"}}
+  3: {text: "Morokei", data: {id: "morokei"}}
+  4: {text: "Nahkriin", data: {id: "nahkriin"}}
+  5: {text: "Otar", data: {id: "otar"}}
+  6: {text: "Rahgot", data: {id: "rahgot"}}
+  7: {text: "Vokun", data: {id: "vokun"}}
+  8: {text: "Volsung", data: {id: "volsung"}}
+---
+table: unique-armors-masks-solstheim
+title: "Unique armors: Dragon Priest masks of Solstheim"
+dice: d4
+source: roll-tables/unique-armors#dragon-priest-masks-of-solstheim-d4
+entries:
+  1: {text: "Zahkriisos", data: {id: "zahkriisos"}}
+  2: {text: "Dukaan", data: {id: "dukaan"}}
+  3: {text: "Ahzidal", data: {id: "ahzidal"}}
+  4: {text: "Miraak's Mask", data: {id: "miraaks-mask"}}
+---
+table: unique-armors-named
+title: "Unique armors: named armor and shields"
+dice: d12
+source: roll-tables/unique-armors#named-armor--shields-d12
+entries:
+  1: {text: "Nightingale Armor", data: {id: "nightingale-armor"}}
+  2: {text: "Nightingale Hood", data: {id: "nightingale-hood"}}
+  3: {text: "Shrouded Armor", data: {id: "shrouded-armor"}}
+  4: {text: "Ancient Shrouded Armor", data: {id: "ancient-shrouded-armor"}}
+  5: {text: "Deathbrand Armor", data: {id: "deathbrand-armor"}}
+  6: {text: "Deathbrand Helm", data: {id: "deathbrand-helm"}}
+  7: {text: "Visage of Mzund", data: {id: "visage-of-mzund"}}
+  8: {text: "Ahzidal's Armor of Retribution", data: {id: "ahzidals-armor-of-retribution"}}
+  9: {text: "Aetherial Shield", data: {id: "aetherial-shield"}}
+  10: {text: "Shield of Solitude", data: {id: "shield-of-solitude"}}
+  11: {text: "Targe of the Blooded", data: {id: "targe-of-the-blooded"}}
+  12: {text: "Shield of Ysgramor", data: {id: "shield-of-ysgramor"}}
+---
+table: unique-armors-wearables
+title: "Unique armors: wearables"
+dice: d6
+source: roll-tables/unique-armors#wearables-d6
+entries:
+  1: {text: "Archmage's Robes", data: {id: "archmages-robes"}}
+  2: {text: "Aetherial Crown", data: {id: "aetherial-crown"}}
+  3: {text: "Kyne's Token", data: {id: "kynes-token"}}
+  4: {text: "Movarth's Boots", data: {id: "movarths-boots"}}
+  5: {text: "Miraak's Robes", data: {id: "miraaks-robes"}}
+  6: {text: "Ahzidal's Boots of Waterwalking", data: {id: "ahzidals-boots-of-waterwalking"}}
+---
+table: skill-books
+title: "Skill Books"
+description: "The series (d6: Steel, the Arcane, Shadow; or choose the one that suits the owner), then the title (d20), which a series rolls on by itself; each title's data.id is its compendium entry. Titles marked rare are placed deliberately: if one comes up where it doesn't belong, take the next title down."
+dice: d6
+source: roll-tables/skill-books#what-kind-of-book-d6
+entries:
+  1-2: {text: "Steel", data: {series: "Steel"}, then: [{table: "skill-books-steel"}]}
+  3-4: {text: "The Arcane", data: {series: "The Arcane"}, then: [{table: "skill-books-arcane"}]}
+  5-6: {text: "Shadow", data: {series: "Shadow"}, then: [{table: "skill-books-shadow"}]}
+---
+table: skill-books-steel
+title: "Skill Books: Steel"
+dice: d20
+source: roll-tables/skill-books#steel-d20
+entries:
+  1: {text: "Mace Etiquette", data: {id: "mace-etiquette", name: "Mace Etiquette", skill: "One-Handed"}}
+  2: {text: "Fire and Darkness", data: {id: "fire-and-darkness", name: "Fire and Darkness", skill: "One-Handed"}}
+  3: {text: "The Importance of Where", data: {id: "the-importance-of-where", name: "The Importance of Where", skill: "One-Handed"}}
+  4: {text: "Night Falls on Sentinel", data: {id: "night-falls-on-sentinel", name: "Night Falls on Sentinel", skill: "One-Handed"}}
+  5: {text: "Battle of Sancre Tor", data: {id: "battle-of-sancre-tor", name: "Battle of Sancre Tor", skill: "Two-Handed"}}
+  6: {text: "Song of Hrormir", data: {id: "song-of-hrormir", name: "Song of Hrormir", skill: "Two-Handed"}}
+  7: {text: "Words and Philosophy", data: {id: "words-and-philosophy", name: "Words and Philosophy", skill: "Two-Handed"}}
+  8: {text: "King", data: {id: "king", name: "King", skill: "Two-Handed"}}
+  9: {text: "The Marksmanship Lesson", data: {id: "the-marksmanship-lesson", name: "The Marksmanship Lesson", skill: "Archery"}}
+  10: {text: "The Black Arrow", data: {id: "the-black-arrow", name: "The Black Arrow", skill: "Archery"}}
+  11: {text: "Vernaccus and Bourlor", data: {id: "vernaccus-and-bourlor", name: "Vernaccus and Bourlor", skill: "Archery"}}
+  12: {text: "The Gold Ribbon of Merit", data: {id: "the-gold-ribbon-of-merit", name: "The Gold Ribbon of Merit", skill: "Archery"}}
+  13: {text: "Death Blow of Abernanit", data: {id: "death-blow-of-abernanit", name: "Death Blow of Abernanit", skill: "Block"}}
+  14: {text: "The Mirror", data: {id: "the-mirror", name: "The Mirror", skill: "Block"}}
+  15: {text: "Battle of Red Mountain", data: {id: "battle-of-red-mountain", name: "Battle of Red Mountain", skill: "Block"}}
+  16: {text: "Hallgerd's Tale", data: {id: "hallgerds-tale", name: "Hallgerd's Tale", skill: "Heavy Armor"}}
+  17: {text: "Chimarvamidium", data: {id: "chimarvamidium", name: "Chimarvamidium", skill: "Heavy Armor"}}
+  18: {text: "The Armorer's Challenge", data: {id: "the-armorers-challenge", name: "The Armorer's Challenge", skill: "Smithing"}}
+  19: {text: "Cherim's Heart of Anequina", data: {id: "cherims-heart-of-anequina", name: "Cherim's Heart of Anequina", skill: "Smithing"}}
+  20: {text: "Last Scabbard of Akrash", data: {id: "last-scabbard-of-akrash", name: "Last Scabbard of Akrash", skill: "Smithing"}}
+---
+table: skill-books-arcane
+title: "Skill Books: The Arcane"
+dice: d20
+source: roll-tables/skill-books#the-arcane-d20
+entries:
+  1: {text: "Reality & Other Falsehoods", data: {id: "reality-and-other-falsehoods", name: "Reality & Other Falsehoods", skill: "Alteration"}}
+  2: {text: "Daughter of the Niben", data: {id: "daughter-of-the-niben", name: "Daughter of the Niben", skill: "Alteration"}}
+  3: {text: "Breathing Water", data: {id: "breathing-water", name: "Breathing Water", skill: "Alteration"}}
+  4: {text: "The Lunar Lorkhan", data: {id: "the-lunar-lorkhan", name: "The Lunar Lorkhan", skill: "Alteration"}}
+  5: {text: "The Doors of Oblivion", data: {id: "the-doors-of-oblivion", name: "The Doors of Oblivion", skill: "Conjuration"}}
+  6: {text: "Liminal Bridges", data: {id: "liminal-bridges", name: "Liminal Bridges", skill: "Conjuration"}}
+  7: {text: "A Hypothetical Treachery (rare)", data: {id: "a-hypothetical-treachery", name: "A Hypothetical Treachery", skill: "Destruction", rare: true}}
+  8: {text: "Response to Bero's Speech", data: {id: "response-to-beros-speech", name: "Response to Bero's Speech", skill: "Destruction"}}
+  9: {text: "Mystery of Talara", data: {id: "mystery-of-talara", name: "Mystery of Talara", skill: "Destruction"}}
+  10: {text: "The Art of War Magic", data: {id: "the-art-of-war-magic", name: "The Art of War Magic", skill: "Destruction"}}
+  11: {text: "Enchanter's Primer", data: {id: "enchanters-primer", name: "Enchanter's Primer", skill: "Enchanting"}}
+  12: {text: "Twin Secrets", data: {id: "twin-secrets", name: "Twin Secrets", skill: "Enchanting"}}
+  13: {text: "Catalogue of Weapon Enchantments", data: {id: "catalogue-of-weapon-enchantments", name: "Catalogue of Weapon Enchantments", skill: "Enchanting"}}
+  14: {text: "Catalogue of Armor Enchantments", data: {id: "catalogue-of-armor-enchantments", name: "Catalogue of Armor Enchantments", skill: "Enchanting"}}
+  15: {text: "Incident in Necrom", data: {id: "incident-in-necrom", name: "Incident in Necrom", skill: "Illusion"}}
+  16: {text: "The Black Arts On Trial", data: {id: "the-black-arts-on-trial", name: "The Black Arts On Trial", skill: "Illusion"}}
+  17: {text: "Before the Ages of Man", data: {id: "before-the-ages-of-man", name: "Before the Ages of Man", skill: "Illusion"}}
+  18: {text: "Withershins", data: {id: "withershins", name: "Withershins", skill: "Restoration"}}
+  19: {text: "The Exodus", data: {id: "the-exodus", name: "The Exodus", skill: "Restoration"}}
+  20: {text: "Racial Phylogeny (rare)", data: {id: "racial-phylogeny", name: "Racial Phylogeny", skill: "Restoration", rare: true}}
+---
+table: skill-books-shadow
+title: "Skill Books: Shadow"
+dice: d20
+source: roll-tables/skill-books#shadow-d20
+entries:
+  1: {text: "Sacred Witness", data: {id: "sacred-witness", name: "Sacred Witness", skill: "Sneak"}}
+  2: {text: "Three Thieves", data: {id: "three-thieves", name: "Three Thieves", skill: "Sneak"}}
+  3: {text: "Legend of Krately House", data: {id: "legend-of-krately-house", name: "Legend of Krately House", skill: "Sneak"}}
+  4: {text: "Aevar Stone-Singer", data: {id: "aevar-stone-singer", name: "Aevar Stone-Singer", skill: "Pickpocket"}}
+  5: {text: "Beggar", data: {id: "beggar", name: "Beggar", skill: "Pickpocket"}}
+  6: {text: "Guide to Better Thieving", data: {id: "guide-to-better-thieving", name: "Guide to Better Thieving", skill: "Pickpocket"}}
+  7: {text: "Purloined Shadows (rare)", data: {id: "purloined-shadows", name: "Purloined Shadows", skill: "Pickpocket", rare: true}}
+  8: {text: "Advances in Lockpicking", data: {id: "advances-in-lockpicking", name: "Advances in Lockpicking", skill: "Lockpicking"}}
+  9: {text: "Proper Lock Design", data: {id: "proper-lock-design", name: "Proper Lock Design", skill: "Lockpicking"}}
+  10: {text: "The Locked Room (rare)", data: {id: "the-locked-room", name: "The Locked Room", skill: "Lockpicking", rare: true}}
+  11: {text: "The Buying Game", data: {id: "the-buying-game", name: "The Buying Game", skill: "Speech"}}
+  12: {text: "A Dance in Fire", data: {id: "a-dance-in-fire", name: "A Dance in Fire", skill: "Speech"}}
+  13: {text: "The Wolf Queen", data: {id: "the-wolf-queen", name: "The Wolf Queen", skill: "Speech"}}
+  14: {text: "Ice and Chitin", data: {id: "ice-and-chitin", name: "Ice and Chitin", skill: "Light Armor"}}
+  15: {text: "Light Armor Repair", data: {id: "light-armor-repair", name: "Light Armor Repair", skill: "Light Armor"}}
+  16: {text: "The Rear Guard", data: {id: "the-rear-guard", name: "The Rear Guard", skill: "Light Armor"}}
+  17: {text: "De Rerum Dirennis", data: {id: "de-rerum-dirennis", name: "De Rerum Dirennis", skill: "Alchemy"}}
+  18: {text: "A Game at Dinner", data: {id: "a-game-at-dinner", name: "A Game at Dinner", skill: "Alchemy"}}
+  19: {text: "Song of the Alchemists", data: {id: "song-of-the-alchemists", name: "Song of the Alchemists", skill: "Alchemy"}}
+  20: {text: "Herbalist's Guide to Skyrim", data: {id: "herbalists-guide-to-skyrim", name: "Herbalist's Guide to Skyrim", skill: "Alchemy"}}
+---
+table: skill-book-perks
+title: "Skill Book perks"
+description: "Each Skill Book's perk, by title (`didact do read-book` looks it up)."
+lookup: book
+source: wardens-guide/skill-books
+entries:
+  "Mace Etiquette": {text: "Once per combat, one of your attacks with a mace or club is Enhanced.", data: {id: "mace-etiquette", skill: "One-Handed", series: "Steel"}}
+  "Fire and Darkness": {text: "When you strike before your foe has acted in a combat, your first attack with a dagger or sword is Enhanced.", data: {id: "fire-and-darkness", skill: "One-Handed", series: "Steel"}}
+  "The Importance of Where": {text: "Your attacks with a mace, club, or war hammer ignore 1 Armor.", data: {id: "the-importance-of-where", skill: "One-Handed", series: "Steel"}}
+  "Night Falls on Sentinel": {text: "When you attack a foe who believed you unarmed or friendly — at a parley, from a disguise, across a tavern table — the attack is Enhanced.", data: {id: "night-falls-on-sentinel", skill: "One-Handed", series: "Steel"}}
+  "Battle of Sancre Tor": {text: "Once per combat, when you swing a greatsword or battleaxe at a foe who has not yet acted this combat, the attack is Enhanced.", data: {id: "battle-of-sancre-tor", skill: "Two-Handed", series: "Steel"}}
+  "Song of Hrormir": {text: "Once per day, if you have downed a horn of mead or ale within the past hour, your first attack with a two-handed weapon in a combat is Enhanced.", data: {id: "song-of-hrormir", skill: "Two-Handed", series: "Steel"}}
+  "Words and Philosophy": {text: "Once per combat, when you close to melee with a foe who was attacking you from range — an archer, a caster — your first two-handed attack against it is Enhanced.", data: {id: "words-and-philosophy", skill: "Two-Handed", series: "Steel"}}
+  "King": {text: "Your attacks with a two-handed weapon against a detachment are not Impaired; each great sweep carves into the crowd.", data: {id: "king", skill: "Two-Handed", series: "Steel"}}
+  "The Marksmanship Lesson": {text: "Once per combat, one of your attacks with a bow or crossbow is Enhanced.", data: {id: "the-marksmanship-lesson", skill: "Archery", series: "Steel"}}
+  "The Black Arrow": {text: "Your attacks with a bow or crossbow are never Impaired by long range.", data: {id: "the-black-arrow", skill: "Archery", series: "Steel"}}
+  "Vernaccus and Bourlor": {text: "Your arrows and crossbow bolts strike ghosts, Daedra, and other creatures that shrug off mundane weapons at full force.", data: {id: "vernaccus-and-bourlor", skill: "Archery", series: "Steel"}}
+  "The Gold Ribbon of Merit": {text: "You need not save to make a trick shot a skilled archer could plausibly make — cutting a rope, pinning a sleeve to a door, snuffing a candle, striking a lever.", data: {id: "the-gold-ribbon-of-merit", skill: "Archery", series: "Steel"}}
+  "Death Blow of Abernanit": {text: "Once per day, while you hold a shield, when an attack would reduce you to 0 HP, make a DEX save; on a success you take the blow on the shield and suffer no damage from it.", data: {id: "death-blow-of-abernanit", skill: "Block", series: "Steel"}}
+  "The Mirror": {text: "While you hold a shield, once per combat re-roll a failed save made to weather a blow, brace against a charge, or hold your ground.", data: {id: "the-mirror", skill: "Block", series: "Steel"}}
+  "Battle of Red Mountain": {text: "While you hold a shield and stand shoulder to shoulder with an ally, attacks against you by a detachment are not Enhanced.", data: {id: "battle-of-red-mountain", skill: "Block", series: "Steel"}}
+  "Hallgerd's Tale": {text: "You move as freely in mail or plate as out of it: armor never forces a save on you that you wouldn't make unarmored, and you can don or doff a full suit in moments.", data: {id: "hallgerds-tale", skill: "Heavy Armor", series: "Steel"}}
+  "Chimarvamidium": {text: "Once per combat, while you wear mail or plate, you may turn a blow onto your armor's strongest plates: that attack against you is Impaired.", data: {id: "chimarvamidium", skill: "Heavy Armor", series: "Steel"}}
+  "The Armorer's Challenge": {text: "You can temper a weapon a second time — one more step up its damage die, never past d12.", data: {id: "the-armorers-challenge", skill: "Smithing", series: "Steel"}}
+  "Cherim's Heart of Anequina": {text: "You can mend any broken weapon or armor with whatever metal and leather are at hand, without a forge and without the piece's own material.", data: {id: "cherims-heart-of-anequina", skill: "Smithing", series: "Steel"}}
+  "Last Scabbard of Akrash": {text: "Your work at the forge never goes wrong: a rushed or improvised tempering or repair never calls for a save.", data: {id: "last-scabbard-of-akrash", skill: "Smithing", series: "Steel"}}
+  "Reality & Other Falsehoods": {text: "Once per day, cast an Alteration spell so subtly that no one watching can tell you cast anything at all — no light, no sound, no telltale gesture.", data: {id: "reality-and-other-falsehoods", skill: "Alteration", series: "The Arcane"}}
+  "Daughter of the Niben": {text: "Once per day, when the Warden rolls the Die of Fate for your own luck and it goes against you, it is rolled again.", data: {id: "daughter-of-the-niben", skill: "Alteration", series: "The Arcane"}}
+  "Breathing Water": {text: "You always feel a spell upon you begin to fade before it ends, and you can hold your breath for six rounds before drowning sets in, not three.", data: {id: "breathing-water", skill: "Alteration", series: "The Arcane"}}
+  "The Lunar Lorkhan": {text: "You always know the hour of the night and the phases of Masser and Secunda, and you never lose your way under an open night sky.", data: {id: "the-lunar-lorkhan", skill: "Alteration", series: "The Arcane"}}
+  "The Doors of Oblivion": {text: "Once per day, channel a Conjuration tome without adding Fatigue.", data: {id: "the-doors-of-oblivion", skill: "Conjuration", series: "The Arcane"}}
+  "Liminal Bridges": {text: "Once per day, a servant you have summoned lingers past the end of its scene, until the next dawn.", data: {id: "liminal-bridges", skill: "Conjuration", series: "The Arcane"}}
+  "A Hypothetical Treachery": {text: "Once per day, one Destruction spell you cast is Enhanced.", data: {id: "a-hypothetical-treachery", skill: "Destruction", series: "The Arcane", rare: true}}
+  "Response to Bero's Speech": {text: "When you cast a Destruction spell with a blast, you may spare anyone you choose within its reach.", data: {id: "response-to-beros-speech", skill: "Destruction", series: "The Arcane"}}
+  "Mystery of Talara": {text: "Once per day, re-roll a failed WIL save made to cast a spell under duress.", data: {id: "mystery-of-talara", skill: "Destruction", series: "The Arcane"}}
+  "The Art of War Magic": {text: "Casting a Destruction spell in battle never calls for the WIL save against duress; you are trained to the noise.", data: {id: "the-art-of-war-magic", skill: "Destruction", series: "The Arcane"}}
+  "Enchanter's Primer": {text: "A Relic you enchant holds one more charge than its soul would give.", data: {id: "enchanters-primer", skill: "Enchanting", series: "The Arcane"}}
+  "Twin Secrets": {text: "You can bind a second enchantment into an item that already holds one — never more than two.", data: {id: "twin-secrets", skill: "Enchanting", series: "The Arcane"}}
+  "Catalogue of Weapon Enchantments": {text: "You know at a glance what enchantment a weapon carries and how many charges it holds.", data: {id: "catalogue-of-weapon-enchantments", skill: "Enchanting", series: "The Arcane"}}
+  "Catalogue of Armor Enchantments": {text: "A worn enchantment you bind can be made constant with a common soul, not only a greater one.", data: {id: "catalogue-of-armor-enchantments", skill: "Enchanting", series: "The Arcane"}}
+  "Incident in Necrom": {text: "You need not save to slip the notice of anyone who has underestimated or dismissed you.", data: {id: "incident-in-necrom", skill: "Illusion", series: "The Arcane"}}
+  "The Black Arts On Trial": {text: "You know a necromancer's handiwork on sight — a raised corpse, a black soul gem, a sigil drawn in grave-dirt — and you can tell whether a living mind has been bent by magic.", data: {id: "the-black-arts-on-trial", skill: "Illusion", series: "The Arcane"}}
+  "Before the Ages of Man": {text: "You can make out the meaning of old Aldmeri script — Ayleid, Falmer, and Dwemer inscriptions — given time and a quiet place.", data: {id: "before-the-ages-of-man", skill: "Illusion", series: "The Arcane"}}
+  "Withershins": {text: "When you heal someone with a Restoration spell, a Relic, or a potion, they regain 1 extra STR.", data: {id: "withershins", skill: "Restoration", series: "The Arcane"}}
+  "The Exodus": {text: "Your healing magic can mend a given creature's STR twice in a day, not once.", data: {id: "the-exodus", skill: "Restoration", series: "The Arcane"}}
+  "Racial Phylogeny": {text: "Gain a permanent +1 to one Attribute of your choice (to a maximum of 18).", data: {id: "racial-phylogeny", skill: "Restoration", series: "The Arcane", rare: true}}
+  "Sacred Witness": {text: "Once per day, re-roll a failed DEX save made to move unseen or to strike from the shadows.", data: {id: "sacred-witness", skill: "Sneak", series: "Shadow"}}
+  "Three Thieves": {text: "Your first attack from concealment in a combat ignores 1 Armor.", data: {id: "three-thieves", skill: "Sneak", series: "Shadow"}}
+  "Legend of Krately House": {text: "Old floors, stairs, and doors never betray you: moving through a house by night, you need not save to go unheard.", data: {id: "legend-of-krately-house", skill: "Sneak", series: "Shadow"}}
+  "Aevar Stone-Singer": {text: "Gain +1 maximum HP.", data: {id: "aevar-stone-singer", skill: "Pickpocket", series: "Shadow"}}
+  "Beggar": {text: "Beggars and street urchins count you as one of their own: in any town, a few coins buy you the local gossip and a place to hide.", data: {id: "beggar", skill: "Pickpocket", series: "Shadow"}}
+  "Guide to Better Thieving": {text: "You need not save to lift a small item from someone who is distracted.", data: {id: "guide-to-better-thieving", skill: "Pickpocket", series: "Shadow"}}
+  "Purloined Shadows": {text: "Once per session, you may declare that you took one small, plausible object from a place you have already searched, with no roll — the Warden decides what was reasonable to find.", data: {id: "purloined-shadows", skill: "Pickpocket", series: "Shadow", rare: true}}
+  "Advances in Lockpicking": {text: "Given a quiet minute, you need not save to pick an ordinary lock.", data: {id: "advances-in-lockpicking", skill: "Lockpicking", series: "Shadow"}}
+  "Proper Lock Design": {text: "Once per day, re-roll a failed save made to pick a lock or disarm a trap.", data: {id: "proper-lock-design", skill: "Lockpicking", series: "Shadow"}}
+  "The Locked Room": {text: "Given time and safety, you can pick even masterwork and Dwemer locks that would otherwise need their key or a spell.", data: {id: "the-locked-room", skill: "Lockpicking", series: "Shadow", rare: true}}
+  "The Buying Game": {text: "Merchants treat you one step better on the Reaction ladder.", data: {id: "the-buying-game", skill: "Speech", series: "Shadow"}}
+  "A Dance in Fire": {text: "Once per day, re-roll a failed WIL save made to persuade, deceive, or talk your way out of trouble.", data: {id: "a-dance-in-fire", skill: "Speech", series: "Shadow"}}
+  "The Wolf Queen": {text: "Once per day, you may slip out of a scene unnoticed, even in company, so long as no one is holding on to you.", data: {id: "the-wolf-queen", skill: "Speech", series: "Shadow"}}
+  "Ice and Chitin": {text: "While you wear light armor, you need not save to cross thin ice, loose scree, or rotten floors that would give way beneath someone in mail or plate.", data: {id: "ice-and-chitin", skill: "Light Armor", series: "Shadow"}}
+  "Light Armor Repair": {text: "You can mend and temper light armor anywhere: an awl, a sewing kit, and a quiet hour replace the forge.", data: {id: "light-armor-repair", skill: "Light Armor", series: "Shadow"}}
+  "The Rear Guard": {text: "You can go two full days without food before you are Deprived, not one.", data: {id: "the-rear-guard", skill: "Light Armor", series: "Shadow"}}
+  "De Rerum Dirennis": {text: "A sip or a sniff tells you what any potion, poison, or alchemical ingredient does.", data: {id: "de-rerum-dirennis", skill: "Alchemy", series: "Shadow"}}
+  "A Game at Dinner": {text: "No poison in food or drink takes you by surprise: you taste it in time, and you automatically pass saves against poison you have swallowed.", data: {id: "a-game-at-dinner", skill: "Alchemy", series: "Shadow"}}
+  "Song of the Alchemists": {text: "When you brew during a Downtime Action, you make one extra potion or poison.", data: {id: "song-of-the-alchemists", skill: "Alchemy", series: "Shadow"}}
+  "Herbalist's Guide to Skyrim": {text: "When you take the Supply action, you also gather 1d4 common reagents, and you know where the rarer ones grow.", data: {id: "herbalists-guide-to-skyrim", skill: "Alchemy", series: "Shadow"}}
+---
+table: spellbooks
+title: "Spell Tomes"
+description: "The school (d6), then the tome, which a school rolls on by itself, chosen or rolled (Destruction its element, then that column; a Scroll row its spell; Conjuration's 19–20 the Binding table); each tome's data.id is its compendium entry. 6 is the Warden's pick; better still, choose the school that fits the place. The Master tomes are on no table: place them deliberately."
+dice: d6
+source: roll-tables/spell-tomes#which-school-d6
+entries:
+  1: {text: "Destruction", data: {school: "Destruction"}, then: [{table: "spell-tomes-destruction"}]}
+  2: {text: "Restoration", data: {school: "Restoration"}, then: [{table: "spell-tomes-restoration"}]}
+  3: {text: "Alteration", data: {school: "Alteration"}, then: [{table: "spell-tomes-alteration"}]}
+  4: {text: "Illusion (and the old Mysticism)", data: {school: "Illusion (and the old Mysticism)"}, then: [{table: "spell-tomes-illusion"}]}
+  5: {text: "Conjuration", data: {school: "Conjuration"}, then: [{table: "spell-tomes-conjuration"}]}
+  6: {text: "The Warden's pick, to suit the place", data: {pick: true}}
+---
+table: spell-tomes-destruction
+title: "Spell Tomes: Destruction"
+description: "The element (1–2 fire, 3–4 frost, 5–6 shock), then that column (d8), which an element rolls on by itself."
+dice: d6
+source: roll-tables/spell-tomes#destruction-d6-then-d8
+entries:
+  1-2: {text: "Fire", data: {element: "fire"}, then: [{table: "spell-tomes-fire"}]}
+  3-4: {text: "Frost", data: {element: "frost"}, then: [{table: "spell-tomes-frost"}]}
+  5-6: {text: "Shock", data: {element: "shock"}, then: [{table: "spell-tomes-shock"}]}
+---
+table: spell-tomes-fire
+title: "Spell Tomes: Destruction (fire)"
+description: "A Scroll row rolls again on spell-tomes-fire-scroll for its spell, by itself. Each tome's data.id is its compendium entry."
+dice: d8
+source: roll-tables/spell-tomes#destruction-d6-then-d8
+entries:
+  1: {text: "Flames", data: {id: "flames", name: "Flames"}}
+  2: {text: "Firebolt", data: {id: "firebolt", name: "Firebolt"}}
+  3: {text: "Fire Rune", data: {id: "fire-rune", name: "Fire Rune"}}
+  4: {text: "Fireball", data: {id: "fireball", name: "Fireball"}}
+  5: {text: "Flame Cloak", data: {id: "flame-cloak", name: "Flame Cloak"}}
+  6: {text: "Incinerate", data: {id: "incinerate", name: "Incinerate"}}
+  7: {text: "Wall of Flames", data: {id: "wall-of-flames", name: "Wall of Flames"}}
+  8: {text: "A Scroll instead — roll again for its spell", data: {scroll: true}, then: [{table: "spell-tomes-fire-scroll"}]}
+---
+table: spell-tomes-fire-scroll
+title: "Spell Tomes: Destruction (fire): a Scroll's spell"
+description: "A Scroll of one of this table's spells (the book's 'roll again for its spell'; each equally likely)."
+source: roll-tables/spell-tomes#destruction-d6-then-d8
+entries:
+  - {text: "Flames", data: {id: "flames", name: "Flames"}}
+  - {text: "Firebolt", data: {id: "firebolt", name: "Firebolt"}}
+  - {text: "Fire Rune", data: {id: "fire-rune", name: "Fire Rune"}}
+  - {text: "Fireball", data: {id: "fireball", name: "Fireball"}}
+  - {text: "Flame Cloak", data: {id: "flame-cloak", name: "Flame Cloak"}}
+  - {text: "Incinerate", data: {id: "incinerate", name: "Incinerate"}}
+  - {text: "Wall of Flames", data: {id: "wall-of-flames", name: "Wall of Flames"}}
+---
+table: spell-tomes-frost
+title: "Spell Tomes: Destruction (frost)"
+description: "A Scroll row rolls again on spell-tomes-frost-scroll for its spell, by itself. Each tome's data.id is its compendium entry."
+dice: d8
+source: roll-tables/spell-tomes#destruction-d6-then-d8
+entries:
+  1: {text: "Frostbite", data: {id: "frostbite", name: "Frostbite"}}
+  2: {text: "Ice Spike", data: {id: "ice-spike", name: "Ice Spike"}}
+  3: {text: "Frost Rune", data: {id: "frost-rune", name: "Frost Rune"}}
+  4: {text: "Ice Storm", data: {id: "ice-storm", name: "Ice Storm"}}
+  5: {text: "Frost Cloak", data: {id: "frost-cloak", name: "Frost Cloak"}}
+  6: {text: "Icy Spear", data: {id: "icy-spear", name: "Icy Spear"}}
+  7: {text: "Wall of Frost", data: {id: "wall-of-frost", name: "Wall of Frost"}}
+  8: {text: "A Scroll instead — roll again for its spell", data: {scroll: true}, then: [{table: "spell-tomes-frost-scroll"}]}
+---
+table: spell-tomes-frost-scroll
+title: "Spell Tomes: Destruction (frost): a Scroll's spell"
+description: "A Scroll of one of this table's spells (the book's 'roll again for its spell'; each equally likely)."
+source: roll-tables/spell-tomes#destruction-d6-then-d8
+entries:
+  - {text: "Frostbite", data: {id: "frostbite", name: "Frostbite"}}
+  - {text: "Ice Spike", data: {id: "ice-spike", name: "Ice Spike"}}
+  - {text: "Frost Rune", data: {id: "frost-rune", name: "Frost Rune"}}
+  - {text: "Ice Storm", data: {id: "ice-storm", name: "Ice Storm"}}
+  - {text: "Frost Cloak", data: {id: "frost-cloak", name: "Frost Cloak"}}
+  - {text: "Icy Spear", data: {id: "icy-spear", name: "Icy Spear"}}
+  - {text: "Wall of Frost", data: {id: "wall-of-frost", name: "Wall of Frost"}}
+---
+table: spell-tomes-shock
+title: "Spell Tomes: Destruction (shock)"
+description: "A Scroll row rolls again on spell-tomes-shock-scroll for its spell, by itself. Each tome's data.id is its compendium entry."
+dice: d8
+source: roll-tables/spell-tomes#destruction-d6-then-d8
+entries:
+  1: {text: "Sparks", data: {id: "sparks", name: "Sparks"}}
+  2: {text: "Lightning Bolt", data: {id: "lightning-bolt", name: "Lightning Bolt"}}
+  3: {text: "Lightning Rune", data: {id: "lightning-rune", name: "Lightning Rune"}}
+  4: {text: "Chain Lightning", data: {id: "chain-lightning", name: "Chain Lightning"}}
+  5: {text: "Lightning Cloak", data: {id: "lightning-cloak", name: "Lightning Cloak"}}
+  6: {text: "Thunderbolt", data: {id: "thunderbolt", name: "Thunderbolt"}}
+  7: {text: "Wall of Storms", data: {id: "wall-of-storms", name: "Wall of Storms"}}
+  8: {text: "A Scroll instead — roll again for its spell", data: {scroll: true}, then: [{table: "spell-tomes-shock-scroll"}]}
+---
+table: spell-tomes-shock-scroll
+title: "Spell Tomes: Destruction (shock): a Scroll's spell"
+description: "A Scroll of one of this table's spells (the book's 'roll again for its spell'; each equally likely)."
+source: roll-tables/spell-tomes#destruction-d6-then-d8
+entries:
+  - {text: "Sparks", data: {id: "sparks", name: "Sparks"}}
+  - {text: "Lightning Bolt", data: {id: "lightning-bolt", name: "Lightning Bolt"}}
+  - {text: "Lightning Rune", data: {id: "lightning-rune", name: "Lightning Rune"}}
+  - {text: "Chain Lightning", data: {id: "chain-lightning", name: "Chain Lightning"}}
+  - {text: "Lightning Cloak", data: {id: "lightning-cloak", name: "Lightning Cloak"}}
+  - {text: "Thunderbolt", data: {id: "thunderbolt", name: "Thunderbolt"}}
+  - {text: "Wall of Storms", data: {id: "wall-of-storms", name: "Wall of Storms"}}
+---
+table: spell-tomes-restoration
+title: "Spell Tomes: Restoration"
+description: "A Scroll row rolls again on spell-tomes-restoration-scroll for its spell, by itself. Each tome's data.id is its compendium entry."
+dice: d20
+source: roll-tables/spell-tomes#restoration-d20
+entries:
+  1: {text: "Healing", data: {id: "healing", name: "Healing"}}
+  2: {text: "Fast Healing", data: {id: "fast-healing", name: "Fast Healing"}}
+  3: {text: "Healing Hands", data: {id: "healing-hands", name: "Healing Hands"}}
+  4: {text: "Close Wounds", data: {id: "close-wounds", name: "Close Wounds"}}
+  5: {text: "Heal Other", data: {id: "heal-other", name: "Heal Other"}}
+  6: {text: "Grand Healing", data: {id: "grand-healing", name: "Grand Healing"}}
+  7: {text: "Lesser Ward", data: {id: "lesser-ward", name: "Lesser Ward"}}
+  8: {text: "Steadfast Ward", data: {id: "steadfast-ward", name: "Steadfast Ward"}}
+  9: {text: "Greater Ward", data: {id: "greater-ward", name: "Greater Ward"}}
+  10: {text: "Turn Lesser Undead", data: {id: "turn-lesser-undead", name: "Turn Lesser Undead"}}
+  11: {text: "Turn Undead", data: {id: "turn-undead", name: "Turn Undead"}}
+  12: {text: "Turn Greater Undead", data: {id: "turn-greater-undead", name: "Turn Greater Undead"}}
+  13: {text: "Repel Lesser Undead", data: {id: "repel-lesser-undead", name: "Repel Lesser Undead"}}
+  14: {text: "Repel Undead", data: {id: "repel-undead", name: "Repel Undead"}}
+  15: {text: "Circle of Protection", data: {id: "circle-of-protection", name: "Circle of Protection"}}
+  16: {text: "Sun Fire", data: {id: "sun-fire", name: "Sun Fire"}}
+  17: {text: "Vampire's Bane", data: {id: "vampires-bane", name: "Vampire's Bane"}}
+  18: {text: "Stendarr's Aura", data: {id: "stendarrs-aura", name: "Stendarr's Aura"}}
+  19-20: {text: "A Scroll instead — roll again for its spell", data: {scroll: true}, then: [{table: "spell-tomes-restoration-scroll"}]}
+---
+table: spell-tomes-restoration-scroll
+title: "Spell Tomes: Restoration: a Scroll's spell"
+description: "A Scroll of one of this table's spells (the book's 'roll again for its spell'; each equally likely)."
+source: roll-tables/spell-tomes#restoration-d20
+entries:
+  - {text: "Healing", data: {id: "healing", name: "Healing"}}
+  - {text: "Fast Healing", data: {id: "fast-healing", name: "Fast Healing"}}
+  - {text: "Healing Hands", data: {id: "healing-hands", name: "Healing Hands"}}
+  - {text: "Close Wounds", data: {id: "close-wounds", name: "Close Wounds"}}
+  - {text: "Heal Other", data: {id: "heal-other", name: "Heal Other"}}
+  - {text: "Grand Healing", data: {id: "grand-healing", name: "Grand Healing"}}
+  - {text: "Lesser Ward", data: {id: "lesser-ward", name: "Lesser Ward"}}
+  - {text: "Steadfast Ward", data: {id: "steadfast-ward", name: "Steadfast Ward"}}
+  - {text: "Greater Ward", data: {id: "greater-ward", name: "Greater Ward"}}
+  - {text: "Turn Lesser Undead", data: {id: "turn-lesser-undead", name: "Turn Lesser Undead"}}
+  - {text: "Turn Undead", data: {id: "turn-undead", name: "Turn Undead"}}
+  - {text: "Turn Greater Undead", data: {id: "turn-greater-undead", name: "Turn Greater Undead"}}
+  - {text: "Repel Lesser Undead", data: {id: "repel-lesser-undead", name: "Repel Lesser Undead"}}
+  - {text: "Repel Undead", data: {id: "repel-undead", name: "Repel Undead"}}
+  - {text: "Circle of Protection", data: {id: "circle-of-protection", name: "Circle of Protection"}}
+  - {text: "Sun Fire", data: {id: "sun-fire", name: "Sun Fire"}}
+  - {text: "Vampire's Bane", data: {id: "vampires-bane", name: "Vampire's Bane"}}
+  - {text: "Stendarr's Aura", data: {id: "stendarrs-aura", name: "Stendarr's Aura"}}
+---
+table: spell-tomes-alteration
+title: "Spell Tomes: Alteration"
+description: "A Scroll row rolls again on spell-tomes-alteration-scroll for its spell, by itself. Each tome's data.id is its compendium entry."
+dice: d20
+source: roll-tables/spell-tomes#alteration-d20
+entries:
+  1: {text: "Oakflesh", data: {id: "oakflesh", name: "Oakflesh"}}
+  2: {text: "Stoneflesh", data: {id: "stoneflesh", name: "Stoneflesh"}}
+  3: {text: "Ironflesh", data: {id: "ironflesh", name: "Ironflesh"}}
+  4: {text: "Ebonyflesh", data: {id: "ebonyflesh", name: "Ebonyflesh"}}
+  5: {text: "Candlelight", data: {id: "candlelight", name: "Candlelight"}}
+  6: {text: "Magelight", data: {id: "magelight", name: "Magelight"}}
+  7: {text: "Detect Life", data: {id: "detect-life", name: "Detect Life"}}
+  8: {text: "Detect Dead", data: {id: "detect-dead", name: "Detect Dead"}}
+  9: {text: "Telekinesis", data: {id: "telekinesis", name: "Telekinesis"}}
+  10: {text: "Transmute", data: {id: "transmute", name: "Transmute"}}
+  11: {text: "Waterbreathing", data: {id: "waterbreathing", name: "Waterbreathing"}}
+  12: {text: "Paralyze", data: {id: "paralyze", name: "Paralyze"}}
+  13: {text: "Equilibrium", data: {id: "equilibrium", name: "Equilibrium"}}
+  14: {text: "Ash Shell", data: {id: "ash-shell", name: "Ash Shell"}}
+  15: {text: "Ash Rune", data: {id: "ash-rune", name: "Ash Rune"}}
+  16: {text: "Open Lock (old art)", data: {id: "open-lock", name: "Open Lock"}}
+  17: {text: "Feather (old art)", data: {id: "feather", name: "Feather"}}
+  18: {text: "Water Walking (old art)", data: {id: "water-walking", name: "Water Walking"}}
+  19: {text: "Levitate (old art, forbidden)", data: {id: "levitate", name: "Levitate"}}
+  20: {text: "A Scroll instead — roll again for its spell", data: {scroll: true}, then: [{table: "spell-tomes-alteration-scroll"}]}
+---
+table: spell-tomes-alteration-scroll
+title: "Spell Tomes: Alteration: a Scroll's spell"
+description: "A Scroll of one of this table's spells (the book's 'roll again for its spell'; each equally likely)."
+source: roll-tables/spell-tomes#alteration-d20
+entries:
+  - {text: "Oakflesh", data: {id: "oakflesh", name: "Oakflesh"}}
+  - {text: "Stoneflesh", data: {id: "stoneflesh", name: "Stoneflesh"}}
+  - {text: "Ironflesh", data: {id: "ironflesh", name: "Ironflesh"}}
+  - {text: "Ebonyflesh", data: {id: "ebonyflesh", name: "Ebonyflesh"}}
+  - {text: "Candlelight", data: {id: "candlelight", name: "Candlelight"}}
+  - {text: "Magelight", data: {id: "magelight", name: "Magelight"}}
+  - {text: "Detect Life", data: {id: "detect-life", name: "Detect Life"}}
+  - {text: "Detect Dead", data: {id: "detect-dead", name: "Detect Dead"}}
+  - {text: "Telekinesis", data: {id: "telekinesis", name: "Telekinesis"}}
+  - {text: "Transmute", data: {id: "transmute", name: "Transmute"}}
+  - {text: "Waterbreathing", data: {id: "waterbreathing", name: "Waterbreathing"}}
+  - {text: "Paralyze", data: {id: "paralyze", name: "Paralyze"}}
+  - {text: "Equilibrium", data: {id: "equilibrium", name: "Equilibrium"}}
+  - {text: "Ash Shell", data: {id: "ash-shell", name: "Ash Shell"}}
+  - {text: "Ash Rune", data: {id: "ash-rune", name: "Ash Rune"}}
+  - {text: "Open Lock (old art)", data: {id: "open-lock", name: "Open Lock"}}
+  - {text: "Feather (old art)", data: {id: "feather", name: "Feather"}}
+  - {text: "Water Walking (old art)", data: {id: "water-walking", name: "Water Walking"}}
+  - {text: "Levitate (old art, forbidden)", data: {id: "levitate", name: "Levitate"}}
+---
+table: spell-tomes-illusion
+title: "Spell Tomes: Illusion and Mysticism"
+description: "A Scroll row rolls again on spell-tomes-illusion-scroll for its spell, by itself. Each tome's data.id is its compendium entry."
+dice: d20
+source: roll-tables/spell-tomes#illusion--mysticism-d20
+entries:
+  1: {text: "Clairvoyance", data: {id: "clairvoyance", name: "Clairvoyance"}}
+  2: {text: "Courage", data: {id: "courage", name: "Courage"}}
+  3: {text: "Fury", data: {id: "fury", name: "Fury"}}
+  4: {text: "Muffle", data: {id: "muffle", name: "Muffle"}}
+  5: {text: "Calm", data: {id: "calm", name: "Calm"}}
+  6: {text: "Fear", data: {id: "fear", name: "Fear"}}
+  7: {text: "Frenzy", data: {id: "frenzy", name: "Frenzy"}}
+  8: {text: "Rally", data: {id: "rally", name: "Rally"}}
+  9: {text: "Invisibility", data: {id: "invisibility", name: "Invisibility"}}
+  10: {text: "Pacify", data: {id: "pacify", name: "Pacify"}}
+  11: {text: "Rout", data: {id: "rout", name: "Rout"}}
+  12: {text: "Night-Eye (old art)", data: {id: "night-eye", name: "Night-Eye"}}
+  13: {text: "Charm (old art)", data: {id: "charm", name: "Charm"}}
+  14: {text: "Chameleon (old art)", data: {id: "chameleon", name: "Chameleon"}}
+  15: {text: "Silence (old art)", data: {id: "silence", name: "Silence"}}
+  16: {text: "Absorb Health (Mysticism)", data: {id: "absorb-health", name: "Absorb Health"}}
+  17: {text: "Dispel (Mysticism)", data: {id: "dispel", name: "Dispel"}}
+  18: {text: "Reflect Spell (Mysticism)", data: {id: "reflect-spell", name: "Reflect Spell"}}
+  19-20: {text: "A Scroll instead — roll again for its spell", data: {scroll: true}, then: [{table: "spell-tomes-illusion-scroll"}]}
+---
+table: spell-tomes-illusion-scroll
+title: "Spell Tomes: Illusion and Mysticism: a Scroll's spell"
+description: "A Scroll of one of this table's spells (the book's 'roll again for its spell'; each equally likely)."
+source: roll-tables/spell-tomes#illusion--mysticism-d20
+entries:
+  - {text: "Clairvoyance", data: {id: "clairvoyance", name: "Clairvoyance"}}
+  - {text: "Courage", data: {id: "courage", name: "Courage"}}
+  - {text: "Fury", data: {id: "fury", name: "Fury"}}
+  - {text: "Muffle", data: {id: "muffle", name: "Muffle"}}
+  - {text: "Calm", data: {id: "calm", name: "Calm"}}
+  - {text: "Fear", data: {id: "fear", name: "Fear"}}
+  - {text: "Frenzy", data: {id: "frenzy", name: "Frenzy"}}
+  - {text: "Rally", data: {id: "rally", name: "Rally"}}
+  - {text: "Invisibility", data: {id: "invisibility", name: "Invisibility"}}
+  - {text: "Pacify", data: {id: "pacify", name: "Pacify"}}
+  - {text: "Rout", data: {id: "rout", name: "Rout"}}
+  - {text: "Night-Eye (old art)", data: {id: "night-eye", name: "Night-Eye"}}
+  - {text: "Charm (old art)", data: {id: "charm", name: "Charm"}}
+  - {text: "Chameleon (old art)", data: {id: "chameleon", name: "Chameleon"}}
+  - {text: "Silence (old art)", data: {id: "silence", name: "Silence"}}
+  - {text: "Absorb Health (Mysticism)", data: {id: "absorb-health", name: "Absorb Health"}}
+  - {text: "Dispel (Mysticism)", data: {id: "dispel", name: "Dispel"}}
+  - {text: "Reflect Spell (Mysticism)", data: {id: "reflect-spell", name: "Reflect Spell"}}
+---
+table: spell-tomes-conjuration
+title: "Spell Tomes: Conjuration"
+description: "19–20 roll on spell-tomes-binding, by itself. Each tome's data.id is its compendium entry."
+dice: d20
+source: roll-tables/spell-tomes#conjuration-d20
+entries:
+  1: {text: "Conjure Familiar", data: {id: "conjure-familiar", name: "Conjure Familiar"}}
+  2: {text: "Flaming Familiar", data: {id: "flaming-familiar", name: "Flaming Familiar"}}
+  3: {text: "Summon Scamp (old art)", data: {id: "summon-scamp", name: "Summon Scamp"}}
+  4: {text: "Summon Clannfear (old art)", data: {id: "summon-clannfear", name: "Summon Clannfear"}}
+  5: {text: "Conjure Flame Atronach", data: {id: "conjure-flame-atronach", name: "Conjure Flame Atronach"}}
+  6: {text: "Conjure Frost Atronach", data: {id: "conjure-frost-atronach", name: "Conjure Frost Atronach"}}
+  7: {text: "Conjure Storm Atronach", data: {id: "conjure-storm-atronach", name: "Conjure Storm Atronach"}}
+  8: {text: "Conjure Dremora Lord", data: {id: "conjure-dremora-lord", name: "Conjure Dremora Lord"}}
+  9: {text: "Summon Daedroth (old art)", data: {id: "summon-daedroth", name: "Summon Daedroth"}}
+  10: {text: "Conjure Seeker", data: {id: "conjure-seeker", name: "Conjure Seeker"}}
+  11: {text: "Conjure Ash Spawn", data: {id: "conjure-ash-spawn", name: "Conjure Ash Spawn"}}
+  12: {text: "Conjure Boneman", data: {id: "conjure-boneman", name: "Conjure Boneman"}}
+  13: {text: "Conjure Mistman", data: {id: "conjure-mistman", name: "Conjure Mistman"}}
+  14: {text: "Conjure Wrathman", data: {id: "conjure-wrathman", name: "Conjure Wrathman"}}
+  15: {text: "Raise Zombie", data: {id: "raise-zombie", name: "Raise Zombie"}}
+  16: {text: "Reanimate Corpse", data: {id: "reanimate-corpse", name: "Reanimate Corpse"}}
+  17: {text: "Revenant", data: {id: "revenant", name: "Revenant"}}
+  18: {text: "Dread Zombie", data: {id: "dread-zombie", name: "Dread Zombie"}}
+  19-20: {text: "Roll on Binding below", then: [{table: "spell-tomes-binding"}]}
+---
+table: spell-tomes-binding
+title: "Spell Tomes: Binding"
+description: "Each tome's data.id is its compendium entry."
+dice: d8
+source: roll-tables/spell-tomes#binding-d8
+entries:
+  1: {text: "Bound Dagger", data: {id: "bound-dagger", name: "Bound Dagger"}}
+  2: {text: "Bound Sword", data: {id: "bound-sword", name: "Bound Sword"}}
+  3: {text: "Bound Battleaxe", data: {id: "bound-battleaxe", name: "Bound Battleaxe"}}
+  4: {text: "Bound Bow", data: {id: "bound-bow", name: "Bound Bow"}}
+  5: {text: "Soul Trap", data: {id: "soul-trap", name: "Soul Trap"}}
+  6: {text: "Banish Daedra", data: {id: "banish-daedra", name: "Banish Daedra"}}
+  7: {text: "Expel Daedra", data: {id: "expel-daedra", name: "Expel Daedra"}}
+  8: {text: "Command Daedra", data: {id: "command-daedra", name: "Command Daedra"}}

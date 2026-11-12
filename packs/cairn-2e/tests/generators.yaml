@@ -1,0 +1,60 @@
+# Every generator the book's procedures make, all the way to records: each one runs with the
+# dice deciding what the prefill doesn't, then commits. Seeded, so it plays the same every time.
+test: every-generator
+script:
+  - world new vale --system {pack} --seed generators
+  - campaign new first --seed generators
+  - run: >-
+      gen run cairn-2e.npc --auto --prefill '{"name": "Old Gannet", "background": "Healer"}'
+    expect: "npc Old Gannet: role: Healer"
+  - run: gen commit g1
+    expect: "npc:old-gannet"
+  - run: gen run cairn-2e.faction --auto
+    expect: "leader: agent-1"
+  - run: gen commit g2
+    expect: committed
+  - run: >-
+      gen run cairn-2e.realm --auto --prefill '{"rulers": "Barony"}'
+    expect: "kind: realm, rulers: Barony"
+  - run: gen commit g3
+    expect: committed
+  - run: >-
+      gen run cairn-2e.point-of-interest --auto --prefill '{"drop": "Lair"}'
+    expect: "poi: lair"
+  - run: gen commit g4
+    expect: committed
+  - run: >-
+      gen run cairn-2e.relic --auto --prefill '{"relic": "Ward Stone"}'
+    expect: "relic Ward Stone: effect:"
+  - run: gen commit g5
+    expect: "relic:ward-stone"
+  - run: >-
+      gen run cairn-2e.spellbook --auto --prefill '{"spell": "Sniff"}'
+    expect: "spellbook Sniff: spell:"
+  - run: gen commit g6
+    expect: "spellbook:sniff"
+  - run: >-
+      gen run cairn-2e.weapon --auto --prefill '{"weapon": "Sword", "name": "Hope"}'
+    expect: "item Hope: price: 10, damage: d8"
+  - run: gen commit g7
+    expect: "item:hope"
+  - run: >-
+      gen run cairn-2e.armor --auto --prefill '{"armor": "Chainmail"}'
+    expect: "armor: 2"
+  - run: gen commit g8
+    expect: committed
+  - run: >-
+      gen run cairn-2e.gear --auto --prefill '{"gear": "Rope"}'
+    expect: "item Rope"
+  - run: gen commit g9
+    expect: committed
+  - run: >-
+      gen run cairn-2e.pointcrawl --auto --prefill '{"ground": "Tough"}'
+    expect: ["difficulty: tough", "map:"]
+  - run: gen commit g10
+    expect: committed
+  - run: >-
+      char new cairn-2e.hireling --mode random --prefill '{"role": "Scholar", "name": "Pell"}'
+    expect: "hireling Pell"
+  - run: char commit c11
+    expect: "hireling:pell"

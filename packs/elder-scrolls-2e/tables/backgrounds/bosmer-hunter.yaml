@@ -1,0 +1,24 @@
+# Bosmer Hunter (backgrounds/bosmer-hunter): the background's two d6 tables.
+table: bosmer-hunter-1
+title: "What did the wood teach you?"
+dice: d6
+source: backgrounds/bosmer-hunter#what-did-the-wood-teach-you-roll-1d6
+entries:
+  1: "To disappear. You need not save to move unseen through forest or brush, so long as you move slowly."
+  2: {text: "To hunt with a hawk. A Greenspeaker taught you to bind a willing beast to your hunt. Treat your hunting hawk as your companion (see Companions): talons (d6), no Armor, and one trick — it scouts ahead and returns with what it saw.", data: {companion: "hunting-hawk"}}
+  3: "The Green Pact. Meat is your only law. You can live off any kill, however foul, and read a wound or a carcass to know what made it and when."
+  4: "The quick draw. Once per day, loose two arrows in the time of one: make a second attack with your bow, then add a Fatigue from the strain."
+  5: {text: "A paid hunt. A village paid you to clear a beast from their fields. Take 2d6 extra Septims; hunters and trappers across Skyrim trade you news and shelter.", data: {gold_dice: "2d6"}}
+  6: {text: "Hunting toxin. A pouch of Valenwood hobbling-venom (3 uses): coat an arrow, and the next creature it wounds must pass a STR save or its legs grow heavy, and it cannot run or flee for the rest of the scene.", data: {gear: [{name: "Hobbling-venom", uses: 3, note: "Valenwood: coat an arrow"}]}}
+---
+table: bosmer-hunter-2
+title: "What is your hunter's craft?"
+dice: d6
+source: backgrounds/bosmer-hunter#what-is-your-hunters-craft-roll-1d6
+entries:
+  1: {text: "Long Shot: A fine recurved Elven bow (d6, bulky) of pale moonstone. Loosed from cover or high ground at an unready foe, its arrow ignores 1 Armor.", data: {gear: [{name: "Long Shot", damage: "d6", size: "bulky"}]}}
+  2: "Beast-Tongue: You can mimic any bird or beast call well enough to fool the beast itself, and to call one closer."
+  3: "Pathless Wood: You never lose your way in forest, fen, or thicket, and you can lead others by hidden game-trails no map shows, far from any road or patrol."
+  4: {text: "Snare-Craft: A roll of wire and cord (petty). Given a quiet hour, you can rig a clearing so the first creature through is caught fast or takes d6 damage.", data: {gear: [{name: "Snare-Craft", size: "petty"}]}}
+  5: "Forest-Foot: You move through dry leaves and bracken without a whisper, and leave no trail worth following on wooded ground."
+  6: "Camoran's Eye: A marksman's stillness. Once per combat, spend a round taking aim without moving: your next shot is Enhanced."

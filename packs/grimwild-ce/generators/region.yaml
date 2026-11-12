@@ -1,0 +1,41 @@
+# A region map (Region Maps, pp. 132-133): a pointcrawl of labelled points joined by paths, drawn
+# from one border inward. At the table, everyone (the GM too) spends 3 exploration tokens a round;
+# here the dice place the points when nobody chooses (region-points: a settlement, site or danger,
+# minor or major, or a curiosity), each labelled from its exploration crucible (p. 138), and join
+# them by paths (major, minor or rough), each waypoint a day of travel on horseback.
+generator: region
+title: A region map
+help: >-
+  A region map, step by step: its name, then each point (a settlement, site or danger, minor or
+  major, or a curiosity) labelled with two words from its crucible (choose them, or let the
+  dice), and paths between them from where the party enters, each major, minor or rough.
+  points=<n> sets how many (6). Prefill by name: region_name, point, adjective, noun.
+params:
+  points: {kind: int, default: 6, help: "How many points to place"}
+source: "pp. 132-133"
+steps:
+  - let: {region_name: "The Grimwild"}
+  - entity:
+      key: region
+      type: loc
+      name: "{@region_name}"
+      fields: {kind: region}
+  - repeat: "$points"
+    steps:
+      - choose_or_roll: {table: region-points, as: point, prompt: "what to place: a point of interest (minor or major) or a curiosity"}
+      - choose_or_roll: {table: "{@point.first}", as: adjective, prompt: "a word to label it (the first grid)"}
+      - choose_or_roll: {table: "{@point.second}", as: noun, prompt: "and what it is (the second grid)"}
+      - entity:
+          key: point
+          type: loc
+          name: "{@adjective} {@noun}"
+          fields: {kind: "@point.point", size: "@point.size", region: "@region"}
+  - map:
+      places: point
+      paths: {max: 3}
+      distances: ["1 day", "2 days", "3 days"]
+      describe: [region-paths]
+      entrance: true
+  - prompt: "The map's edges: nearly impassable mountains to the west, a long cliffside coastline to the east, heavy forest to the north, a dire swamp to the south, and the fog all around, which leads to one of the three realities (`didact table roll grimwild-realities`)."
+  - prompt: "Label a point [Remnants], [Wilds] or [Ruins] if it's mostly from one reality, and add factions as needed (`didact gen run grimwild-ce.faction`)."
+  - prompt: "Expand the map when the party reaches its edge: everyone, the GM too, takes 3 exploration tokens (a minor point 1, a major one 2, a major path 2, a minor path 1, a rough path free, a curiosity, barrier or area 3)."

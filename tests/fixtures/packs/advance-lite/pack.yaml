@@ -1,0 +1,9 @@
+id: advance-lite
+name: Advance lite (test system)
+kind: system
+version: 0.1.0
+description: A calling, gifts and levels, to test level-ups that change a character step by step.
+requires: {packs: [core]}
+license:
+  spdx: CC0-1.0
+  redistributable: true

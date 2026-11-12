@@ -1,0 +1,6 @@
+table: weather
+dice: d6
+entries:
+  1-2: calm
+  3-5: fog
+  6: storm

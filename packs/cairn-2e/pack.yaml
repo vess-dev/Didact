@@ -1,0 +1,79 @@
+id: cairn-2e
+name: Cairn (Second Edition)
+kind: system
+version: 1.0.0
+description: >-
+  Cairn 2e by Yochai Gal: an adventure game about exploring a dark and mysterious Wood filled
+  with strange folk, hidden treasure, and unspeakable monsters. The full rules, tables,
+  bestiary, marketplace, spellbooks, relics, seeds and character creation, playable in Didact.
+requires: {packs: [core]}
+license:
+  spdx: CC-BY-SA-4.0
+  redistributable: true
+  attribution: >-
+    Cairn Second Edition by Yochai Gal (with Adam Hensley and Derek B.), cairnrpg.com, is
+    licensed under CC-BY-SA 4.0. This pack adapts its text and tables to Didact's format and is
+    shared under the same license.
+source:
+  title: Cairn Second Edition
+  url: https://cairnrpg.com/second-edition/
+  sections:
+    - players-guide/overview-and-principles
+    - players-guide/character-creation
+    - players-guide/core-rules
+    - players-guide/procedures
+    - players-guide/marketplace
+    - backgrounds/aurifex
+    - backgrounds/barber-surgeon
+    - backgrounds/beast-handler
+    - backgrounds/bonekeeper
+    - backgrounds/cutpurse
+    - backgrounds/fieldwarden
+    - backgrounds/fletchwind
+    - backgrounds/foundling
+    - backgrounds/fungal-forager
+    - backgrounds/greenwise
+    - backgrounds/half-witch
+    - backgrounds/hexenbane
+    - backgrounds/jongleur
+    - backgrounds/kettlewright
+    - backgrounds/marchguard
+    - backgrounds/mountebank
+    - backgrounds/outrider
+    - backgrounds/prowler
+    - backgrounds/rill-runner
+    - backgrounds/scrivener
+    - wardens-guide/bestiary
+    - wardens-guide/bonds-and-omens
+    - wardens-guide/combat
+    - wardens-guide/creating-backgrounds
+    - wardens-guide/creating-monsters
+    - wardens-guide/detachments
+    - wardens-guide/dungeon-exploration
+    - wardens-guide/dungeon-seeds
+    - wardens-guide/forest-seeds
+    - wardens-guide/growth
+    - wardens-guide/knowledge-and-perception
+    - wardens-guide/naming-procedures
+    - wardens-guide/npc-tables
+    - wardens-guide/pointcrawls
+    - wardens-guide/reliquary
+    - wardens-guide/saves
+    - wardens-guide/setting-seeds
+    - wardens-guide/spellbooks
+    - wardens-guide/variable-difficulty
+    - wardens-guide/wilderness-exploration
+settings:
+  watches: [morning, afternoon, night]
+  time_units: {round: 10, turn: 600}
+  combat:
+    mode: sides
+    first: party
+    round_one: >-
+      In the first round, each PC must pass a DEX save to act:
+      `didact do save who=<pc> attr=DEX` (special circumstances, abilities or items can waive
+      it). Those who fail lose their turn, and a panicked PC doesn't act in the first round.
+      Then their opponents act; after that sides alternate, PCs first, results simultaneous.
+    attack: attack
+  factions: {turn: faction-action}
+  names: {npc: first-names, place: place-names, poi: poi-names, faction: faction-names, realm: realm-names, forest: forest-names}

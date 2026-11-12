@@ -1,0 +1,105 @@
+# Afflictions and crafting lookups (players-guide/diseases-and-afflictions, crafting,
+# companions, mounts): what the rules look up by name.
+table: diseases
+title: "Diseases"
+description: "Each disease, its source and its one ongoing effect, by id. When a source wounds or exposes you, save STR or be afflicted (`didact do disease`); any one cure clears them all (`didact do cure-disease`)."
+lookup: disease
+source: players-guide/diseases-and-afflictions#disease-table
+entries:
+  "rockjoint": {text: "Rockjoint: Your joints stiffen and ache: your attacks in the first round of any combat are Impaired (roll 1d4 damage) while your limbs loosen.", data: {name: "Rockjoint", source: "Foxes, wolves", effect: "Your joints stiffen and ache: your attacks in the first round of any combat are Impaired (roll 1d4 damage) while your limbs loosen."}}
+  "ataxia": {text: "Ataxia: Your hands tremble: picking locks, picking pockets, and other fine handwork always require a DEX save, even at leisure.", data: {name: "Ataxia", source: "Skeevers", effect: "Your hands tremble: picking locks, picking pockets, and other fine handwork always require a DEX save, even at leisure."}}
+  "witbane": {text: "Witbane: Your mind clouds: you cannot channel a Spell Tome without first passing a WIL save, even in safety.", data: {name: "Witbane", source: "Sabre cats (also dogs)", effect: "Your mind clouds: you cannot channel a Spell Tome without first passing a WIL save, even in safety."}}
+  "brain-rot": {text: "Brain Rot: Magicka festers in you: whenever you channel a Spell Tome, make a WIL save or take an extra Fatigue from the effort.", data: {name: "Brain Rot", source: "Hagravens (also risen corpses)", effect: "Magicka festers in you: whenever you channel a Spell Tome, make a WIL save or take an extra Fatigue from the effort."}}
+  "bone-break-fever": {text: "Bone Break Fever: A wracking ache settles in: you carry one Fatigue that rest cannot clear (drop an item if you have no free slot).", data: {name: "Bone Break Fever", source: "Bears", effect: "A wracking ache settles in: you carry one Fatigue that rest cannot clear (drop an item if you have no free slot)."}}
+  "rattles": {text: "Rattles: Your limbs shudder and tire: a short rest no longer restores your HP — only a full night's rest does.", data: {name: "Rattles", source: "Chaurus (Hunters & Reapers)", effect: "Your limbs shudder and tire: a short rest no longer restores your HP — only a full night's rest does."}}
+  "brown-rot": {text: "Brown Rot: Your skin blotches and your gear seems to rot with you: your body armor gives 1 less Armor (to a minimum of 0).", data: {name: "Brown Rot", source: "Draugr", effect: "Your skin blotches and your gear seems to rot with you: your body armor gives 1 less Armor (to a minimum of 0)."}}
+  "droops": {text: "Droops: Your arms hang heavy: attacks with a bulky weapon are Impaired.", data: {name: "Droops", source: "Ash hoppers", effect: "Your arms hang heavy: attacks with a bulky weapon are Impaired."}}
+  "greenspore": {text: "Greenspore: A green bloom creeps over your skin: strangers' Reactions toward you shift one step worse.", data: {name: "Greenspore", source: "Slaughterfish", effect: "A green bloom creeps over your skin: strangers' Reactions toward you shift one step worse."}}
+  "sanguinare-vampiris": {text: "Sanguinare Vampiris: The vampire's curse takes root. Your maximum HP is reduced by 1 while it festers, and if left uncured it becomes Vampirism after three days (see below).", data: {name: "Sanguinare Vampiris", source: "Vampires (their draining touch)", effect: "The vampire's curse takes root. Your maximum HP is reduced by 1 while it festers, and if left uncured it becomes Vampirism after three days (see below)."}}
+---
+table: soul-gems
+title: "Soul gems"
+description: "A soul's size sets a crafted Relic's charges: petty or lesser 1, common or greater 2, grand or black 3. Greater, grand and black souls can power a constant (always-on) worn enchantment instead."
+lookup: gem
+source: players-guide/crafting#soul-gems
+entries:
+  "petty": {text: "Petty: holds the soul of the smallest vermin; 1 — the apprentice's gem", data: {charges: 1, constant: false}}
+  "lesser": {text: "Lesser: holds a small beast; 1", data: {charges: 1, constant: false}}
+  "common": {text: "Common: holds an ordinary animal; 2 — the workaday gem of most enchanters", data: {charges: 2, constant: false}}
+  "greater": {text: "Greater: holds a large or fierce creature; 2, or a constant enchantment", data: {charges: 2, constant: true}}
+  "grand": {text: "Grand: holds the mightiest beasts; 3, or a constant enchantment — the fullest a white soul goes", data: {charges: 3, constant: true}}
+  "black": {text: "Black: holds the soul of a thinking being; 3, or a constant enchantment — grand-sized always, and forbidden", data: {charges: 3, constant: true}}
+---
+table: material-tiers
+title: "Material tiers"
+description: "The smith's materials, weakest to strongest: every tier obeys the same caps (Armor 3, d12), so the difference is fiction and worth. Worth (× the Marketplace price): Iron and Steel ×1; Dwarven, Elven and Orcish about ×5; glass, ebony, Nordic and Stalhrim about ×20; dragonbone and Daedric ×50 or more, when they can be bought at all."
+lookup: material
+source: players-guide/crafting#material-tiers
+entries:
+  "Iron": {text: "The common stock of every village forge. Heavy, plain, serviceable. Iron ingots are cheap and everywhere; this is where a smith learns the hammer.", data: {tier: 1, worth: 1}}
+  "Steel": {text: "Iron folded with corundum — tougher, holds an edge, the soldier's standard across the Holds. Lighter and finer than raw iron for the same protection.", data: {tier: 2, worth: 1}}
+  "Dwarven": {text: "Forged from salvaged Dwemer metal (it cannot be mined — only smelted from ruin-salvage). Golden, ancient, and far sturdier than steel; a mark of the delver who looted a Dwemer hall.", data: {tier: 3, worth: 5}}
+  "Elven": {text: "Pale moonstone work, quicksilver-bright. Light and elegant — the Altmer aesthetic — favoring the swift fighter over the bulwark.", data: {tier: 4, worth: 5}}
+  "Orcish": {text: "Dark, brutal stronghold-craft, heavier and grimmer than elven. What the Orsimer beat out at their clan forges; ugly, dependable, and feared.", data: {tier: 5, worth: 5}}
+  "Glass": {text: "Malachite, not true glass: a translucent green volcanic stone, prized and rare. Astonishingly light for its strength — beautiful, expensive, and a clear sign of wealth.", data: {tier: 6, worth: 20}}
+  "Ebony": {text: "Hardened volcanic \"stone-metal\" from the ash lands, black and faintly glassy. One of the finest mundane materials; weapons of it are deadly, armor of it is dreaded, and it takes an enchantment readily.", data: {tier: 7, worth: 20}}
+  "Nordic / Stalhrim": {text: "Two ancient northern makes. Nordic is the strong-but-light steel of old Solstheim. Stalhrim is \"enchanted ice\" mined only on Solstheim with an ancient Nordic pick — frost-cold to the touch and rivaling the very best; gear of it carries cold enchantments uncommonly well.", data: {tier: 8, worth: 20}}
+  "Dragonbone": {text: "Smith-work from the bones and scales of slain dragons. Wickedly sharp, frighteningly tough, and unmistakable; only a Dragonborn's hunts (or a very lucky scavenger) supply the stock.", data: {tier: 9, worth: 50}}
+  "Daedric": {text: "The pinnacle. Ebony quenched with a beating Daedra Heart in an ill-omened rite — black shot through with red, radiating a low menace. The dreadful equal of dragonbone; armor of it terrifies, and it drinks enchantment more eagerly than any other make. Still 3 Armor; still d12. Its superiority is the fear it sows, the price it commands, and the magic it will hold.", data: {tier: 10, worth: 50}}
+---
+table: brews
+title: "Sample potions and poisons"
+description: "Representative recipes, each brewed from ingredients sharing the named effect: a menu, not a limit. All are petty, single-use, no Fatigue."
+lookup: brew
+source: players-guide/crafting#sample-potions--poisons
+entries:
+  "Potion of Healing": "Restores 1d6 STR. A master's Potion of Greater Healing restores all lost STR. Either can stabilize a PC suffering Critical Damage. A healing draught is magical healing (see Healing has limits, below)."
+  "Potion of Cure Disease": "Cures all mundane disease (Rockjoint, Ataxia, and the like). It does not cure Vampirism or Lycanthropy."
+  "Potion of Resist Fire": "For the rest of the scene, fire attacks against you are Impaired."
+  "Potion of Resist Frost": "For the rest of the scene, frost and cold attacks against you are Impaired. (A Stalhrim-flavored brew is especially prized in the north.)"
+  "Potion of Resist Shock": "For the rest of the scene, lightning/shock attacks against you are Impaired."
+  "Draught of Fortitude": "Re-roll one failed STR (or DEX, or WIL — the brew is keyed to one) save, once, before the next Downtime."
+  "Potion of Invisibility": "You cannot be seen until you attack, cast, or the scene ends. Attacks you make from it are Enhanced; saves to move unseen are not required while it lasts."
+  "Potion of Waterbreathing": "You breathe water freely for a scene — no drowning saves while submerged."
+  "Damage Health (poison)": "Smeared on a blade or arrow as an action. The next hit with that weapon is Enhanced."
+  "Paralytic (poison)": "The next hit with the coated weapon forces a STR save; on a failure the target loses its next turn as its limbs lock."
+  "Lingering Poison": "The next hit with the coated weapon forces a STR save; on a failure the target takes 1d6 STR and the venom lingers: at the start of each of its next three turns it saves again, losing 1 more STR on each failure, until a save succeeds (see Hazards → Poison & Venom)."
+---
+table: enchantments
+title: "Sample enchantments"
+description: "Effects ready to bind into a Relic at an arcane enchanter (`didact do enchant`); the soul gem sets the charges."
+lookup: effect
+source: players-guide/crafting#sample-enchantments
+entries:
+  "Fire / Frost / Shock damage": "When you attack, spend a charge: the attack is Enhanced and counts as fire, frost, or shock."
+  "Soul Trap": "When you attack, spend a charge: if the blow kills, the creature's soul fills a fitting empty soul gem you carry."
+  "Absorb Health": "When you attack, spend a charge: the attack is Enhanced and you restore 1d4 STR."
+  "Turn Undead": "Spend a charge: undead in sight make a WIL save or flee for the round."
+  "Resist an element (worn, constant)": "While worn, that element's attacks against you are Impaired."
+  "Fortify a save (worn)": "Spend a charge: re-roll a failed save of one chosen type (STR, DEX, or WIL)."
+  "Muffle (worn, constant)": "While worn, you need not save to move silently in ordinary conditions."
+  "Waterbreathing (worn, constant)": "While worn, you breathe water and never make drowning saves."
+---
+table: loyalty
+title: "Loyalty"
+description: "A companion's Loyalty, 1 (Wary) to 5 (Sworn); it moves one step at a time (`didact do loyalty`)."
+lookup: loyalty
+source: players-guide/companions#loyalty
+entries:
+  1: {text: "Wary: Follows for now. Leaves at the next clean chance.", data: {name: "Wary"}}
+  2: {text: "Tested: Stays, but grumbles. Won't charge into obvious death for you.", data: {name: "Tested"}}
+  3: {text: "Trusting: The default. A reliable ally.", data: {name: "Trusting"}}
+  4: {text: "Devoted: Takes the first hit for a PC. Won't leave without a direct order.", data: {name: "Devoted"}}
+  5: {text: "Sworn: Will die for the party and mean it. Once per day, may take a hit meant for their PC — the companion suffers that damage instead.", data: {name: "Sworn"}}
+---
+table: common-mounts
+title: "Common mounts"
+description: "The quick reference: slots, speed quirks and what each does on the road (prices in the Marketplace)."
+lookup: mount
+source: players-guide/mounts#common-mounts
+entries:
+  "Riding Horse": "+4 slots. The standard saddle horse. Ignores one watch of Path or Terrain penalty. Startles in a fight, and its rider's attacks are Impaired, unless trained."
+  "Skyrim Horse": "+4 slots. A shaggy, sure-footed northern breed. As a riding horse, and additionally treats snow, ice, and mountain (Perilous) terrain as one step easier."
+  "Mule / Pack Donkey": "+6 slots, slow. Cargo only — no travel relief, no riding into a fight. Stubborn, hardy, cheap."
+  "Cart": "+4 slots, bulky. Pulled by hand or hitched to a mount (which then loses its penalty-easing)."
+  "Wagon": "+8 slots, slow. A homestead's hauler; needs a horse or two to draw it."

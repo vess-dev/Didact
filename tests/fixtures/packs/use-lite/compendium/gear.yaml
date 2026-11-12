@@ -1,0 +1,10 @@
+- {id: lantern-torch, type: item, name: Lantern / Torch, aliases: [Lantern, torch], uses: 3}
+- {id: wolf-pelt, type: item, name: Wolf pelt, aliases: [Pelt]}
+- {id: bear-pelt, type: item, name: Bear pelt, aliases: [Pelt]}
+- {id: grit-1, type: manual, name: "Series 1: Grit", skill: grit}
+- {id: iron-sword, type: weapon, name: Iron Sword, damage: d6}
+- {id: auto-pistol, type: weapon, name: ".45 Auto pistol", damage: d6}
+- {id: heavy-pistol, type: weapon, name: "12.7mm pistol", damage: d8}
+- {id: heavy-smg, type: weapon, name: "12.7mm SMG", damage: d8}
+- {id: rations, type: item, name: Rations, uses: 3}
+- {id: oil-lamp, type: item, name: Oil lamp, uses: d4}

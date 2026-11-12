@@ -1,0 +1,296 @@
+# Scars (players-guide/core-rules#scars): what happens when an attack takes a PC's HP to exactly
+# 0, looked up by the HP lost. Scars are growth that needs no trigger (wardens-guide/growth#
+# introduction: "with some notable exceptions (such as Scars)"). Two helpers do the book's
+# "roll it; if the total is higher, take the new result" and "increase your max by it".
+procedure: scar
+title: Scar
+help: >-
+  An attack took a PC's HP to exactly 0: look up the Scars table by the HP lost and apply it.
+  Where, which limb or which attribute is rolled; rerolls that beat the old number take it; the
+  wounds that heal later become conditions (`didact do scar-heal` when they do). The attack runs
+  this by itself; HP lost past 12 reads as 12 (the book's table stops there).
+params:
+  who: ref
+  lost: {kind: int, help: "The HP lost in the attack (what it had before)"}
+steps:
+  - table: scars
+    with: {hp_lost: "@lost"}
+    as: scar
+  - if: "@scar.kind == 'lasting-scar'"
+    then:
+      - table: scar-location
+        as: where
+      - do: attribute-reroll
+        with: {who: "@who", attr: hp, dice: 1d6, value: stays}
+        as: reroll
+      - set: who.scars
+        op: "+="
+        value: "Lasting Scar ({@where}; {@lost} HP lost): {@reroll.changed}"
+  - if: "@scar.kind == 'rattling-blow'"
+    then:
+      - prompt: "{@who.name} is disoriented and shaken: describe how they refocus."
+      - do: attribute-reroll
+        with: {who: "@who", attr: hp, dice: 1d6, value: stays}
+        as: reroll
+      - set: who.scars
+        op: "+="
+        value: "Rattling Blow ({@lost} HP lost): {@reroll.changed}"
+  - if: "@scar.kind == 'walloped'"
+    then:
+      - set: who.conditions
+        op: "+="
+        value: [deprived, walloped]
+      - set: who.scars
+        op: "+="
+        value: "Walloped ({@lost} HP lost): deprived until a few hours' rest, then 1d6 onto max HP"
+      - reminder: "After a few hours' rest: `didact do scar-heal who={@who.id} scar=walloped` (the deprivation ends; 1d6 goes onto max HP)."
+  - if: "@scar.kind == 'broken-limb'"
+    then:
+      - table: broken-limb
+        as: limb
+      - set: who.conditions
+        op: "+="
+        value: "@limb.condition"
+      - set: who.scars
+        op: "+="
+        value: "Broken Limb ({@limb}; {@lost} HP lost): once mended, 2d6 against max HP"
+      - reminder: "Once the {@limb} is mended: `didact do scar-heal who={@who.id} scar={@limb.condition}` (2d6: higher than max HP, take it)."
+  - if: "@scar.kind == 'diseased'"
+    then:
+      - set: who.conditions
+        op: "+="
+        value: diseased
+      - set: who.scars
+        op: "+="
+        value: "Diseased ({@lost} HP lost): when over it, 2d6 against max HP"
+      - reminder: "When {@who.name} gets over the infection: `didact do scar-heal who={@who.id} scar=diseased` (2d6: higher than max HP, take it)."
+  - if: "@scar.kind == 'head-wound'"
+    then:
+      - table: head-wound
+        as: head
+      - do: attribute-reroll
+        with: {who: "@who", attr: "@head", dice: 3d6, against: current}
+        as: reroll
+      - set: who.scars
+        op: "+="
+        value: "Reorienting Head Wound ({@head}; {@lost} HP lost): {@reroll.changed}"
+  - if: "@scar.kind == 'hamstrung'"
+    then:
+      - set: who.conditions
+        op: "+="
+        value: hamstrung
+      - set: who.scars
+        op: "+="
+        value: "Hamstrung ({@lost} HP lost): after recovery, 3d6 against max DEX"
+      - reminder: "{@who.name} can barely move until they get serious help and rest; after recovery (`didact do recover who={@who.id}`, or `didact do scar-heal who={@who.id} scar=hamstrung`), 3d6 against max DEX."
+  - if: "@scar.kind == 'deafened'"
+    then:
+      - set: who.conditions
+        op: "+="
+        value: deafened
+      - check: save
+        with: {who: "@who", attr: WIL}
+        as: resolve
+      - if: "@resolve == 'success'"
+        then:
+          - do: attribute-raise
+            with: {who: "@who", attr: WIL, amount: 1d4}
+            as: raise
+          - set: who.scars
+            op: "+="
+            value: "Deafened ({@lost} HP lost): {@raise.changed}"
+        else:
+          - set: who.scars
+            op: "+="
+            value: "Deafened ({@lost} HP lost): the WIL save failed"
+      - reminder: "{@who.name} hears nothing until they find extraordinary aid: then `didact do scar-heal who={@who.id} scar=deafened`."
+  - if: "@scar.kind == 're-brained'"
+    then:
+      - do: attribute-reroll
+        with: {who: "@who", attr: WIL, dice: 3d6}
+        as: reroll
+      - set: who.scars
+        op: "+="
+        value: "Re-brained ({@lost} HP lost): {@reroll.changed}"
+  - if: "@scar.kind == 'sundered'"
+    then:
+      - prompt: "An appendage is torn off, crippled, or useless: the Warden says which, and what it means from now on."
+      - check: save
+        with: {who: "@who", attr: WIL}
+        as: resolve
+      - if: "@resolve == 'success'"
+        then:
+          - do: attribute-raise
+            with: {who: "@who", attr: WIL, amount: 1d6}
+            as: raise
+          - set: who.scars
+            op: "+="
+            value: "Sundered ({@lost} HP lost; the Warden says which appendage): {@raise.changed}"
+        else:
+          - set: who.scars
+            op: "+="
+            value: "Sundered ({@lost} HP lost; the Warden says which appendage): the WIL save failed"
+  - if: "@scar.kind == 'mortal-wound'"
+    then:
+      - set: who.conditions
+        op: "+="
+        value: [deprived, mortal-wound]
+      - set: who.scars
+        op: "+="
+        value: "Mortal Wound ({@lost} HP lost): upon recovery, 2d6 becomes max HP"
+      - message: "{@who.name} is deprived and out of action, and dies in one hour unless healed: `didact do stabilize who={@who.id}`."
+      - remind: "{@who.name} dies of the mortal wound unless healed (`didact do stabilize who={@who.id}`)"
+        in: 1 hour
+      - reminder: "Upon recovery: `didact do recover who={@who.id}` (or `didact do scar-heal who={@who.id} scar=mortal-wound`): 2d6 becomes max HP."
+  - if: "@scar.kind == 'doomed'"
+    then:
+      - set: who.conditions
+        op: "+="
+        value: doomed
+      - set: who.scars
+        op: "+="
+        value: "Doomed ({@lost} HP lost): the next critical damage save decides"
+      - message: "{@who.name} is doomed: if their next save against critical damage fails, they die horribly; if it passes, 3d6 against max HP (the attack does both)."
+  - message: "{@who.name} gets a scar ({@lost} HP lost: {@scar.kind}); `didact show {@who.id}` lists their scars."
+source: players-guide/core-rules#scars
+---
+action: scar-heal
+title: A scar heals
+help: >-
+  The later half of a scar, when the fiction says so: walloped (a few hours' rest: the
+  deprivation ends, 1d6 onto max HP), a broken limb mended or a disease got over (2d6 against max
+  HP), hamstrung after recovery (3d6 against max DEX), deafened with extraordinary aid, a mortal
+  wound upon recovery (2d6 becomes max HP). `recover` runs it for walloped, hamstrung and a
+  mortal wound.
+params:
+  who: ref
+  scar: {enum: [walloped, broken-leg, broken-arm, broken-rib, broken-skull, diseased, hamstrung, deafened, mortal-wound]}
+steps:
+  - if: "not ('$scar' in @who.conditions)"
+    then:
+      - stop: "{@who.name} has no $scar to heal (conditions: {@who.conditions})."
+  - set: who.conditions
+    op: "-="
+    value: $scar
+  - if: "@scar == 'walloped'"
+    then:
+      - if: "'deprived' in @who.conditions"
+        then:
+          - set: who.conditions
+            op: "-="
+            value: deprived
+      - do: attribute-raise
+        with: {who: "@who", attr: hp, amount: 1d6, value: stays}
+        as: raise
+      - set: who.scars
+        op: "+="
+        value: "Walloped, rested: {@raise.changed}"
+  - if: "@scar == 'diseased' or @scar == 'broken-leg' or @scar == 'broken-arm' or @scar == 'broken-rib' or @scar == 'broken-skull'"
+    then:
+      - do: attribute-reroll
+        with: {who: "@who", attr: hp, dice: 2d6, value: stays}
+        as: reroll
+      - set: who.scars
+        op: "+="
+        value: "{if(@scar == 'diseased', 'Diseased, got over it', 'Broken limb mended ($scar)')}: {@reroll.changed}"
+  - if: "@scar == 'hamstrung'"
+    then:
+      - do: attribute-reroll
+        with: {who: "@who", attr: DEX, dice: 3d6}
+        as: reroll
+      - set: who.scars
+        op: "+="
+        value: "Hamstrung, recovered: {@reroll.changed}"
+  - if: "@scar == 'deafened'"
+    then: ["{@who.name} can hear again."]
+  - if: "@scar == 'mortal-wound'"
+    then:
+      - if: "'deprived' in @who.conditions"
+        then:
+          - set: who.conditions
+            op: "-="
+            value: deprived
+      - if: "'stabilized' in @who.conditions"
+        then:
+          - set: who.conditions
+            op: "-="
+            value: stabilized
+      - roll: 2d6
+        as: new
+      - let: {top: "@who.hp.max"}
+      - set: who.hp
+        value: "min(@who.hp, @new)"
+      - set: who.hp.max
+        value: "@new"
+      - set: who.scars
+        op: "+="
+        value: "Mortal Wound, recovered: max HP {@top} → {@new}"
+      - message: "{@who.name} recovers from the mortal wound: 2d6 = {@new} is their max HP now."
+  - message: "{@who.name}'s $scar is behind them."
+source: players-guide/core-rules#scars
+---
+procedure: attribute-reroll
+title: Reroll an attribute or HP
+help: >-
+  The book's "roll it; if the total is higher, take the new result": against the maximum (most
+  scars, and growth) or the current score (a Reorienting Head Wound). A new maximum raises the
+  current score by as much, unless only the maximum changes (HP after a scar: rest restores it).
+  Attributes stop at 20.
+params:
+  who: ref
+  attr: {enum: [STR, DEX, WIL, hp]}
+  dice: {kind: dice, default: 3d6}
+  against: {enum: [max, current], default: max}
+  value: {enum: [rises, stays], default: rises, help: "stays: only the maximum changes"}
+steps:
+  - roll: $dice
+    as: new
+  - let: {top: "@who.$attr.max", now: "@who.$attr", ceiling: "if('$attr' == 'hp', 999, 20)", label: "if('$attr' == 'hp', 'HP', '$attr')"}
+  - let: {old: "if(@against == 'current', @now, @top)", took: "min(@new, @ceiling)", which: "if(@against == 'current', '', 'max ')"}
+  - if: "@took <= @old"
+    then:
+      - let: {changed: "rolled {@new}, not higher than {@which}{@label} {@old}: no change"}
+    else:
+      - if: "@against == 'current'"
+        then:
+          - set: who.$attr
+            value: "@took"
+          - let: {changed: "rolled {@new}: {@label} {@now} → {@took}"}
+        else:
+          - set: who.$attr.max
+            value: "@took"
+          - if: "@value == 'rises'"
+            then:
+              - set: who.$attr
+                op: "+="
+                value: "@took - @top"
+          - let: {changed: "rolled {@new}: max {@label} {@top} → {@took}"}
+  - message: "{@who.name}: {@changed}."
+source: players-guide/core-rules#scars
+---
+procedure: attribute-raise
+title: Raise an attribute or HP
+help: >-
+  The book's "increase your max WIL by 1d4" (and growth that raises one): the maximum rises by
+  the amount, then the current score by as much (unless only the maximum changes). Attributes
+  stop at 20.
+params:
+  who: ref
+  attr: {enum: [STR, DEX, WIL, hp]}
+  amount: {kind: dice, default: "1"}
+  value: {enum: [rises, stays], default: rises, help: "stays: only the maximum changes"}
+steps:
+  - roll: $amount
+    as: gain
+  - let: {top: "@who.$attr.max", ceiling: "if('$attr' == 'hp', 999, 20)", label: "if('$attr' == 'hp', 'HP', '$attr')"}
+  - let: {took: "min(@top + @gain, @ceiling)"}
+  - set: who.$attr.max
+    value: "@took"
+  - if: "@value == 'rises'"
+    then:
+      - set: who.$attr
+        op: "+="
+        value: "@took - @top"
+  - let: {changed: "+{@gain}: max {@label} {@top} → {@took}"}
+  - message: "{@who.name}: {@changed}."
+source: players-guide/core-rules#scars

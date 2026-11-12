@@ -1,0 +1,24 @@
+# Dawnguard Hunter (backgrounds/dawnguard-hunter): the background's two d6 tables.
+table: dawnguard-hunter-1
+title: "What drove you to Isran's order?"
+dice: d6
+source: backgrounds/dawnguard-hunter#what-drove-you-to-israns-order-roll-1d6
+entries:
+  1: "A Volkihar raid left your village's folk bloodless in their beds. You found the road to Fort Dawnguard by following the carrion birds. Once per day, re-roll a failed WIL save made to resist a vampire's charm, fear, or whispered command."
+  2: {text: "You were a Vigilant of Stendarr until the night the Hall of the Vigilant fell; you walked out of the ruin and into Isran's harder, colder war. Take a silvered stake (d6, silver) and the name of the vampire who led the attack.", data: {gear: [{name: "Silvered stake", damage: "d6", qualities: ["silver"]}]}}
+  3: "A pure-blood vampire fed on you and left you for dead. You woke whole, but the bite never quite healed: the scar throbs cold whenever a vampire is near, however well it hides among the living."
+  4: {text: "Sorine Jurard taught you to work her crossbows and the bolts she tinkers. Take exploding bolts (3 uses): each bursts on impact in fire, frost, or shock (d8, blast).", data: {gear: [{name: "Exploding bolts", uses: 3, damage: "d8", qualities: ["blast"], note: "each bursts in fire, frost, or shock"}]}}
+  5: {text: "You hunted a master vampire across three Holds and cornered it at dawn. Take its signet ring (petty): the Volkihar's thralls who see it hesitate, taking you for one of the court — and the court wants it back.", data: {gear: [{name: "Signet ring", size: "petty"}]}}
+  6: {text: "You were bitten on your first hunt and made it to the fort before the fever took hold; Florentius, the priest of Arkay, burned it out of you with prayer. Your maximum HP is 1 higher, and you carry a hatred that does not sleep.", data: {extra_hp: true}}
+---
+table: dawnguard-hunter-2
+title: "What stands at your side in the dark?"
+dice: d6
+source: backgrounds/dawnguard-hunter#what-stands-at-your-side-in-the-dark-roll-1d6
+entries:
+  1: {text: "Armored Husky: A war-dog from the Fort Dawnguard kennels, armored in a studded harness: a companion at Loyalty 4 (5 HP, 1 Armor, 12 STR, 14 DEX, 5 WIL, bite d8). It growls low when the undead or a vampire are near, before you can see them.", data: {companion: "armored-husky"}}
+  2: {text: "Dragonbone Bolts: A small case of bolts cut from a dragon's own bones (3 uses). Loosed at a vampire, the undead, or a dragon, the shot is Enhanced.", data: {gear: [{name: "Dragonbone Bolts", uses: 3}]}}
+  3: {text: "Hunter's Lantern: A warded lamp that throws a wide white beam (3 charges). Open the shutter on a vampire in its light: it must pass a WIL save or recoil, its next attack Impaired. Recharge: refill it with oil blessed at a shrine of the Nine.", data: {gear: [{name: "Hunter's Lantern", charges: 3, recharge: "refill it with oil blessed at a shrine of the Nine"}]}}
+  4: {text: "Dwarven Crossbow: A Dwemer crossbow that Sorine rebuilt for you from ruin-salvage, masterwork (d10, bulky), in place of your starting crossbow.", data: {upgrade: true, replaces: {name: "Crossbow", damage: "d8", size: "bulky"}, gear: [{name: "Dwarven crossbow", damage: "d10", size: "bulky", qualities: ["masterwork"], tempered: true, note: "a Dwemer crossbow Sorine rebuilt for you"}]}}
+  5: {text: "Dawnguard Rune Hammer: A heavy warhammer (d10, bulky, two-handed) cut with the order's runes. Strike it against the ground to burn a fire rune there (2 charges): the first foe to cross it takes d8 damage and is set Ablaze. Recharge: Keep a night's vigil before a shrine of Arkay.", data: {gear: [{name: "Dawnguard Rune Hammer", damage: "d10", size: "bulky", qualities: ["two-handed"], charges: 2, recharge: "Keep a night's vigil before a shrine of Arkay."}]}}
+  6: {text: "Phial of Dawn: A reliquary phial of water drawn at first light from the spring in Dayspring Canyon (2 uses). Drink it to restore 1d6 STR, or pour it over a fresh bite to stop Sanguinare Vampiris before it takes root.", data: {gear: [{name: "Phial of Dawn", uses: 2}]}}

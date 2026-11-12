@@ -1,0 +1,198 @@
+id: elder-scrolls-2e
+name: The Elder Scrolls 2e
+kind: system
+version: 0.1.0
+description: >-
+  The Elder Scrolls 2e: a Skyrim hack of Cairn Second Edition, set in the frozen province during
+  the Dragon Crisis of 4E 201. Cairn's chassis unchanged, with Tamriel's ten races, fifty
+  backgrounds, Septims, Spell Tomes and Skill Books, diseases, vampires and werewolves, hazards,
+  crafting, companions and mounts, faction reputation, renown and Hold bounties, settlements,
+  and its own bestiary, marketplace, relics, unique arms and armor, seeds and tables. A hack on
+  top of cairn-2e: what it doesn't change comes from there, and what has no place in Skyrim is
+  hidden.
+requires: {packs: [core, cairn-2e]}
+extends: [cairn-2e]
+# What cairn-2e has that The Elder Scrolls 2e doesn't play with. This pack's items of the same
+# id replace cairn-2e's and are never hidden; what is left of these goes. Kept from cairn-2e:
+# its rules for saves, morale, retreat, the Die of Fate, panic's steadying, traps, getting lost,
+# Fatigue, deprivation's relief, stabilizing, scars (and their tables), skipping camp, weather
+# (and its season tables, the same as this book's), faction actions, bonds and omens, the
+# reactions table, the unusual-weather option, attribute rerolls, and its place, monster and
+# Marketplace generators (they roll this pack's tables). The dungeon turn, the watch, growth and
+# attribute raises are this pack's, in this book's words and numbers.
+hides:
+  entry: ["*"]                    # Cairn's bestiary, Marketplace, relics, spellbooks, companions
+  table:
+    - "aurifex-*"                 # Cairn's backgrounds' tables (Cutpurse's are replaced)
+    - "barber-surgeon-*"
+    - "beast-handler-*"
+    - "bonekeeper-*"
+    - "fieldwarden-*"
+    - "fletchwind-*"
+    - "foundling-*"
+    - "fungal-forager-*"
+    - "greenwise-*"
+    - "half-witch-*"
+    - "hexenbane-*"
+    - "jongleur-*"
+    - "kettlewright-*"
+    - "marchguard-*"
+    - "mountebank-*"
+    - "outrider-*"
+    - "prowler-*"
+    - "rill-runner-*"
+    - "scrivener-*"
+    - "forest-adjectives"         # Cairn's forest names: a wild is named last, from what it is
+    - "forest-names"
+    - "forest-nouns"
+    - "npc-name-*"                # Cairn's NPC names: this pack's first-names are by race
+    - "terrain-synonyms-beaches"  # terrains Skyrim's seed tables don't name
+    - "terrain-synonyms-desert"
+    - "terrain-synonyms-grasslands"
+    - "terrain-synonyms-hollows"
+    - "terrain-synonyms-oasis"
+    - "terrain-synonyms-plateau"
+    - "terrain-synonyms-swamp"
+    - "terrain-synonyms-thickets"
+    - "terrain-synonyms-tundra"
+  trigger: [spirit-absorbs, stone-heart]   # Cairn's bonds 10 and 15: no such bonds here
+  reference: ["*"]                # Cairn's rules text: this pack's own sections stand for it
+  term: [spellbook]               # a Spell Tome here
+license:
+  spdx: CC-BY-SA-4.0
+  redistributable: true
+  attribution: >-
+    The Elder Scrolls 2e is a fan work released under CC BY-SA 4.0. Rules chassis: Cairn Second
+    Edition by Yochai Gal (cairnrpg.com), CC BY-SA 4.0. Conversion, tables and setting text: fan
+    work, CC BY-SA 4.0; Elder Scrolls lore paraphrased from the community UESP wiki for
+    non-commercial home use. This pack adapts its text and tables to Didact's format and is
+    shared under the same license. An unofficial, non-commercial fan work; The Elder Scrolls and
+    Skyrim are trademarks of Bethesda Softworks / ZeniMax. No copyrighted game text, art, logos
+    or proprietary content is reproduced.
+source:
+  title: The Elder Scrolls 2e
+  sections:
+    - players-guide/overview-and-principles
+    - players-guide/core-rules
+    - players-guide/diseases-and-afflictions
+    - players-guide/hazards
+    - players-guide/character-creation
+    - players-guide/unusual-pcs
+    - players-guide/procedures
+    - players-guide/crafting
+    - players-guide/companions
+    - players-guide/mounts
+    - players-guide/skyrim
+    - players-guide/pregens
+    - players-guide/quick-reference
+    - players-guide/character-sheet
+    - players-guide/marketplace
+    - backgrounds/companion
+    - backgrounds/housecarl
+    - backgrounds/imperial-legionnaire
+    - backgrounds/stormcloak-soldier
+    - backgrounds/sellsword
+    - backgrounds/nord-reaver
+    - backgrounds/redguard-alikr
+    - backgrounds/orc-stronghold-warrior
+    - backgrounds/vigilant-of-stendarr
+    - backgrounds/dawnguard-hunter
+    - backgrounds/blades-agent
+    - backgrounds/bounty-hunter
+    - backgrounds/bandit
+    - backgrounds/forsworn
+    - backgrounds/thieves-guild-burglar
+    - backgrounds/cutpurse
+    - backgrounds/nightingale
+    - backgrounds/dark-brotherhood-assassin
+    - backgrounds/khajiit-smuggler
+    - backgrounds/bard
+    - backgrounds/college-apprentice
+    - backgrounds/battlemage
+    - backgrounds/spellsword
+    - backgrounds/conjurer
+    - backgrounds/necromancer
+    - backgrounds/court-wizard
+    - backgrounds/telvanni-mage
+    - backgrounds/restoration-healer
+    - backgrounds/enchanter
+    - backgrounds/alchemist
+    - backgrounds/priest-of-the-divines
+    - backgrounds/moth-priest
+    - backgrounds/pilgrim-of-kynareth
+    - backgrounds/sage
+    - backgrounds/wise-woman
+    - backgrounds/blacksmith
+    - backgrounds/hunter
+    - backgrounds/miner
+    - backgrounds/sailor
+    - backgrounds/farmhand
+    - backgrounds/merchant
+    - backgrounds/skaal-hunter
+    - backgrounds/argonian-shadowscale
+    - backgrounds/dunmer-ashlander
+    - backgrounds/bosmer-hunter
+    - backgrounds/briarheart
+    - backgrounds/vampire-fledgling
+    - backgrounds/werewolf
+    - backgrounds/dremora
+    - backgrounds/draugr-revenant
+    - wardens-guide/getting-started
+    - wardens-guide/the-holds
+    - wardens-guide/combat
+    - wardens-guide/saves
+    - wardens-guide/knowledge-and-perception
+    - wardens-guide/detachments
+    - wardens-guide/variable-difficulty
+    - wardens-guide/dungeon-exploration
+    - wardens-guide/wilderness-exploration
+    - wardens-guide/pointcrawls
+    - wardens-guide/growth
+    - wardens-guide/bonds-and-omens
+    - wardens-guide/faction-reputation
+    - wardens-guide/renown-and-infamy
+    - wardens-guide/settlements
+    - wardens-guide/setting-seeds
+    - wardens-guide/dungeon-seeds
+    - wardens-guide/wilderness-seeds
+    - wardens-guide/adventure-hooks
+    - wardens-guide/creating-monsters
+    - wardens-guide/creating-backgrounds
+    - wardens-guide/naming-procedures
+    - wardens-guide/npc-tables
+    - wardens-guide/bestiary
+    - wardens-guide/skill-books
+    - wardens-guide/spell-tomes
+    - wardens-guide/relics
+    - wardens-guide/unique-weapons
+    - wardens-guide/unique-armors
+    - wardens-guide/bibliography
+    - roll-tables/backgrounds
+    - roll-tables/bestiary
+    - roll-tables/marketplace
+    - roll-tables/relics
+    - roll-tables/skill-books
+    - roll-tables/spell-tomes
+    - roll-tables/unique-weapons
+    - roll-tables/unique-armors
+# A hack's settings go on top of cairn-2e's, key by key: the watches, time units and faction turn
+# are cairn-2e's as they stand; these are the ones this book changes (the first round's mounted
+# rider and Dremora, the names by race, the Warden's session zero).
+settings:
+  combat:
+    mode: sides
+    first: party
+    round_one: >-
+      In the first round, each PC must pass a DEX save to act: `didact do save who=<pc>
+      attr=DEX` (special circumstances, abilities or items can waive it: a Dremora always acts).
+      Those who fail lose their turn, and a panicked PC doesn't act in the first round. A rider
+      on an untrained mount also saves WIL to keep it steady (`didact do startled-mount
+      who=<pc>`). Then their opponents act; after that sides alternate, PCs first, results
+      simultaneous.
+    attack: attack
+  names: {npc: first-names, place: place-names, poi: poi-names, faction: faction-names, realm: realm-names}
+  # The Warden's guide's session zero (wardens-guide/getting-started): tone is the `tone` option,
+  # safety Didact's lines and veils, stakes its lethality; these are the other two.
+  session_zero:
+    - {key: pacing, ask: "Pacing: one-shots, an arc of a few sessions, or a long campaign? How long is a session, and how often will you meet?"}
+    - {key: scope, ask: "Scope: a focused quest (clear one barrow, end one feud), a Hold-spanning sandbox, or a guild or faction campaign (the Companions, the College, the Guild)?"}

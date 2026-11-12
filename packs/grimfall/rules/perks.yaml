@@ -1,0 +1,494 @@
+# The Core Perks' engines (The Classes) and the perks whose pools and riders the rules can run:
+# Might, a quarry and its Weak Point die, Grit (on `do mark`, `do harm`, `do push`), Sway, devices,
+# Cool, Luck dice, Power Armor Training's Plating, a Flesh Wound's end, and the perks that work at a
+# scene's end. A Core Perk is its class's alone; the rules read a survivor's perks by id.
+action: might
+title: Might (Unstoppable Force)
+help: >-
+  The Sledge's engine: 4 Might each scene (+1 at levels 3 and 6), and 1 more whenever a blow leaves
+  them bloodied or worse, even past the limit. Spend 1 to heave (a potent feat of raw force against
+  the world), follow through (before a melee, thrown or charging roll: on a perfect or messy, it
+  happens too) or bull through (ignore all thorns on one roll from being outnumbered, outsized or
+  grabbed); turning that force on a foe (hurling them, dropping the car on them) costs 2.
+params:
+  who: ref
+  use: {enum: [heave, hurl, follow-through, bull-through]}
+  effect: {enum: [send them flying, pin them down, wreck their gear, drive them back], optional: true, help: "Follow through: what also happens"}
+steps:
+  - if: "not ('unstoppable-force' in @who.perks)"
+    then:
+      - stop: "Might is the Sledge's Unstoppable Force: {@who.name} doesn't have it."
+  - let: {cost: "if('$use' == 'hurl', 2, 1)"}
+  - if: "@who.might < @cost"
+    then:
+      - stop: "{@who.name} has {@who.might} Might, not {@cost}: it comes back each scene (and a blow that leaves them bloodied or worse gives 1)."
+  - set: who.might
+    op: "-="
+    value: "@cost"
+  - if: "'$use' == 'heave'"
+    then: ["Heave: a potent feat of raw force against the world (tear a door off its track, flip a car, hold up a sagging ceiling, carry two friends out at a run). {@who.name}: {@who.might} Might left."]
+  - if: "'$use' == 'hurl'"
+    then: ["Heave, on a foe: hurl them across the room, drop the car on them (2 Might). {@who.name}: {@who.might} Might left."]
+  - if: "'$use' == 'follow-through'"
+    then: ["Follow through{if('$effect' <> '', ': $effect', '')}: before the melee, thrown or charging roll; on a perfect or messy, it happens too. {@who.name}: {@who.might} Might left."]
+  - if: "'$use' == 'bull-through'"
+    then: ["Bull through: no thorns on this roll from being outnumbered, outsized or grabbed. {@who.name}: {@who.might} Might left."]
+source: the-classes/the-sledge#unstoppable-force
+---
+trigger: might-each-scene
+title: Might, fresh every scene
+help: "The Sledge has 4 Might each scene, +1 at levels 3 and 6 (Unstoppable Force)."
+on: scene_start
+for: pcs
+when: "'unstoppable-force' in @who.perks"
+params:
+  who: ref
+steps:
+  - set: who.might
+    value: "4 + if(@who.level >= 3, 1, 0) + if(@who.level >= 6, 1, 0)"
+  - message: "Unstoppable Force: {@who.name} has {@who.might} Might this scene."
+source: the-classes/the-sledge#unstoppable-force
+---
+action: study
+title: Study a foe (Awareness)
+help: >-
+  The Pathfinder's engine: once per session (+1 foe at levels 3 and 6), get a good look at a foe (a
+  creature, a machine, a person, a vehicle), study it and name its weak point: the GM tells you the
+  one it has, or you invent one that fits (an invented one pays out through the die, and only the
+  die). That foe is your quarry for the rest of the session, and whenever you or an ally researches,
+  tracks or strikes it, add the Weak Point die to the roll (`weak_point` on `do action`): when it
+  lands a 6, add a critical bonus.
+params:
+  who: ref
+  foe: {kind: text, help: "The foe studied"}
+  weak_point: {kind: text, help: "Its weak point: the gap in the power armor's seals, the knee the raider boss favors"}
+  invented: {kind: flag, default: false, help: "You invented the weak point (it pays out through the die, and only the die)"}
+steps:
+  - if: "not ('awareness' in @who.perks)"
+    then:
+      - stop: "Studying a quarry is the Pathfinder's Awareness: {@who.name} doesn't have it."
+  - if: "@who.studies < 1"
+    then:
+      - stop: "{@who.name} has studied every foe they can this session (1, +1 at levels 3 and 6)."
+  - set: who.studies
+    op: "-="
+    value: 1
+  - set: who.quarry
+    value: "{@foe}: {@weak_point}"
+  - message: "{@who.name}'s quarry for the rest of the session: {@foe} ({@weak_point}). Whenever {@who.name} or an ally researches, tracks or strikes it, add the Weak Point die (`didact do action … weak_point`); a 6 adds a critical bonus.{if(@invented, ' An invented weak point pays out through the die, and only the die.', '')}"
+source: the-classes/the-pathfinder#awareness
+---
+action: sway
+title: Sway (Gift of Gab)
+help: >-
+  The Charmer's engine: 3 Sway each session (+1 at levels 2, 4 and 6), a voice people heed. Spend 1,
+  no roll needed, to raise an ally's die result by 1 (a 3 becomes a 4), calm or provoke someone's
+  vex, or talk an ally down from a mark (clear it). Or spend 1 and roll Presence to pull off a potent
+  feat of social influence (an approach shapes it: charm, threaten, deceive, inspire, barter),
+  interrupt an impact move that hinges on someone's decision, or talk an ally out of being rattled.
+  Sway works on others, never on yourself.
+params:
+  who: ref
+  use: {enum: [raise, vex, mark, potent, interrupt, rattled]}
+  ally: {kind: ref, optional: true, help: "The ally (raise, mark, rattled)"}
+  stat: {enum: [brawn, agility, wits, presence], optional: true, help: "The ally's marked stat (mark)"}
+  approach: {enum: [charm, threaten, deceive, inspire, barter], optional: true, help: "A potent feat's approach"}
+  thorns: {kind: int, default: 0, help: "The Presence roll's thorns"}
+  spark: {kind: int, default: 0, help: "Spark to spend on the Presence roll"}
+steps:
+  - if: "not ('gift-of-gab' in @who.perks)"
+    then:
+      - stop: "Sway is the Charmer's Gift of Gab: {@who.name} doesn't have it."
+  - if: "@who.sway < 1"
+    then:
+      - stop: "{@who.name} has no Sway left this session."
+  - if: "('$use' == 'raise' or '$use' == 'mark' or '$use' == 'rattled') and default(@ally, '') == ''"
+    then:
+      - stop: "Name the ally: Sway works on others, never on yourself (`ally=<pc>`)."
+  - if: "('$use' == 'raise' or '$use' == 'mark' or '$use' == 'rattled') and @ally.id == @who.id"
+    then:
+      - stop: "Sway works on others, never on yourself."
+  - if: "'$use' == 'mark' and not ('$stat' <> '' and '$stat' in @ally.marks)"
+    then:
+      - stop: "{@ally.name} has no mark on {if('$stat' <> '', '$stat', 'that stat')} to talk down (marks: {@ally.marks})."
+  - if: "'$use' == 'rattled' and not ('rattled' in @ally.harm)"
+    then:
+      - stop: "{@ally.name} isn't rattled."
+  - set: who.sway
+    op: "-="
+    value: 1
+  - if: "'$use' == 'raise'"
+    then: ["Sway: {@who.name} raises one of {@ally.name}'s die results by 1 (a 3 becomes a 4): read the roll again ({@who.sway} Sway left)."]
+  - if: "'$use' == 'vex'"
+    then: ["Sway: {@who.name} calms or provokes someone's vex ({@who.sway} Sway left)."]
+  - if: "'$use' == 'mark'"
+    then:
+      - set: ally.marks
+        op: "-="
+        value: $stat
+      - message: "Sway: {@who.name} talks {@ally.name} down from the mark on $stat: it clears ({@who.sway} Sway left)."
+  - if: "'$use' == 'potent'"
+    then:
+      - message: "Sway: a potent feat of social influence{if('$approach' <> '', ' ($approach)', '')}: roll Presence ({@who.sway} Sway left)."
+      - check: action
+        with: {who: "@who", stat: presence, thorns: "@thorns", spark: "@spark"}
+  - if: "'$use' == 'interrupt'"
+    then:
+      - message: "Sway: {@who.name} interrupts an impact move that hinges on someone's decision (a finger on a trigger, a hand on the alarm): roll Presence ({@who.sway} Sway left)."
+      - check: action
+        with: {who: "@who", stat: presence, thorns: "@thorns", spark: "@spark", interrupt: true}
+  - if: "'$use' == 'rattled'"
+    then:
+      - message: "Sway: {@who.name} talks {@ally.name} out of being rattled: roll Presence ({@who.sway} Sway left)."
+      - check: action
+        with: {who: "@who", stat: presence, thorns: "@thorns", spark: "@spark"}
+        as: talk
+      - if: "@talk == 'critical' or @talk == 'perfect' or @talk == 'messy'"
+        then:
+          - set: ally.harm
+            op: "-="
+            value: rattled
+          - message: "{@ally.name} is no longer rattled."
+source: the-classes/the-charmer#gift-of-gab
+---
+action: device
+title: Rig a device (Science!)
+help: >-
+  The Inventor's engine: 4 schematics, and each session 4 devices and 2 potent devices (+1 of each
+  at levels 2, 4 and 6) rigged from parts on hand. Roll Wits; the schematic is the touchstone (if
+  a use is past its edge, the GM can allow it at +1t: `reach`, or veto it). A device rigged without
+  risk needs no roll and doesn't count against the session, unless it's potent, or it mends
+  someone. A device does what one skilled person could do, a new way, for a beat or two; a potent
+  one bends the rules, for a scene. With dangerous tech, two or more 1s misfire.
+params:
+  who: ref
+  schematic: {kind: text, help: "The schematic it's rigged from (its touchstone)"}
+  potent: {kind: flag, default: false, help: "A potent device"}
+  riskless: {kind: flag, default: false, help: "No risk: no roll"}
+  mends: {kind: flag, default: false, help: "It mends someone (it counts against the session, even riskless)"}
+  reach: {kind: flag, default: false, help: "Past the touchstone's edge: +1t, if the GM allows it"}
+  thorns: {kind: int, default: 0}
+  spark: {kind: int, default: 0}
+  stakes: {enum: [low, regular, high, dire], optional: true}
+steps:
+  - if: "not ('science' in @who.perks)"
+    then:
+      - stop: "Rigging devices is the Inventor's Science!: {@who.name} doesn't have it."
+  - if: "not (@schematic in @who.schematics)"
+    then:
+      - stop: "{@who.name} doesn't know a schematic called '$schematic' (schematics: {@who.schematics})."
+  - let: {counts: "not @riskless or @potent or @mends"}
+  - if: "@counts and @potent and @who.potent_devices < 1"
+    then:
+      - stop: "{@who.name} has no potent devices left this session."
+  - if: "@counts and not @potent and @who.devices < 1"
+    then:
+      - stop: "{@who.name} has no devices left this session."
+  - if: "@counts and @potent"
+    then:
+      - set: who.potent_devices
+        op: "-="
+        value: 1
+  - if: "@counts and not @potent"
+    then:
+      - set: who.devices
+        op: "-="
+        value: 1
+  - message: "{@who.name} rigs a {if(@potent, 'potent ', '')}device from the $schematic schematic ({@who.devices} devices, {@who.potent_devices} potent left)."
+  - if: "not @counts"
+    then: ["Without risk, it needs no roll and doesn't count against the session."]
+  - if: "@riskless and @counts"
+    then: ["No roll (it isn't risky), but it counts against the session: it's potent, or it mends someone."]
+  - if: "not @riskless and '$stakes' <> ''"
+    then:
+      - check: action
+        with: {who: "@who", stat: wits, thorns: "@thorns + if(@reach, 1, 0)", spark: "@spark", device: true, stakes: $stakes}
+  - if: "not @riskless and '$stakes' == ''"
+    then:
+      - check: action
+        with: {who: "@who", stat: wits, thorns: "@thorns + if(@reach, 1, 0)", spark: "@spark", device: true}
+source: "the-classes/the-inventor#science; the-core-engine/science-not-sorcery"
+---
+action: cool
+title: Cool (The Professional)
+help: >-
+  The Ace's engine: three tagged skills (+1d when using them; +1 skill at levels 3 and 6), and 2
+  Cool each session (+1 at levels 3 and 6): spend 1 to pull off a potent feat within your tagged
+  skills (the lock that opens like it loves you, the lie that holds up under a spotlight).
+params:
+  who: ref
+  skill: {kind: text, help: "The tagged skill the feat is within"}
+steps:
+  - if: "not ('the-professional' in @who.perks)"
+    then:
+      - stop: "Cool is the Ace's The Professional: {@who.name} doesn't have it."
+  - if: "not (@skill in @who.skills)"
+    then:
+      - stop: "'$skill' isn't one of {@who.name}'s tagged skills ({@who.skills})."
+  - if: "@who.cool < 1"
+    then:
+      - stop: "{@who.name} has no Cool left this session."
+  - set: who.cool
+    op: "-="
+    value: 1
+  - message: "Cool: a potent feat within $skill ({@who.cool} Cool left). If it's still risky, roll it with the tagged skill's +1d: `didact do action who={@who.id} stat=… perk`."
+source: the-classes/the-ace#the-professional
+---
+action: luck
+title: Spend a Luck result (Luck of the Draw)
+help: >-
+  The Longshot's engine: before each session, 3d of Luck (+1 die at levels 3 and 6), kept by face.
+  During the session, replace any d6 just rolled (yours, an ally's, a story die, one the GM rolls
+  for a pool) with one of your Luck results, then cross it off: a 6 saves a roll, or makes a
+  critical. Read the roll again with it.
+params:
+  who: ref
+  use: {kind: int, help: "The Luck result spent (1-6)"}
+  on: {kind: text, optional: true, help: "The roll it changes (#r12)"}
+steps:
+  - if: "not ('luck-of-the-draw' in @who.perks)"
+    then:
+      - stop: "Luck is the Longshot's Luck of the Draw: {@who.name} doesn't have it."
+  - let:
+      face: "if(@use == 1, 'ones', if(@use == 2, 'twos', if(@use == 3, 'threes', if(@use == 4, 'fours', if(@use == 5, 'fives', if(@use == 6, 'sixes', ''))))))"
+  - if: "@face == ''"
+    then:
+      - stop: "A Luck result is a d6's face, 1 to 6."
+  - let:
+      have: >-
+        if(@use == 1, default(@who.luck.ones, 0), if(@use == 2, default(@who.luck.twos, 0),
+        if(@use == 3, default(@who.luck.threes, 0), if(@use == 4, default(@who.luck.fours, 0),
+        if(@use == 5, default(@who.luck.fives, 0), default(@who.luck.sixes, 0))))))
+  - if: "@have < 1"
+    then:
+      - stop: "{@who.name} has no {@use} among their Luck (`didact show {@who.id}`)."
+  - if: "@use == 1"
+    then: [{set: who.luck.ones, value: "@have - 1"}]
+  - if: "@use == 2"
+    then: [{set: who.luck.twos, value: "@have - 1"}]
+  - if: "@use == 3"
+    then: [{set: who.luck.threes, value: "@have - 1"}]
+  - if: "@use == 4"
+    then: [{set: who.luck.fours, value: "@have - 1"}]
+  - if: "@use == 5"
+    then: [{set: who.luck.fives, value: "@have - 1"}]
+  - if: "@use == 6"
+    then: [{set: who.luck.sixes, value: "@have - 1"}]
+  - message: "Luck of the Draw: {@who.name} crosses off a {@use}: replace the die just rolled with it, and read the roll again (a 6 saves a roll, or makes a critical)."
+  - if: "default(@on, '') <> ''"
+    then: ["It changes {@on}."]
+source: the-classes/the-longshot#luck-of-the-draw
+---
+procedure: luck-roll
+title: Roll the Longshot's Luck
+help: "Before each session, roll 3d (+1 die at levels 3 and 6) and write down the results: that's the Longshot's Luck."
+params:
+  who: ref
+steps:
+  - roll: "(3 + if(@who.level >= 3, 1, 0) + if(@who.level >= 6, 1, 0))d6"
+    as: fate
+  - do: luck-set
+    with: {who: "@who", ones: "count(@fate.dice, 1)", twos: "count(@fate.dice, 2)", threes: "count(@fate.dice, 3)", fours: "count(@fate.dice, 4)", fives: "count(@fate.dice, 5)", sixes: "count(@fate.dice, 6)"}
+  - message: "Luck of the Draw: {@who.name}'s Luck this session is {@fate.dice}."
+source: the-classes/the-longshot#luck-of-the-draw
+---
+procedure: luck-set
+title: The Luck results, written down
+help: "The Longshot's Luck by face (rolled before each session)."
+params:
+  who: ref
+  ones: {kind: int, default: 0}
+  twos: {kind: int, default: 0}
+  threes: {kind: int, default: 0}
+  fours: {kind: int, default: 0}
+  fives: {kind: int, default: 0}
+  sixes: {kind: int, default: 0}
+steps:
+  - set: who.luck
+    value: {}
+  - set: who.luck.ones
+    value: "@ones"
+  - set: who.luck.twos
+    value: "@twos"
+  - set: who.luck.threes
+    value: "@threes"
+  - set: who.luck.fours
+    value: "@fours"
+  - set: who.luck.fives
+    value: "@fives"
+  - set: who.luck.sixes
+    value: "@sixes"
+source: the-classes/the-longshot#luck-of-the-draw
+---
+procedure: luck-die
+title: The wheel turns
+help: "When the Longshot rolls a disaster, they take spark as usual, and roll a fresh Luck die too, if they're short of their full count (3, +1 at levels 3 and 6)."
+params:
+  who: ref
+steps:
+  - let:
+      full: "3 + if(@who.level >= 3, 1, 0) + if(@who.level >= 6, 1, 0)"
+      held: >-
+        default(@who.luck.ones, 0) + default(@who.luck.twos, 0) + default(@who.luck.threes, 0)
+        + default(@who.luck.fours, 0) + default(@who.luck.fives, 0) + default(@who.luck.sixes, 0)
+  - if: "@held >= @full"
+    then: ["The wheel turns: {@who.name} holds their full count of Luck ({@full}): no fresh die."]
+    else:
+      - roll: 1d6
+        as: fresh
+      - if: "@fresh == 1"
+        then: [{set: who.luck.ones, value: "default(@who.luck.ones, 0) + 1"}]
+      - if: "@fresh == 2"
+        then: [{set: who.luck.twos, value: "default(@who.luck.twos, 0) + 1"}]
+      - if: "@fresh == 3"
+        then: [{set: who.luck.threes, value: "default(@who.luck.threes, 0) + 1"}]
+      - if: "@fresh == 4"
+        then: [{set: who.luck.fours, value: "default(@who.luck.fours, 0) + 1"}]
+      - if: "@fresh == 5"
+        then: [{set: who.luck.fives, value: "default(@who.luck.fives, 0) + 1"}]
+      - if: "@fresh == 6"
+        then: [{set: who.luck.sixes, value: "default(@who.luck.sixes, 0) + 1"}]
+      - message: "The wheel turns: {@who.name} rolls a fresh Luck die, a {@fresh}."
+source: the-classes/the-longshot#luck-of-the-draw
+---
+action: plating
+title: Plating eats the hit (Power Armor Training)
+help: >-
+  Suited up, the Sledge's Power Armor Training (and the Armory's unique suits) gives a 3d Plating
+  resource pool each session: when physical harm would land on you, roll Plating and the frame eats
+  the hit. Out of the suit it does nothing, and only hands that know the frame can roll it.
+params:
+  who: ref
+  pool: {kind: ref, to: track, optional: true, help: "The Plating pool (left out: the sheet's own, a named suit's if it points at one)"}
+steps:
+  - if: "default(@pool, '') <> ''"
+    then:
+      - do: plating-roll
+        with: {who: "@who", pool: "@pool"}
+    else:
+      - if: "default(@who.plating, '') == ''"
+        then:
+          - stop: "Name the Plating pool (`pool=<track>`), or point {@who.name}'s sheet at it: `didact set {@who.id} plating=<track>` (a named suit's Plating stands in for the battered frame's)."
+      - do: plating-roll
+        with: {who: "@who", pool: "@who.plating"}
+source: "the-classes/the-sledge#power-armor-training; the-armory/unique-armors"
+---
+procedure: plating-roll
+title: Plating, rolled
+help: "Suited up, when physical harm would land: roll Plating, and the frame eats the hit."
+params:
+  who: ref
+  pool: {kind: ref, to: track}
+steps:
+  - if: "not ('power-armor-training' in @who.perks)"
+    then:
+      - stop: "The Plating pool answers only to hands that know the frame (Power Armor Training)."
+  - if: "not @who.suited"
+    then:
+      - stop: "{@who.name} isn't suited up: out of the suit, Power Armor Training does nothing (`didact set {@who.id} suited=true`)."
+  - if: "@pool.value <= 0"
+    then:
+      - stop: "{@pool.name} is 0d: spent, or breached until it's repaired."
+  - pool: "@pool"
+    as: plated
+  - message: "The frame eats the hit: the physical harm doesn't land on {@who.name} ({@pool.name}: {@plated.left}d left)."
+source: "the-classes/the-sledge#power-armor-training; the-armory/unique-armors"
+---
+action: breach
+title: A breached frame
+help: >-
+  Roll a disaster while suited and the frame is breached: Plating is 0d until it's repaired with
+  parts and a day's work (`fix=repair`: back to full), or a device patches it back to 1d
+  (`fix=patch`). A breached frame stays breached through the session's reset until it's
+  repaired. The pool is the survivor's own (`who=`, their sheet's `plating`) unless `pool=` names it.
+params:
+  who: {kind: ref, optional: true, help: "The survivor in the frame (their sheet's Plating)"}
+  pool: {kind: ref, to: track, optional: true, help: "The Plating pool"}
+  fix: {enum: [breach, repair, patch], default: breach}
+steps:
+  - if: "default(@pool, '') <> ''"
+    then:
+      - do: breach-fix
+        with: {pool: "@pool", fix: $fix}
+    else:
+      - if: "default(@who, '') == ''"
+        then:
+          - stop: "Whose frame? `who=<pc>` (their sheet's Plating), or `pool=<track>`."
+      - if: "default(@who.plating, '') == ''"
+        then:
+          - stop: "{@who.name}'s sheet points at no Plating: `pool=<track>`, or `didact set {@who.id} plating=<track>`."
+      - do: breach-fix
+        with: {pool: "@who.plating", fix: $fix}
+source: the-classes/the-sledge#power-armor-training
+---
+procedure: breach-fix
+title: A frame breached, patched or repaired
+help: "Breached: 0d and marked breached; patched by a device: back to 1d, still breached; repaired with parts and a day's work: full, and whole again."
+params:
+  pool: {kind: ref, to: track}
+  fix: {enum: [breach, repair, patch], default: breach}
+steps:
+  - if: "'$fix' == 'breach'"
+    then:
+      - set: pool.value.value
+        value: 0
+      - set: pool.fields.status
+        value: breached
+      - message: "{@pool.name} is breached: 0d until it's repaired with parts and a day's work, or a device patches it back to 1d."
+  - if: "'$fix' == 'repair'"
+    then:
+      - do: refresh
+        with: {pool: "@pool"}
+      - message: "{@pool.name} is repaired with parts and a day's work: whole again."
+  - if: "'$fix' == 'patch'"
+    then:
+      - set: pool.value.value
+        value: "max(1, @pool.value)"
+      - set: pool.fields.status
+        value: breached
+      - message: "A device patches {@pool.name} back to {@pool.value}d; it's still breached until it's repaired."
+source: the-classes/the-sledge#power-armor-training
+---
+trigger: flesh-wound-clears
+title: A Flesh Wound clears
+help: "Life Giver's Flesh Wound clears when the scene ends."
+on: scene_end
+for: pcs
+when: "'Flesh Wound' in @who.conditions"
+params:
+  who: ref
+steps:
+  - set: who.conditions
+    op: "-="
+    value: Flesh Wound
+  - message: "{@who.name}'s Flesh Wound clears with the scene."
+source: the-classes/the-everlast#life-giver
+---
+trigger: perks-at-scene-end
+title: Perks that work when a scene ends
+help: >-
+  Better Healing (a scene ends while bloodied or desperate: a 2d story roll, a messy fades one
+  harm to a mark, a perfect clears it), Rad Absorption (shed one rad mark or rad condition without
+  treatment), Ghoulish (a scene that ends in the rads fades one harm to a mark).
+on: scene_end
+for: pcs
+when: >-
+  ('better-healing' in @who.perks and ('bloodied' in @who.harm or 'desperate' in @who.harm))
+  or ('rad-absorption' in @who.perks and count(@who.rad_marks) > 0)
+  or ('ghoulish' in @who.perks and count(@who.harm) > 0)
+params:
+  who: ref
+steps:
+  - if: "'better-healing' in @who.perks and ('bloodied' in @who.harm or 'desperate' in @who.harm)"
+    then:
+      - check: story-roll
+        with: {dice: 2, question: "Does {@who.name} knit rough and fast?"}
+        as: knit
+      - prompt: "Better Healing: on a messy, one harm fades to a mark; on a perfect, it clears (`didact set {@who.id} harm-=<harm>`). Not harm from what never heals this way for {@who.name} (their class notes)."
+  - if: "'rad-absorption' in @who.perks and count(@who.rad_marks) > 0"
+    then:
+      - prompt: "Rad Absorption: the glow feeds the meat: {@who.name} sheds one rad mark (or rad condition) without treatment: `didact set {@who.id} rad_marks-=<stat>`."
+  - if: "'ghoulish' in @who.perks and count(@who.harm) > 0"
+    then:
+      - prompt: "Ghoulish: if the scene ended in the rads, one of {@who.name}'s harm fades to a mark."
+source: "the-perk-compendium/everlast-perks#better-healing; the-perk-compendium/everlast-perks#rad-absorption; the-classes/the-everlast#ghoulish"

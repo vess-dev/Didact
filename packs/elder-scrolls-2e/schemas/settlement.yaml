@@ -1,0 +1,51 @@
+# Settlements and homesteads (wardens-guide/settlements): a place with Population, Defense and
+# Prosperity (1–5 each: 1, plus 1 for each building that raises it), up to eight building slots
+# (petty comforts take none), and the Hold whose Jarl it answers to.
+type: settlement
+extends: loc
+label: Settlement
+fields:
+  hold: {kind: text, help: "The Hold it sits in (or Solstheim, under Raven Rock): its Jarl takes the taxes and the levy."}
+  buildings:
+    kind: slots
+    capacity: building_slots
+    sizes: {normal: 1}
+    help: >-
+      The structures that fill its slots (`didact do build`): Palisade & Gate, Watchtower, Guard
+      Post, Barracks, Armory & Forge-rack, Farm Plots, Livestock Pen, Mill, Mine, Trading Post,
+      Smithy, Alchemy Lab, Arcane Enchanter, Cookfire & Smokehouse, Longhouse / Mead Hall, Temple
+      / Shrine to the Divines, Inn, Cottages (more than once), Steward's House, Standing
+      Watch-beacon, or the Warden's own.
+  comforts: {kind: list, help: "Petty buildings and comforts that take no slot: Apothecary's Garden, Bard's Hearth, Stable & Paddock, a well, a garden patch, a roadside shrine."}
+  building_slots: {kind: int, min: 0, default: 8, label: Building slots, help: "Eight by default, with room to grow."}
+  population_shift: {kind: int, default: 0, help: "What raids and hard seasons did to Population, beyond its buildings."}
+  defense_shift: {kind: int, default: 0, help: "What raids (a hard-won victory) did to Defense, beyond its buildings."}
+  prosperity_shift: {kind: int, default: 0, help: "What hard seasons did to Prosperity, beyond its buildings."}
+  population:
+    kind: derived
+    expr: "min(5, max(1, 1 + min(1, count(@buildings, 'Livestock Pen')) + count(@buildings, 'Cottages') + @population_shift))"
+    help: "How many souls live there: 1 + Livestock Pen + each Cottages (the one building raised more than once), 1–5."
+  defense:
+    kind: derived
+    expr: >-
+      min(5, max(1, min(if(count(@buildings, 'Palisade & Gate') > 0, 5, 2),
+      1 + min(1, count(@buildings, 'Palisade & Gate'))
+      + if(count(@buildings, 'Palisade & Gate') > 0, min(1, count(@buildings, 'Watchtower')), 0)
+      + min(1, count(@buildings, 'Guard Post')) + min(1, count(@buildings, 'Barracks'))
+      + min(1, count(@buildings, 'Armory & Forge-rack')) + @defense_shift)))
+    help: "1 + Palisade & Gate (needed for any Defense above 2), Watchtower (with a Palisade), Guard Post, Barracks, Armory & Forge-rack; 1–5."
+  prosperity:
+    kind: derived
+    expr: >-
+      min(5, max(1, 1 + min(1, count(@buildings, 'Farm Plots')) + min(1, count(@buildings, 'Mill'))
+      + min(1, count(@buildings, 'Mine')) + min(1, count(@buildings, 'Trading Post'))
+      + min(1, count(@buildings, 'Smithy')) + @prosperity_shift))
+    help: "What it produces that others want: 1 + Farm Plots, Mill, Mine, Trading Post, Smithy; 1–5."
+  slots_used: {kind: derived, expr: "count(@buildings)", label: Slots filled}
+  jarl: {kind: text, help: "Standing with the Hold's Jarl: favorable, cold, … (treat the Jarl as a faction at the Warden's option)."}
+guidance: >-
+  A new homestead starts at 1/1/1 with its main hall in one slot. Each building is a Downtime
+  Action and a sum in Septims the Warden sets (`didact do build`). More filled slots than
+  Population × 2 and a building decays each season; each season a d6 over Defense brings a raid
+  (`didact do settlement-season`). One line holds it all: "Heljarchen Hall (the Pale) — Pop 3 /
+  Def 2 / Prosperity 2 — slots: longhouse, palisade, smithy, livestock pen, cottages."

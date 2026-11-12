@@ -1,0 +1,7 @@
+id: wear-lite
+name: Wear (test pack)
+kind: system
+version: 0.1.0
+description: "What lasts one scene comes off when it ends, and a trigger with a mistake in it."
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

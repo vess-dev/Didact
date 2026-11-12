@@ -1,0 +1,132 @@
+# Heroes (The Core Engine: Stats, Spark, Thread, Damage & Recovery, Experience, Magicka;
+# Building a Hero; the classes' Core Talents; Blood, Stars & Stones; Surviving Tamriel). It
+# replaces grimwild-ce's character type: the same four stats, marks, harm, spark and thread,
+# with what Grimscrolls tracks besides. A class's well is a `uses` field (value/max) that the
+# rules spend and refill each session or scene; a pool is a track (a diminishing pool) that
+# the sheet points at, so the rules can roll and refresh it.
+type: character
+label: Hero
+fields:
+  brawn: {kind: int, min: 1, max: 3, default: 1, label: Brawn, help: "Power, menace, toughness (physical). On defense: you absorb it or overpower it."}
+  agility: {kind: int, min: 1, max: 3, default: 1, label: Agility, help: "Precision, athletics, reflexes (physical). On defense: you dodge, dive, or vanish."}
+  wits: {kind: int, min: 1, max: 3, default: 1, label: Wits, help: "Smarts, trickery, reading a situation (mental). On defense: you saw it coming."}
+  presence: {kind: int, min: 1, max: 3, default: 1, label: Presence, help: "Influence, willpower, reading people (mental). On defense: you keep your nerve."}
+  marks: {kind: list, help: "Marked stats: +1t on your next roll with it, then it clears. Marking an already-marked stat is harm instead; pushing yourself costs a mark (`didact do mark`)."}
+  lingering: {kind: list, help: "Marks from exposure that linger like a condition (hard country, Chapter 6): +1t on every roll with that stat until you're properly warm, fed, or clear of it (`didact do exposure`, `didact do shelter`). Mark that stat again and you take harm as usual."}
+  harm: {kind: list, help: "bloodied (+1t on physical rolls), rattled (+1t on mental rolls), desperate (+1t on everything), dropped (`didact do harm`)."}
+  conditions: {kind: list, help: "Specific maladies: short-term (winded), urgent (a timer pool to worse: 4d Frostbite Venom → dropped), long-term (Rockjoint, until cured), permanent (lost eye). +1t when one specifically hinders you. Diseases are long-term conditions; starving (a vampire at 0d Blood) is +1t on everything."}
+  spark: {kind: int, min: 0, max: 2, default: 0, help: "Spend before any roll you make for +1d each; hold up to 2, carried between sessions."}
+  thread: {kind: int, min: 0, default: 2, help: "Authorship: 2 per session (more with Kindred Mage, Ranger, Master Trader, Rumors); spend 1 to add a story detail beyond set dressing."}
+  xp: {kind: int, min: 0, default: 0, label: XP, help: "1 after each session (the GM adds a bonus for a standout one); level up when your XP boxes equal the next level, then clear them (`didact char advance`)."}
+  level: {kind: int, min: 0, max: 7, default: 1, label: Level, help: "1 to 7 (0 only with Level 0: the prisoner); each level brings a talent from any class's list, and the Core Talent's Growth at its levels."}
+  mastery: {kind: derived, label: Mastery, expr: "if(@level >= 7, 'Master', if(@level >= 6, 'Expert', if(@level >= 4, 'Journeyman', if(@level >= 2, 'Apprentice', if(@level >= 1, 'Novice', 'none yet')))))", help: "The guilds' titles for where you stand in your art: Novice at level 1, Apprentice at 2, Journeyman at 4, Expert at 6, Master at 7."}
+  stat_raised: {kind: flag, default: false, help: "A hero gets at most one permanent stat bump in a lifetime: a rare relic, or stat progression (an option)."}
+  race: {kind: text, help: "One of the ten races (Chapter 5): your first background, with its three wises and its racial talent."}
+  backgrounds: {kind: list, help: "Your race and the background you followed before the adventure found you (Chapter 3)."}
+  background: {kind: text, help: "The background (profession) itself: its seven skills are what register training (an option) keeps you to until level 4."}
+  wises: {kind: list, help: "Three from your race, three from your background: what you know, notice, and get away with."}
+  birthsign: {kind: text, help: "The constellation you were born under: chosen, or a month rolled. It never changes."}
+  born: {kind: text, help: "The month you were born in, when it was rolled for the sign."}
+  stone: {kind: text, help: "The standing stone whose blessing you hold: one at a time, found in play (`didact do take-stone`)."}
+  blessing: {kind: text, help: "A Divine's blessing, held until you use it or until the next session ends; one at a time (`didact do pray`)."}
+  oath: {kind: text, help: "An oath (an option, Chapter 10): an edge always on, and a flaw, a standing tangle: take spark the first time each session it truly bites."}
+  class: {kind: text, help: "The one art you've practiced until it became who you are: its Core Talent is yours alone."}
+  talents: {kind: list, help: "Your class's Core Talent, your race's talent and your birthsign's at creation; one more at each level, from any class's list (talent ids). A standing stone's blessing and the curses join them."}
+  turned: {kind: enum, values: [vampire, werewolf], help: "Turned in play (Chapter 6): the curse is a permanent condition with its price but none of its gifts, until you take its talent (Sanguinare Vampiris, Lycanthropy)."}
+  traits: {kind: list, help: "Two you are and one you're not ('not gentle')."}
+  desires: {kind: list, help: "Two you want and one you don't ('not power')."}
+  features: {kind: list, help: "Three things people notice."}
+  bonds: {kind: list, help: "One toward each other hero: an intensity and a nature ('grudging respect with Uzgash')."}
+  arcs: {kind: list, help: "One or two character arcs (the party's group arc is kept with the party)."}
+  arcana: {kind: list, help: "Relics carried (Chapter 8): minor, major or mythic."}
+  class_notes: {kind: list, help: "What your class's page and its [Optional] boxes have you decide: your thrall's name and kind, how your backlash shows, your bloodline, your mark, the Core Talent's growth, …"}
+  # The schools' spellbooks (Chapter 4).
+  formulae: {kind: list, help: "Alteration: the formulae you know from the Formulary (Formulae: 4, +1 at levels 2, 4 and 6; Novice Alteration: 2)."}
+  illusions: {kind: list, help: "Illusion: the illusions of the Twelve you know (Glamour: 5, +1 at levels 2, 4 and 6; Novice Illusion: 2)."}
+  spent: {kind: list, help: "Illusions spent this session (once cast, an illusion is spent until the next session, unless cast without risk and not potent)."}
+  touchstones: {kind: list, help: "Destruction: your elements and forms (The Elements: 4, at least one of each, +1 at levels 2, 4 and 6; Novice Destruction: one element and one form)."}
+  backlash: {kind: text, help: "Destruction: how your backlash shows (the element turns on you, it runs wild, or it draws something's eye)."}
+  disciplines: {kind: list, help: "Mysticism: your disciplines of the five (The Old Way: 2, +1 at levels 3 and 6; Novice Mysticism: 1)."}
+  strain: {kind: int, min: 0, max: 2, default: 0, help: "Mysticism: strain this session, +1t or +2t on all your spellcasting (nothing ignores it); clears when a new session starts."}
+  rites: {kind: list, help: "Restoration: your rites, each a power pool and its own touchstone (The Rites: 1 major 6d and 2 minor 4d; Novice Restoration: 1 at 4d)."}
+  recipes: {kind: list, help: "Alchemy: the recipes you know (The Satchel: 4, +1 at levels 2, 4 and 6)."}
+  reagents: {kind: list, help: "Alchemy: reagents harvested (you can hold two); each brews one extra draught of that thing's nature."}
+  aspects: {kind: list, help: "Conjuration: your thrall's aspects (The Binding: 1, +1 at levels 3 and 6)."}
+  shouts: {kind: list, help: "The Voice: the Shouts you know (1 at first; a new one from its word wall and a dragon's soul, or a season with a master)."}
+  quarry: {kind: list, help: "Marksman: the quarry or quarries named this session (The Hunt): the Hunter's die for you and allies who research, track or attack it."}
+  # The Core Talents' wells: spent with `didact do spend`, refilled each session or each scene.
+  temper: {kind: uses, label: Temper, help: "Armorer (Tempering): 5 a session, +1 at levels 3 and 6."}
+  wind: {kind: uses, label: Wind, help: "Athletics (Wind): 6 a session, +1 at levels 2, 4 and 6."}
+  edge: {kind: uses, label: Edge, help: "Blade (Bladework): 2 a scene, +1 at levels 3 and 6."}
+  guard: {kind: uses, label: Guard, help: "Block (The Guard): 3 a scene, +1 at levels 3 and 6."}
+  might: {kind: uses, label: Might, help: "Blunt (The Heavy Hand): 3 a session, +1 at levels 2, 4 and 6."}
+  focus: {kind: uses, label: Focus, help: "Hand to Hand (The Open Hand): 4 a scene, +1 at levels 3 and 6."}
+  draughts: {kind: uses, label: Draughts, help: "Alchemy (The Satchel): 5 a session, +1 at levels 2, 4 and 6; what you don't use goes flat when the session ends."}
+  spells: {kind: uses, label: Spells, help: "Alteration (Formulae): 4 a session, +1 at levels 2, 4 and 6; Novice Alteration: 3 (or +1 if Alteration is your class)."}
+  potent: {kind: uses, label: Potent spells, help: "Alteration (Formulae): 2 a session, +1 at levels 2, 4 and 6; Novice Alteration: 1; Master Alteration: +1."}
+  unstrained: {kind: uses, label: Potent spells before strain, help: "Mysticism (The Old Way): your first potent spell each session is free (+1 at levels 3 and 6; Novice Mysticism, if Mysticism is your class: +1)."}
+  momentum: {kind: uses, label: Momentum, help: "Acrobatics (Momentum): 2 a scene, +1 at levels 2, 4 and 6; a thorn that cuts your roll gives 1, even past your limit."}
+  evasion: {kind: uses, label: Evasion, help: "Light Armor (Evasion): 2 a scene, +1 at levels 3 and 6."}
+  quarries: {kind: uses, label: Quarries, help: "Marksman (The Hunt): 1 quarry a session, +1 at levels 3 and 6."}
+  favors: {kind: uses, label: Favors, help: "Mercantile (The Ledger): 3 a session, +1 at levels 2, 4 and 6."}
+  sway: {kind: uses, label: Sway, help: "Speechcraft (The Silver Tongue): 3 a session, +1 at levels 2, 4 and 6."}
+  changes: {kind: uses, label: Changes, help: "Werewolf (Beast Blood): change once a session (or in the moment you become bloodied), +1 at levels 3 and 6; Lycanthropy: once, and never more."}
+  # The pools the sheet points at (tracks: `didact track list`).
+  potions: {kind: ref, to: track, help: "Every hero's 3d Potions resource pool (Chapter 6): `didact do potion`."}
+  coin: {kind: ref, to: track, help: "Every hero's 4d Coin power pool (Chapter 6): `didact do spend-coin`."}
+  plate: {kind: ref, to: track, help: "Heavy Armor (Plate): a 4d resource pool each session, +1d at levels 3 and 6."}
+  picks: {kind: ref, to: track, help: "Security (Picks): a 4d resource pool each session, +1d at levels 3 and 6."}
+  shadow: {kind: ref, to: track, help: "Sneak (Shadow): a 3d resource pool each scene, +1d at levels 3 and 6."}
+  thrall: {kind: ref, to: track, help: "Conjuration (The Binding): a 4d power pool, back to full at 0d or when you push yourself (Twin Souls: 6d)."}
+  blood: {kind: ref, to: track, help: "Vampire (The Blood): a 4d power pool (Sanguinare Vampiris: 3d, never grows), refilled only by feeding (`didact do feed`)."}
+  bloodlust: {kind: ref, to: track, help: "Werewolf (Beast Blood): the 4d Bloodlust timer the change runs on (Lycanthropy: 3d), made when you change (`didact do change`)."}
+  rite_1: {kind: ref, to: track, help: "Restoration: your major rite's power pool (6d; Novice Restoration: the rite's 4d)."}
+  rite_2: {kind: ref, to: track, help: "Restoration: a minor rite's power pool (4d)."}
+  rite_3: {kind: ref, to: track, help: "Restoration: a minor rite's power pool (4d)."}
+  # The dials' pools, made at character creation.
+  supplies: {kind: ref, to: track, help: "Supplies (an option): a 4d resource pool, rolled after heavy use and as time passes away from towns (`didact do supplies`)."}
+  armor_pool: {kind: ref, to: track, help: "Armor for everyone (an option): a 1d (light) or 2d (heavy) Armor pool each session (`didact do armor`)."}
+  # The talents' own per-session pools (made with the talent, refreshed with the session).
+  juggernaut: {kind: ref, to: track, help: "Juggernaut: a 2d Armor resource pool each session, beside Plate."}
+  poisons: {kind: ref, to: track, help: "Poisoner: a 4d Poisons resource pool each session."}
+  flesh: {kind: ref, to: track, help: "Mage Armor: a 2d Flesh resource pool each session, worn unarmored."}
+  resistance: {kind: ref, to: track, help: "Magic Resistance: a 2d Resistance resource pool each session."}
+  unbinding: {kind: ref, to: track, help: "Oblivion Binding: a 2d Unbinding power pool each session."}
+  reflection: {kind: ref, to: track, help: "Reflect Spell: a 2d Reflection power pool each session."}
+  ward: {kind: ref, to: track, help: "Ward Absorb: a 2d Ward resource pool each session."}
+  leathers: {kind: ref, to: track, help: "Unhindered: a 2d Leathers resource pool each session, in light armor."}
+  disguise: {kind: ref, to: track, help: "Shrouded: a 2d Disguise resource pool each session."}
+  credit: {kind: ref, to: track, help: "Investor: a 3d Credit resource pool each session."}
+  will: {kind: ref, to: track, help: "Unearthly Will: a 2d Will resource pool each session."}
+  hide: {kind: ref, to: track, help: "Animal Vigor: a 2d Hide resource pool, fresh each time you change (`didact do change`)."}
+  curse_timer: {kind: ref, to: track, help: "A curse caught and not yet turned: its 4d timer, rolled by night (`didact do curse`)."}
+  # The rest of play.
+  fed: {kind: flag, default: false, help: "Vampire: the first sip of this session is taken (you'd arranged it: no suspense for it)."}
+  changed: {kind: flag, default: false, help: "Werewolf: in beast form now (`didact do change`, `didact do change-back`); the rolls read the wolf's stats."}
+  moon_change: {kind: flag, default: false, help: "Totem of the Moon: this session's first change at night has been taken (it didn't count against the limit)."}
+  blessed_in: {kind: int, min: 0, default: 0, help: "The session the blessing was taken in (between sessions, the last one; 0 before the first): it ends when the next session ends."}
+  tokens: {kind: int, min: 0, default: 0, help: "Exploration tokens: 3 each when the GM expands the map, 1-3 for a real discovery; spent on points and paths (`didact do tokens`)."}
+  plan: {kind: text, help: "Plan ahead (downtime): a few words on the preparation made; a special thread for details from it, lost when time passes again."}
+  retiring: {kind: flag, default: false, help: "Retirement: alive but deeply scarred after being dropped; bow out soon, for if dropped again first, you die."}
+  side: {kind: flag, default: false, help: "A side character (solo and duet play, Chapter 9): no class and no Core Talent, no XP, spark or thread, and harm instead of marks."}
+guidance: >-
+  A hero: race (a background, three wises, a racial talent), a background (three wises), a
+  birthsign and its talent, a class and its Core Talent, stats of 1 each plus 4 points (max 3),
+  two traits and one not, two desires and one not, three features, one or two arcs, a bond to
+  each hero, a 3d Potions pool and a 4d Coin pool. Make one with `didact char new`; level up
+  with `didact char advance`.
+---
+type: pc
+extends: character
+label: Hero
+---
+type: npc
+extends: character
+label: Non-player character
+fields:
+  role: {kind: text, help: "How they fight, if it comes to that (Chapter 7's roles), or their place in the world."}
+  tier: {kind: enum, values: [mook, tough, elite, boss, "mook–tough", "mook–elite"], help: "Their tier, if it comes to a fight: a lesser foe is a mook, a greater one an elite or a boss."}
+  fact: {kind: text, help: "The one fact that matters (Faces of Tamriel)."}
+  tricks: {kind: list, help: "A follower's tricks (Allure): rolled at 3d, anything else at 1d."}
+  flaws: {kind: list, help: "A follower's flaws (Allure)."}
+  hurt: {kind: list, help: "A follower's damage boxes (Allure): marked (any mark) and hurt (any harm); they can always leave a scene when hurt."}

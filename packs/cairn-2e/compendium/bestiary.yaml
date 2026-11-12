@@ -1,0 +1,1430 @@
+# Cairn Second Edition bestiary (wardens-guide/bestiary), CC-BY-SA 4.0 by Yochai Gal.
+id: acolyte
+type: monster
+name: Acolyte
+category: Humanoid
+hp: 4
+armor: 1
+STR: 8
+DEX: 11
+WIL: 14
+attacks:
+  - {name: ceremonial dagger, damage: d6}
+abilities:
+  - Carry a holy symbol (Ward once per day).
+source: wardens-guide/bestiary#acolyte
+body: |
+  Holy servants bound to a particular deity. Typically travel in groups of four or more.
+---
+id: aranea
+type: monster
+name: Aranea
+category: Insectoid
+hp: 6
+STR: 13
+DEX: 12
+WIL: 15
+attacks:
+  - {name: bite, damage: d8}
+abilities:
+  - Can shape shift into human form at will.
+  - Carry the Charm and Command spellbooks at all times.
+  - Fire damage against Aranea is enhanced.
+source: wardens-guide/bestiary#aranea
+body: |
+  Enormous spiders with greenish-black skin and large brains.
+  Conduct their magical research in dark, web-filled caverns.
+---
+id: bandit
+type: monster
+name: Bandit
+category: Humanoid
+hp: 4
+armor: 1
+STR: 12
+DEX: 12
+WIL: 9
+attacks:
+  - {name: short sword, damage: d6}
+  - {name: short bow, damage: d6}
+abilities:
+  - Groups of four or more are a detachment.
+  - A detachment always travels with one leader wearing chain mail or similar (2 Armor) and a long sword (d10) or crossbow (d8).
+  - "Loyal: When testing Morale, save using the leader's WIL (13). If the leader dies, the others will flee."
+source: wardens-guide/bestiary#bandit
+body: |
+  Outlaws who raid settlements, attack ships, or ambush travelers.
+---
+id: banshee
+type: monster
+name: Banshee
+category: Mythical
+hp: 8
+STR: 6
+DEX: 12
+WIL: 15
+attacks:
+  - {name: ghostly touch, damage: d8}
+abilities:
+  - Unharmed by cold, heat, or the elements. Iron weapon damage is enhanced.
+  - "Wail: Anyone in earshot must make a WIL save or fall unconscious."
+source: wardens-guide/bestiary#banshee
+body: |
+  Incorporeal spirits that linger long after death to haunt the living.
+---
+id: basilisk
+type: monster
+name: Basilisk
+category: Lizard
+hp: 10
+armor: 1
+STR: 12
+DEX: 13
+WIL: 13
+attacks:
+  - {name: bite, damage: d10}
+abilities:
+  - Fighting a Basilisk without meeting its gaze is difficult. (Attacks facing it are impaired.)
+  - "Gaze: A target facing the Basilisk is slowly petrified from the bottom up and completely frozen after three rounds. An antidote can be brewed from the Basilisk's gizzards. The creature's reflection is harmless."
+source: wardens-guide/bestiary#basilisk
+body: |
+  Long, serpentine lizards that nest deep below the earth or in brambles just underfoot.
+---
+id: blink-dog
+type: monster
+name: Blink Dog
+category: Magical
+hp: 5
+STR: 11
+DEX: 14
+WIL: 5
+attacks:
+  - {name: bite, damage: d6}
+abilities:
+  - Can phase out of reality at will. Melee attacks against them are impaired.
+source: wardens-guide/bestiary#blink-dog
+body: |
+  Teleporting canines in service of a powerful master.
+---
+id: blood-elk
+type: monster
+name: Blood Elk
+category: Beast
+hp: 4
+STR: 12
+DEX: 13
+WIL: 5
+attacks:
+  - {name: horns, damage: d8}
+critical: "Gores its victims by ripping out their entrails."
+source: wardens-guide/bestiary#blood-elk
+body: |
+  Born from violence resulting from a greedy or selfish act.
+  Kill their victims for sustenance, but gains no succor. They are always hungry.
+---
+id: boggart
+type: monster
+name: Boggart
+category: Fey
+hp: 3
+STR: 4
+DEX: 17
+WIL: 13
+abilities:
+  - Boggarts have true names that describe their true nature. Knowing these names gives a person control over them.
+  - "Magic: The Boggart can bring objects to life, sow confusion, create magical disguises, use telekinesis, and teleport."
+source: wardens-guide/bestiary#boggart
+body: |
+  Wild, hairy tricksters that prize shiny trinkets above coin.
+---
+id: bone-construct
+type: monster
+name: Bone Construct
+category: Construct
+hp: 8
+armor: 3
+STR: 15
+DEX: 5
+WIL: 3
+attacks:
+  - {name: sharpened arms, damage: "{d8, d8}kh1"}
+abilities:
+  - Treated as a detachment.
+source: wardens-guide/bestiary#bone-construct
+body: |
+  Gigantic, four-armed constructs made of bone and sorcery.
+  Mindless guardians that stand ready to attack any creature other than their creator.
+---
+id: bugbear
+type: monster
+name: Bugbear
+category: Goblinoid
+hp: 8
+armor: 1
+STR: 14
+DEX: 12
+WIL: 11
+attacks:
+  - {name: club, damage: d8}
+source: wardens-guide/bestiary#bugbear
+body: |
+  Large, goblin-like creatures covered in fur.
+  Prefer stealth and trickery to gain an advantage.
+  Often command parties of like creatures (typically goblins).
+---
+id: burrowing-horror
+type: monster
+name: Burrowing Horror
+category: Insectoid
+hp: 6
+armor: 1
+STR: 16
+DEX: 11
+WIL: 4
+attacks:
+  - {name: bite, damage: d10}
+  - {name: acid squirt, damage: d8, qualities: [blast]}
+critical: "Target loses a body part. Roll 1d6. 1: Head, 2-4: Leg, 5-6: Arm."
+source: wardens-guide/bestiary#burrowing-horror
+body: |
+  Huge insectoids with multiple legs and shiny black eyes. Subsist from dirt, roots, and flesh.
+  Burrow just beneath surfaces to ambush unsuspecting creatures.
+---
+id: cave-locust
+type: monster
+name: Cave Locust
+category: Insectoid
+hp: 2
+STR: 6
+DEX: 12
+WIL: 3
+attacks:
+  - {name: bite, damage: d6}
+abilities:
+  - Immune to most types of poison.
+source: wardens-guide/bestiary#cave-locust
+body: |
+  Giant plant-eating crickets that dwell in caves.
+  Their natural coloration allows them to blend in with the stone. They emit loud shrieks when threatened.
+---
+id: centaur
+type: monster
+name: Centaur
+category: Hybrid
+hp: 6
+armor: 1
+STR: 14
+DEX: 12
+WIL: 14
+attacks:
+  - {name: spear, damage: d8}
+  - {name: short bow, damage: d6}
+source: wardens-guide/bestiary#centaur
+body: |
+  Creatures with the lower body and legs of a horse, but a humanoid upper body.
+  Rarely found alone, preferring the company of their own.
+---
+id: cobblehounds
+type: monster
+name: Cobblehounds
+category: Construct
+hp: 12
+armor: 2
+STR: 14
+DEX: 1
+WIL: 8
+attacks:
+  - {name: bite, damage: d10}
+abilities:
+  - Unaffected by mundane persuasion techniques, but love a good bone.
+source: wardens-guide/bestiary#cobblehounds
+body: |
+  Immobile constructs typically used as guardians to great tombs or artifacts.
+---
+id: creeping-vines
+type: monster
+name: Creeping Vines
+category: Plant
+hp: 8
+STR: 10
+DEX: 12
+WIL: 2
+attacks:
+  - {name: vines, damage: d4, qualities: [blast]}
+critical: "Target is pulled into the air where they asphyxiate within a few minutes."
+source: wardens-guide/bestiary#creeping-vines
+body: |
+  Appear as an inert, typical vine. Attacks passing creatures to use their corpses as fertilizer.
+---
+id: crypt-guardian
+type: monster
+name: Crypt Guardian
+category: Undead
+hp: 12
+STR: 12
+DEX: 11
+WIL: 14
+attacks:
+  - {name: ethereal claws, damage: "{d8, d8}kh1"}
+abilities:
+  - Non-magical attacks against them are impaired.
+  - Can teleport any target in eyesight to a random room nearby.
+source: wardens-guide/bestiary#crypt-guardian
+body: |
+  Animated skeletons clothed in billowing robes. Their eye sockets are hypnotically red. Defend crypts and tombs, but will not attack if left undisturbed.
+---
+id: dryad
+type: monster
+name: Dryad
+category: Fey
+hp: 4
+STR: 8
+DEX: 12
+WIL: 14
+attacks:
+  - {name: knotted arms, damage: d6}
+abilities:
+  - Unable to travel far from the tree they are bound to. They perish if the tree is destroyed.
+  - "Befuddle: Target becomes confused, gradually moving further and further away from the host tree. WIL save once per round to break free."
+source: wardens-guide/bestiary#dryad
+body: |
+  Shy, protective tree spirits that manifest as beautiful, green-skinned humanoids.
+---
+id: ettin
+type: monster
+name: Ettin
+category: Giant
+hp: 10
+STR: 16
+DEX: 8
+WIL: 6
+attacks:
+  - {name: club, damage: d10}
+abilities:
+  - Cannot be surprised.
+source: wardens-guide/bestiary#ettin
+body: |
+  The two-headed kin of giants. Prefer caves and underground hovels.
+---
+id: eye-of-terror
+type: monster
+name: Eye of Terror
+category: Extraplanar
+hp: 15
+STR: 9
+DEX: 8
+WIL: 16
+attacks:
+  - {name: bite, damage: d8}
+abilities:
+  - "Can cast the following spells at will: Charm, Phobia, Telekinesis, Sleep, Shuffle, Vision. Magic used against them requires a WIL save or it fizzles out."
+source: wardens-guide/bestiary#eye-of-terror
+body: |
+  Floating spheres with large mouths, enormous eyes, and several small eyes set atop long stalks.
+  They are highly intelligent, intensely greedy, and completely insane.
+---
+id: frost-elf
+type: monster
+name: Frost Elf
+category: Fey
+hp: 14
+armor: 1
+STR: 8
+DEX: 13
+WIL: 14
+attacks:
+  - {name: icicle dagger, damage: d6}
+abilities:
+  - Resistant to most forms of magic.
+  - "Can cast the following spells at will: Sleep, Teleport, Detect Magic."
+source: wardens-guide/bestiary#frost-elf
+body: |
+  Beautiful, amoral, and long-lived.
+---
+id: gargoyle
+type: monster
+name: Gargoyle
+category: Construct
+hp: 8
+armor: 3
+STR: 14
+DEX: 4
+WIL: 12
+attacks:
+  - {name: claws, damage: "{d8, d8}kh1"}
+abilities:
+  - Prowl at nights but fear the day, when the sun's light freezes them in place.
+  - Immune to charms and magical sleep.
+source: wardens-guide/bestiary#gargoyle
+body: |
+  Magical, slow-moving statues of monstrous winged creatures, typically employed as guards or watchdogs.
+---
+id: gelatinous-ooze
+type: monster
+name: Gelatinous Ooze
+category: Unusual
+hp: 8
+armor: 1
+STR: 15
+DEX: 6
+WIL: 3
+attacks:
+  - {name: devouring touch, damage: d8}
+critical: "The target is engulfed, losing d6 STR damage per round until they are consumed."
+source: wardens-guide/bestiary#gelatinous-ooze
+body: |
+  Large shapeless masses of transparent jelly. Mindlessly hunt for food in dungeons and underground caverns.
+---
+id: ghost
+type: monster
+name: Ghost
+category: Undead
+hp: 8
+STR: 14
+DEX: 12
+WIL: 15
+attacks:
+  - {name: life drain, damage: d6}
+abilities:
+  - Vulnerable only to magic and specific anointed rites.
+critical: "Target must save WIL or is possessed, acting only on behalf of the ghost's whims."
+source: wardens-guide/bestiary#ghost
+body: |
+  Incorporeal spirits of the restless dead.
+---
+id: ghoul
+type: monster
+name: Ghoul
+category: Undead
+hp: 6
+STR: 14
+DEX: 8
+WIL: 3
+attacks:
+  - {name: elongated claws, damage: "{d6, d6}kh1"}
+critical: "Target is deprived from their necrotic wound, dying in d4 days unless treated by a priest or skilled healer. If the body is not burned it later rises as a Ghoul as well."
+source: wardens-guide/bestiary#ghoul
+body: |
+  Grey-skinned man-things wearing shredded clothes that crave only the flesh of the living.
+---
+id: giant-scorpion
+type: monster
+name: Giant Scorpion
+category: Insectoid
+hp: 8
+armor: 1
+STR: 11
+DEX: 12
+WIL: 4
+attacks:
+  - {name: claws, damage: "{d10, d10}kh1"}
+critical: "The stinger's poison liquefies the target's insides for an additional d8 STR damage. The STR loss is permanent."
+source: wardens-guide/bestiary#giant-scorpion
+body: |
+  Horse-sized arachnids commonly found in dry terrain or caverns.
+---
+id: gnoll
+type: monster
+name: Gnoll
+category: Humanoid
+hp: 6
+armor: 1
+STR: 12
+DEX: 14
+WIL: 8
+attacks:
+  - {name: spear, damage: d8}
+abilities:
+  - Deadly warriors, they attack as a pack (as detachment) or on their own.
+source: wardens-guide/bestiary#gnoll
+body: |
+  Ferocious humanoid hyenas spawned from arcane experiments long ago.
+---
+id: goblin
+type: monster
+name: Goblin
+category: Goblinoid
+hp: 4
+STR: 8
+DEX: 12
+WIL: 8
+attacks:
+  - {name: dagger, damage: d6}
+  - {name: sling, damage: d6}
+source: wardens-guide/bestiary#goblin
+body: |
+  Small, grotesque humanoids with skin in earthly tones of green, brown, and grey.
+  Avoid combat, only attacking when advantageous, using hit-and-run tactics.
+  Sometimes are found using dire wolves as mounts.
+---
+id: green-dragon
+type: monster
+name: Green Dragon
+category: Behemoth
+hp: 12
+armor: 2
+STR: 14
+DEX: 15
+WIL: 18
+attacks:
+  - {name: bite, damage: d12}
+abilities:
+  - Treated as a detachment.
+  - "Chlorine Gas: Anyone nearby must make a DEX save to escape its reach or lose 1d4 STR and becomes deprived."
+source: wardens-guide/bestiary#green-dragon
+body: |
+  Forest-dwelling snakes topped with tall green scales. Collect great hoards of treasure.
+  Use intelligence and cunning to manipulate the weak into their service.
+---
+id: griffon
+type: monster
+name: Griffon
+category: Mythical
+hp: 7
+STR: 14
+DEX: 15
+WIL: 12
+attacks:
+  - {name: claws, damage: "{d6, d6}kh1"}
+abilities:
+  - Treated as a detachment.
+critical: "Tears flesh and bone from its victim with its razor-sharp beak."
+source: wardens-guide/bestiary#griffon
+body: |
+  Ravenous hybrids, with the head and wings of an eagle and the lower body of a lion.
+  Can be used as mounts if taken young and properly trained.
+  Fly and attack at astonishing speeds, diving in to scoop up their prey.
+---
+id: grizzly-bear
+type: monster
+name: Grizzly Bear
+category: Beast
+hp: 6
+STR: 15
+DEX: 13
+WIL: 5
+attacks:
+  - {name: claws, damage: "{d8, d8}kh1"}
+critical: "Bites the victim for an additional d6 STR damage. They bleed out very quickly."
+source: wardens-guide/bestiary#grizzly-bear
+body: |
+  Reddish-brown bears commonly found in mountains, woodlands, and prairies.
+  Prefer to eat fish and meat, and will attack the rare unfortunate who crosses their path.
+---
+id: harpy
+type: monster
+name: Harpy
+category: Mythical
+hp: 8
+STR: 7
+DEX: 12
+WIL: 14
+attacks:
+  - {name: claws, damage: "{d6, d6}kh1"}
+abilities:
+  - "Song: Anyone nearby must save WIL or be charmed by its voice, following the harpy and defending it from any threat."
+source: wardens-guide/bestiary#harpy
+body: |
+  Hideous monstrosities with the body of a giant eagle and a humanoid head.
+  Their movements and flight are clumsy due to their disproportionate size. Rely on charmed victims to do anything of note.
+---
+id: hellhound
+type: monster
+name: Hellhound
+category: Demon
+hp: 8
+STR: 12
+DEX: 15
+WIL: 9
+attacks:
+  - {name: bite, damage: d8}
+  - {name: fire breath, damage: d6, qualities: [blast]}
+abilities:
+  - Immune to fire and heat damage. Hot enough to melt iron simply by biting it.
+source: wardens-guide/bestiary#hellhound
+body: |
+  Monstrous, intelligent dogs that dwell near volcanoes.
+---
+id: hobgoblin
+type: monster
+name: Hobgoblin
+category: Goblinoid
+hp: 6
+armor: 2
+STR: 14
+DEX: 8
+WIL: 11
+attacks:
+  - {name: mace, damage: d8}
+abilities:
+  - Automatically succeed in Morale Saves if a commander is present.
+  - Trained to fight together. Damage dealt is enhanced if an ally is also engaged with the same enemy.
+source: wardens-guide/bestiary#hobgoblin
+body: |
+  Large and burly relatives of goblins. Dwell in underground fortresses until called for war.
+---
+id: hooded-men
+type: monster
+name: Hooded Men
+category: Humanoid
+hp: 12
+STR: 9
+DEX: 12
+WIL: 14
+attacks:
+  - {name: leystaff, damage: d8}
+abilities:
+  - "Carries two of the following spellbooks: Charm, Hypnotize, Push/Pull, Shield."
+critical: "Leech a part of the victim's soul (1d4 WIL damage)."
+source: wardens-guide/bestiary#hooded-men
+body: |
+  The Watchers of the Wood; a cult that derive their power from leylines, rune stones, and the like.
+---
+id: hydra
+type: monster
+name: Hydra
+category: Lizard
+hp: 12
+armor: 2
+STR: 13
+DEX: 7
+WIL: 12
+attacks:
+  - {name: bite, damage: d12, qualities: [blast]}
+abilities:
+  - Treated as a detachment.
+  - On taking Critical Damage, the hydra loses one head. It then continues fighting until no heads remains.
+source: wardens-guide/bestiary#hydra
+body: |
+  Large reptilians with nine serpentine heads. Very difficult to throw off once their quarry is detected.
+---
+id: invisible-stalker
+type: monster
+name: Invisible Stalker
+category: Incorporeal
+hp: 8
+STR: 12
+DEX: 12
+WIL: 15
+attacks:
+  - {name: fists, damage: "{d4, d4}kh1"}
+abilities:
+  - Completely invisible and silent.
+  - Attacks deal direct STR damage (subtracting Armor).
+source: wardens-guide/bestiary#invisible-stalker
+body: |
+  Intelligent beings shaped into reality by a powerful wizard.
+---
+id: killer-bees
+type: monster
+name: Killer Bees
+category: Beast
+hp: 6
+STR: 6
+DEX: 14
+WIL: 8
+attacks:
+  - {name: sting, damage: d6}
+abilities:
+  - Treated as a detachment.
+  - Produce special honey that heals 1d6 STR. 3 uses.
+  - When the bees cause STR damage, the stingers are lodged into the target, dealing d4 damage each round until removed.
+source: wardens-guide/bestiary#killer-bees
+body: |
+  Oversized bees that build underground hives. Hyper-aggressive, attack anything that comes near.
+---
+id: kobold
+type: monster
+name: Kobold
+category: Lizard
+hp: 3
+STR: 8
+DEX: 13
+WIL: 4
+attacks:
+  - {name: bite, damage: d6}
+  - {name: spear, damage: d8}
+abilities:
+  - Can see perfectly in the dark, but are harmed by direct sunlight.
+source: wardens-guide/bestiary#kobold
+body: |
+  Hairless humanoids with canine-like features and scaly skin.
+  Use traps and ambush to defeat opponents. Often act in service of a more powerful creatures.
+---
+id: lamia
+type: monster
+name: Lamia
+category: Mythical
+hp: 6
+STR: 11
+DEX: 12
+WIL: 16
+attacks:
+  - {name: toothy bite, damage: d8}
+abilities:
+  - Inherently magical. Can create illusions, charm creatures, and disguise themselves at will.
+critical: "The target takes d6 WIL damage as their spirit is slowly sapped away. They then become enthralled to the Lamia, obeying its every command while in its presence."
+source: wardens-guide/bestiary#lamia
+body: |
+  Centaur-like creatures that prey on the life force of others, seducing their victims through heightened charm and intelligence. Their upper bodies are typically humanoid, the lower half any number of animal hybrids.
+---
+id: lich
+type: monster
+name: Lich
+category: Undead
+hp: 14
+armor: 1
+STR: 8
+DEX: 8
+WIL: 18
+attacks:
+  - {name: soul dagger, damage: d8}
+abilities:
+  - Maintain unlife by binding themselves to an earthly artifact, which is typically protected by at least d6 other undead servants.
+  - "Carry up to six of the following spellbooks: Animate Object, Arcane Eye, Deafen, Disassemble, Elemental Wall, Frenzy, Gate, Hover, Hatred, Identify Owner, Knock, Pacify, Raise Dead, Raise Spirit, Shield, Sleep, Smoke Form, Telekinesis, Telepathy, Teleport, Vision, Wizard Mark."
+source: wardens-guide/bestiary#lich
+body: |
+  Powerful sorcerers that paid the ultimate price for immortality: their own life. Now their thirst for power knows no bounds.
+---
+id: manticore
+type: monster
+name: Manticore
+category: Hybrid
+hp: 6
+STR: 15
+DEX: 14
+WIL: 12
+attacks:
+  - {name: claws, damage: "{d6, d6}kh1"}
+  - {name: tail spike, damage: d8}
+abilities:
+  - Tail spikes act like darts, regrowing after a few days. A single spike is worth 150gp to a collector.
+critical: "Target is deprived until they get a good night's sleep. Until then, they act boorish, selfish, and cruel (or more so, if that already is their nature)."
+source: wardens-guide/bestiary#manticore
+body: |
+  Spiteful monstrosities that wear a humanoid face, a lion's body, wings of a bat, and a scorpion's tail. Dwell in mountainous regions, abandoned castles, and forgotten dungeons.
+---
+id: mimic
+type: monster
+name: Mimic
+category: Unusual
+hp: 9
+armor: 2
+STR: 13
+DEX: 6
+WIL: 12
+attacks:
+  - {name: bite, damage: d8}
+abilities:
+  - The mimic's saliva is extremely sticky and difficult to remove. Alchemists will pay up to 150gp for even the smallest vial.
+source: wardens-guide/bestiary#mimic
+body: |
+  Malicious shape shifters that take on the form of inanimate objects commonly found in dungeons.
+  Remain motionless while in disguise, surprising anyone that comes near.
+---
+id: mind-lasher
+type: monster
+name: Mind Lasher
+category: Extraplanar
+hp: 12
+STR: 8
+DEX: 12
+WIL: 18
+attacks:
+  - {name: tentacles, damage: d6, qualities: [blast]}
+abilities:
+  - "Mind Blast: Nearby targets must save WIL or lose 1d4 WIL and become paralyzed."
+critical: "A tentacle rips the victim's brain out of their skull."
+source: wardens-guide/bestiary#mind-lasher
+body: |
+  Humanoid creatures with purple skin and squid-like heads. Dwell deep underground or in spacefaring vessels. Feed on the brains of other humanoids, absorbing their memories and life essence. Highly intelligent, but evil beyond belief.
+---
+id: minotaur
+type: monster
+name: Minotaur
+category: Hybrid
+hp: 12
+armor: 1
+STR: 16
+DEX: 12
+WIL: 8
+attacks:
+  - {name: two-handed axe, damage: d10}
+  - {name: charge, damage: d12}
+abilities:
+  - Extraordinary trackers with an excellent sense of smell and navigation skills.
+source: wardens-guide/bestiary#minotaur
+body: |
+  Large humanoids (typically male) with the head of a bull. Dwell in mazes or dungeons.
+---
+id: mummy
+type: monster
+name: Mummy
+category: Undead
+hp: 6
+STR: 12
+DEX: 8
+WIL: 6
+attacks:
+  - {name: necrotic touch, damage: d10}
+critical: "Target is infected with mummy rot, and is unable to recover STR until they are cured by a specialist healer. The target is also deprived."
+source: wardens-guide/bestiary#mummy
+body: |
+  Undead humanoids wrapped in funerary cloth. Found in pyramids, ruins, temples, and tombs.
+---
+id: naga
+type: monster
+name: Naga
+category: Lizard
+hp: 6
+armor: 1
+STR: 14
+DEX: 12
+WIL: 14
+attacks:
+  - {name: sword, damage: d6}
+  - {name: bite, damage: d10}
+abilities:
+  - "Gaze: A target facing the Naga is hypnotized, falling under its will. Its victims cannot be compelled to violence."
+source: wardens-guide/bestiary#naga
+body: |
+  Humanoids with the lower body, tail, and neck of snakes. Dwell in hot jungles and temples lost to time.
+  Use cunning and hypnosis to capture other creatures to be enslaved.
+---
+id: night-cat
+type: monster
+name: Night Cat
+category: Beast
+hp: 6
+STR: 9
+DEX: 14
+WIL: 5
+attacks:
+  - {name: claws, damage: "{d6, d6}kh1"}
+critical: "The Night Cat begins to eat the target (d4 STR damage) while they are still alive."
+source: wardens-guide/bestiary#night-cat
+body: |
+  Intelligent, nocturnal marsupials that make their homes in forests and swamps. Hunt in packs.
+---
+id: night-hag
+type: monster
+name: Night Hag
+category: Fey
+hp: 8
+STR: 9
+DEX: 11
+WIL: 16
+attacks:
+  - {name: talons, damage: "{d8, d8}kh1"}
+abilities:
+  - "Carry three of the following spellbooks: Arcane Eye, Disguise, Fog Cloud, Identify Owner, Smoke Form."
+source: wardens-guide/bestiary#night-hag
+body: |
+  Hideous old women that dwell in dead forests, swamps, and bogs.
+---
+id: nightmare
+type: monster
+name: Nightmare
+category: Demon
+hp: 8
+STR: 15
+DEX: 12
+WIL: 8
+attacks:
+  - {name: flaming hooves, damage: "{d8, d8}kh1"}
+abilities:
+  - Melee attacks against the Nightmare are impaired due to the thick clouds of smoke it produces.
+source: wardens-guide/bestiary#nightmare
+body: |
+  Intelligent, demonic horses with eyes like burning coals, smoldering nostrils, and flaming hooves.
+---
+id: ogre
+type: monster
+name: Ogre
+category: Goblinoid
+hp: 6
+armor: 1
+STR: 16
+DEX: 8
+WIL: 6
+attacks:
+  - {name: club, damage: d10}
+source: wardens-guide/bestiary#ogre
+body: |
+  Massive, gluttonous brutes of ill-spirit and low intelligence.
+  Easily impressed by shiny materials, keeping sacks of gold and treasure in their lairs.
+---
+id: owlbear
+type: monster
+name: Owlbear
+category: Hybrid
+hp: 9
+STR: 16
+DEX: 12
+WIL: 5
+attacks:
+  - {name: beak, damage: d10}
+  - {name: claws, damage: "{d8, d8}kh1"}
+critical: "A piece of armor is rent and destroyed."
+source: wardens-guide/bestiary#owlbear
+body: |
+  Bear-like carnivores with the face of an owl. Found in dense forests. Rumored spawn of a magical mishap.
+---
+id: phoenix
+type: monster
+name: Phoenix
+category: Avian
+hp: 4
+STR: 15
+DEX: 13
+WIL: 12
+attacks:
+  - {name: talons, damage: "{d10, d10}kh1"}
+abilities:
+  - If killed, they explode in a burst of flames. They are reborn 1d3 days later from the ashes.
+source: wardens-guide/bestiary#phoenix
+body: |
+  Intelligent, hawk-like spirits of pure flame, found in isolated deserts and high mountains.
+  Their feathers are highly-sought after for their healing properties.
+---
+id: pixie
+type: monster
+name: Pixie
+category: Fey
+hp: 3
+STR: 3
+DEX: 15
+WIL: 13
+abilities:
+  - Naturally invisible.
+  - Can cast Sleep and Masquerade at will.
+source: wardens-guide/bestiary#pixie
+body: |
+  Tiny humanoids with insectoid wings.
+---
+id: purple-worm
+type: monster
+name: Purple Worm
+category: Behemoth
+hp: 18
+armor: 1
+STR: 18
+DEX: 8
+WIL: 6
+attacks:
+  - {name: bite, damage: d12}
+abilities:
+  - Treated as a detachment.
+critical: "The target is devoured, taking d8 STR damage from the acid in the worm's stomach."
+source: wardens-guide/bestiary#purple-worm
+body: |
+  Gargantuan worms that lair in enormous burrows deep underground, only coming to the surface to eat. Found in high deserts and hot tundra.
+---
+id: red-cap
+type: monster
+name: Red Cap
+category: Fey
+hp: 6
+STR: 6
+DEX: 12
+WIL: 8
+attacks:
+  - {name: dual sickles, damage: "{d6, d6}kh1"}
+critical: "Target is eviscerated, the spray of their blood restoring STR loss suffered by the Red Cap."
+source: wardens-guide/bestiary#red-cap
+body: |
+  Born from blood left to rot in the land of Fairy. Their hats are a deep red from the blood they bathe in.
+  Ignore those with little to live for, as there is no pleasure in their murder.
+---
+id: reptilian
+type: monster
+name: Reptilian
+category: Lizard
+hp: 5
+armor: 1
+STR: 14
+DEX: 12
+WIL: 5
+attacks:
+  - {name: bone spear, damage: d8}
+source: wardens-guide/bestiary#reptilian
+body: |
+  Amphibian humanoids that live in large tribes near swamps and jungles.
+  Craft their armor and weapons from the bones of their prey. They will eat anything, including humanoids.
+---
+id: root-goblin
+type: monster
+name: Root Goblin
+category: Goblinoid
+hp: 4
+STR: 8
+DEX: 14
+WIL: 8
+attacks:
+  - {name: spear, damage: d6}
+source: wardens-guide/bestiary#root-goblin
+body: |
+  Avoid combat unless they have the advantage (such as greater numbers).
+  Guard their stolen goods to the death.
+  Root Goblins prize spellbooks and are always willing to trade.
+---
+id: root-witch
+type: monster
+name: Root Witch
+category: Plant
+hp: 8
+STR: 9
+DEX: 16
+WIL: 14
+attacks:
+  - {name: tuber-fingers, damage: d6}
+source: wardens-guide/bestiary#root-witch
+body: |
+  Excellent tunnelers that hide underground near water. Wiggle tiny fronds into the air as lures.
+  Above-ground, appear vaguely humanoid with the face of a rotted tree stump.
+  Will exchange rare minerals for a “fresh corpse” of any kind.
+---
+id: rust-monster
+type: monster
+name: Rust Monster
+category: Unusual
+hp: 5
+STR: 16
+DEX: 13
+WIL: 5
+attacks:
+  - {name: bite, damage: d6}
+abilities:
+  - Any mundane metals their antennae touch instantly become rust. Can smell metal from a long distance away.
+critical: "Metal armor rusts into useless weight."
+source: wardens-guide/bestiary#rust-monster
+body: |
+  Armadillo-like creatures with club-like tails and long antennae. Feed on iron and rusted metal.
+---
+id: sea-hag
+type: monster
+name: Sea Hag
+category: Fey
+hp: 6
+STR: 11
+DEX: 15
+WIL: 14
+attacks:
+  - {name: long claws, damage: "{d6, d6}kh1"}
+abilities:
+  - Immune to magic from spellbooks.
+  - "Hideous Gaze: A target is overcome with fear (HP drops to 0). WIL save each round to break the spell."
+source: wardens-guide/bestiary#sea-hag
+body: |
+  Ghostly, green-skinned hags that dwell in seaweed forests and warm shallow waters.
+---
+id: shadow
+type: monster
+name: Shadow
+category: Incorporeal
+hp: 14
+STR: 1
+DEX: 18
+WIL: 14
+attacks:
+  - {name: draining touch, damage: d6, qualities: [ignores armor]}
+abilities:
+  - Unharmed by mundane attacks, sleep or mind control.
+critical: "Target loses d4 STR. If reduced to 0 STR, they become a shadow as well."
+source: wardens-guide/bestiary#shadow
+body: |
+  Incorporeal monsters that look like animated shadows.
+---
+id: shambling-mound
+type: monster
+name: Shambling Mound
+category: Plant
+hp: 9
+STR: 15
+DEX: 6
+WIL: 8
+attacks:
+  - {name: tendrils, damage: "{d8, d8}kh1"}
+abilities:
+  - Treated as a detachment.
+critical: "Target is swallowed whole and dragged away."
+source: wardens-guide/bestiary#shambling-mound
+body: |
+  Tall humanoids made of slimy vegetation. Dwell in dark swamps and damp undergrounds.
+---
+id: skeleton
+type: monster
+name: Skeleton
+category: Undead
+hp: 5
+armor: 1
+STR: 8
+DEX: 13
+WIL: 0
+attacks:
+  - {name: rusty sword, damage: d6}
+  - {name: bow, damage: d6}
+abilities:
+  - If a skeleton is killed and its bones are not scattered, it reforms.
+source: wardens-guide/bestiary#skeleton
+body: |
+  Frequently found serving a master or necromancer, often in groups of 3 or more.
+  Found wearing whatever was on them at the time of their death.
+---
+id: sky-giant
+type: monster
+name: Sky Giant
+category: Giant
+hp: 12
+armor: 1
+STR: 16
+DEX: 12
+WIL: 14
+attacks:
+  - {name: mace, damage: d10}
+abilities:
+  - Treated as a detachment.
+  - Missile attacks against them are impaired due to the powerful winds surrounding them.
+source: wardens-guide/bestiary#sky-giant
+body: |
+  Towering, white-skinned giants that live in castles high in the mountains.
+---
+id: sphinx
+type: monster
+name: Sphinx
+category: Mythical
+hp: 18
+STR: 12
+DEX: 13
+WIL: 18
+attacks:
+  - {name: claws, damage: "{d8, d8}kh1", qualities: [blast]}
+  - {name: beak, damage: d10}
+abilities:
+  - Immune to magic of any kind.
+  - "Roar: Anyone in earshot must save WIL or flee in fear."
+source: wardens-guide/bestiary#sphinx
+body: |
+  Mythical beasts with the upper body and head of a human, the wings of an eagle, and the body of a lion.
+  Poses riddles to anyone they meet. Failure to answer correctly is usually met with death. They know almost everything worth knowing.
+---
+id: storm-giant
+type: monster
+name: Storm Giant
+category: Giant
+hp: 18
+armor: 2
+STR: 18
+DEX: 16
+WIL: 18
+attacks:
+  - {name: great sword, damage: d12}
+abilities:
+  - Treated as a detachment.
+  - Unharmed by lightning, can summon storm clouds at their will. Can fly with the wind as a their chariot.
+  - "Thunderclap: Deals 4 STR damage against a single target. Targets wearing metal armor take double damage."
+source: wardens-guide/bestiary#storm-giant
+body: |
+  Building-sized humanoids with bronze-hued skin and light-colored hair. Live on the highest mountain peaks and rockiest coastlines.
+---
+id: swine-thing
+type: monster
+name: Swine Thing
+category: Shape Shifter
+hp: 9
+STR: 16
+DEX: 8
+WIL: 13
+attacks:
+  - {name: gore, damage: "{d6, d6}kh1"}
+abilities:
+  - Can only shapeshift at night.
+  - "Charm: Target obeys the swine's every command until it is killed. WIL save once per round to break free."
+source: wardens-guide/bestiary#swine-thing
+body: |
+  Obese humanoids that transform into massive porcine monstrosities to feast on human flesh.
+  Prefer to hunt in isolated settlements close to forests and wetlands.
+---
+id: titan
+type: monster
+name: Titan
+category: Giant
+hp: 18
+armor: 3
+STR: 16
+DEX: 15
+WIL: 18
+attacks:
+  - {name: lightning sword, damage: d12}
+abilities:
+  - Treated as a detachment.
+  - Can levitate, shape shift, and sculpt elements at will.
+source: wardens-guide/bestiary#titan
+body: |
+  Mythical, humanoid giants of radiant beauty and powerfully athletic bodies. Beneficent of character, but prone to megalomania.
+  Natives of other planes of existence, but sometimes have strongholds in the mortal world.
+---
+id: treant
+type: monster
+name: Treant
+category: Plant
+hp: 10
+armor: 3
+STR: 15
+DEX: 3
+WIL: 12
+attacks:
+  - {name: roots, damage: "{d8, d8}kh1", qualities: [blast]}
+source: wardens-guide/bestiary#treant
+body: |
+  Sentient, bipedal trees with a vaguely humanoid face on their trunks. Found in the deepest part of the wood.
+  Speak slowly and ponderously, with a deep voice. Timeless, living for thousands of years.
+---
+id: triton
+type: monster
+name: Triton
+category: Humanoid
+hp: 6
+STR: 12
+DEX: 15
+WIL: 12
+attacks:
+  - {name: trident, damage: d8}
+source: wardens-guide/bestiary#triton
+body: |
+  Aquatic humanoids with silvery skin, blue-green hair, and scaled legs ending in fins. Dwell in warmer waters close to land.
+  Lair in beautiful castles sculpted from sea rock and coral. Command vast schools of fish for both protection and food.
+---
+id: troll
+type: monster
+name: Troll
+category: Goblinoid
+hp: 14
+armor: 1
+STR: 14
+DEX: 12
+WIL: 4
+attacks:
+  - {name: bite, damage: d10}
+  - {name: claws, damage: "{d8, d8}kh1"}
+abilities:
+  - When taking Critical Damage, a Troll will continue fighting, despite loss of flesh and limb. Only when their STR is 0 are they truly killed. Unless their heads are bathed in acid, fire, or powerful magic, they will fully regenerate within 1d4 days.
+source: wardens-guide/bestiary#troll
+body: |
+  Giant, warty humanoids of flesh and bark. Dwell underground or in deep forests, as well as the ruined homes of their former victims. Carnivorous.
+---
+id: unicorn
+type: monster
+name: Unicorn
+category: Mythical
+hp: 6
+STR: 14
+DEX: 12
+WIL: 14
+attacks:
+  - {name: horn, damage: d10, qualities: [ignores armor]}
+source: wardens-guide/bestiary#unicorn
+body: |
+  Magical horses with a single long horn on their foreheads. Timid, but proud and willful, are seen as divine beings.
+  Their hair is worth a small fortune due to its powerful healing properties.
+---
+id: vampire
+type: monster
+name: Vampire
+category: Undead
+hp: 12
+armor: 1
+STR: 14
+DEX: 12
+WIL: 16
+attacks:
+  - {name: bite, damage: d10}
+abilities:
+  - Can change into a bat at will.
+  - "Regeneration: A damaged vampire regains 6 HP when it bites a target that has blood. If killed, it becomes a cloud of gas and retreats to its coffin, reforming at the next nightfall. Can only be killed if exposed to sunlight or if the coffin is destroyed."
+critical: "The vampire drains the target's essence, dealing d12 damage to WIL. If the target reaches 0 WIL this way, it dies and is raised as a thrall of the vampire."
+source: wardens-guide/bestiary#vampire
+body: |
+  Charming, undead creatures that drink the blood of mortals. Act at night and sleep in a coffin during the day.
+---
+id: viper
+type: monster
+name: Viper
+category: Beast
+hp: 3
+STR: 5
+DEX: 12
+WIL: 3
+attacks:
+  - {name: bite, damage: d6}
+critical: "Target is poisoned, dying in 1d12 hours without a cure."
+source: wardens-guide/bestiary#viper
+body: |
+  Poisonous snakes often found in caves, pits, and other dark places. An antitoxin can be made from their poison sacs.
+  Use heat and smell to track their victims.
+---
+id: warp-panther
+type: monster
+name: Warp Panther
+category: Magical
+hp: 8
+STR: 13
+DEX: 16
+WIL: 12
+attacks:
+  - {name: tentacles, damage: "{d8, d8}kh1", qualities: [blast]}
+  - {name: bite, damage: d10}
+abilities:
+  - Resistant to magical attacks. Caster must make a WIL save for the intended effect to succeed.
+  - Can teleport a short distance away at will. Hate Blink Dogs.
+source: wardens-guide/bestiary#warp-panther
+body: |
+  Grotesque panther-like predators with long razored tentacles growing out of their backs.
+---
+id: warrior-snail
+type: monster
+name: Warrior Snail
+category: Unusual
+hp: 4
+armor: 2
+STR: 14
+DEX: 6
+WIL: 3
+attacks:
+  - {name: tentacles, damage: "{d8, d8}kh1"}
+abilities:
+  - Some species have colorful shells that can reflect magical attacks.
+source: wardens-guide/bestiary#warrior-snail
+body: |
+  Giant armored snails with heavy, club-like tentacles.
+---
+id: water-elemental
+type: monster
+name: Water Elemental
+category: Magical
+hp: 14
+STR: 15
+DEX: 16
+WIL: 4
+attacks:
+  - {name: spray, damage: d8}
+abilities:
+  - Mundane attacks against the Water Elemental are impaired.
+critical: "Target is enveloped by the water and drowns in three rounds."
+source: wardens-guide/bestiary#water-elemental
+body: |
+  Rare spirits of lakes, rivers, and seas.
+---
+id: werewolf
+type: monster
+name: Werewolf
+category: Shape Shifter
+hp: 8
+STR: 15
+DEX: 14
+WIL: 6
+attacks:
+  - {name: claws, damage: "{d6, d6}kh1"}
+  - {name: bite, damage: d8}
+abilities:
+  - Mundane attacks are impaired against werewolves, but attacks with weapons made of silver are enhanced.
+critical: "Target becomes infected with lycanthropy, transforming into a werewolf by the next full moon."
+source: wardens-guide/bestiary#werewolf
+body: |
+  Ferocious lycanthropes that can transform into a wolf-shape at will.
+---
+id: wight
+type: monster
+name: Wight
+category: Undead
+hp: 12
+armor: 3
+STR: 16
+DEX: 8
+WIL: 12
+attacks:
+  - {name: long sword, damage: d10}
+critical: "On a fail, any STR loss is permanent."
+source: wardens-guide/bestiary#wight
+body: |
+  Grotesque, fallen warriors, raised from death for ill purpose. Often astride equally nightmarish steeds, leading lesser undead creatures into battle.
+---
+id: will-o-wisp
+type: monster
+name: Will-o-Wisp
+category: Fey
+hp: 3
+STR: 6
+DEX: 17
+WIL: 12
+source: wardens-guide/bestiary#will-o-wisp
+body: |
+  Nocturnal spirits of cool flame, commonly found in dense woodlands, marshes, and swamps.
+  Known to lead travelers astray, to a corpse, or back home again.
+---
+id: wolf
+type: monster
+name: Wolf
+category: Beast
+hp: 6
+STR: 12
+DEX: 14
+WIL: 8
+attacks:
+  - {name: bite, damage: d8}
+source: wardens-guide/bestiary#wolf
+body: |
+  Large canines that dwell primarily in forest or tundra.
+  Can be trained with effort if captured at a young age.
+---
+id: wood-troll
+type: monster
+name: Wood Troll
+category: Goblinoid
+hp: 10
+STR: 15
+DEX: 12
+WIL: 7
+attacks:
+  - {name: bite, damage: d8}
+  - {name: club, damage: d10}
+abilities:
+  - If killed, they will slowly regenerate unless their corpse is taken out of the forest or burned with fire.
+critical: "Moss and twigs begin growing out of target's wounds."
+source: wardens-guide/bestiary#wood-troll
+body: |
+  Large humanoids with elongated arms made of bark or root. They live in forests, sharing a deep connection with the vegetation around them.
+---
+id: wyvern
+type: monster
+name: Wyvern
+category: Avian
+hp: 11
+STR: 15
+DEX: 14
+WIL: 13
+attacks:
+  - {name: stinger, damage: d10}
+critical: "The victim is impaled and held in place. The wyvern then bites their head off."
+source: wardens-guide/bestiary#wyvern
+body: |
+  Large, intelligent, winged reptiles. Dwell in any terrain, but favor dry cliffs.
+  Shy away from other creatures, preferring to silently stalk their targets from afar.
+---
+id: zombie
+type: monster
+name: Zombie
+category: Undead
+hp: 2
+STR: 12
+DEX: 6
+WIL: 3
+attacks:
+  - {name: jagged nails, damage: d6}
+abilities:
+  - Immune to all mind-influencing effects.
+  - If not utterly destroyed (by fire, complete dismemberment, etc.), the Zombie will rise again within a few minutes.
+critical: "Target is infected and becomes deprived. Without the services of a specialist or healer, they will become a zombie in 1d4 days."
+source: wardens-guide/bestiary#zombie
+body: |
+  Re-animated corpse brought back through necromantic ritual or fell influence.

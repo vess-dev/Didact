@@ -1,0 +1,7 @@
+generator: rivals
+title: Two rival households
+help: Never the same background twice (a test of `exclude`).
+steps:
+  - choose_or_roll: {table: backgrounds, as: first}
+  - choose_or_roll: {table: backgrounds, as: second, exclude: "@first"}
+  - entity: {key: rivalry, type: note, name: "{@first} against {@second}"}

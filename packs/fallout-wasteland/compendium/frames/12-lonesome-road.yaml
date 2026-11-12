@@ -1,0 +1,315 @@
+# Lonesome Road (campaigns/12-lonesome-road): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: lonesome-road
+type: quest
+name: Lonesome Road
+tags: [lonesome-road, frame, side-arc]
+goal: An eyebot — ED-E — arrives at the party's feet with a looping signal from the Divide. The 
+  voice is Ulysses, a former frumentarius turned courier, calling one of the PCs out by name. He 
+  blames them for the Divide's destruction — a load the PC dropped there years ago triggered a chain
+  reaction of dormant nukes. Ulysses now holds the codes for two more missiles, aimed at the NCR and
+  Caesar's Legion. He wants the party to come to him. He wants them to choose what the missiles hit.
+  He wants the called PC to understand.
+date: Wednesday, 19 October 2281
+body: |-
+  *A man called Ulysses knows a Courier's name. He has been waiting for them in the Divide — a cracked, dust-choked no-man's-land west of the Mojave, built on the bones of a community the Courier buried without realizing it. He has a nuclear launch code and an ugly truth.*
+
+  ## GM notes
+
+  **Date.** Wednesday, 19 October 2281: a New Vegas side arc: that frame's date, or whenever ED-E arrives. Open a campaign on it with `didact campaign new <id> --date 'Wednesday, 19 October 2281'`, or move one there with `didact time set 'Wednesday, 19 October 2281'` before its first session.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup Lonesome Road tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** This is the most personal campaign in the book. One PC must be singled out as the Courier Ulysses is speaking to. If no existing PC fits, a new one can be rolled with the Courier background (see Backgrounds) and a Bond that ties them to the Divide.
+
+  **Plot beats.**
+
+  1. The Eyebot at the Door. ED-E arrives at the party's current settlement with a looping Ulysses transmission. The eyebot is damaged; fixing it is the first scene (a DEX save; a Tinker needs no save). When ED-E boots, it plays the Courier's own voice from a delivery the PC does not remember making. Something in the recording is not a greeting.
+  2. The Canyon Wreckage. The party enters the Divide. Ulysses speaks on the radio, not yet naming the PC, but addressing a "Courier" the other party members may not realize is one of theirs. The wreckage of a pre-war trade road stretches ahead. ED-E guides.
+  3. Hopeville Missile Base. The first sealed door. It asks for a Courier's name — the PC's. When it opens, Ulysses identifies the PC by name over the PA and asks the others to leave the Courier to him. The party can refuse. This is the first moment the campaign accuses a specific character.
+  4. The Courier's Mile. A radioactive corridor the Marked Men patrol. The crossing costs a Rad, shielded or not. Each party member makes the crossing in their own way; the Courier is the only one who cannot not go. Marked Men here include a named Centurion who speaks once through a broken helmet and asks why.
+  5. Rawr's Cave. A deathclaw lair. The fight is optional — a side tunnel bypasses it; each crawler takes a Fatigue. Ulysses will comment on whichever choice the party makes. He does not judge; he just remembers.
+  6. The High Road and the Hive. The ruined highway on stilts is held up by supports the tunnelers have all but chewed through. A tunneler queen waits beneath it. A clever party can collapse the road as they cross and destroy the hive behind them at the cost of cutting off a retreat.
+  7. The Hanging Rock. A silent scene. A vantage over the entire Divide. Ulysses speaks here even in absentia — his voice carries on broken radios across the canyon. Each party member describes what they see when they look out across the Divide from this point.
+  8. The Silo Control Room. The Courier meets Ulysses face to face. Two launch buttons on the wall — NCR and Legion. The PC is the one Ulysses is speaking to; the other players are the witnesses. Resolutions in the Climax below.
+
+  **Climax.**
+
+  The PC meets Ulysses in the control room. Two launch buttons: **NCR** and **Legion**. Also: Ulysses himself. Resolutions:
+
+  - **Kill him.** The most common answer. The buttons go dark as the launch codes leave his hand. The Divide remains broken but doesn't take anything else with it.
+  - **Talk him down.** A series of Bond-based appeals — can he accept that the Courier didn't know what was in the package? If yes, he walks away. He may return in a later campaign as a difficult ally.
+  - **Fire one missile.** If the party picks a target, Ulysses will honor the choice and leave on his own terms. The wasteland feels the blast. That faction's Reputation falls to **Vilified**, one step at a time as word spreads, permanently. The Overseer describes a crater that will outlast everyone at the table.
+  - **Fire neither.** Walk out and *tell nobody*. The party gains a silent bond no one else will understand.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "Lonesome Road"}' --auto` drafts the region, 8 places, 2 people, 2 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Not trackers.** Rad Clock: under Fallout 2e, no timer: on first entering each Divide zone, 1 Rad to each exposed PC (`didact do rad who=<pc> source=hot-zone`; gear=halves for a radiation suit, gear=negates for a sealed hazmat suit); under Grimfall, no timer: each Divide zone is a hot zone, `didact do rad who=<pc> dose=zone` (+1t), or with `stat=` a rad mark.
+
+  **Bestiary** (Fallout 2e / Grimfall): Marked Man → `marked-man` / `marked-men`; Marked Centurion → `marked-centurion` / `marked-men`; Tunneler → `tunneler` / `tunneler`; Tunneler Alpha → `tunneler-alpha` / `tunneler`; Tunneler Queen → `tunneler-queen` / `tunneler`; Deathclaw, Divide → `deathclaw-divide` / `deathclaw`.
+
+  **Rewards in each system's catalog:** Old Glory (fallout-2e.old-glory · grimfall.old-glory); Anti-Materiel Rifle (fallout-2e.anti-materiel-rifle · grimfall.anti-materiel-rifle); The Courier's Duster (grimfall.the-couriers-duster); The Red Glare (fallout-2e.the-red-glare · grimfall.the-red-glare); Blood-Nap (fallout-2e.blood-nap · grimfall.blood-nap); Fist of the North Rawr (fallout-2e.fist-of-the-north-rawr · grimfall.fist-of-the-north-rawr); Elite Riot Gear (fallout-2e.elite-riot-gear · grimfall.elite-riot-gear); Ulysses' Mask (fallout-2e.ulysses-mask · grimfall.ulysses-mask); Scorched Sierra Power Armor (fallout-2e.scorched-sierra-power-armor · grimfall.scorched-sierra-power-armor); A Light Shining in Darkness (fallout-2e.a-light-shining-in-darkness · grimfall.a-light-shining-in-darkness).
+source: campaigns/12-lonesome-road#pitch
+---
+id: lonesome-road-region
+type: loc
+name: The Divide
+tags: [lonesome-road, region]
+mechanics:
+  fallout-2e: {kind: region}
+  grimfall: {kind: region}
+body: |-
+  ## GM notes
+
+  A shattered, wind-torn canyon. The sky is brown. Every step kicks up a memory.
+source: campaigns/12-lonesome-road#the-place--the-divide
+---
+id: lonesome-road-the-canyon-wreckage
+type: loc
+name: The Canyon Wreckage
+tags: [lonesome-road, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Drop-in. The bones of a trade road. ED-E shorts out here in the first dust squall and must be coaxed back to life (as before) before it can open the path.
+source: campaigns/12-lonesome-road#the-place--the-divide
+---
+id: lonesome-road-the-hopeville-missile-base
+type: loc
+name: The Hopeville Missile Base
+tags: [lonesome-road, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A pre-war silo, its walls half-buried. The first locked door asks for a Courier's name.
+source: campaigns/12-lonesome-road#the-place--the-divide
+---
+id: lonesome-road-the-couriers-mile
+type: loc
+name: The Courier's Mile
+tags: [lonesome-road, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A stretch of road saturated with Rads. Any PC crossing gains 1 Rad regardless of shielding. Marked Men patrol here — ghoulified NCR and Legion fused with their own skin-searing armor.
+source: campaigns/12-lonesome-road#the-place--the-divide
+---
+id: lonesome-road-rawrs-cave
+type: loc
+name: Rawr's Cave
+tags: [lonesome-road, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A deathclaw lair — home of the Divide deathclaw called Rawr (mutated, stronger). The party can bypass it by crawling a side tunnel; each crawler takes a Fatigue.
+source: campaigns/12-lonesome-road#the-place--the-divide
+---
+id: lonesome-road-the-hanging-rock
+type: loc
+name: The Hanging Rock
+tags: [lonesome-road, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A vantage over the whole Divide. Ulysses speaks here even when absent — his voice carries on broken radios.
+source: campaigns/12-lonesome-road#the-place--the-divide
+---
+id: lonesome-road-the-high-road
+type: loc
+name: The High Road
+tags: [lonesome-road, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A highway on stilts above the canyon. Tunnelers swarm the supports.
+source: campaigns/12-lonesome-road#the-place--the-divide
+---
+id: lonesome-road-the-cave-of-the-abaddon
+type: loc
+name: The Cave of the Abaddon
+tags: [lonesome-road, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The hive under the road. A tunneler queen (see Bestiary).
+source: campaigns/12-lonesome-road#the-place--the-divide
+---
+id: lonesome-road-the-silo-control-room
+type: loc
+name: The Silo Control Room
+tags: [lonesome-road, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Climax. Two launch buttons. Ulysses is here.
+source: campaigns/12-lonesome-road#the-place--the-divide
+---
+id: lonesome-road-ulysses
+type: monster
+name: Ulysses
+knowledge: secret
+tags: [lonesome-road, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Lonesome Road'
+    hp: 16
+    armor: 2
+    STR: 14
+    DEX: 16
+    WIL: 17
+    attacks:
+    - name: anti-materiel rifle
+      damage: d12
+      qualities: [bulky]
+      note: .50 BMG
+    - name: Old Glory flagpole
+      damage: d10
+      qualities: [bulky]
+    - {name: war knife, damage: d6}
+    abilities:
+    - 'Speaks While Firing: The first shot each round is preceded by a line of dialogue; a PC who answers
+      the line may make a WIL save to avoid the shot entirely.'
+    - 'Launch Keys: Carries the silo launch codes on a holotape; surviving his defeat means deciding what
+      happens to them.'
+  grimfall:
+    tier: boss
+    role: marksman
+    category: Named Threats & Legends
+    senses:
+    - a dust-caked stars-and-stripes duster and an eagle-tipped flagstaff
+    - a low relentless monologue over an eyebot's chirp
+    - ozone, dust, rocket smoke
+    pools:
+    - name: Ulysses
+      dice: 8
+      traits: out-shoot or out-argue him; he respects both
+      moves: Rocket Barrage, Mark and Punish, Lay the History on You
+    - name: His Eyebots
+      dice: 4
+      traits: a medical and a repair drone that knit him back together mid-fight
+      moves: Patch Him Up, Covering Fire
+    fail: 8d "The Launch" — a competing timer; if it runs dry first, the Divide's warheads fly.
+    wants: to make you answer for the Divide — and, perhaps, to be talked back from ending the world
+    note: A linked challenge of rockets and rhetoric — the rare boss you can win entirely with 
+      words. He speaks through your own captured ED-E, and it may be ED-E that stops the launch. 
+      Wields the Red Glare (see the Armory).
+body: |-
+  ## GM notes
+
+  **Ulysses** — the villain. A pre-war-loving former Legion frumentarius. Wears a long coat and a flag around his throat. Speaks in parables. Honest.
+
+  A former frumentarius of the Legion. Long coat, flag, pre-war weapon, older grief.
+
+  Fallout 2e: 16 HP, 2 Armor, 14 STR, 16 DEX, 17 WIL, anti-materiel rifle (d12, bulky, .50 BMG), Old Glory flagpole (d10, bulky), war knife (d6).
+
+  Grimfall: its card is `grimfall.ulysses` (Ulysses), in this record's grimfall block.
+source: campaigns/12-lonesome-road#ulysses
+---
+id: lonesome-road-ed-e
+type: monster
+name: ED-E
+aliases: [ED-E (Companion)]
+knowledge: secret
+tags: [lonesome-road, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Lonesome Road'
+    hp: 4
+    armor: 1
+    STR: 4
+    DEX: 13
+    WIL: 10
+    rad_immune: true
+    attacks:
+    - {name: built-in laser, damage: d6}
+    abilities:
+    - 'Memory Core: Once per session, ED-E may play a holotape that reveals a Divide clue from the Overseer.'
+body: |-
+  ## GM notes
+
+  **ED-E** — the eyebot. A holotape companion with recordings from Navarro and Hopeville — some of them from the PC. Think of it as a conscience in a can.
+
+  A battered eyebot. Potential companion, not a combat workhorse. Has a pre-war holotape library.
+
+  Fallout 2e: 4 HP, 1 Armor, 4 STR, 13 DEX, 10 WIL, built-in laser (d6).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/12-lonesome-road#ed-e-companion
+---
+id: lonesome-road-waking-clouds-voice
+type: npc
+name: Waking Cloud's voice
+knowledge: secret
+tags: [lonesome-road, cast]
+body: |-
+  ## GM notes
+
+  **Waking Cloud's voice** — (optional) if the party did Honest Hearts, she speaks to the PC once over a dead radio, offering forgiveness in advance. If not, a stranger says her lines.
+source: campaigns/12-lonesome-road#cast
+---
+id: lonesome-road-a-marked-centurion
+type: npc
+name: A Marked Centurion
+knowledge: secret
+tags: [lonesome-road, cast]
+fields: {role: 'a named NPC, speaks once through a broken helmet, asking the party why'}
+body: |-
+  ## GM notes
+
+  **A Marked Centurion** — a named NPC, speaks once through a broken helmet, asking the party why.
+source: campaigns/12-lonesome-road#cast
+---
+id: lonesome-road-launch-clock
+type: track
+name: Launch Clock
+knowledge: secret
+tags: [lonesome-road, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4) Ulysses's ritual. Ticks when the party completes a Divide waypoint (the Hopeville Silo, 
+  the High Road, the Courier's Mile) — and once more if they turn back, or rest a full day inside 
+  the Divide. The party cannot reach him before it hits 3. At 4, missiles fly no matter what — 
+  Overseer's pick of target.
+source: campaigns/12-lonesome-road#clocks
+---
+id: lonesome-road-rad-clock
+type: track
+name: Rad Clock
+knowledge: secret
+tags: [lonesome-road, clock]
+kind: counter
+min: 0
+value: 0
+note: '(ambient) Each time the party enters a new Divide zone without a sealed suit, every exposed PC
+  takes 1 Rad. A sealed Hazmat Suit negates it; a Radiation Suit halves it (ignore every second Rad).
+  Passing through the same zone again does not tick it; it fires on first entry only. [under Fallout 2e,
+  no timer: on first entering each Divide zone, 1 Rad to each exposed PC (`didact do rad who=<pc> source=hot-zone`;
+  gear=halves for a radiation suit, gear=negates for a sealed hazmat suit); under Grimfall, no timer:
+  each Divide zone is a hot zone, `didact do rad who=<pc> dose=zone` (+1t), or with `stat=` a rad mark]'
+source: campaigns/12-lonesome-road#clocks

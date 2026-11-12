@@ -1,0 +1,24 @@
+# Vampire Fledgling (backgrounds/vampire-fledgling): the background's two d6 tables.
+table: vampire-fledgling-1
+title: "Who made you, and what did the turning leave behind?"
+dice: d6
+source: backgrounds/vampire-fledgling#who-made-you-and-what-did-the-turning-leave-behind-roll-1d6
+entries:
+  1: {text: "A lord of the Volkihar court bled you himself and named you \"useful.\" Take a blood-red signet (petty). Harkon's court knows it, and one day it will call in what you owe.", data: {gear: [{name: "Blood-red signet", size: "petty"}]}}
+  2: "A necromancer's pet, bitten in a graveyard, and the dead there stirred at your waking. Once per day, add a Fatigue to raise a fresh corpse as a shambling servant for the scene (3 HP, its own weapon or d4); it crumbles to ash when the scene ends."
+  3: "You turned subtle. Your bite takes more than blood: a victim you feed on must pass a WIL save or wake remembering nothing of the last hour, and nothing of you."
+  4: "A Dawnguard crossbow found you the night you rose, and you remember the burn. You smell living blood and fear at a distance, and a bleeding quarry cannot hide from you."
+  5: "The cold of the grave settled in your hands. Once per day, lay a chill on a foe in reach: it is slowed."
+  6: "An ancient sire, and a part of its memory came with the blood. Once per session, ask the Warden one yes-or-no question about a vampire, a tomb, or the dead; the answer is always true."
+---
+table: vampire-fledgling-2
+title: "What do you carry from the life you lost?"
+dice: d6
+source: backgrounds/vampire-fledgling#what-do-you-carry-from-the-life-you-lost-roll-1d6
+entries:
+  1: {text: "The Family Sword: The sword (d8) you carried in life, your house's crest on the pommel. Someone of your blood would know it — and would know you should be dead.", data: {gear: [{name: "The Family Sword", damage: "d8"}]}}
+  2: {text: "Nightstalker's Cowl: A cowl of black silk (petty). Once per day, draw the shadows close and become invisible until you next move or act.", data: {gear: [{name: "Nightstalker's Cowl", size: "petty"}]}}
+  3: "Vampire's Seduction: The curse lent your voice a cold sweetness. Once per day, meet a mortal's eyes and speak softly: they must pass a WIL save or be calm and pliant toward you for the scene, and remember it after only as a pleasant dream."
+  4: {text: "Volkihar Phial: A vial of bottled court-blood (petty, 2 uses). Drink it to clear all Fatigue without feeding — but the next living thing you meet, you ache to drink dry.", data: {gear: [{name: "Volkihar Phial", size: "petty", uses: 2}]}}
+  5: {text: "The Cold Tome: A Spell Tome: Ice Spike carried out of the place where you turned. Whenever you read it, the air bites cold and frost creeps across the pages.", data: {gear: [{name: "Spell Tome: Ice Spike", note: "frost creeps across the pages when you read it"}]}}
+  6: "Grave-Sight: Your dead eyes read what the living miss. You can tell at a glance whether a body will rise, whether a person carries a curse like yours, and how long a corpse has lain."

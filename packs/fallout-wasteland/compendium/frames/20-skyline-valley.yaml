@@ -1,0 +1,442 @@
+# Skyline Valley (campaigns/20-skyline-valley): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: skyline-valley
+type: quest
+name: Skyline Valley
+tags: [skyline-valley, frame, side-arc]
+goal: |-
+  In 2105, thunderheads settle over the southern mountains and do not leave. Lightning walks the ridges of Skyline Valley, a new region south of the Savage Divide, between the Ash Heap and the Cranberry Bog. Around the same time, a mangled vault door lands in the Forest, and an automated Vault-Tec broadcast begins calling for help. The door belongs to Vault 63.
+
+  Vault 63 was the private kingdom of Hugo Stolz, a Vault-Tec director who bought his way into an overseer's chair by promising the company research: weather control built from the military's shuttered ATLAS Program, and guardian robots built from stolen Pentagon plans. The vault was far from finished when the bombs fell. Radiation poured in, and everyone inside became ghouls. Then they began, one by one, to go feral. In 2095, desperate to save his wife Cassidy, Hugo ran the vault's weather machine at full power. It spared Cassidy — in a coma — and turned many of the dwellers around them into the Lost: crackling, psychotic ghouls whose senses have been scrambled into something else. It also gave Hugo, blind from birth, a way to see. In 2105 he ran the machine again, and made the Storm.
+
+  The last sane dwellers are sealed in the vault atrium: Hugo's niece Hilda, trying to cure the Lost; his daughter Audrey, trying to fix the machine; and Chief James Oberlin, head of vault security, trying to keep everyone alive. Hugo is helping them, graciously. He is also looking for a way to broadcast the signal inside his head through the machine and bring every Lost in the valley under his command.
+date: Friday, 23 October 2105
+body: |-
+  *A storm that never ends has settled over Shenandoah National Park. A vault door came down in a field north of Sutton, and a Vault-Tec broadcast nobody has heard in years is inviting Vault Dwellers south. Beneath the storm, a blind billionaire has learned to see by lightning, and he means to make everyone else see the way he does.*
+
+  ## GM notes
+
+  **Date.** Friday, 23 October 2105: 'In 2105' (the frame); the day is Reclamation Day's. Open a campaign on it with `didact campaign new <id> --date 'Friday, 23 October 2105'`, or move one there with `didact time set 'Friday, 23 October 2105'` before its first session.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup Skyline Valley tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** A Vault-Tec broadcast appears on every Pip-Boy in Appalachia: an automated invitation to Vault Dwellers, repeating coordinates south of the mountains. North of Sutton, a Foundation scavenger named Alyssa is picking over a scorched vault door with 63 on it, blasted there from wherever it came from. She has heard the vault's entrance is in the Ash Heap. She guesses the Brotherhood blew the door off. She is wrong.
+
+  **Plot beats.**
+
+  1. An Unlikely Invitation. The door, Alyssa, and the Ash Heap entrance to Vault 63 — not the vault itself but a transit hub for an underground railway that runs south beneath the mountains. Inside, the Lost come in waves. Over the intercom, a calm ghoul voice introduces herself: Hilda Stolz, head of the organics sector. She asks the party to come to Skyline Valley.
+  2. Into Lands Unknown. Up Skyline Drive into the Storm. At the park entrance, a survivor named Craig needs personal effects gathered and signal flares set at three points in the storm. The valley is gorgeous and wrong — lightning everywhere, Lost on the overlooks.
+  3. The Calm Before. Dark Hollow Manor, the Stolz family's pre-war home, stands on a hill wreathed in fissures and toxic purple pools, the Storm strongest overhead. The vault's entrance is beneath it, behind a hand scanner that only a vault dweller's hand will open — any vault dweller's, dead or Lost. Inside the atrium the party meets the survivors, and the overseer himself: Hugo Stolz, gracious host.
+  4. Housekeeping. The atrium needs everything: Oberlin wants the Lost cleared from the lower levels and the storerooms emptied of radrats; Hugo wants his wife's journal found, the key to his wall safe recovered, and the weather machine's blueprints brought home. Along the way, the party learns what the vault was built on: the Dark Hollow Falls families, talked off their land with a handshake promise of places in the vault, and met by Hugo's guards at the park's edge when the bombs came.
+  5. The Powerhouse of the Cell. Hilda has a serum, Serum Omega, and three Lost test subjects. The last is her own father, August, one of the first dwellers to turn. The party brews the serum in the lab, doses the subjects, and learns what it can and cannot give back.
+  6. The Oldest Trick in the Book. Audrey needs the Shenandoah Visitor Center's weather-monitoring gear. Then Hugo bursts in: Cassidy has been kidnapped by Mothman cultists. In his panic, Hugo lets slip that the cult's leader is someone he once paid an assassin to kill, and Audrey walks out on him. The party infiltrates Old Crimora Mines in cultist robes and finds a congregation of fakes who do not worship the Mothman at all. They want revenge on Hugo, and they follow Alex Guerra, Audrey's pre-war love, the communist the assassin never reached.
+  7. Double-Crossed Wires. Oberlin is still loyal to the U.S. Army, and he still files reports to his superiors. His last courier, security officer Daniel Smith, never came back. The party finds Daniel dead in a cage beneath High Knob Lookout, now a Blood Eagle camp, with Oberlin's report and his own holotape: every report Oberlin ever sent went straight to Hugo. There is no Army. Hugo admits it pleasantly, and suggests the party keep it to themselves.
+  8. Gathering Clouds. Audrey and Hilda are one experiment from understanding why Hugo kept his mind when the others became Lost. It takes a sample of his tissue and three lightning harvesters at Research Sites Saxony, Bavaria, and Rhineland, each activated and held against super mutant raiders while it drinks the storm. The answer comes back, and Hugo is already gone — to the Hawksbill weather station on the valley's highest peak, with Cassidy, to finish what he started. See Climax.
+
+  **Climax.**
+
+  **The Eye of the Storm.** Inside the Hawksbill weather station, past laser grids and Lost, Hugo waits beside the machine with Cassidy on the floor beside him, breathing hard. Audrey, on the intercom, begs the party to kill him — he is a master manipulator and he will escape. Oberlin, on the same channel, begs them to keep him alive for the cure. Hugo must be beaten three times before he kneels. Then he makes his own offer. Three resolutions:
+
+  - **Arrest Him.** Hugo surrenders. The party climbs the machine and powers it down, and the Storm begins to break. Oberlin becomes overseer; Hugo lives in a cell as the subject of the cure he never wanted to find. Audrey, betrayed again, stays on as a scientist — for now.
+  - **Kill Him.** Hugo dies. Oberlin wants the body recovered for research, and Audrey, listening on the intercom, shoots him for it. The party powers the machine down, and Audrey Stolz becomes the overseer of Vault 63, frightened of the job and determined to do it better than her father.
+  - **Walk Away.** Hugo promises the others will be safe and climbs the machine himself. The Storm swells. When the party returns to the atrium, Hilda, Audrey, Cassidy, and Oberlin sit on the floor around the overseer's desk, wailing, turning Lost, while Hugo smiles and calls them *found*. The Storm Clock fills.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "Skyline Valley"}' --auto` drafts the region, 10 places, 6 people, 4 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Bestiary** (Fallout 2e / Grimfall): Feral Ghoul → `feral-ghoul` / `feral-ghoul`; Glowing One → `glowing-one` / `feral-ghoul`; Radrat → `radrat` / `radroach`; Tick → `tick` / `tick`; Mothman, Dark → `mothman-dark` / `mothman`; Mole Miner → `mole-miner` / `mole-miner`; Wendigo → `wendigo` / `wendigo`; Scorched → `scorched` / `scorchbeast`; Super Mutant, Grunt → `super-mutant-grunt` / `super-mutant`; Super Mutant, Brute → `super-mutant-brute` / `super-mutant`; Protectron → `protectron` / `protectron`; Assaultron → `assaultron` / `assaultron`; Robobrain → `robobrain` / `robobrain`; Turret, Laser → `turret-laser` / `automated-turrets`; Eyebot → `eyebot` / `eyebot`; Blood Eagle (the Wastelanders frame's threat) → this pack's `wastelanders-blood-eagle`.
+
+  **Rewards in each system's catalog:** V63-BERTHA (fallout-2e.v63-bertha); V63-HELGA (fallout-2e.v63-helga).
+source: campaigns/20-skyline-valley#pitch
+---
+id: skyline-valley-region
+type: loc
+name: Skyline Valley
+tags: [skyline-valley, region]
+mechanics:
+  fallout-2e: {kind: region}
+  grimfall: {kind: region}
+body: |-
+  ## GM notes
+
+  Shenandoah National Park under a sky that never clears.
+source: campaigns/20-skyline-valley#the-place--skyline-valley
+---
+id: skyline-valley-the-door-crash-site
+type: loc
+name: The Door Crash Site
+tags: [skyline-valley, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A field north of Sutton, a scorched vault door, Alyssa's salvage camp.
+source: campaigns/20-skyline-valley#the-place--skyline-valley
+---
+id: skyline-valley-vault-63-transit-hub
+type: loc
+name: Vault 63 Transit Hub
+tags: [skyline-valley, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The Ash Heap entrance: a vault door leading to an underground railway, not a vault.
+source: campaigns/20-skyline-valley#the-place--skyline-valley
+---
+id: skyline-valley-skyline-drive
+type: loc
+name: Skyline Drive
+tags: [skyline-valley, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The park's scenic highway along the ridgeline, its overlooks full of Lost and wrecked tour cars.
+source: campaigns/20-skyline-valley#the-place--skyline-valley
+---
+id: skyline-valley-dark-hollow-manor
+type: loc
+name: Dark Hollow Manor
+tags: [skyline-valley, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The Stolz Manor on its hill: a gazebo, a fountain, a garden wall, and an overseer's office directly under the front hall. The Storm is worst here.
+source: campaigns/20-skyline-valley#the-place--skyline-valley
+---
+id: skyline-valley-shenandoah-visitor-center
+type: loc
+name: Shenandoah Visitor Center
+tags: [skyline-valley, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Park maps, a gift shop, and weather equipment.
+source: campaigns/20-skyline-valley#the-place--skyline-valley
+---
+id: skyline-valley-old-crimora-mines
+type: loc
+name: Old Crimora Mines
+tags: [skyline-valley, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A mine full of cultist robes, fake disciples, and one very real grudge.
+source: campaigns/20-skyline-valley#the-place--skyline-valley
+---
+id: skyline-valley-high-knob-lookout
+type: loc
+name: High Knob Lookout
+tags: [skyline-valley, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A fire tower turned Blood Eagle camp, with a caged body in the cellar.
+source: campaigns/20-skyline-valley#the-place--skyline-valley
+---
+id: skyline-valley-research-sites-saxony-bavaria-and-rhineland
+type: loc
+name: Research Sites Saxony, Bavaria, and Rhineland
+tags: [skyline-valley, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Vault 63's storm-harvesting stations, named for Hugo's homeland.
+source: campaigns/20-skyline-valley#the-place--skyline-valley
+---
+id: skyline-valley-the-hawksbill-weather-station
+type: loc
+name: The Hawksbill Weather Station
+tags: [skyline-valley, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The heart of the meteorology sector, on the park's highest peak. The machine that made the Lost.
+source: campaigns/20-skyline-valley#the-place--skyline-valley
+---
+id: skyline-valley-lost
+type: monster
+name: Lost
+knowledge: secret
+tags: [skyline-valley, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Skyline Valley'
+    hp: 5
+    STR: 12
+    DEX: 13
+    WIL: 5
+    rad_immune: true
+    attacks:
+    - {name: shock baton, damage: d6}
+    - {name: laser pistol, damage: d8}
+    abilities:
+    - Groups of four or more are a detachment.
+    - "Storm-Charged: During a lightning storm, a Lost's attacks step up one damage die (shock baton d8,
+      laser pistol d10), and it takes 1 damage each round from the charge."
+  grimfall:
+    tier: tough
+    role: blaster
+    category: The Factions Under Arms
+    senses: [arc-light crawling under skin, thunder with no clouds, ozone and burnt hair]
+    traits: [wreathed in discharge, 'perceive wavelengths, not faces']
+    moves: [Lightning Strike, Arc Discharge (everyone close)]
+    wants: the hum of the machine that made them — approach it and they converge
+    note: A 6d pool near their vault; metal armor is an invitation. The lucid ghouls who share their
+      halls mourn them by name.
+body: |-
+  ## GM notes
+
+  A Vault 63 ghoul remade by the weather machine: psychotic, crackling with static, still able to use a weapon. They babble about what their senses tell them — wounds that are loud, colors that smell. Builders swing hammers, welders carry rippers, engineers wear armor and throw plasma grenades.
+
+  Fallout 2e: 5 HP, 12 STR, 13 DEX, 5 WIL, shock baton (d6) or laser pistol (d8).
+
+  Grimfall: its card is `grimfall.the-lost` (The Lost), in this record's grimfall block.
+source: campaigns/20-skyline-valley#lost
+---
+id: skyline-valley-hugo-stolz
+type: monster
+name: Hugo Stolz
+knowledge: secret
+tags: [skyline-valley, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Skyline Valley'
+    hp: 10
+    armor: 1
+    STR: 11
+    DEX: 14
+    WIL: 18
+    rad_immune: true
+    attacks:
+    - name: Tesla rifle
+      damage: d10
+      qualities: [blast, bulky]
+    - name: lightning
+      damage: d8
+      qualities: [ranged]
+      note: once per round
+    abilities:
+    - 'Signal: While Hugo is airborne he cannot be harmed, and he summons 1d4 Lost each time he rises.
+      He rises when first reduced to 0 HP, and again the second time; each time he hangs in the air for
+      a round, then comes down with half his HP restored. Only the third defeat ends it.'
+    - 'Sight: Hugo sees by electricity, not light. Darkness, smoke, and disguises mean nothing to him.'
+body: |-
+  ## GM notes
+
+  **Hugo Stolz** — Vault 63's overseer, a German-speaking magnate born blind, who now sees the world as pulses of electricity and calls it beautiful. Would do anything for Cassidy, and has. Charming, cultured, and never once sorry.
+
+  The overseer, floating on the current of his own machine, Cassidy at his feet.
+
+  Fallout 2e: 10 HP, 1 Armor, 11 STR, 14 DEX, 18 WIL, Tesla rifle (d10, blast, bulky), lightning (d8, ranged, once per round).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/20-skyline-valley#hugo-stolz
+---
+id: skyline-valley-storm-goliath
+type: monster
+name: Storm Goliath
+knowledge: secret
+tags: [skyline-valley, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Skyline Valley'
+    hp: 18
+    armor: 3
+    STR: 18
+    DEX: 8
+    WIL: 14
+    rad_immune: true
+    attacks:
+    - name: lightning cannon
+      damage: d12
+      qualities: [blast]
+    - {name: fists, damage: d10}
+    abilities:
+    - 'Charging: The lightning cannon fires only every other round. On the rounds between, the glass eye
+      flares and the air hums as it builds, and the Goliath fights with its fists.'
+    - 'Call the Storm: Once per combat, the Goliath summons lightning onto a point it can see: everyone
+      within 10 feet makes a DEX save or takes d10 damage.'
+    - 'Self-Destruct: At 0 HP, the Goliath kneels, counts down aloud for one round, and explodes (d12,
+      blast).'
+body: |-
+  ## GM notes
+
+  One of three brain-bot guardians — Decima, Morta, Nona — built by Vault 63's engineers from Liberty Prime's plans, with a two-hemisphere brain behind a glass eye. Quotes philosophers mid-battle to confuse its targets.
+
+  Fallout 2e: 18 HP, 3 Armor, 18 STR, 8 DEX, 14 WIL, lightning cannon (d12, blast), fists (d10).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/20-skyline-valley#storm-goliath
+---
+id: skyline-valley-alex-guerra
+type: monster
+name: Alex Guerra
+knowledge: secret
+tags: [skyline-valley, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Skyline Valley'
+    hp: 7
+    STR: 13
+    DEX: 13
+    WIL: 15
+    rad_immune: true
+    attacks:
+    - {name: revolver, damage: d8}
+    - {name: ritual knife, damage: d6}
+    abilities:
+    - 'Congregation: While she lives, the cultists at Old Crimora Mines fight to the death for her. If
+      the party talks her down, most of them simply go home.'
+body: |-
+  ## GM notes
+
+  **Alex Guerra** — Audrey's girlfriend before the war, a communist Hugo tried to have killed. Leads a sham Mothman cult at Old Crimora Mines made of people with reasons to hate the Stolzes.
+
+  A ghoul, a communist, and the leader of a cult that only pretends to worship the Mothman. Kidnapped Cassidy so that Hugo would know what losing someone feels like.
+
+  Fallout 2e: 7 HP, 13 STR, 13 DEX, 15 WIL, revolver (d8), ritual knife (d6).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/20-skyline-valley#alex-guerra
+---
+id: skyline-valley-cassidy-cassie-stolz
+type: npc
+name: Cassidy "Cassie" Stolz
+knowledge: secret
+tags: [skyline-valley, cast]
+fields: {role: "Hugo's wife and partner in every deal, ghoul, comatose since 2095"}
+body: |-
+  ## GM notes
+
+  **Cassidy "Cassie" Stolz** — Hugo's wife and partner in every deal, ghoul, comatose since 2095. She used to sit by the garden waterfall and pretend the war never happened.
+source: campaigns/20-skyline-valley#cast
+---
+id: skyline-valley-audrey-stolz
+type: npc
+name: Audrey Stolz
+knowledge: secret
+tags: [skyline-valley, cast]
+fields: {role: 'their daughter, head of meteorology'}
+body: |-
+  ## GM notes
+
+  **Audrey Stolz** — their daughter, head of meteorology. Wanted to study the stars; was made to study weather instead. Loyal to her father until she isn't.
+source: campaigns/20-skyline-valley#cast
+---
+id: skyline-valley-hilda-stolz
+type: npc
+name: Hilda Stolz
+knowledge: secret
+tags: [skyline-valley, cast]
+fields: {role: "Hugo's niece, head of organics"}
+body: |-
+  ## GM notes
+
+  **Hilda Stolz** — Hugo's niece, head of organics. A kind, prank-loving ghoul racing to cure the Lost, with her father on the table.
+source: campaigns/20-skyline-valley#cast
+---
+id: skyline-valley-chief-james-oberlin
+type: npc
+name: Chief James Oberlin
+knowledge: secret
+tags: [skyline-valley, cast]
+fields:
+  role: head of vault security and the atrium's steady hand, still loyal to an Army that stopped 
+    answering long ago
+details:
+  wants: Wants Hugo stopped but kept alive, because a living Hugo is the best chance of a cure.
+body: |-
+  ## GM notes
+
+  **Chief James Oberlin** — head of vault security and the atrium's steady hand, still loyal to an Army that stopped answering long ago. Wants Hugo stopped but kept alive, because a living Hugo is the best chance of a cure.
+source: campaigns/20-skyline-valley#cast
+---
+id: skyline-valley-alyssa
+type: npc
+name: Alyssa
+knowledge: secret
+tags: [skyline-valley, cast]
+fields: {role: a Foundation scavenger with bad theories and a good heart}
+body: |-
+  ## GM notes
+
+  **Alyssa** — a Foundation scavenger with bad theories and a good heart.
+source: campaigns/20-skyline-valley#cast
+---
+id: skyline-valley-the-storm-goliaths
+type: npc
+name: The Storm Goliaths
+knowledge: secret
+tags: [skyline-valley, cast]
+fields: {role: "Decima, Morta, and Nona, Vault 63's three guardian brain-bots"}
+body: |-
+  ## GM notes
+
+  **The Storm Goliaths** — Decima, Morta, and Nona, Vault 63's three guardian brain-bots.
+source: campaigns/20-skyline-valley#cast
+---
+id: skyline-valley-storm-clock
+type: track
+name: Storm Clock
+knowledge: secret
+tags: [skyline-valley, clock]
+kind: clock
+size: 8
+value: {value: 0, size: 8}
+note: "(d8) The Storm spreading. Ticks each time a storm harvester is lost, each week the party leaves
+  the weather machine running, and each time Hugo's plans advance unopposed. At 8, the Storm spills past
+  Skyline Valley into the Ash Heap and the Cranberry Bog: lightning strikes (d8, DEX save) on any exposed
+  ridge, and Lost appearing wherever it rains."
+source: campaigns/20-skyline-valley#clocks
+---
+id: skyline-valley-family-clock
+type: track
+name: Family Clock
+knowledge: secret
+tags: [skyline-valley, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: (d6, hidden) How much Audrey and Hilda know about Hugo. Ticks when the party finds evidence of
+  the Dark Hollow betrayal, reads Cassidy's journal, meets Alex, or recovers Oberlin's report. At 6,
+  Audrey confronts her father alone, and the Overseer decides whether she survives it.
+source: campaigns/20-skyline-valley#clocks
+---
+id: skyline-valley-goliath-clock
+type: track
+name: Goliath Clock
+knowledge: secret
+tags: [skyline-valley, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4) Vault 63's guardian protocol. Ticks each time the party damages vault systems or fights 
+  in the engineering sector. At 4, a Storm Goliath is dispatched against them — and if one is 
+  destroyed, the engineering sector begins building its replacement.
+source: campaigns/20-skyline-valley#clocks

@@ -1,0 +1,67 @@
+# A rule uses a carried item as `inv use` does, and reads one carried item's own keys.
+action: eat
+title: Eat a ration
+params: {who: ref}
+steps:
+  - use: Rations
+    from: "@who"
+    as: meal
+  - if: "@meal.out"
+    then: ["{@who.name} eats the last of them."]
+    else: ["{@who.name} eats: {@meal.left} left."]
+---
+action: light
+title: Light the oil lamp
+params: {who: ref}
+steps:
+  - use: Oil lamp
+    from: "@who"
+    as: lamp
+  - if: "@lamp.gone"
+    then: ["The lamp gutters out ({@lamp.rolled})."]
+    else: ["The lamp burns on: {@lamp.die} ({@lamp.rolled})."]
+---
+action: temper
+title: Temper a blade
+params: {who: ref, item: text}
+steps:
+  - let: {die: "default(@{who.inventory.$item.damage}, '')"}
+  - if: "@die == ''"
+    then:
+      - stop: "$item has no damage die to temper."
+  - let: {better: "if(@die == 'd6', 'd8', if(@die == 'd8', 'd10', 'd12'))"}
+  - set: who.inventory.$item.damage
+    value: "@better"
+  - message: "$item is tempered: {@die} → {@{who.inventory.$item.damage}}."
+---
+action: overspend
+title: Spend more than a whole number
+params: {who: ref}
+steps:
+  - use: Rations
+    from: "@who"
+    spend: 0
+---
+action: kit-names
+title: What a kit holds, by name
+steps:
+  - table: kits
+    as: kit
+  - message: "gear: {@kit.gear}; {count(@kit.drop)} to drop"
+---
+action: kit-parts
+title: A kit's parts, which no expression can read
+steps:
+  - table: kits
+    as: kit
+  - message: "{count(@kit.parts)}"
+---
+action: strike
+help: Roll a carried weapon's own damage die, plus 1.
+params:
+  who: ref
+  item: {kind: text}
+steps:
+  - roll: "{@{who.inventory.$item.damage}} + 1"
+    as: dealt
+  - message: "$item deals {@dealt}."

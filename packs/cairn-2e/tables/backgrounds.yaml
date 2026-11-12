@@ -1,0 +1,285 @@
+# Backgrounds (players-guide/character-creation#backgrounds): the d20 table. Each entry's
+# data holds the background's quote, names, starting gold and gear, and its two d6 tables
+# (tables/backgrounds/<id>.yaml).
+table: backgrounds
+title: Backgrounds
+dice: d20
+source: players-guide/character-creation#backgrounds
+entries:
+  1:
+    text: Aurifex
+    data:
+      quote: "You are an artisan of the arcane, a smith of subtle forces. In the crucible of your workshop, the laws that govern this world are warped to suit your needs."
+      names: [Hestia, Basil, Rune, Prism, Ember, Quintess, Aludel, Mordant, Salaman, Jazia]
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - Lantern
+        - {name: Oil Can, uses: 6}
+        - {name: Needle-knife, damage: d6}
+        - {name: Protective Gloves, size: petty}
+      tables: [aurifex-1, aurifex-2]
+  2:
+    text: Barber-Surgeon
+    data:
+      quote: "You walk the line between healer and harrower, knowing the frailty of the flesh but also the secrets that lie within. With the right tools, life and death are merely words."
+      names: [Wilmot, Patch, Lancet, Sawbones, Theo, Cutwell, Humor, Landsford, Goodeye, Johanna]
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - {name: Torch, uses: 3}
+        - {name: Bonesaw, damage: d6}
+        - {name: Bandages, uses: 3}
+        - {name: Leech, uses: 3, note: restores 1 STR}
+        - {name: Stained Medical Finery, size: petty}
+      tables: [barber-surgeon-1, barber-surgeon-2]
+  3:
+    text: Beast Handler
+    data:
+      quote: "You alone can walk among the creatures of the wild, fearless and in control. You share a connection with animals that others can only dream of... so long as you don't become their snack."
+      names: [Amara, Wulf, Mireille, Soren, Freki, Aster, Gerrik, Boreas, Veda, Matheus]
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - {name: Torch, uses: 3}
+        - {name: Leather Whip, damage: d6}
+        - {name: Soporific Darts, uses: 6, note: STR save or fall asleep}
+        - Lure
+        - {name: Rope, note: 25ft}
+      tables: [beast-handler-1, beast-handler-2]
+  4:
+    text: Bonekeeper
+    data:
+      quote: "You are a shepherd to the departed. You listen to the final whispers of the dead as they descend into the cold, unyielding earth. You know that to fully celebrate the gift of life, we must honor its finale as well."
+      names: [Rook, Ebon, Moro, Yew, Pall, Leth, Bea, Barnaby, Vesper, Leder]
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - Lantern
+        - {name: Oil Can, uses: 6}
+        - {name: Stake, damage: d6}
+        - {name: Chains, note: 10ft}
+      tables: [bonekeeper-1, bonekeeper-2]
+  5:
+    text: Cutpurse
+    data:
+      quote: "You live in the grey space between those who have power and those who don’t. You find opportunity where others see only chaos. With nimble fingers, you unburden both the richest merchant and the lowliest guard."
+      names: [Arlo, Lyra, Eamon, Salina, Elara, Freya, Bull, Sparrow, Ivy, Silas]
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - {name: Torch, uses: 3}
+        - {name: Twin Daggers, damage: "{d6, d6}kh1", size: bulky, note: "two weapons (d6+d6): roll both, keep the highest"}
+        - {name: Padded Leather, armor: 1}
+        - Lockpicks
+        - {name: Black Outfit, size: petty}
+      tables: [cutpurse-1, cutpurse-2]
+  6:
+    text: Fieldwarden
+    data:
+      quote: "Protectors of the harvest, defense against pests, thieves, and beasts. A position of great honor, while it lasts: many guardians do not live out their natural lives. Roll a second time on the Bonds table."
+      names: [Seed, Thresh, Dibber, Sow, Stalk, Harrow, Cobb, Flax, Briar, Rye]
+      extra_bond: true
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - {name: Torch, uses: 3}
+        - {name: Brigandine, armor: 1, size: bulky}
+        - {name: Sling, damage: d6}
+        - {name: Hand Axe, damage: d6}
+        - {name: Repellent, uses: 3, note: pick the type}
+      tables: [fieldwarden-1, fieldwarden-2]
+  7:
+    text: Fletchwind
+    data:
+      quote: "You strike from afar, but that does not make you a coward. You are a musician, the song of your bowstring naught but a warning, singing the silent promise of a quick death."
+      names: [Flint, Feather, Crier, Thunder, Falcon, Pluck, Needle, Warsong, Hawk, Cai]
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - {name: Torch, uses: 3}
+        - {name: Serrated Knife, damage: d6}
+        - {name: Boiled Leather, armor: 1}
+        - {name: Heartroot Salve, uses: 1, note: restores 1d4 STR}
+      tables: [fletchwind-1, fletchwind-2]
+  8:
+    text: Foundling
+    data:
+      quote: "An odd birthmark, a strange smell: somehow, the touch of elsewhere still lingers. Wherever you are, you have trouble fitting in. Roll on the Omens table (even if you're not the youngest player), but keep the results private for now."
+      names: [Faunus, Snowdrop, Wisp, Silverdew, Brim, Solstice, Steeleye, Artea, Gossamer, Hazel]
+      private_omen: true
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - {name: Torch, uses: 3}
+        - Salt Pouch
+        - {name: Heirloom Amulet, size: petty, note: glows in the presence of magic}
+        - {name: Sling, damage: d6}
+        - {name: Dagger, damage: d6}
+      tables: [foundling-1, foundling-2]
+  9:
+    text: Fungal Forager
+    data:
+      quote: "You follow the whisperings of the deep earth, the rhythmic pulse of the mycelium forest that grows beneath the surface. The dark holds no terror for you. Also, you really love mushrooms."
+      names: [Unther, Woozy, Hilda, Current, Leif, Ratan, Mourella, Lal, Per, Madrigal]
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - {name: Sharpened Trowel, damage: d6}
+        - {name: Candle Helmet, armor: 1, uses: 6, keep: true, note: dim}
+        - {name: Rope, note: 25ft}
+        - Metal Pail
+      tables: [fungal-forager-1, fungal-forager-2]
+  10:
+    text: Greenwise
+    data:
+      quote: "You delve deep into the Wood, prying its secrets from between rough boughs and whispering leaves. To this verdant kingdom, you are no mere scholar but its confidant as well."
+      names: [Gunther, Moss, Fern, Lichen, Root, Willow, Sage, Yarrow, Rowan, Ash]
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - {name: Torch, uses: 3}
+        - Iron Pot
+        - {name: Root Knife, damage: d6}
+        - {name: Healing Salve, uses: 1, note: restore 1d4 STR}
+        - {name: Twine Bauble, size: petty, note: "Ward once per day. Ward: A silver circle 50ft across appears on the ground. Choose one species that cannot cross it."}
+      tables: [greenwise-1, greenwise-2]
+  11:
+    text: Half-Witch
+    data:
+      quote: "Born of both the mortal world and the unseen, you are an enigma to some and feared by many. Yours is the tale of what happens when two worlds collide."
+      names: [Solena, Veles, Bryn, Sabine, Razvan, Rowena, Galen, Nyx, Vex, Iwan]
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - {name: Torch, uses: 3}
+        - {name: Thicket Spellbook, note: "Thicket: A thicket of trees and dense brush up to 50ft wide suddenly sprouts up. Wrapped in vines that must be destroyed again with each use."}
+        - {name: Iron Dagger, damage: d6}
+        - {name: Herbs Pouch, uses: 3, note: restore 1 STR}
+        - Ghillie Suit
+      tables: [half-witch-1, half-witch-2]
+  12:
+    text: Hexenbane
+    data:
+      quote: "You are a mere digit on the unerring hand of justice. You go where others fear to tread, unyielding and unbroken."
+      names: [Percival, Felix, Isolde, Wolfram, Aldric, Eira, Oswin, Ivor, Brunhilda, Beatrix]
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - {name: Torch, uses: 3}
+        - {name: Vestments of the Order, size: petty}
+        - Blessed Tinctures
+        - {name: Silver Knife, damage: d6}
+        - {name: Crossbow, damage: d8, size: bulky}
+      tables: [hexenbane-1, hexenbane-2]
+  13:
+    text: Jongleur
+    data:
+      quote: "What inspires the soul more than song, words, and spectacle? Why practice for years to master the arcane when you've already got real magic inside?"
+      names: [Jax, Selene, Baladria, Ada, Mort, Saylor, Tripp, Lantos, Echo, Jubilo]
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - {name: Torch, uses: 3}
+        - Costume
+        - {name: Simple Instrument, note: "Pipes, Lute, etc."}
+        - {name: Lucky Jerkin, armor: 1}
+        - {name: Sling, damage: d6}
+      tables: [jongleur-1, jongleur-2]
+  14:
+    text: Kettlewright
+    data:
+      quote: "You are known by the smell of molten metal and the jingle of tin. You are no mere merchant but an artisan of fire and metal."
+      names: [Fergus, Eon, Bram, Idris, Hester, Darragh, Seren, Rónán, Berek, Lorenz]
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - {name: Torch, uses: 3}
+        - Pincers
+        - Roll of Tin
+        - {name: Gloves, size: petty}
+        - {name: Hammer, damage: d6}
+      tables: [kettlewright-1, kettlewright-2]
+  15:
+    text: Marchguard
+    data:
+      quote: "Bound by blood Oath to patrol the border and protect the realm. Once sworn, the Oath cannot be broken. The Guard always finds their own."
+      names: [Gann, Light, Saoirse, Frost, Thorn, Reed, Dirk, Ragnar, Brie, Aasim]
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - Lantern
+        - {name: Oil Can, uses: 6}
+        - {name: Long Sword, damage: d10, size: bulky}
+        - {name: Boiled Leather, armor: 1}
+      tables: [marchguard-1, marchguard-2]
+  16:
+    text: Mountebank
+    data:
+      quote: "Wits are your sharpest weapon, a facade your strongest shield. But when you do lose, you lose badly."
+      names: [Ambrose, Lucius, Beauregard, Cornelius, Aria, Toph, Indigo, Delphine, Solene, Noa]
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - {name: Torch, uses: 3}
+        - {name: Cart, slots: 4, size: bulky, note: bulky when pulled}
+        - Trick Playing Cards
+        - {name: Fancy Hat, size: petty}
+        - {name: Cane Sword, damage: d6}
+      tables: [mountebank-1, mountebank-2]
+  17:
+    text: Outrider
+    data:
+      quote: "Your coin comes from escorting caravans, tracking fugitives, or lending your blade to a cause. You've been a savior, an executioner, a hero, and even a villain. Yours is not a solitary path, however: you'll always have your horse."
+      names: [Drake, Cyra, Keir, Darius, Valen, Rorik, Yara, Rui, Talon, Jory]
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - {name: Torch, uses: 3}
+        - {name: Long Sword, damage: d10, size: bulky}
+        - {name: Leather Jerkin, armor: 1}
+        - {name: Crossbow, damage: d8, size: bulky}
+        - Spyglass
+      tables: [outrider-1, outrider-2]
+  18:
+    text: Prowler
+    data:
+      quote: "You are a specter in the night, a fleeting shadow that slips by its prey, unseen. Each kill is a test of cunning and animal determination, a contest between life and death. You know that one day you will lose. You look forward to it."
+      names: [Winda, Brielle, Theron, Chayse, Nuja, Dev, Raven, Arawan, Sable, Baruani]
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - {name: Torch, uses: 3}
+        - Tarp
+        - {name: Boiled Leather, armor: 1}
+        - {name: Short Sword, damage: d6}
+        - {name: Spring-Loaded Trap, note: 4 STR damage}
+      tables: [prowler-1, prowler-2]
+  19:
+    text: Rill Runner
+    data:
+      quote: "You sing the stories of rivers and lakes, your talents soothing friends and the elements alike. You've seen more than most, but somehow it never seems to be enough."
+      names: [Gale, Piper, Brook, Adair, Stone, Dale, Wren, Cliff, Rain, Robin]
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - {name: Torch, uses: 3}
+        - Water Shoes
+        - {name: Brigandine, armor: 1, size: bulky}
+        - Compass
+        - {name: Dagger, damage: d6}
+      tables: [rill-runner-1, rill-runner-2]
+  20:
+    text: Scrivener
+    data:
+      quote: "You copy ancient texts and illuminate manuscripts, recording the voices of the clever, the great, and the powerful. You will prove that the pen truly is mightier than the sword."
+      names: [Lazlo, Stilo, Akshara, Pisa, Ji-Yun, Kalamos, Hugo, Shui, Kalam, Julius]
+      gold: 3d6
+      gear:
+        - {name: Rations, uses: 3}
+        - {name: Torch, uses: 3}
+        - "Quill & Ink"
+        - Blank Book
+        - {name: Awl, damage: d6}
+        - {name: Badge, size: petty}
+      tables: [scrivener-1, scrivener-2]

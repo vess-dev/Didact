@@ -1,0 +1,24 @@
+# Miner (backgrounds/miner): the background's two d6 tables.
+table: miner-1
+title: "What did the deep dark leave in you?"
+dice: d6
+source: backgrounds/miner#what-did-the-deep-dark-leave-in-you-roll-1d6
+entries:
+  1: "The pit-sense. Underground, you always know which way is up and out, roughly how deep you stand, and a sound prop from a rotten one; you can tell worked stone from natural rock at a touch."
+  2: {text: "An ebony seam. You broke ebony out of Gloombound Mine and it nearly killed you. Take a chunk of ebony ore (petty), worth 1d6 × 25 Septims, and lungs that no longer mind bad air: you need not save against choke-damp, dust, or foul vapors.", data: {gear: [{name: "Ebony ore", size: "petty", note: "worth 1d6 × 25 Septims"}]}}
+  3: {text: "The Stalhrim crews. You worked the enchanted ice on Solstheim, which only an ancient Nordic pick will cut. Take an ancient Nordic pickaxe (d8), frost-cold to the grip, and the knowledge of where the frozen veins lie beneath the snow.", data: {gear: [{name: "Ancient Nordic pickaxe", damage: "d8"}]}}
+  4: {text: "A Dwemer breach. Your crew broke through into a Dwemer hall, and the brass things were waiting. Few of you climbed back out. Your maximum HP is 1 higher; take a salvaged Dwarven gear (petty), worth 2d6 × 10 Septims.", data: {extra_hp: true, gear: [{name: "Dwarven gear", size: "petty", note: "worth 2d6 × 10 Septims"}]}}
+  5: "The cave-in. You lay buried a day and a night before they dug you out. Once per day, when stone, rubble, or a falling weight would crush you, you twist clear: you take half the damage, and you are not pinned."
+  6: "The Falmer in the deep. Below the lowest gallery you heard the Falmer hunting in the chaurus-dark, and learned to slip past them. Once per day, underground, you may move unheard past creatures that hunt by sound, so long as you do not strike."
+---
+table: miner-2
+title: "What never leaves your belt?"
+dice: d6
+source: backgrounds/miner#what-never-leaves-your-belt-roll-1d6
+entries:
+  1: "Old Faithful: The pickaxe that has been down every shaft with you. You need not save to dig through packed earth, rubble, or a collapsed tunnel with it, given time."
+  2: {text: "The Deep-Sounder: A small iron hammer and a knack for the stone (petty). Tap a wall and you hear what lies behind it: a hollow, a flooded gallery, running water, a vein of metal, or only more rock.", data: {gear: [{name: "The Deep-Sounder", size: "petty"}]}}
+  3: {text: "Stolen Silver: Three silver ingots (petty) smuggled out of Cidhna Mine, worth 150 Septims if you can sell them where the Silver-Bloods will not hear.", data: {gear: [{name: "Silver ingot", size: "petty", note: "one of three smuggled out of Cidhna Mine, worth 150 Septims together"}, {name: "Silver ingot", size: "petty"}, {name: "Silver ingot", size: "petty"}]}}
+  4: {text: "The Vein-Eye: A jeweler's loupe and a sorter's instinct (petty). At a glance you tell ore from dross, a true gem from glass, and a soul gem's size, petty to grand, and what each is worth.", data: {gear: [{name: "The Vein-Eye", size: "petty"}]}}
+  5: {text: "Crew-Hand's Helmet: A dented iron miner's helmet (+1 Armor) with a candle-spike on the brow that lights your way and leaves your hands free (6 uses). In any mine, smelter, or pit-camp you are taken for one of their own: they will shelter you, hire you, and tell you what the foreman won't.", data: {gear: [{name: "Crew-Hand's Helmet", armor: 1, uses: 6, keep: true, note: "a candle-spike on the brow lights your way"}]}}
+  6: {text: "Lucky Geode: A cracked geode with a raw soul gem still glittering in its hollow (petty). Once per day, when your nerve is tested in the dark, clutch it and re-roll a failed WIL save.", data: {gear: [{name: "Lucky Geode", size: "petty"}]}}

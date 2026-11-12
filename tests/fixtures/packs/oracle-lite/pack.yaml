@@ -1,0 +1,7 @@
+id: oracle-lite
+name: A chart oracle (fixture)
+kind: oracle
+version: 0.1.0
+description: A tiny chart-and-chaos oracle with lists, with made-up numbers.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

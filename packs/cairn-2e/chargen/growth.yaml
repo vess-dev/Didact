@@ -1,0 +1,137 @@
+# Growth (wardens-guide/growth): Cairn has no XP. `didact char advance <pc>` (or Growth on the
+# character's page) drafts a change step by step, like character creation; nothing is written
+# until `char commit`. Any step can be answered up front: `char advance freya source=fiction
+# pattern=yes risk=yes unique=no how=reroll attr=WIL trigger='drank the murderer's spirit'`.
+# Resolving a bond happens in play first (`resolve-bond` closes its thread); a new bond the
+# Warden gives here gets its own thread on commit.
+chargen: growth
+title: Growth
+help: >-
+  Characters change from what happens to them. A trigger from the fiction needs at least two of:
+  a focused, consistent pattern of behavior; an obvious risk with serious consequences;
+  interacting with a unique item, creature or entity. A resolved bond or omen, or Downtime work,
+  brings growth too. The change is permanent and related to what happened: reroll an attribute
+  or HP and keep it if higher, raise one, or a new ability, often with a cost or flaw. The
+  trigger and the change go on the sheet (growth); a cost goes with the ability.
+advances: pc
+modes: [guided]
+params:
+  who: ref
+  source: {enum: [fiction, bond, omen, downtime], optional: true, help: "What brings the growth"}
+  pattern: {enum: ["yes", "no"], optional: true, help: "A focused, consistent pattern of behavior?"}
+  risk: {enum: ["yes", "no"], optional: true, help: "An obvious risk with potentially serious consequences?"}
+  unique: {enum: ["yes", "no"], optional: true, help: "Interacting with a unique item, creature or entity?"}
+  trigger: {kind: text, optional: true, help: "What happened, in a sentence"}
+  how: {enum: [reroll, raise, ability], optional: true, help: "The change"}
+  attr: {enum: [STR, DEX, WIL, HP], optional: true, help: "reroll or raise: which"}
+  amount: {kind: text, optional: true, help: "raise: 1, d4, d6 or d8; reroll HP: d6, 2d6 or 3d6"}
+  ability: {kind: text, optional: true, help: "ability: what they can do (or are) now"}
+  cost: {kind: text, optional: true, help: "Its cost, flaw or weakness (none: no cost)"}
+  new_bond: {enum: ["yes", "no"], optional: true, help: "source=bond: roll a new bond?"}
+steps:
+  - choose:
+      from: [fiction, bond, omen, downtime]
+      as: source
+      answer: "$source"
+      prompt: "What brings the growth: a trigger in the fiction, a resolved bond (`didact do resolve-bond`) or omen (`didact do resolve-omen`), or Downtime work?"
+  - if: "@source == 'fiction'"
+    then:
+      - choose: {from: ["yes", "no"], as: pattern, answer: "$pattern", prompt: "A focused, consistent pattern of behavior around a single objective or course of action?"}
+      - choose: {from: ["yes", "no"], as: risk, answer: "$risk", prompt: "Taking an obvious risk with potentially serious consequences, especially when the outcome was unknown?"}
+      - if: "@pattern == 'no' and @risk == 'no'"
+        then:
+          - stop: "Not a growth trigger: good triggers need at least two of a focused pattern of behavior, an obvious risk, and a unique item, creature or entity (wardens-guide/growth). Keep playing."
+      - choose: {from: ["yes", "no"], as: unique, answer: "$unique", prompt: "Interacting with a unique item, creature, or entity?"}
+      - if: "if(@pattern == 'yes', 1, 0) + if(@risk == 'yes', 1, 0) + if(@unique == 'yes', 1, 0) < 2"
+        then:
+          - stop: "Not a growth trigger: good triggers need at least two of a focused pattern of behavior, an obvious risk, and a unique item, creature or entity (wardens-guide/growth). Keep playing."
+      - let: {why: "fiction: pattern {@pattern}, risk {@risk}, unique {@unique}"}
+    else:
+      - let: {why: "{if(@source == 'downtime', 'Downtime work', if(@source == 'bond', 'a resolved bond', 'a resolved omen'))}"}
+  - if: "default(@trigger, '') == ''"
+    then:
+      - ask: {as: trigger, prompt: "What happened: the trigger, in a sentence (it goes on the sheet)"}
+    else:
+      - let: {trigger: "@trigger"}
+  - choose:
+      from: [reroll, raise, ability]
+      as: how
+      answer: "$how"
+      prompt: "The permanent, related change: reroll an attribute or HP and keep it if higher, raise one, or a new ability (a trait, a need met, a save no longer needed)"
+  - if: "@how == 'ability'"
+    then:
+      - if: "default(@ability, '') == ''"
+        then:
+          - ask: {as: ability, prompt: "The new ability or change, in a sentence"}
+        else:
+          - let: {ability: "@ability"}
+      - let: {changed: "{@ability}"}
+    else:
+      - choose: {from: [STR, DEX, WIL, HP], as: attr, answer: "$attr", prompt: "Which to {@how}"}
+      - let:
+          cur: "if(@attr == 'STR', @who.STR, if(@attr == 'DEX', @who.DEX, if(@attr == 'WIL', @who.WIL, @who.hp)))"
+          top: "if(@attr == 'STR', @who.STR.max, if(@attr == 'DEX', @who.DEX.max, if(@attr == 'WIL', @who.WIL.max, @who.hp.max)))"
+          ceiling: "if(@attr == 'HP', 999, 20)"
+      - if: "@how == 'reroll'"
+        then:
+          - if: "@attr == 'HP'"
+            then:
+              - choose: {from: [d6, 2d6, 3d6], as: dice, answer: "$amount", prompt: "HP is rerolled on: d6 (as at creation), 2d6 or 3d6 (the Warden says)"}
+              - roll: "if(@dice == 'd6', 1d6, if(@dice == '2d6', 2d6, 3d6))"
+                as: new
+            else:
+              - roll: 3d6
+                as: new
+          - let: {new_top: "if(@new > @top, min(@new, @ceiling), @top)"}
+          - if: "@new_top == @top"
+            then:
+              - let: {changed: "{@attr} rerolled {@new}, not higher than its max {@top}: no change"}
+            else:
+              - let: {changed: "{@attr} rerolled {@new}: max {@top} → {@new_top}"}
+        else:
+          - choose: {from: ["1", d4, d6, d8], as: dice, answer: "$amount", prompt: "Raise it by: 1, d4, d6 or d8 (the Warden says)"}
+          - roll: "if(@dice == 1, 1, if(@dice == 'd4', 1d4, if(@dice == 'd6', 1d6, 1d8)))"
+            as: gain
+          - let: {new_top: "min(@top + @gain, @ceiling)"}
+          - let: {changed: "{@attr} raised {@gain}: max {@top} → {@new_top}"}
+      - let: {new_cur: "@cur + @new_top - @top"}
+      - if: "@new_top <> @top and @attr == 'STR'"
+        then: [apply: {STR: {value: "{@new_cur}", max: "{@new_top}"}}]
+      - if: "@new_top <> @top and @attr == 'DEX'"
+        then: [apply: {DEX: {value: "{@new_cur}", max: "{@new_top}"}}]
+      - if: "@new_top <> @top and @attr == 'WIL'"
+        then: [apply: {WIL: {value: "{@new_cur}", max: "{@new_top}"}}]
+      - if: "@new_top <> @top and @attr == 'HP'"
+        then: [apply: {hp: {value: "{@new_cur}", max: "{@new_top}"}}]
+  - if: "default(@cost, '') == ''"
+    then:
+      - ask: {as: cost, prompt: "Its cost, flaw or weakness, if any (growth can come at a price, or change them in ways they don't like); none for no cost"}
+    else:
+      - let: {cost: "@cost"}
+  - if: "@cost == 'none' or @cost == 'None' or @cost == 'no' or @cost == '-'"
+    then:
+      - let: {cost_note: "{''}"}
+    else:
+      - let: {cost_note: "; cost: {@cost}"}
+  - if: "@how == 'ability'"
+    then:
+      - add: {field: abilities, value: "{@ability}{@cost_note}"}
+    else:
+      - if: "@cost_note <> ''"
+        then:
+          - add: {field: abilities, value: "Flaw: {@cost}"}
+  - add: {field: growth, value: "{@trigger} ({@why}): {@changed}{@cost_note}"}
+  - if: "@source == 'bond'"
+    then:
+      - choose: {from: ["yes", "no"], as: new_bond, answer: "$new_bond", prompt: "The Warden can create a new bond for them: roll one?"}
+      - if: "@new_bond == 'yes'"
+        then:
+          - choose_or_roll: {table: bonds, as: next_bond, exclude: "@who.bond"}
+          - add: {field: bond, value: "@next_bond"}
+          - apply: "@next_bond.gear"
+          - add: {field: gold, value: "@next_bond.gold"}
+          - add: {field: burden, value: "@next_bond.burden"}
+          - entity: {key: bond, type: thread, name: "Bond: {@next_bond.name}", fields: {goal: "@next_bond"}, links: [{rel: of, to: character}]}
+            as: next_bond_thread
+  - message: "{@who.name} grows: {@changed}{@cost_note}."
+source: wardens-guide/growth#triggers-a-framework-for-growth

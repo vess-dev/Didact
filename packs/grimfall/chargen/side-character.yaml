@@ -1,0 +1,45 @@
+# Side characters (Running the Wasteland, Running Solo & Duet): a whole crew without the
+# bookkeeping. Replaces the parent's side character (same id). `didact char new
+# grimfall.side-character`.
+chargen: side-character
+title: A side character
+help: >-
+  Want a whole crew without the bookkeeping? Run two or three companions as side characters: no
+  class and no Core Perk, just one perk; stats as usual (1 in each, plus 4 points); backgrounds,
+  but no tracked wises; one trait they are and one they're not, one thing they want and one they
+  don't; and a bond with your survivor only. They don't earn XP, spark, or thread, and they never
+  take marks: anything that would mark them, a push included, is harm instead.
+creates: pc
+modes: [random, guided]
+steps:
+  - apply: {side: true, level: 1, xp: 0, spark: 0, thread: 0}
+  - choose_or_roll: {table: backgrounds, as: first_background}
+  - add: {field: backgrounds, value: "@first_background"}
+  - choose_or_roll: {table: backgrounds, as: second_background, exclude: "@first_background", prompt: "a second background (wises aren't tracked: note the backgrounds only)"}
+  - add: {field: backgrounds, value: "@second_background"}
+  - if: "default(@first_background.machine, false) or default(@second_background.machine, false)"
+    then:
+      - apply: {machine: true}
+  - choose: {table: traits, as: trait, prompt: "one trait they are"}
+  - choose: {table: traits, as: not_trait, exclude: "@trait", prompt: "and one they're not"}
+  - add: {field: traits, value: "@trait"}
+  - add: {field: traits, value: "not {@not_trait}"}
+  - choose: {table: desires, as: desire, prompt: "one thing they want"}
+  - choose: {table: desires, as: not_desire, exclude: "@desire", prompt: "and one they don't"}
+  - add: {field: desires, value: "@desire"}
+  - add: {field: desires, value: "not {@not_desire}"}
+  - choose_or_roll: {table: perk-lists, as: perk_list, exclude: ["A repeatable perk, taken again"], prompt: "their one perk: the list it comes from (no class and no Core Perk)"}
+  - choose: {from: "@perk_list.perks", records: perk, as: perk, prompt: "their one perk ({@perk_list})"}
+  - add: {field: perks, value: "@perk"}
+  - point_buy:
+      fields: [brawn, agility, wits, presence]
+      budget: 4
+      costs: {1: 0, 2: 1, 3: 2}
+      default: random
+      as: stats
+  - name: {table: survivor-names}
+  - table: bonds
+    as: bond
+  - prompt: "A bond with your survivor only (side characters don't hold bonds with each other): an intensity + a nature ({@bond}): `didact set <side> bonds+='… with <survivor>'`."
+  - prompt: "Side characters don't earn XP, spark or thread, and never take marks: anything that would mark them, a push included, is harm instead (`didact do mark` does it)."
+source: running-the-wasteland/running-solo-and-duet#side-characters

@@ -1,0 +1,42 @@
+# A point of interest on its own (wardens-guide/setting-seeds#points-of-interest): its kind from
+# the POI die drop, what it is and its feature, and a name (wardens-guide/naming-procedures).
+# For a whole region's points, use the setting seed; for a dungeon's rooms, a dungeon seed.
+generator: point-of-interest
+title: A point of interest
+help: >-
+  A place on the map, step by step: its kind from the POI die drop (a waypoint or settlement, a
+  curiosity, a lair or a dungeon), what it is and its feature (choose each, or let the dice),
+  and a name. region=<place> puts it inside a place. Prefill by name: drop, kind, what, detail,
+  poi_name.
+params:
+  region: {kind: text, default: "", help: "The place it lies in, e.g. loc:the-ford"}
+source: wardens-guide/setting-seeds#points-of-interest
+steps:
+  - choose_or_roll: {table: setting-poi-die-drop, as: drop}
+  - if: "@drop.poi == 'waypoint-or-settlement'"
+    then:
+      - choose: {from: [settlement, waypoint], as: kind, prompt: "the die says Waypoint or Settlement"}
+      - let: {what_table: "setting-{@kind}", detail_table: "setting-{@kind}-feature"}
+    else:
+      - let: {kind: "@drop.poi", what_table: "@drop.what", detail_table: "@drop.detail"}
+  - choose_or_roll: {table: "{@what_table}", as: what}
+  - choose_or_roll: {table: "{@detail_table}", as: detail}
+  - table: poi-names
+    with: {poi: "@what"}
+    as: poi_name
+  - entity:
+      key: poi
+      type: loc
+      name: "{@poi_name}"
+      fields:
+        kind: poi
+        poi: "@kind"
+        feature: "{@what}, {@detail}"
+        region: "$region"
+  - prompt: "Filter it through the region: its terrain, its people and its factions. Who lives or waits here, and what do they want?"
+  - if: "@kind == 'dungeon'"
+    then:
+      - prompt: "A dungeon's rooms come from a dungeon seed: `didact gen run cairn-2e.dungeon-seed region=<this place>`."
+  - if: "@kind == 'lair'"
+    then:
+      - prompt: "What lairs here? Pick one from the bestiary (`didact compendium find --type monster`) or make one (`didact gen run cairn-2e.monster`)."

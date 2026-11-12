@@ -1,0 +1,31 @@
+# Every table lands, and the core math holds.
+test: every-table
+help: Each table in the pack rolls cleanly (a lookup table once for each key).
+table: all
+times: 5
+---
+test: save-rolls-under
+help: A save succeeds at or under the attribute.
+expr: "d20 <= @STR"
+vars: {STR: 12}
+got: "12"
+expect: true
+---
+test: die-of-fate-is-even
+odds: "d6 >= 4"
+chance: 0.5
+---
+test: supply-dice-step-up
+help: Two extra helpers step the supply die from d4 to d8.
+expr: "step(d4, 2)"
+got: "8"
+expect: 8
+---
+test: scar-at-exactly-zero
+table: scars
+with: {hp_lost: 3}
+times: 3
+---
+test: extreme-weather-worsens
+table: weather-winter
+times: 40

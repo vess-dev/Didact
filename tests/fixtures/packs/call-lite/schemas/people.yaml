@@ -1,0 +1,11 @@
+type: character
+fields:
+  hp: {kind: resource, min: 0}
+  curse_timer: {kind: ref, help: "The track counting down the curse."}
+---
+type: pc
+extends: character
+---
+type: monster
+fields:
+  hp: {kind: resource, min: 0}

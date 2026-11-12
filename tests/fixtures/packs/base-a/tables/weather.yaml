@@ -1,0 +1,9 @@
+table: weather
+dice: d6
+entries:
+  1-3: calm
+  4-6: storm
+---
+table: omens
+dice: d4
+entries: {1: crow, 2: moth, 3: owl, 4: hare}

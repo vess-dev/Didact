@@ -1,0 +1,14 @@
+chargen: pc
+title: Mini System character
+creates: pc
+modes: [random, guided]
+steps:
+  - choose_or_roll: {table: backgrounds, as: background, field: background}
+  - apply: "@background.gear"
+  - roll: {each: [STR, DEX, WIL], dice: 3d6}
+  - swap: {among: [STR, DEX, WIL], optional: true}
+  - roll: {hp: 1d6}
+  - roll_tables: [physique, vice]
+  - name: {from: "@background.names"}
+  - prompt: Describe the character in two sentences using the traits.
+advance: {rule: level-up}

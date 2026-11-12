@@ -1,0 +1,655 @@
+# The core rules where Fallout 2e changes Cairn's (players-guide/core-rules): saves (power armor,
+# "save counts as attribute +N"), attacks (Impaired is always 1d4, Enhanced never makes an attack
+# worse, the two cancel, heavy weapons need a brace, called shots, ignoring Armor), short and long
+# rest, the clinic, stabilizing, caps, camp for flesh and machines, reactions with party karma.
+# Each replaces the parent's rule of the same id (so the parent's rules that call it run this
+# one). The parent's other core rules are inherited untouched: save-together, blast-targets,
+# attribute-damage, death, morale, fate, steady, fatigue, deprive, trap.
+check: save
+title: Save
+help: >-
+  Roll d20 against an attribute: at or under succeeds; a natural 1 always succeeds and a natural
+  20 always fails. "Save counts as attribute +N / −N" (an Oath, Ultrajet's addiction save):
+  bonus=N. In power armor without training every DEX save fails. Opposed: whoever is more at
+  risk rolls; acting together, the worst attribute saves for the group (`didact do
+  save-together`).
+params:
+  who: ref
+  attr: {enum: [STR, DEX, WIL]}
+  bonus: {kind: int, default: 0, help: "Save counts as attribute +N (or −N)"}
+prompt: State the risk before rolling.
+before:
+  - let:
+      suits: "sum(default(@who.inventory.power_armor, 0)) - sum(default(@who.inventory.backpack.power_armor, 0))"
+      trained: "default(@who.power_armor_trained, false)"
+  - let: {locked: "'$attr' == 'DEX' and @suits > 0 and not @trained"}
+  - if: "'$attr' == 'DEX' and @suits > 0 and @trained"
+    then: ["{@who.name} is trained in the power armor: the suit doesn't hold the DEX save back."]
+roll: d20
+success: "not @locked and (@roll == 1 or (@roll < 20 and @roll <= @who.$attr + @bonus))"
+on:
+  failure:
+    - if: "@locked"
+      then: ["{@who.name} wears power armor without training: every DEX save fails automatically."]
+source: players-guide/core-rules#saves
+---
+check: retreat
+title: Retreat
+help: >-
+  Breaking off from a fight takes a DEX save and a direction to run toward. No save, no escape.
+  In power armor without training, the DEX save fails.
+params:
+  who: ref
+  bonus: {kind: int, default: 0, help: "The save counts as DEX +N"}
+prompt: "Which way do they run? Without a direction to run toward there's no retreat."
+before:
+  - let:
+      suits: "sum(default(@who.inventory.power_armor, 0)) - sum(default(@who.inventory.backpack.power_armor, 0))"
+      trained: "default(@who.power_armor_trained, false)"
+  - let: {locked: "@suits > 0 and not @trained"}
+roll: d20
+success: "not @locked and (@roll == 1 or (@roll < 20 and @roll <= @who.DEX + @bonus))"
+on:
+  success: ["{@who.name} gets away."]
+  failure: ["{@who.name} can't break away: still in the fight."]
+source: players-guide/core-rules#retreat
+---
+action: attack
+title: Attack
+help: >-
+  Attacks always hit. Roll the weapon die, subtract Armor (pierce=N: ignores N Armor), take the
+  rest from HP. Impaired is 1d4 whatever the weapon (unarmed always d4); Enhanced is 1d12, unless
+  the weapon's own dice are already better (a d20, or two dice of d10 and up), which it keeps;
+  Impaired and Enhanced together cancel. Impaired by itself: a panicked attacker, an individual
+  hitting a detachment (unless blast), a heavy weapon fired unbraced or on the move (heavy=true;
+  braced=true when braced: the Heavy Gunner perk, a super mutant and a trained wearer in a
+  powered suit need none), a called shot (called=true), a long-range shot (mode=impaired).
+  Enhanced by itself: a detachment hitting an individual, a Psycho dose. HP to exactly 0 gives a
+  PC a Scar; damage past 0 comes off STR and the target saves STR (its new score) against
+  Critical Damage: a PC who fails is dying (`stabilize` within the hour), an NPC is dead, a
+  detachment routed, and the attacker's own Critical Damage effect follows. A helpless or unaware
+  target can't rely on HP: direct=true. Two weapons or several attackers: weapon='{d8, d6}kh1'.
+  A passenger inside a vehicle adds half its Armor: cover=N.
+params:
+  attacker: ref
+  target: ref
+  weapon: {kind: dice, default: d6, help: "The damage die; two weapons or several attackers: '{d8, d6}kh1'"}
+  mode: {enum: [normal, impaired, enhanced, unarmed], default: normal}
+  blast: {kind: flag, default: false, help: "A blast attack: run it once for each target"}
+  direct: {kind: flag, default: false, help: "A helpless or unaware target: the damage skips HP and goes to STR"}
+  heavy: {kind: flag, default: false, help: "A heavy weapon (brace required)"}
+  braced: {kind: flag, default: false, help: "Braced against a wall, the ground, a bipod or a mounted rig, and not moving"}
+  called: {kind: flag, default: false, help: "A called shot: Impaired, and on a hit its narrative effect applies too"}
+  pierce: {kind: int, default: 0, help: "The attack ignores this much Armor"}
+  cover: {kind: int, default: 0, help: "Extra Armor for a passenger inside a vehicle: half the vehicle's, rounded down"}
+steps:
+  - let:
+      on_unit: "@target.type == 'detachment' and @attacker.type <> 'detachment' and not @blast"
+      by_unit: "@attacker.type == 'detachment' and @target.type <> 'detachment'"
+      panicked: "'panicked' in default(@attacker.conditions, '')"
+      psycho: "'psycho' in default(@attacker.conditions, '')"
+      suits: "sum(default(@attacker.inventory.power_armor, 0)) - sum(default(@attacker.inventory.backpack.power_armor, 0))"
+  - let:
+      no_brace: >-
+        default(@attacker.kind, '') == 'super-mutant' or default(@attacker.category, '') == 'Super Mutants'
+        or 'Heavy Gunner' in default(@attacker.perks, '') or 'Heavy Weapons Cert' in default(@attacker.abilities, '')
+        or (@suits > 0 and default(@attacker.power_armor_trained, false))
+  - let:
+      impaired: "@mode == 'impaired' or @on_unit or @panicked or @called or (@heavy and not @braced and not @no_brace)"
+      enhanced: "@mode == 'enhanced' or @by_unit or @psycho"
+      better: "'d20' in '$weapon' or (',' in '$weapon' and not ('d4' in '$weapon' or 'd6' in '$weapon' or 'd8' in '$weapon'))"
+  - let: {how: "if(@mode == 'unarmed', 'unarmed', if(@impaired and @enhanced, 'cancelled', if(@impaired, 'impaired', if(@enhanced, if(@better, 'kept', 'enhanced'), 'normal'))))"}
+  - if: "@how == 'unarmed' or @how == 'impaired'"
+    then: [{roll: d4, as: damage}]
+    else:
+      - if: "@how == 'enhanced'"
+        then: [{roll: d12, as: damage}]
+        else: [{roll: $weapon, as: damage}]
+  - let: {shield: "max(0, min(3, default(@target.armor, 0) + @cover) - @pierce)"}
+  - let: {dealt: "max(0, @damage - @shield)", before: "default(@target.hp, 0)"}
+  - if: "@direct"
+    then:
+      - let: {overflow: "@dealt"}
+      - message: "{@target.name} can't rely on HP: the damage goes straight to STR."
+    else:
+      - let: {overflow: "max(0, @dealt - @before)"}
+      - set: target.hp
+        op: "-="
+        value: "@dealt"
+      - if: "@before > 0 and @dealt == @before and @target.type == 'pc'"
+        then:
+          - do: scar
+            with: {who: "@target", lost: "@dealt"}
+  - if: "@target.type == 'vehicle' and @before > 0 and @target.hp == 0"
+    then:
+      - prompt: "{@target.name}'s frame is at 0. Reduced to 0 in a single impact, it crashes: `didact do crash vehicle={@target.id} driver=<who>`; worn down over several hits, it's broken, not crashed: `didact set {@target.id} conditions+=broken`."
+  - if: "@overflow > 0 and @target.type <> 'vehicle'"
+    then:
+      - set: target.STR
+        op: "-="
+        value: "@overflow"
+      - if: "@target.STR > 0"
+        then:
+          - if: "'buffout' in default(@target.conditions, '')"
+            then:
+              - message: "{@target.name} is on Buffout: immune to Critical Damage this scene (the STR loss stands)."
+            else:
+              - if: "'overdrive' in default(@attacker.conditions, '')"
+                then:
+                  - let: {critical: "'failure'"}
+                  - message: "{@attacker.name}'s Overdrive: {@target.name} automatically fails the Critical Damage save."
+                else:
+                  - check: save
+                    with: {who: "@target", attr: STR}
+                    as: critical
+              - if: "'doomed' in default(@target.conditions, '')"
+                then:
+                  - set: target.conditions
+                    op: "-="
+                    value: doomed
+                  - if: "@critical == 'failure'"
+                    then:
+                      - message: "{@target.name} was Doomed, and fails the Critical Damage save: they die horribly."
+                      - do: death
+                        with: {who: "@target"}
+                    else:
+                      - message: "{@target.name} was Doomed, and passes: the doom lifts."
+                      - do: attribute-reroll
+                        with: {who: "@target", attr: hp, dice: 3d6, value: stays}
+                        as: reroll
+                      - set: target.scars
+                        op: "+="
+                        value: "Doomed, survived: {@reroll.changed}"
+                else:
+                  - if: "@critical == 'failure'"
+                    then:
+                      - if: "@target.type == 'pc' or @target.type == 'companion'"
+                        then:
+                          - set: target.conditions
+                            op: "+="
+                            value: critical
+                          - message: "{@target.name} takes Critical Damage: they can only crawl and gasp. Bandages or a Stimpak stabilize them: `didact do stabilize who={@target.id}`; untreated, they die within the hour."
+                          - remind: "{@target.name} dies of Critical Damage unless stabilized (`didact do stabilize who={@target.id}`)"
+                            in: 1 hour
+                        else:
+                          - if: "@target.type == 'detachment'"
+                            then:
+                              - set: target.status
+                                value: routed
+                              - message: "{@target.name} takes Critical Damage: the detachment is routed or broken (the Overseer decides which). At 0 STR it is destroyed."
+                            else:
+                              - message: "{@target.name} fails the Critical Damage save: dead, at the Overseer's discretion."
+                              - do: death
+                                with: {who: "@target"}
+              - if: "@critical == 'failure' and default(@attacker.critical, '') <> ''"
+                then:
+                  - message: "{@attacker.name}'s Critical Damage: {@attacker.critical}"
+  - if: "@how == 'impaired' or @how == 'enhanced' or @how == 'unarmed'"
+    then: ["The attack is {@how} ({@attacker.name} → {@target.name})."]
+  - if: "@how == 'cancelled'"
+    then: ["Impaired and Enhanced at once cancel out: the weapon's own die ({@attacker.name} → {@target.name})."]
+  - if: "@how == 'kept'"
+    then: ["Enhanced never makes an attack worse: {@attacker.name}'s own dice are better than a d12, and it keeps them."]
+  - if: "@called"
+    then: ["A called shot: on a hit, the narrative effect applies alongside the damage (the Overseer has the final word)."]
+  - message: "{@attacker.name} deals {@dealt} damage to {@target.name}."
+source: players-guide/core-rules#attacking--damage
+---
+check: panic
+title: Panic
+help: >-
+  Surrounded, cornered, pitch dark, face to face with a deathclaw: the Overseer calls a WIL save.
+  On a fail the character is Panicked: 0 HP, no action in the first round of combat, every attack
+  Impaired, until a WIL save on their turn shakes it off (`didact do steady`). alone=true: acting
+  alone (bond 13, the wounded yao guai, means no panic then).
+params:
+  who: ref
+  alone: {kind: flag, default: false, help: "Acting alone"}
+roll: d20
+success: "@roll == 1 or (@roll < 20 and @roll <= @who.WIL)"
+on:
+  failure:
+    - if: >-
+        @alone and "You once left a wounded yao guai in a gully. You still see it, sometimes, in
+        the corner of your eye — a trick of post-traumatic wiring, your settlement's medic said.
+        You cannot become Panicked when alone." in default(@who.bond, '')
+      then: ["The wounded yao guai is there in the corner of {@who.name}'s eye: they cannot become Panicked when alone."]
+      else:
+        - set: who.conditions
+          op: "+="
+          value: panicked
+        - set: who.hp
+          value: 0
+        - message: "{@who.name} panics: 0 HP, no action in the first round, every attack Impaired. Shaking it off takes a WIL save as their action: `didact do steady who={@who.id}`."
+source: players-guide/procedures#panic
+---
+action: rest
+title: Short rest
+help: >-
+  A few minutes in safety with a drink of clean water restores all HP (a robot needs no water).
+  In a ruin, resting takes a turn (turn=true) and needs a light source and a safe location.
+  Danger makes rest impossible. It can't bring HP back while Deprived, Panicked (0 HP) or with a
+  full inventory (0 HP), and it clears neither Fatigue nor Rads.
+params:
+  who: ref
+  danger: {kind: flag, default: false, help: "Present or oncoming danger"}
+  turn: {kind: flag, default: false, help: "A turn spent resting in a ruin"}
+steps:
+  - if: "@danger"
+    then:
+      - stop: "Present or oncoming danger makes rest impossible."
+  - if: "'deprived' in @who.conditions"
+    then:
+      - stop: "{@who.name} is Deprived and can't recover HP until the lack is remedied."
+  - if: "'panicked' in @who.conditions"
+    then:
+      - stop: "{@who.name} is Panicked and has 0 HP until they shake it off: `didact do steady who={@who.id}`."
+  - if: "@who.inventory.free <= 0"
+    then:
+      - stop: "{@who.name}'s inventory is full: HP stays at 0 until they lighten the load (Rads and Fatigue count)."
+  - set: who.hp
+    value: "@who.hp.max"
+  - message: "{@who.name} catches their breath: HP back to {@who.hp.max}."
+  - if: "default(@who.kind, 'human') <> 'robot'"
+    then:
+      - reminder: "A drink of clean water goes with it: dirty water restores HP all the same but adds a Rad (`didact do consume who={@who.id} food='Dirty water'`)."
+  - if: "@turn"
+    then:
+      - reminder: "Resting took a turn in the ruin: it needs a light source and a safe location, and clears no Fatigue (no one can safely Make Camp inside a ruin) and no Rads. Resting in place is lingering: `didact do dungeon-turn trigger=lingered`, then `didact time advance 1 turn`."
+source: players-guide/core-rules#healing--recovery
+---
+action: recover
+title: Long rest
+help: >-
+  A full week's rest in a safe place, usually with a doc, a chem or a pre-war auto-doc
+  (cost=caps paid, 0 when free): it restores attribute loss, ends Critical Damage, paralysis and a
+  broken mind, brings the Scars that heal "after recovery" to their end (Flung Clear, Crippled,
+  Bleeding Out), and rolls for ghoulification once a PC has three Rad Scars. A robot's long rest
+  restores its attributes only at a Workshop or with a mechanic on hand (workshop=true). A
+  Deprived character can't recover. Rads don't clear from any rest.
+params:
+  who: ref
+  cost: {kind: int, default: 0, help: "Caps paid for the care (a doc, chems, an auto-doc)"}
+  workshop: {kind: flag, default: false, help: "A robot: at a Workshop or with a mechanic on hand"}
+steps:
+  - if: "@who.status == 'dead'"
+    then:
+      - stop: "{@who.name} is dead."
+  - if: "'deprived' in @who.conditions and not ('flung-clear' in @who.conditions) and not ('bleeding-out' in @who.conditions)"
+    then:
+      - stop: "{@who.name} is Deprived and can't recover until the lack is remedied (`didact do relieve who={@who.id}`)."
+  - if: "default(@who.kind, 'human') == 'robot' and not @workshop"
+    then:
+      - stop: "Doctors don't fix {@who.name}, mechanics do: a robot's long rest restores its attributes only at a Workshop or with a mechanic on hand (workshop=true)."
+  - if: "@cost > default(@who.caps, 0)"
+    then:
+      - stop: "{@who.name} has {default(@who.caps, 0)} caps; the care costs {@cost}."
+  - if: "@cost > 0"
+    then:
+      - set: who.caps
+        op: "-="
+        value: "@cost"
+  - if: "'bleeding-out' in @who.conditions"
+    then:
+      - do: scar-heal
+        with: {who: "@who", scar: bleeding-out}
+  - if: "'flung-clear' in @who.conditions"
+    then:
+      - do: scar-heal
+        with: {who: "@who", scar: flung-clear}
+  - if: "'crippled' in @who.conditions"
+    then:
+      - do: scar-heal
+        with: {who: "@who", scar: crippled}
+  - set: who.STR
+    value: "@who.STR.max"
+  - set: who.DEX
+    value: "@who.DEX.max"
+  - set: who.WIL
+    value: "@who.WIL.max"
+  - if: "'critical' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: critical
+  - if: "'stabilized' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: stabilized
+  - if: "'paralyzed' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: paralyzed
+  - if: "'broken-mind' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: broken-mind
+  - message: "After a week's rest, {@who.name}'s attributes are restored ({@cost} caps)."
+  - if: "'broken-leg' in @who.conditions or 'broken-arm' in @who.conditions or 'broken-rib' in @who.conditions or 'broken-jaw' in @who.conditions or 'rad-necrotic-wound' in @who.conditions or 'burst-eardrums' in @who.conditions"
+    then: ["Scars that heal when the fiction says (a limb mended — a Doctor's bag during the rest mends one Broken Scar —, a wound cleared by RadAway, an auto-doc or an antibiotic, extraordinary aid for the ears): `didact do scar-heal who={@who.id} scar=…` (conditions: {@who.conditions})."]
+  - if: "@who.type == 'pc' and default(@who.rad_scar_count, 0) >= 3 and default(@who.kind, 'human') <> 'ghoul' and not ('rad-scars' in default(@who.immunities, ''))"
+    then:
+      - message: "{@who.name} carries three Rad Scars: the long rest brings the ghoulification roll."
+      - do: ghoulify
+        with: {who: "@who"}
+  - reminder: "A long rest is also when an unattached second companion drifts away (players-guide/companions). A week has passed: `didact time advance 1 week`."
+  - do: coins
+    with: {who: "@who"}
+    go_on: true
+source: players-guide/core-rules#time-units--rest
+---
+action: clinic
+title: Medical clinic visit
+help: >-
+  A medical clinic visit (80 caps): full STR restoration, one Scar treatment, and a rad flush that
+  clears all Rads. Doctors don't fix robots, and a Deprived patient recovers nothing until the
+  lack is remedied (core-rules#deprivation--rads). cost=0 where it's free; scar=<condition>
+  treats one healing Scar (`scar-heal`).
+params:
+  who: ref
+  cost: {kind: int, default: 80, help: "Caps for the visit"}
+  scar: {kind: text, optional: true, help: "The healing Scar the doctor treats: broken-leg, rad-necrotic-wound, …"}
+steps:
+  - if: "default(@who.kind, 'human') == 'robot'"
+    then:
+      - stop: "No medical clinics for robots: doctors don't fix {@who.name}, mechanics do (a Tinker, a Brotherhood Initiate, a Rust Devil, or a mechanic at a Workshop: 1d6 STR a repair)."
+  - if: "'deprived' in default(@who.conditions, '')"
+    then:
+      - stop: "{@who.name} is Deprived: no STR comes back and no Rad is flushed until the lack is remedied (`didact do relieve who={@who.id}` once the need is met, then the visit). A dying patient can still be stabilized: `didact do stabilize who={@who.id}`."
+  - if: "@cost > default(@who.caps, 0)"
+    then:
+      - stop: "{@who.name} has {default(@who.caps, 0)} caps; the visit costs {@cost}."
+  - if: "@cost > 0"
+    then:
+      - set: who.caps
+        op: "-="
+        value: "@cost"
+  - set: who.STR
+    value: "@who.STR.max"
+  - if: "default(@who.rads, 0) > 0"
+    then:
+      - set: who.rads
+        value: 0
+  - message: "The clinic restores {@who.name}'s STR to {@who.STR.max} and flushes every Rad ({@cost} caps)."
+  - if: "default(@scar, '') <> ''"
+    then:
+      - do: scar-heal
+        with: {who: "@who", scar: "$scar"}
+    else: ["One Scar treatment comes with the visit: `didact do scar-heal who={@who.id} scar=…` for a Scar still healing (conditions: {@who.conditions})."]
+  - do: coins
+    with: {who: "@who"}
+    go_on: true
+source: players-guide/marketplace#medical
+---
+action: stabilize
+title: Stabilize
+help: >-
+  A PC with Critical Damage can only crawl and gasp, and dies within the hour untreated; Bleeding
+  Out kills in an hour without aid. Bandages, a Stimpak or an auto-doc stabilize them (a
+  background's medkit heals as a Stimpak, so its use does too): out of danger, but out of action
+  until a long rest (`recover`). The aid is spent from the inventory of whoever gives it (by=),
+  else from the patient's own. A body no Stimpak works on (a deathclaw's, a robot's) takes
+  bandages or an auto-doc.
+params:
+  who: ref
+  aid: {enum: [bandages, Stimpak, Medi-Kit, Followers Medical Kit, Combat Medkit, auto-doc], default: bandages, help: "What stabilizes them"}
+  by: {kind: ref, optional: true, help: "Who gives the aid: it comes out of their inventory (else the patient's)"}
+steps:
+  - if: "'stabilized' in @who.conditions and not ('critical' in @who.conditions)"
+    then:
+      - stop: "{@who.name} is already stabilized."
+  - if: "not ('critical' in @who.conditions) and not ('bleeding-out' in @who.conditions)"
+    then:
+      - stop: "{@who.name} isn't dying: there's nothing to stabilize."
+  - if: "@aid <> 'bandages' and @aid <> 'auto-doc' and ('stimpaks' in default(@who.immunities, '') or 'chems' in default(@who.immunities, '') or default(@who.kind, 'human') == 'deathclaw' or default(@who.kind, 'human') == 'robot')"
+    then:
+      - stop: "No Stimpak works on {@who.name}, nor a kit that heals as one: bandages or an auto-doc stabilize them."
+  - if: "'critical' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: critical
+  - set: who.conditions
+    op: "+="
+    value: stabilized
+  - let: {with: "if(@aid == 'bandages', 'bandages', if(@aid == 'auto-doc', 'an auto-doc', if(@aid == 'Stimpak', 'a Stimpak', if(@aid == 'Medi-Kit', 'a Medi-Kit', if(@aid == 'Combat Medkit', 'a Combat Medkit', 'a Followers Medical Kit')))))"}
+  - message: "With {@with}, {@who.name} stabilizes: out of danger, but in recovery until a long rest (`didact do recover who={@who.id}`)."
+  - if: "@aid <> 'auto-doc'"
+    then:
+      - do: spend-item
+        with: {who: "{if(default(@by, '') <> '', @by, @who.id)}", item: $aid}
+  - reminder: "The hour's reminder can go: `didact remind --cancel '{@who.name} dies'`."
+source: players-guide/core-rules#critical-damage
+---
+action: spend-item
+title: Spend a carried item
+help: >-
+  What a rule uses up (a dose, a bandage, a Ration's use, a medkit's use, a magazine read): one
+  use of the item, as `didact inv use` spends it, the last use taking it away; a thing with no
+  uses goes whole, as `inv drop` takes it. Of several of that name, the first with a use left.
+  One that isn't carried spends nothing, and the line says so: it was found, bought or handed
+  over on the spot. The chem, consume, stabilize, make-camp and read-magazine rules run it.
+params:
+  who: {kind: ref, help: "Whose inventory it comes out of"}
+  item: {kind: text, help: "The item, as `inv` names it"}
+  spend: {kind: int, default: 1, help: "Uses it takes (a deathclaw's meal: two of a Ration's)"}
+steps:
+  # What `inv` finds by a part of its name counts only when it is that thing: "Fixer" finds
+  # "Addictol / Fixer" and "Beer" finds "Beer / gut-rot", but "Stimpak" never finds a Super Stimpak.
+  - let: {found: "default(@{who.inventory.$item.name}, '')"}
+  - if: "@found <> '' and not (@item in @found and @found in @item) and not (' / ' in @found or ', ' in @found)"
+    then:
+      - let: {found: "''"}
+  - if: "@found == ''"
+    then: ["{@who.name} carries no $item: nothing is spent (`didact inv add {@who.id} '$item'` first, if they have it)."]
+    else:
+      - if: "default(@{who.inventory.$item.uses}, '') == '' and default(@{who.inventory.$item.charges}, '') == ''"
+        then:
+          - take: $item
+            from: "@who"
+        else:
+          - repeat: "@spend"
+            steps:
+              - if: "default(@{who.inventory.$item.name}, '') <> ''"
+                then:
+                  - use: $item
+                    from: "@who"
+                else: ["{@who.name} has no more $item to spend."]
+source: players-guide/character-creation#4-inventory
+---
+action: relieve
+title: Need met
+help: A Deprived character's need is met; they can recover HP, attributes, Fatigue and Rads again.
+params: {who: ref}
+steps:
+  - if: "not ('deprived' in @who.conditions)"
+    then:
+      - stop: "{@who.name} isn't Deprived."
+  - set: who.conditions
+    op: "-="
+    value: deprived
+  - set: who.deprived_days
+    value: 0
+  - message: "{@who.name} is no longer Deprived."
+  - if: "'flung-clear' in @who.conditions or 'bleeding-out' in @who.conditions"
+    then: ["A Scar still heals: `didact do scar-heal who={@who.id} scar=…` when it does."]
+source: players-guide/core-rules#deprivation--rads
+---
+action: coins
+title: Caps weight
+help: >-
+  A small pouch of caps (under 100) is petty and takes no slot. At 100 caps or more they take
+  room (the coin-weight option: one slot, or one for each full 100). Run it after the caps
+  change; the pack's own rules that spend caps do.
+params: {who: ref}
+steps:
+  - let:
+      slots: "if(@option.coin_weight == 'off', 0, if(@option.coin_weight == 'per-100', default(@who.caps, 0) // 100, if(default(@who.caps, 0) >= 100, 1, 0)))"
+      had: "default(@who.purse, 0)"
+  - if: "@slots - @had > @who.inventory.free"
+    then:
+      - stop: "{@who.name}'s {default(@who.caps, 0)} caps need {@slots} slot(s) and there is no room: drop an item (`didact inv drop {@who.id} <item>`), leave some caps behind, then `didact do coins who={@who.id}`."
+  - if: "@slots <> @had"
+    then:
+      - set: who.purse
+        value: "@slots"
+  - if: "@slots == 0"
+    then: ["{@who.name}'s {default(@who.caps, 0)} caps are petty: no slot."]
+    else: ["{@who.name}'s {default(@who.caps, 0)} caps take {@slots} slot(s)."]
+source: players-guide/character-creation#4-inventory
+---
+action: make-camp
+title: Make camp
+help: >-
+  The last watch of the day: each PC (and their mounts) eats a Ration, a watch rotation is set,
+  and a full night's safe sleep clears all Fatigue (and HP comes back). It never clears Rads.
+  The Ration's use is spent from the PC's pack (a deathclaw's meal costs two; ration= a meal
+  that stands in for one, a Vault-Tec ration pack's; truck=true: in the back of a pre-war truck
+  the camp costs no Ration). Robots don't eat or sleep: an hour of diagnostics in a safe place
+  clears their Fatigue. An interrupted night, or a Deprived character, recovers nothing.
+params:
+  who: ref
+  interrupted: {kind: flag, default: false, help: "More than a minor interruption: no benefit"}
+  ration: {kind: text, default: Rations, help: "What they eat: Rations, or a meal that stands in for a Ration's use"}
+  truck: {kind: flag, default: false, help: "Camping in the back of a pre-war truck: no Ration"}
+steps:
+  - if: "default(@who.kind, 'human') == 'robot'"
+    then:
+      - if: "@interrupted"
+        then:
+          - stop: "{@who.name}'s diagnostics were interrupted: no Fatigue comes off."
+      - set: who.fatigue
+        value: 0
+      - message: "{@who.name} runs an hour of diagnostics in a safe place: all Fatigue cleared (once a day)."
+      - if: "@who.inventory.free > 0 and not ('panicked' in @who.conditions)"
+        then:
+          - set: who.hp
+            value: "@who.hp.max"
+      - stop: "No Ration and no sleep for a robot."
+  - if: "@truck"
+    then: ["In the back of the pre-war truck: the camp costs {@who.name} no Ration."]
+    else:
+      - if: "default(@{who.inventory.$ration.name}, '') <> ''"
+        then:
+          - do: spend-item
+            with: {who: "@who", item: $ration, spend: "{if(default(@who.kind, 'human') == 'deathclaw', 2, 1)}"}
+        else: ["{@who.name} has no $ration: no meal tonight (a day without food Deprives them: `didact do deprive who={@who.id} need=food`)."]
+  - reminder: "A mount eats a Ration too, from whoever carries its feed (animal feed counts as one). Set a watch rotation; a small party sleeps unguarded or splits shifts across nights."
+  - if: "@interrupted"
+    then:
+      - stop: "{@who.name}'s sleep was ruined: no Fatigue comes off tonight. (Skipping sleep: `didact do skip-camp who={@who.id}`.)"
+  - if: "'deprived' in @who.conditions"
+    then:
+      - stop: "{@who.name} is Deprived: no Fatigue comes off and no HP comes back tonight. (Deprived only of sleep? This camp meets the need: `didact do relieve who={@who.id}` first.)"
+  - set: who.fatigue
+    value: 0
+  - if: "@who.inventory.free > 0 and not ('panicked' in @who.conditions)"
+    then:
+      - set: who.hp
+        value: "@who.hp.max"
+      - message: "{@who.name} sleeps safely: Fatigue cleared, HP restored. (Rads stay.)"
+    else: ["{@who.name} sleeps safely: Fatigue cleared (HP stays at 0: a full inventory or panic). Rads stay."]
+source: players-guide/procedures#make-camp
+---
+action: skip-camp
+title: Skip sleep
+help: >-
+  A PC who skips sleep adds a Fatigue and becomes Deprived, and the terrain's Difficulty goes up
+  a step for the party (travel-time sleepless=true). Robots never sleep and are never Deprived
+  for lack of it.
+params: {who: ref}
+steps:
+  - if: "default(@who.kind, 'human') == 'robot'"
+    then:
+      - stop: "{@who.name} doesn't sleep: no Fatigue, no deprivation (diagnostics once a day clear its Fatigue)."
+  - message: "{@who.name} skips sleep: a Fatigue, and Deprived of sleep."
+  - do: deprive
+    with: {who: "@who", need: sleep}
+    go_on: true
+  - reminder: "Travelling without sleep raises the terrain Difficulty a step: `didact do travel-time … sleepless=true`."
+  - do: fatigue
+    with: {who: "@who"}
+source: players-guide/procedures#sleep
+---
+action: reaction
+title: Reaction
+help: >-
+  Roll 2d6 for a stranger whose mood is unclear and keep it on their sheet: 2 Hostile, 3–5 Wary,
+  6–8 Curious, 9–11 Kind, 12 Helpful. Party karma adds its value to strangers' rolls
+  (party=<record>, or karma=n); shift=±n moves the result that many steps on the ladder (Day
+  Tripper, a Zetan's first meeting, a perk), clamped at its ends.
+params:
+  who: ref
+  party: {kind: ref, optional: true, help: "The party record, for its karma"}
+  karma: {kind: int, optional: true, help: "Party Karma, −3 to +3, when there's no party record"}
+  stranger: {kind: flag, default: true, help: "A stranger: karma applies (not to faction encounters)"}
+  shift: {kind: int, default: 0, help: "Steps better (+) or worse (−) on the ladder"}
+steps:
+  - let: {k: "if(@stranger, default(@karma, default(@party.karma, 0)), 0)"}
+  - table: reactions
+    with: {karma: "@k"}
+    as: rolled
+  - let: {rung: "if(@rolled == 'Hostile', 0, if(@rolled == 'Wary', 1, if(@rolled == 'Curious', 2, if(@rolled == 'Kind', 3, 4))))"}
+  - let: {moved: "max(0, min(4, @rung + @shift))"}
+  - let: {reaction: "if(@moved == 0, 'Hostile', if(@moved == 1, 'Wary', if(@moved == 2, 'Curious', if(@moved == 3, 'Kind', 'Helpful'))))"}
+  - set: who.disposition
+    value: "@reaction"
+  - if: "@k <> 0"
+    then: ["Party karma {@k} on the roll."]
+  - if: "@shift <> 0"
+    then: ["Shifted {@shift} step(s): {@rolled} → {@reaction}."]
+  - message: "{@who.name} is {@reaction}."
+source: players-guide/core-rules#reactions
+---
+action: cast
+title: No spells here
+help: "Fallout 2e has no spells: Perk Magazines replace spellbooks and chems replace scrolls."
+params:
+  who: {kind: ref, optional: true}
+  spell: {kind: text, optional: true}
+steps:
+  - stop: "Fallout 2e has no spells. Perk Magazines replace spellbooks (`didact do read-magazine`) and chems replace scrolls (`didact do chem`)."
+source: README#what-changed-from-cairn
+---
+trigger: fight-over
+title: The fight is over
+help: >-
+  When a fight ends (`didact combat end`), what lasts one combat comes off every PC: Psycho and
+  Overdrive, and the once-per-combat uses (the Command action) are fresh again.
+on: combat_end
+for: pcs
+params: {who: ref}
+when: "count(@who.once_per_combat) > 0 or 'psycho' in @who.conditions or 'overdrive' in @who.conditions"
+steps:
+  - if: "count(@who.once_per_combat) > 0"
+    then:
+      - set: who.once_per_combat
+        value: []
+  - if: "'psycho' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: psycho
+      - message: "The fight is over: {@who.name}'s Psycho wears off."
+  - if: "'overdrive' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: overdrive
+      - message: "The fight is over: {@who.name}'s Overdrive wears off."
+source: players-guide/companions#the-command-action
+---
+action: faction-turn
+title: A faction's turn
+help: >-
+  Fallout 2e has no faction roll: between sessions the Overseer decides what each faction pushing
+  on the party did toward its agenda, shows it in the world, and ticks its clock if it has one.
+params: {who: ref}
+steps:
+  - prompt: "What did {@who.name} do toward its agenda ({default(@who.agenda, 'unknown')}) since the party last saw it? Show it in the world: a rumor, a patrol, a new face. If it has a clock, tick it: `didact track tick <clock>`."
+  - if: "default(@who.reputation, 0) <> 0"
+    then: ["The party stands at {@who.reputation} with {@who.name} (`didact do reputation who={@who.id}` when that changes)."]
+source: overseers-guide/getting-started#prep-checklist-per-session

@@ -1,0 +1,24 @@
+# Dark Brotherhood Assassin (backgrounds/dark-brotherhood-assassin): the background's two d6 tables.
+table: dark-brotherhood-assassin-1
+title: "How did the Family claim you?"
+dice: d6
+source: backgrounds/dark-brotherhood-assassin#how-did-the-family-claim-you-roll-1d6
+entries:
+  1: "You were a foundling raised in a Sanctuary, and its silences were your first language. Once per day, re-roll a failed DEX save to move unseen or unheard."
+  2: {text: "You found a Black Sacrament in a burned farmhouse — the circle of candles, the heart and skull, the nightshade — and finished what its dead petitioner had begun. The Family came to see who had done their work for them. Take the Sacrament dagger (d6), still stained dark with nightshade.", data: {gear: [{name: "Sacrament dagger", damage: "d6"}]}}
+  3: "You hear a woman's whisper at the edge of sleep, as only the Listener should — or you think you do. Once per session, ask the Warden one yes-or-no question about someone you mean to kill; the answer is always true."
+  4: {text: "You carried writs for the Morag Tong in Morrowind before you went over to the Brotherhood, the Tong's oldest rival. Take a writ of execution (petty) bearing a name you never crossed out. The Tong would like a word about that, and about you.", data: {gear: [{name: "Writ of execution", size: "petty"}]}}
+  5: {text: "You slipped a noose laid by the Penitus Oculatus and took an agent's cipher-map of Imperial safehouses (petty) as you went. There is a standing price on your head in every Imperial Hold.", data: {gear: [{name: "Cipher-map of Imperial safehouses", size: "petty"}]}}
+  6: {text: "An old killer trained you for years, then named your final test: them. Take their twin daggers (d6+d6, bulky) and the weight of what you did to earn them.", data: {gear: [{name: "Twin daggers", damage: "{d6, d6}kh1", size: "bulky"}]}}
+---
+table: dark-brotherhood-assassin-2
+title: "What is your craft?"
+dice: d6
+source: backgrounds/dark-brotherhood-assassin#what-is-your-craft-roll-1d6
+entries:
+  1: "Coldblood: You strike where the armor isn't. Your attack on a foe who does not know you are there ignores its Armor."
+  2: {text: "Slow Poison: A vial of the Family's slow poison (3 uses). Slipped into food or drink, or coated on a blade, it does nothing at all — until an hour later, when the victim must pass a STR save or collapse, taking 1d6 STR. By then you are long gone.", data: {gear: [{name: "Slow Poison", uses: 3}]}}
+  3: {text: "Black Hood: A plain black hood (petty). While you wear it in dim light or a crowd, witnesses can describe what you did, but never your face.", data: {gear: [{name: "Black Hood", size: "petty"}]}}
+  4: "The Listener's Ear: You read lips and catch a whisper across a crowded room. The Warden tells you what the people you are watching say, if they could be overheard at all."
+  5: "The Void's Regard: Once per day, fix a single foe with the stare of Sithis: it must pass a WIL save or flee from you on its next turn, or cower if it cannot flee."
+  6: {text: "Garrote and Sack: A wire garrote and a heavy sack: the tools of a quiet abduction. A foe you take unaware from behind cannot cry out while you struggle with it.", data: {gear: [{name: "Wire garrote"}, {name: "Heavy sack"}]}}

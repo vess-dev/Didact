@@ -1,0 +1,187 @@
+# Rule reminders: they come up when play mentions their keys (system scope, every Cairn game).
+lore: warden-principles
+title: Principles for Wardens
+kind: preference
+constant: true
+priority: 90
+content: >-
+  Cairn Warden: give information freely (no rolls to learn about circumstances); default to
+  context over mechanics; saves only for real risk; telegraph serious danger, the more deadly
+  the more obvious; NPCs remember and don't want to die; treasure tells a story; offer clear
+  "A or B?" choices when intentions are vague; death is never random or without warning.
+source: players-guide/overview-and-principles#principles-for-wardens
+---
+lore: saves-reminder
+keys: [save, risky, risk]
+kind: rule-reminder
+recursive: false
+content: "Cairn saves: d20 at or under the attribute; 1 always succeeds, 20 always fails. Only the character most at risk saves; state the risk first."
+source: players-guide/core-rules#saves
+---
+lore: first-round
+keys: [ambush, combat starts, fight breaks out, initiative]
+kind: rule-reminder
+recursive: false
+content: "Cairn combat's first round: each PC saves DEX to act (a failure loses the turn; a panicked PC doesn't act); then the opponents act. Afterward sides alternate, PCs first; results are simultaneous."
+source: players-guide/core-rules#rounds
+---
+lore: attack-reminder
+keys: [attack, strike, stab, shoot, hit]
+kind: rule-reminder
+recursive: false
+content: "Cairn attacks always hit: roll the weapon die, minus armor, off HP (`didact do attack` / `combat hit`). Several attackers or two weapons (the book's d8+d8): roll all, keep the highest: weapon='{d8, d8}kh1'. Impaired: d4 (panicked attackers, cover, bound hands, very distant targets); enhanced: d12; unarmed: always d4; blast rolls per target. A helpless or unaware target takes it straight to STR (direct=true)."
+source: players-guide/core-rules#attacking--damage
+---
+lore: armor-cap
+keys: [armor, shield, helmet, chainmail, plate]
+kind: rule-reminder
+recursive: false
+content: "Cairn armor never goes above 3. Shields and helmets add +1 only while held or worn: stowed in the backpack they don't count (`didact inv move <pc> Shield backpack`, and back to `body`)."
+source: players-guide/core-rules#armor
+---
+lore: critical-reminder
+keys: [critical damage, dying, bleeding out, bandage, bandages]
+kind: rule-reminder
+recursive: false
+content: "Cairn critical damage: damage past 0 HP comes off STR, then a STR save with the new score. A PC who fails can only crawl; with aid they stabilize (`didact do stabilize who=…`), untreated they die within the hour. NPCs who fail die; the attacker's own critical effect happens too. A doomed PC's next critical save decides: fail and they die, pass and 3d6 against max HP."
+source: players-guide/core-rules#critical-damage
+---
+lore: scar-reminder
+keys: [scar, scars]
+kind: rule-reminder
+recursive: false
+content: "Cairn scars: when an attack takes a PC to exactly 0 HP, the HP lost picks the scar and it applies at once (the attack runs `didact do scar who=… lost=N`). Wounds that heal later are conditions: `didact do scar-heal who=… scar=broken-leg` when they do (recover heals walloped, hamstrung and a mortal wound)."
+source: players-guide/core-rules#scars
+---
+lore: inventory-reminder
+keys: [inventory, slots, bulky, petty, backpack, carry, coins, purse]
+kind: rule-reminder
+recursive: false
+content: "Cairn inventory: 10 slots: four or five carried comfortably (body), the backpack's six. Bulky items take 2, petty ones none; Fatigue fills slots too. A full inventory (all 10) drops HP to 0; nobody can carry more than 10. Coins under 100gp are petty: after the gold changes, `didact do coins who=…`. A mount or cart carries its own load."
+source: players-guide/character-creation#inventory
+---
+lore: fatigue-reminder
+keys: [fatigue, exhausted, exhaustion, tired]
+kind: rule-reminder
+recursive: false
+content: "Cairn Fatigue fills an inventory slot until a full night's rest somewhere safe (`didact do fatigue who=…`). No free slot? Drop an item first. Deprived characters can't shed it."
+source: players-guide/core-rules#deprivation--fatigue
+---
+lore: deprivation-reminder
+keys: [deprived, hungry, starving, thirsty, sleepless, no sleep]
+kind: rule-reminder
+recursive: false
+content: "Cairn deprivation: lacking a crucial need makes a character deprived; they can't recover HP, attributes or Fatigue, and gain a Fatigue for each day beyond the first. Count each day with `didact do deprive who=… need=food`; `didact do relieve who=…` when it's met."
+source: players-guide/core-rules#deprivation--fatigue
+---
+lore: light-reminder
+keys: [torch, lantern, light, darkness, dark]
+kind: rule-reminder
+recursive: false
+content: "Cairn light: a torch lights 40ft and can be lit 3 times; a lantern relights 6 times per oil can. Without light, characters may panic."
+source: players-guide/procedures#light
+---
+lore: panic-reminder
+keys: [panic, panicked, surrounded, terrified]
+kind: rule-reminder
+recursive: false
+content: "Cairn panic: a WIL save or panicked (0 HP, no action in the first round, impaired attacks). Overcoming it takes an action and a WIL save."
+source: players-guide/procedures#panic
+---
+lore: spell-reminder
+keys: [spell, spellbook, cast, casting, scroll]
+kind: rule-reminder
+recursive: false
+content: "Cairn magic: casting from a spellbook takes both hands and adds a Fatigue (`didact do cast who=… spell=…`); deprived or in danger, a WIL save. Given time and safety, a spell can be enhanced at no extra cost. Scrolls are petty, cause no Fatigue and vanish after one use (scroll=true)."
+source: players-guide/core-rules#magic
+---
+lore: relic-reminder
+keys: [relic, relics, charges, recharge]
+kind: rule-reminder
+recursive: false
+content: "Cairn relics cause no Fatigue, have limited charges, and a recharge condition (`didact inv use` / `inv recharge`)."
+source: players-guide/core-rules#relics
+---
+lore: morale-reminder
+keys: [flee, morale, rout, surrender, casualty]
+kind: rule-reminder
+recursive: false
+content: "Cairn morale: enemies save WIL at their first casualty and at half strength (`didact do morale who=… leader=… or wil=…` for groups that use their leader's WIL); lone foes at 0 HP. Morale never affects PCs."
+source: players-guide/core-rules#morale
+---
+lore: travel-reminder
+keys: [travel, journey, road, trail, wilderness, lost]
+kind: rule-reminder
+recursive: false
+content: "Cairn travel: days are three watches. Trails +1 watch (lost 2-in-6), wilderness +2 (lost 3-in-6); distance short +1, medium +2, long +3; tough terrain +1, perilous +2; especially vast terrain up to +2; sleep-deprived, the terrain is a step harder; mounts, guides and maps can save watches (`didact do travel-time`)."
+source: players-guide/procedures#travel-duration
+---
+lore: weather-reminder
+keys: [weather, storm, snow, rain, blizzard]
+kind: rule-reminder
+recursive: false
+content: "Cairn weather: roll each day for the season (`didact do weather season=…`; a new day reminds you); Extreme twice in a row turns Catastrophic."
+source: players-guide/procedures#weather
+---
+lore: camp-reminder
+keys: [camp, make camp, sleep, night watch]
+kind: rule-reminder
+recursive: false
+content: "Cairn camp: the last watch of the day. Everyone (and every mount) eats a Ration; a lookout is set; those who rest safely clear all Fatigue (`didact do make-camp who=…`). Skipping it: a Fatigue each and deprived (`didact do skip-camp who=…`), and sleep-deprived travel makes terrain a step harder."
+source: players-guide/procedures#make-camp
+---
+lore: hireling-reminder
+keys: [hireling, hirelings, hire, mercenary, porter]
+kind: rule-reminder
+recursive: false
+content: "Cairn hirelings: a role and daily wage (Marketplace), 3d6 attributes, 1d6 HP, gear for their station, the trait tables (`didact char new hireling`); or a background, its tables, Rations, gold, attributes, HP and age (`didact char new hireling-background`)."
+source: players-guide/core-rules#hirelings
+---
+lore: detachment-reminder
+keys: [detachment, horde, army, mob, squad]
+kind: rule-reminder
+recursive: false
+content: "Cairn detachments: a group fighting as one. Individuals' attacks against it are impaired (blast excepted); its attacks against individuals are enhanced and blast. Critical damage routs it; 0 STR destroys it."
+source: players-guide/core-rules#detachments
+---
+lore: retreat-reminder
+keys: [retreat, run away, escape, flee the fight]
+kind: rule-reminder
+recursive: false
+content: "Cairn retreat: running from a dire situation always takes a DEX save and a safe destination to run to (`didact do retreat who=…`)."
+source: players-guide/core-rules#retreat
+---
+lore: rest-reminder
+keys: [rest, catch their breath, short rest, recover, healer]
+kind: rule-reminder
+recursive: false
+content: "Cairn healing: a few moments' rest and a drink restore all HP (`didact do rest who=…`), unless deprived, panicked or carrying a full load; in a dungeon it takes a turn, a light and a safe spot, and restores no Fatigue. A week's rest with a healer (50gp) restores attributes (`didact do recover who=…`)."
+source: players-guide/core-rules#healing--recovery
+---
+lore: growth-reminder
+keys: [growth, grow, trigger, advance, level up, experience, xp]
+kind: rule-reminder
+recursive: false
+content: "Cairn growth: no XP. A trigger needs two of a focused pattern of behavior, an obvious risk, and a unique item, creature or entity; a resolved bond or omen, Downtime work and scars bring change too. The change is permanent and related, often with a cost: `didact char advance <pc>` (step by step), then `char commit`."
+source: wardens-guide/growth#triggers-a-framework-for-growth
+---
+lore: bonds-omens-reminder
+keys: [bond, bonds, omen, omens, resolve]
+kind: rule-reminder
+recursive: false
+content: "Cairn bonds and omens are threads (`didact quest list`). Resolving a bond (the truth found, the root cause solved) brings growth and maybe a new bond: `didact do resolve-bond who=… bond=<thread>`. Resolving an omen brings growth to the party or an entangled PC: `didact do resolve-omen omen=<thread>`; ignored, it comes to pass."
+source: wardens-guide/bonds-and-omens#bonds
+---
+lore: downtime-reminder
+keys: [downtime, research, training, milestone, milestones, between sessions]
+kind: rule-reminder
+recursive: false
+content: "Cairn downtime: one action at a time, somewhere safe, not in recovery. Research (a question and a Source), training (a skill and a Master) or strengthening ties (an NPC or faction and an intent); 1-5 Milestones, each with a Cost (`didact do downtime who=… goal='…' gold=… milestones=<tracker>`)."
+source: players-guide/procedures#downtime
+---
+lore: mount-reminder
+keys: [horse, mule, donkey, cart, wagon, mount, pack animal]
+kind: rule-reminder
+recursive: false
+content: "Cairn transport: a horse carries +4 slots, a mule +6 (slow), a cart +4 (bulky: pulled with both hands), a wagon +8 (slow). Each is a record of its own holding its load (`didact spawn horse`, then `didact inv add horse Rope`); mounts eat a Ration at camp."
+source: players-guide/marketplace#transport

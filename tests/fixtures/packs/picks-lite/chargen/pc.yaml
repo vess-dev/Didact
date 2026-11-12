@@ -1,0 +1,12 @@
+# A hero made in parts: two traits picked at once, scores bought with a budget, a gift and a
+# knack that say what they mean, and a name.
+chargen: pc
+title: A hero
+creates: pc
+modes: [random, guided]
+steps:
+  - choose: {from: [brave, quiet, rash, stubborn], as: traits, count: 2, field: traits, prompt: "two you are"}
+  - point_buy: {fields: [might, wit], budget: 5, costs: {0: 0, 1: 1, 2: 2, 3: 4}, as: scores, default: random}
+  - choose_or_roll: {table: gifts, as: gift, field: gift}
+  - choose: {from: [quick-hands, keen-eye], as: knack, field: knack}
+  - name: {from: [Wren, Ash]}

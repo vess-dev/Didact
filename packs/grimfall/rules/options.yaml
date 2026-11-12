@@ -1,0 +1,201 @@
+# Options & Dials (Chapter 10), with Chapter 2's slower road, Chapter 9's Wild Wasteland dial and
+# solo guardrails, and Chapter 6's chem stash. Everything is off unless the table turns it on at
+# session zero, except caps and stimpaks, which are on by default. Each option of the parent's that
+# Grimfall has too is replaced here in Grimfall's words (same id); the parent's options Grimfall
+# doesn't have (magic, lasting marks, random vex, random bonds, vigor pool, wealth, expanded
+# downtime: Grimfall's downtime actions are always on) are hidden (pack.yaml).
+# The flavors of the wasteland imply the dials they name, and what an option implies is followed all
+# the way: grim survival's deadlier lethality brings its 2d stimpaks, pulp heroics' softer lethality
+# its Softer stimpaks. Wild Wasteland is a dial of its own.
+option: lethality
+title: "Tone dial: lethality"
+ask: "How lethal should the wasteland be: softer, standard, or deadlier?"
+choices:
+  softer: "Softer: low stakes often, even in fights against weak foes; dropped = a 3d story roll; permanent conditions are rare; stimpaks flow (the Softer stimpak dial)."
+  standard: "As the book has it: regular stakes unless declared; dropped = a 2d story roll."
+  deadlier: "Deadlier: high and dire stakes often; a desperate survivor also carries an urgent condition (4d Bleeding Out); dropped = a 1d story roll; no coming back; stimpaks at 2d."
+default: standard
+implies:
+  softer: {stimpaks: softer}
+  deadlier: {stimpaks: grimmer-2d}
+source: options-and-dials/tone-dials#lethality
+---
+option: scale
+title: "Tone dial: scale"
+ask: "The scale of the game: standard, smaller, or larger?"
+choices:
+  standard: "As the book has it."
+  smaller: "Smaller: more rolls are risky or impossible, mooks are rare and every foe is a threat, and levels cap at 3 (swap perks at story milestones instead: `didact do switch-perk`). Keep stat progression out of small-scale games."
+  larger: "Larger: fewer rolls are risky, mooks are waded through and toughs fall a few at a time, survivors start at level 3, and bosses have a secret to overcome, not just a bigger pool."
+default: standard
+source: options-and-dials/tone-dials#scale
+---
+option: flavor
+title: "Flavors of the wasteland"
+ask: "Point the dials at a subgenre: classic, grim survival, pulp heroics, frontier western, or weird science?"
+choices:
+  classic: "The classic mix: grim survival on the surface, absurd comedy in the cracks, and old-world sadness underneath. No dial turned."
+  grim-survival: "Grim survival: deadlier lethality, supplies, and focused growth."
+  pulp-heroics: "Pulp heroics: softer lethality and the larger scale."
+  frontier-western: "Frontier western: the smaller scale, with factions front and center."
+  weird-science: "Weird science: dangerous tech, and Wild Wasteland on."
+default: classic
+implies:
+  grim-survival: {lethality: deadlier, supplies: true, focused-growth: true}
+  pulp-heroics: {lethality: softer, scale: larger}
+  frontier-western: {scale: smaller}
+  weird-science: {dangerous-tech: true, wild-wasteland: true}
+source: "options-and-dials/tone-dials#flavors-of-the-wasteland; war-never-changes/the-tone-dial"
+---
+option: dangerous-tech
+title: "Tone dial: dangerous tech"
+kind: flag
+ask: "Does weird tech bite back (a device roll with two or more 1s misfires)?"
+help: "Weird tech bites back: any device roll with two or more 1s, thorns included, misfires: a 1d story roll for the collateral, a dark omen (the GM takes suspense), or a roll of a 6d Corruption pool (at 0d, a trait, desire, bond, or look turns for the worse). `didact do action … device`, `didact do device`."
+source: options-and-dials/tone-dials#dangerous-tech
+---
+option: wild-wasteland
+title: "Wild Wasteland"
+kind: flag
+ask: "Does the wasteland get weird (Wild Wasteland)?"
+help: "When things go strange (a critical on a story roll, a disaster in the middle of nowhere), roll a thorn (d8) on the Wild Wasteland crucible or choose (`didact table roll wild-wasteland`), and play it absolutely straight. The story roll and the disaster prompt it."
+source: running-the-wasteland/wild-wasteland
+---
+option: caps
+title: "Caps (on by default)"
+kind: flag
+ask: "Does every survivor carry a personal 4d Caps pool?"
+help: "Every survivor carries a personal 4d Caps power pool: roll it when you spend big (`didact do spend`), and drop 1d first for the huge asks; at 0d, you're broke; selling off a minor haul adds +2d, a major one +4d (max 8d). Off, money is pure vantage: walking-around cash is set dressing, and serious wealth moves only in hauls."
+default: true
+source: "options-and-dials/gear-and-survival#caps; surviving-the-wasteland/caps-and-barter"
+---
+option: stimpaks
+title: "Stimpaks (on by default)"
+ask: "Stimpaks: standard (a 3d pool each), grimmer (pick one: 2d; only yourself; or a single 3d pool the whole party shares), or softer?"
+choices:
+  standard: "A 3d Stimpaks pool per survivor clears one harm with a breather, on yourself or an ally."
+  grimmer-2d: "Grimmer: 2d Stimpaks pools."
+  grimmer-self: "Grimmer: only yourself (a jab for your own wounds, never an ally's)."
+  grimmer-shared: "Grimmer: a single 3d Stimpaks pool the whole party shares."
+  softer: "Softer: 4d, refilled by any real rest, and a jab into a dropped ally adds +1d to their story roll."
+default: standard
+source: "options-and-dials/gear-and-survival#stimpaks; surviving-the-wasteland/stimpaks"
+---
+option: chem-stash
+title: "A Chem Stash pool"
+kind: flag
+ask: "Count chems with a 2d Chem Stash resource pool, rather than as deep as the fiction says?"
+help: "Chems are finds, purchases, and a Chemist's fresh batches, never a bottomless pocket: a stash is as deep as the fiction says, or a 2d Chem Stash resource pool if your table would rather count. Roll it when a dose comes out of it."
+source: surviving-the-wasteland/chems
+---
+option: weapon-styles
+title: "Weapon styles"
+kind: flag
+ask: "Do signature weapons get two style descriptors?"
+help: "Give each signature weapon two descriptors (heavy, sweeping; quick, concealable; scoped, temperamental): vantage, not stats. Describe using them and the thorns follow (`didact gen run grimfall.weapon`)."
+source: options-and-dials/gear-and-survival#weapon-styles
+---
+option: armor
+title: "Armor"
+kind: flag
+ask: "Crunchier plate: do light and heavy armor give an Armor pool?"
+help: "Light armor gives a 1d Armor pool each session, heavy armor 2d (the Armory's heavy suits already have theirs): after a physical consequence lands, roll it to lessen the consequence, as a messy defense would (`didact do armor`). Light armor carries the Lightly Armored condition (it hinders movement); heavy carries Heavily Armored (loud, slow, and no swimming). Grit and Plating still avoid harm outright; Armor only lessens it."
+source: options-and-dials/gear-and-survival#armor
+---
+option: supplies
+title: "Supplies"
+kind: flag
+ask: "Survival-forward: does each survivor carry a 4d Supplies pool?"
+help: "Each survivor has a 4d Supplies resource pool (ammunition, rations, the little things): roll it after heavy use, and as time passes away from settlements; at 0d, hunger and thirst start writing the thorns."
+source: options-and-dials/gear-and-survival#supplies
+---
+option: encumbrance
+title: "Encumbrance"
+kind: flag
+ask: "Does encumbrance get teeth (2 + Brawn slots)?"
+help: "Normally common sense. With teeth: each survivor carries 2 + Brawn slots of gear beyond armor and main weapons; most gear takes a slot, small items half, and large or bulky ones two or more. Strong Back and Pack Rat laugh at this rule."
+source: options-and-dials/gear-and-survival#encumbrance
+---
+option: rest-resets
+title: "Rest resets"
+kind: flag
+ask: "Do per-session perks reset on a real rest instead of each session?"
+help: "Per-session perks reset on a real rest instead of each session. When the group rests: everyone takes spark, per-session perks and thread reset, some conditions fade, and the GM takes 2 suspense (`didact do rest`). Better for marathon sessions and West-Marches play."
+source: options-and-dials/pacing-and-growth#rest-resets
+---
+option: milestone-levels
+title: "Milestone levels"
+kind: flag
+ask: "Skip XP, and level when a group arc resolves meaningfully?"
+help: "Skip XP; the crew levels when a group arc resolves meaningfully (`didact char advance`)."
+source: options-and-dials/pacing-and-growth#milestone-levels
+---
+option: focused-growth
+title: "Focused growth"
+kind: flag
+ask: "Focused growth: double the road, with a bonus XP when a session hits the party concept dead-on?"
+help: "Slash XP boxes before filling them (double the road), but award a bonus XP when the session hits the party concept dead-on (`didact do experience who=… why=theme`)."
+source: options-and-dials/pacing-and-growth#focused-growth
+---
+option: slow-progression
+title: "A slower road"
+kind: flag
+ask: "A slower road: slash each XP box before filling it?"
+help: "For a slower road, slash each box before filling it: each level takes twice the XP (level 4 to 5: 10 XP)."
+source: the-core-engine/experience
+---
+option: level-zero
+title: "Level 0"
+kind: flag
+ask: "Start as vault kids and dirt farmers (level 0)?"
+help: "No Core Perk, 3 stat points instead of 4. The Core Perk and the last point arrive after the first session (1 XP: `didact char advance`), the wasteland's real character creation."
+source: options-and-dials/pacing-and-growth#level-0
+---
+option: stat-progression
+title: "Stat progression"
+kind: flag
+ask: "For long campaigns: can a survivor forgo a level's perk to raise a stat by 1?"
+help: "When you level up, you can forgo the new perk to raise a stat by 1 (max 3). It counts as the survivor's one lifetime bump. Keep it out of small-scale games."
+source: options-and-dials/pacing-and-growth#stat-progression
+---
+option: token-initiative
+title: "Token initiative"
+kind: flag
+ask: "If freeform spotlight stalls: token initiative in intense moments?"
+help: "At the start of an intense moment, give each player 2 tokens. Spend one before each story beat (usually an action roll); when everyone's spent out, all tokens refresh."
+source: options-and-dials/table-tools#token-initiative
+---
+option: tick-pools
+title: "Tick pools"
+kind: flag
+ask: "Use tick pools alongside ordinary pools?"
+help: "A predictable pool, usually 2d-4d: it never rolls; it drops exactly 1d whenever triggered (`didact do tick`). Use them alongside ordinary pools for countdowns the table should read like a clock."
+source: options-and-dials/table-tools#tick-pools
+---
+option: writers-room
+title: "Writers' room"
+kind: flag
+ask: "Loosen authorship (the writers' room)?"
+help: "Thread and tangle details no longer need vantage; any player can offer an impact move against their own survivor (taking spark, as a tangle) or add a detail to the world, and only details that help the party cost thread."
+source: options-and-dials/table-tools#writers-room
+---
+option: active-vigilance
+title: "Active vigilance"
+kind: flag
+ask: "Prefer dice to GM judgment on hidden dangers (active vigilance)?"
+help: "The spotlighted PC makes a story roll, shaped by their vantage: perfect = reveal, messy = hint, grim = the strike lands (`didact do vigilance`). A perk that guarantees a hint, like the Pathfinder's Keen eye, turns a grim into a hint."
+source: options-and-dials/table-tools#active-vigilance
+---
+option: quirks
+title: "Quirks"
+kind: flag
+ask: "May each survivor take one quirk (an edge and a flaw, welded together)?"
+help: "At creation, each survivor may take one quirk: an edge and a flaw. The edge is always on (a permission or a thorn ignored, never a die). The flaw is a standing tangle: the first time each session it truly bites, take spark (`didact table show quirks`)."
+source: options-and-dials/quirks
+---
+option: solo
+title: "Running solo"
+kind: flag
+ask: "Are you playing solo, or GM-less (the solo guardrails)?"
+help: "Two guardrails keep it honest: on a messy, make an impact move only if you're in a challenge, in a quest's last task pool, or holding 3+ suspense (otherwise take suspense); on a disaster or at dire stakes, take the usual consequences and roll your quest's peril pool too. Give a lone PC a companion (`didact gen run grimfall.companion`), lean on montage rolls, let story rolls answer what a second player would have, and run side characters (`didact char new grimfall.side-character`)."
+source: running-the-wasteland/running-solo-and-duet

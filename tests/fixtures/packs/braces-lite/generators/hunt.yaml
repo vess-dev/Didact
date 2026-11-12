@@ -1,0 +1,12 @@
+generator: hunt
+title: A hunt
+steps:
+  - table: stags
+    as: quarry
+  - prompt: >-
+      Again: `didact gen run braces-lite.hunt --prefill '{{"quarry": "{@quarry}"}}' --auto`.
+---
+generator: pick
+title: A quarry to pick
+steps:
+  - choose: {table: quarries, as: quarry}

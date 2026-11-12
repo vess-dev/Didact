@@ -1,0 +1,12 @@
+id: inherit-base
+name: Inherit Base (fixture)
+kind: system
+version: 1.0.0
+description: A base system whose settings a hack, and a hack of the hack, play with.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}
+settings:
+  torch_uses: 3
+  odds: {likely: 4, even: 3}
+  combat: {mode: popcorn, round_one: The ambushers act first.}
+  session_zero: [{key: oath, ask: What oath binds you?}]

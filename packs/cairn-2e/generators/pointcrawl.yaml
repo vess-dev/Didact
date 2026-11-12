@@ -1,0 +1,80 @@
+# A pointcrawl (wardens-guide/pointcrawls): one stretch of land as points and paths. Its terrain
+# comes from the terrain die drop (setting-seeds#terrain), its 3–8 points from the POI die drop
+# (setting-seeds#points-of-interest), and its paths as in setting-seeds#paths: 1–4 from each
+# point, with a feature, a condition and travel watches. A whole region is a setting seed.
+generator: pointcrawl
+title: A pointcrawl
+help: >-
+  A map of one stretch of land: its terrain (by difficulty: choose it, or let the dice) with its
+  landmark, 3–8 points of interest, and 1–4 paths from each, some conditional or hidden, each
+  with a feature, a condition and its watches. region=<place> puts it inside a place. Prefill
+  by name: ground, terrain, pois, …
+params:
+  region: {kind: text, default: "", help: "The place it lies in, e.g. loc:the-weeping-woods"}
+source: wardens-guide/pointcrawls#pointcrawls
+steps:
+  - choose_or_roll: {table: setting-terrain-die-drop, as: ground}
+  - choose_or_roll: {table: "{@ground.what}", as: terrain}
+  - table: "{@ground.detail}"
+    as: landmark
+  - table: poi-names
+    with: {poi: "@terrain"}
+    as: area_name
+  - entity:
+      key: area
+      type: loc
+      name: "{@area_name}"
+      fields:
+        kind: terrain
+        terrain: "@terrain"
+        difficulty: "@ground.difficulty"
+        landmark: "@landmark"
+        region: "$region"
+
+  # Points of interest: 3–8 dice on the POI die drop.
+  - roll: d6+2
+    as: pois
+  - repeat: "@pois"
+    steps:
+      - table: setting-poi-die-drop
+        as: drop
+      - if: "@drop.poi == 'waypoint-or-settlement'"
+        then:
+          - choose: {from: [waypoint, settlement], as: either, prompt: "the die says Waypoint or Settlement"}
+          - let: {kind: "@either"}
+          - table: "setting-{@kind}"
+            as: what
+          - table: "setting-{@kind}-feature"
+            as: detail
+        else:
+          - let: {kind: "@drop.poi"}
+          - table: "{@drop.what}"
+            as: what
+          - table: "{@drop.detail}"
+            as: detail
+      - table: poi-names
+        with: {poi: "@what"}
+        as: poi_name
+      - entity:
+          key: poi
+          type: loc
+          name: "{@poi_name}"
+          fields:
+            kind: poi
+            poi: "@kind"
+            feature: "{@what}, {@detail}"
+            region: "@area"
+
+  # Paths: 1–4 from each point ("create 1-4 paths between each location"). A d6 each: 5
+  # conditional, 6 hidden.
+  - map:
+      places: poi
+      paths: {max: 4}
+      watches: {short: 1, medium: 2, long: 3}
+      conditional: 5
+      hidden: 6
+      describe: [setting-path-feature, setting-path-condition]
+
+  - prompt: "Travel: each path takes its watches, +1 on a trail and +2 off the roads; tough terrain adds a watch, perilous two."
+  - prompt: "Conditional paths need something (a boat, climbing gear, a guide); finding a hidden one always costs something."
+  - prompt: "Filter every point through the terrain and its landmark. If a pattern emerges, restate or change earlier results."

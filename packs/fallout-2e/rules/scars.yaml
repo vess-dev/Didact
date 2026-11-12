@@ -1,0 +1,261 @@
+# Scars (players-guide/core-rules#scars): Fallout keeps Cairn's table under new names (Close
+# Shave … Doomed: a jaw for the skull, a Rad-Necrotic Wound for disease, Bleeding Out for the
+# mortal wound) and adds a deathclaw's re-rolls and two Rad Scars that bend the lookup. The parent's
+# `attack` calls `scar` by id, so this one runs; the parent's `attribute-reroll` and
+# `attribute-raise` helpers are reused untouched.
+procedure: scar
+title: Scar
+help: >-
+  An attack took a PC's HP to exactly 0: look up the Scars table by the HP lost and apply it.
+  Where, which limb or which attribute is rolled; rerolls that beat the old number take it; the
+  wounds that heal later become conditions (`didact do scar-heal` when they do). A deathclaw
+  never uses Severed or Bleeding Out (re-rolled); Thinned Blood adds 1 HP lost to the first Scar
+  of a session; Glowing Marrow can trade a Rad for a Close Shave. HP lost past 12 reads as 12.
+params:
+  who: ref
+  lost: {kind: int, help: "The HP lost in the attack (what it had before)"}
+steps:
+  - let: {row: "@lost"}
+  - if: "'Thinned Blood' in default(@who.rad_scars, '') and not ('thinned-blood' in default(@who.once_per_session, ''))"
+    then:
+      - let: {row: "min(12, @lost + 1)"}
+      - set: who.once_per_session
+        op: "+="
+        value: thinned-blood
+      - message: "Thinned Blood: the first Scar this session reads one row worse ({@lost} → {@row} HP lost)."
+  - if: "'Glowing Marrow' in default(@who.rad_scars, '') and not ('glowing-marrow' in default(@who.once_per_session, '')) and @row > 1"
+    then:
+      - prompt: "Glowing Marrow: once per session {@who.name} may take 1 Rad to treat this Scar as a Close Shave instead (`didact undo` this, then `didact do rad who={@who.id}` and `didact do scar who={@who.id} lost=1`, and `didact set {@who.id} once_per_session+=glowing-marrow`)."
+  - table: scars
+    with: {hp_lost: "@row"}
+    as: scar
+  - if: "default(@who.kind, 'human') == 'deathclaw' and (@scar.kind == 'severed' or @scar.kind == 'bleeding-out')"
+    then:
+      - message: "A deathclaw's Scar rolls never use {@scar}: re-roll."
+      - table: deathclaw-scar
+        as: reroll_row
+      - table: scars
+        with: {hp_lost: "@reroll_row.row"}
+        as: scar
+  - if: "@scar.kind == 'bleeding-out' and 'bleeding-out' in default(@who.immunities, '')"
+    then:
+      - message: "{@who.name} doesn't bleed out (Pressure Blood): their Scar rolls never use Bleeding Out: re-roll."
+      - table: no-bleeding-out-scar
+        as: reroll_row
+      - table: scars
+        with: {hp_lost: "@reroll_row.row"}
+        as: scar
+  - if: "@scar.kind == 'close-shave'"
+    then:
+      - table: scar-location
+        as: where
+      - do: attribute-reroll
+        with: {who: "@who", attr: hp, dice: 1d6, value: stays}
+        as: reroll
+      - set: who.scars
+        op: "+="
+        value: "Close Shave ({@where}; {@lost} HP lost): {@reroll.changed}"
+  - if: "@scar.kind == 'concussed'"
+    then:
+      - prompt: "{@who.name}'s helmet rang like a gong: describe how they shake it off."
+      - do: attribute-reroll
+        with: {who: "@who", attr: hp, dice: 1d6, value: stays}
+        as: reroll
+      - set: who.scars
+        op: "+="
+        value: "Concussed ({@lost} HP lost): {@reroll.changed}"
+  - if: "@scar.kind == 'flung-clear'"
+    then:
+      - set: who.conditions
+        op: "+="
+        value: [deprived, flung-clear]
+      - set: who.scars
+        op: "+="
+        value: "Flung Clear ({@lost} HP lost): Deprived until a few hours' rest, then 1d6 onto max HP"
+      - reminder: "After a few hours' rest: `didact do scar-heal who={@who.id} scar=flung-clear` (the deprivation ends; 1d6 goes onto max HP)."
+  - if: "@scar.kind == 'broken'"
+    then:
+      - table: broken-limb
+        as: limb
+      - set: who.conditions
+        op: "+="
+        value: "@limb.condition"
+      - set: who.scars
+        op: "+="
+        value: "Broken ({@limb}; {@lost} HP lost): when mended, 2d6 against max HP"
+      - reminder: "When it's mended (a week's rest with a Doctor's bag, a clinic, Hydra overnight): `didact do scar-heal who={@who.id} scar={@limb.condition}` (2d6: higher than max HP, take it)."
+  - if: "@scar.kind == 'rad-necrotic-wound'"
+    then:
+      - set: who.conditions
+        op: "+="
+        value: rad-necrotic-wound
+      - set: who.scars
+        op: "+="
+        value: "Rad-Necrotic Wound ({@lost} HP lost): when it clears, 2d6 against max HP"
+      - reminder: "When it finally clears (RadAway, an auto-doc, a pre-war antibiotic): `didact do scar-heal who={@who.id} scar=rad-necrotic-wound` (2d6: higher than max HP, take it)."
+  - if: "@scar.kind == 'scrambled'"
+    then:
+      - table: head-wound
+        as: head
+      - do: attribute-reroll
+        with: {who: "@who", attr: "@head", dice: 3d6, against: current}
+        as: reroll
+      - set: who.scars
+        op: "+="
+        value: "Scrambled ({@head}; {@lost} HP lost): {@reroll.changed}"
+  - if: "@scar.kind == 'crippled'"
+    then:
+      - set: who.conditions
+        op: "+="
+        value: crippled
+      - set: who.scars
+        op: "+="
+        value: "Crippled ({@lost} HP lost): after full recovery, 3d6 against max DEX"
+      - reminder: "{@who.name} cannot walk unassisted until they get serious medical help; after full recovery (`didact do recover who={@who.id}`, Hydra overnight, or `didact do scar-heal who={@who.id} scar=crippled`), 3d6 against max DEX."
+  - if: "@scar.kind == 'burst-eardrums'"
+    then:
+      - set: who.conditions
+        op: "+="
+        value: burst-eardrums
+      - check: save
+        with: {who: "@who", attr: WIL}
+        as: resolve
+      - if: "@resolve == 'success'"
+        then:
+          - do: attribute-raise
+            with: {who: "@who", attr: WIL, amount: 1d4}
+            as: raise
+          - set: who.scars
+            op: "+="
+            value: "Burst Eardrums ({@lost} HP lost): {@raise.changed}"
+        else:
+          - set: who.scars
+            op: "+="
+            value: "Burst Eardrums ({@lost} HP lost): the WIL save failed"
+      - reminder: "{@who.name} is deaf until extraordinary aid: then `didact do scar-heal who={@who.id} scar=burst-eardrums`."
+  - if: "@scar.kind == 'shell-shocked'"
+    then:
+      - do: attribute-reroll
+        with: {who: "@who", attr: WIL, dice: 3d6}
+        as: reroll
+      - set: who.scars
+        op: "+="
+        value: "Shell-Shocked ({@lost} HP lost): {@reroll.changed}"
+  - if: "@scar.kind == 'severed'"
+    then:
+      - prompt: "{@who.name} loses a limb or an eye: the Overseer says which, and what it means from now on. A prosthetic or a cybernetic graft in a big settlement can restore some function."
+      - check: save
+        with: {who: "@who", attr: WIL}
+        as: resolve
+      - if: "@resolve == 'success'"
+        then:
+          - do: attribute-raise
+            with: {who: "@who", attr: WIL, amount: 1d6}
+            as: raise
+          - set: who.scars
+            op: "+="
+            value: "Severed ({@lost} HP lost; the Overseer says which limb or eye): {@raise.changed}"
+        else:
+          - set: who.scars
+            op: "+="
+            value: "Severed ({@lost} HP lost; the Overseer says which limb or eye): the WIL save failed"
+  - if: "@scar.kind == 'bleeding-out'"
+    then:
+      - set: who.conditions
+        op: "+="
+        value: [deprived, bleeding-out]
+      - set: who.scars
+        op: "+="
+        value: "Bleeding Out ({@lost} HP lost): on recovery, 2d6 becomes max HP"
+      - message: "{@who.name} is gut shot: Deprived and immobile, dead in one hour without aid (a Stimpak, a bandage, an auto-doc): `didact do stabilize who={@who.id}`."
+      - remind: "{@who.name} bleeds out unless aided (`didact do stabilize who={@who.id}`)"
+        in: 1 hour
+      - reminder: "On recovery: `didact do recover who={@who.id}` (or `didact do scar-heal who={@who.id} scar=bleeding-out`): 2d6 becomes max HP. (Bond 16's Rifle Bullet holds the timer one extra hour, once per session.)"
+  - if: "@scar.kind == 'doomed'"
+    then:
+      - set: who.conditions
+        op: "+="
+        value: doomed
+      - set: who.scars
+        op: "+="
+        value: "Doomed ({@lost} HP lost): the next Critical Damage save decides"
+      - message: "{@who.name} is Doomed: if their next Critical Damage save fails, they die horribly; if it passes, 3d6 against max HP (the attack does both)."
+  - if: "'med-x' in default(@who.conditions, '')"
+    then: ["{@who.name} is on Med-X: the Scar's onset is ignored for this scene."]
+  - message: "{@who.name} gets a Scar ({@lost} HP lost: {@scar.kind}); `didact show {@who.id}` lists their Scars."
+source: players-guide/core-rules#scars
+---
+action: scar-heal
+title: A Scar heals
+help: >-
+  The later half of a Scar, when the fiction says so: Flung Clear (a few hours' rest: the
+  deprivation ends, 1d6 onto max HP), a Broken limb mended or a Rad-Necrotic Wound cleared (2d6
+  against max HP), Crippled after full recovery (3d6 against max DEX), Burst Eardrums with
+  extraordinary aid, Bleeding Out on recovery (2d6 becomes max HP). `recover` runs it for Flung
+  Clear, Crippled and Bleeding Out.
+params:
+  who: ref
+  scar: {enum: [flung-clear, broken-leg, broken-arm, broken-rib, broken-jaw, rad-necrotic-wound, crippled, burst-eardrums, bleeding-out]}
+steps:
+  - if: "not ('$scar' in @who.conditions)"
+    then:
+      - stop: "{@who.name} has no $scar to heal (conditions: {@who.conditions})."
+  - set: who.conditions
+    op: "-="
+    value: $scar
+  - if: "@scar == 'flung-clear'"
+    then:
+      - if: "'deprived' in @who.conditions"
+        then:
+          - set: who.conditions
+            op: "-="
+            value: deprived
+      - do: attribute-raise
+        with: {who: "@who", attr: hp, amount: 1d6, value: stays}
+        as: raise
+      - set: who.scars
+        op: "+="
+        value: "Flung Clear, rested: {@raise.changed}"
+  - if: "@scar == 'rad-necrotic-wound' or @scar == 'broken-leg' or @scar == 'broken-arm' or @scar == 'broken-rib' or @scar == 'broken-jaw'"
+    then:
+      - do: attribute-reroll
+        with: {who: "@who", attr: hp, dice: 2d6, value: stays}
+        as: reroll
+      - set: who.scars
+        op: "+="
+        value: "{if(@scar == 'rad-necrotic-wound', 'Rad-Necrotic Wound, cleared', 'Broken limb mended ($scar)')}: {@reroll.changed}"
+  - if: "@scar == 'crippled'"
+    then:
+      - do: attribute-reroll
+        with: {who: "@who", attr: DEX, dice: 3d6}
+        as: reroll
+      - set: who.scars
+        op: "+="
+        value: "Crippled, recovered: {@reroll.changed}"
+  - if: "@scar == 'burst-eardrums'"
+    then: ["{@who.name} can hear again."]
+  - if: "@scar == 'bleeding-out'"
+    then:
+      - if: "'deprived' in @who.conditions"
+        then:
+          - set: who.conditions
+            op: "-="
+            value: deprived
+      - if: "'stabilized' in @who.conditions"
+        then:
+          - set: who.conditions
+            op: "-="
+            value: stabilized
+      - roll: 2d6
+        as: new
+      - let: {top: "@who.hp.max"}
+      - set: who.hp
+        value: "min(@who.hp, @new)"
+      - set: who.hp.max
+        value: "@new"
+      - set: who.scars
+        op: "+="
+        value: "Bleeding Out, recovered: max HP {@top} → {@new}"
+      - message: "{@who.name} recovers from the gut shot: 2d6 = {@new} is their max HP now."
+  - message: "{@who.name}'s $scar is behind them."
+source: players-guide/core-rules#scars

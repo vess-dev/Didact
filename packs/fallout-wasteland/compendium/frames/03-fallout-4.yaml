@@ -1,0 +1,572 @@
+# Fallout 4 Main Campaign (campaigns/03-fallout-4): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: fallout-4
+type: quest
+name: Fallout 4
+aliases: [Fallout 4 Main Campaign]
+tags: [fallout-4, frame, main-campaign]
+goal: |-
+  You are a pre-war survivor — one half of a small nuclear family from the Boston suburb of Sanctuary Hills — who stepped into Vault 111 on October 23, 2077 and was frozen inside a cryogenic pod for two centuries. You woke once, years into your freeze, to watch a stranger shoot your spouse and take your infant son, Shaun. You woke again, alone, in the post-war Commonwealth. Shaun is gone. Your spouse is dead. You are the only one left in the vault.
+
+  The Commonwealth is four factions fighting over scraps: the Minutemen, rebuilding a settler militia from a handful of refugees; the Brotherhood of Steel, descending from the skies in a flying fortress; the Railroad, smuggling runaway synthetic humans out of the region; and the Institute — a hidden research facility beneath the pre-war CIT ruins, producing perfect android infiltrators and the reason your son was taken.
+
+  Your child is at the end of every thread. What he has grown into by the time you find him is the campaign's real question.
+date: Sunday, 23 October 2287
+body: |-
+  *You woke up two hundred years late. Your spouse is dead and your child is gone — taken by a stranger who walked into the vault while you slept. You step out of Vault 111 into a ruined Boston and start walking. Every road through the Commonwealth eventually leads to the Institute, to Shaun, and to a choice none of the four factions watching you will let you dodge.*
+
+  ## GM notes
+
+  **Date.** Sunday, 23 October 2287: the year Vault 111's last pod thawed (Vault 111); the day the game it adapts opens. Open a campaign on it with `didact campaign new <id> --date 'Sunday, 23 October 2287'`, or move one there with `didact time set 'Sunday, 23 October 2287'` before its first session.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup Fallout 4 tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** You step out of the elevator at Vault 111's entrance into morning sun over the Boston Basin. Sanctuary Hills is down the hill — the same street you lived on, the same red house, two centuries of weather. The household Mister Handy unit, Codsworth, is still tending the garden. He is the only being in the world who will recognize you. He tells you someone has taken your baby and walked into the world. He suggests you start in Concord, the nearest settlement, and ask about the trail.
+
+  **Plot beats.**
+
+  1. Sanctuary and Concord. Codsworth, the old home, the handful of decaying pre-war houses. In Concord the party finds Preston Garvey and a handful of refugees trapped in the Museum of Freedom by raiders. Rescuing them earns a T-45 power armor suit from the museum roof (its core nearly spent), a minigun, and the first Minutemen alliance. Sanctuary becomes a buildable settlement.
+  2. Diamond City. Boston's Fenway Park, turned walled town. Piper Wright, a journalist, recognizes an outsider and interviews the party. Mayor McDonough has something off about him. Nick Valentine, a Gen-2 synth detective, has been missing for a week and the party is hired to find him. The trail leads to Park Street Station and Vault 114 beneath it — a pre-war vault turned gangster den.
+  3. Valentine's Case. Recovering Nick opens the first real investigation: Kellogg, a mercenary who was paid by the Institute to kidnap Shaun. He's left a trail — Diamond City, Fort Hagen, a decoy in the Glowing Sea. Chasing him across the Commonwealth is how the party meets every faction.
+  4. The Brotherhood Arrives. Halfway through the Kellogg chase, the Prydwen airship rises over Boston like a new fixed star. Elder Arthur Maxson broadcasts the Brotherhood's mandate from its bridge. The party meets Paladin Danse at the Cambridge police station, where he and his squad are holding off ferals. He offers the party a place on his squad.
+  5. Fort Hagen and Kellogg's Mind. The party confronts Kellogg. He dies. They recover his cybernetic memory implant. At the Memory Den in Goodneighbor, Doctor Amari wires the party in; they walk through Kellogg's life and find the only way to reach the Institute is via a rogue Institute scientist named Virgil, hiding in the Glowing Sea.
+  6. The Glowing Sea. The most radioactive place in the Commonwealth — deathclaws, Children of Atom, rad storms. Virgil lives in a cave at the crater's edge, hideous now and knowing it. He gives the party a plan: build a Signal Interceptor from specs he smuggled out of the Institute. Assembling it requires help from a faction — Railroad, Brotherhood, or Minutemen. Each has a price.
+  7. The Railroad. Found via the Freedom Trail markers through a dead Boston neighborhood. HQ is a catacomb beneath the Old North Church. Desdemona leads; Deacon recruits the party; Glory is the heavy gunner. The Railroad wants synth liberation above all.
+  8. Meeting the Father. Whichever faction builds the Interceptor, the party rides it into the Institute. They are received not by guards, but by Father — a man in his sixties, blue-eyed, calm. He is Shaun. He was taken from the vault sixty years ago and grew up here. He is dying of cancer. He wants to hand the Institute to the party.
+  9. The Fracture. The Institute's existence is a weapon. The Brotherhood wants to destroy it. The Railroad wants to liberate every synth in its labs. The Minutemen want it out of the Commonwealth by any means. The Institute wants to continue, and Father offers the party its directorship. The three outside factions now cannot coexist — building the final assault for one burns the others.
+  10. The Nuclear Option. Whichever side the party sided with escorts them back to the Institute for the endgame. The other factions lose. The Institute is destroyed, seized, or preserved. See Climax.
+
+  **Climax.**
+
+  **The Nuclear Option.** However the Signal Interceptor was built, the party is in the Institute when the end comes. Four resolutions:
+
+  - **Minutemen Ending.** Preston Garvey and the Commonwealth militia breach the Institute through an old service tunnel and detonate its reactor; artillery from **The Castle** covers the retreat. The party leads the ground assault. Father dies in his chair, asking the party to take his watch. Synths scatter; some are hunted, some melt into settlements. The Minutemen are the Commonwealth's new peacekeepers.
+  - **Brotherhood Ending.** Elder Maxson unleashes a rebuilt **Liberty Prime** (see Bestiary → Liberty Prime) on the CIT ruins. Prime marches into the Institute. The party fights alongside paladins. Father dies; so do the synths, the scientists, and the children in the schoolroom. The Brotherhood rules the Commonwealth.
+  - **Railroad Ending.** Desdemona's agents surgically liberate every synth in the Institute while the party covers. A self-destruct protocol takes the facility. Father dies knowing his own parent betrayed him. Freed synths disperse across the Commonwealth. The Railroad quietly folds into memory; its work is done.
+  - **Institute Ending.** The party accepts Father's directorship. Father dies in his sleep. The party broadcasts from within the Institute, declaring a new order. The Brotherhood's Prydwen is brought down by an Institute strike team; the Railroad is rooted out by Coursers the party now commands. The Commonwealth enters a quiet, clean, surveilled peace.
+
+  The party walks out. Some of them walk out as something *very* different than what they came in as. Sanctuary Hills is still there. The vault is still open. The cryopod is still cold.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "Fallout 4"}' --auto` drafts the region, 13 places, 13 people, 4 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Bestiary** (Fallout 2e / Grimfall): Feral Ghoul → `feral-ghoul` / `feral-ghoul`; Feral Ghoul Stalker → `feral-ghoul-stalker` / `feral-ghoul`; Mirelurk (Hunter) → `mirelurk-hunter` / `mirelurk`; Mirelurk King → `mirelurk-king` / `mirelurk-king`; Mirelurk Queen → `mirelurk-queen` / `mirelurk-queen`; Super Mutant, Grunt → `super-mutant-grunt` / `super-mutant`; Super Mutant, Brute → `super-mutant-brute` / `super-mutant`; Super Mutant, Suicider → `super-mutant-suicider` / `super-mutant-suicider`; Bloatfly → `bloatfly` / `bloatfly`; Radroach → `radroach` / `radroach`; Radscorpion → `radscorpion` / `radscorpion`; Deathclaw → `deathclaw` / `deathclaw`; Synth, Gen-1 → `synth-gen-1` / `synth-patrol`; Synth, Gen-2 → `synth-gen-2` / `synth-patrol`; Synth, Gen-3 (Infiltrator) → `synth-gen-3-infiltrator` / `synth-patrol`; Courser → `courser` / `courser`; Brotherhood Knight → `brotherhood-knight` / `brotherhood-patrol`; Brotherhood Paladin → `brotherhood-paladin` / `power-armored-trooper`; Gunner → `gunner` / `gunners`; Gunner Sergeant → `gunner-sergeant` / `gunners`; Thug → `thug` / `raider`; Assaultron, Institute-Issue → `assaultron-institute-issue` / `assaultron`.
+
+  **Rewards in each system's catalog:** Deliverer (fallout-2e.deliverer · grimfall.deliverer); Righteous Authority (fallout-2e.righteous-authority · grimfall.righteous-authority); Pickman's Blade (fallout-2e.pickmans-blade · grimfall.pickmans-blade); Shishkebab (fallout-2e.shishkebab-unique · grimfall.shishkebab); Kellogg's Cybernetic Brain Augmenter (fallout-2e.kelloggs-cybernetic-brain-augmenter · grimfall.kelloggs-brain-augmenter); Codsworth's Service Ring (grimfall.codsworths-service-ring).
+source: campaigns/03-fallout-4#pitch
+---
+id: fallout-4-region
+type: loc
+name: The Commonwealth
+tags: [fallout-4, region]
+mechanics:
+  fallout-2e: {kind: region}
+  grimfall: {kind: region}
+body: |-
+  ## GM notes
+
+  A big regional sandbox, crowded with factions.
+source: campaigns/03-fallout-4#the-place--the-commonwealth
+---
+id: fallout-4-sanctuary-hills
+type: loc
+name: Sanctuary Hills
+tags: [fallout-4, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Your pre-war home. Codsworth. A buildable settlement.
+source: campaigns/03-fallout-4#the-place--the-commonwealth
+---
+id: fallout-4-concord
+type: loc
+name: Concord
+tags: [fallout-4, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The first fight. The Museum of Freedom. Red Rocket gas station on the outskirts, another buildable settlement.
+source: campaigns/03-fallout-4#the-place--the-commonwealth
+---
+id: fallout-4-diamond-city
+type: loc
+name: Diamond City
+tags: [fallout-4, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Boston's Fenway Park walled town. Piper, McDonough, Valentine's Detective Agency, the clinic, the marketplace, the gatekeeper Danny Sullivan at the entrance.
+source: campaigns/03-fallout-4#the-place--the-commonwealth
+---
+id: fallout-4-goodneighbor
+type: loc
+name: Goodneighbor
+tags: [fallout-4, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The rough-side settlement. Mayor Hancock, a ghoul with a three-corner hat and a straight razor. The Third Rail, a bar. Drifters, chem dealers, KL-E-O the Assaultron weapons dealer.
+source: campaigns/03-fallout-4#the-place--the-commonwealth
+---
+id: fallout-4-cambridge-police-station
+type: loc
+name: Cambridge Police Station
+tags: [fallout-4, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Paladin Danse's opening squad. Brotherhood recruitment.
+source: campaigns/03-fallout-4#the-place--the-commonwealth
+---
+id: fallout-4-fort-hagen
+type: loc
+name: Fort Hagen
+tags: [fallout-4, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Kellogg's holdout. A pre-war military bunker full of Gen-1 synth patrols and one bad man.
+source: campaigns/03-fallout-4#the-place--the-commonwealth
+---
+id: fallout-4-the-glowing-sea
+type: loc
+name: The Glowing Sea
+tags: [fallout-4, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Radioactive crater, deathclaws, Children of Atom faithful at the Crater of Atom, Virgil in a cave.
+source: campaigns/03-fallout-4#the-place--the-commonwealth
+---
+id: fallout-4-the-old-north-church
+type: loc
+name: The Old North Church
+tags: [fallout-4, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Railroad HQ, reached by following the Freedom Trail red stripe through a ruined Boston.
+source: campaigns/03-fallout-4#the-place--the-commonwealth
+---
+id: fallout-4-the-prydwen
+type: loc
+name: The Prydwen
+tags: [fallout-4, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Brotherhood flying fortress. Anchored over the Boston airport ruins.
+source: campaigns/03-fallout-4#the-place--the-commonwealth
+---
+id: fallout-4-the-castle
+type: loc
+name: The Castle
+tags: [fallout-4, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Minutemen HQ, a pre-war coastal fort in ruins, reclaimable midway through the campaign. Mirelurks in the sub-basement, a mirelurk queen in the courtyard.
+source: campaigns/03-fallout-4#the-place--the-commonwealth
+---
+id: fallout-4-the-cit-ruins-the-institute
+type: loc
+name: The CIT Ruins / The Institute
+tags: [fallout-4, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The final destination. The pre-war Commonwealth Institute of Technology, turned into the cover for a vast underground research facility. Spotless corridors, synths in uniform, children in school.
+source: campaigns/03-fallout-4#the-place--the-commonwealth
+---
+id: fallout-4-spectacle-island
+type: loc
+name: Spectacle Island
+tags: [fallout-4, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A mirelurk-infested island that becomes a buildable hub if cleared.
+source: campaigns/03-fallout-4#the-place--the-commonwealth
+---
+id: fallout-4-covenant
+type: loc
+name: Covenant
+tags: [fallout-4, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A suspiciously clean settlement that tests visitors for synth-ness via the SAFE test — a polygraph by any other name. Cold War-era moral trap.
+source: campaigns/03-fallout-4#the-place--the-commonwealth
+---
+id: fallout-4-kellogg
+type: monster
+name: Kellogg
+knowledge: secret
+tags: [fallout-4, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout 4'
+    hp: 10
+    armor: 2
+    STR: 14
+    DEX: 15
+    WIL: 14
+    attacks:
+    - name: Kellogg's pistol
+      damage: d10
+      note: .44 revolver, first shot each combat is Enhanced
+    - {name: combat knife, damage: d6}
+    abilities:
+    - 'Neural Implants: Cannot be intimidated. Automatically passes Morale saves. Takes one extra round
+      to die on Critical Damage, and uses that round to shoot the closest living thing.'
+  grimfall:
+    tier: elite
+    role: marksman
+    category: Faces of the Wasteland
+    fact: A century of cybernetics and no apologies; even dropped, he finishes one last shot. His 
+      memories outlive him.
+body: |-
+  ## GM notes
+
+  **Kellogg** — a century-old mercenary kept alive by cybernetic implants. Took Shaun. Flat affect, professional, kind to no one.
+
+  Mercenary kept alive over a century by cybernetic implants. Took Shaun from the party's arms. Does not speak about it.
+
+  Fallout 2e: 10 HP, 2 Armor, 14 STR, 15 DEX, 14 WIL, Kellogg's pistol — .44 revolver (d10, first shot each combat is Enhanced), combat knife (d6).
+
+  Grimfall: its card is `grimfall.kellogg` (Kellogg), in this record's grimfall block.
+source: campaigns/03-fallout-4#kellogg
+---
+id: fallout-4-shaun-father
+type: monster
+name: Shaun / Father
+aliases: [Father]
+knowledge: secret
+tags: [fallout-4, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout 4'
+    abilities: ['Not a combat encounter (— HP, — combat): A dying man on a leather chair.']
+body: |-
+  ## GM notes
+
+  **Shaun / Father** — your son. Taken as an infant. Sixty years old when you meet him. The director of the Institute. Dying of cancer. Asks you to inherit his life's work.
+
+  Shaun. Calm, articulate, sixty years old. Not a combat encounter. Father is a WIL-save scene. The party makes saves to keep their resolve when he offers them the Institute's directorship. Failing is not losing; it is considering it.
+
+  Fallout 2e: — HP, — combat. A dying man on a leather chair.
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/03-fallout-4#father
+---
+id: fallout-4-elder-arthur-maxson
+type: monster
+name: Elder Arthur Maxson
+knowledge: secret
+tags: [fallout-4, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout 4'
+    hp: 10
+    armor: 2
+    STR: 14
+    DEX: 14
+    WIL: 15
+    attacks:
+    - name: Final Judgment
+      damage: d12
+      qualities: [blast, bulky]
+      note: Gatling laser
+    abilities:
+    - 'Mandate of Steel: While he lives, Brotherhood units in his broadcast range automatically pass Morale
+      saves.'
+  grimfall:
+    tier: elite
+    role: tactician
+    category: Faces of the Wasteland
+    fact: Young, absolute, beloved; his broadcast voice keeps every knight's spine straight. Carries
+      Final Judgment.
+body: |-
+  ## GM notes
+
+  **Elder Arthur Maxson** — Brotherhood elder, barely in his twenties, commanding the Prydwen. Hard, certain, young enough to grow up or young enough to be killed young.
+
+  Brotherhood elder on the Prydwen's bridge. Young, certain, the only man who can call the Brotherhood's full strength on the party. See Unique Weapons → Final Judgment.
+
+  Fallout 2e: 10 HP, 2 Armor, 14 STR, 14 DEX, 15 WIL, Final Judgment — Gatling laser (d12, blast, bulky).
+
+  Grimfall: its card is `grimfall.elder-maxson` (Elder Maxson), in this record's grimfall block.
+source: campaigns/03-fallout-4#elder-arthur-maxson
+---
+id: fallout-4-desdemona
+type: monster
+name: Desdemona
+knowledge: secret
+tags: [fallout-4, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout 4'
+    hp: 7
+    armor: 1
+    STR: 11
+    DEX: 14
+    WIL: 16
+    attacks:
+    - {name: silenced 10mm, damage: d8}
+    - {name: combat knife, damage: d6}
+    abilities:
+    - 'Code Word: Desdemona may, once per scene, speak a phrase and a hostile synth makes a WIL save or
+      shuts down for one round. Works on Gen-2s reliably; on Gen-3s, rarely.'
+  grimfall:
+    tier: tough
+    role: tactician
+    category: Faces of the Wasteland
+    fact: Asks more than she orders; knows a code word that stops lesser synths mid-stride.
+body: |-
+  ## GM notes
+
+  **Desdemona** — Railroad leader. Code name only. Heavy smoker, tired eyes.
+
+  Railroad's head. Quiet, principled. Asks more than she orders.
+
+  Fallout 2e: 7 HP, 1 Armor, 11 STR, 14 DEX, 16 WIL, silenced 10mm (d8), combat knife (d6).
+
+  Grimfall: its card is `grimfall.desdemona` (Desdemona), in this record's grimfall block.
+source: campaigns/03-fallout-4#desdemona
+---
+id: fallout-4-codsworth
+type: npc
+name: Codsworth
+knowledge: secret
+tags: [fallout-4, cast]
+fields: {role: the household Mister Handy}
+body: |-
+  ## GM notes
+
+  **Codsworth** — the household Mister Handy. Two hundred years of grief and politeness. Potential companion (see Mister Handy background).
+source: campaigns/03-fallout-4#cast
+---
+id: fallout-4-preston-garvey
+type: npc
+name: Preston Garvey
+knowledge: secret
+tags: [fallout-4, cast]
+fields: {role: last Minuteman}
+body: |-
+  ## GM notes
+
+  **Preston Garvey** — last Minuteman. Holds the torch until he can hand it off. Sincerely, exhaustingly good. Potential companion.
+source: campaigns/03-fallout-4#cast
+---
+id: fallout-4-piper-wright
+type: npc
+name: Piper Wright
+knowledge: secret
+tags: [fallout-4, cast]
+fields: {role: Diamond City journalist}
+body: |-
+  ## GM notes
+
+  **Piper Wright** — Diamond City journalist. Chief writer of Publick Occurrences. Potential companion. Will interview the PC and publish the results.
+source: campaigns/03-fallout-4#cast
+---
+id: fallout-4-nick-valentine
+type: npc
+name: Nick Valentine
+knowledge: secret
+tags: [fallout-4, cast]
+fields: {role: Gen-2 synth detective}
+body: |-
+  ## GM notes
+
+  **Nick Valentine** — Gen-2 synth detective. Patterned his personality on a pre-war cop named Nick Valentine. Potential companion.
+source: campaigns/03-fallout-4#cast
+---
+id: fallout-4-mayor-mcdonough
+type: npc
+name: Mayor McDonough
+knowledge: secret
+tags: [fallout-4, cast]
+fields: {role: Diamond City}
+body: |-
+  ## GM notes
+
+  **Mayor McDonough** — Diamond City. A Gen-3 synth replacement, if the party digs.
+source: campaigns/03-fallout-4#cast
+---
+id: fallout-4-paladin-danse
+type: npc
+name: Paladin Danse
+knowledge: secret
+tags: [fallout-4, cast]
+fields: {role: Brotherhood squad leader}
+body: |-
+  ## GM notes
+
+  **Paladin Danse** — Brotherhood squad leader. Honor-bound. Potential companion. He is a Gen-3 synth, though he does not know it. Finding out is his arc.
+source: campaigns/03-fallout-4#cast
+---
+id: fallout-4-proctor-ingram
+type: npc
+name: Proctor Ingram
+knowledge: secret
+tags: [fallout-4, cast]
+fields: {role: Brotherhood scribe and engineer}
+body: |-
+  ## GM notes
+
+  **Proctor Ingram** — Brotherhood scribe and engineer. Lost her legs in a power-armor fall; walks in a custom frame. Keeps the Prydwen flying — and rebuilds Liberty Prime.
+source: campaigns/03-fallout-4#cast
+---
+id: fallout-4-deacon
+type: npc
+name: Deacon
+knowledge: secret
+tags: [fallout-4, cast]
+fields: {role: Railroad spy with no confirmed face}
+body: |-
+  ## GM notes
+
+  **Deacon** — Railroad spy with no confirmed face. Recruits the party. Lies about almost everything. Potential companion.
+source: campaigns/03-fallout-4#cast
+---
+id: fallout-4-glory
+type: npc
+name: Glory
+knowledge: secret
+tags: [fallout-4, cast]
+fields: {role: Railroad heavy}
+body: |-
+  ## GM notes
+
+  **Glory** — Railroad heavy. A Gen-3 runaway synth. Potential companion.
+source: campaigns/03-fallout-4#cast
+---
+id: fallout-4-dr-brian-virgil
+type: npc
+name: Dr. Brian Virgil
+knowledge: secret
+tags: [fallout-4, cast]
+fields: {role: 'rogue Institute scientist turned super mutant, hiding in the Glowing Sea'}
+body: |-
+  ## GM notes
+
+  **Dr. Brian Virgil** — rogue Institute scientist turned super mutant, hiding in the Glowing Sea. Gave up his skin to escape. Will sell the Signal Interceptor specs for a favor — the return of a serum that restores his humanity.
+source: campaigns/03-fallout-4#cast
+---
+id: fallout-4-hancock
+type: npc
+name: Hancock
+knowledge: secret
+tags: [fallout-4, cast]
+fields: {role: ghoul mayor of Goodneighbor}
+body: |-
+  ## GM notes
+
+  **Hancock** — ghoul mayor of Goodneighbor. Robin-Hood demeanor, straight razor always on his belt. Potential companion.
+source: campaigns/03-fallout-4#cast
+---
+id: fallout-4-dogmeat
+type: npc
+name: Dogmeat
+knowledge: secret
+tags: [fallout-4, cast]
+fields: {role: a German Shepherd at the Red Rocket}
+body: |-
+  ## GM notes
+
+  **Dogmeat** — a German Shepherd at the Red Rocket. Points. Potential companion.
+source: campaigns/03-fallout-4#cast
+---
+id: fallout-4-john-hancocks-brother-mayor-mcdonough
+type: npc
+name: John Hancock's brother (Mayor McDonough)
+knowledge: secret
+tags: [fallout-4, cast]
+fields:
+  role: a tie between Goodneighbor and Diamond City that the party can exploit or leave buried
+body: |-
+  ## GM notes
+
+  **John Hancock's brother (Mayor McDonough)** — a tie between Goodneighbor and Diamond City that the party can exploit or leave buried.
+source: campaigns/03-fallout-4#cast
+---
+id: fallout-4-institute-clock
+type: track
+name: Institute Clock
+knowledge: secret
+tags: [fallout-4, clock]
+kind: clock
+size: 8
+value: {value: 0, size: 8}
+note: "(d8) The Institute's readiness to act. Ticks when the party: visibly aids the Railroad or Brotherhood,
+  kills a named synth without concealing it, acquires a piece of the Signal Interceptor, or is scanned
+  by a Gen-3 infiltrator the party failed to identify. At 8, a Courser is dispatched (Bestiary)."
+source: campaigns/03-fallout-4#clocks
+---
+id: fallout-4-prydwen-clock
+type: track
+name: Prydwen Clock
+knowledge: secret
+tags: [fallout-4, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: (d6) Brotherhood expansion. Ticks when the party accepts a Danse mission, refuses a 
+  Brotherhood requisition, or witnesses a Brotherhood purge of ghouls or super mutants without 
+  intervening. At 6, the Brotherhood sweeps a region the party cares about — a ghoul settlement, a 
+  synth safehouse, a lucid super mutant's home.
+source: campaigns/03-fallout-4#clocks
+---
+id: fallout-4-railroad-clock
+type: track
+name: Railroad Clock
+knowledge: secret
+tags: [fallout-4, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4, hidden) The Institute's net on the Railroad. Ticks when the party visits a Railroad 
+  safehouse in clothing or company that marks them (Brotherhood plating, an unscrubbed Pip-Boy, a 
+  known Institute synth companion), or when the Institute Clock ticks. At 4, a Railroad safehouse 
+  the party has visited is raided, and an NPC the party knows dies.
+source: campaigns/03-fallout-4#clocks

@@ -1,0 +1,19 @@
+table: names
+dice: d2
+entries: {1: Ash, 2: Birch}
+---
+table: places
+dice: d2
+entries: {1: Ford, 2: Mill}
+---
+table: spell-fire
+dice: d2
+entries: {1: spark, 2: blaze}
+---
+table: spell-ice
+dice: d2
+entries: {1: rime, 2: hail}
+---
+table: weather
+dice: d2
+entries: {1: calm, 2: storm}

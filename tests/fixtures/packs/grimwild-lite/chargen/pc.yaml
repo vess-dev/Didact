@@ -1,0 +1,8 @@
+chargen: pc
+title: Grimwild character (two paths)
+creates: pc
+modes: [random, guided]
+steps:
+  - choose: {from: [Bard, Berserker, Cleric, Druid, Fighter, Ranger, Thief, Wizard], as: paths, count: 2, field: paths}
+  - name: {from: [Aster, Brisk, Corwen, Duskin, Oriel]}
+  - prompt: What do your two paths say about who you are?

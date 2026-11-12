@@ -1,0 +1,945 @@
+# The core rules (Gameplay, pp. 10-31; Stakes, p. 103): action, defense, story, montage and
+# power pool rolls; damage and being dropped; spark, the session's rhythm and experience.
+check: action
+title: Action roll
+help: >-
+  Roll d6s equal to the stat, plus spark (+1d each, spent), talents and setup (dice), and
+  assists (1d per helper, rolled apart). The GM adds thorns (d8s) for difficulty; a mark on
+  the stat, bloodied or rattled on a related stat, and desperate each add one. The highest d6
+  is the result: 6 perfect, 4-5 messy, 1-3 grim; each thorn on 7-8 cuts it a step (to
+  disaster). Two or more 6s are a critical, which thorns can't cut. A disaster gives spark.
+  `stakes` weighs the impact move (low, regular, high, dire; regular unless declared, low in
+  cozy fantasy); `interrupt` is a talent's roll to stop an impact move; a `spell` with two or
+  more 1s (thorns included) brings a sorcerer's twist, or any caster's with dangerous magic.
+params:
+  who: ref
+  stat: {enum: [brawn, agility, wits, presence]}
+  thorns: {kind: int, default: 0, help: "The situation's thorns (vantage: reasonable 0-1, doubtful 2+)"}
+  spark: {kind: int, default: 0, help: "Spark to spend: +1d each"}
+  dice: {kind: int, default: 0, help: "Extra dice: talents, setup"}
+  assist: {kind: int, default: 0, help: "Helpers, 1d each, rolled apart; they share the risk"}
+  spell: {kind: flag, default: false, help: "A spell: two or more 1s (thorns included) bring a sorcerer's magical twist, or anyone's with dangerous magic (an option)"}
+  stakes: {enum: [low, regular, high, dire], optional: true, help: "The scene's stakes (p. 103): regular unless declared (low in cozy fantasy)"}
+  interrupt: {kind: flag, default: false, help: "A talent's roll to stop an impact move (p. 53)"}
+before:
+  - if: "@spark > @who.spark"
+    then:
+      - stop: "{@who.name} has {@who.spark} spark to spend, not {@spark}."
+  - let:
+      marked: "if('$stat' in @who.marks, 1, 0)"
+      hurt: >-
+        if('desperate' in @who.harm, 1, 0)
+        + if('bloodied' in @who.harm and ('$stat' == 'brawn' or '$stat' == 'agility'), 1, 0)
+        + if('rattled' in @who.harm and ('$stat' == 'wits' or '$stat' == 'presence'), 1, 0)
+      stakes_now: "if('$stakes' <> '', '$stakes', if(@option.flavor == 'cozy', 'low', 'regular'))"
+  - let: {total_thorns: "@thorns + @marked + @hurt"}
+  - if: "@marked > 0 and not @option.lasting_marks"
+    then:
+      - set: who.marks
+        op: "-="
+        value: $stat
+      - message: "The mark on $stat adds a thorn and is spent: marking $stat again as this roll's consequence is harm (`do harm`)."
+  - if: "@marked > 0 and @option.lasting_marks"
+    then:
+      - message: "The mark on $stat adds a thorn, and stays until a rest (marks only clear on rest)."
+  - if: "@spark > 0"
+    then:
+      - set: who.spark
+        op: "-="
+        value: "@spark"
+  - roll: "(@who.$stat + @spark + @dice)d6"
+    as: roll
+  - if: "@assist > 0"
+    then:
+      - roll: "(@assist)d6"
+        as: help
+  - if: "@total_thorns > 0"
+    then:
+      - roll: "(@total_thorns)d8"
+        as: thorn
+  - let:
+      highest: "if(@assist > 0, max(@roll.dice, @help.dice), max(@roll.dice))"
+      sixes: "count(@roll.dice, 6) + if(@assist > 0, count(@help.dice, 6), 0)"
+      cuts: "if(@total_thorns > 0, count(@thorn.dice, 7) + count(@thorn.dice, 8), 0)"
+      ones: "count(@roll.dice, 1) + if(@assist > 0, count(@help.dice, 1), 0) + if(@total_thorns > 0, count(@thorn.dice, 1), 0)"
+  - let: {level: "if(@highest == 6, 3, if(@highest >= 4, 2, 1)) - @cuts"}
+  - message: "highest {@highest} · sixes {@sixes} · thorns {@total_thorns}, cutting {@cuts}"
+  - if: "@spell and @ones >= 2 and ('sorcerer-sorcery' in @who.talents or @option.magic == 'dangerous')"
+    then:
+      - do: twist
+        with: {who: "@who"}
+bands:
+  critical: "@sixes >= 2"
+  perfect: "@level >= 3"
+  messy: "@level == 2"
+  grim: "@level == 1"
+  disaster: else
+on:
+  critical:
+    - if: "@interrupt"
+      then: ["Critical: the impact move is stopped. Thorns can't cut a critical."]
+    - message: "Critical: success (thorns can't cut it), and pick one: greater effect (drop 1d from a pool first), a secondary effect, or setup (+1d on a follow-up). If nothing comes to mind, take spark: `didact do take-spark who={@who.id}`."
+  perfect:
+    - if: "@interrupt"
+      then: ["Perfect: the impact move is stopped."]
+      else: ["Perfect: success, and you avoid trouble."]
+  messy:
+    - if: "@interrupt"
+      then:
+        - message: "Messy: the impact move stops, and the GM keeps (or takes) their suspense instead of finishing it."
+        - do: suspense
+          with: {take: 1, why: "an interrupt's messy"}
+      else:
+        - message: "Messy: success, with an impact move."
+        - do: impact
+          with: {who: "@who", stakes: "@stakes_now", result: messy}
+  grim:
+    - if: "@interrupt"
+      then: ["Grim: the GM makes the impact move as normal, and {@who.name} shares the risk."]
+      else: ["Grim: failure, with an impact move."]
+    - do: impact
+      with: {who: "@who", stakes: "@stakes_now", result: grim}
+  disaster:
+    - set: who.spark
+      value: "min(2, @who.spark + 1)"
+    - if: "@interrupt"
+      then: ["Disaster: the impact move lands, worse, and {@who.name} shares it. {@who.name} takes spark."]
+      else: ["Disaster: failure, with a worse impact move. {@who.name} takes spark."]
+    - do: impact
+      with: {who: "@who", stakes: "@stakes_now", result: disaster}
+source: "p. 10-17, 53, 103"
+---
+check: defense
+title: Defense roll
+help: >-
+  Reflexively avoiding trouble not caused by your own action (usually the GM spending
+  suspense on an impact move). The GM picks the stat that fits the danger. Same dice, thorns
+  and criticals as an action roll (a critical can't be cut). `protect`: throwing yourself in
+  harm's way for an ally hit by an impact move from their own roll is a 1d defense roll that
+  shares the risk. `stakes` weighs what gets through.
+params:
+  who: ref
+  stat: {enum: [brawn, agility, wits, presence]}
+  thorns: {kind: int, default: 0}
+  spark: {kind: int, default: 0}
+  dice: {kind: int, default: 0}
+  assist: {kind: int, default: 0, help: "Helpers, 1d each, rolled apart; they share the risk"}
+  protect: {kind: flag, default: false, help: "Protecting an ally: 1d instead of the stat"}
+  stakes: {enum: [low, regular, high, dire], optional: true, help: "The scene's stakes (p. 103): regular unless declared (low in cozy fantasy)"}
+before:
+  - if: "@spark > @who.spark"
+    then:
+      - stop: "{@who.name} has {@who.spark} spark to spend, not {@spark}."
+  - let:
+      marked: "if('$stat' in @who.marks, 1, 0)"
+      hurt: >-
+        if('desperate' in @who.harm, 1, 0)
+        + if('bloodied' in @who.harm and ('$stat' == 'brawn' or '$stat' == 'agility'), 1, 0)
+        + if('rattled' in @who.harm and ('$stat' == 'wits' or '$stat' == 'presence'), 1, 0)
+      stakes_now: "if('$stakes' <> '', '$stakes', if(@option.flavor == 'cozy', 'low', 'regular'))"
+  - let: {total_thorns: "@thorns + @marked + @hurt"}
+  - if: "@marked > 0 and not @option.lasting_marks"
+    then:
+      - set: who.marks
+        op: "-="
+        value: $stat
+  - if: "@spark > 0"
+    then:
+      - set: who.spark
+        op: "-="
+        value: "@spark"
+  - roll: "(if(@protect, 1, @who.$stat) + @spark + @dice)d6"
+    as: roll
+  - if: "@assist > 0"
+    then:
+      - roll: "(@assist)d6"
+        as: help
+  - if: "@total_thorns > 0"
+    then:
+      - roll: "(@total_thorns)d8"
+        as: thorn
+  - let:
+      highest: "if(@assist > 0, max(@roll.dice, @help.dice), max(@roll.dice))"
+      sixes: "count(@roll.dice, 6) + if(@assist > 0, count(@help.dice, 6), 0)"
+      cuts: "if(@total_thorns > 0, count(@thorn.dice, 7) + count(@thorn.dice, 8), 0)"
+  - let: {level: "if(@highest == 6, 3, if(@highest >= 4, 2, 1)) - @cuts"}
+  - message: "highest {@highest} · sixes {@sixes} · thorns {@total_thorns}, cutting {@cuts}"
+bands:
+  critical: "@sixes >= 2"
+  perfect: "@level >= 3"
+  messy: "@level == 2"
+  grim: "@level == 1"
+  disaster: else
+on:
+  critical:
+    - if: "@protect"
+      then: ["Critical: {@who.name} and the ally both avoid the trouble (thorns can't cut a critical), and pick a critical bonus: greater effect, a secondary effect or setup; or take spark."]
+      else: ["Critical: {@who.name} avoids the impact move (thorns can't cut a critical), and picks a critical bonus: greater effect, a secondary effect or setup; or takes spark (`didact do take-spark who={@who.id}`)."]
+  perfect:
+    - if: "@protect"
+      then: ["Perfect: {@who.name} and the ally both avoid the trouble."]
+      else: ["Perfect: {@who.name} avoids the impact move."]
+  messy:
+    - if: "@protect"
+      then: ["Messy: the GM lightens the consequences for both, or hits only {@who.name}."]
+      else: ["Messy: the impact move is reduced: the GM lessens the consequences (a reduced mark is set dressing)."]
+    - do: impact
+      with: {who: "@who", stakes: "@stakes_now", result: reduced}
+  grim:
+    - if: "@protect"
+      then: ["Grim: both are hit with the impact move."]
+      else: ["Grim: {@who.name} takes the full impact move."]
+    - do: impact
+      with: {who: "@who", stakes: "@stakes_now", result: full}
+  disaster:
+    - set: who.spark
+      value: "min(2, @who.spark + 1)"
+    - message: "Disaster: a worse impact move; {@who.name} takes spark."
+    - do: impact
+      with: {who: "@who", stakes: "@stakes_now", result: worse}
+source: "p. 10, 14, 15, 17, 103"
+---
+procedure: impact
+title: The impact move
+help: >-
+  What a prompted impact move weighs at the scene's stakes (p. 103): low, 1 mark or softer
+  (set dressing, vex, raise the stakes); regular, 1 harm or another standard consequence (2
+  marks, a condition, a pressure pool, complicate things); high, desperate harm, and a disaster
+  can drop the PC at once; dire, any prompted impact move drops the PC. The GM can skip it and
+  take suspense instead. Solo play asks its questions on a messy and adds peril on a disaster
+  or at dire stakes (p. 193).
+params:
+  who: ref
+  stakes: {enum: [low, regular, high, dire], default: regular}
+  oracle: {kind: ref, optional: true, help: "The story oracle's state, for the GM's suspense (supplied)"}
+  result: {enum: [messy, grim, disaster, reduced, full, worse], default: grim, help: "What prompted it: an action roll's messy, grim or disaster; or what a defense roll lets through: reduced (messy), full (grim), worse (disaster)"}
+steps:
+  - if: "@option.solo and '$result' == 'messy'"
+    then:
+      - if: "default(@oracle.suspense, 0) >= 3"
+        then:
+          - message: "Solo (p. 193), on a messy: you have {@oracle.suspense} suspense, 3 or more: make an impact move."
+        else:
+          - prompt: "Solo (p. 193), on a messy (you have {default(@oracle.suspense, 0)} suspense): are you in a scene with a challenge, or in the last task pool of a quest? If yes, make an impact move; if not, take suspense instead (`didact do suspense take=1`)."
+  - if: "'$stakes' == 'low'"
+    then:
+      - message: "Low stakes: the impact move weighs 1 mark, or softer consequences (set dressing, vex, raise the stakes)."
+  - if: "'$stakes' == 'regular'"
+    then:
+      - message: "Regular stakes: the impact move weighs 1 harm, or another standard consequence (2 marks, a condition, a pressure pool, complicate things)."
+  - if: "'$stakes' == 'high'"
+    then:
+      - message: "High stakes: the impact move weighs desperate harm, twice a standard consequence."
+      - if: "'$result' == 'disaster' or '$result' == 'worse'"
+        then:
+          - prompt: "High stakes: a disaster can drop {@who.name} at once (`didact do dropped who={@who.id}`)."
+  - if: "'$stakes' == 'dire' and '$result' <> 'reduced'"
+    then:
+      - prompt: "Dire stakes: the prompted impact move drops {@who.name} (`didact do dropped who={@who.id}`), unless the GM skips it for suspense."
+  - if: "'$stakes' == 'dire' and '$result' == 'reduced'"
+    then:
+      - message: "Dire stakes: the GM lessens what would have dropped {@who.name}."
+  - if: "'$result' == 'disaster' or '$result' == 'worse'"
+    then:
+      - message: "Make it worse than a grim's (about twice as bad)."
+  - if: "@option.solo and ('$result' == 'disaster' or '$result' == 'worse' or ('$stakes' == 'dire' and '$result' <> 'reduced'))"
+    then:
+      - prompt: "Solo (p. 193): {if('$result' == 'disaster' or '$result' == 'worse', 'on a disaster', 'with dire stakes')}, take the normal consequences, plus: roll a peril pool (`didact track roll <peril>`), or take harm (`didact do harm who={@who.id} kind=…`). Ideas: `didact table roll solo-consequences --with stakes={if('$stakes' == 'regular', 'normal', '$stakes')}`."
+  - if: "('$result' == 'grim' or '$result' == 'disaster') or ('$result' == 'messy' and not @option.solo)"
+    then:
+      - message: "The GM can skip a prompted impact move and take suspense instead (`didact do suspense take=1`)."
+source: "pp. 96, 103, 193"
+---
+procedure: twist
+title: Magical twist
+help: >-
+  Two or more 1s (thorns included) on a spell. A sorcerer's twists manifest as they chose at
+  creation (Sorcery, p. 76): a wild surge (a 2d story roll for the effect, with the wild surge
+  crucible), take vex, or a curse (the GM takes +1 suspense). With dangerous magic (p. 172) any
+  spell can twist: pick a wild surge (a 1d story roll for the collateral damage), a dark omen
+  (+1 suspense) or a 6d Corruption pool, or make your own.
+params:
+  who: ref
+steps:
+  - if: "'sorcerer-sorcery' in @who.talents"
+    then:
+      - message: "Magical twist (Sorcery, p. 76): two or more 1s, thorns included."
+      - if: "'twists: wild surge' in @who.path_notes"
+        then:
+          - table: sorcerer-wild-surge-1
+            as: surge_1
+          - table: sorcerer-wild-surge-2
+            as: surge_2
+          - check: story-roll
+            with: {dice: 2, question: "How does the wild surge play out?"}
+            as: surge
+          - prompt: "Wild surge: the 2d story roll sets its effect; the crucible offers {@surge_1} + {@surge_2}: smash them together and interpret."
+      - if: "'twists: take vex' in @who.path_notes"
+        then:
+          - do: vex
+            with: {who: "@who"}
+      - if: "'twists: curse' in @who.path_notes"
+        then:
+          - message: "Curse: the GM takes +1 suspense."
+          - do: suspense
+            with: {take: 1, why: "a sorcerer's curse"}
+      - if: "not ('twists: wild surge' in @who.path_notes or 'twists: take vex' in @who.path_notes or 'twists: curse' in @who.path_notes)"
+        then:
+          - prompt: "The twist manifests as {@who.name}'s do (their path notes), or pick: a wild surge (a 2d story roll for the effect: `didact do story-roll dice=2`, and `didact table roll sorcerer-wild-surge-1`), take vex (`didact do vex who={@who.id}`), or a curse (the GM takes +1 suspense: `didact do suspense take=1`)."
+    else:
+      - prompt: "Dangerous magic (p. 172): a magical twist. Pick one or make your own: a wild surge (a 1d story roll for the collateral damage: `didact do story-roll dice=1`), a dark omen (the GM takes +1 suspense: `didact do suspense take=1 why='dark omen'`), or a 6d Corruption pool (at 0d, change a trait, desire, bond or appearance negatively: `didact track new 'Corruption' --kind pool --size 6 --pool pressure --for {@who.id} --note 'change a trait, desire, bond or appearance negatively'`)."
+source: "pp. 76, 172"
+---
+check: story-roll
+title: Story roll
+help: >-
+  For what's outside the PC: luck, magic items, wild surges, doubtful story details, the GM's
+  questions. Dice for the odds of a favorable outcome for the side you roll for: usually 2d,
+  1d for bad odds, 3d for good (`odds`, as the story oracle asks). Thorns are rare. Highest d6:
+  6 perfect (yes, and in your favor), 4-5 messy (yes, but / mixed), 1-3 grim (no, or against
+  you); thorns cut it, but not two or more 6s.
+params:
+  question: {kind: text, optional: true}
+  dice: {kind: int, default: 2, help: "1 for bad odds, 3 for good"}
+  odds: {enum: [bad, even, good], optional: true, help: "The odds, in place of dice: bad 1d, even 2d, good 3d"}
+  thorns: {kind: int, default: 0}
+  spark: {kind: int, default: 0, help: "Spark to spend: +1d each (with who=)"}
+  who: {kind: ref, optional: true, help: "Whose spark is spent"}
+before:
+  - if: "@spark > default(@who.spark, 0)"
+    then:
+      - stop: "Spending spark needs who= and that much spark ({@spark})."
+  - if: "@spark > 0"
+    then:
+      - set: who.spark
+        op: "-="
+        value: "@spark"
+  - let: {base: "if('$odds' == 'bad', 1, if('$odds' == 'good', 3, if('$odds' == 'even', 2, @dice)))"}
+  - roll: "(@base + @spark)d6"
+    as: roll
+  - if: "@thorns > 0"
+    then:
+      - roll: "(@thorns)d8"
+        as: thorn
+  - let: {cuts: "if(@thorns > 0, count(@thorn.dice, 7) + count(@thorn.dice, 8), 0)"}
+  - let: {level: "if(max(@roll.dice) == 6, 3, if(max(@roll.dice) >= 4, 2, 1)) - @cuts"}
+bands:
+  perfect: "@level >= 3 or count(@roll.dice, 6) >= 2"
+  messy: "@level == 2"
+  grim: "@level == 1"
+  disaster: else
+prompt: Interpret the answer from positive (perfect) to negative (grim or disaster), for the side you rolled for.
+source: "p. 10, 11, 16, 92"
+---
+check: montage
+title: Montage roll
+help: >-
+  Zoom out on a stretch of fiction: each participating PC makes a 2d action roll (roll once
+  for each). Spark and talents add dice; the GM's thorns, desperate, and a mark, bloodied or
+  rattled on the `stat` the effort leans on add thorns (a used mark clears). The best result
+  among the PCs is the scene's outcome; zoom back in on the unlikely or interesting ones.
+params:
+  who: ref
+  stat: {enum: [brawn, agility, wits, presence], optional: true, help: "What the effort leans on (for a mark, bloodied or rattled)"}
+  thorns: {kind: int, default: 0}
+  spark: {kind: int, default: 0}
+  dice: {kind: int, default: 0, help: "Extra dice: talents (Jack of All Trades), setup"}
+before:
+  - if: "@spark > @who.spark"
+    then:
+      - stop: "{@who.name} has {@who.spark} spark to spend, not {@spark}."
+  - let:
+      marked: "if('$stat' <> '' and '$stat' in @who.marks, 1, 0)"
+      hurt: >-
+        if('desperate' in @who.harm, 1, 0)
+        + if('bloodied' in @who.harm and ('$stat' == 'brawn' or '$stat' == 'agility'), 1, 0)
+        + if('rattled' in @who.harm and ('$stat' == 'wits' or '$stat' == 'presence'), 1, 0)
+  - let: {total_thorns: "@thorns + @marked + @hurt"}
+  - if: "@marked > 0 and not @option.lasting_marks"
+    then:
+      - set: who.marks
+        op: "-="
+        value: $stat
+  - if: "@spark > 0"
+    then:
+      - set: who.spark
+        op: "-="
+        value: "@spark"
+  - roll: "(2 + @spark + @dice)d6"
+    as: roll
+  - if: "@total_thorns > 0"
+    then:
+      - roll: "(@total_thorns)d8"
+        as: thorn
+  - let:
+      highest: "max(@roll.dice)"
+      sixes: "count(@roll.dice, 6)"
+      cuts: "if(@total_thorns > 0, count(@thorn.dice, 7) + count(@thorn.dice, 8), 0)"
+  - let: {level: "if(@highest == 6, 3, if(@highest >= 4, 2, 1)) - @cuts"}
+  - message: "{@who.name}: highest {@highest} · thorns {@total_thorns}, cutting {@cuts}"
+bands:
+  critical: "@sixes >= 2"
+  perfect: "@level >= 3"
+  messy: "@level == 2"
+  grim: "@level == 1"
+  disaster: else
+on:
+  disaster:
+    - set: who.spark
+      value: "min(2, @who.spark + 1)"
+    - message: "Disaster for {@who.name}, who takes spark."
+prompt: "Roll for each PC taking part; the best result is the scene's outcome. Zoom in on the unlikely or interesting ones."
+source: "p. 16, 124"
+---
+check: pool-action
+title: A power pool as an action roll
+help: >-
+  Roll a power pool as an action roll in place of a stat (p. 19): the highest die is the
+  result, then each 1-3 drops from the pool. Spark and talent dice roll along but never drop
+  nor join the pool; `drop` drops dice first (a potent spell, greater effect). Thorns cut it,
+  two or more 6s are a critical, a disaster gives spark, as any action roll. A `stat` the action
+  leans on brings its mark and bloodied or rattled; desperate always counts. A cleric's rites, a
+  Blasting Wand, an animated object.
+params:
+  who: ref
+  pool: {kind: ref, help: "The power pool (a tracker)"}
+  stat: {enum: [brawn, agility, wits, presence], optional: true, help: "What the action leans on (for a mark, bloodied or rattled)"}
+  thorns: {kind: int, default: 0}
+  spark: {kind: int, default: 0, help: "Spark to spend: +1d each, rolled along"}
+  dice: {kind: int, default: 0, help: "Extra dice from talents, rolled along"}
+  assist: {kind: int, default: 0, help: "Helpers, 1d each, rolled apart; they share the risk"}
+  drop: {kind: int, default: 0, help: "Dice dropped from the pool before rolling (a potent spell, greater effect)"}
+  spell: {kind: flag, default: false, help: "A spell: two or more 1s (thorns included) bring a sorcerer's twist, or anyone's with dangerous magic"}
+  stakes: {enum: [low, regular, high, dire], optional: true, help: "The scene's stakes (p. 103)"}
+before:
+  - if: "@spark > @who.spark"
+    then:
+      - stop: "{@who.name} has {@who.spark} spark to spend, not {@spark}."
+  - if: "@pool.value <= 0"
+    then:
+      - stop: "{@pool.name} is empty: it can't be rolled until it comes back."
+  - let:
+      marked: "if('$stat' <> '' and '$stat' in @who.marks, 1, 0)"
+      hurt: >-
+        if('desperate' in @who.harm, 1, 0)
+        + if('bloodied' in @who.harm and ('$stat' == 'brawn' or '$stat' == 'agility'), 1, 0)
+        + if('rattled' in @who.harm and ('$stat' == 'wits' or '$stat' == 'presence'), 1, 0)
+      extra: "@spark + @dice"
+      stakes_now: "if('$stakes' <> '', '$stakes', if(@option.flavor == 'cozy', 'low', 'regular'))"
+  - let: {total_thorns: "@thorns + @marked + @hurt"}
+  - if: "@marked > 0 and not @option.lasting_marks"
+    then:
+      - set: who.marks
+        op: "-="
+        value: $stat
+  - if: "@spark > 0"
+    then:
+      - set: who.spark
+        op: "-="
+        value: "@spark"
+  - pool: "@pool"
+    drop: "@drop"
+    as: rolled
+  - if: "@extra > 0"
+    then:
+      - roll: "(@extra)d6"
+        as: along
+  - if: "@assist > 0"
+    then:
+      - roll: "(@assist)d6"
+        as: help
+  - if: "@total_thorns > 0"
+    then:
+      - roll: "(@total_thorns)d8"
+        as: thorn
+  - let:
+      highest: "max(@rolled.highest, if(@extra > 0, max(@along.dice), 0), if(@assist > 0, max(@help.dice), 0))"
+      sixes: "count(@rolled.faces, 6) + if(@extra > 0, count(@along.dice, 6), 0) + if(@assist > 0, count(@help.dice, 6), 0)"
+      cuts: "if(@total_thorns > 0, count(@thorn.dice, 7) + count(@thorn.dice, 8), 0)"
+      ones: "count(@rolled.faces, 1) + if(@extra > 0, count(@along.dice, 1), 0) + if(@assist > 0, count(@help.dice, 1), 0) + if(@total_thorns > 0, count(@thorn.dice, 1), 0)"
+  - let: {level: "if(@highest == 6, 3, if(@highest >= 4, 2, 1)) - @cuts"}
+  - message: "highest {@highest} · sixes {@sixes} · thorns {@total_thorns}, cutting {@cuts} · {@pool.name} drops {@rolled.dropped}d, {@rolled.left}d left"
+  - if: "@spell and @ones >= 2 and ('sorcerer-sorcery' in @who.talents or @option.magic == 'dangerous')"
+    then:
+      - do: twist
+        with: {who: "@who"}
+bands:
+  critical: "@sixes >= 2"
+  perfect: "@level >= 3"
+  messy: "@level == 2"
+  grim: "@level == 1"
+  disaster: else
+on:
+  critical: ["Critical: success (thorns can't cut it), and pick one: greater effect, a secondary effect, or setup; or take spark."]
+  perfect: ["Perfect: success, and you avoid trouble."]
+  messy:
+    - message: "Messy: success, with an impact move."
+    - do: impact
+      with: {who: "@who", stakes: "@stakes_now", result: messy}
+  grim:
+    - message: "Grim: failure, with an impact move."
+    - do: impact
+      with: {who: "@who", stakes: "@stakes_now", result: grim}
+  disaster:
+    - set: who.spark
+      value: "min(2, @who.spark + 1)"
+    - message: "Disaster: failure, with a worse impact move. {@who.name} takes spark."
+    - do: impact
+      with: {who: "@who", stakes: "@stakes_now", result: disaster}
+source: "p. 19, 60"
+---
+action: mark
+title: Take a mark
+help: >-
+  Light damage to a stat: +1t on the next roll with it, which clears the mark (grimdark: only a
+  rest clears it). A stat already marked takes harm instead: bloodied for Brawn or Agility,
+  rattled for Wits or Presence. Pushing yourself also costs a mark. A side character (solo
+  party mode) takes harm instead of any mark.
+params:
+  who: ref
+  stat: {enum: [brawn, agility, wits, presence]}
+steps:
+  - if: "@who.side or '$stat' in @who.marks"
+    then:
+      - if: "@who.side"
+        then: ["{@who.name} is a side character (solo party mode): no marks, harm instead (p. 195)."]
+        else: ["{@who.name}'s $stat is already marked: that's harm instead."]
+      - do: harm
+        with: {who: "@who", kind: "if('$stat' == 'brawn' or '$stat' == 'agility', 'bloodied', 'rattled')"}
+    else:
+      - set: who.marks
+        op: "+="
+        value: $stat
+      - message: "{@who.name} takes a mark on $stat: +1t on the next $stat roll."
+source: "p. 27, 195"
+---
+action: harm
+title: Take harm
+help: >-
+  Damage to mind or body: bloodied (Brawn, Agility: +1t) or rattled (Wits, Presence: +1t). A
+  second bloodied, or a second rattled, makes you desperate instead (+1t on all rolls); harm
+  that would make you desperate a second time drops you out of the scene.
+params:
+  who: ref
+  kind: {enum: [bloodied, rattled]}
+steps:
+  - if: "'dropped' in @who.harm"
+    then:
+      - stop: "{@who.name} is already dropped."
+  - if: "not ('$kind' in @who.harm)"
+    then:
+      - set: who.harm
+        op: "+="
+        value: $kind
+      - message: "{@who.name} is $kind: +1t on related rolls until treated."
+    else:
+      - if: "'desperate' in @who.harm"
+        then:
+          - set: who.harm
+            op: "+="
+            value: dropped
+          - message: "{@who.name} is already $kind and desperate: dropped, out of the scene."
+          - prompt: "Resolve it with a story roll: `didact do dropped who={@who.id}` (now, or at the scene's end)."
+        else:
+          - set: who.harm
+            op: "+="
+            value: desperate
+          - message: "{@who.name} is $kind again: desperate, +1t on all rolls. The next harm that would do this drops them."
+          - if: "@option.lethality == 'deadly'"
+            then:
+              - prompt: "More lethal: give {@who.name} an urgent condition that leads to dropped (4d bleeding out, 6d blacking out): `didact track new 'Bleeding out' --kind pool --size 4 --pool timer --for {@who.id} --note dropped`."
+source: "p. 27-28, 173"
+---
+check: dropped
+title: Dropped
+help: >-
+  A dropped character is out of the scene; a story roll says how badly: 2d, or as the lethality
+  option has it (gentle 3d, deadly 1d; sword & sorcery 1d), +1d with Dauntless, +1d for each
+  spark spent. Perfect: merely out until the scene ends (Dauntless: not dropped at all). Messy:
+  worse, a temporary condition. Grim: far worse, a permanent condition or the end of their story
+  (`didact do end-story`). A retiring PC dropped again perishes. The player has the final say on
+  long-term changes, death included.
+params:
+  who: ref
+  dice: {kind: int, default: 0, help: "The story roll's dice (left out: 2, or as the lethality option has it)"}
+  spark: {kind: int, default: 0, help: "Spark to spend: +1d each"}
+before:
+  - if: "@spark > @who.spark"
+    then:
+      - stop: "{@who.name} has {@who.spark} spark to spend, not {@spark}."
+  - if: "not ('dropped' in @who.harm)"
+    then:
+      - set: who.harm
+        op: "+="
+        value: dropped
+  - let:
+      story: >-
+        if(@dice > 0, @dice, if(@option.lethality == 'gentle', 3,
+        if(@option.lethality == 'deadly' or @option.flavor == 'sword-and-sorcery', 1, 2)))
+        + if('paladin-dauntless' in @who.talents, 1, 0) + @spark
+  - if: "@spark > 0"
+    then:
+      - set: who.spark
+        op: "-="
+        value: "@spark"
+  - if: "not @who.retiring"
+    then:
+      - roll: "(@story)d6"
+        as: roll
+bands:
+  perished: "@who.retiring"
+  perfect: "max(@roll.dice) == 6"
+  messy: "max(@roll.dice) >= 4"
+  grim: else
+on:
+  perished: ["{@who.name} was retiring, and is dropped again: they perish (p. 28). Work with the GM on a fitting end."]
+  perfect:
+    - if: "'paladin-dauntless' in @who.talents"
+      then:
+        - set: who.harm
+          op: "-="
+          value: dropped
+        - message: "Dauntless: on a perfect, {@who.name} doesn't get dropped."
+      else: ["{@who.name} is merely out until the scene ends."]
+  messy: ["Worse: {@who.name} also takes a temporary condition (4d bleeding, a broken leg, trauma)."]
+  grim:
+    - message: "Far worse: a permanent condition (blind, cursed), or the end of their story. The player decides."
+    - prompt: "If it's time for {@who.name}'s story to end: `didact do end-story who={@who.id} end=sacrifice|retirement|another`."
+    - if: "@option.flavor == 'noblebright'"
+      then: ["Noblebright: should a PC die, the player has full control of the end of their story."]
+    - if: "@option.flavor == 'cozy'"
+      then: ["Cozy fantasy: PCs and allies only die in meaningful ways, nearly always outside of conflict."]
+source: "p. 28, 69, 173, 184-185"
+---
+action: end-story
+title: The end of their story
+help: >-
+  When a dropped PC's story ends (p. 28): a sacrifice (one more action in the scene, an
+  automatic success with whatever effect feels appropriate, then they die), retirement (dropped
+  from the scene, alive but deeply scarred; retire soon, for if dropped again they perish), or
+  another end (an ignoble demise, an ambiguous fate, a turn to antagonist, a death without
+  fanfare; more common in darker worlds and low fantasy).
+params:
+  who: ref
+  end: {enum: [sacrifice, retirement, another]}
+steps:
+  - if: "'$end' == 'sacrifice'"
+    then:
+      - prompt: "Sacrifice: when {@who.name} is ready, they take one more action in the scene, an automatic success with whatever effect feels appropriate, then they die. Work with the GM on a dramatic, satisfying ending."
+  - if: "'$end' == 'retirement'"
+    then:
+      - set: who.retiring
+        value: true
+      - message: "Retirement: {@who.name} is dropped from the scene, alive but deeply scarred. Find an opportunity to retire from the adventure soon: if dropped again, they perish."
+  - if: "'$end' == 'another'"
+    then:
+      - prompt: "Another end: an ignoble demise, an ambiguous fate, a turn to antagonist, or a death without fanfare. Craft it together with the GM."
+source: "p. 28"
+---
+action: take-spark
+title: Take spark
+help: >-
+  Take spark for a tangle you introduce, a disaster, a resolved story arc, a quarrel, an ally's
+  bond with you changing, the Build Up move, carousing, the joy of exploration or unwinding. At
+  most 2. Side characters (solo party mode) have none.
+params:
+  who: ref
+  why: {kind: text, optional: true}
+steps:
+  - if: "@who.side"
+    then:
+      - stop: "{@who.name} is a side character (solo party mode): no spark or thread (p. 195)."
+  - let: {had: "@who.spark"}
+  - set: who.spark
+    value: "min(2, @who.spark + 1)"
+  - message: "{@who.name} has {@who.spark} spark{if(@had >= 2, ' (2 at most)', '')}."
+source: "p. 12, 195"
+---
+procedure: renew
+title: Spark and thread come back
+help: >-
+  A PC takes spark and resets thread: 2, +1 with Bardic Lore and with each talent that gives a
+  thread per session (Reader, Scout Ahead, Mastermind, Prepared Spell). Before each session
+  (p. 31), or with rest resets at each reset (p. 174). Side characters have neither.
+params:
+  who: ref
+steps:
+  - if: "not @who.side"
+    then:
+      - let:
+          thread_now: >-
+            2 + if('bard-bardic-lore' in @who.talents, 1, 0) + if('psion-reader' in @who.talents, 1, 0)
+            + if('ranger-scout-ahead' in @who.talents, 1, 0) + if('rogue-mastermind' in @who.talents, 1, 0)
+            + if('legacy-prepared-spell' in @who.talents, 1, 0)
+      - set: who.spark
+        value: "min(2, @who.spark + 1)"
+      - set: who.thread
+        value: "@thread_now"
+      - message: "{@who.name}: spark {@who.spark}, thread {@thread_now}."
+source: "pp. 31, 57, 71, 73, 75, 179"
+---
+procedure: talent-resets
+title: Per-session talents reset
+help: >-
+  A PC's per-session talents reset (before each session, p. 31; in downtime, p. 30; with rest
+  resets, at each reset, p. 174): their uses (inspiration, smite, competence, …), their pools
+  and their arcana's pools come back, and the talents with a ritual of their own make it:
+  Augury rolls its 2 omens, Magnum Opus 3 random touchstones, Herbalism two herb names, and
+  Oathsworn affirms its tenets.
+params:
+  who: ref
+steps:
+  - message: "{@who.name}'s per-session talents reset: their uses come back."
+  - if: "'druid-augury' in @who.talents"
+    then:
+      - roll: 2d6
+        as: omens
+      - set: who.omens
+        value: "@omens.dice"
+      - message: "Augury: {@who.name}'s omens are {@omens.dice}: replace any rolled d6 (by anyone) with one, then erase it."
+  - if: "'artificer-magnum-opus' in @who.talents"
+    then:
+      - table: arcana-crucible
+        times: 3
+        as: opus
+      - prompt: "Magnum Opus: 3 random touchstones for the mythic arcana in the making ({@opus}): lock one in, never to roll it again (`didact set {@who.id} touchstones+='…'`)."
+  - if: "'witch-herbalism' in @who.talents"
+    then:
+      - table: witch-herbalism-1
+        as: herb_1
+      - table: witch-herbalism-2
+        as: herb_2
+      - table: witch-herbalism-1
+        as: herb_3
+      - table: witch-herbalism-2
+        as: herb_4
+      - message: "Herbalism: two herb names for this session, a word from each table (either reading): {@herb_1} + {@herb_2}, and {@herb_3} + {@herb_4}. Each session, 1 trivial and 1 minor potion, chosen when used; an herb's name is its touchstone."
+  - if: "'paladin-oathsworn' in @who.talents"
+    then:
+      - prompt: "Affirmation (Oathsworn): {@who.name} states their tenets and how they came up last session, gives spark to one player who joined a scene involving them, and takes 1 less smite for each tenet in violation."
+  - if: "'psion-awakened-mind' in @who.talents"
+    then:
+      - message: "Awakened Mind: the thorns from instability reset."
+  - if: "'artificer-mischief-maker' in @who.talents"
+    then:
+      - message: "Mischief Maker: its added thorns clear."
+  - prompt: "Refresh {@who.name}'s per-session pools, their talents' and arcana's (a cleric's rites, Grenades, Luck, an arcana's power pool, the armor pool): `didact do refresh pool=<track>` for each (`didact track list`)."
+source: "pp. 31, 40, 55, 63, 68, 70, 85, 174"
+---
+action: pre-session
+title: Before a session
+help: >-
+  Before each session after the first (p. 31): recall the last one and share your PC's best
+  moment; each PC takes spark and resets thread (2, more with Bardic Lore and the talents that
+  give thread) and all per-session talents (their pools, their arcana's pools, and the rituals
+  of Augury, Magnum Opus, Herbalism and Oathsworn); the GM takes suspense and recaps. Didact runs
+  it for every PC when a session after the first starts. With rest resets, spark, thread and
+  talents come with rests instead.
+params: {who: ref}
+steps:
+  - if: "@option.rest_resets"
+    then:
+      - stop: "Rest resets (an option): {@who.name}'s spark, thread and talents come back on rests (`didact do rest who={@who.id}`), not before sessions."
+  - message: "Pre-session: recall the previous session and share {@who.name}'s best moment."
+  - do: renew
+    with: {who: "@who"}
+  - do: talent-resets
+    with: {who: "@who"}
+source: "p. 31, 174"
+---
+action: rest
+title: Rest
+help: >-
+  A significant stretch of time between action (a night's camp, a week's travel) clears all
+  marks and harm; conditions clear when it makes sense (p. 30). With rest resets (an option,
+  p. 174) it's also a reset: the PC takes spark, thread and every talent reset, some conditions
+  fade, and the GM takes 2 suspense (once for the party's rest: the first PC's, until a new scene or
+  session starts). An extended rest refreshes a vigor pool.
+params: {who: ref}
+steps:
+  - set: who.marks
+    value: []
+  - set: who.harm
+    value: []
+  - message: "{@who.name} rests: marks and harm are cleared. Conditions clear when it makes sense (some need treatment, a task pool, or a specific cure)."
+  - if: "@option.rest_resets"
+    then:
+      - do: renew
+        with: {who: "@who"}
+      - do: talent-resets
+        with: {who: "@who"}
+      - message: "Rest resets (an option): {@who.name} takes spark, and thread and every talent reset. Some conditions fade."
+      - do: reset-suspense
+      - prompt: "The world moves on while the PCs rest: highlight any timers and threats."
+  - if: "@option.vigor_pool"
+    then:
+      - prompt: "Vigor (an option): after an extended rest, {@who.name}'s vigor pool refreshes (`didact do refresh pool=<vigor>`)."
+source: "p. 30, 174"
+---
+action: reset
+title: A reset at a narrative break
+help: >-
+  With rest resets (an option, p. 174), talents reset during rests and other narrative breaks
+  the group decides on: the PC takes spark, every talent and thread reset, the PC heals 1 harm
+  (`heal`: the one to clear, else desperate first), the GM takes 2 suspense, and some conditions
+  fade. A full rest (`didact do rest`) clears every mark and harm besides. The GM's 2 suspense come
+  once for the party's reset (the first PC's), until a new scene or session starts.
+params:
+  who: ref
+  heal: {enum: [bloodied, rattled, desperate], optional: true, help: "The harm to heal"}
+steps:
+  - if: "not @option.rest_resets"
+    then:
+      - stop: "Resets come with rest resets (an option: `didact campaign profile rest-resets=on`); without it, talents reset before each session (`didact do pre-session`)."
+  - do: renew
+    with: {who: "@who"}
+  - do: talent-resets
+    with: {who: "@who"}
+  - let:
+      healed: >-
+        if('$heal' <> '' and '$heal' in @who.harm, '$heal', if('desperate' in @who.harm, 'desperate',
+        if('bloodied' in @who.harm, 'bloodied', if('rattled' in @who.harm, 'rattled', ''))))
+  - if: "@healed <> ''"
+    then:
+      - set: who.harm
+        op: "-="
+        value: "@healed"
+      - message: "{@who.name} heals 1 harm: {@healed}."
+  - do: reset-suspense
+  - message: "Some conditions fade."
+source: "p. 174"
+---
+action: experience
+title: Experience
+help: >-
+  After each session, each PC takes 1 XP and fills in its box: Didact does it when the session
+  ends. More XP, 1 each: the GM's bonus for a standout session (about 1 in 4: `bonus`, or
+  `why=standout`); focused growth's themed XP at a session's end (`why=theme`); cozy fantasy's
+  for changing a bond or completing a story arc in the session (`why=bond-or-arc`, given by
+  Didact when the session ends); sword & sorcery's for carousing (`why=carousing`); a solo
+  quest's for each story arc completed (`why=arc`) and for the quest (`why=quest`). The next
+  level comes when the boxes filled equal it (level 4 to 5: 5 boxes; each box slashed first,
+  twice the XP, with slow progression or focused growth): `didact char advance`. Milestone
+  levels have no XP; side characters don't take any.
+params:
+  who: ref
+  bonus: {kind: flag, default: false, help: "The GM's bonus XP for a standout session (why=standout)"}
+  why: {enum: [session, standout, theme, bond-or-arc, carousing, arc, quest], default: session}
+steps:
+  - if: "@who.side"
+    then:
+      - stop: "{@who.name} is a side character (solo party mode, p. 195): side characters don't add XP or advance."
+  - if: "@option.milestone_levels"
+    then:
+      - stop: "Milestone levels (an option): no XP; the party levels up after the meaningful completion of a major group story arc (`didact char advance {@who.id}`)."
+  - let: {reason: "if(@bonus, 'standout', '$why')"}
+  - if: "@reason == 'theme' and not @option.focused_growth"
+    then:
+      - stop: "Themed XP comes with focused growth (an option, p. 177); the GM's bonus for a standout session is why=standout."
+  - if: "@reason == 'bond-or-arc' and @option.flavor <> 'cozy'"
+    then:
+      - stop: "XP for changing a bond or completing a story arc is cozy fantasy's (p. 187)."
+  - if: "@reason == 'carousing' and @option.flavor <> 'sword-and-sorcery'"
+    then:
+      - stop: "Carousing earns XP in sword & sorcery (p. 184); with focused growth, a carousing theme is why=theme."
+  - let:
+      cap: "if(@option.scale == 'smaller' or @option.flavor == 'low' or @option.flavor == 'cozy', 3, 7)"
+      boxes: "if(@who.level == 0, 1, @who.level + 1)"
+  - let: {need: "@boxes * if(@option.slow_progression or @option.focused_growth, 2, 1)"}
+  - set: who.xp
+    op: "+="
+    value: 1
+  - if: "@reason == 'standout'"
+    then: ["{@who.name} takes a bonus XP for a standout session."]
+  - if: "@reason == 'theme'"
+    then: ["Focused growth: {@who.name} takes a bonus XP for what happened, tied to the game's themes."]
+  - if: "@reason == 'bond-or-arc'"
+    then: ["Cozy fantasy: {@who.name} takes +1 XP for changing a bond or completing a story arc this session."]
+  - if: "@reason == 'carousing'"
+    then: ["Sword & sorcery: carousing earns {@who.name} +1 XP."]
+  - if: "@reason == 'arc'"
+    then: ["A quest's story arc is complete: {@who.name} takes 1 XP."]
+  - if: "@reason == 'quest'"
+    then: ["The quest is complete: {@who.name} takes 1 bonus XP."]
+  - if: "@who.level >= @cap"
+    then: ["{@who.name} is at the highest level this game allows ({@cap}): talents can be switched out after in-game milestones (`didact do switch-talent`)."]
+    else:
+      - if: "@who.xp >= @need"
+        then:
+          - message: "{@who.name} has {@who.xp} XP: level {@who.level + 1} is ready (`didact char advance {@who.id}`)."
+        else: ["{@who.name}: {@who.xp} of {@need} XP to the next level."]
+source: "p. 31, 173, 176-177, 184, 187, 194"
+---
+trigger: session-experience
+title: Experience after the session
+help: >-
+  After each session, each PC takes 1 XP and fills in its box (p. 31); in cozy fantasy, +1 more
+  for a bond changed or a story arc completed in it (p. 187); with focused growth, a chance at a
+  themed XP (p. 177). Side characters don't take XP.
+on: session_end
+for: pcs
+when: "not @option.milestone_levels and not @who.side"
+params:
+  who: ref
+steps:
+  - do: experience
+    with: {who: "@who"}
+    go_on: true
+  - if: "@who.grew"
+    then:
+      - if: "@option.flavor == 'cozy'"
+        then:
+          - do: experience
+            with: {who: "@who", why: bond-or-arc}
+            go_on: true
+      - set: who.grew
+        value: false
+  - if: "@option.focused_growth"
+    then:
+      - prompt: "Focused growth: did {@who.name} do something this session tied to the campaign's themes or party concept (changed a bond, converted others, caroused)? A bonus XP: `didact do experience who={@who.id} why=theme`."
+source: "p. 31, 177, 187"
+---
+action: push
+title: Push a task pool
+help: >-
+  When a task pool roll drops nothing, push yourself: take a mark (choose the stat) to drop
+  1d anyway. (Or pivot: take a secondary effect instead.) At 0d the pool's event comes to
+  pass, or a linked pool's next phase begins.
+params:
+  who: ref
+  pool: {kind: ref, help: "The pool (a tracker)"}
+  stat: {enum: [brawn, agility, wits, presence]}
+steps:
+  - if: "@pool.value <= 0"
+    then:
+      - stop: "{@pool.name} is already empty."
+  - do: mark
+    with: {who: "@who", stat: $stat}
+  - pool: "@pool"
+    mode: drop
+    as: pushed
+  - message: "{@who.name} pushes: {@pool.name} drops 1d ({@pushed.left}d left)."
+source: "p. 18"
+---
+procedure: reset-suspense
+title: The GM's suspense for the party's reset
+help: >-
+  With rest resets (p. 174), the GM takes 2 suspense when the group decides on a reset: once for
+  the party, so the first PC's rest or reset takes it, and the next is a new reset once a new
+  scene or session has started.
+params:
+  oracle: {kind: ref, optional: true, help: "The story oracle's state (supplied)"}
+steps:
+  - if: "default(@oracle, '') == ''"
+    then:
+      - message: "The GM takes 2 suspense for the party's reset (the story oracle keeps it once it has started)."
+    else:
+      - if: "default(@oracle.reset_taken, false)"
+        then:
+          - message: "The GM took this reset's 2 suspense already (once for the party)."
+        else:
+          - set: oracle.reset_taken
+            value: true
+          - do: suspense
+            with: {take: 2, why: "the party's reset"}
+source: "p. 174"

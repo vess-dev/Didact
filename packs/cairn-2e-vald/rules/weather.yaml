@@ -1,0 +1,34 @@
+# Vald's weather (wardens-guide/vald#weather-in-vald) with Cairn's weather for travel
+# (players-guide/procedures#weather). Vald's seasons match Cairn's weather tables by the
+# solstices and equinoxes its calendar names: Dead (the shortest day) is winter, Dry (an
+# equinox) spring, Wet (the longest day) summer, Harvest (an equinox) fall.
+procedure: vald-weather
+title: Weather in Vald
+help: >-
+  The day's weather in Vald: the season's own (Dead, Dry, Wet, Harvest) for what it's like, and
+  Cairn's for what it does to travel, by the season it matches: Dead is winter, Dry spring, Wet
+  summer, Harvest fall.
+params:
+  season: {enum: [Dead, Dry, Wet, Harvest]}
+steps:
+  - let:
+      key: "if(@season == 'Dead', 'dead', if(@season == 'Dry', 'dry', if(@season == 'Wet', 'wet', 'harvest')))"
+      cairn: "if(@season == 'Dead', 'winter', if(@season == 'Dry', 'spring', if(@season == 'Wet', 'summer', 'fall')))"
+  - table: "vald-weather-{@key}"
+    as: feel
+  - do: cairn-2e.weather
+    with: {season: "@cairn"}
+  - message: "In Vald's $season season: {@feel}."
+source: wardens-guide/vald#weather-in-vald
+---
+trigger: vald-new-day
+title: A new day in Vald
+help: When game time crosses into a new day, Vald's weather for the day (its season, and Cairn's for travel).
+on: time
+when: >-
+  @time.day > (@time.seconds - @time.passed) // 86400 + 1 and (default(@time.season, '') == 'Dead'
+  or @time.season == 'Dry' or @time.season == 'Wet' or @time.season == 'Harvest')
+steps:
+  - do: vald-weather
+    with: {season: "@time.season"}
+source: wardens-guide/vald#weather-in-vald

@@ -1,0 +1,119 @@
+# Building a Survivor (Chapter 3) for each of the seven classes, at random, all the way to records;
+# a side character; and leveling up as the classes' Growth and the options have it. Seeded, so it
+# plays the same every time.
+test: every-class
+help: "A random survivor of each class (Chapter 3, step by step) commits with its Core Perk, its wells, its 3d Stimpaks (a Repair Kit for a machine) and its 4d Caps; a side character has one perk and no spark or thread."
+script:
+  - world new wastes --system {pack} --seed classes
+  - campaign new first --seed classes
+  - run: >-
+      char new --mode random --prefill '{"name": "Brick", "class": "The Sledge"}'
+    expect: ["pc Brick: level: 1, xp: 0, backgrounds: [", "class: The Sledge, perks: [unstoppable-force, ", "strength: ", "might: 4", "track Brick's Repair Kit: kind: pool, pool: resource", "track Brick's Caps: kind: pool, pool: power"]
+  - run: char commit c1
+    expect: "3 records (pc:brick, track:brick-s-repair-kit, track:brick-s-caps)"
+  - run: >-
+      char new --mode random --prefill '{"name": "Hawk", "class": "The Pathfinder"}'
+    expect: ["class: The Pathfinder, perks: [awareness, ", "I watch through ", "studies: 1", "track Hawk's Stimpaks"]
+  - run: char commit c2
+    expect: "pc:hawk"
+  - run: >-
+      char new --mode random --prefill '{"name": "Dutch", "class": "The Everlast", "perk_list": "The Everlast'"'"'s signature perks", "perk": "life-giver"}'
+    expect: ["class: The Everlast, perks: [toughness, life-giver]", "marked by the wasteland: ", "grit: 6"]
+  - run: char commit c3
+    expect: "pc:dutch"
+  - run: >-
+      char new --mode random --prefill '{"name": "Velvet", "class": "The Charmer", "perk_list": "The Charmer'"'"'s signature perks", "perk": "inspirational"}'
+    expect: ["class: The Charmer, perks: [gift-of-gab, inspirational]", "companion: ", "sway: 3", "companion Velvet's companion: kind: "]
+  - run: char commit c4
+    expect: ["pc:velvet", "companion:velvet-s-companion"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Gizmo", "class": "The Inventor", "perk_list": "The Inventor'"'"'s signature perks", "perk": "chemist"}'
+    expect: ["class: The Inventor, perks: [science, chemist]", "signature recipe: ", "schematics: [", "devices: 4, potent_devices: 2", "track Gizmo's Chems: kind: pool, pool: resource"]
+  - run: char commit c5
+    expect: "track:gizmo-s-chems"
+  - run: >-
+      char new --mode random --prefill '{"name": "Slick", "class": "The Ace"}'
+    expect: ["class: The Ace, perks: [the-professional, ", "rap sheet: ", "calling card: ", "skills: [", "cool: 2"]
+  - run: char commit c6
+    expect: "pc:slick"
+  - run: >-
+      char new --mode random --prefill '{"name": "Jackpot", "class": "The Longshot"}'
+    expect: ["class: The Longshot, perks: [luck-of-the-draw, ", "lucky charm: ", "Luck of the Draw: Jackpot's Luck for the first session is "]
+  - run: char commit c7
+    expect: "pc:jackpot"
+  - run: show jackpot
+    expect: "luck: ones: "
+  - run: char check gizmo
+    expect: "checks out"
+  - run: >-
+      char new grimfall.side-character --mode random --prefill '{"name": "Mutt"}'
+    expect: ["pc Mutt: side: true, level: 1, xp: 0, spark: 0, thread: 0", "perks: ["]
+  - run: char commit c8
+    expect: "pc:mutt"
+  - run: do mark who=mutt stat=brawn
+    expect: "Mutt is a side character: they never take marks, so that's harm instead."
+---
+test: growth
+help: "Leveling up (Chapter 2, Experience): XP from the session, a new perk (one with a pool of its own makes it, and the sheet points at it), the Core Perk's Growth (the Inventor's new schematic, the Ace's new tagged skill); stat progression's lifetime bump; level 0's Core Perk at level 1; the larger scale's start at level 3; the smaller scale's cap."
+script:
+  - world new wastes --system {pack} --seed growth
+  - campaign new first --seed growth
+  - run: >-
+      char new --mode random --prefill '{"name": "Gizmo", "class": "The Inventor"}'
+    expect: "class: The Inventor"
+  - char commit c1
+  - run: session start
+    expect: "session 1"
+  - run: session end --summary 'The overpass held.'
+    expect: "session-experience (Gizmo): pc:gizmo: xp += 1"
+  - run: do experience who=gizmo bonus
+    expect: ["takes a bonus XP for a standout session", "level 2 is ready (`didact char advance pc:gizmo`)"]
+  - run: char advance gizmo --mode random
+    expect: ["level: 1 → 2", "Level 2: the Core Perk grows. At levels 2, 4, and 6, gain +1 device and +1 potent device per session, and learn 1 new schematic.", "Gizmo reaches level 2!"]
+  - run: char commit c2
+    expect: ["level 1 → 2", "xp 2 → 0", "schematics "]
+  - run: session start
+    expect: ["Science!: 5 devices and 3 potent devices this session.", "GM suspense: 1."]
+  - run: campaign profile stat-progression=on
+    expect: "stat-progression"
+  - new pc Slick --set class='The Ace' --set 'perks+=the-professional' --set level=2 --set xp=3 --set agility=2 --set 'skills+=stealth'
+  - run: >-
+      char advance slick --prefill '{"growth": "perk", "perk_list": "Ace perks (the Perk Compendium)"}' --mode random
+    expect: ["level: 2 → 3", "Level 3: the Core Perk grows. At levels 3 and 6, gain +1 Cool per session and tag +1 skill.", "skills: [stealth] → [stealth, "]
+  - run: char commit c3
+    expect: "level 2 → 3"
+  - new pc Brick --set class='The Sledge' --set 'perks+=unstoppable-force' --set xp=2 --set brawn=2
+  - run: >-
+      char advance brick --prefill '{"growth": "stat", "stat": "brawn"}'
+    expect: ["brawn: 2 → 3", "stat_raised: false → true"]
+  - run: char commit c4
+    expect: "brawn 2 → 3"
+  - set brick xp=3
+  - run: >-
+      char advance brick --prefill '{"growth": "perk", "perk_list": "The Everlast'"'"'s signature perks", "perk": "pack-rat"}' --mode random
+    expect: ["+ track Brick's Pack [perk_track-1]", "pack: None → perk_track-1"]
+  - run: char commit c5
+    expect: ["pack None → track:brick-s-pack", "made track:brick-s-pack"]
+  - campaign new zero --seed growth
+  - campaign profile level-zero=on
+  - run: >-
+      char new --mode random --prefill '{"name": "Kid", "class": "The Everlast"}'
+    expect: ["level: 0", "point buy: 3/3 points", "Level 0 (an option): no Core Perk yet"]
+  - run: char commit c6
+    expect: "pc:kid"
+  - run: do experience who=kid
+    expect: "level 1 is ready"
+  - run: char advance kid --mode random
+    expect: ["level: 0 → 1", "perks: [", "toughness", "grit: 0 → 6"]
+  - run: char commit c7
+    expect: "level 0 → 1"
+  - campaign new larger --seed growth
+  - campaign profile scale=larger
+  - run: >-
+      char new --mode random --prefill '{"name": "Vet", "class": "The Charmer"}'
+    expect: ["level: 3", "level 2: gift-of-gab grows", "sway: 4", "The larger scale: survivors start at level 3"]
+  - campaign new smaller --seed growth
+  - campaign profile scale=smaller
+  - new pc Old --set level=3 --set class='The Ace'
+  - run: do experience who=old
+    expect: "Old is at the cap (3): swap perks at story milestones instead"

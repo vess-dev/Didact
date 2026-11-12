@@ -1,0 +1,128 @@
+# Powers and standing: a race trait and a Standing Stone once a day (renewed at dawn), the
+# Standing Stones option, Faction Reputation with its opposed pairs and a betrayal's two rungs,
+# Renown one step a session setting where a stranger's Reaction starts, and Bounty per Hold.
+test: powers
+script:
+  - world new holds --system {pack} --seed powers
+  - campaign new first --seed powers
+  - new pc Hadvar --set STR=12 --set DEX=12 --set WIL=10 --set hp=4 --set race=Redguard --set fatigue=1
+  - new pc Nirya --set STR=8 --set DEX=12 --set WIL=14 --set hp=3 --set race=Altmer
+  - run: do power who=hadvar power=adrenaline-rush
+    expect: ["used_today += adrenaline-rush", "Adrenaline Rush", "fatigue -= 1"]
+  - run: do power who=hadvar power=adrenaline-rush
+    expect: "stop: Hadvar has already used adrenaline-rush today"
+  - run: do power who=hadvar power=berserker-rage
+    expect: "stop: That is the Orsimer's trait; Hadvar is Redguard."
+  - run: do cast who=nirya spell=Flames free=highborn
+    expect: ["used_today += highborn", "By highborn, the casting adds no Fatigue"]
+  - run: do cast who=nirya spell=Flames free=highborn
+    expect: "stop: Nirya has already used highborn today"
+  - inv add nirya 'Scroll of Flames' --uses 1 --size petty
+  - run: do cast who=nirya spell='Scroll of Flames'
+    expect: ["A Scroll causes no Fatigue", "pc:nirya uses Scroll of Flames", "used up and gone"]
+    expect_not: "fatigue +="
+  - run: do visit-stone who=hadvar stone='The Warrior'
+    expect: "stop: The Standing Stones are off in this campaign"
+  - campaign profile standing-stones=on
+  - run: do visit-stone who=hadvar stone='The Warrior'
+    expect: ["standing_stone = The Warrior", "Once per day, one of your attacks is Enhanced."]
+  - run: do power who=hadvar power=the-warrior
+    expect: ["used_today += the-warrior", "mode=enhanced"]
+  - run: do power who=hadvar power=the-thief
+    expect: "stop: Hadvar is marked by The Warrior, not that Stone"
+  - set hadvar STR=17
+  - run: >-
+      char advance hadvar source=fiction pattern=yes risk=yes unique=no how=raise attr=STR amount=d4 trigger='held the pass alone' cost=none
+    expect: ["STR raised", "max 17 → 18"]
+  - set nirya WIL=17
+  - run: do attribute-raise who=nirya attr=WIL amount=1d4 cap=18
+    expect: "max WIL 17 → 18"
+  - run: do visit-stone who=nirya stone='The Apprentice'
+    expect: ["enhanced_by += magic", "Twice per day"]
+  - run: time advance 1 day
+    expect: ["new-dawn (Hadvar)", "used_today = []"]
+  - run: do cast who=nirya spell=Sparks free=the-apprentice
+    expect: "used_today += the-apprentice"
+  - run: do cast who=nirya spell=Sparks free=the-apprentice
+    expect: "used_today += the-apprentice"
+    expect_not: the-apprentice-2
+  - run: do cast who=nirya spell=Sparks free=the-apprentice
+    expect: "stop: Nirya has channelled twice by the Apprentice stone today"
+---
+test: standing
+script:
+  - world new holds --system {pack} --seed standing
+  - campaign new first --seed standing
+  - new pc Ralof --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set race=Nord --set gold=100
+  - new npc Gerdur
+  - run: do reputation who=ralof faction=stormcloaks step=up why='carried word to Windhelm'
+    expect: ["rep_stormcloaks += 1", "the Stormcloaks: 0 → 1, Trusted", "rep_legion -= 1", "the Imperial Legion: 0 → -1, Distrusted"]
+  - run: do reputation who=ralof faction=stormcloaks step=up
+    expect: ["the Stormcloaks: 1 → 2, Sworn", "one meaningful favor", "the Imperial Legion: -1 → -2, Hunted"]
+  - run: do reputation who=ralof faction=stormcloaks step=up
+    expect: "stop: The ladder clamps at its ends: Ralof is already Sworn with the Stormcloaks"
+  - run: do reputation who=ralof faction=greybeards step=up
+    expect: ["the Greybeards: 0 → 1, Trusted"]
+  - run: do reputation who=ralof faction=greybeards step=up paarthurnax=true
+    expect: ["rep_blades -= 1", "the Blades: 0 → -1"]
+  - run: do reputation who=ralof faction=companions step=down betrayal=true
+    expect: ["rep_companions -= 2", "the Companions: 0 → -2, Hunted"]
+  - new party 'The Company' --set members=pc:ralof
+  - run: do renown party=the-company step=up deed='brought word of Helgen'
+    expect: ["renown += 1", "0 → 1, Known (brought word of Helgen)", "with no session started, don't move it again"]
+    expect_not: renown_session
+  - set the-company renown=0
+  - session start
+  - run: do renown party=the-company step=up deed='slew the dragon over Whiterun'
+    expect: ["renown += 1", "renown_session = 1", "0 → 1, Known (slew the dragon over Whiterun)"]
+    expect_not: "no session started"
+  - run: do renown party=the-company step=up
+    expect: "stop: Renown moves one step per session at most, and it moved this session (session 1)"
+  - session end
+  - session start
+  - run: do renown party=the-company step=up deed='sang of at the Bards College'
+    expect: ["renown_session = 2", "1 → 2, Renowned"]
+  - run: do renown party=the-company step=down monstrous=true
+    expect: "stop: Killing bandits, Forsworn raiders, draugr, vampires or the plainly monstrous is a public good"
+  - run: do renown party=ralof step=up
+    expect: "stop: Renown is the party's"
+  - set the-company renown=1
+  - run: do reaction who=gerdur party=the-company toward=ralof
+    expect: ["reactions:", "disposition ="]
+  - set the-company renown=2
+  - run: do reaction who=gerdur party=the-company toward=ralof
+    expect: ["The party's name precedes them (Renowned): no roll.", "disposition = Kind", "Gerdur is Kind."]
+  - set the-company renown=-3
+  - run: do reaction who=gerdur party=the-company
+    expect: ["disposition = Hostile", "Reviled: Gerdur flees or reaches for a weapon"]
+  - set the-company renown=2
+  - run: do renown-drift party=the-company
+    expect: ["renown -= 1", "drifts toward Unknown: 2 → 1"]
+  - run: do bounty who=ralof hold=the_reach amount=40 crime='a lifted apple and a fist-fight'
+    expect: ["bounty_the_reach += 40", "bounty in the Reach: 40 Septims"]
+  - run: do bounty who=ralof hold=whiterun amount=1000 witnessed=false
+    expect: "stop: A crime with no witness and no trail adds no bounty"
+  - run: do pay-bounty who=ralof hold=the_reach
+    expect: ["gold -= 40", "bounty_the_reach = 0", "the slate is clean in the Reach"]
+  - do bounty who=ralof hold=the_rift amount=500
+  - run: do pay-bounty who=ralof hold=the_rift
+    expect: "stop: The bounty in the Rift is 500 Septims; Ralof has 60."
+  - run: do clear-bounty who=ralof hold=the_rift how=jail
+    expect: ["bounty_the_rift = 0", "serves the time in the Rift's jail"]
+---
+test: nature-reactions
+help: A Dremora starts a stranger's Reaction a step worse; a known vampire too; the Lover stone shifts one a step better.
+script:
+  - world new holds --system {pack} --seed reactions
+  - campaign new first --seed reactions
+  - campaign profile standing-stones=on
+  - new pc Kyn --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set race=Imperial --set nature=dremora
+  - new pc Serana --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set race=Nord --set nature=vampire --set standing_stone='The Lover'
+  - new party 'The Company' --set renown=2
+  - new npc Belethor
+  - run: do reaction who=belethor party=the-company toward=kyn
+    expect: ["no roll", "Shifted -1 step(s)", "Belethor is Curious."]
+  - run: do reaction who=belethor party=the-company toward=serana known=true
+    expect: ["Shifted -1 step(s)", "Belethor is Curious."]
+  - run: do power who=serana power=the-lover target=belethor
+    expect: ["disposition = Kind", "The Lover: Belethor's Reaction toward Serana shifts one step better: Kind."]

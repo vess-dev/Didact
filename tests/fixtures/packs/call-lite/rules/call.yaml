@@ -1,0 +1,28 @@
+# A cured curse's timer comes off the sheet, as `didact set --unset` takes it off.
+action: cure
+title: Lift a curse
+params: {who: ref}
+steps:
+  - unset: who.curse_timer
+  - "{@who.name} is free of the curse."
+---
+action: forage
+title: Forage
+steps:
+  - let: {found: 2, place: the birch wood}
+  - roll: d1
+    as: luck
+---
+# `do: … as: x` reads what the other rule bound: `@x.found`, `@x.luck`.
+action: supplies
+title: Supplies for the road
+steps:
+  - do: forage
+    as: trip
+  - "Foraged {@trip.found} days of food in {@trip.place} (luck {@trip.luck})."
+---
+action: strike
+title: Strike a foe
+params: {foe: {kind: ref, to: monster}}
+steps:
+  - "{@foe.name} ({@foe}) takes the blow."

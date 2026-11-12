@@ -1,0 +1,229 @@
+didact commands
+- `about`: GM notes on a record: looks, personality, wants, what it's doing and plans, …
+- `accomplish`: Record an accomplishment (growth, XP, a milestone for advancement)
+- `apply`: Apply a staged changeset (from a preview)
+- `archive`: Hide a record from lists and searches without deleting it
+- `ask`: Ask the oracle a yes/no question (with odds): the answer is rolled and kept
+- `audit`: List changes that bent the rules or carried a reason (forced, fiat, undo)
+- `bag draw`: Draw tokens from a bag
+- `bag fill`: Fill a bag with its tokens and shake it (a logged roll)
+- `bag status`: Tokens left and drawn in a bag
+- `batch`: Run several commands in one call: one per line, from stdin or a file
+- `beat edit`: Correct a journal beat: its text, kind, importance, who it's about, or secrecy
+- `beat rm`: Remove a journal beat (undoable)
+- `brief`: Where the game stands: session, scene, party, what's due, the story so far
+- `bulk set`: Apply assignments to every record matching --where conditions (previewed first)
+- `cache clear`: Delete Didact's caches (search indexes, compiled packs); they're rebuilt as needed
+- `cache show`: Didact's disposable caches: where they are and how much they hold
+- `campaign close`: Close the open campaign (its world stays open); open it again to play on
+- `campaign delete`: Delete a campaign: its PCs, sessions, journal and state (previewed first; undoable)
+- `campaign fork`: Branch the campaign into a new one: as it is now, or as it was at a save point
+- `campaign list`: List campaigns (all worlds)
+- `campaign new`: Start a campaign in a world, playing its game system (and open it)
+- `campaign open`: Open a campaign to play it: its world opens too, and its game system is in use
+- `campaign profile`: Show or change the campaign profile (role, tone, lines, veils, dice, …)
+- `campaign set`: Change campaign settings: name, description, strictness
+- `campaign show`: Show a campaign (default: the active one)
+- `campaign upgrade`: Move the campaign to the pack versions installed now (shows what changes)
+- `capture`: Record a transcript turn (for hooks: reads Claude Code hook JSON on stdin)
+- `char advance`: Advance a character the system's way (level up, new move, …); logged and undoable
+- `char back`: Go back a step in a character draft: take back its last answer, roll or edit
+- `char check`: Check a character against its sheet: values, ranges, required fields, slots
+- `char choose`: Answer the choice a character draft is waiting for
+- `char commit`: Write a character draft as a record (checked against its sheet)
+- `char discard`: Throw a character draft away
+- `char edit`: Change a character draft before committing
+- `char import`: A character from a full JSON description ("roll" values are rolled, then checked)
+- `char list`: The character creations the enabled packs bring (player characters, hirelings, …)
+- `char new`: Create a character the system's way: random, or guided step by step (draft #c3)
+- `char roll`: Let the dice make a character draft's open choices
+- `char show`: Show a character draft
+- `combat condition`: Put a condition on a fighter, for some rounds or until removed
+- `combat end`: End the fight
+- `combat hit`: An attack: runs the system's attack rule (damage, armor, what follows)
+- `combat join`: Fighters join the fight under way (name or name:side); individual mode rolls them in
+- `combat leave`: A fighter leaves the fight (died, fled, surrendered); their conditions go too
+- `combat next`: Next turn (conditions tick down each round); popcorn: --to picks who's next
+- `combat start`: Start a fight: who's in it (name or name:side), and the initiative mode
+- `combat status`: The fight: round, whose turn, fighters and conditions (--gm: where, doing, plan)
+- `commands`: List every command with a one-line summary
+- `compendium add`: Add a homebrew entry to a pack's compendium (stored in your library)
+- `compendium find`: Search the compendium: monsters, items, spells, … from the enabled packs
+- `compendium import`: Bring a pack's entries into the world (adventure or setting content)
+- `compendium remove`: Remove a homebrew entry from the compendium (the packs' own entries stay)
+- `compendium show`: Show a compendium entry
+- `continuity`: What doesn't add up here: dangling links, duplicates, the dead still in play, …
+- `convert`: Give a record another system's stats (one world, any system)
+- `copy`: Copy a record into another scope (e.g. an NPC into another world)
+- `deck draw`: Draw cards from a deck (shuffles a new deck on first use)
+- `deck shuffle`: Shuffle every card back into a deck (a logged roll)
+- `deck status`: Cards left and drawn in a deck
+- `define`: Define a game term from the enabled packs' glossaries
+- `diff`: Show exactly what one change did
+- `discard`: Throw away a staged changeset
+- `do`: Run a rule: a check, action, procedure or trigger (rules as function calls)
+- `docs build`: Build the code's API documentation from its docstrings and types (like cargo doc)
+- `docs status`: Say whether the code's API documentation is built and up to date
+- `doctor`: Check that Didact can run here, and repair what a crash left
+- `edit`: Merge a JSON description into a record (or replace its fields with --replace)
+- `explain`: What is this? A rule, table, record type, compendium entry, term, command or guide
+- `export`: Export records as JSON or Markdown, the campaign as a story, or a player-safe website
+- `faction turn`: The factions act: each rolls (or runs the pack's rule) and advances its clocks
+- `find`: Search records (full text), or list them by type, tag or scope
+- `gen back`: Go back a step in a draft: take back its last answer, roll or edit
+- `gen choose`: Answer the choice a draft is waiting for, and carry on
+- `gen commit`: Write a draft: its records, links and map, in one undoable change
+- `gen discard`: Throw a draft away
+- `gen drafts`: Drafts waiting to be committed (generators and characters)
+- `gen edit`: Change a draft before committing: names, fields, drop or add entities
+- `gen list`: The generators the enabled packs bring (regions, dungeons, settlements, …)
+- `gen roll`: Let the dice make a draft's open choice (and any after it)
+- `gen run`: Run a generator into a draft (#g7): nothing is written until `gen commit`
+- `gen show`: Show a draft: its entities, map and open questions
+- `graph`: Who and what a record is connected to, as a Mermaid graph
+- `guide`: Read a guide: how to do things with Didact (dice, …)
+- `help`: Explain a command: usage, arguments and examples
+- `history`: List changes, newest first (optionally for one record), or clear old history
+- `init`: Create the data home (safe to run again)
+- `interpret`: Say what an oracle answer meant; it's kept with the answer (and in the journal)
+- `inv add`: Give a character items: by name, from the compendium, or an item record
+- `inv drop`: Take items out of an inventory (all of a stack, or --count of it)
+- `inv move`: Hand an item to someone else, or move it to another slot group
+- `inv recharge`: Refill an item's uses (to its max, or --to n); a usage die goes back to full
+- `inv show`: What a character carries: items, slots used and free, groups
+- `inv use`: Spend an item's uses or charges, or roll its usage die
+- `library`: What the data home holds: worlds, campaigns, packs, the log and backups, with sizes
+- `link`: Link two records with a relation (or remove a link with --remove)
+- `lists add`: Put an entry on an oracle list (add it again to weight it, up to 3 lines)
+- `lists drop`: Take an entry off an oracle list (one line, or every line with --all)
+- `lists roll`: Roll on an oracle list: an entry, or a blank line (choose one yourself)
+- `lists show`: The oracle's lists (Threads, Characters, …): numbered lines, weights marked
+- `log`: Add a beat to the session journal (action, oracle, roll, result, narration, …)
+- `lore add`: Add a lore entry: what comes back whenever its keys are mentioned
+- `lore explain`: Why an entry (or card, or ruling) does or doesn't come up for a text
+- `lore export`: Write the lore entries here as a SillyTavern World Info lorebook
+- `lore import`: Bring in a lorebook from SillyTavern, KoboldAI, a character card or NovelAI
+- `lore list`: Lore entries here (campaign, world, system, global), with their keys
+- `lore scan`: What a text brings up: lore entries, cards and rulings, best first
+- `map`: The places the party knows, how they connect, and where the party is
+- `meaning`: Draw meaning words from the oracle (e.g. an action and a theme) to interpret
+- `merge`: Fold a duplicate record into another and point every reference at the survivor
+- `migrate`: Upgrade an older data home to the current layout
+- `move`: Move a record to another scope (same id)
+- `name`: Roll fresh names (npc, place, …): none the world uses already, none overused
+- `names check`: Is a name fresh here? (taken by a record, registered, offered, or overused)
+- `names forget`: Free a name again: take it out of the registry (registered or offered)
+- `names list`: Names registered with `names use`, and names offered so far
+- `names use`: Register a name said in play (a passer-by, a ship), so it isn't reused
+- `new`: Create a record from a name, flags, and/or a JSON description
+- `note`: Append a dated note to a record
+- `odds`: Probabilities for a roll: exact when possible, else simulated
+- `oracle history`: The latest oracle answers and what they meant
+- `oracle list`: The oracles the enabled packs bring
+- `oracle show`: An oracle: how to ask it, its odds, and the state it keeps here
+- `override add`: House rule: change a pack's table, rule, type or entry for this world (or scope)
+- `override diff`: Show how house rules change a pack item (book → effective)
+- `override list`: List the house rules in effect here
+- `override remove`: Take a house rule back
+- `pack add`: Add content to a pack from JSON (validated, written as YAML)
+- `pack build`: Compile a pack into its JSON bundle (what Didact loads)
+- `pack coverage`: Which pages of the book a pack cites (and which it doesn't yet)
+- `pack disable`: Stop using a pack in the current campaign (or the world with --scope world)
+- `pack enable`: Use a pack in the current campaign (or the whole world with --scope world)
+- `pack export`: Package a pack as a .didactpack file anyone can install
+- `pack import`: Turn a Markdown table into a Didact table (print it, or add it to a pack)
+- `pack info`: Show what a pack is and holds: manifest, license, contents, guide
+- `pack ingest`: Start a pack from a rulebook: page-marked text plus draft tables to review
+- `pack install`: Install a pack from a .didactpack file, a folder or an https URL, or one that ships with Didact by its id
+- `pack lint`: Validate a pack and point out what's missing (help, sources, guide)
+- `pack list`: List the packs Didact can see (systems, oracles, settings, supplements), and the ones that ship with it, ready to install
+- `pack new`: Start a new pack: a scaffold with a manifest, guide and example content
+- `pack schema`: JSON Schema for a record type here (for editors and for writing --data)
+- `pack test`: Run a pack's tests: table rolls, expressions, odds and smoke-play scripts
+- `pack trust`: Let an installed pack's Python plugins run (shows the code's hashes first)
+- `pack uninstall`: Remove an installed pack version from the library (shows what uses it first)
+- `pack untrust`: Switch an installed pack's plugins off again
+- `pack update`: Look for newer versions of the installed packs, and install them (shows them first)
+- `pack validate`: Check packs for problems (file:line and a fix for each)
+- `party add`: Someone joins the party: a companion, a hireling, or a PC coming back
+- `party remove`: Someone leaves the party (died, retired, dismissed, …); the record stays
+- `party show`: Who's in the party: PCs, companions and hirelings, with their numbers
+- `pending`: List rolls waiting for a decision (push, burn, accept, …)
+- `promote`: Move a record one scope wider: campaign → world → global
+- `quest done`: Finish a quest (or one milestone with --milestone)
+- `quest list`: Open quests, threads and tasks
+- `quest new`: Start a quest, thread or task (with milestones)
+- `redo`: Redo the last undone change
+- `reindex`: Rebuild the search index from the files (safe any time)
+- `remind`: Set a reminder for a game time (once, or every so often); --list, --cancel
+- `rename`: Rename a record, world or campaign (old name kept as an alias); optionally everywhere
+- `replace`: Replace text in names, bodies and fields across records (previewed first)
+- `replay`: Re-run logged rolls and check each comes out exactly the same
+- `report`: Record an outcome that wasn't rolled here (a card, a block tower), logged like a roll
+- `reset`: Empty the library, as if Didact were newly installed (shown first; backed up first)
+- `resolve`: Finish a pending roll with one of its options (push, burn, reroll, accept, …)
+- `restore`: Bring an archived record back
+- `retcon`: Change a fact after the fact: apply it, keep the old value, flag stale summaries
+- `reveal`: The players learn something: a secret record, a secret line, or a GM detail
+- `rewind`: Take the campaign back to a save point (one change: undo reverses it)
+- `rm`: Delete a record (undoable); refuses while others link to it unless --unlink/--force
+- `roll`: Roll any dice expression; every roll is logged with an id (#r12)
+- `rolls`: List recent rolls in this campaign (or everywhere with --all)
+- `rules list`: List the rules in the enabled packs (checks, actions, procedures, triggers)
+- `rules lookup`: Look a rule up in the enabled packs' rules text (with the commands that run it)
+- `rules show`: Explain a rule: what it does, its parameters, and how to run it
+- `ruling add`: Record how an unclear rule was settled (campaign, world or system scope)
+- `ruling find`: Find rulings about a topic (or list them all)
+- `sample`: Build the sample campaign into an empty library, to try Didact on
+- `save`: Make a save point in the campaign, to rewind to later (or remove one)
+- `saves`: The campaign's save points
+- `scene end`: End the current scene (optionally with its summary)
+- `scene new`: Start the next scene (closing the current one)
+- `schema extend`: Add your own fields to a record type (reputation, sanity, …) for this world
+- `search`: Search everything at once: rules, terms, mechanics, tables, records, docs, …
+- `serve`: Open the library in a web browser: browse, edit, roll and run any command
+- `session end`: End the session (give its summary now, or later with `summary write session`)
+- `session list`: List the campaign's sessions
+- `session show`: A session as a readable log: scenes, beats and rolls in order, with summaries
+- `session start`: Start the next session (and show the brief)
+- `session zero`: The session-zero questions to ask the player, with the answers so far
+- `set`: Change fields: key=value, key+=value (add/append), key-=value (subtract/remove)
+- `setup claude`: Let Claude Code run didact without asking each time (an allow rule in its settings)
+- `setup thesaurus`: Choose the thesaurus searches use for synonyms (WordNet: English or another language)
+- `sheet`: A character sheet as the player sees it: stats, conditions, inventory, links
+- `show`: Show a record by id, name or alias (what the players know; --gm for everything)
+- `snapshot`: Back up the whole data home into one zip (backups/); list, restore or prune backups
+- `spawn`: Create a record from a compendium entry (a troll, a sword, a relic, …)
+- `staged`: List staged changesets waiting for `didact apply`
+- `status`: Show the active world and campaign, the visible scopes and the last change
+- `summary due`: List the summaries still to write
+- `summary write`: Write a summary: a scene, a session, an arc, or the story so far
+- `table list`: List the tables in the enabled packs
+- `table roll`: Roll on a table from the enabled packs (logged, replayable)
+- `table show`: Show a table's entries
+- `template`: A fill-in template for a record type (describe it, get it)
+- `time advance`: Move game time forward: timers expire, reminders come due, time triggers run
+- `time set`: Set the campaign's date, before its first session (then `time advance` moves it on)
+- `time show`: What time it is in the game
+- `timeline`: The campaign by in-game date: every journal beat under the day it happened
+- `track list`: The trackers in play
+- `track new`: Make a tracker: clock, track, counter, resource, uses or timer
+- `track roll`: Roll a diminishing pool: dice showing 1-3 drop; at 0d its event happens
+- `track tick`: Advance a tracker (or `--by -1` to take it back)
+- `transcript`: Show a session's full transcript (or clear it with --clear)
+- `turn begin`: Start a turn group: what follows, until the next turn, undoes together
+- `turn end`: Close the open turn group (later changes belong to no turn)
+- `undo`: Undo the last change(s), restoring files exactly; a roll; a whole turn; or everything after a point
+- `validate`: Check every record for problems (bad YAML, id/file mismatches, dangling links)
+- `version`: Print Didact's version
+- `visit`: The party goes somewhere: it's visited and known, and its exits show on the map
+- `where`: Where something is: who carries it, or what it's in and where that is
+- `world delete`: Delete a world with its records and campaigns (previewed first; undoable)
+- `world export`: Make a world into a setting pack, to use again in other worlds or share
+- `world list`: List worlds
+- `world new`: Create a world (and make it active)
+- `world set`: Change world settings: name, description, strictness; a system if it has none yet
+- `world show`: Show a world (default: the active one)
+- `world use`: Make a world active
+
+Details: `didact help <command>`. Global options: --format md|yaml|json, --detail brief|full, --home <path>, --world <id>, --campaign <id>.

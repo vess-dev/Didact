@@ -1,0 +1,115 @@
+# The schools' own economies, the magic pools, the curses' feeding and the change, armor for
+# everyone, carousing and a downtime goal, and what time and sessions bring by themselves (the
+# wolf's scene end, a blessing's end, supplies and a curse's nights). Seeded, so it plays the same.
+test: schools-curses-and-time
+help: "Alteration's spells and potent spells, Illusion's spent illusions, Destruction's push and backlash, a thrall rolled as a power pool, regaining magic each way, a montage, feeding dry and starving, a night's change, the sheet's own Armor pool, carousing, pursuing a goal, a talent switched in with its pool (and one of the table's own, named with an apostrophe, switched in and out), every hero's Supplies at once, then a scene's end, a night rolling the curse's timer, and a session's turn refreshing the talent's pool."
+script:
+  - world new tam --system {pack} --seed schools
+  - campaign new first --seed schools
+  - run: campaign profile armor=on supplies=on
+    expect: "armor: on; supplies: on"
+  - run: >-
+      char new --mode random --prefill '{"name": "Vel", "race": "Breton", "class": "Alteration"}'
+    expect: ["class: Alteration (given)", "formulae: "]
+  - char commit c1
+  - run: >-
+      char new --mode random --prefill '{"name": "Sorine", "race": "Breton", "class": "Illusion"}'
+    expect: ["class: Illusion (given)", "illusions: "]
+  - char commit c2
+  - run: >-
+      char new --mode random --prefill '{"name": "Brelyna", "race": "Dunmer", "class": "Destruction"}'
+    expect: ["class: Destruction (given)", "touchstones: "]
+  - char commit c3
+  - run: >-
+      char new --mode random --prefill '{"name": "Teldryn", "race": "Dunmer", "class": "Conjuration"}'
+    expect: ["class: Conjuration (given)", "Thrall"]
+  - char commit c4
+  - run: >-
+      char new --mode random --prefill '{"name": "Serana", "race": "Breton", "class": "Vampire"}'
+    expect: "class: Vampire (given)"
+  - char commit c5
+  - run: >-
+      char new --mode random --prefill '{"name": "Farkas", "race": "Nord", "class": "Werewolf"}'
+    expect: "class: Werewolf (given)"
+  - char commit c6
+  - session start
+  - scene new 'The tower'
+  - run: do cast who=vel school=alteration potent
+    expect: ["potent -= 1", "A potent spell: 1 left this session."]
+  - run: do cast who=vel school=alteration
+    expect: ["spells -= 1", "A spell: 3 left this session."]
+  - run: do cast who=vel school=alteration riskless
+    expect: "Cast without risk: no roll, and it doesn't count against the session."
+  - run: do regain-magic who=vel what=potent why='the Apprentice Stone'
+    expect: "potent += 1"
+  - run: do regain-magic who=vel what=spell why='a Magicka draught'
+    expect: "spells += 1"
+  - set sorine illusions+=Calm
+  - run: do cast who=sorine school=illusion spell=Calm
+    expect: ["spent += Calm", "Calm is spent until the next session."]
+  - run: do regain-magic who=sorine what=illusion illusion=Calm why=Highborn
+    expect: "spent -= Calm"
+  - run: do cast who=brelyna school=destruction potent
+    expect: "A potent Destruction spell: push yourself"
+  - run: do backlash who=brelyna kind=destruction
+    expect: "Backlash (The Elements): two or more 1s, thorns included."
+  - run: do regain-magic who=brelyna what=destruction why=test
+    expect: "next potent Destruction spell needs no push"
+  - run: do spend who=teldryn well=focus
+    expect: "stop: "
+  - run: do pool-action who=teldryn pool=teldryn-s-thrall stat=wits
+    expect: "pool Teldryn's Thrall"
+  - run: do regain-magic who=teldryn what=pool pool=teldryn-s-thrall why=test
+    expect: "Teldryn's Thrall: 4d of 4d."
+  - run: do montage who=vel stat=wits
+    expect: "the table keeps the highest result"
+  - run: do feed who=serana how=dry
+    expect: ["Serana's Blood is back to 4d.", "it is murder"]
+  - run: do starve who=serana
+    expect: "conditions += starving"
+  - run: do change who=farkas night
+    expect: ["changed = true", "Farkas changes for the scene"]
+  - run: do armor who=vel
+    expect: ["pool Vel's Armor", "Vel's armor lessens the physical consequence"]
+  - run: do carouse who=sorine
+    expect: ["give a vignette of how Sorine unwinds", "Sorine has 1 spark."]
+  - run: track new 'Forge the Blade' --kind pool --size 4
+    expect: "Forge the Blade 4d"
+  - run: do downtime who=vel act=pursue goal=forge-the-blade
+    expect: ["Vel's potions refill in downtime.", "Pursue a goal: Vel works on Forge the Blade"]
+  - run: do pray who=sorine divine=akatosh
+    expect: "Sorine takes Akatosh's blessing"
+  - set vel talents+=restoration-avoid-death
+  - run: do avoid-death who=vel
+    expect: ["harm += desperate", "Avoid Death: the light catches Vel"]
+  - run: do switch-talent who=vel drop=restoration-avoid-death take=alchemy-poisoner why='a master in Winterhold'
+    expect: ["talents -= restoration-avoid-death", "talents += alchemy-poisoner", "+ track Vel's Poisons", "pc:vel: poisons = track:vel-s-poisons"]
+  - run: track roll vel-s-poisons
+    expect: "pool Vel's Poisons"
+  - set brelyna talents+=athletics-beast-of-burden
+  - run: do supplies
+    expect: ["Vel's Supplies:", "Sorine's Supplies:", "Brelyna's Supplies:", "Beast of Burden: one die that would drop stays, not the pool's last"]
+  - run: do supplies who=sorine
+    expect: ["pool Sorine's Supplies", "Beast of Burden: one die that would drop stays, not the pool's last"]
+  - run: do curse who=vel curse=sanguinare-vampiris
+    expect: "conditions += Sanguinare Vampiris"
+  - run: scene end
+    expect: "grimscrolls.wolf-scene-end (Farkas)"
+  - run: time advance 1 day
+    expect: ["grimscrolls.curse-nights (Vel)", "A night: Vel: Sanguinare Vampiris", "grimscrolls.supplies-day"]
+  - run: do cure who=vel condition='Sanguinare Vampiris'
+    expect: ["Vel's timer stops (remove its record: `didact rm track:vel-sanguinare-vampiris`)", "pc:vel: unset curse_timer"]
+  - run: session end --summary 'The tower held.'
+    expect_not: "grimscrolls.blessing-ends (Sorine)"
+  - run: session start
+    expect: ["pc:farkas: changes = 1", "pc:vel: spells = 4", "pc:vel: potent = 2", "track:vel-s-poisons: value.value = 4"]
+  - run: do switch-talent who=vel drop=alchemy-poisoner take=light-armor-shrouded
+    expect: ["Vel's Poisons goes with the talent (remove its record: `didact rm track:vel-s-poisons`)", "pc:vel: unset poisons", "+ track Vel's Disguise", "pc:vel: disguise = track:vel-s-disguise"]
+  - run: do switch-talent who=vel drop=light-armor-shrouded take="Kynareth's Breath" why="a talent of the table's own"
+    expect: ["talents += Kynareth's Breath", "Vel's Disguise goes with the talent", "pc:vel: unset disguise", "Why: a talent of the table's own."]
+    expect_not: "+ track"
+  - run: do switch-talent who=vel drop="Kynareth's Breath" take=light-armor-shrouded
+    expect: ["talents -= Kynareth's Breath", "Vel's Disguise [track:vel-s-disguise] is here already", "pc:vel: disguise = track:vel-s-disguise"]
+  - run: session end --summary 'The road home.'
+    expect: ["grimscrolls.blessing-ends (Sorine)", "Sorine's blessing ends with the session, unused."]
+    expect_not: "grimscrolls.curse-nights"

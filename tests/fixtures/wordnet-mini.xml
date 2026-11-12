@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE LexicalResource SYSTEM "http://globalwordnet.github.io/schemas/WN-LMF-1.0.dtd">
+<LexicalResource xmlns:dc="https://globalwordnet.github.io/schemas/dc/">
+  <Lexicon id="mini" label="Mini WordNet (tests)" language="en" email="tests@example.org"
+           license="https://creativecommons.org/publicdomain/zero/1.0/" version="1.0">
+    <LexicalEntry id="mini-sword-n">
+      <Lemma writtenForm="sword" partOfSpeech="n"/>
+      <Sense id="mini-sword-n-1" synset="mini-1-n"/>
+    </LexicalEntry>
+    <LexicalEntry id="mini-blade-n">
+      <Lemma writtenForm="blade" partOfSpeech="n"/>
+      <Sense id="mini-blade-n-1" synset="mini-1-n"/>
+    </LexicalEntry>
+    <LexicalEntry id="mini-steel-n">
+      <Lemma writtenForm="steel" partOfSpeech="n"/>
+      <Sense id="mini-steel-n-1" synset="mini-1-n"/>
+    </LexicalEntry>
+    <LexicalEntry id="mini-sentry-n">
+      <Lemma writtenForm="sentry" partOfSpeech="n"/>
+      <Sense id="mini-sentry-n-2" synset="mini-2-n"/>
+    </LexicalEntry>
+    <LexicalEntry id="mini-guard-n">
+      <Lemma writtenForm="guard" partOfSpeech="n"/>
+      <Sense id="mini-guard-n-2" synset="mini-2-n"/>
+    </LexicalEntry>
+    <LexicalEntry id="mini-lookout-n">
+      <Lemma writtenForm="lookout" partOfSpeech="n"/>
+      <Sense id="mini-lookout-n-2" synset="mini-2-n"/>
+    </LexicalEntry>
+    <LexicalEntry id="mini-guard-v">
+      <Lemma writtenForm="guard" partOfSpeech="v"/>
+      <Sense id="mini-guard-v-3" synset="mini-3-v"/>
+    </LexicalEntry>
+    <LexicalEntry id="mini-protect-v">
+      <Lemma writtenForm="protect" partOfSpeech="v"/>
+      <Sense id="mini-protect-v-3" synset="mini-3-v"/>
+    </LexicalEntry>
+    <LexicalEntry id="mini-defend-v">
+      <Lemma writtenForm="defend" partOfSpeech="v"/>
+      <Sense id="mini-defend-v-3" synset="mini-3-v"/>
+    </LexicalEntry>
+    <LexicalEntry id="mini-fatigue-n">
+      <Lemma writtenForm="fatigue" partOfSpeech="n"/>
+      <Sense id="mini-fatigue-n-4" synset="mini-4-n"/>
+    </LexicalEntry>
+    <LexicalEntry id="mini-weariness-n">
+      <Lemma writtenForm="weariness" partOfSpeech="n"/>
+      <Sense id="mini-weariness-n-4" synset="mini-4-n"/>
+    </LexicalEntry>
+    <LexicalEntry id="mini-tiredness-n">
+      <Lemma writtenForm="tiredness" partOfSpeech="n"/>
+      <Sense id="mini-tiredness-n-4" synset="mini-4-n"/>
+    </LexicalEntry>
+    <Synset id="mini-1-n" ili="" partOfSpeech="n"/>
+    <Synset id="mini-2-n" ili="" partOfSpeech="n"/>
+    <Synset id="mini-3-v" ili="" partOfSpeech="v"/>
+    <Synset id="mini-4-n" ili="" partOfSpeech="n"/>
+  </Lexicon>
+</LexicalResource>

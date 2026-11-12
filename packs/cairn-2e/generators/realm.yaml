@@ -1,0 +1,22 @@
+# A realm (wardens-guide/setting-seeds#the-realm): a related collection of regions under one
+# rule, named with the ruler names formula (wardens-guide/naming-procedures#realm-names). Its
+# regions are setting seeds of their own.
+generator: realm
+title: A realm
+help: >-
+  A realm: its kind of rule (choose it, or let the dice), its name from the ruler names formula,
+  and what to make next. Prefill by name: rulers, realm_name.
+source: wardens-guide/naming-procedures#realm-names
+steps:
+  - choose_or_roll: {table: ruler-types, as: rulers}
+  - table: realm-names
+    with: {rulers: "@rulers"}
+    as: realm_name
+  - entity:
+      key: realm
+      type: loc
+      name: "{@realm_name}"
+      fields: {kind: realm, rulers: "@rulers"}
+  - prompt: "The name may take the dominant terrain's synonym instead of a word (`didact table roll terrain-synonyms-forest`): edit it if one fits."
+  - prompt: "Who rules it, and how firmly? What do its regions share, and what divides them?"
+  - prompt: "Make its regions with setting seeds (`didact gen run cairn-2e.setting-seed`), then link each to it (`didact link <region> part-of <realm>`)."

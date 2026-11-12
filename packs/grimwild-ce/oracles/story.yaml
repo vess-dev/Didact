@@ -1,0 +1,19 @@
+# Grimwild's own oracle (Story Rolls, pp. 16, 92; Suspense, p. 96): a story roll answers the
+# question, with dice for the odds of a favorable outcome for the side you roll for, and its state
+# keeps the GM's suspense (`didact do suspense`).
+oracle: story
+title: Story rolls
+help: >-
+  A story roll answers: dice for the odds of a favorable outcome for the side you roll for (bad
+  1d, even 2d, good 3d). Perfect: yes, the ideal situation; messy: it's okay, but there's a
+  catch; grim: no, and now it's a problem (cut by a thorn, a disaster). It also keeps the GM's
+  suspense, taken and spent with `didact do suspense`.
+ask: story-roll
+odds: [bad, even, good]
+state:
+  suspense: {start: 0, min: 0}
+prompt: >-
+  Read the answer from the side you rolled for, from positive (perfect) to negative (grim or
+  disaster): for an NPC or a faction, a perfect is best for them. When unsure what it means,
+  roll the GM crucible (`didact table roll gm-crucible`).
+source: "pp. 16, 92, 96"

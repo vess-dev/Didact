@@ -1,0 +1,212 @@
+# The Holds, to pick one, and what the `hold` generator drafts for each: written by
+# es_compendium.py, don't edit by hand.
+table: holds
+title: The nine Holds and Solstheim (pick one)
+source: wardens-guide/the-holds#the-holds
+entries:
+- text: Whiterun Hold
+  data:
+    id: hold-whiterun
+    capital: hold-whiterun-whiterun
+    jarl: hold-whiterun-balgruuf-the-greater
+    rival: hold-whiterun-vignar-gray-mane
+    places: 2
+- text: Haafingar
+  data:
+    id: hold-haafingar
+    capital: hold-haafingar-solitude
+    jarl: hold-haafingar-elisif-the-fair
+    rival: ''
+    places: 4
+- text: Eastmarch
+  data:
+    id: hold-eastmarch
+    capital: hold-eastmarch-windhelm
+    jarl: hold-eastmarch-ulfric-stormcloak
+    rival: hold-eastmarch-brunwulf-free-winter
+    places: 4
+- text: The Rift
+  data:
+    id: hold-the-rift
+    capital: hold-the-rift-riften
+    jarl: hold-the-rift-laila-law-giver
+    rival: hold-the-rift-maven-black-briar
+    places: 4
+- text: The Reach
+  data:
+    id: hold-the-reach
+    capital: hold-the-reach-markarth
+    jarl: hold-the-reach-igmund
+    rival: hold-the-reach-thongvor-silver-blood
+    places: 6
+- text: Falkreath Hold
+  data:
+    id: hold-falkreath
+    capital: hold-falkreath-falkreath
+    jarl: hold-falkreath-siddgeir
+    rival: hold-falkreath-dengeir-of-stuhn
+    places: 3
+- text: Hjaalmarch
+  data:
+    id: hold-hjaalmarch
+    capital: hold-hjaalmarch-morthal
+    jarl: hold-hjaalmarch-idgrod-ravencrone
+    rival: hold-hjaalmarch-sorli-the-builder
+    places: 4
+- text: The Pale
+  data:
+    id: hold-the-pale
+    capital: hold-the-pale-dawnstar
+    jarl: hold-the-pale-skald-the-elder
+    rival: hold-the-pale-brina-merilis
+    places: 6
+- text: Winterhold Hold
+  data:
+    id: hold-winterhold
+    capital: hold-winterhold-winterhold
+    jarl: hold-winterhold-korir
+    rival: hold-winterhold-kraldar
+    places: 4
+- text: Solstheim
+  data:
+    id: hold-solstheim
+    capital: hold-solstheim-raven-rock
+    jarl: hold-solstheim-lleril-morvayn
+    rival: ''
+    places: 3
+---
+table: hold-places
+title: A Hold's key locations, by number (the hold generator)
+lookup: [hold, n]
+source: wardens-guide/the-holds#the-holds
+entries:
+  hold-whiterun:
+    1:
+      text: Bleak Falls Barrow
+      data: {id: hold-whiterun-bleak-falls-barrow}
+    2:
+      text: Jorrvaskr
+      data: {id: hold-whiterun-jorrvaskr}
+  hold-haafingar:
+    1:
+      text: Volskygge
+      data: {id: hold-haafingar-volskygge}
+    2:
+      text: Mount Kilkreath
+      data: {id: hold-haafingar-mount-kilkreath}
+    3:
+      text: Thalmor Embassy
+      data: {id: hold-haafingar-thalmor-embassy}
+    4:
+      text: Castle Dour
+      data: {id: hold-haafingar-castle-dour}
+  hold-eastmarch:
+    1:
+      text: Ansilvund
+      data: {id: hold-eastmarch-ansilvund}
+    2:
+      text: Mzulft
+      data: {id: hold-eastmarch-mzulft}
+    3:
+      text: Palace of the Kings
+      data: {id: hold-eastmarch-palace-of-the-kings}
+    4:
+      text: Gray Quarter
+      data: {id: hold-eastmarch-gray-quarter}
+  hold-the-rift:
+    1:
+      text: Shroud Hearth Barrow
+      data: {id: hold-the-rift-shroud-hearth-barrow}
+    2:
+      text: Avanchnzel
+      data: {id: hold-the-rift-avanchnzel}
+    3:
+      text: Ragged Flagon
+      data: {id: hold-the-rift-ragged-flagon}
+    4:
+      text: Temple of Mara
+      data: {id: hold-the-rift-temple-of-mara}
+  hold-the-reach:
+    1:
+      text: Valthume
+      data: {id: hold-the-reach-valthume}
+    2:
+      text: Nchuand-Zel
+      data: {id: hold-the-reach-nchuand-zel}
+    3:
+      text: Bthardamz
+      data: {id: hold-the-reach-bthardamz}
+    4:
+      text: Arkngthamz
+      data: {id: hold-the-reach-arkngthamz}
+    5:
+      text: Cidhna Mine
+      data: {id: hold-the-reach-cidhna-mine}
+    6:
+      text: Temple of Dibella
+      data: {id: hold-the-reach-temple-of-dibella}
+  hold-falkreath:
+    1:
+      text: Hall of the Dead
+      data: {id: hold-falkreath-hall-of-the-dead}
+    2:
+      text: Twilight Sepulcher
+      data: {id: hold-falkreath-twilight-sepulcher}
+    3:
+      text: The Falkreath Sanctuary
+      data: {id: hold-falkreath-the-falkreath-sanctuary}
+  hold-hjaalmarch:
+    1:
+      text: Ustengrav
+      data: {id: hold-hjaalmarch-ustengrav}
+    2:
+      text: Mzinchaleft
+      data: {id: hold-hjaalmarch-mzinchaleft}
+    3:
+      text: Labyrinthian
+      data: {id: hold-hjaalmarch-labyrinthian}
+    4:
+      text: Movarth's Lair
+      data: {id: hold-hjaalmarch-movarths-lair}
+  hold-the-pale:
+    1:
+      text: Volunruud
+      data: {id: hold-the-pale-volunruud}
+    2:
+      text: Nightcaller Temple
+      data: {id: hold-the-pale-nightcaller-temple}
+    3:
+      text: Raldbthar
+      data: {id: hold-the-pale-raldbthar}
+    4:
+      text: Irkngthand
+      data: {id: hold-the-pale-irkngthand}
+    5:
+      text: The Dawnstar Sanctuary
+      data: {id: hold-the-pale-the-dawnstar-sanctuary}
+    6:
+      text: Dawnstar lighthouse
+      data: {id: hold-the-pale-dawnstar-lighthouse}
+  hold-winterhold:
+    1:
+      text: Saarthal
+      data: {id: hold-winterhold-saarthal}
+    2:
+      text: Ysgramor's Tomb
+      data: {id: hold-winterhold-ysgramors-tomb}
+    3:
+      text: Alftand
+      data: {id: hold-winterhold-alftand}
+    4:
+      text: College of Winterhold
+      data: {id: hold-winterhold-college-of-winterhold}
+  hold-solstheim:
+    1:
+      text: Temple of Miraak
+      data: {id: hold-solstheim-temple-of-miraak}
+    2:
+      text: Skaal Village
+      data: {id: hold-solstheim-skaal-village}
+    3:
+      text: Tel Mithryn
+      data: {id: hold-solstheim-tel-mithryn}

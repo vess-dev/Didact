@@ -1,0 +1,94 @@
+# Grimfall's reminders: the two always-on principles in the brief, and the rule reminders that come
+# up when play mentions their keys. Each replaces the parent's lore entry of the same id (the
+# parent's speak of Grimwild); the Grimfall-only ones follow.
+lore: moxie-principles
+title: How we play
+kind: preference
+constant: true
+priority: 90
+content: >-
+  Grimfall: everyone feeds the shared picture; use the camera. Only roll when it's risky (no risk,
+  no roll: competent survivors don't roll to climb a ladder); there are no partial successes (a
+  messy is a full success and a full problem) and no turns, only the spotlight. Failure isn't
+  losing; it's the next scene. Set dressing is free; thread is for details that change the
+  situation. Re-skin everything. Grim survival on the surface, absurd comedy in the cracks,
+  old-world sadness underneath.
+source: "war-never-changes/how-we-play; the-core-engine/rolls; war-never-changes/the-tone-dial"
+---
+lore: gm-principles
+title: Running the wasteland
+kind: preference
+constant: true
+priority: 80
+content: >-
+  Grimfall GM: enemies never roll; their danger reaches the table as thorns, stakes, suspense and
+  the size of their pools. Say stakes out loud when they change: nobody gets dropped by surprise
+  math. Earn suspense by skipping a prompted impact move or by suspense moves; spend it to strike.
+  One impact move is flexible: split it, spread it, or land it off-screen; when a messy has no
+  natural bite, bank suspense and hit later. Telegraph with Foreshadow; give hidden dangers a
+  reveal, a hint or a strike by vantage. Roll a story roll to disclaim any decision you'd rather
+  the dice make, and the GM crucible for the seed of an answer.
+source: "running-the-wasteland/the-gms-half-of-the-engine; running-the-wasteland/combat-rulings; running-the-wasteland/vigilance"
+---
+lore: thorns-reminder
+keys: [thorn, thorns, cut]
+kind: rule-reminder
+recursive: false
+content: "Grimfall thorns: a d8 for each significant difficulty; each 7-8 cuts the result a step (perfect → messy → grim → disaster). Typical rolls carry 0-2; at 3 or more, the odds fall off a cliff. More than one 6 is a critical, which thorns can't cut."
+source: the-core-engine/rolls#thorns-d8s
+---
+lore: spark-reminder
+keys: [spark]
+kind: rule-reminder
+recursive: false
+content: "Grimfall spark: hold up to 2, carried between sessions; spend before any roll you make for +1d each. Take it for a tangle, a disaster, a resolved story arc, a settled quarrel, an ally changing their bond with you, your best moment before a session, and whenever a rule says so."
+source: the-core-engine/spark
+---
+lore: pools-reminder
+keys: [pool, pools]
+kind: rule-reminder
+recursive: false
+content: "Grimfall pools: roll the pool; dice landing 1-3 drop out; at 0d the thing happens or runs dry. 2d short, 4d medium, 8d long, 6d between; a perk's pools run 2d-4d. A task pool that drops nothing: push yourself (a mark, `do push`) or pivot. Power pools roll in place of a stat (`do pool-action`); bonus-dice pools roll alongside, only their best die counting with yours (`do action … bonus=<pool>`)."
+source: the-core-engine/pools
+---
+lore: damage-reminder
+keys: [mark, harm, bloodied, rattled, desperate, dropped, rad mark]
+kind: rule-reminder
+recursive: false
+content: "Grimfall damage: a mark is +1t on your next roll with that stat, then it clears; a rad mark lingers (+1t on every roll with it until RadAway, a real rest, or a perk). Marking an already-marked stat is harm: bloodied (physical) or rattled (mental), +1t on related rolls; a second of either is desperate (+1t on everything); once desperate, a harm you already carry drops you (`do dropped`). Stimpaks clear one harm with a breather; any real rest clears all marks and harm."
+source: "the-core-engine/damage-and-recovery; surviving-the-wasteland/rads; surviving-the-wasteland/stimpaks"
+---
+lore: suspense-reminder
+keys: [suspense]
+kind: rule-reminder
+recursive: false
+content: "Grimfall suspense, 1 at a time: the GM earns 1 by skipping a prompted impact move and by each suspense move (Build Up, Clue In, Resolve: `do suspense-move`), and takes 1 before each session; spends 1 to strike at any moment (a PC it hits who didn't invite it gets a defense roll) or to drop 1d from a pool that refuses to budge. Every challenge brings 2 bonus suspense of its own. `didact do suspense`."
+source: running-the-wasteland/the-gms-half-of-the-engine
+---
+lore: advancement-reminder
+keys: [level up, leveling, experience, xp]
+kind: rule-reminder
+recursive: false
+content: "Grimfall experience: 1 XP after each session (Didact gives it), a bonus XP for a standout one; level up when your XP boxes equal the next level (slash them first for a slower road): `didact char advance <pc>`. Each level a new perk, and the Core Perk's Growth at its levels. Cap is level 7 (3 at the smaller scale)."
+source: "the-core-engine/experience; options-and-dials/pacing-and-growth"
+---
+lore: perk-dice-reminder
+keys: [perk die, +1d, setup, perk dice]
+kind: rule-reminder
+recursive: false
+content: "Grimfall: perk dice don't stack. However many perks apply to a roll, Core Perks included, they add +1d in total (`perk`), and the same goes for setups, chems and relics: one die of each kind (`setup`, `chem`, `relic`). Spark, assists, and special dice like the Weak Point die always add on top."
+source: the-classes/introduction#wells-and-dice
+---
+lore: rads-reminder
+keys: [rads, radiation, hot zone, rad-x, radaway, lethal dose]
+kind: rule-reminder
+recursive: false
+content: "Grimfall rads: set dressing until the fiction says otherwise. A hot zone is +1t while you work in it, or a rad mark as you push through; a bad dose is rad-sick or rad-poisoned; a lethal dose is an urgent 4d Lethal Dose (a warhead's 2d) → dropped. Rad-X: set dressing for a scene; RadAway: clear your rad marks with a breather. `didact do rad`, `didact do chem chem=radaway`."
+source: surviving-the-wasteland/rads
+---
+lore: caps-reminder
+keys: [caps, haul, hauls, barter]
+kind: rule-reminder
+recursive: false
+content: "Grimfall caps: walking-around money is set dressing; roll your 4d Caps pool when you spend big (`do spend`), dropping 1d first for the huge asks; at 0d you're broke. Serious wealth moves in hauls (minor, major, mythic), the party's unless you decide otherwise; selling a minor haul adds +2d, a major one +4d (max 8d), and a second downtime action (`do sell`)."
+source: surviving-the-wasteland/caps-and-barter

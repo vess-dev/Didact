@@ -1,0 +1,59 @@
+# Companions and mounts (players-guide/companions, mounts): Loyalty one step at a time and its
+# clamps, the Command action, a startled mount, a mount left in the wild, and a mounted
+# party's travel relief (a Skyrim horse also eases Perilous ground; never below the distance).
+test: companions-and-mounts
+script:
+  - world new holds --system {pack} --seed companions
+  - campaign new first --seed companions
+  - new pc Dovah --set STR=12 --set DEX=12 --set WIL=9 --set hp=4 --set race=Nord
+  - run: spawn sworn-housecarl
+    expect: "companion:sworn-housecarl"
+  - spawn bandit
+  - run: show sworn-housecarl
+    expect: ["loyalty 4", "armor 3"]
+  - run: do loyalty who=sworn-housecarl step=up why='kept a promise'
+    expect: ["loyalty += 1", "4 → 5, Sworn (kept a promise)", "Once per day, may take a hit meant for their PC"]
+  - run: do loyalty who=sworn-housecarl step=up
+    expect: "stop: Sworn Housecarl's Loyalty is already 5, Sworn"
+  - run: do loyalty who=sworn-housecarl step=down betrayed=true
+    expect: "5 → 3, Trusting"
+  - run: do command who=dovah companion=sworn-housecarl target=bandit weapon=d8
+    expect: ["spends their action to command Sworn Housecarl", "1d12kh1", "The attack is enhanced (Sworn Housecarl → Bandit)"]
+  - run: do command who=dovah companion=sworn-housecarl boost=reroll
+    expect: "spends their action to command Sworn Housecarl"
+    expect_not: ["once_per_combat", "once this fight already"]
+  - run: combat start --party bandit
+    expect: "round 1"
+  - run: do command who=dovah companion=sworn-housecarl boost=reroll
+    expect: ["once_per_combat += command", "spends their action to command Sworn Housecarl"]
+  - run: do command who=dovah companion=sworn-housecarl boost=reroll
+    expect: "stop: Dovah has commanded Sworn Housecarl once this fight already"
+  - run: do rest who=dovah
+    expect: "stop: Present or oncoming danger makes rest impossible."
+  - run: do read-book who=dovah book='Mace Etiquette'
+    expect: "stop: Reading a Skill Book takes a turn in a safe, quiet place: not in combat."
+  - run: do cast who=dovah spell=Flames
+    expect: ["State the risk before rolling", "1d20", "fatigue += 1"]
+  - run: combat end
+    expect: ["fight-over", "once_per_combat = []"]
+  - run: do cast who=dovah spell=Flames
+    expect: "fatigue += 1"
+    expect_not: "1d20"
+  - run: do loyalty who=bandit step=up
+    expect: "stop: Only companions have Loyalty"
+  - run: do startled-mount who=dovah trained=true
+    expect: "stop: Dovah's mount is trained to the fight"
+  - run: do startled-mount who=dovah
+    expect: ["check elder-scrolls-2e.startled-mount", "1d20"]
+  - run: do mount-left mount=Arvak where=stable
+    expect: "stop: Arvak was left at a stable (5 Septims a night for stabling and feed)"
+  - run: do mount-left mount='the old mare'
+    expect: ["1d6", "the old mare is"]
+  - run: do travel-time path=trail distance=medium terrain=perilous
+    expect: "The journey takes 5 watches (path 1, distance 2, terrain 2, weather 0, vast 0, mounted -0"
+  - run: do travel-time path=trail distance=medium terrain=perilous mount=horse
+    expect: "The journey takes 4 watches (path 1, distance 2, terrain 2, weather 0, vast 0, mounted -1"
+  - run: do travel-time path=trail distance=medium terrain=perilous mount=skyrim-horse
+    expect: "The journey takes 3 watches (path 1, distance 2, terrain 1, weather 0, vast 0, mounted -1"
+  - run: do travel-time path=road distance=short mount=horse
+    expect: "The journey takes 1 watches (path 0, distance 1, terrain 0"

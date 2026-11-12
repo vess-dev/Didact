@@ -1,0 +1,8 @@
+action: use
+title: Use a power
+params: {who: ref, power: text}
+steps:
+  - set: who.used_today
+    op: "+="
+    value: $power
+  - "{@who.name} has used: {@who.used_today}."

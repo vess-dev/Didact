@@ -1,0 +1,168 @@
+# Tables the core rules and procedures roll (players-guide/core-rules, procedures).
+table: reactions
+title: Reactions
+dice: 2d6
+source: players-guide/core-rules#reactions
+entries:
+  2: Hostile
+  3-5: Wary
+  6-8: Curious
+  9-11: Kind
+  12: Helpful
+---
+table: die-of-fate
+title: Die of Fate
+dice: d6
+source: players-guide/core-rules#die-of-fate
+entries:
+  1-3: {text: "Bad luck for the PCs", data: {favors: false}}
+  4-6: {text: "It favors the PCs", data: {favors: true}}
+---
+table: scars
+title: Scars
+lookup: hp_lost
+description: >-
+  Looked up by the HP lost in the attack that took a PC to exactly 0 HP. The book's table stops
+  at 12; more HP lost (max HP can pass 12) reads as 12, Doomed. `didact do scar who=<pc> lost=<n>`
+  rolls where, which limb or which attribute, and applies it.
+source: players-guide/core-rules#scars
+entries:
+  1:
+    text: "Lasting Scar: Roll 1d6 for where. Then roll 1d6: if the total is higher than your max HP, take the new result."
+    data: {kind: lasting-scar}
+  2:
+    text: "Rattling Blow: You're disoriented and shaken. Describe how you refocus. Roll 1d6: if the total is higher than your max HP, take the new result."
+    data: {kind: rattling-blow}
+  3:
+    text: "Walloped: You're sent flying and land flat on your face, winded. You are deprived until you rest for a few hours. Then, roll 1d6. Add that amount to your max HP."
+    data: {kind: walloped}
+  4:
+    text: "Broken Limb: Roll 1d6 for which. Once mended, roll 2d6: if the total is higher than your max HP, take the new result."
+    data: {kind: broken-limb}
+  5:
+    text: "Diseased: You're afflicted with a gross, uncomfortable infection. When you get over it, roll 2d6: if the total is higher than your max HP, take the new result."
+    data: {kind: diseased}
+  6:
+    text: "Reorienting Head Wound: Roll 1d6 for which attribute. Roll 3d6: if the total is higher than your current attribute, take the new result."
+    data: {kind: head-wound}
+  7:
+    text: "Hamstrung: You can barely move until you get serious help and rest. After recovery, roll 3d6: if the total is higher than your max DEX, take the new result."
+    data: {kind: hamstrung}
+  8:
+    text: "Deafened: You cannot hear anything until you find extraordinary aid. Regardless, make a WIL save. If you pass, increase your max WIL by 1d4."
+    data: {kind: deafened}
+  9:
+    text: "Re-brained: Some hidden part of your psyche is knocked loose. Roll 3d6: if the total is higher than your max WIL, take the new result."
+    data: {kind: re-brained}
+  10:
+    text: "Sundered: An appendage is torn off, crippled, or useless. (The Warden will tell you which.) Then make a WIL save. If you pass, increase your max WIL by 1d6."
+    data: {kind: sundered}
+  11:
+    text: "Mortal Wound: You are deprived and out of action. You die in one hour unless healed. Upon recovery, roll 2d6. Take the new result as your max HP."
+    data: {kind: mortal-wound}
+  12:
+    text: "Doomed: Death seemed ever so close, but somehow you survived. If your next save against critical damage is a fail, you die horribly. If you pass, roll 3d6: if the total is higher than your max HP, take the new result."
+    data: {kind: doomed}
+  13-999:
+    text: "Doomed (the book's table stops at 12 HP lost; more reads as 12): Death seemed ever so close, but somehow you survived. If your next save against critical damage is a fail, you die horribly. If you pass, roll 3d6: if the total is higher than your max HP, take the new result."
+    data: {kind: doomed}
+---
+table: scar-location
+title: Where the scar is
+dice: d6
+source: players-guide/core-rules#scars
+entries: {1: Neck, 2: Hands, 3: Eye, 4: Chest, 5: Legs, 6: Ear}
+---
+table: broken-limb
+title: Which limb breaks
+dice: d6
+source: players-guide/core-rules#scars
+entries:
+  1-2: {text: Leg, data: {condition: broken-leg}}
+  3-4: {text: Arm, data: {condition: broken-arm}}
+  5: {text: Rib, data: {condition: broken-rib}}
+  6: {text: Skull, data: {condition: broken-skull}}
+---
+table: head-wound
+title: Which attribute the head wound reorients
+dice: d6
+source: players-guide/core-rules#scars
+entries: {1-2: STR, 3-4: DEX, 5-6: WIL}
+---
+table: dungeon-events
+title: Dungeon Events
+dice: d6
+source: players-guide/procedures#dungeon-events
+entries:
+  1: {text: "Encounter: Roll on an encounter table. Possibly hostile (roll a reaction).", data: {kind: encounter}}
+  2: {text: "Sign: A clue, spoor, track, abandoned lair, scent, victim, etc. is discovered.", data: {kind: sign}}
+  3: {text: "Environment: Surroundings shift or escalate. Water rises, ceilings collapse, a ritual nears completion, etc.", data: {kind: environment}}
+  4: {text: "Loss: Torches are blown out, an ongoing spell fizzles, etc. The party must resolve the effect before moving on.", data: {kind: loss}}
+  5: {text: "Exhaustion: The party must rest (triggering another roll on this table), add a Fatigue, or consume a ration.", data: {kind: exhaustion}}
+  6: {text: "Quiet: The party is left alone (and safe) for the time being.", data: {kind: quiet}}
+---
+table: wilderness-events
+title: Wilderness Events
+dice: d6
+source: players-guide/procedures#wilderness-events
+entries:
+  1: {text: "Encounter: Roll on an encounter table for that terrain type or location. Don't forget to roll for NPC reactions if applicable.", data: {kind: encounter}}
+  2: {text: "Sign: The party discovers a clue, spoor, or indication of a nearby encounter, locality, hidden feature, or information about a nearby area.", data: {kind: sign}}
+  3: {text: "Environment: A shift in weather or terrain.", data: {kind: environment}}
+  4: {text: "Loss: The party is faced with a choice that costs them a resource (rations, tools, etc), time, or effort.", data: {kind: loss}}
+  5: {text: "Exhaustion: The party encounters a barrier, forcing effort, care or delays. This might mean spending extra time (and an additional Wilderness Action) or adding Fatigue to the PCs' inventory to represent their difficulties.", data: {kind: exhaustion}}
+  6: {text: "Discovery: The party finds food, treasure, or other useful resources. The Warden can instead choose to reveal the primary feature of the area.", data: {kind: discovery}}
+---
+table: weather-spring
+title: Spring weather
+dice: d6
+source: players-guide/procedures#weather-type
+entries:
+  1: Nice
+  2-3: Fair
+  4: Unpleasant
+  5: Inclement
+  6: {text: Extreme, repeat: {text: Catastrophic}}
+---
+table: weather-summer
+title: Summer weather
+dice: d6
+source: players-guide/procedures#weather-type
+entries:
+  1-2: Nice
+  3: Fair
+  4: Unpleasant
+  5: Inclement
+  6: {text: Extreme, repeat: {text: Catastrophic}}
+---
+table: weather-fall
+title: Fall weather
+dice: d6
+source: players-guide/procedures#weather-type
+entries:
+  1-2: Fair
+  3: Unpleasant
+  4-5: Inclement
+  6: {text: Extreme, repeat: {text: Catastrophic}}
+---
+table: weather-winter
+title: Winter weather
+dice: d6
+source: players-guide/procedures#weather-type
+entries:
+  1: Fair
+  2: Unpleasant
+  3-4: Inclement
+  5-6: {text: Extreme, repeat: {text: Catastrophic}}
+---
+table: weather-effects
+title: Weather difficulty
+lookup: weather
+source: players-guide/procedures#weather-difficulty
+entries:
+  Nice: {text: "Favorable conditions for travel (clear skies, sunny).", data: {watches: 0, fatigue: 0, step: 0}}
+  Fair: {text: "Favorable conditions for travel (overcast, breezy).", data: {watches: 0, fatigue: 0, step: 0}}
+  Unpleasant: {text: "Add a Fatigue or add one watch to the journey (gusting winds, rain showers, sweltering heat, chill air).", data: {watches: 1, fatigue: 0, step: 0, either: true}}
+  Inclement: {text: "Add a Fatigue or add +1 watch. Increase terrain Difficulty by a step (thunderstorms, lightning, rain, muddy ground).", data: {watches: 1, fatigue: 0, step: 1, either: true}}
+  Extreme: {text: "Add a Fatigue and add +1 watch. Increase terrain Difficulty by a step (blizzards, freezing winds, flooding, mud slides).", data: {watches: 1, fatigue: 1, step: 1}}
+  Catastrophic: {text: "Most parties cannot travel under these conditions (tornados, tidal waves, hurricane, volcanic eruption).", data: {impassable: true}}

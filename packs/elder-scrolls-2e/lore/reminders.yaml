@@ -1,0 +1,269 @@
+# Rule reminders for The Elder Scrolls 2e: they come up when play mentions their keys (system
+# scope, every game on this pack). Ids shared with cairn-2e replace its Cairn wording; the rest
+# are the hack's own rules (races, Standing Stones, hazards, diseases, unusual PCs, crafting,
+# Skill Books, companions, standing, settlements).
+lore: warden-principles
+title: Principles for Wardens
+kind: preference
+constant: true
+priority: 90
+content: >-
+  The Elder Scrolls 2e Warden: describe the world plainly and generously (no rolls to learn
+  what is plainly around them); default to the logic of the situation over numbers; saves only
+  for real risk; telegraph real danger, the deadlier the plainer; the folk of Skyrim remember,
+  and no one wants to die, not the bandit chief, not the conjurer; offer clear choices; a
+  dagger at the throat kills all the same, however fine the Daedric plate. Cairn has no save
+  modifiers, and neither does this game.
+source: players-guide/overview-and-principles#principles-for-wardens
+---
+lore: saves-reminder
+keys: [save, risky, risk]
+kind: rule-reminder
+recursive: false
+content: "Saves: d20 at or under STR, DEX or WIL; 1 always succeeds, 20 always fails. Only the character most at risk saves; state the risk first. No numeric save modifiers ever: powers re-roll a failed save, pass it automatically, or remove the need for it."
+source: players-guide/core-rules#saves
+---
+lore: first-round
+keys: [ambush, combat starts, fight breaks out, initiative]
+kind: rule-reminder
+recursive: false
+content: "First round: each PC saves DEX to act (a failure loses the turn; a panicked PC doesn't act; a Dremora always acts). A rider on an untrained mount also saves WIL to keep it steady (`didact do startled-mount who=…`). Then the opponents act; afterward sides alternate, PCs first; results are simultaneous."
+source: players-guide/core-rules#rounds
+---
+lore: attack-reminder
+keys: [attack, strike, stab, shoot, hit]
+kind: rule-reminder
+recursive: false
+content: "Attacks always hit: the weapon die, minus Armor, off HP (`didact do attack attacker=… target=… weapon=d8 kind=…`). Impaired d4 (cover, panicked, against a detachment, a kind the target resists: impaired_by), Enhanced d12 (a helpless foe, a detachment's attack, a kind it dreads: enhanced_by); an attack both Impaired and Enhanced is neither: the weapon's own die. Two weapons or a beast's d8+d8: keep the highest (weapon=2d8kh1 or '{d8, d6}kh1'). Unarmed d4, a Khajiit's claws d6. Fire against a vampire or draugr, silver against the beast-blooded: kind=fire / kind=silver."
+source: players-guide/core-rules#attacking--damage
+---
+lore: armor-cap
+keys: [armor, shield, helmet, chainmail, plate, cuirass]
+kind: rule-reminder
+recursive: false
+content: "Armor never goes above 3, Daedric plate included. One suit of body armor; a shield and a helmet add +1 each only while held or worn (stowed in the backpack they don't count). A draugr revenant's flesh is 1 Armor when unarmored (worn armor replaces it); Brown Rot takes 1 from body armor; Transformed, gear falls away and the hide gives 1."
+source: players-guide/core-rules#armor
+---
+lore: critical-reminder
+keys: [critical damage, dying, bleeding out, bandage, bandages]
+kind: rule-reminder
+recursive: false
+content: "Critical damage: damage past 0 HP comes off STR, then a STR save with the new score. A PC who fails can only crawl; bandages, a healing potion or a restoration spell stabilize them (`didact do stabilize who=…`), untreated they die within the hour. NPCs who fail die; a detachment is routed; the attacker's own critical effect follows. A Dremora at 0 STR is banished to Oblivion, not killed."
+source: players-guide/core-rules#critical-damage
+---
+lore: scar-reminder
+keys: [scar, scars]
+kind: rule-reminder
+recursive: false
+content: "Scars (Cairn's table, unchanged): when an attack takes a PC to exactly 0 HP, the HP lost picks the scar and it applies at once (the attack runs `didact do scar who=… lost=N`). Wounds that heal later are conditions: `didact do scar-heal who=… scar=broken-leg` when they do (recover heals walloped, hamstrung and a mortal wound)."
+source: players-guide/core-rules#scars
+---
+lore: inventory-reminder
+keys: [inventory, slots, bulky, petty, backpack, carry, coins, purse, septims]
+kind: rule-reminder
+recursive: false
+content: "Inventory: 10 slots, four or five carried comfortably (body), the backpack's six. Bulky items take 2, petty ones none; Fatigue fills slots too. A full inventory (all 10) drops HP to 0. A pouch of fewer than 100 Septims is petty: after the Septims change, `didact do coins who=…`. A Spell Tome fills a slot; a Skill Book too, until read. A mount or cart carries its own load."
+source: players-guide/character-creation#inventory
+---
+lore: fatigue-reminder
+keys: [fatigue, exhausted, exhaustion, tired]
+kind: rule-reminder
+recursive: false
+content: "Fatigue fills an inventory slot until a full night's rest somewhere safe (`didact do fatigue who=…`). No free slot? Drop an item first. Deprived characters can't shed it; Bone Break Fever keeps one that rest can't clear; a vampire's feeding clears it all once a day."
+source: players-guide/core-rules#deprivation--fatigue
+---
+lore: deprivation-reminder
+keys: [deprived, hungry, starving, thirsty, sleepless, no sleep]
+kind: rule-reminder
+recursive: false
+content: "Deprivation: lacking a crucial need (food, water, rest, warmth) leaves a character Deprived: no HP, attributes or Fatigue recovered, and a Fatigue for each day past the first (`didact do deprive who=… need=food`; `didact do relieve who=…` when it's met). Dremora and draugr revenants need no food, water, sleep or breath; Briarhearts no sleep; cold alone never deprives a Nord or a vampire, nor heat and ash a Dunmer. A vampire in sunlight, or a full day unfed, is Deprived."
+source: players-guide/core-rules#deprivation--fatigue
+---
+lore: light-reminder
+keys: [torch, lantern, light, darkness, dark]
+kind: rule-reminder
+recursive: false
+content: "Light: a torch lights about 40ft of barrow or ruin and can be lit 3 times; a lantern relights 6 times per oil flask. Without light, characters may panic. Khajiit see in dim light as others do by day; vampires see in the dark as by daylight."
+source: players-guide/procedures#light
+---
+lore: panic-reminder
+keys: [panic, panicked, surrounded, terrified, fear]
+kind: rule-reminder
+recursive: false
+content: "Panic: surrounded, in darkness or facing their greatest fear, a WIL save or panicked (0 HP, no action in the first round, impaired attacks); overcoming it takes an action and a WIL save (`didact do steady who=…`). A draugr revenant is immune to fear."
+source: players-guide/procedures#panic
+---
+lore: spell-reminder
+keys: [spell, spell tome, tome, cast, casting, scroll, magicka]
+kind: rule-reminder
+recursive: false
+content: "Spell Tomes: hold it in both hands, read it aloud, add a Fatigue (`didact do cast who=… spell=…`); deprived or in danger, a WIL save or consequences on par with the spell. Time and safety: enhance it at no cost. Scrolls are petty, cause no Fatigue and vanish after one use (scroll=true). Highborn, the Mage and Apprentice stones spare the Fatigue once (twice) a day (free=…). Witbane: a WIL save before any tome; Brain Rot: a WIL save after, or a Fatigue more. No casting while Transformed."
+source: players-guide/core-rules#casting-spells
+---
+lore: relic-reminder
+keys: [relic, relics, charges, recharge, enchanted, artifact]
+kind: rule-reminder
+recursive: false
+content: "Relics cause no Fatigue; their charges run out and come back only as their own Recharge line says (`didact inv use` / `inv recharge`). One enchanted ring and one amulet at a time. A Relic made at an enchanter takes its charges from the soul gem (petty or lesser 1, common or greater 2, grand or black 3) and recharges with another filled gem (`didact do enchant`, `didact do recharge`). At most one Relic per session under normal circumstances."
+source: players-guide/core-rules#relics
+---
+lore: morale-reminder
+keys: [flee, morale, rout, surrender, casualty]
+kind: rule-reminder
+recursive: false
+content: "Morale: enemies save WIL at their first casualty and at half strength (`didact do morale who=… leader=… or wil=…`); lone foes at 0 HP. Morale never affects PCs; hirelings save it, companions don't (they have Loyalty)."
+source: players-guide/core-rules#morale
+---
+lore: travel-reminder
+keys: [travel, journey, road, trail, wilderness, lost, ride, riding]
+kind: rule-reminder
+recursive: false
+content: "Travel: days are three watches. Trails +1 watch (lost 2-in-6), wilderness +2 (lost 3-in-6); distance short +1, medium +2, long +3; tough terrain +1, perilous +2; weather +1 watch or a Fatigue (extreme: both). A party all mounted ignores one watch of Path or Terrain penalty, a Skyrim horse also treats Perilous snow, ice and mountain as a step easier; never below the distance's watches (`didact do travel-time … mount=horse`)."
+source: players-guide/procedures#travel-duration
+---
+lore: weather-reminder
+keys: [weather, storm, snow, rain, blizzard]
+kind: rule-reminder
+recursive: false
+content: "Weather: roll each day for the season (`didact do weather season=…`; a new day reminds you). Unpleasant or inclement: +1 watch or a Fatigue; extreme: both, and anyone without shelter is Deprived from the cold at once (`didact do exposure who=… extreme=true`); catastrophic: no travel."
+source: players-guide/procedures#weather
+---
+lore: camp-reminder
+keys: [camp, make camp, sleep, night watch]
+kind: rule-reminder
+recursive: false
+content: "Camp: the last watch of the day. Everyone (and every mount) eats a Ration; a lookout rotation is set; those who rest safely clear all Fatigue (`didact do make-camp who=…`). Skipping it: `didact do skip-camp who=…`. Dremora and draugr revenants need no food or sleep."
+source: players-guide/procedures#make-camp
+---
+lore: hireling-reminder
+keys: [hireling, hirelings, hire, mercenary, sellsword, porter]
+kind: rule-reminder
+recursive: false
+content: "Hirelings: a role and daily wage in Septims (Marketplace), 3d6 attributes, 1d6 HP, gear for their station, the trait tables (`didact char new elder-scrolls-2e.hireling`), or a background (`didact char new elder-scrolls-2e.hireling-background`). They take Morale saves and walk off when the coin stops; one who has bled beside the party may become a companion (Loyalty 3)."
+source: players-guide/core-rules#hirelings
+---
+lore: detachment-reminder
+keys: [detachment, horde, army, mob, squad, dragon, giant]
+kind: rule-reminder
+recursive: false
+content: "Detachments: a group of four or more fighting as one, and a few enormous creatures (dragons, giants, a mammoth, a Dwarven Centurion). Individuals' attacks against it are impaired (blast excepted); its attacks against individuals are enhanced. Critical damage routs it; 0 STR destroys it. An attack both impaired and enhanced (Dragonbane against a dragon) rolls the weapon's own die."
+source: players-guide/core-rules#detachments
+---
+lore: retreat-reminder
+keys: [retreat, run away, escape, flee the fight]
+kind: rule-reminder
+recursive: false
+content: "Retreat: running from a dire situation always takes a DEX save and a safe destination to run to (`didact do retreat who=…`)."
+source: players-guide/core-rules#retreat
+---
+lore: rest-reminder
+keys: [rest, catch their breath, short rest, recover, healer, temple]
+kind: rule-reminder
+recursive: false
+content: "Healing: a few moments' rest and a drink restore all HP (`didact do rest who=…`), unless deprived, panicked, carrying a full load, Transformed or ill with the Rattles. A week's rest with a healer or a temple of the Divines (50 Septims) restores attributes (`didact do recover who=…`). Magic mends a creature's STR only once a day (`didact do heal`). Not for a Dremora (`binding-mend`) or a draugr (a week in a barrow, or `absorb-life`)."
+source: players-guide/core-rules#healing--recovery
+---
+lore: growth-reminder
+keys: [growth, grow, trigger, advance, level up, experience, xp]
+kind: rule-reminder
+recursive: false
+content: "Growth: no XP, no levels. A trigger needs two of a focused pattern of behavior, an obvious risk, and a unique item, creature or entity; a resolved bond or omen, Downtime training and scars bring change too, often with a cost (lycanthropy is a gift and a chain at once): `didact char advance <pc>`. Skill Books add small permanent perks (`didact do read-book`)."
+source: wardens-guide/growth#triggers-a-framework-for-growth
+---
+lore: bonds-omens-reminder
+keys: [bond, bonds, omen, omens, resolve]
+kind: rule-reminder
+recursive: false
+content: "Bonds and omens are threads (`didact quest list`). Resolving a bond should always yield growth for the entangled character or the party: `didact do resolve-bond who=… bond=<thread>`; an omen: `didact do resolve-omen omen=<thread>`."
+source: wardens-guide/bonds-and-omens#bonds
+---
+lore: downtime-reminder
+keys: [downtime, research, training, milestone, milestones, between sessions, crafting]
+kind: rule-reminder
+recursive: false
+content: "Downtime: one action at a time, somewhere safe, not in recovery. Research (a question and a Source), training (a skill and a Master), strengthening ties (an NPC or faction and an intent), or crafting at a station (`didact do temper`, `brew`, `enchant`); 1-5 Milestones, each with a Cost in Septims, resources, reputation or a loss (`didact do downtime who=… goal='…' gold=… size=<1-5>`: the goal's tracker is made the first time and ticked each action)."
+source: players-guide/procedures#downtime
+---
+lore: mount-reminder
+keys: [horse, mule, donkey, guar, cart, wagon, mount, pack animal, stable]
+kind: rule-reminder
+recursive: false
+content: "Mounts: a horse carries +4 slots, a mule +6 (slow), a cart +4 (bulky), a wagon +8 (slow); each is a record holding its own load. Each mount eats a Ration at camp; stabling is 5 Septims a night. Left tied in the wild, the Die of Fate on the return: 3 or under, it's gone (`didact do mount-left`). In a fight an untrained mount needs a WIL save (`didact do startled-mount`); a trained rider's charge is Enhanced, an untrained one Impaired."
+source: players-guide/mounts#mounts-in-travel
+---
+lore: race-reminder
+keys: [nord, imperial, breton, redguard, altmer, high elf, bosmer, wood elf, dunmer, dark elf, orc, orsimer, khajiit, argonian, race]
+kind: rule-reminder
+recursive: false
+content: "Race traits: Nord frost Impaired and no cold deprivation; Imperial re-roll a failed WIL save to calm, persuade or bargain once a day; Breton a spell or magical effect fizzles once a day; Redguard clear a Fatigue once a day; Altmer one Spell Tome without Fatigue a day; Bosmer command an animal once a day; Dunmer fire Impaired and no heat or ash deprivation; Orsimer one Enhanced attack a day; Khajiit d6 claws and night-eye; Argonian water-breathing and no ordinary disease. Once-a-day ones: `didact do power who=… power=…` (the next dawn renews them)."
+source: players-guide/character-creation#races
+---
+lore: stones-reminder
+keys: [standing stone, the warrior, the mage, the thief, the lord, the lady, the steed, the apprentice, the atronach, the ritual, the lover, the shadow, the tower, the serpent]
+kind: rule-reminder
+recursive: false
+content: "Standing Stones (an option, off by default): one Stone marks a character at a time, changed only by visiting another (`didact do visit-stone`); the Serpent is never rolled. Their once-a-day blessings: `didact do power who=… power=the-warrior` (the Mage and Apprentice through `cast free=…`, the Lady through `rest`). The Apprentice makes magical attacks against its bearer Enhanced; the Atronach makes healing spells fizzle."
+source: players-guide/character-creation#standing-stones
+---
+lore: disease-reminder
+keys: [disease, diseased, sick, rattles, rockjoint, ataxia, witbane, brain rot, bone break fever, brown rot, droops, greenspore, sanguinare, cure disease]
+kind: rule-reminder
+recursive: false
+content: "Diseases: wounded or exposed by a source (a wolf, a skeever, a draugr, a vampire's drain), a STR save or contract it (`didact do disease who=… disease=…`); each has one ongoing effect until cured. Any one cure clears them all: a night at a temple of the Divines, a Potion of Cure Disease, a shrine blessing, a Vigilant (`didact do cure-disease`). Sanguinare Vampiris left three days becomes Vampirism (counted at each new day). Argonians, vampires, the beast-blooded, Dremora and draugr don't catch them."
+source: players-guide/diseases-and-afflictions#contracting-a-disease
+---
+lore: hazard-reminder
+keys: [fall, falling, drown, drowning, fire, burning, ablaze, cold, freezing, frostbite, lightning, shock, venom, poison, poisoned, gas, skooma]
+kind: rule-reminder
+recursive: false
+content: "Hazards come off an attribute, not HP; Armor helps only where it realistically would. Falling: 1d6 STR per full 10 ft, a DEX save halves (`didact do fall`). Drowning: three rounds, then a STR save each round or 1d6 STR (`drown`). Fire: 1d4 STR a round until put out (`ablaze`). Cold: a watch exposed without warmth leaves you Deprived, each more a Fatigue (`exposure`, `warm-up`). Lightning: 1d6 STR and a DEX save or drop what you hold (`lightning`). Venom: a STR save or 1d6 STR, a lingering one three turns more (`venom`, `venom-tick`); gas 1 WIL a round (`inhale`)."
+source: players-guide/hazards#falling
+---
+lore: unusual-reminder
+keys: [vampire, vampirism, werewolf, werebear, lycanthropy, beast form, vampire lord, dremora, draugr, revenant, briarheart, transformed, feed, sunlight]
+kind: rule-reminder
+recursive: false
+content: "Unusual PCs (the nature field): a vampire feeds once a day (`didact do feed`), drains (`drain`), withers in sunlight (`sunlight`), and fire is Enhanced against it; the beast-blooded take Beast Form once a day (`transform`; the scene's end, or `revert`, ends it) and silver is Enhanced against them; a Dremora is banished at 0 STR and mends only by binding-craft (`reform`, `binding-mend`); a draugr revenant mends only in a barrow or by a kill (`recover … barrow=true`, `absorb-life`); a Briarheart needs no sleep and dies at once if the briar is pulled. Transformations are once a day, a scene long; their powers once per transformation."
+source: players-guide/unusual-pcs#a-note-before-you-begin
+---
+lore: crafting-reminder
+keys: [smith, smithing, forge, temper, alchemy, potion, brew, enchant, enchanting, soul gem]
+kind: rule-reminder
+recursive: false
+content: "Crafting is a Downtime Action at a station; it succeeds unless rushed or improvised. Tempering steps a weapon's die once (to d12) or body armor +1 (to 3), for good (`didact do temper`; rushed: a STR save). Brewing yields 1d4 petty single-use doses into the brewer's pack (`brew`; rushed: a WIL save). Enchanting needs a learned effect and a filled soul gem, one taken from the stack (`learn-effect`, `enchant`, `recharge`): the rules mark the item they change on the sheet. The cap is the cap: Daedric plate is still 3 Armor."
+source: players-guide/crafting#smithing
+---
+lore: skill-book-reminder
+keys: [skill book, skill books, perk, read the book]
+kind: rule-reminder
+recursive: false
+content: "Skill Books: one turn's reading in a safe, quiet place (never in combat or Deprived) consumes the book and grants its small permanent perk; only the first reader of a copy gains it. Five Skill-Book slots: a sixth means forgetting one, chosen at the moment of reading (`didact do read-book who=… book='…' forget='…'`)."
+source: wardens-guide/skill-books#rules
+---
+lore: companion-reminder
+keys: [companion, follower, housecarl, loyalty, command]
+kind: rule-reminder
+recursive: false
+content: "Companions: one active per PC; 1d6 HP, 3d6 attributes, 1 Armor, one weapon, one trick, Loyalty 3 to start (a housecarl 4). Once per combat the PC may spend their own action to Command theirs: one clean action, Enhanced or with a re-rolled save (`didact do command`; while the fight tracker runs, a second is refused until `combat end`). The Warden moves Loyalty one step at a time (`didact do loyalty`; a faction-sworn companion falls two on the first real betrayal: betrayed=true); at 1 they leave at the next settlement, at 5 (Sworn) they take a hit for their PC once a day. A beast has only its hide's Armor (none, unless the Bestiary gives its kind some)."
+source: players-guide/companions#the-command-action
+---
+lore: standing-reminder
+keys: [reputation, faction, renown, infamy, famous, bounty, guards, wanted]
+kind: rule-reminder
+recursive: false
+content: "Standing: three separate tracks. Faction Reputation −2 Hunted to +2 Sworn, one step per witnessed beat; rising with one drops its sworn enemy a step (`didact do reputation`). Renown −3 to +3, the party's one dial on its party record (`didact new party \"The Company\"`), one step per session and only for public deeds; it sets where a stranger's Reaction starts (`didact do renown party=<it> step=up deed='…'`, `didact do reaction who=<npc> party=<it> toward=<pc>`). Bounty is Septims per Hold for witnessed crimes (`didact do bounty`, `pay-bounty`, `clear-bounty`)."
+source: wardens-guide/faction-reputation#how-the-warden-moves-it
+---
+lore: settlement-reminder
+keys: [settlement, homestead, steading, building, raid, jarl]
+kind: rule-reminder
+recursive: false
+content: "Settlements: Population, Defense, Prosperity 1–5, each 1 plus its buildings; eight slots, petty comforts free. A building is a Downtime Action and Septims (`didact do build`). Each season: more slots than Population × 2 and one decays; a d6 over Defense brings a raid (`didact do settlement-season`, then `raid-outcome`). A new homestead is 1/1/1 with its main hall (`didact gen run elder-scrolls-2e.homestead`)."
+source: wardens-guide/settlements#attributes
+---
+lore: once-per-day-reminder
+keys: [once per day, once a day, dawn, a new day]
+kind: rule-reminder
+recursive: false
+content: "Once per day lasts until the next dawn: the sheet's used_today lists what's spent (race traits, Standing Stones, perks, feeding, the change), and a new day clears it with the day's magical STR healing (`new-dawn`). Once per combat is for narrow tricks (the Command action and a vampire's restoring drain are counted while the fight tracker runs, until `combat end`); once per session for out-of-character privileges (a Sworn faction's favor, a bond's yes-or-no question)."
+source: players-guide/character-creation#races

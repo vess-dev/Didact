@@ -1,0 +1,44 @@
+# What of cairn-2e a Fallout 2e world no longer shows (pack.yaml `hides`), and what it keeps.
+test: cairn-leftovers-hidden
+help: >-
+  A Cairn spellbook, a Cairn monster, a Cairn background table, a Cairn rules section, a Cairn
+  glossary term, a Cairn-only generator and rule are gone, and Cairn's name tables with them;
+  Fallout's own term answers for the chassis; the kept die-of-fate table and the inherited fate
+  rule still work, and cast names the Fallout command.
+script:
+  - world new hides --system {pack} --seed hides
+  - campaign new c1 --seed hides
+  - run: spawn arcane-eye
+    fails: true
+    expect: "arcane-eye"
+  - run: compendium find owlbear
+    expect: "nothing in the compendium matches"
+  - run: table show aurifex-1
+    fails: true
+    expect: "no table 'aurifex-1'"
+  - run: rules lookup spellbooks
+    expect: "no rules text about 'spellbooks'"
+  - run: define waypoint
+    fails: true
+    expect: "no glossary term 'waypoint'"
+  - run: gen run realm --auto
+    fails: true
+    expect: "no generator 'realm'"
+  - run: do faction-action
+    fails: true
+    expect: "no rule 'faction-action'"
+  - run: name forest
+    fails: true
+    expect: "no name tables for 'forest'"
+  - run: define armor
+    expect: "**Armor** (fallout-2e): Subtracted from the damage roll"
+    expect_not: "(cairn-2e)"
+  - run: table list
+    expect: ["cairn-2e.die-of-fate", "cairn-2e.head-wound"]
+    expect_not: ["cairn-2e.spellbooks", "cairn-2e.aurifex-1", "cairn-2e.forest-names"]
+  - run: table roll die-of-fate
+    expect: "cairn-2e.die-of-fate"
+  - run: do fate
+    expect: "check cairn-2e.fate"
+  - run: do cast
+    expect: ["Fallout 2e has no spells", "didact do read-magazine"]

@@ -1,0 +1,57 @@
+# Bonds and Omens, the triggers that tick between turns, and the smaller rules: retreat, panic and
+# bond 13's yao guai, the Lead Battery Cell, the nanite culture, once-per-session uses, a crash's
+# passengers, lowering a maximum, caps weight. Seeded.
+test: threads-and-small-rules
+help: >-
+  Each part plays in a world of its own: bonds-and-omens, daily-triggers, small-rules. A new day:
+  the nanite culture clears a Rad, a ghoul at six Rads is warned, once-per-session uses come back
+  when a session starts.
+script:
+  - world new bonds-and-omens --system {pack} --seed bonds
+  - campaign new bonds-and-omens --seed bonds
+  - run: >-
+      char new --mode random --prefill '{"background": "Wastelander", "name": "Kai", "youngest": "yes",
+      "bond": "A pre-war auto-doc mistook you for a different patient and installed a Lead Battery Cell in your chest. It grows heavier by one slot each month. Until it is removed by someone who knows what they'"'"'re doing, you cannot truly die — the cell is keeping your heart beating."}'
+    expect: ["+ thread Bond: Lead Battery Cell [bond-1]", "burden: 1", "+ thread Omen: "]
+  - run: char commit c1
+    expect: ["pc:kai", "thread:bond-lead-battery-cell"]
+  - run: time advance 31 days
+    expect: ["Kai's Lead Battery Cell grows heavier: it takes 2 slots now"]
+  - run: do resolve-bond who=kai bond=bond-lead-battery-cell
+    expect: ["unset burden", "pc:kai: - Lead Battery Cell", "The Lead Battery Cell is out", "Kai resolves a Bond: Bond: Lead Battery Cell"]
+  - run: do resolve-bond who=kai bond=bond-lead-battery-cell
+    expect: ["(bond has no A pre-war auto-doc", "Kai resolves a Bond"]
+    expect_not: ["unset burden", "Lead Battery Cell is out"]
+  - run: quest list
+    expect: "Omen: "
+  - world new daily-triggers --system {pack} --seed days
+  - campaign new daily-triggers --seed days
+  - new pc Nan --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set rads=2
+  - inv add nan 'Nanite Culture'
+  - new pc Gus --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set kind=ghoul --set rads=6
+  - run: time advance 1 day
+    expect: ["The nanite culture clears one of Nan's Rads (1 left)", "Gus is a ghoul at 6 Rads"]
+  - set nan once_per_session+=thinned-blood
+  - run: session start
+    expect: "once_per_session"
+  - run: show nan --detail full
+    expect: "rads 1"
+  - world new small-rules --system {pack} --seed small
+  - campaign new small-rules --seed small
+  - new pc Kit --set STR=12 --set DEX=12 --set WIL=1 --set hp=4 --set caps=150
+  - run: >-
+      set kit "bond+=You once left a wounded yao guai in a gully. You still see it, sometimes, in the corner of your eye — a trick of post-traumatic wiring, your settlement's medic said. You cannot become Panicked when alone."
+    expect: "bond+="
+  - run: do panic who=kit alone=true
+    expect: "The wounded yao guai is there"
+  - run: do retreat who=kit
+    expect: ["Which way do they run?", "1d20"]
+  - run: do coins who=kit
+    expect: ["purse = 1", "Kit's 150 caps take 1 slot(s)"]
+  - run: do attribute-lower who=kit attr=STR amount=1
+    expect: ["Kit: max STR 12 → 11"]
+  - set kit conditions+=deprived
+  - run: do relieve who=kit
+    expect: ["conditions -= deprived", "Kit is no longer Deprived"]
+  - run: do crash-passenger who=kit
+    expect: ["1d6", "Kit gets a Scar"]

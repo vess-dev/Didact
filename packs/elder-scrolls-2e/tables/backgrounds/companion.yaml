@@ -1,0 +1,24 @@
+# Companion (backgrounds/companion): the background's two d6 tables.
+table: companion-1
+title: "How did you prove yourself worthy of the shield?"
+dice: d6
+source: backgrounds/companion#how-did-you-prove-yourself-worthy-of-the-shield-roll-1d6
+entries:
+  1: {text: "Your Whelp's trial was a barrow. You went down alone and came up carrying an ancient Nord war axe (d8) pried from a draugr's hands. Its old iron turns cold when the barrow-dead stir: in a tomb or ruin, draugr can never take you by surprise.", data: {gear: [{name: "Ancient Nord war axe", damage: "d8"}]}}
+  2: "You settled the hall's brawls, then the town's: merchants pay the Companions to teach a lesson without killing. Your fists deal d6, and a foe you drop with them is always left alive, knocked senseless."
+  3: {text: "A shield-sibling died on a contract that went wrong, and you carried the body home. Take their steel war axe (d8) and their Amulet of Talos (petty), which the Thalmor would hang you for wearing. You swore to carry the amulet to their mother in Rorikstead, and you have not gone yet.", data: {gear: [{name: "Steel war axe", damage: "d8"}, {name: "Amulet of Talos", size: "petty"}]}}
+  4: {text: "You hunted the Silver Hand across three Holds. Take a silvered dagger (d6, silver) and a hunter's sign-ring (petty), both from their dead. Flash the ring at a distance and any Silver Hand takes you for one of their own, until they get close.", data: {gear: [{name: "Silvered dagger", damage: "d6", qualities: ["silver"]}, {name: "Sign-ring", size: "petty"}]}}
+  5: {text: "Eorlund Gray-Mane took your measure at the Skyforge and judged you true. Your sword was tempered on the Skyforge itself: it is masterwork (d10).", data: {upgrade: true, replaces: {name: "Steel sword", damage: "d8"}, gear: [{name: "Steel sword", damage: "d10", qualities: ["masterwork"], tempered: true, note: "tempered on the Skyforge itself"}]}}
+  6: {text: "A troll opened you from shoulder to hip on your first contract, and you were drinking in the hall that night. Your maximum HP is 1 higher, and you wear the troll's claw on a thong (petty): any Nord hall will stand you a drink to hear the story.", data: {extra_hp: true, gear: [{name: "Troll's claw", size: "petty", note: "worn on a thong"}]}}
+---
+table: companion-2
+title: "What do you carry from the mead hall?"
+dice: d6
+source: backgrounds/companion#what-do-you-carry-from-the-mead-hall-roll-1d6
+entries:
+  1: {text: "Totem of Hircine: A carved wolf-skull you carried back from a Silver Hand fort for the Circle, never asking what it was. While you carry it, wolves will not attack you first. The Circle wants it back, and so do the hunters.", data: {gear: [{name: "Totem of Hircine", note: "a carved wolf-skull; while you carry it, wolves will not attack you first"}]}}
+  2: {text: "Unfinished Job: A contract Vilkas handed you and you never closed (petty): a named troll, giant, or bandit chief, and 100 Septims to whoever brings back proof. You know exactly where to start looking.", data: {gear: [{name: "Unfinished Job", size: "petty"}]}}
+  3: {text: "Skyforge Whetstone: A gray honing stone from Eorlund's bench (3 uses). Spend a turn honing a blade; its next hit is Enhanced.", data: {gear: [{name: "Skyforge Whetstone", uses: 3}]}}
+  4: {text: "Nord Hunting Bow: A sturdy recurve (d6, bulky) that hung over your bunk between contracts. Its draw is silent: a shot loosed from hiding never gives your position away.", data: {gear: [{name: "Nord Hunting Bow", damage: "d6", size: "bulky"}]}}
+  5: {text: "Vial of Beast-Blood: A stoppered vial Skjor pressed into your hand \"for when you are ready\" (petty, 1 use). Drink it and you take on the Beast Blood of Hircine for good (see Unusual PCs), and the Circle will call you kin. Kodlak must never know.", data: {gear: [{name: "Vial of Beast-Blood", size: "petty", uses: 1}]}}
+  6: {text: "Bottomless Tankard: A dented pewter tankard you won off a jolly stranger called Sam, in a drinking contest you do not remember finishing. It brims with strong mead every morning (1 use): a long pull clears a Fatigue. Now and then you wake somewhere you do not remember going.", data: {gear: [{name: "Bottomless Tankard", uses: 1, recharge: "it brims with strong mead every morning"}]}}

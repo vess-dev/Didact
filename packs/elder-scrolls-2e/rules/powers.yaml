@@ -1,0 +1,194 @@
+# Once-per-day powers (players-guide/character-creation#races, #standing-stones; reference/rules
+# "Once per day"): the race traits, the Standing Stones' blessings, and any background's, perk's
+# or Relic's daily power. Once per day lasts until the next dawn, when `new-dawn` renews them.
+action: power
+title: Use a once-per-day power
+help: >-
+  Spend a once-per-day power and apply it. Race: voice-of-the-emperor (Imperial: re-roll a
+  failed WIL save to calm, persuade or bargain), dragonskin (Breton: a spell or magical effect
+  that targets you fizzles), adrenaline-rush (Redguard: clear a Fatigue in the heat of action),
+  command-animal (Bosmer: a natural beast that can see you saves WIL or treats you as a friend
+  for the scene), berserker-rage (Orsimer: one attack Enhanced). Highborn, the Mage and the
+  Apprentice spare a casting's Fatigue: `didact do cast … free=highborn`. Standing Stones:
+  the-warrior, the-thief, the-lord, the-atronach, the-ritual, the-lover, the-shadow, the-tower,
+  the-serpent. Anything else (a background's, a Skill Book's, a Relic's): power=other
+  name='…'. The next dawn renews them all.
+params:
+  who: ref
+  power:
+    enum: [voice-of-the-emperor, dragonskin, adrenaline-rush, command-animal, berserker-rage, highborn, the-warrior, the-mage, the-thief, the-lord, the-lady, the-steed, the-apprentice, the-atronach, the-ritual, the-lover, the-shadow, the-tower, the-serpent, other]
+  target: {kind: ref, optional: true, help: "Who it works on: the beast, the person, the foe"}
+  name: {kind: text, optional: true, help: "With power=other: the power's name, as the sheet has it"}
+steps:
+  - let:
+      race: "default(@who.race, '')"
+      stone: "default(@who.standing_stone, '')"
+      key: "if('$power' == 'other', default(@name, ''), '$power')"
+  - if: "'$power' == 'highborn' or '$power' == 'the-mage' or '$power' == 'the-apprentice'"
+    then:
+      - stop: "That power spares a Spell Tome's Fatigue: `didact do cast who={@who.id} spell='…' free=$power`."
+  - if: "'$power' == 'the-lady'"
+    then:
+      - stop: "The Lady works through rest: `didact do rest who={@who.id}` clears a Fatigue too, once a day."
+  - if: "'$power' == 'the-steed'"
+    then:
+      - stop: "The Steed is always on: {@who.name} ignores the bulky tag on one worn suit of armor (`didact set {@who.id} 'inventory.<the suit>.size=normal'` when they don it)."
+  - if: "'$power' == 'other' and @key == ''"
+    then:
+      - stop: "Name the power: `didact do power who={@who.id} power=other name='…'`."
+  - let:
+      needs_race: >-
+        if('$power' == 'voice-of-the-emperor', 'Imperial', if('$power' == 'dragonskin', 'Breton',
+        if('$power' == 'adrenaline-rush', 'Redguard', if('$power' == 'command-animal', 'Bosmer',
+        if('$power' == 'berserker-rage', 'Orsimer', '')))))
+  - let: {needs_stone: "if(@needs_race == '' and '$power' <> 'other' and '$power' <> 'dragonskin', '$power', '')"}
+  - if: "@needs_race <> '' and @race <> @needs_race"
+    then:
+      - stop: "That is the {@needs_race}'s trait; {@who.name} is {if(@race == '', 'of no race on the sheet', @race)}."
+  - if: "@needs_stone <> '' and @stone == ''"
+    then:
+      - stop: "{@who.name} isn't marked by a Standing Stone (`didact do visit-stone`, with the standing-stones option)."
+  - if: >-
+      @needs_stone <> '' and not ((@needs_stone == 'the-warrior' and @stone == 'The Warrior')
+      or (@needs_stone == 'the-thief' and @stone == 'The Thief') or (@needs_stone == 'the-lord' and @stone == 'The Lord')
+      or (@needs_stone == 'the-atronach' and @stone == 'The Atronach') or (@needs_stone == 'the-ritual' and @stone == 'The Ritual')
+      or (@needs_stone == 'the-lover' and @stone == 'The Lover') or (@needs_stone == 'the-shadow' and @stone == 'The Shadow')
+      or (@needs_stone == 'the-tower' and @stone == 'The Tower') or (@needs_stone == 'the-serpent' and @stone == 'The Serpent'))
+    then:
+      - stop: "{@who.name} is marked by {@stone}, not that Stone: only one Stone marks you at a time."
+  - if: "@key in @who.used_today"
+    then:
+      - stop: "{@who.name} has already used {@key} today: the next dawn renews it."
+  - set: who.used_today
+    op: "+="
+    value: "{@key}"
+  - if: "'$power' == 'voice-of-the-emperor' or '$power' == 'the-thief'"
+    then:
+      - message: "{if('$power' == 'the-thief', 'The Thief', 'Voice of the Emperor')}: {@who.name} re-rolls the failed {if('$power' == 'the-thief', 'DEX', 'WIL')} save{if('$power' == 'the-thief', '', ' (to calm, persuade or bargain)')}."
+      - check: save
+        with: {who: "@who", attr: "{if('$power' == 'the-thief', 'DEX', 'WIL')}"}
+        as: again
+  - if: "'$power' == 'dragonskin'"
+    then: ["Dragonskin: the spell or magical effect that targets {@who.name} fizzles harmlessly."]
+  - if: "'$power' == 'adrenaline-rush' or '$power' == 'the-atronach'"
+    then:
+      - if: "'$power' == 'the-atronach'"
+        then: ["The Atronach: the spell that targets {@who.name} is absorbed and fizzles."]
+        else: ["Adrenaline Rush: in the heat of action, {@who.name} shakes off a Fatigue."]
+      - if: "@who.fatigue > 0"
+        then:
+          - set: who.fatigue
+            op: "-="
+            value: 1
+        else: ["(No Fatigue to clear.)"]
+  - if: "'$power' == 'command-animal'"
+    then:
+      - if: "default(@target, '') == ''"
+        then: ["Command Animal: a natural beast that can see {@who.name} saves WIL or treats them as a friend for the rest of the scene (`didact do save who=<the beast> attr=WIL`)."]
+        else:
+          - check: save
+            with: {who: "@target", attr: WIL}
+            as: beast
+          - if: "@beast == 'failure'"
+            then: ["{@target.name} treats {@who.name} as a friend for the rest of the scene."]
+            else: ["{@target.name} is unmoved by {@who.name}'s command."]
+  - if: "'$power' == 'berserker-rage' or '$power' == 'the-warrior'"
+    then: ["{if('$power' == 'the-warrior', 'The Warrior', 'Berserker Rage')}: {@who.name}'s next attack is Enhanced (`didact do attack attacker={@who.id} target=… mode=enhanced`)."]
+  - if: "'$power' == 'the-lord'"
+    then: ["The Lord: one attack against {@who.name} is Impaired (`didact do attack attacker=… target={@who.id} mode=impaired`)."]
+  - if: "'$power' == 'the-ritual'"
+    then: ["The Ritual: a nearby corpse rises as {@who.name}'s mindless servant (3 HP, its own weapon or d4). It crumbles at the scene's end."]
+  - if: "'$power' == 'the-lover'"
+    then:
+      - if: "default(@target.disposition, '') <> ''"
+        then:
+          - let: {rung: "if(@target.disposition == 'Hostile', 0, if(@target.disposition == 'Wary', 1, if(@target.disposition == 'Curious', 2, if(@target.disposition == 'Kind', 3, 4))))"}
+          - set: target.disposition
+            value: "{if(@rung >= 3, 'Helpful', if(@rung == 2, 'Kind', if(@rung == 1, 'Curious', 'Wary')))}"
+          - message: "The Lover: {@target.name}'s Reaction toward {@who.name} shifts one step better: {@target.disposition}."
+        else: ["The Lover: one person's Reaction toward {@who.name} shifts one step better (Hostile → Wary → Curious → Kind → Helpful)."]
+  - if: "'$power' == 'the-shadow'"
+    then:
+      - if: "not ('invisible' in @who.conditions)"
+        then:
+          - set: who.conditions
+            op: "+="
+            value: invisible
+      - message: "The Shadow: {@who.name} is invisible until the end of their next turn, or until they attack or cast."
+      - reminder: "When it ends: `didact set {@who.id} conditions-=invisible`."
+  - if: "'$power' == 'the-tower'"
+    then: ["The Tower: one mundane lock opens for {@who.name}, without tools or a save."]
+  - if: "'$power' == 'the-serpent'"
+    then:
+      - if: "default(@target, '') == ''"
+        then: ["The Serpent: {@who.name} spits venom at a foe they can see: d6 damage (`didact do attack attacker={@who.id} target=… weapon=d6 kind=poison`), then a STR save for the foe or it loses its next turn, paralyzed."]
+        else:
+          - do: attack
+            with: {attacker: "@who", target: "@target", weapon: d6, kind: poison}
+          - check: save
+            with: {who: "@target", attr: STR}
+            as: venom
+          - if: "@venom == 'failure'"
+            then: ["{@target.name} is paralyzed: it loses its next turn."]
+  - if: "'$power' == 'other'"
+    then: ["{@who.name} uses {@key}, spent until the next dawn."]
+source: players-guide/character-creation#races
+---
+action: visit-stone
+title: Visit a Standing Stone
+help: >-
+  With the standing-stones option, a character is marked by one Stone at a time and changes it
+  only by visiting another in play. The Serpent wanders the sky and is never rolled: a
+  character must seek it out and choose it. The Apprentice's mark makes magical attacks
+  against its bearer Enhanced.
+params:
+  who: ref
+  stone: {enum: [The Warrior, The Mage, The Thief, The Lord, The Lady, The Steed, The Apprentice, The Atronach, The Ritual, The Lover, The Shadow, The Tower, The Serpent]}
+steps:
+  - if: "not @option.standing_stones"
+    then:
+      - stop: "The Standing Stones are off in this campaign (`didact campaign profile standing-stones=on` turns them on)."
+  - let: {was: "default(@who.standing_stone, '')"}
+  - if: "@was == '$stone'"
+    then:
+      - stop: "{@who.name} is already marked by $stone."
+  - if: "@was == 'The Apprentice' and 'magic' in @who.enhanced_by"
+    then:
+      - set: who.enhanced_by
+        op: "-="
+        value: magic
+  - set: who.standing_stone
+    value: "$stone"
+  - if: "'$stone' == 'The Apprentice' and not ('magic' in @who.enhanced_by)"
+    then:
+      - set: who.enhanced_by
+        op: "+="
+        value: magic
+  - table: standing-stone
+    with: {stone: "$stone"}
+    as: blessing
+  - message: "{@who.name} lays a hand on $stone: {@blessing}"
+  - if: "@was <> ''"
+    then: ["{@was} no longer marks {@who.name}: only one Stone at a time."]
+source: players-guide/character-creation#standing-stones
+---
+trigger: new-dawn
+title: Once a day, again
+help: >-
+  Once per day lasts until the next dawn: when game time crosses into a new day, each PC's
+  once-per-day powers (race traits, Standing Stones, perks, feeding, the change, a draugr's
+  absorbed life) and their magical STR healing are fresh again. A vampire who went the whole
+  day without feeding is Deprived until they feed.
+on: time
+for: pcs
+params: {who: ref}
+when: "@time.day > (@time.seconds - @time.passed) // 86400 + 1 and @who.status <> 'dead' and (count(@who.used_today) > 0 or default(@who.healed_today, false) or default(@who.nature, 'mortal') == 'vampire')"
+steps:
+  - if: "default(@who.nature, 'mortal') == 'vampire' and not ('feed' in @who.used_today)"
+    then:
+      - reminder: "A full day without feeding? Then {@who.name} is Deprived until they feed (`didact do deprive who={@who.id} need=blood`; `didact do feed who={@who.id}` lifts it)."
+  - set: who.used_today
+    value: []
+  - set: who.healed_today
+    value: false
+source: players-guide/character-creation#races

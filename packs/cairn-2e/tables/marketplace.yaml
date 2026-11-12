@@ -1,0 +1,122 @@
+# The Marketplace as tables (players-guide/marketplace), for the weapon, armor and gear
+# generators. The book prices its goods but gives no die: every item here is equally likely.
+# Each entry's `data.id` is its compendium entry (compendium/marketplace.yaml).
+table: marketplace-weapons
+title: "Marketplace: weapons"
+description: "The book gives no die for the Marketplace: each item here is equally likely."
+source: players-guide/marketplace#weapons
+entries:
+  - {text: Dagger, data: {id: dagger}}
+  - {text: Cudgel, data: {id: cudgel}}
+  - {text: Sickle, data: {id: sickle}}
+  - {text: Staff, data: {id: staff}}
+  - {text: Spear, data: {id: spear}}
+  - {text: Sword, data: {id: sword}}
+  - {text: Mace, data: {id: mace}}
+  - {text: Axe, data: {id: axe}}
+  - {text: Flail, data: {id: flail}}
+  - {text: Halberd, data: {id: halberd}}
+  - {text: War Hammer, data: {id: war-hammer}}
+  - {text: Long Sword, data: {id: long-sword}}
+  - {text: Sling, data: {id: sling}}
+  - {text: Bow, data: {id: bow}}
+  - {text: Crossbow, data: {id: crossbow}}
+---
+table: marketplace-armor
+title: "Marketplace: armor"
+description: "The book gives no die for the Marketplace: each item here is equally likely."
+source: players-guide/marketplace#armor
+entries:
+  - {text: Shield, data: {id: shield}}
+  - {text: Helmet, data: {id: helmet}}
+  - {text: Gambeson, data: {id: gambeson}}
+  - {text: Brigandine, data: {id: brigandine}}
+  - {text: Chainmail, data: {id: chainmail}}
+  - {text: Plate, data: {id: plate}}
+---
+table: marketplace-gear
+title: "Marketplace: gear"
+description: "The book gives no die for the Marketplace: each item here is equally likely."
+source: players-guide/marketplace#gear
+entries:
+  - {text: "Air Bladder", data: {"id": "air-bladder", "price": 5, "gear": [{"name": "Air Bladder"}]}}
+  - {text: "Antitoxin", data: {"id": "antitoxin", "price": 20, "gear": [{"name": "Antitoxin"}]}}
+  - {text: "Bandages", data: {"id": "bandages", "price": 30, "gear": [{"name": "Bandages", "uses": 3}]}}
+  - {text: "Bathing Goods", data: {"id": "bathing-goods", "price": 5, "gear": [{"name": "Bathing Goods", "note": "soap, perfume, etc."}]}}
+  - {text: "Book", data: {"id": "book", "price": 50, "gear": [{"name": "Book"}]}}
+  - {text: "Caltrops", data: {"id": "caltrops", "price": 10, "gear": [{"name": "Caltrops"}]}}
+  - {text: "Card Deck", data: {"id": "card-deck", "price": 5, "gear": [{"name": "Card Deck"}]}}
+  - {text: "Chain", data: {"id": "chain", "price": 10, "gear": [{"name": "Chain", "note": "10ft"}]}}
+  - {text: "Chalk", data: {"id": "chalk", "price": 1, "gear": [{"name": "Chalk", "size": "petty"}]}}
+  - {text: "Chest", data: {"id": "chest", "price": 25, "gear": [{"name": "Chest"}]}}
+  - {text: "Chisel", data: {"id": "chisel", "price": 5, "gear": [{"name": "Chisel"}]}}
+  - {text: "Common Agents", data: {"id": "common-agents", "price": 10, "gear": [{"name": "Common Agents", "note": "glue, grease, etc."}]}}
+  - {text: "Common Tools", data: {"id": "common-tools", "price": 10, "gear": [{"name": "Common Tools", "note": "hammer, shovel, etc."}]}}
+  - {text: "Compass", data: {"id": "compass", "price": 75, "gear": [{"name": "Compass"}]}}
+  - {text: "Complex Instruments", data: {"id": "complex-instruments", "price": 50, "gear": [{"name": "Complex Instruments", "note": "bagpipes, fiddle, etc."}]}}
+  - {text: "Containers", data: {"id": "containers", "price": 10, "gear": [{"name": "Containers", "note": "sack, waterskin, etc."}]}}
+  - {text: "Cooking Gear", data: {"id": "cooking-gear", "price": 10, "gear": [{"name": "Cooking Gear", "note": "pots, utensils, etc."}]}}
+  - {text: "Costume Gear", data: {"id": "costume-gear", "price": 15, "gear": [{"name": "Costume Gear", "note": "face paint, disguise"}]}}
+  - {text: "Dowsing Rod", data: {"id": "dowsing-rod", "price": 15, "gear": [{"name": "Dowsing Rod"}]}}
+  - {text: "Expeditionary Gear", data: {"id": "expeditionary-gear", "price": 10, "gear": [{"name": "Expeditionary Gear", "note": "climbing spikes, pulley, etc."}]}}
+  - {text: "Fire Oil", data: {"id": "fire-oil", "price": 10, "gear": [{"name": "Fire Oil"}]}}
+  - {text: "Fishing Rod", data: {"id": "fishing-rod", "price": 10, "gear": [{"name": "Fishing Rod"}]}}
+  - {text: "Games", data: {"id": "games", "price": 10, "gear": [{"name": "Games", "note": "cards, dice, etc."}]}}
+  - {text: "Gloves", data: {"id": "gloves", "price": 20, "gear": [{"name": "Gloves", "size": "petty"}]}}
+  - {text: "Grappling Hook", data: {"id": "grappling-hook", "price": 25, "gear": [{"name": "Grappling Hook"}]}}
+  - {text: "Lantern", data: {"id": "lantern", "price": 10, "gear": [{"name": "Lantern", "note": "relights 6 times per oil can"}]}}
+  - {text: "Mirror", data: {"id": "mirror", "price": 5, "gear": [{"name": "Mirror"}]}}
+  - {text: "Net", data: {"id": "net", "price": 10, "gear": [{"name": "Net"}]}}
+  - {text: "Oil Can", data: {"id": "oil-can", "price": 10, "gear": [{"name": "Oil Can", "uses": 6}]}}
+  - {text: "Outdoor Comfort", data: {"id": "outdoor-comfort", "price": 10, "gear": [{"name": "Outdoor Comfort", "note": "blanket, hammock, etc."}]}}
+  - {text: "Parchment", data: {"id": "parchment", "price": 10, "gear": [{"name": "Parchment", "uses": 3}]}}
+  - {text: "Pole", data: {"id": "pole", "price": 5, "gear": [{"name": "Pole", "note": "10ft"}]}}
+  - {text: "Repellent", data: {"id": "repellent", "price": 10, "gear": [{"name": "Repellent", "note": "wolfsbane, mugwort, etc."}]}}
+  - {text: "Rope", data: {"id": "rope", "price": 5, "gear": [{"name": "Rope", "note": "25ft"}]}}
+  - {text: "Sedative", data: {"id": "sedative", "price": 30, "gear": [{"name": "Sedative"}]}}
+  - {text: "Sewing Kit", data: {"id": "sewing-kit", "price": 20, "gear": [{"name": "Sewing Kit"}]}}
+  - {text: "Simple Instruments", data: {"id": "simple-instruments", "price": 10, "gear": [{"name": "Simple Instruments", "note": "pipes, lute, etc."}]}}
+  - {text: "Smoking Pipe", data: {"id": "smoking-pipe", "price": 15, "gear": [{"name": "Smoking Pipe", "size": "petty"}]}}
+  - {text: "Specialized Tools", data: {"id": "specialized-tools", "price": 20, "gear": [{"name": "Specialized Tools", "note": "ink, etc."}]}}
+  - {text: "Spiked Boots", data: {"id": "spiked-boots", "price": 15, "gear": [{"name": "Spiked Boots"}]}}
+  - {text: "Spyglass", data: {"id": "spyglass", "price": 40, "gear": [{"name": "Spyglass"}]}}
+  - {text: "Tent", data: {"id": "tent", "price": 20, "gear": [{"name": "Tent", "size": "bulky", "note": "fits 2"}]}}
+  - {text: "Thieving Tools", data: {"id": "thieving-tools", "price": 25, "gear": [{"name": "Thieving Tools", "note": "lockpick, metal file, etc."}]}}
+  - {text: "Torch", data: {"id": "torch", "price": 5, "gear": [{"name": "Torch", "uses": 3}]}}
+  - {text: "Trap", data: {"id": "trap", "price": 35, "gear": [{"name": "Trap", "damage": "d6", "note": "d6 STR damage"}]}}
+  - {text: "Whistle", data: {"id": "whistle", "price": 15, "gear": [{"name": "Whistle", "size": "petty"}]}}
+  - {text: "Wilderness Clothes", data: {"id": "wilderness-clothes", "price": 15, "gear": [{"name": "Wilderness Clothes", "size": "petty", "note": "poncho, cloak, etc."}]}}
+---
+table: gear-over-budget
+title: "Marketplace gear over a budget"
+description: >-
+  For backgrounds that buy from the gear table with a budget (a Kettlewright's 20gp of items, a
+  Rill Runner's single item worth 20gp or less): the gear that costs more than the gold left, to
+  rule out.
+lookup: budget
+source: players-guide/marketplace#gear
+entries:
+  0: {text: "Gear costing more than the 0gp left", data: {names: ["Air Bladder", "Antitoxin", "Bandages", "Bathing Goods", "Book", "Caltrops", "Card Deck", "Chain", "Chalk", "Chest", "Chisel", "Common Agents", "Common Tools", "Compass", "Complex Instruments", "Containers", "Cooking Gear", "Costume Gear", "Dowsing Rod", "Expeditionary Gear", "Fire Oil", "Fishing Rod", "Games", "Gloves", "Grappling Hook", "Lantern", "Mirror", "Net", "Oil Can", "Outdoor Comfort", "Parchment", "Pole", "Repellent", "Rope", "Sedative", "Sewing Kit", "Simple Instruments", "Smoking Pipe", "Specialized Tools", "Spiked Boots", "Spyglass", "Tent", "Thieving Tools", "Torch", "Trap", "Whistle", "Wilderness Clothes"]}}
+  1-4: {text: "Gear costing more than the 1-4gp left", data: {names: ["Air Bladder", "Antitoxin", "Bandages", "Bathing Goods", "Book", "Caltrops", "Card Deck", "Chain", "Chest", "Chisel", "Common Agents", "Common Tools", "Compass", "Complex Instruments", "Containers", "Cooking Gear", "Costume Gear", "Dowsing Rod", "Expeditionary Gear", "Fire Oil", "Fishing Rod", "Games", "Gloves", "Grappling Hook", "Lantern", "Mirror", "Net", "Oil Can", "Outdoor Comfort", "Parchment", "Pole", "Repellent", "Rope", "Sedative", "Sewing Kit", "Simple Instruments", "Smoking Pipe", "Specialized Tools", "Spiked Boots", "Spyglass", "Tent", "Thieving Tools", "Torch", "Trap", "Whistle", "Wilderness Clothes"]}}
+  5-9: {text: "Gear costing more than the 5-9gp left", data: {names: ["Antitoxin", "Bandages", "Book", "Caltrops", "Chain", "Chest", "Common Agents", "Common Tools", "Compass", "Complex Instruments", "Containers", "Cooking Gear", "Costume Gear", "Dowsing Rod", "Expeditionary Gear", "Fire Oil", "Fishing Rod", "Games", "Gloves", "Grappling Hook", "Lantern", "Net", "Oil Can", "Outdoor Comfort", "Parchment", "Repellent", "Sedative", "Sewing Kit", "Simple Instruments", "Smoking Pipe", "Specialized Tools", "Spiked Boots", "Spyglass", "Tent", "Thieving Tools", "Trap", "Whistle", "Wilderness Clothes"]}}
+  10-14: {text: "Gear costing more than the 10-14gp left", data: {names: ["Antitoxin", "Bandages", "Book", "Chest", "Compass", "Complex Instruments", "Costume Gear", "Dowsing Rod", "Gloves", "Grappling Hook", "Sedative", "Sewing Kit", "Smoking Pipe", "Specialized Tools", "Spiked Boots", "Spyglass", "Tent", "Thieving Tools", "Trap", "Whistle", "Wilderness Clothes"]}}
+  15-19: {text: "Gear costing more than the 15-19gp left", data: {names: ["Antitoxin", "Bandages", "Book", "Chest", "Compass", "Complex Instruments", "Gloves", "Grappling Hook", "Sedative", "Sewing Kit", "Specialized Tools", "Spyglass", "Tent", "Thieving Tools", "Trap"]}}
+  20-24: {text: "Gear costing more than the 20-24gp left", data: {names: ["Bandages", "Book", "Chest", "Compass", "Complex Instruments", "Grappling Hook", "Sedative", "Spyglass", "Thieving Tools", "Trap"]}}
+---
+table: hireling-roles
+title: "Hirelings (per day)"
+description: "The Marketplace's hirelings and their daily wages. The book gives no die: each is equally likely."
+source: players-guide/marketplace#hirelings-per-day
+entries:
+  - {text: Alchemist, data: {wage: 30}}
+  - {text: Animal Handler, data: {wage: 5}}
+  - {text: Blacksmith, data: {wage: 15}}
+  - {text: Bodyguard, data: {wage: 10}}
+  - {text: Local Guide, data: {wage: 5}}
+  - {text: Lockpick, data: {wage: 10}}
+  - {text: Navigator, data: {wage: 10}}
+  - {text: Sailor, data: {wage: 5}}
+  - {text: Scholar, data: {wage: 20}}
+  - {text: Tracker, data: {wage: 5}}
+  - {text: Trapper, data: {wage: 5}}
+  - {text: Veteran Bodyguard, data: {wage: 20}}

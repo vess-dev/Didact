@@ -1,0 +1,41 @@
+table: gm-crucible
+title: A word crucible
+dice: d66
+both_ways: true
+entries:
+  11: ash-ash
+  12: ash-bone
+  13: ash-crown
+  14: ash-dusk
+  15: ash-ember
+  16: ash-fang
+  21: bone-ash
+  22: bone-bone
+  23: bone-crown
+  24: bone-dusk
+  25: bone-ember
+  26: bone-fang
+  31: crown-ash
+  32: crown-bone
+  33: crown-crown
+  34: crown-dusk
+  35: crown-ember
+  36: crown-fang
+  41: dusk-ash
+  42: dusk-bone
+  43: dusk-crown
+  44: dusk-dusk
+  45: dusk-ember
+  46: dusk-fang
+  51: ember-ash
+  52: ember-bone
+  53: ember-crown
+  54: ember-dusk
+  55: ember-ember
+  56: ember-fang
+  61: fang-ash
+  62: fang-bone
+  63: fang-crown
+  64: fang-dusk
+  65: fang-ember
+  66: fang-fang

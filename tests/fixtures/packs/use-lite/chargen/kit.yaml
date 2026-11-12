@@ -1,0 +1,18 @@
+# A list of items read two ways: as their names in an expression, as the items themselves when
+# handed to a step as it is.
+chargen: pc
+title: A character from a kit
+creates: pc
+modes: [random, guided]
+steps:
+  - choose_or_roll: {table: kits, as: kit}
+  - apply: "@kit.gear"
+  - let: {dropped: "default(@kit.drop, '')", count: "count(@kit.drop)", laser: "'Laser' in @kit.drop"}
+  - if: "@dropped <> ''"
+    then:
+      - remove: {field: inventory, value: "@kit.drop"}
+      - message: "{@dropped} is off the inventory ({@count}; Laser in it: {@laser})."
+  - let: {parts: "default(@kit.parts, 'unread')"}
+  - message: "parts: {@parts}"
+  - roll: {hp: 1d4}
+  - name: {from: [Wren]}

@@ -1,0 +1,18 @@
+table: terrain
+dice: d4
+entries: {1: Forest, 2: Swamp, 3: Hills, 4: Coast}
+---
+table: backgrounds
+dice: d3
+entries:
+  1: {text: Aurifex, data: {gear: [Tongs, Vial], names: [Hestia, Orrin, Tamsin]}}
+  2: {text: Bonekeeper, data: {gear: [Shovel, Lantern], names: [Mord, Ysel, Crane]}}
+  3: {text: Cutpurse, data: {gear: [Knife, Rope], names: [Pip, Wren, Tobias]}}
+---
+table: physique
+dice: d4
+entries: {1: Athletic, 2: Brawny, 3: Scrawny, 4: Wiry}
+---
+table: vice
+dice: d4
+entries: {1: Greedy, 2: Lazy, 3: Rude, 4: Vain}

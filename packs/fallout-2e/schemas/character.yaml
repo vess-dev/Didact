@@ -1,0 +1,149 @@
+# Characters (players-guide/character-creation, core-rules, unusual-pcs). A hack's type of the same
+# id replaces its parent's whole, so Cairn's sheet is repeated here with Fallout's changes: caps
+# for gold, the fifty backgrounds, an inventory whose size a background can set (an Eyebot has
+# six slots), and Fallout's conditions. Cairn's `npc` type (role, disposition) is inherited as it
+# is and builds on this sheet. Attributes run 0-20, as in the parent: growth and scars can raise
+# one past 18, and a save of 20 always fails anyway.
+type: character
+label: Character
+fields:
+  STR: {kind: stat, range: [0, 20], roll: 3d6, on_zero: {trigger: death}, help: "Strength: raw power, endurance, resistance to radiation, poison and heavy weather. At 0 you die."}
+  DEX: {kind: stat, range: [0, 20], roll: 3d6, on_zero: {condition: paralyzed}, help: "Dexterity: reflexes, aim, balance, stealth, fine motor control. At 0 you're paralyzed, helpless."}
+  WIL: {kind: stat, range: [0, 20], roll: 3d6, on_zero: {condition: broken-mind}, help: "Willpower: nerve, charisma, tech savvy, sanity under pressure. At 0 your mind is broken: catatonic or hallucinating."}
+  hp: {kind: resource, min: 0, roll: 1d6, label: HP, help: "Hit Protection: luck, skill, toughness and the narrow miss, not meat. A short rest restores it."}
+  armor:
+    kind: derived
+    expr: "if(default(@kind, 'human') == 'deathclaw', min(3, max(0, @inventory.armor)), min(3, sum(@inventory.armor) - sum(@inventory.backpack.armor)))"
+    help: >-
+      The armor worn or held, never more than 3: armor stowed in the backpack doesn't count (items
+      not yet in a group, like those a new character starts with, count as carried). Robot
+      chassis, power armor and a deathclaw's hide are items like any other; a deathclaw's hide
+      doesn't stack with worn armor, so its armor is its best piece.
+  slots_max:
+    kind: int
+    min: 0
+    max: 12
+    default: 10
+    label: Inventory slots
+    help: "Ten slots, flat; an Eyebot has only six (its built-in parts take none of them), and a few background results add one (a ghoul's Slow Rot, a Protectron's heavier frame)."
+  inventory:
+    kind: slots
+    capacity: slots_max
+    groups: {body: 4, backpack: 6}
+    sizes: {petty: 0, normal: 1, bulky: 2}
+    when_full: {set: {hp: 0}}
+    help: >-
+      Ten slots: about four carried at hand (body), the Backpack's six. Petty items take none,
+      bulky ones two. Rads, Fatigue and Scrap fill slots too. A full inventory drops HP to 0, and
+      no one carries more than ten.
+  fatigue: {kind: counter, min: 0, occupies: inventory, help: "Strain that isn't radiological: each Fatigue fills a slot until a full night's safe sleep (a robot's hour of diagnostics)."}
+  burden: {kind: counter, min: 0, occupies: inventory, help: "Slots a growing weight takes: the Lead Battery Cell (bond 15) grows one slot heavier each month."}
+  purse: {kind: counter, min: 0, occupies: inventory, help: "Slots the caps take: a pouch under 100 caps is petty (`didact do coins who=…`)."}
+  conditions:
+    kind: conditions
+    help: >-
+      deprived, panicked, paralyzed, broken-mind, critical (dying), stabilized (in recovery),
+      doomed, and Scars still healing: flung-clear, broken-leg/arm/rib/jaw, rad-necrotic-wound,
+      crippled, burst-eardrums, bleeding-out.
+  deprived_days: {kind: counter, min: 0, help: "Days Deprived so far: each one past the first adds a Fatigue."}
+  caps: {kind: int, min: 0, default: 0, label: Caps, help: "Bottle caps, the currency; a small pouch under 100 is petty."}
+  background:
+    kind: enum
+    values: [Vault Dweller, Wastelander, Raider, Ghoul, Tribal, Great Khan, Brotherhood Initiate, Brotherhood Outcast, Desert Ranger, Legion Warrior, Minuteman, Atom Cultist, Railroad Agent, Tinker, Wasteland Medic, Followers Scholar, Hacker, Chem Cook, Slaver, Institute Scientist, Enclave Defector, Pre-war Survivor, Scavver, Caravaneer, Courier, Gunner, Wasteland Detective, Prospector, NCR Trooper, Boomer, Vault-Tec Rep, Powder Ganger, Bounty Hunter, Lobotomite, Pre-war Celebrity, Big Game Hunter, Rust Devil, Hubologist, Super Mutant, Synth Runaway, Mister Handy, Mister Gutsy, Protectron, Assaultron, Sentry Bot, Securitron, Eyebot, Robobrain, Zetan, Deathclaw]
+  age: {kind: int, min: 0, roll: 2d20+10}
+  bond: {kind: list, label: Bonds, help: "The character's Bonds; each is also a thread to resolve: `didact do resolve-bond`."}
+  omen: {kind: text, help: "The omen the party's youngest rolled and read aloud."}
+  abilities: {kind: list, help: "Techniques learned through Training, with their cost (`didact char advance`)."}
+  growth: {kind: list, help: "Each growth: how it came (training, a scar, an acquisition) and what changed."}
+  scars: {kind: list, help: "Each Scar: what happened and what it changed."}
+guidance: >-
+  A new character has a background (a name from it, its gear, 3d6 caps and its two tables), STR,
+  DEX and WIL of 3d6 each (swap any two), 1d6 HP, eight traits, an age of 2d20+10 and a Bond; the
+  party's youngest rolls an Omen. Unusual backgrounds (ghoul, super mutant, synth, robots, Zetan,
+  deathclaw) follow Playing Unusual PCs. Use `didact char new`.
+---
+# Player characters carry what Fallout adds: Rads and Rad Scars, addictions, perks, Scrap, power
+# armor training and what their body is made of. NPCs and creatures don't track Rads.
+type: pc
+extends: character
+label: Player character
+fields:
+  kind:
+    kind: enum
+    values: [human, ghoul, super-mutant, synth, robot, zetan, deathclaw]
+    default: human
+    help: "What the body is made of (players-guide/unusual-pcs); a ghoulified PC becomes a ghoul."
+  immunities:
+    kind: tags
+    help: >-
+      What doesn't touch them: rads (robots, super mutants), rad-scars (ghouls), ambient-rads (a
+      Radiant ghoul), chems (robots, a Lobotomite's chem immunity), addiction, stimpaks
+      (deathclaws). Character creation sets them from the background; rules read them.
+  rads:
+    kind: counter
+    min: 0
+    occupies: inventory
+    help: >-
+      Each Rad fills a slot until cleared (RadAway, a clinic, a purifier, a chem, perk, relic or
+      ability: never sleep or rest). Every Rad taken calls for a Rad Scar save (20 − Rads).
+    thresholds:
+      1: {trigger: rad-scar-save}
+      2: {trigger: rad-scar-save}
+      3: {trigger: rad-scar-save}
+      4: {trigger: rad-scar-save}
+      5: {trigger: rad-scar-save}
+      6: [{trigger: rad-scar-save}, "A ghoul who spends a full day at six or more Rads without clearing any rolls 1d20 at the next watch: on a 20 they go feral (`didact do feral-check who=…`)."]
+      7: {trigger: rad-scar-save}
+      8: {trigger: rad-scar-save}
+      9: {trigger: rad-scar-save}
+      10: {trigger: rad-scar-save}
+  rad_scars: {kind: list, label: Rad Scars, help: "Permanent marks of radiation (the Rad Scars table)."}
+  rad_scar_count:
+    kind: counter
+    min: 0
+    label: Rad Scars toward ghoulification
+    help: "Rad Scars counted toward ghoulification (Ghoul-Kissed counts as two)."
+    thresholds:
+      2: "Two Rad Scars: the PC may choose to ghoulify (result 1) at their next long rest instead of rolling (`didact do ghoulify who=… choose=true`)."
+      3: "Three Rad Scars: no longer fully human. At the next long rest, roll for ghoulification (`didact do recover` rolls it; or `didact do ghoulify who=…`)."
+  addictions: {kind: list, help: "Chems they're addicted to: each adds a Fatigue every morning until a dose (`didact do chem`); cure it with Addictol / Fixer or the Cure an Addiction Downtime Action."}
+  hangover: {kind: counter, min: 0, help: "Drinks taken since the last morning: each adds a Fatigue the next morning."}
+  perks: {kind: list, help: "Up to five perks from Perk Magazines (`didact do read-magazine`); a sixth means swapping one out."}
+  scrap: {kind: int, min: 0, default: 0, label: Scrap, help: "The crafting resource, as a number (`didact do scrap who=… amount=n`)."}
+  scrap_load: {kind: counter, min: 0, occupies: inventory, help: "Slots the Scrap takes: one for every 5, rounded up."}
+  power_armor_trained: {kind: flag, default: false, help: "Trained to wear power armor (Brotherhood Initiate, Brotherhood Outcast, Enclave Defector, or Downtime training). Untrained, every DEX save in a suit fails."}
+  ghoul_flag: {kind: flag, default: false, help: "Resisted ghoulification once (4–5): the next one sticks."}
+  stimpak_heal: {kind: dice, help: "What a Stimpak heals them, when not 1d6 (a super mutant 1d4; a Purist's Hand 2d6)."}
+  rad_x: {kind: flag, default: false, help: "A dose of Rad-X taken: it negates the next Rad from any source."}
+  rad_halved: {kind: tags, help: "Gear that halves Rads ignores every second Rad of each kind (hazards#rad-zones): the kinds (sources) whose next Rad is the one ignored."}
+  once_per_session: {kind: tags, help: "Once-per-session things used this session (thinned-blood, glowing-marrow, overdrive, …); cleared when a session starts."}
+  once_per_combat: {kind: tags, help: "Once-per-combat things used in this fight (command); cleared when the fight ends (`didact combat end`)."}
+  session_doses: {kind: tags, help: "The addictive chems dosed this session (`@session`): another dose of one is a second dose (the second-dose option); cleared when a session starts."}
+guidance: >-
+  Use `didact char new`. A PC carries what Fallout adds: Rads and Rad Scars, addictions, up to
+  five perks, Scrap and power armor training; `kind` and `immunities` say what their body is.
+---
+# Hirelings (players-guide/core-rules#hirelings, marketplace#hirelings-per-day): paid help with
+# the Marketplace's roles and daily rates.
+type: hireling
+extends: character
+label: Hireling
+fields:
+  role: {kind: enum, values: [Scavver, Brahmin-handler, Local guide, Hunter / tracker, Gunhand, Safecracker / sneak, Mechanic, Scholar, Medic, Veteran gunslinger, Tinker / chem-cook]}
+  wage: {kind: int, min: 0, help: "Caps per day (see the Marketplace)."}
+guidance: >-
+  Paid help that walks away the day the pay stops: a role and its daily rate, 3d6 for each
+  attribute, 1d6 HP, gear for their trade and some traits (`didact char new hireling`), or a
+  background rolled the normal way (`didact char new hireling-background`). They take Morale
+  saves; no Loyalty, no Command, no growth.
+---
+# The party as a whole (overseers-guide/party-karma): karma belongs to the party, not to each PC.
+type: party
+label: Party
+fields:
+  karma: {kind: int, min: -3, max: 3, default: 0, help: "Party Karma, −3 (Hated) to +3 (Messiah): strangers' Reaction rolls add it (`didact do karma`)."}
+  karma_moved: {kind: int, min: 0, help: "The session in which karma last moved (`@session`): at most one step per session."}
+  members: {kind: refs, to: pc}
+guidance: >-
+  One record for the party (`didact new party "The Party"`): its karma, from −3 to +3, moved one
+  step at most each session by public acts (`didact do karma party=… shift=1 why='…'`).

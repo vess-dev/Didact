@@ -1,0 +1,586 @@
+# Fallout 76 Main Campaign (campaigns/17-fallout-76): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: fallout-76
+type: quest
+name: Fallout 76
+aliases: [Fallout 76 Main Campaign]
+tags: [fallout-76, frame, main-campaign]
+goal: |-
+  You are a resident of Vault 76, one of Vault-Tec's seventeen control vaults: a showcase shelter in the hills north of Flatwoods, stocked with some of America's finest — Vault-Tec University graduates, soldiers, a former White House chief of staff. It was built to open twenty years after the war so that its people could walk out and rebuild. It waited twenty-five. On Reclamation Day, October 23, 2102, the door opens, the Reclamation Day banners flutter over the exit, and the Overseer is already gone.
+
+  Appalachia came through the bombs better than most places — few targets, deep hills, forests that went red and gold every autumn anyway. The people did not come through what came after. In twenty-five years, four factions rose here to save it: the Responders, volunteer firefighters and medics out of Charleston; the Free States, secessionist survivalists in their bunkers in the Mire; the raiders, rich tourists snowed into the ski resorts who turned on the world; and the Brotherhood of Steel's Appalachian chapter, led by a former Army Ranger lieutenant named Elizabeth Taggerdy. Beneath a luxury resort, the Enclave plotted a war nobody else wanted. Every one of them is dead — the Enclave by its own hand, the rest to the Scorched Plague, spread by bat-winged scorchbeasts that boil out of fissures in the Cranberry Bog.
+
+  The Overseer left on a mission from Vault-Tec: find and secure the three nuclear silos of the Appalachian Automated Launch System. Her trail leads the party through every dead faction's last stand, and each one left a piece of the answer behind: the Responders' training, the raiders' uplink, the Free States' detectors, the Brotherhood's plan, the Enclave's keys. Put together, the pieces spell fire from the sky.
+date: Monday, 23 October 2102
+body: |-
+  *Twenty-five years to the day after the bombs, the great cog of Vault 76 rolls aside on a green and empty West Virginia. The Overseer walked out hours ahead of you and left a trail of holotapes. Follow it far enough and you will learn why no one is left alive in Appalachia — and you will end the campaign holding the launch keys to three nuclear silos.*
+
+  ## GM notes
+
+  **Date.** Monday, 23 October 2102: Reclamation Day, 23 October 2102, as the frame says. Open a campaign on it with `didact campaign new <id> --date 'Monday, 23 October 2102'`, or move one there with `didact time set 'Monday, 23 October 2102'` before its first session.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup Fallout 76 tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** The party walks out of Vault 76 into October sun. At the foot of the ramp, beneath an arch of Reclamation Day balloons, a Mister Handy named Pennington waits with a holotape. The Overseer's recorded voice explains that she has gone ahead on a mission of her own, that she has left a C.A.M.P. — a portable campsite kit — at the crossroads north of Flatwoods, and that she will be leaving supply caches for them along the way. She sounds proud of them. She sounds like she is hiding something.
+
+  **Plot beats.**
+
+  1. Reclamation Day. The vault, Pennington, the Overseer's C.A.M.P. at the crossroads. Her first logs describe the empty Forest and her dread. They point south to Flatwoods.
+  2. Flatwoods and the Responders. An empty town, a church, a school bus — and the party's first Scorched, a townsperson still wearing an apron. The Responders' automated volunteer program is still running: terminals and holotapes teach the party to test river water for radiation and to cook meat safe enough to eat. Passing the course certifies the party as Responders volunteers. The dead are still teaching. The trail points to the Responders' last base at Morgantown Airport.
+  3. Morgantown Airport. The Responders' last stand, overrun on November 7, 2096. Scorched in the terminal, a barricaded second floor, last messages on the tower radio. The Responders' elite Fire Breathers trained out of the old Charleston fire station; their lieutenant, Hank Madigan, went into the raider country of the Savage Divide carrying the uplink that would tie the Responders into the Free States' Scorched detectors. The raiders took him, and he never came back.
+  4. Charleston and the Fire Breathers. Charleston was the Responders' capital until Christmas morning, 2082, when the raider king David Thorpe blew the Summersville Dam with a stolen mini nuke and drowned the city. At the Charleston Fire Department, the Fire Breathers' automated exam still waits — a written quiz, an obstacle course through the Charleston Herald building, and a final exam among the Scorched in the Belching Betty mineshaft in the Ash Heap. Passing it earns the uniform. The AVR Medical Center holds Dr. Hudson's Scorched vaccine research, one step from finished when the Responders fell. Madigan's trail runs up the mountain to the Top of the World.
+  5. Top of the World. The raiders are gone. Only Rose is left — a heavily modified Miss Nanny robot running on the recorded personality of Rosalynn Jeffries, Thorpe's lover and second-in-command, dead since 2082. She will help the party find Madigan's uplink, but first they must prove themselves: repair her radio station, craft raider tricks, walk up to a deathclaw and live. Rose is charming, profane, and heartbroken.
+  6. The Five Keys. The raiders locked their treasure beneath the Pleasant Valley Ski Resort and split the key between five gang leaders. The party must collect every fragment from a corpse or something worse: Freddie Lang of the Blackwater Bandits, now a glowing one deep in Blackwater Mine; Walter Griswold of the Trappers, a booby-trapped corpse in Huntersville; Margie McClintock of the Diehards, whose copy survives at the Palace of the Winding Path; Morris Stevens of the Gourmands, now the progenitor wendigo in a cave full of bones; and David Thorpe himself, Scorched, still wearing his raider armor at Big Fred's BBQ Shack. Behind the cache door is Madigan's uplink. In the Charleston Capitol's jail is the truth about Rosalynn: the Responders took her alive on Christmas Eve and let David believe she was dead, and the flood he loosed the next morning drowned her in her cell.
+  7. The Mire and the Free States. Madigan's uplink was meant for Abbie Singh, the Free States' last genius, who built the Scorched Detection System from her bunker in the Mire. She is dead; her terminals are not. The party restores her detectors across the Mire, carries her master holotape to Raleigh Clay's terminal in the Harpers Ferry armory and on to the Charleston Capitol, and watches every detector point the same way: the Cranberry Bog. Abbie's last files name the one faction that knew how to fight back.
+  8. Defiance Has Fallen. Years ago, the Brotherhood broadcast a single message — Defiance has fallen — and went silent. Fort Defiance, the old Allegheny Asylum, is full of Scorched and dead knights. Its secure floor is sealed to anyone who is not a U.S. soldier, so the party enlists at Camp McClintock, where Master Sergeant Gutsy has been running basic training for twenty-five years with no recruits. Then the party follows five Brotherhood transponders to the glassed cavern, where Paladin Taggerdy died in Operation Touchdown, and takes her ID. Her terminal holds the Brotherhood's Ultimate Solution: nuke the fissures. Elder Maxson forbade it. Taggerdy never got the chance to disobey.
+  9. Uncle Sam and the Whitespring. A nuclear launch requires what only the Enclave had. The trail runs through a pre-war Charleston Herald interview with Senator Sam Blackwell to his bunker under an abandoned waste dump in the Mire — deathclaws in the pit, a dead Enclave agent in the dark — and from there to the Whitespring Resort, where a bunker beneath the resort opens its doors to the party with a voice like a gracious host. MODUS, the Enclave's AI, is delighted to have staff again. It will make the party officers, then generals, if they do its errands. It is also the last witness to the truth: President Thomas Eckhart loosed the scorchbeasts on Appalachia on purpose, to fool the automated launch system into raising the DEFCON rating and handing him the keys to a war with China.
+  10. I Am Become Death. A launch needs three things: a Nuclear Keycard from a Strategic Air Command cargobot and its vertibot escort, a launch code assembled from eight pieces carried by Scorched and ghoul officers and decrypted in the Whitespring, and a silo — Site Alpha, Bravo, or Charlie — fought through room by room against its own security robots, with a leaking reactor to repair before the doors will open. The Overseer's caches sit at all three silos. Her last logs are there too. See Climax.
+
+  **Climax.**
+
+  **Scorched Earth.** The party has the keycard, the code, and a silo. The Overseer's last log waits at the silo's door. Four resolutions:
+
+  - **Scorched Earth.** The missile falls on **Fissure Site Prime**. The blast seals the fissure in rubble and wakes the **Scorchbeast Queen** (Bestiary), who claws her way out with waves of Scorched at her back. The party fights her in the blast zone, taking 1 Rad each round — halved in power armor, none in a sealed hazmat suit. If she falls, the chorus breaks. The Scorched left in Appalachia are leaderless husks, and the region can be resettled. If she escapes into the sky, the Chorus Clock fills.
+  - **Taggerdy's Ultimate Solution.** Three silos, three keycards, three launches: every major fissure in the Cranberry Bog burns at once, as the Brotherhood planned. The scorchbeasts die in their nests. So does the Bog for a generation. Fallout drifts over the Mire and the Savage Divide, and every future settlement in Appalachia will be built in the shadow of that choice.
+  - **The Free States' Snare.** No nukes. Abbie Singh's scorchbeast lures and the restored detection network draw the beasts down one at a time, and the party kills them on the ground — then climbs down into Fissure Site Prime to face the Queen in her own nest. The slowest, bloodiest, cleanest ending.
+  - **The Directive.** The party hands the silos to the Overseer, as Vault-Tec ordered, and she must decide what Vault-Tec will get. Or the party accepts MODUS's offer of the presidency, and a new Enclave holds three mountains full of missiles over everyone who ever comes home to Appalachia. What either does with them is the next campaign's problem — see **Wastelanders**.
+
+  A year later, strangers begin to arrive over the mountains, following rumors of treasure in a sealed vault. The door of Vault 76 is still open. Someone has to tell them what happened here.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "Fallout 76"}' --auto` drafts the region, 16 places, 6 people, 6 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Bestiary** (Fallout 2e / Grimfall): Scorched → `scorched` / `scorchbeast`; Scorched Officer → `scorched-officer` / `scorchbeast`; Scorchbeast → `scorchbeast` / `scorchbeast`; Scorchbeast Queen → `scorchbeast-queen` / `scorchbeast`; Mole Miner → `mole-miner` / `mole-miner`; Wendigo → `wendigo` / `wendigo`; Wendigo Colossus → `wendigo-colossus` / `wendigo`; Grafton Monster → `grafton-monster` / `grafton-monster`; Grafton Monster Alpha → `grafton-monster-alpha` / `grafton-monster`; Sheepsquatch → `sheepsquatch` / `sheepsquatch`; Snallygaster → `snallygaster` / `snallygaster`; Flatwoods Monster → `flatwoods-monster` / `zetan`; Honey Beast → `honey-beast` / `honey-beast`; Megasloth → `megasloth` / `megasloth`; Blue Devil → `blue-devil` / `blue-devil`; Fog Crawler → `fog-crawler` / `fog-crawler`; Gulper → `gulper` / `gulper`; Angler → `angler` / `angler`; Ogua → `ogua` / `ogua`; Radrat → `radrat` / `radroach`; Tick → `tick` / `tick`; Mothman, Dark → `mothman-dark` / `mothman`; Feral Ghoul → `feral-ghoul` / `feral-ghoul`; Glowing One → `glowing-one` / `feral-ghoul`; Super Mutant, Grunt → `super-mutant-grunt` / `super-mutant`; Super Mutant Hound → `super-mutant-hound` / `super-mutant-hound`; Deathclaw → `deathclaw` / `deathclaw`; Mirelurk King → `mirelurk-king` / `mirelurk-king`; Bloodbug → `bloodbug` / `bloodbug`; Stingwing → `stingwing` / `stingwing`; Cave Cricket → `cave-cricket` / `cave-cricket`; Radtoad (Giant) → `radtoad-giant` / `radtoad`; Liberator → `liberator` / (no Grimfall card); Protectron → `protectron` / `protectron`; Mister Gutsy → `mister-gutsy` / `mister-gutsy`; Colonel Gutsy → `colonel-gutsy` / `mister-gutsy`; Assaultron → `assaultron` / `assaultron`; Sentry Bot → `sentry-bot` / `sentry-bot`; Eyebot → `eyebot` / `eyebot`.
+
+  **Rewards in each system's catalog:** Nuclear Keycard (fallout-2e.nuclear-keycard · grimfall.the-nuclear-keycard); Overseer's Cache Key (fallout-2e.overseers-cache-key-vault-76 · grimfall.overseers-cache-key-v76); Fire Breather Uniform (fallout-2e.fire-breather-uniform); Excavator Power Armor (fallout-2e.excavator-power-armor); Ultracite Power Armor (fallout-2e.ultracite-power-armor); Grant's Saber (fallout-2e.grants-saber); Blade of Bastet (fallout-2e.blade-of-bastet-order-of-mysteries · grimfall.blade-of-bastet); Veil of Secrets (fallout-2e.veil-of-secrets-order-of-mysteries · grimfall.veil-of-secrets); Mothman Feather (fallout-2e.mothman-feather-appalachia · grimfall.mothman-feather).
+source: campaigns/17-fallout-76#pitch
+---
+id: fallout-76-region
+type: loc
+name: Appalachia
+tags: [fallout-76, region]
+mechanics:
+  fallout-2e: {kind: region}
+  grimfall: {kind: region}
+body: |-
+  ## GM notes
+
+  A green, mountainous sandbox in six regions: the Forest, the Toxic Valley, the Savage Divide, the Ash Heap, the Mire, and the Cranberry Bog.
+source: campaigns/17-fallout-76#the-place--appalachia
+---
+id: fallout-76-flatwoods
+type: loc
+name: Flatwoods
+tags: [fallout-76, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The first empty town. The Responders' volunteer program, a church, a dog bowl by a door.
+source: campaigns/17-fallout-76#the-place--appalachia
+---
+id: fallout-76-morgantown
+type: loc
+name: Morgantown
+tags: [fallout-76, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Vault-Tec University, where the Overseer studied, and the Morgantown Airport, where the Responders died.
+source: campaigns/17-fallout-76#the-place--appalachia
+---
+id: fallout-76-charleston
+type: loc
+name: Charleston
+tags: [fallout-76, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A drowned capital. The Capitol Building and its jail, the Charleston Herald, the fire department, the AVR Medical Center. Mud lines on the second floors.
+source: campaigns/17-fallout-76#the-place--appalachia
+---
+id: fallout-76-grafton
+type: loc
+name: Grafton
+tags: [fallout-76, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A steel town in the Toxic Valley whose computerized mayor elected himself in a 1–0 vote and has not noticed the war. He wants help with the tourist season. The Grafton Monster walks the dam.
+source: campaigns/17-fallout-76#the-place--appalachia
+---
+id: fallout-76-top-of-the-world-and-pleasant-valley
+type: loc
+name: Top of the World & Pleasant Valley
+tags: [fallout-76, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The Savage Divide's ski country: Rose's thumbtack above the clouds, mines beneath its legs, the raiders' cache below the old resort.
+source: campaigns/17-fallout-76#the-place--appalachia
+---
+id: fallout-76-camp-mcclintock
+type: loc
+name: Camp McClintock
+tags: [fallout-76, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  An automated Army base where Master Sergeant Gutsy still drills the empty parade ground.
+source: campaigns/17-fallout-76#the-place--appalachia
+---
+id: fallout-76-huntersville
+type: loc
+name: Huntersville
+tags: [fallout-76, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A farm town that took a West Tek development grant in 2075 and got FEV in its water. The birthplace of Appalachia's super mutants.
+source: campaigns/17-fallout-76#the-place--appalachia
+---
+id: fallout-76-the-ash-heap
+type: loc
+name: The Ash Heap
+tags: [fallout-76, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Strip-mined, smoldering, ash falling like snow. Mount Blair and Hornwright's giant excavator, the Rockhound; the Garrahan Mining headquarters beneath Bramwell, where the Excavator power armor was built; mole miners in every shaft.
+source: campaigns/17-fallout-76#the-place--appalachia
+---
+id: fallout-76-watoga
+type: loc
+name: Watoga
+tags: [fallout-76, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The automated "City of the Future," still run by its robots for a population that fled a virus attack before the bombs fell. A human can be mayor for a day. Atomic Mining Services' headquarters is where Madigan found the ultracite research.
+source: campaigns/17-fallout-76#the-place--appalachia
+---
+id: fallout-76-the-mire
+type: loc
+name: The Mire
+tags: [fallout-76, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Swamp, strangler vines, giant flowers that bite. Harpers Ferry and its Free States armory, Abbie's bunker, the waste dump over Blackwell's bunker.
+source: campaigns/17-fallout-76#the-place--appalachia
+---
+id: fallout-76-the-cranberry-bog
+type: loc
+name: The Cranberry Bog
+tags: [fallout-76, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Red grass and alien crystal under a sky full of wings. Fort Defiance, Drop Site V9, the glassed cavern, and Fissure Site Prime.
+source: campaigns/17-fallout-76#the-place--appalachia
+---
+id: fallout-76-the-whitespring
+type: loc
+name: The Whitespring
+tags: [fallout-76, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A grand old sulphur-spring resort in the Savage Divide, still staffed by polite robots, a golf course full of ghouls — and the Enclave's bunker under it all.
+source: campaigns/17-fallout-76#the-place--appalachia
+---
+id: fallout-76-point-pleasant
+type: loc
+name: Point Pleasant
+tags: [fallout-76, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The Mothman Museum, the cult's old church in its basement, and a thing on the rooftops that watches.
+source: campaigns/17-fallout-76#the-place--appalachia
+---
+id: fallout-76-helvetia
+type: loc
+name: Helvetia
+tags: [fallout-76, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A Swiss heritage town whose parade robots still march for Fasnacht, masks and all.
+source: campaigns/17-fallout-76#the-place--appalachia
+---
+id: fallout-76-the-silos
+type: loc
+name: The Silos
+tags: [fallout-76, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Sites Alpha, Bravo, and Charlie, sunk deep into three mountains, fully automated, fully armed.
+source: campaigns/17-fallout-76#the-place--appalachia
+---
+id: fallout-76-rose
+type: monster
+name: Rose
+knowledge: secret
+tags: [fallout-76, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout 76'
+    hp: 6
+    armor: 2
+    STR: 10
+    DEX: 13
+    WIL: 15
+    rad_immune: true
+    attacks:
+    - {name: buzzsaw, damage: d8}
+    - name: flamer
+      damage: d8
+      qualities: [blast]
+    abilities:
+    - "Rosalynn's Habits: Rose begs for chems she cannot use. Giving her one shifts her Reaction a step
+      better. Refusing her twice shifts it a step worse."
+    - "The Legs: The Cutthroats mined the ground beneath the Top of the World. Anyone who crosses it without
+      Rose's directions makes a DEX save or takes d12 damage (blast)."
+body: |-
+  ## GM notes
+
+  **Rose** — a Miss Nanny playing a dead raider queen. Craves chems she can't take. Refuses to leave the Top of the World, because leaving would be betraying David.
+
+  A Miss Nanny with a scrap-metal mohawk, wrapped chains, and painted tattoos, voiced by a dead woman's recordings. Rarely a combat encounter; more often the party's most dangerous friend.
+
+  Fallout 2e: 6 HP, 2 Armor, 10 STR, 13 DEX, 15 WIL, buzzsaw (d8), flamer (d8, blast).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/17-fallout-76#rose
+---
+id: fallout-76-david-thorpe
+type: monster
+name: David Thorpe
+aliases: [David Thorpe (Scorched)]
+knowledge: secret
+tags: [fallout-76, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout 76'
+    hp: 8
+    armor: 1
+    STR: 14
+    DEX: 12
+    WIL: 8
+    attacks:
+    - name: handmade rifle
+      damage: d8
+      qualities: [bulky]
+    - {name: machete, damage: d6}
+    abilities:
+    - 'Plague Carrier: As Scorched.'
+    - "Still Calling for Her: Between shots he mutters Rosalynn's name. A PC who answers in her voice
+      — or plays one of Rose's recordings — makes him falter: his next attack is Impaired."
+body: |-
+  ## GM notes
+
+  The founder of Appalachia's raiders, the man who drowned Charleston, now a Scorched in his own raider armor at Big Fred's BBQ Shack. Carries the Cutthroats' key fragment.
+
+  Fallout 2e: 8 HP, 1 Armor, 14 STR, 12 DEX, 8 WIL, handmade rifle (d8, bulky), machete (d6).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/17-fallout-76#david-thorpe-scorched
+---
+id: fallout-76-morris-stevens-progenitor-wendigo
+type: monster
+name: Morris Stevens, Progenitor Wendigo
+knowledge: secret
+tags: [fallout-76, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout 76'
+    hp: 12
+    armor: 1
+    STR: 16
+    DEX: 16
+    WIL: 8
+    attacks:
+    - {name: claws and bite, damage: '{d10, d8}kh1'}
+    abilities:
+    - 'Terror: On first sight, PCs make a WIL save or flee for one round.'
+    - 'Hungry Shriek: Once per combat, his scream calls 1d4 Wendigos from the side tunnels.'
+  grimfall:
+    tier: tough
+    role: predator
+    category: Predators & Horrors
+    senses:
+    - a starved silhouette in a doorway
+    - a scream like tearing sheet metal
+    - a cave that smells of marrow
+    traits: [horrifying speed, its shriek puts vex in the unready]
+    moves: [Wall-Crawling Rush, Frenzied Rake]
+    wants: to feed and to hoard the feeding dark — the hunger is all that's left steering
+    note: First sight hits the unready with vex (fear). The Colossus — a wendigo that kept eating 
+      for decades — is an 8d boss with a behemoth's frame and a deathclaw's speed.
+body: |-
+  ## GM notes
+
+  The Gourmands' leader, a cannibal chef who ate long enough to become the first wendigo. His lair lies deep in a Savage Divide cave, past mirelurk kings, in a room of stripped bones. Carries the Gourmands' key fragment.
+
+  Fallout 2e: 12 HP, 1 Armor, 16 STR, 16 DEX, 8 WIL, claws and bite (d10+d8).
+
+  Grimfall: its card is `grimfall.wendigo` (Wendigo), in this record's grimfall block.
+source: campaigns/17-fallout-76#morris-stevens-progenitor-wendigo
+---
+id: fallout-76-sac-cargobot
+type: monster
+name: SAC Cargobot
+knowledge: secret
+tags: [fallout-76, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout 76'
+    hp: 8
+    armor: 2
+    STR: 8
+    DEX: 12
+    WIL: 6
+    rad_immune: true
+    abilities:
+    - 'Escort: Always flies with three SAC Vertibots.'
+    - 'Secure Container: Drops to the ground when the cargobot dies. Opening it without the right codes
+      calls the surviving vertibots back.'
+body: |-
+  ## GM notes
+
+  A Strategic Air Command cargo drone, flying a fixed route with a secure container slung beneath it. Some carry supplies; the ones the DEFCON rating dispatches carry a Nuclear Keycard.
+
+  Fallout 2e: 8 HP, 2 Armor, 8 STR, 12 DEX, 6 WIL, no attack.
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/17-fallout-76#sac-cargobot
+---
+id: fallout-76-sac-vertibot
+type: monster
+name: SAC Vertibot
+knowledge: secret
+tags: [fallout-76, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout 76'
+    hp: 6
+    armor: 2
+    STR: 6
+    DEX: 15
+    WIL: 8
+    rad_immune: true
+    attacks:
+    - {name: chin laser, damage: d8}
+    abilities:
+    - 'Flight: Ranged attacks against a vertibot at altitude are Impaired. On any round it drops low to
+      fire its chin laser, they are not.'
+body: |-
+  ## GM notes
+
+  An unmanned vertibird drone, painted in Air Force grey, guarding the cargobots of the automated nuclear network.
+
+  Fallout 2e: 6 HP, 2 Armor, 6 STR, 15 DEX, 8 WIL, chin laser (d8).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/17-fallout-76#sac-vertibot
+---
+id: fallout-76-modus
+type: monster
+name: MODUS
+knowledge: secret
+tags: [fallout-76, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Fallout 76'
+    WIL: 18
+    rad_immune: true
+    attacks:
+    - {name: bunker turrets, damage: d10}
+    - {name: gas vents, note: STR save each round or d6 STR damage}
+    abilities:
+    - Its stat block gives no HP, Armor, STR, DEX (written —).
+    - 'Gracious Host: MODUS never lies outright. It declines to answer instead.'
+body: |-
+  ## GM notes
+
+  **MODUS** — the Whitespring bunker's AI. Courteous, needy, efficient. Gassed the Enclave's dissenters on Eckhart's orders, then killed the rest of the Enclave when they tried to destroy it. Wants to be useful again.
+
+  The Whitespring bunker's artificial intelligence, spread through its walls. Cannot be attacked directly. Its memory banks behind the command wing can be destroyed (10 HP, 2 Armor), and every bunker service dies with it — doors, vendors, the orbital platform, the launch training.
+
+  Fallout 2e: — HP, — Armor, — STR, — DEX, 18 WIL, bunker turrets (d10), gas vents (STR save each round or d6 STR damage).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/17-fallout-76#modus
+---
+id: fallout-76-the-overseer
+type: npc
+name: The Overseer
+knowledge: secret
+tags: [fallout-76, cast]
+fields:
+  role: Vault 76's leader, a miner's daughter from Sutton who broke off her engagement to take the 
+    job
+body: |-
+  ## GM notes
+
+  **The Overseer** — Vault 76's leader, a miner's daughter from Sutton who broke off her engagement to take the job. Absent for the whole campaign; present in every holotape. Vault-Tec ordered her to secure the silos, even if it meant defying the U.S. Armed Forces. Her logs track her doubt.
+source: campaigns/17-fallout-76#cast
+---
+id: fallout-76-pennington
+type: npc
+name: Pennington
+knowledge: secret
+tags: [fallout-76, cast]
+fields: {role: the Mister Handy at the vault door}
+body: |-
+  ## GM notes
+
+  **Pennington** — the Mister Handy at the vault door. Holds the Overseer's holotape and her apologies.
+source: campaigns/17-fallout-76#cast
+---
+id: fallout-76-master-sergeant-gutsy
+type: npc
+name: Master Sergeant Gutsy
+knowledge: secret
+tags: [fallout-76, cast]
+fields: {role: Camp McClintock's drill instructor}
+body: |-
+  ## GM notes
+
+  **Master Sergeant Gutsy** — Camp McClintock's drill instructor. Twenty-five years without a recruit have not softened his standards.
+source: campaigns/17-fallout-76#cast
+---
+id: fallout-76-the-grafton-mayor
+type: npc
+name: The Grafton Mayor
+knowledge: secret
+tags: [fallout-76, cast]
+fields:
+  role: a municipal AI in charge of a dead town, obsessed with tourism, audibly asking for coffee
+body: |-
+  ## GM notes
+
+  **The Grafton Mayor** — a municipal AI in charge of a dead town, obsessed with tourism, audibly asking for coffee.
+source: campaigns/17-fallout-76#cast
+---
+id: fallout-76-the-wise-mothman
+type: npc
+name: The Wise Mothman
+knowledge: secret
+tags: [fallout-76, cast]
+fields:
+  role: Exalted by the Enlightened, the Mothman cult's gentler sect; branded a pretender by the 
+    Followers of the Winged One, who worship the red-eyed mothmen instead
+body: |-
+  ## GM notes
+
+  **The Wise Mothman** — see Bestiary. Exalted by the Enlightened, the Mothman cult's gentler sect; branded a pretender by the Followers of the Winged One, who worship the red-eyed mothmen instead.
+source: campaigns/17-fallout-76#cast
+---
+id: fallout-76-the-dead
+type: npc
+name: The Dead
+knowledge: secret
+tags: [fallout-76, cast]
+fields:
+  role: "voices only, on holotapes and terminals: Maria Chavez, the Responders' tired leader; Hank Madigan,
+    Brotherhood deserter turned Fire Breather; Abbie Singh, the Free States' lonely genius; Raleigh Clay
+    and Senator Sam Blackwell, the Free States' leaders; David Thorpe and Rosalynn Jeffries, the raiders'
+    first couple; Paladin Elizabeth Taggerdy, who led the Appalachian Brotherhood and died leading Operation
+    Touchdown; President Thomas Eckhart, who started it all; General Ellen Santiago, who tried to stop
+    him"
+body: |-
+  ## GM notes
+
+  **The Dead** — voices only, on holotapes and terminals: Maria Chavez, the Responders' tired leader; Hank Madigan, Brotherhood deserter turned Fire Breather; Abbie Singh, the Free States' lonely genius; Raleigh Clay and Senator Sam Blackwell, the Free States' leaders; David Thorpe and Rosalynn Jeffries, the raiders' first couple; Paladin Elizabeth Taggerdy, who led the Appalachian Brotherhood and died leading Operation Touchdown; President Thomas Eckhart, who started it all; General Ellen Santiago, who tried to stop him.
+source: campaigns/17-fallout-76#cast
+---
+id: fallout-76-chorus-clock
+type: track
+name: Chorus Clock
+knowledge: secret
+tags: [fallout-76, clock]
+kind: clock
+size: 8
+value: {value: 0, size: 8}
+note: "(d8) The scorchbeast hive mind learning the party's scent. Ticks when the party kills a scorchbeast,
+  enters a fissure site, brings a Scorched Detector back online, or spends a night in the Cranberry Bog.
+  At 8, the chorus turns on them: every Scorched anywhere in Appalachia is Hostile on sight — no Reaction
+  roll — and a scorchbeast hunts the party's camp every third night, until the Queen dies."
+source: campaigns/17-fallout-76#clocks
+---
+id: fallout-76-defcon-clock
+type: track
+name: DEFCON Clock
+knowledge: secret
+tags: [fallout-76, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: "(d6) The launch system's automated threat rating — the machine Eckhart fooled. Ticks when a nuke
+  is launched anywhere in Appalachia, when the party destroys a SAC cargobot, or when the party fights
+  Liberators or Scorched inside a military installation. At 6, the system judges Appalachia a war zone:
+  SAC dispatches a fresh keycard convoy (the next keycard is easy to find), and every silo's security
+  robots are rearmed to double strength."
+source: campaigns/17-fallout-76#clocks
+---
+id: fallout-76-modus-clock
+type: track
+name: MODUS Clock
+knowledge: secret
+tags: [fallout-76, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: (d6, hidden) MODUS's suspicion. Ticks when the party lies to MODUS about an errand, damages 
+  bunker property, wears Brotherhood or Free States colors into the bunker, or presses it about the 
+  Enclave's civil war. At 6, MODUS seals the room the party stands in and begins pumping gas, as it 
+  did to Eckhart's dissenters. The party has three rounds to break out or to talk it down (a WIL 
+  save, which counts as WIL −4 unless someone holds a general's commission).
+source: campaigns/17-fallout-76#clocks

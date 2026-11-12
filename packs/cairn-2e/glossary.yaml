@@ -1,0 +1,145 @@
+# Cairn terms, for `didact define <term>` (players-guide and wardens-guide).
+- term: Save
+  definition: "A d20 roll at or under an attribute to avoid a risky outcome. 1 always succeeds, 20 always fails; whoever is most at risk rolls."
+  see: [save]
+- term: Hit Protection
+  aliases: [HP]
+  definition: "Your ability to avoid damage (not your health). A short rest restores it; damage past it comes off STR."
+  see: [attack]
+- term: Strength
+  aliases: [STR]
+  definition: "Physical power: lifting, bending, resisting poison. At 0 you die."
+- term: Dexterity
+  aliases: [DEX]
+  definition: "Poise, speed, reflexes, dodging, climbing, sneaking. At 0 you're paralyzed."
+- term: Willpower
+  aliases: [WIL]
+  definition: "Persuading, deceiving, intimidating, charming, manipulating spells. At 0 you're delirious."
+- term: Armor
+  definition: "Subtracted from damage before it reaches HP; never more than 3. Shields and helmets add +1 while held or worn."
+- term: Critical Damage
+  definition: "When damage past 0 HP reduces STR, the target saves STR (new score). A PC who fails can only crawl and dies within the hour unless aided (stabilized); NPCs die, and the attacker's own critical effect happens."
+  see: [attack]
+- term: Scar
+  definition: "When an attack takes a PC to exactly 0 HP, the HP lost picks a lasting change on the Scars table: often a reroll of max HP or an attribute, sometimes a wound that heals later. Scars are growth that needs no trigger."
+  see: [scar, scar-heal]
+- term: Deprived
+  definition: "Lacking a crucial need (food, water, rest). A deprived character can't recover HP, attributes or Fatigue, and gains a Fatigue per extra day."
+  see: [deprive, relieve]
+- term: Fatigue
+  definition: "A burden that fills an inventory slot until a full night's safe rest. Casting a spell adds one; with no free slot, drop an item first."
+  see: [fatigue]
+- term: Panic
+  aliases: [Panicked]
+  definition: "Losing control to fear or darkness: 0 HP, no action in the first round, impaired attacks, until a WIL save as an action."
+  see: [panic, steady]
+- term: Impaired
+  definition: "An attack from weakness (cover, bound hands, against a detachment): roll d4 damage whatever the weapon. Unarmed attacks are always d4."
+- term: Enhanced
+  definition: "An attack from advantage (a helpless foe, a daring move, a detachment against an individual): roll d12 damage."
+- term: Blast
+  definition: "An attack that hits everyone in an area, rolled separately for each target."
+- term: Bulky
+  definition: "An item that takes two inventory slots."
+- term: Petty
+  definition: "An item that takes no inventory slot, like a ring or a small bag of coins under 100gp (more takes room: the coin-weight option)."
+- term: Detachment
+  definition: "A group fighting as one. Routed by critical damage, destroyed at 0 STR; impaired against it, enhanced and blast from it."
+- term: Watch
+  definition: "A third of a day (eight hours): morning, afternoon or night. Each character takes one Wilderness Action per watch; the last is usually for making camp."
+- term: Point
+  definition: "A destination on a map. Travel between points takes one or more watches depending on path, terrain and weather."
+- term: Dungeon Turn
+  aliases: [Turn]
+  definition: "One step of the dungeon cycle: move about 40ft and take one action, then record resources. The book gives it no length; Didact counts ten minutes."
+  see: [dungeon-turn]
+- term: Die of Fate
+  definition: "A d6 rolled when an outcome is uncertain: 4 or more favors the PCs."
+- term: Milestone
+  definition: "One of 1-5 steps toward a Downtime goal, each completed by a Downtime Action that pays its Cost."
+  see: [downtime]
+- term: Warden
+  definition: "The game master: a neutral arbiter who portrays the rules, situations and NPCs clearly."
+- term: Relic
+  definition: "A magic item with limited charges and a recharge condition; it causes no Fatigue."
+- term: Spellbook
+  definition: "A book holding one spell. Anyone can cast it with both hands, adding a Fatigue; given time and safety it can be enhanced at no extra cost."
+  see: [cast]
+- term: Scroll
+  definition: "Like a spellbook, but petty, it causes no Fatigue, and it disappears after one use."
+  see: [cast]
+- term: Round
+  definition: "About ten seconds of combat. The first round, each PC saves DEX to act; then the sides take turns, PCs first, their results simultaneous."
+- term: Retreat
+  definition: "Running from a dire situation: always a DEX save, and a safe destination to run to."
+  see: [retreat]
+- term: Stabilized
+  aliases: [Stabilize]
+  definition: "A PC dying of critical damage (or a mortal wound) who got aid in time: out of danger, but in recovery until a week's rest with a healer."
+  see: [stabilize, recover]
+- term: Doomed
+  definition: "The worst scar: if the PC's next save against critical damage fails, they die horribly; if it passes, 3d6 against max HP."
+- term: Growth
+  definition: "How characters change instead of gaining XP: a permanent change tied to what happened to them (a trigger, a resolved bond or omen, Downtime work, a scar), sometimes at a cost."
+  see: [growth]
+- term: Trigger
+  definition: "An opportunity for growth: good triggers involve at least two of a focused pattern of behavior, an obvious risk, and a unique item, creature or entity."
+  see: [growth]
+- term: Bond
+  definition: "A tie to another PC, the setting or its characters, rolled at creation (with an item or ability). Resolving it (its truth found, its root cause solved) brings growth, and maybe a new bond."
+  see: [resolve-bond]
+- term: Omen
+  definition: "The seed of an adventure to come or a disaster foretold; the party's youngest rolls one. Resolving it brings growth to the party or an entangled PC; ignored, it comes to pass."
+  see: [resolve-omen]
+- term: Background
+  definition: "Who a character was: a name list, starting gear and two d6 tables of past and present (Aurifex to Scrivener). A filter for interpreting rolls, or a reason not to roll."
+- term: Hireling
+  definition: "A hired helper with a role and a daily wage, 3d6 attributes and 1d6 HP; paid to fight, guide or carry."
+- term: Downtime Action
+  aliases: [Downtime]
+  definition: "What a PC does between sessions, one at a time, somewhere safe and out of recovery: research, training, strengthening ties, or another the Warden allows."
+  see: [downtime]
+- term: Source
+  definition: "Research needs one: a person, place, faction or entity holding part or all of the answer."
+- term: Master
+  definition: "Training needs one: someone who can teach the skill the PC wants to improve."
+- term: Cost
+  definition: "What a Milestone takes: gold, resources, reputation, or a loss. A WIL save can reduce or avoid it when the Warden states the risk."
+- term: Heart
+  definition: "The primary settlement of a region, point of interest 1, close to its water: not always the largest, but always significant to its history and people."
+- term: Settlement
+  definition: "A point of interest: a permanent, largely self-sufficient population center, typically governed by a political body or faction."
+- term: Waypoint
+  definition: "A point of interest: a safe place to refill supplies, get a good night's sleep, or get directions."
+- term: Curiosity
+  definition: "A point of interest: a remarkable or strange wilderness locale, hazardous only if the PCs interact with it."
+- term: Lair
+  definition: "A point of interest: an enemy encampment, hive, or source of heightened monster activity."
+- term: Dungeon
+  definition: "A point of interest: an explicitly dangerous locale or adventure site (any dangerous place: a mansion, a farmhouse)."
+- term: Standard Path
+  definition: "An obvious or well-trod route between two points of interest."
+- term: Hidden Path
+  definition: "A path on no known map; finding it always costs something. Hidden paths stay off the players' map."
+- term: Conditional Path
+  definition: "A path that is blocked or needs something to cross: a boat, climbing gear, a map or a guide."
+- term: Agenda
+  definition: "What a faction wants: 3-5 progressive goals toward a clear objective, at least one dealing with its primary obstacle."
+- term: Advantage
+  definition: "What gives a faction power toward its agenda: influence, materials, wealth, members, magic, …"
+- term: Obstacle
+  definition: "What stands in the way of a faction's agenda; faction actions and the fiction can add more."
+- term: Agent
+  definition: "A faction's representative, in charge of one or more goals of its agenda, sometimes with motives of their own."
+- term: Travel
+  definition: "A Wilderness Action: the party moves toward the next point, rolling to get lost (trails 2-in-6, wilderness 3-in-6)."
+  see: [watch, lost, travel-time]
+- term: Explore
+  definition: "A Wilderness Action: searching a large area reveals a Location or a Feature. Leaving still takes a Travel action."
+- term: Supply
+  definition: "A Wilderness Action: hunting, fishing or foraging gathers 1d4 Rations, a step more for each helper (up to 1d12)."
+- term: Make Camp
+  definition: "The Wilderness Action of the day's last watch: a Ration each, a lookout rotation, and all Fatigue gone for those who rest. Skipping it: a Fatigue each and deprived."
+  see: [make-camp, skip-camp]
+- term: Companion
+  definition: "A creature that follows a PC (a horse, a falcon, a familiar): a record of its own, carrying its own load."

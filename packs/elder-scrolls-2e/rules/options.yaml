@@ -1,0 +1,55 @@
+# Options: what the book leaves to the Warden at session zero (wardens-guide/getting-started)
+# or calls optional (`didact campaign profile standing-stones=on`). Rules read them as
+# @option.standing_stones. cairn-2e's unusual-weather option is inherited as it stands.
+option: standing-stones
+kind: flag
+title: Standing Stones
+ask: Do the Standing Stones mark the characters (an optional blessing, off unless the Warden turns it on)?
+help: >-
+  The book: "The Stones are optional and off by default: with your Warden's permission, your
+  character may be marked by one." On, character creation rolls 1d12 for a Stone (the Serpent is
+  never rolled: `didact do visit-stone`), and the Stones' blessings work (`didact do power`).
+default: false
+source: players-guide/character-creation#standing-stones
+---
+option: unusual-backgrounds
+kind: flag
+title: Unusual backgrounds
+ask: May characters roll or take the five unusual backgrounds (Briarheart, Vampire Fledgling, Werewolf, Dremora, Draugr Revenant)?
+help: >-
+  The book: "The last five entries are unusual — monstrous or non-mortal origins; check with
+  your Warden before taking one." Off, a random character rolls among the first 45 (as if 46–50
+  were rerolled) and a guided one chooses among them; on, the full d50.
+default: false
+source: players-guide/character-creation#backgrounds
+---
+option: tone
+title: Tone
+ask: "Where does the campaign sit on the tone dial: heroic, adventurous, gritty or grim?"
+help: >-
+  The Tone Dial. Heroic: the party are the heroes the songs will name; lean light on Bounty
+  and disease. Adventurous (the default): capable but mortal adventurers earning coin and a
+  name one job at a time. Gritty: Skyrim is poor, cold and at war; heroes get Scars and make
+  enemies. Grim: survival is the story; violence is ugly and consequences last. A campaign can
+  shift along the dial; commit to one setting per session.
+choices:
+  heroic: "Heroic Dragonborn saga: dragons fall, Jarls owe favors, evil is clear."
+  adventurous: "The default: barrows, bandits, bounties, the odd dragon; wins are real but partial."
+  gritty: "Coin is tight, the dead are many, every faction wants something; the right choice usually costs."
+  grim: "Hypothermia, plague, vampires and a war that grinds up everyone; a barrow is a tomb you might not leave."
+default: adventurous
+source: wardens-guide/getting-started#the-tone-dial
+---
+option: coin-weight
+title: Coin weight
+ask: How much room do coins take once a pouch holds 100 Septims or more?
+help: >-
+  The book: "A pouch of coins worth fewer than 100 Septims is petty and does not occupy a
+  slot." It doesn't say how much room more takes. `didact do coins who=<pc>` sets the slots
+  after the Septims change.
+choices:
+  one-slot: "A pouch of 100 Septims or more takes one slot (it's no longer petty)."
+  per-100: "Each full 100 Septims takes a slot."
+  off: "Coins never take a slot."
+default: one-slot
+source: players-guide/character-creation#inventory-slots

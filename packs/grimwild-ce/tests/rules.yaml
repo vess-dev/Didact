@@ -1,0 +1,16 @@
+# The dice math, and every table landing.
+test: every-table
+help: Each table rolls cleanly (a lookup table once for each key).
+table: all
+times: 3
+---
+test: perfect-on-two-dice
+help: With 2d and no thorns, a perfect (a 6 on the highest die) comes up 11 times in 36.
+odds: "2d6kh1 >= 6"
+chance: 0.3056
+tolerance: 0.005
+---
+test: a-thorn-cuts
+help: Each thorn (a d8) cuts on a 7 or 8.
+odds: "1d8 >= 7"
+chance: 0.25

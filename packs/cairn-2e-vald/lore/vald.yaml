@@ -1,0 +1,47 @@
+# Vald's canon, as lore: it comes up when play mentions it.
+lore: vald-principles
+title: Vald principles
+kind: preference
+constant: true
+priority: 80
+content: >-
+  Vald: keep it small and local (rulers are far off); most people are human; villages are a
+  day's walk apart, camping is a last resort; there is only one Wood, a porous dungeon that just
+  wants to grow and protect itself; the Roots are alien; magic is rare and dangerous; Relics
+  come from the Roots and can't be made; monsters don't follow the PCs' rules.
+source: wardens-guide/vald#vald-principles
+---
+lore: the-wood
+keys: [wood, forest, heart tree, heartseed, woodwose]
+content: >-
+  The Wood is every forest, and a spirit: its forests are its flesh. At each forest's core is a
+  Heart Tree, grown from a Heartseed taken from a dying or dead Heart Tree; it fears humans and
+  calls for help (Raven Folk sap traps, Dryads stealing hatchets, and above all the Woodwose,
+  its protector of plant and bone). Outsiders leave fruit and nuts at rock piles to pass freely.
+source: wardens-guide/vald#the-wood
+---
+lore: the-roots
+keys: [roots, underground, gate, gates, people who live below]
+content: >-
+  The Roots: vast lightless caves under all the realm, where time and distance run strangely.
+  Gates lead there, hidden or guarded; opening one needs a key or alchemical pattern, and an
+  opened Gate can never be shut. Three-eyed Ogres tend pits of blue flame; the People Who Live
+  Below speak a guttural tongue and carry spinning, glowing blades. Relics come from there.
+source: wardens-guide/vald#the-roots
+---
+lore: the-neighbors
+keys: [neighbors, fae, faerie, pale folk, changeling]
+content: >-
+  The Neighbors (the Fae, the Pale Folk): tall, slender, pale and beautiful, bound by no mortal
+  law, and unable to bear children of their own, so they bargain with mortals. Deals with them
+  bring ill luck to your line. Animals from their world carry a white blaze; poaching them
+  invites a fate worse than death. They are terrified of the Roots and avoid Gates.
+source: wardens-guide/vald#the-neighbors
+---
+lore: vald-settlements
+keys: [village, town, reeve, constable, cities]
+content: >-
+  Vald's towns sit a day's walk apart by water and lumber, each built around an industry. Larger
+  towns elect a Reeve; a constable enforces local law. Taverns and inns stand near trade routes,
+  temples in larger settlements. Roads only lead to the distant Cities; trails join the towns.
+source: wardens-guide/vald#introduction

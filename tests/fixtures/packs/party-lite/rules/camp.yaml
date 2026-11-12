@@ -1,0 +1,42 @@
+# Loops over the party (`for:`) and counted ones (`repeat`), in every kind of rule. The rule's
+# own `who` stays its own inside a loop: each member is `@member` (or what `as:` names).
+action: rest
+title: Make camp
+params: {who: ref}
+steps:
+  - "{@who.name} keeps the first watch."
+  - for: pcs
+    steps:
+      - set: member.fatigue
+        op: "+="
+        value: 1
+      - "{@member.name} marks the rest ({@member.fatigue} fatigue)."
+  - "{@who.name} still keeps watch."
+---
+procedure: drill
+title: Drill twice
+steps:
+  - repeat: 2
+    as: round
+    steps:
+      - for: party
+        as: hand
+        steps:
+          - roll: d6
+            as: drill
+          - "Round {@round}: {@hand.name} rolls {@drill}."
+---
+check: muster
+title: Muster the party
+roll: d6
+success: "@roll >= 1"
+on:
+  success:
+    - repeat: 2
+      steps: ["Muster {@i}."]
+---
+trigger: dawn
+on: manual
+steps:
+  - for: pcs
+    steps: ["{@member.name} wakes."]

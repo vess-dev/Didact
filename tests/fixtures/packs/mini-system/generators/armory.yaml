@@ -1,0 +1,7 @@
+generator: armory
+title: Something from the armory
+help: A kind of gear, then an item of that kind (a computed table), made from its compendium entry.
+steps:
+  - choose_or_roll: {table: armory, as: kind}
+  - choose_or_roll: {table: "armory-{@kind.kind}", as: item}
+  - entity: {key: item, from: "@item.id", fields: {note: "from the armory"}}

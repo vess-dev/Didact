@@ -1,0 +1,94 @@
+# Exploration, weather and hazards, as the book counts them. Seeded.
+test: procedures
+help: >-
+  Each part plays in a world of its own: weather-and-travel, camp-and-rest, hazards.
+script:
+  - world new weather-and-travel --system {pack} --seed travel
+  - campaign new weather-and-travel --seed travel
+  - run: do weather season=winter
+    expect: ["weather-winter", "weather-effects", "Weather:"]
+  - run: do weather season=spring hot_zone=true
+    expect: "Weather:"
+  - run: do weather
+    expect: "stop: Which season?"
+  - run: do travel-time path=trail distance=short terrain=easy weather=Harsh
+    expect: ["The journey takes 3 watches (path 1, distance 1, terrain 0, weather 1", "may instead add a Fatigue"]
+  - run: do travel-time path=wastes distance=long terrain=tough weather=Stormy rad=true
+    expect: ["The journey takes 8 watches (path 2, distance 3, terrain 2, weather 1", "a Rad to save the weather's extra watch"]
+  - run: do travel-time path=wastes distance=long terrain=perilous weather=Extreme speed=Fast fuel=2
+    expect: ["The journey takes 4 watches", "Speed erases penalties, not the road"]
+  - run: do travel-time path=highway distance=medium terrain=perilous airborne=true speed=Fast fuel=1
+    expect: "The journey takes 2 watches (path 0, distance 2, terrain 0"
+  - run: do travel-time weather=Catastrophic
+    expect: "stop: Catastrophic weather: travel is impossible"
+  - run: do lost path=highway
+    expect: "→ success"
+  - run: do lost path=wastes known=true
+    expect: "→ success"
+  - new pc Scout --set STR=12 --set DEX=12 --set WIL=12 --set hp=4
+  - run: do watch action=supply helpers=1 bonus=1 who=scout
+    expect: ["step(1d4, max(0, min(@helpers + @bonus, 4)))", "The party gathers", "pc:scout: + Rations"]
+  - run: do watch action=travel path=wastes night=true
+    expect: ["1d6", "wilderness-events", "the Overseer rolls twice"]
+  - time advance 2 watches
+  - run: do watch action=explore
+    expect: ["wilderness-events", "the Overseer rolls twice"]
+  - run: do dungeon-turn trigger=loud hot=true
+    expect: ["dungeon-events", "A hot ruin", "time advance 1 turn"]
+  - world new camp-and-rest --system {pack} --seed camp
+  - campaign new camp-and-rest --seed camp
+  - new pc Ash --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set fatigue=2 --set rads=1
+  - inv add ash Rations
+  - run: do make-camp who=ash
+    expect: ["pc:ash uses Rations (Rations: 2 uses left)", "fatigue = 0", "(Rads stay.)"]
+  - run: do make-camp who=ash truck=true
+    expect: "In the back of the pre-war truck: the camp costs Ash no Ration"
+    expect_not: "uses Rations"
+  - run: show ash
+    expect: "rads 1"
+  - run: do skip-camp who=ash
+    expect: ["deprived of sleep (day 1)", "fatigue += 1", "sleepless=true"]
+  - run: do rest who=ash
+    expect: "stop: Ash is Deprived and can't recover HP"
+  - new pc Codsworth --set STR=10 --set DEX=10 --set WIL=10 --set hp=4 --set kind=robot --set fatigue=1
+  - run: do make-camp who=codsworth
+    expect: ["an hour of diagnostics", "fatigue = 0", "No Ration and no sleep for a robot"]
+  - run: do skip-camp who=codsworth
+    expect: "doesn't sleep"
+  - run: do recover who=codsworth
+    expect: "mechanics do: a robot's long rest restores its attributes only at a Workshop"
+  - run: do watch action=make-camp
+    expect: ["pc:ash uses Rations (Rations: 1 use left)", "Ash is Deprived: no Fatigue comes off", "Codsworth runs an hour of diagnostics", "A mount eats a Ration too"]
+  - world new hazards --system {pack} --seed hazards
+  - campaign new hazards --seed hazards
+  - new pc Pip --set STR=18 --set DEX=10 --set WIL=12 --set hp=4
+  - run: do fall who=pip feet=8
+    expect: "Under 10 ft: scraped knees"
+  - run: do fall who=pip feet=20 landing=hard
+    expect: ["3d6", "1d20", "STR -="]
+  - run: do fall who=pip feet=10 absorber=true
+    expect: ["The Shock Absorber passes the DEX save", "the damage is halved"]
+  - run: do drown who=pip round=2
+    expect: "stop: Pip holds their breath (round 2 of 3)"
+  - run: do drown who=pip round=4
+    expect: ["1d20", "round=5"]
+  - run: do fire who=pip
+    expect: ["conditions += burning", "1d4", "STR -="]
+  - run: do electrocution who=pip
+    expect: ["1d6", "1d20"]
+  - run: do electrocution who=pip grounded=true
+    expect: "stop: Pip is grounded"
+  - run: do exposure who=pip weather=Cold watch=1
+    expect: ["conditions += deprived", "deprived of shelter (day 1)"]
+  - run: do exposure who=pip weather=Cold watch=2
+    expect: ["Another watch without shelter: a Fatigue", "fatigue += 1"]
+  - run: do explosion who=pip
+    expect: ["check fallout-2e.explosion", "1d20"]
+  - run: do venom who=pip
+    expect: ["The venom works for", "1d20"]
+  - run: do gas who=pip gear=halves round=2
+    expect: "stop: Pip's mask or seals keep this round's gas out"
+  - run: do gas who=pip
+    expect: ["WIL -= 1", "1d20"]
+  - run: do cast who=pip
+    expect: "stop: Fallout 2e has no spells"

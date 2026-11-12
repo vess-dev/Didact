@@ -1,0 +1,491 @@
+# Building a Survivor (Chapter 3, Creation, Step by Step), with the classes (Chapter 4), the perks
+# (Chapters 4-5) and the options (Chapter 10); and leveling up (Chapter 2, Experience). Random or
+# guided. Both share their steps through YAML anchors, so they can't drift apart:
+# - `&perk-picks`: what a perk has you decide (Light Step's rigs, Inspirational's companion,
+#   Chemist's recipes, Educated's wises, an Implant, …), and `&perk-pool`: the pool or companion it
+#   brings, made once the survivor has a name;
+# - `&core-choices`: what the Core Perk has you decide (the Inventor's 4 schematics, the Ace's 3
+#   tagged skills), made at creation, or at level 1 for a level 0 survivor;
+# - `&gain-a-level`: a level's perk (or, with stat progression, a stat), and the Core Perk's Growth.
+#   A survivor who starts above level 1 (the larger scale: level 3) gains each level at creation
+#   with the very steps leveling up uses.
+- chargen: pc
+  title: A Grimfall survivor
+  help: >-
+    Chapter 3, step by step: two backgrounds (three wises each), two traits you are and one you're
+    not, two desires you want and one you don't, a class with its Core Perk plus one more perk
+    (from your class's seven, another class's, or the Perk Compendium; a heritage perk if you want
+    a heritage to matter), what the class page and the perks have you decide, stats (1 each plus
+    4 points, at most 3), a name, the Core Perk's own choices and wells, a 3d Stimpaks pool (a 3d
+    Repair Kit for a machine) and a 4d Caps pool, the options' pools and quirk; then features, arcs
+    and bonds with the table, and the montage of the last job you pulled together.
+  creates: pc
+  modes: [random, guided]
+  steps:
+    # The options set the starting level: level 0 (Pacing & Growth), the larger scale's level 3
+    # (Tone Dials).
+    - let:
+        from_zero: false
+        creating: true
+        start: "if(@option.level_zero, 0, if(@option.scale == 'larger', 3, 1))"
+    - apply: {level: 1, xp: 0}
+
+    # 1. Backgrounds (2, three wises each): your origin and trade, the pillars of your vantage. A
+    # machine or creature background is a body as much as a past.
+    - choose_or_roll: {table: backgrounds, as: first_background, prompt: "your first background (a heritage can be one, if you want it to matter mechanically)"}
+    - add: {field: backgrounds, value: "@first_background"}
+    - add: {field: wises, value: "@first_background.wises"}
+    - choose_or_roll: {table: backgrounds, as: second_background, exclude: "@first_background", prompt: "a second background"}
+    - add: {field: backgrounds, value: "@second_background"}
+    - add: {field: wises, value: "@second_background.wises"}
+    - if: "default(@first_background.machine, false) or default(@second_background.machine, false)"
+      then:
+        - apply: {machine: true}
+        - prompt: "A machine or creature background: re-skin marks and harm as dents, breaches and stripped servos; treatment is a wrench and a welder, and the 3d Stimpaks are a 3d Repair Kit."
+    - prompt: "Swap any wise for one that fits better, and rename a background freely (you're not a Wastelander, you're a Salt-Flat Ferryman): `didact set <pc> wises-='…' wises+='…'`."
+
+    # 2-3. Traits and desires: two you are, one you're not; two you want, one you don't.
+    - choose: {table: traits, as: traits, count: 2, field: traits, prompt: "two traits you are"}
+    - choose: {table: traits, as: not_trait, exclude: "@traits", prompt: "one you're not"}
+    - add: {field: traits, value: "not {@not_trait}"}
+    - choose: {table: desires, as: desires, count: 2, field: desires, prompt: "two things you want"}
+    - choose: {table: desires, as: not_desire, exclude: "@desires", prompt: "one you don't"}
+    - add: {field: desires, value: "not {@not_desire}"}
+
+    # 5. Class: its Core Perk (none yet at level 0), plus one more perk.
+    - choose_or_roll: {table: classes, as: class, field: class, prompt: "your class: the engine you want to run every session (it decides your Core Perk, nothing more)"}
+    - if: "not @option.level_zero"
+      then:
+        - add: {field: perks, value: "@class.core"}
+    - choose_or_roll: {table: perk-lists, as: perk_list, exclude: ["A repeatable perk, taken again"], prompt: "your second perk's list: your class's seven ({@class}'s signature perks), another class's, the Perk Compendium's, or a heritage perk (to give a heritage mechanical weight)"}
+    - choose: {from: "@perk_list.perks", records: perk, as: perk, exclude: "{default(@character.perks, '')}", prompt: "your second perk ({@perk_list}; one made with the GM counts too: `didact gen run grimfall.perk`)"}
+    - add: {field: perks, value: "@perk"}
+    - repeat: 1
+      steps: &perk-picks  # what a perk has you decide (Chapters 4-5)
+        - if: "@perk == 'light-step'"
+          then:
+            - repeat: 3
+              steps:
+                - choose_or_roll: {table: light-step-effects, as: rig_effect, prompt: "Light Step: a rig you favor: its effect"}
+                - choose_or_roll: {table: light-step-triggers, as: rig_trigger, prompt: "and its trigger"}
+                - add: {field: class_notes, value: "Light Step rig: {@rig_effect}, {@rig_trigger}"}
+        - if: "@perk == 'inspirational'"
+          then:
+            - choose_or_roll: {from: [a hired gun, a scrappy mutt, a patched-up robot, a settler you saved], as: companion_kind, prompt: "Inspirational: the fiercely loyal companion you travel with"}
+            - choose_or_roll: {table: companion-tricks, as: companion_tricks, count: 3, prompt: "its 3 tricks (you roll 3d for them, 1d otherwise)"}
+            - choose_or_roll: {table: companion-flaws, as: companion_flaws, count: 2, prompt: "and its 2 flaws"}
+            - add: {field: class_notes, value: "companion: {@companion_kind}; tricks {@companion_tricks}; flaws {@companion_flaws}"}
+        - if: "@perk == 'chemist'"
+          then:
+            - repeat: 2
+              steps:
+                - choose_or_roll: {table: inventor-chem-effect, as: chem_effect, prompt: "Chemist: a signature recipe (the Chem Crucible): its effect"}
+                - choose_or_roll: {table: inventor-chem-base, as: chem_base, prompt: "and its base (the name is the touchstone)"}
+                - add: {field: class_notes, value: "signature recipe: {@chem_effect}{@chem_base.suffix}"}
+        - if: "@perk == 'educated'"
+          then:
+            - choose_or_roll: {table: wises, as: lore_wises, count: 3, exclude: "{default(@character.wises, '')}", prompt: "Educated: any 3 wises (the book's offer these; or write your own later)"}
+            - add: {field: wises, value: "@lore_wises"}
+        - if: "@perk == 'big-mt-replacement-surgery'"
+          then:
+            - choose_or_roll: {table: big-mt-modules, as: module, prompt: "Big MT Replacement Surgery: the module installed"}
+            - add: {field: class_notes, value: "Big MT module: {@module}"}
+        - if: "@perk == 'implant'"
+          then:
+            - choose_or_roll: {table: implants, as: implant, prompt: "Implant: the one bought"}
+            - add: {field: class_notes, value: "implant: {@implant}"}
+        - if: "@perk == 'tag'"
+          then:
+            - choose_or_roll: {table: ace-skills, as: tag_skill, exclude: "{default(@character.skills, '')}", prompt: "Tag!: one skill from the Ace's lists (+1d when using it)"}
+            - add: {field: skills, value: "@tag_skill"}
+        - if: "@perk == 'intense-training'"
+          then:
+            - choose_or_roll: {from: [brawn, agility, wits, presence], as: trained_stat, prompt: "Intense Training: the stat (once per session, +1d on a roll with it)"}
+            - add: {field: class_notes, value: "Intense Training: {@trained_stat} (name the one who drilled it into you)"}
+        - if: "@perk == 'protector-destroyer-of-acadia'"
+          then:
+            - choose_or_roll: {from: [Protector of Acadia, Destroyer of Acadia], as: acadia, prompt: "the title the synth refuge knows you by"}
+            - add: {field: class_notes, value: "{@acadia}"}
+        - if: "@perk == 'better-healing'"
+          then:
+            - choose_or_roll: {table: better-healing-never, as: never_heals, prompt: "Better Healing: the thing that never heals this way"}
+            - add: {field: class_notes, value: "Better Healing never heals: {@never_heals}"}
+        - if: "@perk == 'robotics-expert'"
+          then:
+            - choose_or_roll: {from: [an eyebot, a cut-down Mister Handy, a homemade protectron], as: robot, prompt: "Robotics Expert: the small robot or drone you built and bonded with"}
+            - add: {field: class_notes, value: "my robot: {@robot}"}
+        - if: "@perk == 'power-armor-training'"
+          then:
+            - add: {field: class_notes, value: "a battered powered frame (Power Armor Training: works suited up)"}
+        - if: "@perk == 'quantum-chemist' and not ('chemist' in @character.perks)"
+          then:
+            - add: {field: class_notes, value: "Quantum Chemist: one dose of a standard chem cooked each session"}
+        - if: "@perk == 'quantum-chemist' and 'chemist' in @character.perks"
+          then:
+            - prompt: "Quantum Chemist: the Chems pool starts 1d larger: `didact do grow-pool pool={default(@character.chems_pool, '<chems>')}` once this is committed."
+        - let: {pool_perk: "@perk"}
+        - repeat: 1
+          steps: &perk-pool  # the pool (or companion) a perk brings, once the survivor is named
+            - let: {pp_dice: 0}
+            - if: "@pool_perk == 'power-armor-training'"
+              then: [let: {pp_name: Plating, pp_dice: 3, pp_kind: resource, pp_note: "Spent until the next session (breached, until it's repaired). {@pp_name} (Power Armor Training): suited up, when physical harm would land on you, roll it and the frame eats the hit (`didact do plating`); a disaster while suited breaches it."}]
+            - if: "@pool_perk == 'pack-rat'"
+              then: [let: {pp_name: Pack, pp_dice: 3, pp_kind: resource, pp_note: "Empty until the next session. {@pp_name} (Pack Rat): roll it to produce the ordinary gear the moment needs (never chems, stimpaks, or relics)."}]
+            - if: "@pool_perk == 'chemist'"
+              then: [let: {pp_name: Chems, pp_dice: "4 + if('quantum-chemist' in @character.perks, 1, 0)", pp_kind: resource, pp_note: "No more doses until the next session's batch. {@pp_name} (Chemist): roll it to hand over a dose of any standard chem or a signature recipe (`didact do chem … from=chems`); drop 1d first for a potent dose."}]
+            - if: "@pool_perk == 'idiot-savant'"
+              then: [let: {pp_name: Winging It, pp_dice: 3, pp_kind: power, pp_note: "Spent until the next session. {@pp_name} (Idiot Savant): roll it in place of a stat when you attempt something you've no business knowing how to do (`didact do pool-action`)."}]
+            - if: "@pool_perk == 'serendipity'"
+              then: [let: {pp_name: Serendipity, pp_dice: 2, pp_kind: resource, pp_note: "Luck's spent until the next session. {@pp_name}: when you would take harm while already carrying harm, roll it, and the blow just misses (`didact do harm … serendipity=<this>`)."}]
+            - if: "@pool_perk == 'wasteland-warlord'"
+              then: [let: {pp_name: Standing, pp_dice: 3, pp_kind: resource, pp_note: "You've asked too much, until the next session. {@pp_name} (Wasteland Warlord): your raider standing; roll it when you call on muscle, tribute, or an audience."}]
+            - if: "@pp_dice > 0 and default(@pc_name, '') <> ''"
+              then:
+                - entity:
+                    key: perk_track
+                    type: track
+                    name: "{@pc_name}'s {@pp_name}"
+                    fields: {kind: pool, pool: "@pp_kind", value: {value: "@pp_dice", max: "@pp_dice"}, note: "@pp_note"}
+                    links: [{rel: of, to: character}]
+                # The sheet points at it (on commit, or when the level is taken), so the session's
+                # reset refreshes it and the rules find it.
+                - if: "@pool_perk == 'power-armor-training'"
+                  then: [apply: {plating: "@perk_track"}]
+                - if: "@pool_perk == 'pack-rat'"
+                  then: [apply: {pack: "@perk_track"}]
+                - if: "@pool_perk == 'chemist'"
+                  then: [apply: {chems_pool: "@perk_track"}]
+                - if: "@pool_perk == 'idiot-savant'"
+                  then: [apply: {winging_it: "@perk_track"}]
+                - if: "@pool_perk == 'serendipity'"
+                  then: [apply: {serendipity: "@perk_track"}]
+                - if: "@pool_perk == 'wasteland-warlord'"
+                  then: [apply: {standing_pool: "@perk_track"}]
+            - if: "@pool_perk == 'inspirational' and default(@pc_name, '') <> ''"
+              then:
+                - entity:
+                    key: companion
+                    type: companion
+                    name: "{@pc_name}'s companion"
+                    fields: {kind: "@companion_kind", tricks: "@companion_tricks", flaws: "@companion_flaws"}
+                    links: [{rel: travels-with, to: character}]
+                - prompt: "Name {@pc_name}'s companion ({@companion_kind}: `didact rename <companion> '<name>'`); each PC adds a reciprocal bond with them."
+
+    # The class page's [Optional] crucibles: who you are, in the class's terms (Chapter 4).
+    - if: "@class.id == 'sledge'"
+      then:
+        - choose_or_roll: {table: sledge-strength-source, as: strength, count: 2, prompt: "The source of your strength: 2 to combine"}
+        - choose_or_roll: {table: sledge-strength-source, as: disdain, exclude: "@strength", prompt: "and 1 you have disdain for"}
+        - add: {field: class_notes, value: "strength: {@strength}; disdain for {@disdain}"}
+        - choose_or_roll: {table: sledge-marks-of-violence, as: violence, count: 3, prompt: "Marks of violence: 3"}
+        - add: {field: class_notes, value: "marks of violence: {@violence}"}
+    - if: "@class.id == 'pathfinder'"
+      then:
+        - choose_or_roll: {table: pathfinder-watch-through, as: watch, prompt: "What you watch through"}
+        - add: {field: class_notes, value: "I watch through {@watch}"}
+        - prompt: "When you name a quarry, describe the tell (`didact table show pathfinder-tells`)."
+    - if: "@class.id == 'everlast'"
+      then:
+        - choose_or_roll: {table: everlast-marks, as: wasteland_marks, count: 3, prompt: "How the wasteland marked you: 3"}
+        - add: {field: class_notes, value: "marked by the wasteland: {@wasteland_marks}"}
+        - choose_or_roll: {table: everlast-keeps-walking, as: walking, prompt: "What keeps you walking"}
+        - add: {field: class_notes, value: "what keeps me walking: {@walking}"}
+    - if: "@class.id == 'charmer'"
+      then:
+        - choose_or_roll: {table: charmer-known-for-reach, as: reach, prompt: "What you're known for: how far it reaches"}
+        - choose_or_roll: {table: charmer-known-for-deed, as: deed, prompt: "and for what"}
+        - add: {field: class_notes, value: "known as {@reach}, for {@deed}"}
+        - prompt: "Say how you feel about your reputation, and track its spread with a campaign pool (`didact track new 'My name spreads' --kind pool --size <dice> --pool campaign`)."
+    - if: "@class.id == 'ace'"
+      then:
+        - choose_or_roll: {table: ace-rap-sheet-job, as: job, prompt: "Rap sheet: a past job"}
+        - choose_or_roll: {table: ace-rap-sheet-ending, as: ending, prompt: "how it ended"}
+        - choose_or_roll: {table: ace-rap-sheet-feeling, as: feeling, prompt: "and how you feel about it"}
+        - add: {field: class_notes, value: "rap sheet: {@job}; {@ending}; \"{@feeling}\""}
+        - choose_or_roll: {table: ace-calling-card, as: card, prompt: "Calling card: what you leave behind"}
+        - add: {field: class_notes, value: "calling card: {@card}"}
+    - if: "@class.id == 'longshot'"
+      then:
+        - choose_or_roll: {table: longshot-lucky-charm, as: charm, prompt: "Lucky charm: the thing fate seems to hang on"}
+        - add: {field: class_notes, value: "lucky charm: {@charm}"}
+
+    # 6. Stats: 1 in each, then 4 more points (3 at level 0), at most 3 in any.
+    - if: "@option.level_zero"
+      then:
+        - point_buy:
+            fields: [brawn, agility, wits, presence]
+            budget: 3
+            costs: {1: 0, 2: 1, 3: 2}
+            default: random
+            as: stats
+      else:
+        - point_buy:
+            fields: [brawn, agility, wits, presence]
+            budget: 4
+            costs: {1: 0, 2: 1, 3: 2}
+            default: random
+            as: stats
+    - name: {table: survivor-names}
+    - let: {pc_name: "@name", pool_perk: "@perk"}
+    - repeat: 1
+      steps: *perk-pool
+
+    # The Core Perk's own choices (now, or at level 1 for a level 0 survivor).
+    - if: "not @option.level_zero"
+      then: &core-choices
+        - if: "@class.id == 'inventor'"  # Science! (4 schematics, the Schematic Crucible)
+          then:
+            - repeat: 4
+              steps: &schematic
+                - choose_or_roll: {table: inventor-schematic-function, as: function_row, prompt: "Science!: a schematic (the Schematic Crucible): a function (take either word)"}
+                - choose_or_roll: {from: "@function_row.words", as: function_word, prompt: "the function"}
+                - choose_or_roll: {table: inventor-schematic-form, as: form_row, prompt: "a form (take either word)"}
+                - choose_or_roll: {from: "@form_row.words", as: form_word, prompt: "the form"}
+                - add: {field: schematics, value: "{@function_word} {@form_word}"}
+        - if: "@class.id == 'ace'"  # The Professional (tag three skills)
+          then:
+            - choose_or_roll: {table: ace-skills, as: tagged, count: 3, exclude: "{default(@character.skills, '')}", prompt: "The Professional: tag three skills as your trade (+1d when using them)"}
+            - add: {field: skills, value: "@tagged"}
+
+    # A campaign that starts above level 1 (the larger scale: level 3) gains each level after the
+    # first here, as leveling up gains it.
+    - repeat: "max(0, @start - 1)"
+      as: gained
+      steps:
+        - let: {next: "@gained + 1"}
+        - repeat: 1
+          steps: &gain-a-level
+            # Level 0 (an option): level 1 brings the Core Perk (with its choices) and the last stat
+            # point. Otherwise a new perk from any list, or with stat progression +1 to a stat
+            # instead (max 3), once in a lifetime.
+            - if: "@from_zero"
+              then:
+                - add: {field: perks, value: "@class.core"}
+                - repeat: 1
+                  steps: *core-choices
+                - let: {growth: stat}
+              else:
+                - choose: {from: [perk, stat], as: growth, answer: "{if(@option.stat_progression and not default(@character.stat_raised, false), '', 'perk')}", prompt: "stat progression (an option): a new perk, or +1 to a stat instead (the survivor's one lifetime bump)"}
+            - if: "@growth == 'stat'"
+              then:
+                - choose: {from: [brawn, agility, wits, presence], as: stat, exclude: ["{if(@character.brawn >= 3, 'brawn', '')}", "{if(@character.agility >= 3, 'agility', '')}", "{if(@character.wits >= 3, 'wits', '')}", "{if(@character.presence >= 3, 'presence', '')}"], prompt: "{if(@from_zero, 'your last stat point (level 0 reaches level 1)', 'the stat to raise by 1')}: at most 3"}
+                - if: "@stat == 'brawn'"
+                  then: [apply: {brawn: "{@character.brawn + 1}"}]
+                - if: "@stat == 'agility'"
+                  then: [apply: {agility: "{@character.agility + 1}"}]
+                - if: "@stat == 'wits'"
+                  then: [apply: {wits: "{@character.wits + 1}"}]
+                - if: "@stat == 'presence'"
+                  then: [apply: {presence: "{@character.presence + 1}"}]
+                - if: "not @from_zero"
+                  then: [apply: {stat_raised: true}]
+            - if: "@growth == 'perk'"
+              then:
+                - choose_or_roll: {table: perk-lists, as: perk_list, prompt: "level {@next}: the list your new perk comes from: any class's seven (never another Core Perk), the Perk Compendium's, a heritage perk, or a repeatable perk taken again"}
+                - choose: {from: "@perk_list.perks", records: perk, as: perk, exclude: "{if(@perk_list.id == 'again', '', default(@character.perks, ''))}", prompt: "the new perk ({@perk_list}; a perk once, unless it's repeatable; one made with the GM counts too)"}
+                - add: {field: perks, value: "@perk"}
+                - repeat: 1
+                  steps: *perk-picks
+            # The Core Perk grows at some levels (2, 4 and 6, or 3 and 6).
+            - if: "@next in @class.growth and not @from_zero"
+              then:
+                - add: {field: class_notes, value: "level {@next}: {@class.core} grows ({@class.grows})"}
+                - message: "Level {@next}: the Core Perk grows. {@class.grows}"
+                - if: "@class.id == 'inventor'"
+                  then:
+                    - repeat: 1
+                      steps: *schematic
+                - if: "@class.id == 'ace'"
+                  then:
+                    - choose_or_roll: {table: ace-skills, as: tagged, exclude: "{default(@character.skills, '')}", prompt: "The Professional grows: tag +1 skill"}
+                    - add: {field: skills, value: "@tagged"}
+    - apply: {level: "@start"}
+    - if: "@start > 1"
+      then:
+        - prompt: "The larger scale: survivors start at level 3; the levels above 1 are gained above, as leveling up gains them."
+    - if: "@option.level_zero"
+      then:
+        - prompt: "Level 0 (an option): no Core Perk yet, and 3 stat points. The Core Perk and the last point arrive after the first session (`didact char advance <pc>`)."
+
+    # The Core Perk's wells, full at the start (Chapter 4): Might each scene, the rest each session.
+    - let:
+        g246: "if(@start >= 2, 1, 0) + if(@start >= 4, 1, 0) + if(@start >= 6, 1, 0)"
+        g36: "if(@start >= 3, 1, 0) + if(@start >= 6, 1, 0)"
+    - if: "not @option.level_zero"
+      then:
+        - if: "@class.id == 'sledge'"
+          then: [apply: {might: "{4 + @g36}"}]
+        - if: "@class.id == 'pathfinder'"
+          then: [apply: {studies: "{1 + @g36}"}]
+        - if: "@class.id == 'everlast'"
+          then: [apply: {grit: "{6 + @g246}"}]
+        - if: "@class.id == 'charmer'"
+          then: [apply: {sway: "{3 + @g246}"}]
+        - if: "@class.id == 'inventor'"
+          then: [apply: {devices: "{4 + @g246}", potent_devices: "{2 + @g246}"}]
+        - if: "@class.id == 'ace'"
+          then: [apply: {cool: "{2 + @g36}"}]
+        - if: "@class.id == 'longshot'"
+          then:
+            - roll: "(3 + @g36)d6"
+              as: fate
+            - apply:
+                luck: {ones: "{count(@fate.dice, 1)}", twos: "{count(@fate.dice, 2)}", threes: "{count(@fate.dice, 3)}", fours: "{count(@fate.dice, 4)}", fives: "{count(@fate.dice, 5)}", sixes: "{count(@fate.dice, 6)}"}
+            - prompt: "Luck of the Draw: {@pc_name}'s Luck for the first session is {@fate.dice} (rolled again before each session)."
+
+    # Every survivor carries a 3d Stimpaks pool (a robot's 3d Repair Kit) and a 4d Caps pool (both
+    # on by default, and dialed in Chapter 10); the options' pools and quirk.
+    - let:
+        stim_name: "if(default(@character.machine, false), 'Repair Kit', 'Stimpaks')"
+        stim_dice: "if(@option.stimpaks == 'grimmer-2d', 2, if(@option.stimpaks == 'softer', 4, 3))"
+    - if: "@option.stimpaks == 'grimmer-shared'"
+      then:
+        - prompt: "Grimmer stimpaks: a single 3d pool the whole party shares, in place of each survivor's: it's made, and every survivor's sheet pointed at it, when the next session starts (or now: `didact do party-stimpaks`)."
+      else:
+        - entity:
+            key: stim_track
+            type: track
+            name: "{@pc_name}'s {@stim_name}"
+            fields: {kind: pool, pool: resource, value: {value: "@stim_dice", max: "@stim_dice"}, note: "Out until a night somewhere safe or downtime refills it{if(@option.stimpaks == 'softer', ' (softer: any real rest)', '')}, or a restock (a Caps roll) or a looted stash. {if(@option.stimpaks == 'grimmer-self', 'Given a breather, jab one into yourself (only yourself: the grimmer dial)', 'Given a breather, jab one into yourself or an ally')}: clear one harm, then roll the pool (`didact do stimpak`)."}
+            links: [{rel: of, to: character}]
+        - apply: {stimpaks: "@stim_track"}
+    - if: "@option.caps"
+      then:
+        - entity:
+            key: caps_track
+            type: track
+            name: "{@pc_name}'s Caps"
+            fields: {kind: pool, pool: power, value: {value: 4, max: 4}, note: "Broke. Walking-around money is set dressing; roll the pool when you spend big, and drop 1d first for the huge asks (`didact do spend`); selling off a minor haul adds +2d, a major one +4d (max 8d: `didact do sell`)."}
+            links: [{rel: of, to: character}]
+        - apply: {caps: "@caps_track"}
+    - if: "@option.supplies"
+      then:
+        - entity:
+            key: supplies_track
+            type: track
+            name: "{@pc_name}'s Supplies"
+            fields: {kind: pool, pool: resource, value: {value: 4, max: 4}, note: "Hunger and thirst start writing the thorns. Supplies (an option): ammunition, rations, the little things; roll it after heavy use, and as time passes away from settlements (`didact do supplies` rolls every survivor's)."}
+            links: [{rel: of, to: character}]
+        - apply: {supplies: "@supplies_track"}
+    - if: "@option.chem_stash"
+      then:
+        - entity:
+            key: stash_track
+            type: track
+            name: "{@pc_name}'s Chem Stash"
+            fields: {kind: pool, pool: resource, value: {value: 2, max: 2}, note: "The stash is dry. A 2d Chem Stash: roll it when a dose comes out of it (`didact do chem … from=stash`)."}
+            links: [{rel: of, to: character}]
+        - apply: {chem_stash: "@stash_track"}
+    - if: "@option.armor"
+      then:
+        - choose_or_roll: {from: [none, light, heavy], as: armor, prompt: "Armor (an option): what you wear (light: a 1d Armor pool each session and Lightly Armored; heavy: 2d and Heavily Armored)"}
+        - if: "@armor == 'light'"
+          then:
+            - add: {field: conditions, value: Lightly Armored}
+            - entity:
+                key: armor_track
+                type: track
+                name: "{@pc_name}'s Armor"
+                fields: {kind: pool, pool: resource, value: {value: 1, max: 1}, note: "Spent until the next session. Light armor (an option): after a physical consequence lands, roll it to lessen the consequence, as a messy defense would (`didact do armor`). Lightly Armored hinders movement."}
+                links: [{rel: of, to: character}]
+            - apply: {armor_pool: "@armor_track"}
+        - if: "@armor == 'heavy'"
+          then:
+            - add: {field: conditions, value: Heavily Armored}
+            - entity:
+                key: armor_track
+                type: track
+                name: "{@pc_name}'s Armor"
+                fields: {kind: pool, pool: resource, value: {value: 2, max: 2}, note: "Spent until the next session. Heavy armor (an option): after a physical consequence lands, roll it to lessen the consequence, as a messy defense would (`didact do armor`). Heavily Armored: loud, slow, and no swimming."}
+                links: [{rel: of, to: character}]
+            - apply: {armor_pool: "@armor_track"}
+    - if: "@option.quirks"
+      then:
+        - choose_or_roll: {table: quirks, as: quirk, prompt: "Quirks (an option): one quirk, an edge and a flaw welded together (or none: `char edit`)"}
+        - apply: {quirk: "{@quirk}: {@quirk.edge} / {@quirk.flaw}"}
+    - if: "@option.encumbrance"
+      then:
+        - prompt: "Encumbrance (an option): {@pc_name} carries {2 + @character.brawn} slots of gear (2 + Brawn) beyond armor and main weapons: most gear a slot, small items half, large or bulky ones two or more. Strong Back and Pack Rat laugh at this rule."
+    - if: "@option.weapon_styles"
+      then:
+        - prompt: "Weapon styles (an option): give your signature weapon two descriptors: `didact gen run grimfall.weapon`."
+
+    # 4, 7-10. What the table decides together: features, arcs, bonds, the montage.
+    - table: survivor-wearing
+      as: wearing
+    - table: survivor-never-trade
+      as: never_trade
+    - table: survivor-taken
+      as: taken
+    - prompt: "Features (3): what people notice (a ghoul's rasp, a glowing scar, a Pip-Boy that never comes off): `didact set <pc> features+='…'`. Stuck? The survivor crucibles offer: wearing {@wearing}; never trading {@never_trade}; the wasteland already took {@taken}."
+    - table: story-arcs
+      as: arc_idea
+    - prompt: "Arcs: one or two character arcs, short evocative directions (the book's examples offer: {@arc_idea}), beside the party's group arc (`didact gen run grimfall.party`): `didact set <pc> arcs+='…'`."
+    - table: bonds
+      as: bond
+    - prompt: "Bonds: as the others introduce themselves, set one bond toward each PC, an intensity + a nature (growing curiosity, complex camaraderie, tense rivalry; or {@bond}): `didact set <pc> bonds+='… with <PC>'`."
+    - prompt: "Review: check the party concept, group arc and setting still fit; adjust. Then the montage: run the last job you pulled together, a group montage roll (`didact do montage who=<pc>`, 2d each), and narrate how it went, working in your bonds."
+  source: "building-a-survivor/creation-step-by-step; building-a-survivor/backgrounds-of-the-wasteland; the-classes/introduction; options-and-dials/pacing-and-growth; surviving-the-wasteland/stimpaks; surviving-the-wasteland/caps-and-barter"
+
+- chargen: level-up
+  title: Level up
+  help: >-
+    When your XP boxes equal the next level (level 4 to 5: 5 boxes; slashed first on a slower road,
+    with focused growth too), clear them and gain it: a new perk (from any class's seven, never
+    another Core Perk; the Perk Compendium; a repeatable perk taken again), and your Core Perk's
+    Growth at its levels (2, 4 and 6, or 3 and 6), with what it has you choose (the Inventor's new
+    schematic, the Ace's new tagged skill). With stat progression a stat can rise instead, once in a
+    lifetime; with milestone levels the level comes when a group arc resolves meaningfully. A level
+    0 survivor reaching level 1 gains the Core Perk and the last stat point. Cap is level 7 (3 at
+    the smaller scale). Side characters don't advance.
+  advances: pc
+  modes: [guided, random]
+  params:
+    who: ref
+  steps:
+    - if: "@who.side"
+      then:
+        - stop: "{@who.name} is a side character: they don't earn XP or advance."
+    - let:
+        cap: "if(@option.scale == 'smaller', 3, 7)"
+        boxes: "if(@who.level == 0, 1, @who.level + 1)"
+        next: "@who.level + 1"
+        from_zero: "@who.level == 0"
+        creating: false
+        pc_name: "@who.name"
+    - let: {need: "@boxes * if(@option.slow_progression or @option.focused_growth, 2, 1)"}
+    - if: "@who.level >= @cap"
+      then:
+        - stop: "{@who.name} is at the cap (level {@cap}){if(@option.scale == 'smaller', ': swap perks at story milestones instead (`didact do switch-perk`)', '')}."
+    - if: "not @option.milestone_levels and @who.xp < @need"
+      then:
+        - stop: "{@who.name} has {@who.xp} of {@need} XP: level up when your XP boxes equal the next level{if(@option.slow_progression or @option.focused_growth, ', each slashed before it is filled', '')}."
+    - if: "not @option.milestone_levels"
+      then:
+        - apply: {xp: "{@who.xp - @need}"}
+    - apply: {level: "@next"}
+    - choose: {table: classes, as: class, answer: "@who.class", prompt: "the survivor's class"}
+    - repeat: 1
+      steps: *gain-a-level
+    - if: "@from_zero"
+      then:
+        - if: "@class.id == 'sledge'"
+          then: [apply: {might: 4}]
+        - if: "@class.id == 'pathfinder'"
+          then: [apply: {studies: 1}]
+        - if: "@class.id == 'everlast'"
+          then: [apply: {grit: 6}]
+        - if: "@class.id == 'charmer'"
+          then: [apply: {sway: 3}]
+        - if: "@class.id == 'inventor'"
+          then: [apply: {devices: 4, potent_devices: 2}]
+        - if: "@class.id == 'ace'"
+          then: [apply: {cool: 2}]
+        - if: "@class.id == 'longshot'"
+          then:
+            - roll: 3d6
+              as: fate
+            - apply:
+                luck: {ones: "{count(@fate.dice, 1)}", twos: "{count(@fate.dice, 2)}", threes: "{count(@fate.dice, 3)}", fours: "{count(@fate.dice, 4)}", fives: "{count(@fate.dice, 5)}", sixes: "{count(@fate.dice, 6)}"}
+    - message: "{@who.name} reaches level {@next}!"
+  source: "the-core-engine/experience; the-classes/introduction; options-and-dials/pacing-and-growth"

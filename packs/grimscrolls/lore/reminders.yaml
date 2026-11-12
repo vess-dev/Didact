@@ -1,0 +1,100 @@
+# Grimscrolls reminders: the constant ones are in every brief, the others come up when play
+# mentions their keys. The first eight replace grimwild-ce's of the same ids.
+lore: moxie-principles
+title: Playing Grimscrolls
+kind: preference
+constant: true
+priority: 90
+content: >-
+  Grimscrolls: only roll when it's risky (competent heroes don't roll to climb a ladder); no
+  partial successes (a messy is a full success and a full problem); there are no turns, only the
+  spotlight; set dressing is free, thread is for details that change the situation; re-skin
+  everything. Enemies never roll and have no hit points: their danger is thorns, stakes,
+  suspense and the size of their pool. One die of each kind on a roll: talents, setup, a relic, a
+  draught; spark, assists and the Hunter's die add on top.
+source: "the-core-engine/rolls; unbound/how-to-read-this; the-bestiary/introduction; the-classes/introduction#wells-and-dice"
+---
+lore: thorns-reminder
+keys: [thorn, thorns, cut]
+kind: rule-reminder
+recursive: false
+content: "Grimscrolls thorns: d8s, one per significant difficulty (typical rolls carry 0-2; at 3 or more the odds fall off a cliff); each 7-8 cuts the result a step (perfect → messy → grim → disaster). A critical (two or more 6s) can't be cut. Momentum removes thorns; strain's can't be removed."
+source: "the-core-engine/rolls#thorns-d8s"
+---
+lore: spark-reminder
+keys: [spark]
+kind: rule-reminder
+recursive: false
+content: "Grimscrolls spark: spend before any roll you make for +1d each; hold up to 2, carried between sessions. Take it for a tangle, a disaster, a resolved story arc, a settled quarrel, an ally changing their bond with you, wonder on the road, carousing, and whenever a rule says so."
+source: "the-core-engine/spark"
+---
+lore: pools-reminder
+keys: [pool, pools]
+kind: rule-reminder
+recursive: false
+content: "Grimscrolls pools: roll the pool, dice landing 1-3 drop; at 0d the thing happens or runs dry (2d short, 4d medium, 6d stubborn, 8d long; a talent's run 2d-6d). A resource pool: use it, then roll it. A power pool is rolled in place of a stat (`didact do pool-action`). A task pool that drops nothing: push yourself (a mark) to drop 1d, or pivot. `didact track roll <pool>`."
+source: "the-core-engine/pools"
+---
+lore: damage-reminder
+keys: [mark, harm, bloodied, rattled, desperate, dropped]
+kind: rule-reminder
+recursive: false
+content: "Grimscrolls damage: a mark gives +1t on your next roll with that stat, then clears (an exposure mark lingers); marking a marked stat is harm. Bloodied +1t physical, rattled +1t mental; a second of either is desperate (+1t on everything); once desperate, a harm you already carry drops you (a story roll, usually 2d). Lighter turns harm into a mark and a mark into nothing; heavier, a mark into harm and harm into harm and a mark; one step at most."
+source: "the-core-engine/damage-and-recovery; the-classes/introduction#lighter-and-heavier"
+---
+lore: gm-principles
+title: Running Tamriel
+kind: preference
+constant: true
+priority: 80
+content: >-
+  Grimscrolls GM: suspense is your currency of dramatic timing (earn it by skipping a prompted
+  impact move or by suspense moves; spend it to strike at any moment; a move a hero didn't invite
+  gets a defense roll). Say the stakes out loud when they change: nobody gets dropped by surprise
+  math. Split, spread or land an impact move off-screen; a new 4d pool rolled at once is always
+  legal. Foes and ranks: what would take a tough or lesser foe out of the fight costs a greater
+  one only its next move. Lore is a toolbox, not a test: when the book and the table disagree,
+  the table wins.
+source: "running-tamriel/the-gms-half-of-the-engine; the-classes/introduction#foes-and-ranks; unbound/how-to-read-this#which-tamriel"
+---
+lore: suspense-reminder
+keys: [suspense]
+kind: rule-reminder
+recursive: false
+content: "Grimscrolls suspense: the GM takes it for skipping a prompted impact move and for the suspense moves (`didact do suspense-move`); Didact adds it at pre-session (1), for a rest reset (2), an interrupt's messy, a vampire's feeding, backlash that draws something's eye, and wild magic's dark omen. Spend it to strike at any moment, or to drop 1d from a pool that won't budge. Every challenge brings 2 bonus suspense of its own. `didact do suspense`."
+source: "running-tamriel/the-gms-half-of-the-engine; the-core-engine/pools#push-or-pivot"
+---
+lore: advancement-reminder
+keys: [level up, leveling, experience, xp]
+kind: rule-reminder
+recursive: false
+content: "Grimscrolls experience: 1 XP after each session (Didact gives it), the GM's bonus for a standout one (about one in four); level up when your XP boxes equal the next level (slash each box on the slower road). Each level: a talent from any class's list, and the Core Talent's Growth at its levels. Cap is level 7 (3 at the smaller scale). Mastery: Novice 1, Apprentice 2, Journeyman 4, Expert 6, Master 7. `didact char advance <hero>`."
+source: "the-core-engine/experience"
+---
+lore: wells-reminder
+keys: [temper, wind, edge, guard, might, focus, momentum, evasion, favors, sway, well]
+kind: rule-reminder
+recursive: false
+content: "Grimscrolls wells: a Core Talent's well (Temper, Wind, Edge, Guard, Might, Focus, Momentum, Evasion, Favors, Sway, Draughts, Quarries, Changes) is spent with `didact do spend who=<hero> well=<well>`; per-session wells refill when a new session starts, per-scene ones with every scene, by themselves."
+source: "the-classes/introduction#wells-and-dice"
+---
+lore: potions-reminder
+keys: [potion, potions, coin, septims]
+kind: rule-reminder
+recursive: false
+content: "Grimscrolls kit: every hero carries a 3d Potions pool (given a breather, clear one harm, then roll the pool: `didact do potion`; it refills after a night somewhere safe or in downtime) and a 4d Coin pool (roll it when you spend big, drop 1d first for a huge ask: `didact do spend-coin`; at 0d you're broke)."
+source: "surviving-tamriel/potions; surviving-tamriel/coin-and-barter"
+---
+lore: magic-reminder
+keys: [spell, spells, cast, magic, magicka, potent]
+kind: rule-reminder
+recursive: false
+content: "Grimscrolls magic: a spell does what one skilled person could do; a potent spell bends the rules; a ritual changes the map (a source, anchors, the invocation's task pool). Touchstones rule everything. Spellcasting is visible and loud, and anyone can counter it. Each school casts its own way: `didact do cast who=<hero> school=alteration|destruction|illusion|mysticism|restoration`. Regain magic: `didact do regain-magic`."
+source: "the-core-engine/magicka; the-classes/introduction#magic-for-everyone"
+---
+lore: curses-reminder
+keys: [vampire, werewolf, sanguinare, lycanthropy, sanies lupinus, porphyric, feed, bloodlust]
+kind: rule-reminder
+recursive: false
+content: "Grimscrolls curses: a bite brings a 4d timer (`didact do curse`); at 0d you turn (`didact do turn`): the price without the gifts, until you take the curse's talent. A vampire's Blood comes back only by feeding (`didact do feed`; the GM takes suspense but for the session's first sip); the sun is +1t on everything and no Blood. A werewolf changes for a scene on the Bloodlust timer (`didact do change`, `didact do bloodlust`); silver lands one step heavier."
+source: "surviving-tamriel/the-two-curses; the-classes/vampire; the-classes/werewolf"

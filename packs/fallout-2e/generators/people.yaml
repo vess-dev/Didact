@@ -1,0 +1,189 @@
+# People and creatures (overseers-guide/npc-tables, setting-seeds#4-populate-with-factions,
+# creating-monsters; players-guide/companions, core-rules#hirelings): each chosen or rolled, then
+# written as a record. They replace the parent's generators of the same ids (npc, faction,
+# monster), whose tables Fallout changes.
+generator: npc
+title: An NPC
+help: >-
+  The NPC tables, step by step: appearance, demeanor, occupation, what they want, what they fear
+  (choose each, or let the dice), a name, STR, DEX and WIL of 3d6 and 1d6 HP (made like a
+  hireling's), and a reaction to the party (2d6) when it isn't obvious. Prefill by name: name,
+  appearance, demeanor, occupation, want, fear, disposition, hp, STR, …
+source: overseers-guide/npc-tables
+steps:
+  - choose_or_roll: {table: npc-appearance, as: appearance}
+  - choose_or_roll: {table: npc-demeanor, as: demeanor}
+  - choose_or_roll: {table: npc-background, as: occupation}
+  - choose_or_roll: {table: npc-goal, as: want}
+  - choose_or_roll: {table: npc-fear, as: fear}
+  - roll: 3d6
+    as: STR
+  - roll: 3d6
+    as: DEX
+  - roll: 3d6
+    as: WIL
+  - roll: 1d6
+    as: hp
+  - choose_or_roll: {table: reactions, as: disposition}
+  - table: first-names
+    as: name
+  - entity:
+      key: npc
+      type: npc
+      name: "{@name}"
+      fields:
+        role: "@occupation"
+        goal: "@want"
+        traits: {appearance: "@appearance", demeanor: "@demeanor", fear: "@fear"}
+        STR: "@STR"
+        DEX: "@DEX"
+        WIL: "@WIL"
+        hp: "@hp"
+        disposition: "@disposition"
+  - prompt: "Short, distinct, easy to say three times in a row: does the name fit, or should it be an epithet, a title, a faction rank or a vault-suit nickname? Avoid one that rhymes with or starts like another named NPC this session."
+  - prompt: "Describe them in a sentence or two from their appearance and demeanor (`didact about <npc> looks=…`). What do they want from the party, and what would they do to get it?"
+---
+generator: faction
+title: A faction
+help: >-
+  A faction from the d12 Faction Generator: an identity and an agenda (rolled separately, "d12
+  twice", or chosen), a name from the faction patterns, and an agent with a WIL score. The party's
+  reputation with it starts at Neutral. Prefill by name: identity, agenda, faction_name,
+  agent_name, agent_wil.
+source: overseers-guide/setting-seeds#faction-generator-d12-twice
+steps:
+  - choose_or_roll: {table: setting-faction-identity, as: identity}
+  - choose_or_roll: {table: setting-faction-agenda, as: agenda}
+  - table: faction-names
+    as: faction_name
+  - table: first-names
+    as: agent_name
+  - roll: 3d6
+    as: agent_wil
+  - entity:
+      key: agent
+      type: npc
+      name: "{@agent_name}"
+      fields: {role: "an agent of {@faction_name}", WIL: "@agent_wil"}
+  - entity:
+      key: faction
+      type: faction
+      name: "{@faction_name}"
+      fields:
+        kind: "@identity"
+        agenda: "@agenda"
+        leader: "@agent"
+        agents: ["@agent"]
+        WIL: "@agent_wil"
+        reputation: 0
+  - prompt: "The name is the book's pattern: fill in the X (and Y) with a short, memorable name with an implied agenda (The Quiet, Saints of the Glow, The Ash-Eaters)."
+  - prompt: "Who does it oppose (NCR ↔ Legion, Brotherhood ↔ Enclave, Railroad ↔ Institute, Minutemen ↔ Raiders: `gen edit <draft> faction-1.opposed=…`)? What does it want from the party, and who carries it?"
+---
+generator: monster
+title: A new creature
+help: >-
+  The Creating Monsters tables: appearance (physique and feature), traits (quirk and weakness),
+  attacks (type and Critical Damage) and abilities (what and whom), and a bestiary group. Describe
+  it in plain words, then stat it: HP 3 average, 6 hardy, 10+ a serious threat; Armor 0–3; STR,
+  DEX and WIL 3 deficient, 6 weak, 10 average, 14 noteworthy, 18 legendary. Prefill name, hp,
+  armor, STR, DEX, WIL, damage or any roll.
+source: overseers-guide/creating-monsters
+steps:
+  - table: monster-physique
+    as: physique
+  - table: monster-feature
+    as: feature
+  - table: monster-quirk
+    as: quirk
+  - table: monster-weakness
+    as: weakness
+  - table: monster-attack-type
+    as: attack
+  - table: monster-critical-damage
+    as: critical
+  - table: monster-ability
+    as: ability
+  - table: monster-ability-target
+    as: target
+  - table: monster-categories
+    as: category
+  - let:
+      name: "{@physique} {@feature}"
+      hp: 3
+      armor: 0
+      STR: 10
+      DEX: 10
+      WIL: 10
+      damage: "'d6'"
+  - entity:
+      key: monster
+      type: monster
+      name: "{@name}"
+      fields:
+        hp: "@hp"
+        armor: "@armor"
+        STR: "@STR"
+        DEX: "@DEX"
+        WIL: "@WIL"
+        category: "@category"
+        attacks: [{name: "{@attack}", damage: "@damage"}]
+        abilities: ["{@ability} ({@target})", "Quirk: {@quirk}", "Weakness: {@weakness}"]
+        critical: "Critical Damage: {@critical}. (Write what happens to a target that fails.)"
+      body: "Appearance: {@physique}, {@feature}."
+  - prompt: "Describe it in plain English from the rolls: appearance, traits, attacks and abilities. Then name it. Flavor matters more than numbers: the protectron that still thinks it's 2077 beats a d6 combat robot."
+  - prompt: "Stat it: HP for luck, speed and toughness; STR for taking a hit; DEX from 10, up for speed and finesse, down for slow or clumsy; WIL for influence, presence and defense against the mind. Armor 0–3, raised if it shrugs off attacks without moving."
+  - prompt: "Can it be realistically defended against? Then it's an attack (a die and its tags: blast, bulky). If not, an ability: one PC takes it the first round with no save; a group saves at once. Is it rad-immune (a ghoul, a robot, a super mutant)?"
+  - prompt: "Write its Critical Damage: what happens to a target that fails the save, the creature's essential horror or strangeness (e.g. 'pinned against the nearest wall, losing 1 STR per round until freed')."
+---
+generator: companion
+title: A companion
+help: >-
+  A companion is simpler than a PC: 1d6 HP (rolled once when recruited), STR, DEX and WIL of 3d6
+  each (swap any two), 1 Armor unless their background says otherwise, one weapon, one special
+  trick, and Loyalty 3 (a dog 4; a robot has a Directive instead). Companions aren't bought: saved
+  lives, fulfilled requests, promises kept. Prefill by name: name, hp, STR, …, weapon, trick.
+creates: companion
+params:
+  robot: {kind: flag, default: false, help: "A robot companion: a Directive in place of Loyalty"}
+source: players-guide/companions#companion-stat-block
+steps:
+  - roll: {each: [STR, DEX, WIL], dice: 3d6}
+  - swap: {among: [STR, DEX, WIL], optional: true}
+  - roll: {hp: 1d6}
+  - apply: {armor: 1}
+  - if: "@robot"
+    then:
+      - ask: {as: directive, field: directive, prompt: "The robot's Directive, which its PC must not violate (the first violation brings a warning, the second an attempt to enforce it)"}
+    else:
+      - apply: {loyalty: 3}
+  - ask: {as: trick, field: trick, prompt: "One special trick: one thing they reliably do that a PC can't, drawn from who they were (a ghoul reads old technical manuals at a glance; a brahmin has a keen nose for water)"}
+  - name: {table: first-names}
+  - prompt: "Give them one weapon appropriate to who they were (`gen edit <draft> character.attacks=…` or `inv add` once written), and an owner: `didact set <them> owner=<pc>` and `didact party add <them> --as companion`. One active companion per PC."
+---
+generator: encounter
+title: An encounter
+help: >-
+  An encounter from the Bestiary's roll tables: by threat level (low, medium, high, boss), by
+  region (the Commonwealth, Far Harbor, Nuka-World, the Capital Wasteland, the Mojave, Appalachia,
+  the Divide), or by the Bestiary's d20 Random Encounter Categories (category: a group, then one
+  of its creatures; a 20 off the main map reaches the DLC Creatures), and the creature written as
+  a record when the result names one. Where a creature is typically a detachment, assume a
+  detachment unless the Overseer decides otherwise. Prefill: where, encounter, group, creature_id.
+source: roll-tables/bestiary
+steps:
+  - choose: {from: [low, medium, high, boss, commonwealth, far-harbor, nuka-world, capital-wasteland, mojave, appalachia, divide-big-empty, category], as: where, prompt: "Which table: a threat level for the party's strength, the region's own, or the Bestiary's categories (roll the Die of Fate first to pick the threat level, if unsure)"}
+  - if: "@where == 'category'"
+    then:
+      - choose_or_roll: {table: monster-categories, as: group}
+      - choose: {from: "@group.ids", as: creature_id, prompt: "Which creature of the group ({@group})? On a 20, Unusual on the main map; the DLC Creatures off it."}
+      - entity: {key: creature, from: "@creature_id"}
+      - prompt: "Typically a detachment? Then `didact new detachment …` from its stats (HP 6–10, STR 12–16, its attack with blast), with a leader or a Morale proxy. Check the creature's Reaction if its mood is unclear (`didact do reaction who=…`)."
+    else:
+      - table: "encounters-{@where}"
+        as: encounter
+      - if: "default(@encounter.id, '') <> ''"
+        then:
+          - entity: {key: creature, from: "@encounter.id"}
+          - prompt: "Typically a detachment? Then `didact new detachment …` from its stats (HP 6–10, STR 12–16, its attack with blast), with a leader or a Morale proxy. Check the creature's Reaction if its mood is unclear (`didact do reaction who=…`)."
+        else:
+          - prompt: "No single stat block: run it from the text ({@encounter}). The bestiary's stand-ins: raiders of any stripe are Thugs led by a Crew Boss; militia and townsfolk under arms are Settler Militiamen under a Settlement Sheriff; a lucid ghoul is a person with a settler's stats."

@@ -1,0 +1,227 @@
+# Character creation (players-guide/character-creation, unusual-pcs), random or step by step, with
+# every background result applied: what the body is made of and what that spares it, attribute
+# caps, an Eyebot's six slots, power armor training, a Stimpak's strength, the companions,
+# hireling and vehicles some backgrounds bring, a second Bond, the Overseer's pick of a weapon or chems, and
+# the Bond's and the youngest's Omen's threads. Replaces the parent's chargens of the same ids.
+chargen: pc
+title: A Fallout 2e character
+help: >-
+  A background (1d50, or pick: its gear, 3d6 caps and its two tables, and a name from its list),
+  3d6 STR, DEX and WIL in order with one optional swap (a super mutant's highest roll goes to STR;
+  unusual bodies cap some scores), 1d6 HP, the eight traits, an age of 2d20+10, a Bond (also a
+  thread to resolve), and an Omen for the party's youngest (read aloud, and a thread). Unusual
+  backgrounds follow Playing Unusual PCs: robots take no Rads and no chems, super mutants no Rads
+  and no addiction, ghouls no Rad Scars, deathclaws no Stimpaks.
+creates: pc
+modes: [random, guided, template]
+steps:
+  # 1. Roll or choose a Background.
+  - choose_or_roll: {table: backgrounds, as: background, field: background}
+  - apply: "@background.gear"
+  - apply: {kind: "@background.kind"}
+  - roll: {caps: 3d6}
+  - roll_tables: "@background.tables"
+  # What the body is made of (players-guide/unusual-pcs).
+  - if: "@background.kind == 'robot'"
+    then:
+      - add: {field: immunities, value: [rads, rad-scars, chems, addiction]}
+  - if: "@background.kind == 'super-mutant'"
+    then:
+      - add: {field: immunities, value: [rads, rad-scars, addiction]}
+      - apply: {stimpak_heal: 1d4}
+  - if: "@background.kind == 'ghoul'"
+    then:
+      - add: {field: immunities, value: [rad-scars]}
+  - if: "@background.kind == 'deathclaw'"
+    then:
+      - add: {field: immunities, value: [stimpaks]}
+  - if: "default(@background.power_armor, false)"
+    then:
+      - apply: {power_armor_trained: true}
+  - if: "default(@background.slots, 0) > 0"
+    then:
+      - apply: {slots_max: "@background.slots"}
+  - if: "default(@background.abilities, '') <> ''"
+    then:
+      - add: {field: abilities, value: "@background.abilities"}
+  # What the two tables gave (each key lives on the results that carry it: see the scripts'
+  # README and tables/backgrounds/*.yaml).
+  - let:
+      companion_1: "default(@caravaneer_1.companion, default(@tinker_1.companion, ''))"
+      hireling_1: "default(@caravaneer_1.hireling, '')"
+      companion_2: "default(@wastelander_2.companion, default(@desert_ranger_2.companion, default(@caravaneer_2.companion, '')))"
+      vehicle_0: "default(@background.vehicle, '')"
+      vehicle_1: "default(@caravaneer_1.vehicle, '')"
+      vehicle_2: "default(@desert_ranger_2.vehicle, '')"
+      immune_1: "default(@ghoul_1.immune, default(@protectron_1.immune, default(@super_mutant_1.immune, '')))"
+      immune_2: "default(@brotherhood_outcast_2.immune, default(@lobotomite_2.immune, default(@zetan_2.immune, default(@deathclaw_2.immune, ''))))"
+      stimpak: "default(@brotherhood_outcast_2.stimpak, '')"
+      extra_slots: "default(@ghoul_1.slots, default(@protectron_1.slots, 0))"
+      str_cut: "default(@courier_1.max.STR, 0)"
+      extra_bond: "default(@desert_ranger_1.extra_bond, false)"
+      ability: "default(@gunner_2.ability, '')"
+      outcast_pick: "default(@brotherhood_outcast_1.pick, '')"
+      dropped: "default(@protectron_1.drop, '')"
+  - if: "@immune_1 <> ''"
+    then:
+      - add: {field: immunities, value: "@immune_1"}
+  - if: "@immune_2 <> ''"
+    then:
+      - add: {field: immunities, value: "@immune_2"}
+  - if: "@stimpak <> ''"
+    then:
+      - apply: {stimpak_heal: "@stimpak"}
+  - if: "@extra_slots > 0"
+    then:
+      - apply: {slots_max: "{default(@background.slots, 10) + @extra_slots}"}
+  - if: "@ability <> ''"
+    then:
+      - add: {field: abilities, value: "@ability"}
+  - if: "@dropped <> ''"
+    then:
+      - remove: {field: inventory, value: "@protectron_1.drop"}
+      - message: "The table's result replaces some starting gear: {@dropped} is off the inventory."
+  # "The Overseer picks": the Brotherhood Outcast's stolen weapon, the Chem Cook's three chems.
+  - if: "@outcast_pick <> ''"
+    then:
+      - choose: {table: "{@outcast_pick}", as: stolen, prompt: "The Weapon: the Overseer picks one pre-war energy or heavy weapon worth up to 500 caps from the Marketplace"}
+      - apply: "@stolen.gear"
+  - repeat: "default(@background.pick_count, 0)"
+    as: n
+    steps:
+      - choose: {table: "{@background.pick}", as: picked, prompt: "One of the Chem Cook's three assorted chems (the Marketplace's medical supplies and chems)"}
+      - apply: "@picked.gear"
+  # 2. Attributes: 3d6 in order; swap any two.
+  - roll: {each: [STR, DEX, WIL], dice: 3d6}
+  - swap: {among: [STR, DEX, WIL], optional: true}
+  # A super mutant's highest roll goes to STR.
+  - if: "@background.kind == 'super-mutant'"
+    then:
+      - let: {s: "@character.STR", d: "@character.DEX", w: "@character.WIL"}
+      - if: "@d > @s and @d >= @w"
+        then:
+          - apply: {STR: "{@d}", DEX: "{@s}"}
+          - message: "A super mutant's highest roll goes to STR: STR {@d}, DEX {@s}."
+      - if: "@w > @s and @w > @d"
+        then:
+          - apply: {STR: "{@w}", WIL: "{@s}"}
+          - message: "A super mutant's highest roll goes to STR: STR {@w}, WIL {@s}."
+  # Unusual bodies: "a higher roll at character creation is lowered to the cap".
+  - if: "default(@background.max.STR, 0) > 0 and @character.STR > default(@background.max.STR, 20)"
+    then:
+      - apply: {STR: "{@background.max.STR}"}
+      - message: "{@background}'s max STR is {@background.max.STR}: the roll is lowered to it."
+  - if: "default(@background.max.DEX, 0) > 0 and @character.DEX > default(@background.max.DEX, 20)"
+    then:
+      - apply: {DEX: "{@background.max.DEX}"}
+      - message: "{@background}'s max DEX is {@background.max.DEX}: the roll is lowered to it."
+  - if: "@str_cut < 0"
+    then:
+      - apply: {STR: "{max(1, @character.STR + @str_cut)}"}
+      - message: "Max STR {@str_cut}, forever (the background's table)."
+  # 3. Hit Protection.
+  - roll: {hp: 1d6}
+  # 5. Character traits.
+  - roll_tables: [physique, skin, hair, face, speech, clothing, virtue, vice]
+  # 7. Bonds: each one on the sheet and a thread to resolve (overseers-guide/bonds-and-omens).
+  - choose_or_roll: {table: bonds, as: bond}
+  - add: {field: bond, value: "@bond"}
+  - apply: "@bond.gear"
+  - add: {field: caps, value: "@bond.caps"}
+  - add: {field: burden, value: "@bond.burden"}
+  - entity: {key: bond, type: thread, name: "Bond: {@bond.name}", fields: {goal: "@bond"}, links: [{rel: of, to: character}]}
+    as: bond_thread
+  - if: "@extra_bond"
+    then:
+      - choose_or_roll: {table: bonds, as: second_bond, exclude: "@bond"}
+      - add: {field: bond, value: "@second_bond"}
+      - apply: "@second_bond.gear"
+      - add: {field: caps, value: "@second_bond.caps"}
+      - add: {field: burden, value: "@second_bond.burden"}
+      - entity: {key: bond, type: thread, name: "Bond: {@second_bond.name}", fields: {goal: "@second_bond"}, links: [{rel: of, to: character}]}
+        as: second_bond_thread
+  # 6. Age; 8. the youngest at the table rolls an Omen and reads it aloud.
+  - roll: {age: 2d20+10}
+  - choose: {from: ["yes", "no"], as: youngest, prompt: "Is this the youngest character at the table? The youngest rolls an Omen and reads it aloud."}
+  - if: "@youngest == 'yes'"
+    then:
+      - choose_or_roll: {table: omens, as: omen, field: omen}
+      - entity: {key: omen, type: thread, name: "Omen: {@omen.name}", fields: {goal: "@omen"}}
+        as: omen_thread
+      - prompt: "Read the Omen aloud to the table; the Overseer uses it as a seed for the campaign (`didact do resolve-omen` when it's resolved)."
+  - name: {from: "@background.names"}
+  # Companions, a hireling and vehicles: records of their own, beside the character.
+  - if: "@companion_1 <> ''"
+    then:
+      - entity: {key: companion, from: "@companion_1", scope: campaign, fields: {owner: character}}
+        as: made_companion
+  - if: "@companion_2 <> ''"
+    then:
+      - entity: {key: companion, from: "@companion_2", scope: campaign, fields: {owner: character}}
+        as: made_companion_2
+  - if: "@hireling_1 <> ''"
+    then:
+      - entity: {key: hireling, from: "@hireling_1", scope: campaign}
+        as: made_hireling
+  - if: "@vehicle_0 <> ''"
+    then:
+      - entity: {key: vehicle, from: "@vehicle_0", scope: campaign}
+        as: made_vehicle
+  - if: "@vehicle_1 <> ''"
+    then:
+      - entity: {key: vehicle, from: "@vehicle_1", scope: campaign}
+        as: made_vehicle_1
+  - if: "@vehicle_2 <> ''"
+    then:
+      - entity: {key: vehicle, from: "@vehicle_2", scope: campaign}
+        as: made_vehicle_2
+  - if: "@companion_1 <> '' or @companion_2 <> '' or @hireling_1 <> '' or @vehicle_0 <> '' or @vehicle_1 <> '' or @vehicle_2 <> ''"
+    then:
+      - prompt: "{@name} doesn't travel alone: once committed, `didact party add <it> --as companion` brings a companion along (one active companion per PC), `--as hireling` a hired gun (paid help: Morale saves, gone when the pay stops); a pack brahmin, wagon or motorbike carries its own load (`didact inv add <it> …`)."
+  - if: "@background.kind <> 'human'"
+    then:
+      - prompt: "An unusual PC (players-guide/unusual-pcs): put their edge and their cost on the table equally often. `didact rules lookup {@background.kind}`."
+  - prompt: "Describe the character in a sentence or two, from their traits, background and Bond."
+source: players-guide/character-creation#character-creation
+---
+chargen: hireling
+title: A hireling
+help: >-
+  Paid help: a role from the Marketplace's hirelings (with its daily rate), 3d6 for each
+  attribute, 1d6 HP, gear for their trade, and some traits. They walk away the day the pay stops.
+creates: hireling
+modes: [random, guided]
+steps:
+  - choose_or_roll: {table: hireling-roles, as: role, field: role}
+  - apply: {wage: "@role.wage"}
+  - roll: {each: [STR, DEX, WIL], dice: 3d6}
+  - roll: {hp: 1d6}
+  - roll_tables: [physique, skin, hair, face, speech, clothing, virtue, vice]
+  - name: {table: first-names}
+  - prompt: "Kit them out with gear appropriate to their trade ({@role}), and pay their rate ({@character.wage} caps a day). They take Morale saves; no Loyalty, no Command."
+source: players-guide/core-rules#hirelings
+---
+chargen: hireling-background
+title: A hireling from a background
+help: >-
+  The book's other way: a background rolled the normal way, with its name, gear, caps and tables,
+  then attributes and HP. The daily rate is the Overseer's call.
+creates: hireling
+modes: [random, guided]
+steps:
+  - choose_or_roll: {table: backgrounds, as: background, field: background}
+  - name: {from: "@background.names"}
+  - apply: "@background.gear"
+  - roll: {caps: 3d6}
+  - roll_tables: "@background.tables"
+  - roll: {each: [STR, DEX, WIL], dice: 3d6}
+  - if: "default(@background.max.STR, 0) > 0 and @character.STR > default(@background.max.STR, 20)"
+    then:
+      - apply: {STR: "{@background.max.STR}"}
+  - if: "default(@background.max.DEX, 0) > 0 and @character.DEX > default(@background.max.DEX, 20)"
+    then:
+      - apply: {DEX: "{@background.max.DEX}"}
+  - roll: {hp: 1d6}
+  - roll: {age: 2d20+10}
+  - prompt: "Set their daily rate (the Marketplace's hirelings take 4–30 caps a day): `didact set <them> wage=…`. A hireling doesn't track Rads (an NPC: a Rad costs 1 STR)."
+source: players-guide/core-rules#hirelings

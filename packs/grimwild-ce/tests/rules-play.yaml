@@ -1,0 +1,86 @@
+# The rules in play, each on a seed that shows it (seeded: it plays the same every time).
+test: a-critical-ignores-thorns
+help: A defense roll with two 6s is a critical, though a thorn came up 8 (pp. 10-11).
+script:
+  - world new t --system {pack} --seed s19
+  - campaign new c --seed s19
+  - 'new pc Kestrel --set agility=3 --set wits=1 --set path=Sorcerer --set "talents+=sorcerer-sorcery" --set "path_notes+=twists: curse"'
+  - run: do defense who=kestrel stat=agility thorns=3
+    expect: ["[3 6 6]", "[8 5 4]", "cutting 1", "→ critical", "thorns can't cut a critical"]
+---
+test: a-twist-counts-thorns
+help: A sorcerer's spell twists on two 1s, thorns included, as the sorcerer's twists manifest (p. 76).
+script:
+  - world new t --system {pack} --seed s10
+  - campaign new c --seed s10
+  - 'new pc Kestrel --set agility=3 --set wits=1 --set path=Sorcerer --set "talents+=sorcerer-sorcery" --set "path_notes+=twists: curse"'
+  - run: do action who=kestrel stat=wits spell thorns=3
+    expect: ["1d6 → [1]", "3d8 → [1 3 4]", "Magical twist (Sorcery, p. 76)", "Curse: the GM takes +1 suspense", "GM suspense: 1."]
+  - run: do suspense spend=1
+    expect: ["GM suspense: 0.", "a PC it hits directly gets a defense roll"]
+---
+test: dire-stakes-drop
+help: At dire stakes any prompted impact move drops the PC; the harm ladder ends in dropped (pp. 27-28, 103).
+script:
+  - world new t --system {pack} --seed st1
+  - campaign new c --seed st1
+  - new pc Kestrel --set agility=3 --set wits=1
+  - run: do action who=kestrel stat=wits stakes=dire
+    expect: ["→ grim", "Dire stakes: the prompted impact move drops Kestrel"]
+  - run: do harm who=kestrel kind=bloodied
+    expect: "Kestrel is bloodied"
+  - run: do harm who=kestrel kind=bloodied
+    expect: "desperate, +1t on all rolls"
+  - run: do harm who=kestrel kind=rattled
+    expect: "Kestrel is rattled"
+  - run: do harm who=kestrel kind=rattled
+    expect: ["already rattled and desperate: dropped", "didact do dropped who=pc:kestrel"]
+  - run: do dropped who=kestrel
+    expect: "2d6"
+  - run: do end-story who=kestrel end=retirement
+    expect: "if dropped again, they perish"
+  - run: do dropped who=kestrel
+    expect: "→ perished"
+---
+test: pools-and-quarrels
+help: A push drops a linked pool's last die; a quarrel gives everyone spark; a faction turn rolls its pools (pp. 18, 23, 114).
+script:
+  - world new t --system {pack} --seed pools
+  - campaign new c --seed pools
+  - new pc Kestrel --set agility=3 --set wits=1
+  - new pc Wren --set wits=3
+  - track new Ogre --kind pool --linked 1+1
+  - run: do push who=kestrel pool=ogre stat=brawn
+    expect: ["marks += brawn", "phase 2 of 2 begins at 1d"]
+  - run: do push who=kestrel pool=ogre stat=wits
+    expect: ["Ogre is empty", "(0d left)"]
+  - run: do quarrel first=kestrel second=wren stakes='who takes the map'
+    expect: ["At stake: who takes the map.", "Kestrel has 1 spark", "Wren has 1 spark", "→ "]
+  - run: >-
+      gen run grimwild-ce.faction --auto --prefill '{"name": "Shaz Warband", "goal_1": "Subjugate the goblins", "pool_1": 4, "goal_2": "March on Pemtown", "pool_2": 6}'
+    expect: "pool_1: goal-1"
+  - run: gen commit g1
+    expect: "faction:shaz-warband"
+  - run: faction turn
+    expect: ["pool Subjugate the goblins", "pool March on Pemtown"]
+---
+test: sessions-and-downtime
+help: Pre-session from the second session on, experience at each end, downtime and carousing (pp. 30-31, 39).
+script:
+  - world new t --system {pack} --seed sessions
+  - campaign new c --seed sessions
+  - new pc Kestrel --set agility=3 --set "talents+=bard-bardic-lore"
+  - run: session start
+    expect: "session 1"
+  - run: session end --summary 'One.'
+    expect: "session-experience (Kestrel)"
+  - run: session start
+    expect: ["pre-session-each (Kestrel)", "thread = 3", "pre-session-gm", "GM suspense: 1."]
+  - run: do carouse who=kestrel
+    expect: ["Kestrel has", "Narrate, or suffer, the results"]
+  - run: do downtime who=kestrel
+    expect: ["fully heals in downtime", "didact faction turn"]
+  - run: campaign profile expanded-downtime=on
+    expect: "expanded-downtime"
+  - run: do downtime who=kestrel act=unwind also=venture
+    expect: ["Unwind: give a vignette", "Venture: Kestrel keeps moving"]

@@ -1,0 +1,9 @@
+type: character
+fields:
+  used: {kind: list}
+---
+type: pc
+extends: character
+---
+type: npc
+extends: character

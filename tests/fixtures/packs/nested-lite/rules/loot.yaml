@@ -1,0 +1,12 @@
+# A rule reads an entry's mapping by its path (`@row.pool.dice`), and the one a two-step
+# roll carries from the table it rolled next.
+action: loot
+title: Loot a hoard
+steps:
+  - table: hoards
+    as: row
+  - "{@row}: {@row.dice} dice, a {@row.pool.kind} pool of {@row.pool.dice}d"
+  - table: lairs
+    as: lair
+  - if: "@lair.pool.dice > @row.dice"
+    then: ["The {@lair.beast.name}'s den hides a {@lair.pool.dice}d pool."]

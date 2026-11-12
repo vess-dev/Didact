@@ -1,0 +1,236 @@
+# Smoke plays, dense: the rolls and wells of a fight with a Bestiary creature, then the long road
+# (exposure, disease and the curses, shrines, coin, crime, downtime, the Greywatch factions), with
+# grimwild-ce's inherited rules along the way. Seeded, so they play the same every time.
+test: the-barrow-door
+help: "A fight at a barrow: the Hunter's die, Momentum, reckless swings, a Bestiary draugr put in play with its pool (rolled and ticked by the name it shares with its card; `show` and the parent's `suspense pool=` still take the id), Might against it, Mysticism's strain, potions, vex, a push, Build Up's spark for every hero, and the parent's story roll, suspense, quarrel, bonds and arcs; then a session's end and a warm start."
+script:
+  - world new tam --system {pack} --seed barrow
+  - campaign new first --seed barrow
+  - run: >-
+      char new --mode random --prefill '{"name": "Kazari", "race": "Khajiit", "class": "Marksman"}'
+    expect: "class: Marksman (given)"
+  - char commit c1
+  - run: >-
+      char new --mode random --prefill '{"name": "Vel", "race": "Dunmer", "class": "Mysticism"}'
+    expect: "class: Mysticism (given)"
+  - char commit c2
+  - run: >-
+      char new --mode random --prefill '{"name": "Uzgash", "race": "Orc", "class": "Blunt"}'
+    expect: "class: Blunt (given)"
+  - char commit c3
+  - run: >-
+      char new --mode random --prefill '{"name": "Inigo", "race": "Khajiit", "class": "Acrobatics"}'
+    expect: "class: Acrobatics (given)"
+  - char commit c4
+  - session start
+  - run: scene new 'The barrow door'
+    expect: "Inigo's per-scene wells refill"
+  - run: do quarry who=kazari target='the draugr wight'
+    expect: ["quarries -= 1", "Kazari names the draugr wight as quarry"]
+  - run: do action who=kazari stat=agility hunter thorns=1
+    expect: "→ "
+  - run: do action who=inigo stat=agility momentum=2 thorns=2
+    expect: ["Inigo spends 2 Momentum: 2 thorns removed, every one of them", "Momentum dice: "]
+  - run: do action who=uzgash stat=brawn reckless
+    expect: "(5s count as 6s, 4s as 1s)"
+  - run: >-
+      gen run grimscrolls.foe --auto --prefill '{"creature": "Draugr"}'
+    expect: ["monster Draugr", "track Draugr: kind: pool, pool: task"]
+  - run: gen commit g5
+    expect: ["monster:draugr", "track:draugr"]
+  - run: do spend who=uzgash well=might n=2 pool=draugr
+    expect: "might -= 2"
+  - run: track roll draugr
+    expect: "pool Draugr"
+  - run: track tick draugr
+    expect: "Draugr 3d (of 4)"
+  - run: show draugr
+    fails: true
+    expect: "'draugr' matches several records: monster:draugr"
+  - run: do defense who=uzgash stat=brawn
+    expect: "→ "
+  - run: do cast who=vel school=mysticism potent
+    expect: "A potent spell before strain sets in"
+  - run: do cast who=vel school=mysticism potent
+    expect: ["A potent spell by strain", "pc:vel: strain += 1", "Strain: +1t on all Vel's spellcasting from now"]
+  - run: do cast who=vel school=mysticism
+    expect: "Strain: +1t on Vel's spellcasting"
+  - run: do regain-magic who=vel what=strain why='a Magicka draught'
+    expect: "One step of strain lifts"
+  - run: do mark who=kazari stat=wits
+    expect: "Kazari takes a mark on wits"
+  - run: do harm who=uzgash kind=bloodied
+    expect: "Uzgash is bloodied"
+  - run: do potion who=uzgash
+    expect: ["pool Uzgash's Potions", "bloodied clears"]
+  - run: do vex who=kazari response=freeze
+    expect: "Kazari takes vex: freeze"
+  - run: do push who=uzgash stat=brawn pool=draugr
+    expect: "marks += brawn"
+  - run: do story-roll question='Is the wight awake?'
+    expect: "→ "
+  - run: do suspense take=1
+    expect: "GM suspense: 1."
+  - run: do suspense-move move=clue-in
+    expect: "GM suspense: 2."
+  - run: do suspense-move move=build-up
+    expect: ["Build Up: a vignette before the storm", "Kazari has 1 spark.", "Inigo has 1 spark.", "GM suspense: 3."]
+  - run: do suspense spend=1 pool=draugr
+    fails: true
+    expect: "'draugr' matches several records: monster:draugr"
+  - run: do suspense spend=1 pool=track:draugr
+    expect: ["GM suspense: 2.", "Draugr drops 1d anyway (1d left)"]
+  - run: do quarrel first=kazari second=uzgash stakes='who carries the claw'
+    expect: ["At stake: who carries the claw.", "Kazari has 2 spark"]
+  - run: do change-bond who=kazari toward=uzgash bond='grudging respect'
+    expect: "Kazari's bond with Uzgash is now grudging respect"
+  - run: do resolve-arc who=vel
+    expect: "Vel resolves a story arc"
+  - scene end
+  - run: session end --summary 'The door opened.'
+    expect: ["grimscrolls.session-experience (Kazari)", "1 of 2 XP to the next level"]
+  - run: session start
+    expect: ["grimwild-ce.pre-session-each (Kazari)", "Last session's quarry is let go", "pc:vel: unstrained = 1", "grimwild-ce.pre-session-gm"]
+---
+test: the-long-road
+help: "The road over the Pale: exposure and shelter, disease, a curse caught and its timer rolled by the nights until the hero turns, feeding and the change, a rite, vigilance with a guarantee, a standing stone, a shrine, plunder, coin and a haul, a bounty started and rolled by a second crime, an arrest paid (the stolen goblet named with an apostrophe) and one resisted, a Prince's Patience, tick pools, being dropped, a rest reset, downtime and a project's pool (its name with an apostrophe too), a guild's rise, the Greywatch factions and an outlawed standing, a holding, the weather's counter made at once, and the curse's talent taken at the next level with its pool."
+script:
+  - world new tam --system {pack} --seed road
+  - campaign new first --seed road
+  - run: campaign profile tick-pools=on rest-resets=on supplies=on active-vigilance=on sheogorath=on
+    expect: "tick-pools: on; rest-resets: on; supplies: on; active-vigilance: on; sheogorath: on"
+  - run: >-
+      char new --mode random --prefill '{"name": "Serana", "race": "Nord", "class": "Vampire"}'
+    expect: "class: Vampire (given)"
+  - run: char commit c1
+    expect: ["track:serana-s-blood", "track:serana-s-supplies"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Farkas", "race": "Nord", "class": "Werewolf"}'
+    expect: "class: Werewolf (given)"
+  - run: char commit c2
+    expect: "track:farkas-s-bloodlust"
+  - run: >-
+      char new --mode random --prefill '{"name": "Erandur", "race": "Dunmer", "class": "Restoration"}'
+    expect: "class: Restoration (given)"
+  - run: char commit c3
+    expect: "-rite"
+  - session start
+  - scene new 'The Pale Pass'
+  - run: do exposure who=farkas stat=brawn
+    expect: ["lingering += brawn", "A Nord's blood: cold lands one step lighter"]
+  - run: do action who=farkas stat=brawn
+    expect: "The lingering exposure mark on brawn adds a thorn"
+  - run: do shelter who=farkas
+    expect: "the lingering marks clear"
+  - run: do disease who=erandur disease=rockjoint
+    expect: "conditions += Rockjoint"
+  - run: do cure who=erandur condition=Rockjoint
+    expect: "Erandur's Rockjoint ends."
+  - run: do curse who=erandur curse=sanguinare-vampiris
+    expect: ["conditions += Sanguinare Vampiris", "+ track Erandur: Sanguinare Vampiris", "curse_timer = track:erandur-sanguinare-vampiris"]
+  - run: do feed who=serana how=sip
+    expect: "A sip puts back 2d."
+  - run: do change who=farkas bloodied
+    expect: ["changed = true", "pool Farkas's Bloodlust"]
+  - run: do action who=farkas stat=wits
+    expect: "→ "
+  - run: do bloodlust who=farkas
+    expect: "pool Farkas's Bloodlust"
+  - run: do change-back who=farkas
+    expect: ["changed = false", "marks += brawn"]
+  - run: do cast who=erandur school=restoration
+    expect: "pool Erandur's"
+  - run: do vigilance who=serana dice=1 guarantee=reveal
+    expect: "→ reveal"
+  - run: time advance 7 days
+    expect: ["grimscrolls.curse-nights (Erandur)", "A night: Erandur: Sanguinare Vampiris", "turned = vampire", "The curse's timer has run its course (remove its record: `didact rm track:erandur-sanguinare-vampiris`)", "pc:erandur: unset curse_timer", "gets up a vampire"]
+  - run: do take-stone who=serana stone=the-lady-stone
+    expect: "stone = the-lady-stone"
+  - run: do pray who=farkas divine=mara
+    expect: ["ordinary diseases are cured", "Farkas takes Mara's blessing"]
+  - run: do use-blessing who=farkas
+    expect: "Farkas uses the blessing"
+  - run: do plunder place=sealed
+    expect: "plunder-odds: 3d"
+  - run: do spend-coin who=serana huge
+    expect: ["1d dropped before rolling", "pool Serana's Coin"]
+  - run: do sell-haul who=serana size=minor
+    expect: ["Serana's Coin grows", "a second, different downtime action"]
+  - run: do crime jurisdiction='The Pale'
+    expect: ["+ track The Guards Know Your Face (The Pale)", "starts at 6d"]
+  - run: do crime jurisdiction='The Pale'
+    expect: ["is here already", "is on the books already: a crime added to the list rolls it", "pool The Guards Know Your Face (The Pale)"]
+  - run: do crime pool=the-guards-know-your-face-the-pale
+    expect: "pool The Guards Know Your Face (The Pale)"
+  - run: inv add serana "Balgruuf's Goblet"
+    expect: "Serana gets Balgruuf's Goblet"
+  - run: do arrest who=serana choice=pay-the-fine pool=the-guards-know-your-face-the-pale stolen="Balgruuf's Goblet"
+    expect: ["pc:serana: - Balgruuf's Goblet", "Confiscated: Balgruuf's Goblet", "The pool clears."]
+  - run: do prince-task who=farkas prince=Hircine
+    expect: ["+ track Hircine's Patience", "an 8d Patience pool (track:hircine-s-patience"]
+  - run: track new 'Ward Fails' --kind pool --size 3
+    expect: "Ward Fails 3d"
+  - run: do tick pool=ward-fails
+    expect: "Ward Fails ticks down 1d (2d left)."
+  - run: do refresh pool=ward-fails
+    expect: "Ward Fails is back to 3d."
+  - run: do grow-pool pool=ward-fails by=1
+    expect: "Ward Fails grows: 4d of 4d."
+  - run: do tokens who=serana take=3
+    expect: "Serana's exploration tokens: 3."
+  - run: do harm who=farkas kind=rattled
+    expect: "Farkas is rattled"
+  - run: do dropped who=farkas
+    expect: ["harm += dropped", "→ "]
+  - run: do end-story who=farkas end=sacrifice
+    expect: "Sacrifice: when Farkas is ready"
+  - run: do rest who=serana safe
+    expect: ["marks and harm are cleared", "Rest resets (an option)", "the party's reset"]
+  - run: do madness
+    expect: "madgod-crucible"
+  - run: scene end
+    expect: "grimwild-ce.scene-end-dropped (Farkas)"
+  - run: scene new 'The far side'
+    expect: "grimwild-ce.reset-over: oracle:grimwild-ce-story: reset_taken = false"
+  - run: ask 'Is the ferryman still at the dock?' --odds even
+    expect: "? Is the ferryman still at the dock? (even) → "
+  - run: do downtime who=serana act=venture
+    expect: ["marks and harm clear with the long break", "per-session talents refresh"]
+  - run: do guild who=erandur guild='The Mages Guild'
+    expect: ["+ track Rise in the Guild (The Mages Guild)", "Its 6d Rise in the Guild (track:rise-in-the-guild-the-mages-guild)"]
+  - run: do guild who=erandur pool=rise-in-the-guild-the-mages-guild
+    expect: "pool Rise in the Guild (The Mages Guild)"
+  - run: do downtime who=farkas act=pursue project="Reforge Ysgramor's Axe" dice=2
+    expect: ["+ track Farkas: Reforge Ysgramor's Axe", "Pursue a goal: Farkas works on Farkas: Reforge Ysgramor's Axe"]
+  - run: gen run grimscrolls.greywatch --auto
+    expect: ["faction The Greywatch Moot", "faction The Barrow Under the Moot Hall"]
+  - run: gen commit g4
+    expect: "faction:the-greywatch-moot"
+  - run: faction turn
+    expect: "The Greywatch Moot"
+  - run: do standing who=the-greywatch-moot shift=-2
+    expect: ["standing = outlawed", "+ track They Find You (The Greywatch Moot)", "faction:the-greywatch-moot: pool_3 = track:they-find-you-the-greywatch-moot"]
+  - run: do arrest who=farkas choice=resist-arrest pool=the-guards-know-your-face-the-pale faction=legion-customs-cohort
+    expect: ["The next bounty starts at 4d", "faction:legion-customs-cohort: standing = watched"]
+  - run: do faction-goal who=the-greywatch-moot pool=hire-swords
+    expect: ["Hire Swords is empty", "The Greywatch Moot's goal comes to pass"]
+  - run: >-
+      gen run grimscrolls.holding --auto --prefill '{"name": "Lakeview Manor"}'
+    expect: "track Lakeview Manor: Stores"
+  - run: gen commit g5
+    expect: "loc:lakeview-manor"
+  - run: do stores pool=lakeview-manor-stores haul=minor
+    expect: "Lakeview Manor: Stores"
+  - run: do drift
+    expect: ["+ track Weather", "weather-drift: "]
+  - run: do drift
+    expect: ["is here already", "weather-drift: "]
+  - run: session end --summary 'Over the pass.'
+    expect: "grimscrolls.session-experience (Serana)"
+  - run: do experience who=erandur bonus
+    expect: "level 2 is ready"
+  - run: >-
+      char advance erandur --prefill '{"curse_way": "the curse\u0027s talent"}'
+    expect: ["+ track Erandur's Blood", "blood: None → pool-1"]
+  - run: char commit c6
+    expect: "blood None → track:erandur-s-blood"

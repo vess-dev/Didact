@@ -1,0 +1,24 @@
+# Orc Stronghold Warrior (backgrounds/orc-stronghold-warrior): the background's two d6 tables.
+table: orc-stronghold-warrior-1
+title: "What did the Code of Malacath teach you?"
+dice: d6
+source: backgrounds/orc-stronghold-warrior#what-did-the-code-of-malacath-teach-you-roll-1d6
+entries:
+  1: "You killed a clansman in fair challenge and paid the blood-price in full. Orcs who learn of it treat you one step better on the Reaction ladder — and your kill's kin are still watching you."
+  2: "Your mothers taught you their craft at the forge. You can temper and mend gear with only a hammer and a hot fire; no proper smithy is needed."
+  3: "You drank the rage-brew before your first raid, and it never fully left you. Once per combat, when you are first reduced to 0 HP, your next attack is Enhanced."
+  4: {text: "You served a hitch in the Imperial Legion's heavy infantry, as Orcs have for generations; the Legion is one of the few masters that ever treated your people fairly. Take your old Imperial helmet (+1 Armor). Legion veterans greet you as one of their own, and your chief has never forgiven you for serving a human emperor.", data: {gear: [{name: "Imperial helmet", armor: 1}]}}
+  5: "You held the gate alone while the stronghold fled the giants. You need not save against fear while you stand in a doorway, a gate, or a narrow pass."
+  6: {text: "Malacath sent you a vision in the smoke of the shrine-fire. Take a bone fetish (petty): once per day, the next foe you wound must pass a WIL save or quail, losing its next attack.", data: {gear: [{name: "Bone fetish", size: "petty"}]}}
+---
+table: orc-stronghold-warrior-2
+title: "What did you carry out of the stronghold?"
+dice: d6
+source: backgrounds/orc-stronghold-warrior#what-did-you-carry-out-of-the-stronghold-roll-1d6
+entries:
+  1: {text: "The Chief's Axe: An Orcish battleaxe (d10, bulky, two-handed) you carried out of the longhouse the night you left. The chief wants it back, and so does his heir.", data: {gear: [{name: "Orcish battleaxe", damage: "d10", size: "bulky", qualities: ["two-handed"], note: "the chief's axe"}]}}
+  2: {text: "Mother's Work: An Orcish war axe of your mother's own forging, masterwork (d10), in place of your starting war axe. It never chips, and every Orc smith knows her mark.", data: {upgrade: true, replaces: {name: "Orcish war axe", damage: "d8"}, gear: [{name: "Orcish war axe", damage: "d10", qualities: ["masterwork"], tempered: true, note: "your mother's own forging"}]}}
+  3: "Blood-Kin: The blood-bond of the strongholds runs deep. Any Orc stronghold in Skyrim shelters you as one of its own — its Reaction starts at Kind — and its smiths work for you at cost."
+  4: {text: "Malacath's Spite: A pot of shrine war-paint (petty). Once per day, painted for war, the first foe who strikes you in melee takes 1d6 in return.", data: {gear: [{name: "Shrine war-paint", size: "petty"}]}}
+  5: {text: "The Old Mail: A suit of well-kept Orcish plate (3 Armor, bulky) handed down the clan. Three generations have died in it, and none of them ran.", data: {gear: [{name: "Orcish plate", armor: 3, suit: 3, size: "bulky", note: "handed down the clan"}]}}
+  6: {text: "Trollsblood Brew: A flask of the stronghold's bitter brew (2 uses). Drink it to shrug off pain: restore 1d6 STR. It can stabilize the dying.", data: {gear: [{name: "Trollsblood Brew", uses: 2}]}}

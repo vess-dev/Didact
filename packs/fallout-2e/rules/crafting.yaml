@@ -1,0 +1,244 @@
+# Scrap and crafting (players-guide/crafting): Scrap is a number on the sheet (every 5 takes a
+# slot, rounded up); crafting is one recipe a Downtime Action at the right station, paid in Scrap
+# and caps (the `recipes` table). If you have the station, the scrap, the caps and the time, you
+# succeed: rolls only come in when the job is ambitious or rushed.
+action: scrap
+title: Scrap
+help: >-
+  Gain or spend Scrap, and keep its slots right (5 Scrap a slot, rounded up; a settlement Scrap
+  Heap stores it freely). source=scavenge (a ruin, wreck or robot corpse: 1d6, the Overseer's
+  call), heap (a settlement Scrap Heap: 1d6 a visit), wreck (a wrecked vehicle's frame: 2d6),
+  breakdown (a weapon or armor broken down at a Workshop: half its Scrap cost rounded down;
+  bought gear with none yields 1, or 2 if bulky; item= names the carried thing, which is gone
+  after, and says whether it's bulky), buy (at 25 caps a unit, when a trader has it), sell (10
+  caps a unit), gain or spend (amount=n).
+params:
+  who: ref
+  source: {enum: [scavenge, heap, wreck, breakdown, buy, sell, gain, spend], default: gain}
+  amount: {kind: int, default: 0, help: "Scrap gained, spent, bought or sold"}
+  item_scrap: {kind: int, default: 0, help: "breakdown: the item's Scrap cost (0 for bought gear)"}
+  bulky: {kind: flag, default: false, help: "breakdown: a bulky item (read from item= when it's carried)"}
+  item: {kind: text, optional: true, help: "breakdown: the carried weapon or armor broken down"}
+  price: {kind: int, optional: true, help: "buy or sell: caps a unit (25 to buy, 10 to sell)"}
+steps:
+  - let: {delta: "@amount", paid: 0, earned: 0, freed: 0, broken: false}
+  - if: "@source == 'scavenge' or @source == 'heap'"
+    then:
+      - roll: 1d6
+        as: found
+      - let: {delta: "@found"}
+  - if: "@source == 'wreck'"
+    then:
+      - roll: 2d6
+        as: found
+      - let: {delta: "@found"}
+  - if: "@source == 'breakdown'"
+    then:
+      - let: {big: "@bulky"}
+      - if: "default(@item, '') <> ''"
+        then:
+          - if: "default(@{who.inventory.$item.name}, '') == ''"
+            then:
+              - stop: "{@who.name} carries no $item to break down."
+          - let: {size: "default(@{who.inventory.$item.size}, 'normal')"}
+          - let:
+              big: "@bulky or @size == 'bulky'"
+              freed: "if(@size == 'bulky', 2, if(@size == 'petty', 0, 1))"
+              broken: true
+      - let: {delta: "if(@item_scrap > 0, @item_scrap // 2, if(@big, 2, 1))"}
+  - if: "@source == 'buy'"
+    then:
+      - let: {paid: "@amount * default(@price, 25)"}
+      - if: "@paid > default(@who.caps, 0)"
+        then:
+          - stop: "{@who.name} has {default(@who.caps, 0)} caps; {@amount} Scrap costs {@paid} (Scrap can't simply be bought: a trader sells it rarely)."
+  - if: "@source == 'sell' or @source == 'spend'"
+    then:
+      - let: {delta: "0 - @amount"}
+      - if: "@source == 'sell'"
+        then:
+          - let: {earned: "@amount * default(@price, 10)"}
+  - let: {now: "default(@who.scrap, 0) + @delta"}
+  - if: "@now < 0"
+    then:
+      - stop: "{@who.name} has {default(@who.scrap, 0)} Scrap, not {@amount}."
+  - let: {load: "(@now + 4) // 5", had: "default(@who.scrap_load, 0)"}
+  - if: "@load - @had > @who.inventory.free + @freed"
+    then:
+      - stop: "{@now} Scrap needs {@load} slot(s) and {@who.name} has no room: drop an item, leave Scrap in a settlement Scrap Heap, or carry less."
+  - if: "@broken"
+    then:
+      - take: $item
+        from: "@who"
+  - set: who.scrap
+    value: "@now"
+  - if: "@load <> @had"
+    then:
+      - set: who.scrap_load
+        value: "@load"
+  - if: "@paid > 0"
+    then:
+      - set: who.caps
+        op: "-="
+        value: "@paid"
+  - if: "@earned > 0"
+    then:
+      - set: who.caps
+        op: "+="
+        value: "@earned"
+  - if: "@paid > 0 or @earned > 0"
+    then:
+      - do: coins
+        with: {who: "@who"}
+        go_on: true
+  - message: "{@who.name}: Scrap {if(@delta >= 0, '+', '')}{@delta} ($source) → {@now} ({@load} slot(s))."
+  - if: "@paid > 0"
+    then: ["{@who.name} pays {@paid} caps for it."]
+  - if: "@earned > 0"
+    then: ["{@who.name} gets {@earned} caps for it."]
+source: players-guide/crafting#scrap
+---
+action: craft
+title: Craft
+help: >-
+  One recipe a Downtime Action at the station it names (`didact table show recipes`): chems (2d6
+  × the recipe's caps of reagents, 1d4 doses; a chem cook at a settlement Chemistry Station pays
+  half: half=true), meals, ammo and explosives (up to three batches of one line: batches=n),
+  weapon, armor and power armor mods (Scrap, caps and the Downtime Actions they take; a weapon or
+  suit holds two mods, a power armor frame two more), and gadgets. No station, no recipe. Who may
+  brew chems or build gadgets is in the recipe's chapter (a Chem Cook, a Tinker, a perk or
+  background that says so, or work under an NPC who can). What's made goes to the crafter's
+  inventory; a mod is noted on the weapon or suit it's installed on (item=<it>).
+params:
+  who: ref
+  recipe: {kind: text, help: "The recipe's name, as the recipes table has it (Stimpak, Suppressor, Pipe Pistol, …)"}
+  batches: {kind: int, default: 1, help: "Ammo and explosives: 1 to 3 batches of one line"}
+  station: {kind: flag, default: true, help: "The recipe's station is at hand (a single scrap bench counts as every station, at half yield)"}
+  half: {kind: flag, default: false, help: "A chem cook at a settlement Chemistry Station: half the reagent cost"}
+  item: {kind: text, optional: true, help: "A mod: the carried weapon or suit it goes on (its mods are noted on it)"}
+  installed: {kind: flag, default: false, help: "A gadget built in place (a settlement's), not carried away"}
+steps:
+  - if: "not @station"
+    then:
+      - stop: "No station, no recipe: $recipe needs its workstation."
+  - table: recipes
+    with: {recipe: $recipe}
+    as: r
+  - if: "@r.kind == 'chem'"
+    then:
+      - roll: 2d6
+        as: reagents
+      - let: {cost: "if(@half, (@reagents * @r.cost_x) // 2, @reagents * @r.cost_x)"}
+      - if: "@cost > default(@who.caps, 0)"
+        then:
+          - stop: "The reagents for $recipe cost {@cost} caps; {@who.name} has {default(@who.caps, 0)}."
+      - set: who.caps
+        op: "-="
+        value: "@cost"
+      - roll: 1d4
+        as: doses
+      - message: "{@who.name} brews $recipe at the {@r.station}: {@cost} caps of reagents, {@doses} dose(s)."
+      - give: $recipe
+        to: "@who"
+        count: "@doses"
+      - reminder: "A botched batch (the Overseer's call) makes one dose of a random chem instead, addictive even if it normally isn't: `didact undo` this, then `didact inv add {@who.id} <the chem>`."
+  - if: "@r.kind == 'meal'"
+    then:
+      - message: "{@who.name} cooks $recipe at the {@r.station} ({@r.ingredients}): {@r.effect}"
+      - give: $recipe
+        to: "@who"
+        data: {size: petty, uses: 1}
+      - reminder: "Eating it: `didact do consume who={@who.id} food='$recipe'`. In camp, the Overseer may allow 10 minutes of a rest instead of a Downtime Action."
+  - if: "@r.kind == 'ammo'"
+    then:
+      - if: "@batches < 1 or @batches > 3"
+        then:
+          - stop: "One Downtime Action makes 1 to 3 batches of a single line."
+      - let: {scrap_cost: "@r.scrap * @batches", caps_cost: "@r.caps * @batches"}
+  - if: "@r.kind == 'weapon-mod' or @r.kind == 'armor-mod' or @r.kind == 'power-armor-mod' or @r.kind == 'gadget'"
+    then:
+      - let: {scrap_cost: "@r.scrap", caps_cost: "@r.caps"}
+  - if: "@r.kind <> 'chem' and @r.kind <> 'meal'"
+    then:
+      - if: "@scrap_cost > default(@who.scrap, 0)"
+        then:
+          - stop: "$recipe needs {@scrap_cost} Scrap; {@who.name} has {default(@who.scrap, 0)}."
+      - if: "@caps_cost > default(@who.caps, 0)"
+        then:
+          - stop: "$recipe costs {@caps_cost} caps; {@who.name} has {default(@who.caps, 0)}."
+      - if: "@caps_cost > 0"
+        then:
+          - set: who.caps
+            op: "-="
+            value: "@caps_cost"
+      - if: "@scrap_cost > 0"
+        then:
+          - do: scrap
+            with: {who: "@who", source: spend, amount: "@scrap_cost"}
+      - message: "{@who.name} makes $recipe at the {@r.station}: {@scrap_cost} Scrap, {@caps_cost} caps."
+  - if: "@r.kind == 'ammo'"
+    then:
+      - give: $recipe
+        to: "@who"
+        count: "@batches"
+      - message: "Yield: {@r.yield} a batch × {@batches}."
+      - reminder: "Energy ammo can only be repacked, with a donor cell, at half cost and half yield."
+  - if: "@r.kind == 'weapon-mod' or @r.kind == 'armor-mod' or @r.kind == 'power-armor-mod'"
+    then:
+      - message: "$recipe ({@r.applies}): {@r.effect}"
+      - if: "default(@item, '') <> ''"
+        then:
+          - set: who.inventory.$item.mods
+            op: "+="
+            value: $recipe
+        else: ["Name the weapon or suit it goes on (item=<it>) and the mod is noted on it."]
+      - reminder: "The install takes {@r.downtime} Downtime Action(s). A weapon or suit holds at most two mods (a power armor frame two more, a T-60 three); a mod is permanent and removing it destroys it. A botched install when rushing destroys one component and the Scrap and caps."
+  - if: "@r.kind == 'gadget'"
+    then:
+      - message: "$recipe: {@r.effect}"
+      - if: "not @installed"
+        then:
+          - give: $recipe
+            to: "@who"
+        else: ["$recipe stays where it was built."]
+  - do: coins
+    with: {who: "@who"}
+    go_on: true
+  - reminder: "One recipe, one Downtime Action."
+source: players-guide/crafting#crafting
+---
+action: repair
+title: Repair
+help: >-
+  A broken weapon, armor or simple gadget is restored at the right station for 1 Scrap and half
+  its cap value, plus a Downtime Action, no roll. The value is the carried item's own price;
+  value= gives it for one that has none, or overrides it. Vehicles are repaired per Frame HP
+  (`vehicle-repair`); relics and named pre-war items have their own rules.
+params:
+  who: ref
+  item: {kind: text, help: "What's being repaired"}
+  value: {kind: int, optional: true, help: "Its cap value (the carried item's price, when left out)"}
+steps:
+  - let: {worth: "default(@value, default(@{who.inventory.$item.price}, -1))"}
+  - if: "@worth < 0"
+    then:
+      - stop: "What is $item worth? {@who.name} carries no $item with a price: value=<caps> (its Marketplace price)."
+  - let: {caps: "@worth // 2"}
+  - if: "default(@who.scrap, 0) < 1"
+    then:
+      - stop: "A repair takes 1 Scrap; {@who.name} has none."
+  - if: "@caps > default(@who.caps, 0)"
+    then:
+      - stop: "The repair costs {@caps} caps; {@who.name} has {default(@who.caps, 0)}."
+  - if: "@caps > 0"
+    then:
+      - set: who.caps
+        op: "-="
+        value: "@caps"
+  - do: scrap
+    with: {who: "@who", source: spend, amount: 1}
+  - message: "$item works again: 1 Scrap and {@caps} caps, and a Downtime Action."
+  - do: coins
+    with: {who: "@who"}
+    go_on: true
+source: players-guide/crafting#repairs

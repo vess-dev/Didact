@@ -1,0 +1,13 @@
+# A rule reads what a two-step roll carries.
+action: scavenge
+title: Scavenge
+steps:
+  - table: blade-cache
+    as: find
+  - "{@find}: {@find.id}, {@find.kind}, {@find.size}"
+  - table: ring-and-blade
+    as: pair
+  - "{@pair}: {@pair.id}, {@pair.kind}, {@pair.size}"
+  - table: relics
+    as: relic
+  - "{@relic}: {@relic.id}, {@relic.kind}, {@relic.found}"

@@ -1,0 +1,57 @@
+# Aurifex (backgrounds/aurifex): the background's two d6 tables.
+table: aurifex-1
+title: What went horribly wrong?
+dice: d6
+source: backgrounds/aurifex
+entries:
+  1:
+    text: "There was an explosion, and you lost your sense of smell. Well, almost: you can sniff out gold as a pig does truffles. Take a Tin of Snuff (6 uses) to dampen the impact. Use it every day or become deprived."
+    data:
+      gear: [{name: Tin of Snuff, uses: 6}]
+  2:
+    text: "You dematerialized a beloved pet. Now it follows you around, invisible but always present. Although it cannot interact with the physical realm, you are able to share its senses. (Add a Fatigue each time.) It follows basic commands."
+  3:
+    text: "You were exposed to a long-acting truth serum whose effects have yet to wear off. The disorder has its advantages: you cannot repeat lies you've heard, either."
+  4:
+    text: "You were adept at creating fake gold, which is almost as good. Eventually, your ruse was discovered, and you had to make a hasty retreat. Take a heavy Metal Ingot and Gold Powder (3 uses)."
+    data:
+      gear: [Metal Ingot, {name: Gold Powder, uses: 3}]
+  5:
+    text: "Your alchemical recipe worked, but a rival stole the blueprint before your claims could be proven. Take a prototype Blunderbuss (d12, blast, bulky) that takes one round to reload, and a taste for revenge."
+    data:
+      gear:
+        - {name: Blunderbuss, damage: d12, size: bulky, qualities: [blast], note: takes one round to reload}
+  6:
+    text: "Ridiculed for discovering how to turn gold into lead, you were a laughing stock. Take a bottle of Universal Solvent (2 uses) that dissolves anything it touches into its constituent parts."
+    data:
+      gear:
+        - {name: Universal Solvent, uses: 2, note: dissolves anything it touches into its constituent parts}
+---
+table: aurifex-2
+title: What alchemical marvel is the product of your latest ingenuity?
+dice: d6
+source: backgrounds/aurifex
+entries:
+  1:
+    text: "Pyrophoric Gel: A sticky green fluid that catches fire when exposed to air, then burns for 8 hours. Cannot be extinguished (1 use)."
+    data:
+      gear: [{name: Pyrophoric Gel, uses: 1}]
+  2:
+    text: "Blast Sphere: A head-sized iron ball filled with explosive powder that detonates on impact (d12, blast, bulky, 1 use)."
+    data:
+      gear: [{name: Blast Sphere, damage: d12, uses: 1, size: bulky, qualities: [blast]}]
+  3:
+    text: "Aqua Vita: Purifies any liquid, converting it to pure water. Drinking it cures 1d6 STR (1 use)."
+    data:
+      gear: [{name: Aqua Vita, uses: 1}]
+  4:
+    text: "Mimic Stone: Records a short phrase that can later be played back."
+    data:
+      gear: [Mimic Stone]
+  5:
+    text: "Spark Dust: Ignites easily and quickly. Useful for starting a fire or as an incendiary device (3 uses)."
+    data:
+      gear: [{name: Spark Dust, uses: 3}]
+  6:
+    text: "Homunculus: A miniature clay replica of yourself that follows your every command. It hates being enthralled to you and complains bitterly whenever possible. Any damage done to the homunculus is also done to you. 3 HP, 4 STR, 13 DEX, 5 WIL"
+    data: {companion: homunculus}

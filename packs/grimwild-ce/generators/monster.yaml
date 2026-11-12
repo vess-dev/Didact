@@ -1,0 +1,36 @@
+# A monster (Combat Kit, pp. 109-111; the monster block, p. 144): a tier and a role, then what
+# makes it vivid. The book has no monster tables: the dice give its tier, its pool, its role and
+# an idea from the GM crucible (p. 93), and the draft waits for a name. The block's palette,
+# traits, moves, wants and senses are the GM's (its role's traits and moves are a start).
+generator: monster
+title: A monster
+help: >-
+  A monster, step by step: its tier (mook, tough, elite or boss) and, for an elite or a boss,
+  its pool; its combat role; an idea from the GM crucible; and a name. Then its palette, traits,
+  moves, wants and what you see, hear and smell near it. Prefill by name: tier, pool, role,
+  idea, name.
+source: "p. 144"
+creates: monster
+steps:
+  - choose_or_roll: {table: combat-tiers, as: tier, prompt: "its threat level"}
+  - if: "@tier.id == 'elite'"
+    then:
+      - choose_or_roll: {from: [4, 6], as: pool, prompt: "an elite is a challenge of its own: its pool in dice (a treant 4d, a minotaur 6d)"}
+  - if: "@tier.id == 'boss'"
+    then:
+      - choose_or_roll: {from: [8, "8+4", "4+4+6+8"], as: pool, prompt: "a boss commands the scene, often as linked pools (a high devil 8d, a lich 8d+4d, a dragon 4d+4d+6d+8d)"}
+  - choose_or_roll: {table: combat-roles, as: role, prompt: "how it fights"}
+  - table: gm-crucible
+    as: idea
+  - name: {prompt: "what it is (tier {@tier.id}, role {@role.id}; the GM crucible offers {@idea})"}
+  - apply: {tier: "@tier.id", role: "@role.id"}
+  - if: "@tier.id == 'elite' or @tier.id == 'boss'"
+    then:
+      - apply: {pools: [{name: "{@name}", dice: "@pool"}]}
+  - if: "@tier.id == 'mook' or @tier.id == 'tough'"
+    then:
+      - prompt: "One action roll takes out a tough, or several mooks at once; a group of them is a pool (4d goblins, 8d zombies)."
+  - prompt: "Its palette: three colors of it and its surroundings (`didact set <monster> palette+='…'`)."
+  - prompt: "Its traits (✱, what's true about it: hard scales, flying, a flaming body) and moves (◉, what it does, in a fight and out of one). Its role ({@role.id}) has ✱ {@role.traits} and ◉ {@role.moves} to start from."
+  - prompt: "What it wants and doesn't want, and what you see, hear and smell near it (sights, sounds, smells)."
+  - prompt: "{@role.trigger} Roll its response when that happens: `didact table roll {@role.table}`."

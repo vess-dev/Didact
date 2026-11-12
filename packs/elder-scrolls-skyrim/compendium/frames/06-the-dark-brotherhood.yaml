@@ -1,0 +1,486 @@
+# The Dark Brotherhood (campaigns/06-the-dark-brotherhood): written by es_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Elder Scrolls 2e's numbers, and Grimscrolls'
+# card where its Bestiary or its Faces has the threat) and clocks.
+id: the-dark-brotherhood
+type: quest
+name: The Dark Brotherhood
+tags: [the-dark-brotherhood, frame, main-campaign]
+goal: "The party draws the eye of the Dark Brotherhood, Tamriel's most feared guild of assassins — worshippers
+  of the Dread Father Sithis, bound by old tenets, and all but extinct in this Fourth Era. Abducted and
+  \"recruited\" by the cell's leader Astrid, the party is initiated with a killing, taken into the Falkreath
+  Sanctuary, and set to work on contracts. Then the silent corpse of the Night Mother speaks — and names
+  one of them Listener, the voice through whom Sithis's will is heard. That elevation drags the family
+  into the grandest contract in their history: the murder of Emperor Titus Mede II himself. But the family
+  is rotten from within. A betrayer burns the Sanctuary to the ground, and the survivors must finish the
+  Emperor aboard his warship the Katariah and rebuild from the ashes — or never finish at all."
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  *A child prays the Black Sacrament in a candlelit room, and somewhere a knife answers. You answered. Now there is a sack over your head, a stranger's voice in the dark, and three bound captives kneeling on a dirty floor — and the only way out of this room is to decide, right now, what kind of killer you are.*
+
+  ## GM notes
+
+  **Date.** Sundas, 17 Last Seed 4E 201: 4E 201, the book's moment; no day of its own: whenever the Black Sacrament reaches the party. It is the calendar's start: a new campaign opens on it.
+
+  **The frame's text:** `didact rules lookup the dark brotherhood pitch` (and `stakes`, `tone touchstones`, `arrival`, `the branch`, `plot beats`, `the place`, `cast`, `clocks`, `threats`, `rewards`, `climax`, `the destroyer's path`).
+
+  **Stakes.** A family, an Emperor, and the party's souls. On the join-path, the Brotherhood either rises from its own ashes with the party as its Listener, or dies in the fire its own leader lit; the Empire loses its Emperor, and Skyrim's war tilts on the murder. On the other path, the party ends the Dark Brotherhood in Skyrim for good. The branch is the whole point. At the second beat, in the abandoned shack, the party chooses: kill one of the captives and join, or kill Astrid and walk out to destroy the Brotherhood for the Empire. The first choice is this entire campaign. The second is a short, cold demolition that ends everything below. Make the weight of that single knife land.
+
+  **Arrival.** - **The Sacrament.** The party passes through Windhelm and hears of the orphan boy who has been praying for the Brotherhood behind a locked door (Beat 1).
+  - **A background tie.** A PC with the Dark Brotherhood Assassin background is already family: they start at **Dark Brotherhood +1**, and it is *they* whom Astrid sends to bring the rest of the party to the shack.
+  - **A stolen kill.** The party kills someone — a bandit, a thug, a cruel master — whose death the Brotherhood had already been paid for. Astrid comes to collect.
+
+  **Plot beats.**
+
+  1. **The Black Sacrament.** In Windhelm, a grieving orphan boy, **Aventus Aretino**, has performed the forbidden rite — surrounded by candles, a flayed effigy, a dagger, and human remains — praying for the Brotherhood to come. He begs the party to kill the cruel orphanage matron **Grelod the Kind** in Riften. Whether they do it or not, the prayer has already been heard. (A grounded, low-stakes opener that establishes the ritual and the world's cruelty.)
+  2. **Abducted by Astrid.** The next time the party sleeps, they wake hooded in a derelict shack. **Astrid** is waiting. She tells them they've *stolen a kill* the Brotherhood was owed (Grelod's — or, if they let the matron live, some other death that drew her eye), and a life must be paid for a life. Three captives kneel bound and hooded before them. **THE BRANCH:** kill one to settle the debt and earn passage through the Black Door — or kill Astrid and take the other road. The Black Door's riddle is answered with *"Silence, my brother,"* and it swings open to the Sanctuary.
+  3. **The Falkreath Sanctuary.** The party descends into the cliffside warren in the pine forest and meets the family: **Nazir** the Redguard contract-broker, the child-shaped vampire **Babette**, the dark conjurer **Gabriella**, the venomous old mage **Festus Krex**, and Astrid's werewolf husband **Arnbjorn**. Each PC is issued a suit of the black-and-red **Shrouded Armor** from the Sanctuary's wardrobe and given their first work. The family also includes the quiet Argonian Shadowscale **Veezara**. The Sanctuary should feel like *home* — that is the trap.
+  4. **Contracts.** A run of small, varied jobs from Nazir teaches the toolkit of murder: poison, stealth, the staged accident, the open knife. Use these to explore the Holds and let the party develop a *style.* Somewhere in here the unhinged Keeper **Cicero** arrives, hauling a long black coffin and muttering to its occupant — the family is unsettled, Astrid most of all.
+  5. **The Night Mother Speaks.** Astrid, suspicious of Cicero, asks the party to hide inside the Night Mother's coffin and eavesdrop. Instead the corpse *speaks* — to the listener within. *"Darkness rises when silence dies."* She names the eavesdropper **Listener**, the long-empty office, and bids them seek a nobleman, **Amaund Motierre**, at the ruin of **Volunruud**. Astrid is shaken: power in the Sanctuary has just shifted out of her hands.
+  6. **The Grand Conspiracy.** At Volunruud, Amaund lays out the contract that will define the family: assassinate **Emperor Titus Mede II**, who is sailing to Skyrim. He hands over a sealed letter and a jeweled token (a noble's down-payment, appraised through a Thieves Guild fence). The plot is built one kill at a time — a wedding (the Emperor's cousin), the killing of **Commander Maro**'s son, framed as a traitor to break the commander of the **Penitus Oculatus**, and the murder of the famous chef the Gourmet to steal his identity and his writ of passage to the Emperor's table.
+  7. **Cicero's Madness.** Mid-conspiracy, Cicero snaps — he attacks Astrid and flees to the long-shut **Dawnstar Sanctuary**, dragging the family's loyalties apart. Astrid lends the party her undying black mare, **Shadowmere**, to run him down. In Dawnstar they find the wounded Arnbjorn and a cornered Keeper. **Spare or kill Cicero** — the choice colors how the family fractures, and a Listener who heeds the Night Mother stays the blade.
+  8. **The Betrayal.** The party returns from the false poisoning at Solitude to find the Falkreath Sanctuary aflame, the Black Door broken, and the **Penitus Oculatus** inside putting the family to the sword. Festus, Gabriella, Veezara, Arnbjorn die in the smoke. The party drags out the survivors and learns the unthinkable: **Astrid** sold them all to Commander Maro to save her own family — and it bought the family's destruction. They find her, dying and burned, on the altar of the wreck. She confesses, hands over the **Blade of Woe**, and begs for the mercy of a clean death. *"Hail Sithis."*
+  9. **The Katariah.** The poisoning was a decoy; the true Emperor is alive aboard his warship, the **Katariah**, anchored off Solitude. (The party may first settle accounts with **Commander Maro** at the docks.) They board her — over the side, through the hold, up through the guards — and reach Titus Mede II. He does not fight. He has known they were coming, and asks only that they consider who *bought* his death and whether that schemer should outlive him. The party makes the kill, escapes, and may close the loop on Amaund Motierre, who waits at the Bannered Mare in Whiterun, before collecting the sealed urn of 20,000 Septims from the Volunruud dead-drop.
+  10. **The Listener Rebuilds.** What is left of the family — Nazir, Babette, the Night Mother's coffin, perhaps a spared Cicero — gathers in the **Dawnstar Sanctuary**, its old Black Door reopened. The party, now **Listener**, holds the only working chapter of the Dark Brotherhood in Tamriel, a base of their own, and the prayers of the desperate humming in from across the province. The campaign ends not with a death but with a beginning: the family they chose to save, and the long red work ahead.
+
+  **Climax.**
+
+  The Emperor is alone in his cabin and the way out is the way you came, through the cold and the guards. Three shapes the ending can take:
+
+  - **The Listener.** Make the kill, brave the freezing water again, and slip away. Settle accounts with Amaund Motierre in Whiterun (his own death cleans the ledger) and claim the urn of Septims at the Volunruud dead-drop. Return to Dawnstar, gather the family that survived, and reopen the Black Door. The Brotherhood lives because the party rebuilt it.
+  - **The Hollow Crown.** Kill the Emperor but let Maro and Motierre live, or fail to gather the survivors. The contract is fulfilled and the purse is paid, but the family is a handful of ghosts and the party is a Listener with no one left to lead. A bleak, *earned* ending — the Warden describes the empty hearth.
+  - **The Empty Coffin.** If the party spared the Emperor at his asking, or could not bring themselves to the kill at all, the conspiracy collapses, the Penitus Oculatus closes in, and the last Sanctuary dies with its work undone. The Night Mother goes silent. Sithis is not mocked twice.
+
+  **Also in the frame:** The Branch (read this first); The Destroyer's Path (the alternate branch) (`didact rules lookup the dark brotherhood …`).
+
+  **The frame's records.** `didact gen run elder-scrolls-skyrim.frame --prefill '{"frame": "The Dark Brotherhood"}' --auto` drafts the region, 5 places, 9 people, 1 threats, its factions and its clocks, for the world's system; `gen commit` writes them.
+
+  **Not trackers.** The Listener's Standing: ambient, after Beat 5: each clean, signature kill that becomes a rumor nudges the party's Infamy (Elder Scrolls 2e: `didact do renown party=<it> step=down deed='…'`; Grimscrolls: fame, Chapter 9) and its standing as Listener.
+
+  **Bestiary** (Elder Scrolls 2e / Grimscrolls): Draugr → `draugr` / `draugr`; Skeleton → `skeleton` / `skeleton`; Bandit → `bandit` / `bandits`; Vampire → `vampire` / `vampire-clan`.
+
+  **Rewards in each system's catalog:** Blade of Woe (elder-scrolls-2e.blade-of-woe · grimscrolls.blade-of-woe); Shrouded Armor (elder-scrolls-2e.shrouded-armor · grimscrolls.shrouded-armor); Ancient Shrouded Armor (elder-scrolls-2e.ancient-shrouded-armor); Shadowmere (elder-scrolls-2e.shadowmere); Windshear (elder-scrolls-2e.windshear · grimscrolls.windshear).
+source: campaigns/06-the-dark-brotherhood#pitch
+---
+id: the-dark-brotherhood-region
+type: loc
+name: The Dark Brotherhood pointcrawl
+tags: [the-dark-brotherhood, region]
+mechanics:
+  elder-scrolls-2e: {kind: region}
+body: |-
+  ## GM notes
+
+  Five locations anchor the arc; the contracts in Beat 4 may range across any Hold.
+source: campaigns/06-the-dark-brotherhood#the-place
+---
+id: the-dark-brotherhood-the-abandoned-shack
+type: loc
+name: The Abandoned Shack
+tags: [the-dark-brotherhood, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  (*Hjaalmarch coast*) a single rotting room, one shuttered window, three kneeling captives, and a closed door behind Astrid. The whole branch happens here. Claustrophobic; the party should feel they cannot leave without a choice.
+source: campaigns/06-the-dark-brotherhood#the-place
+---
+id: the-dark-brotherhood-the-katariah
+type: loc
+name: The Katariah
+tags: [the-dark-brotherhood, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  (*anchored off Solitude*) the Emperor's great warship, boarded from the freezing water. Decks of Penitus Oculatus guards, a flooded hold, narrow companionways, and at the top a quiet cabin and an old man who will not run. The hidden scimitar **Windshear** is aboard.
+source: campaigns/06-the-dark-brotherhood#the-place
+---
+id: the-dark-brotherhood-astrid
+type: monster
+name: Astrid
+aliases: [Astrid (Sanctuary Leader)]
+knowledge: secret
+tags: [the-dark-brotherhood, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Dark Brotherhood'
+    hp: 10
+    armor: 1
+    STR: 13
+    DEX: 15
+    WIL: 14
+    attacks:
+    - {name: Blade of Woe, damage: d6, note: see Unique Weapons}
+    - name: poisoned dagger
+      damage: d6
+      note: the first creature it wounds each fight must pass a STR save or take 1d6 STR
+    abilities:
+    - 'Vanish: once per scene, Astrid may drop into shadow and disappear, ending any attack against her
+      this round; she reappears where she likes at the start of the next.'
+    - In Beat 8 she has no fight left in the burning wreck — she is already dying, and asks only for
+      a clean ending and the chance to pass on the Blade of Woe.
+fields: {role: Sanctuary Leader}
+body: |-
+  ## GM notes
+
+  *Sanctuary Leader*
+
+  The fierce, pragmatic Nord who leads the last Sanctuary and loves her family more than the tenets that bind it — which is exactly why she betrays it. Charismatic, controlling, doomed.
+
+  Elder Scrolls 2e: 10 HP, 1 Armor, 13 STR, 15 DEX, 14 WIL, Blade of Woe (d6; see Unique Weapons), or a poisoned dagger (d6; the first creature it wounds each fight must pass a STR save or take 1d6 STR).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/06-the-dark-brotherhood#astrid-sanctuary-leader
+---
+id: the-dark-brotherhood-the-night-mother
+type: npc
+name: The Night Mother
+aliases: [The Night Mother & the Listener]
+knowledge: secret
+tags: [the-dark-brotherhood, cast]
+fields:
+  role: "The Night Mother's Voice: once a PC is named Listener (Beat 5), that PC may, once per session,
+    commune with the Night Mother's corpse to receive a true answer to a single question about a contract,
+    a target, or a threat to the family — the Warden answers honestly, in her voice"
+body: |-
+  ## GM notes
+
+  *(not a combatant — a presence)*
+
+  The mummified bride of **Sithis**, carried in Cicero's coffin. She does not move or fight. To her chosen **Listener** alone she speaks, naming contracts drawn from the Black Sacrament prayers of the desperate.
+
+  - **The Night Mother's Voice:** once a PC is named Listener (Beat 5), that PC may, once per session, commune with the Night Mother's corpse to receive a true answer to a single question about a contract, a target, or a threat to the family — the Warden answers honestly, in her voice.
+  - Harming the coffin or speaking the wrong word at a Black Door makes the Void recoil: the offender must pass a WIL save or add a Fatigue and take 1d6 WIL.
+source: campaigns/06-the-dark-brotherhood#the-night-mother--the-listener
+---
+id: the-dark-brotherhood-cicero
+type: monster
+name: Cicero
+aliases: [Cicero (the Keeper)]
+knowledge: secret
+tags: [the-dark-brotherhood, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Dark Brotherhood'
+    hp: 8
+    armor: 1
+    STR: 12
+    DEX: 16
+    WIL: 13
+    attacks:
+    - {name: dual daggers, damage: '{d6, d6}kh1'}
+    abilities:
+    - 'Whirling Frenzy: when reduced to half HP or less, his attacks are Enhanced for the rest of the
+      combat as he laughs and lunges.'
+    - 'Spared: if spared in Beat 7, he later limps back to serve a true Listener faithfully — a strange,
+      capering ally in the rebuilt family.'
+  grimscrolls:
+    tier: elite
+    role: skirmisher
+    fact: Keeper of the Night Mother's coffin, who has taken on the manner of the jester he last 
+      killed, laugh and all. Deadly with a dagger, loyal to the corpse in the box, and first met 
+      beside a broken wagon wheel. (4E 201)
+fields: {role: the Keeper}
+body: |-
+  ## GM notes
+
+  *the Keeper*
+
+  The jester-clad Imperial Keeper of the Night Mother's body, devoted past the edge of sanity — by turns giggling, weeping, and lethal. A wildcard whose loyalty is to the corpse, not the cell.
+
+  Elder Scrolls 2e: 8 HP, 1 Armor, 12 STR, 16 DEX, 13 WIL, dual daggers (d6+d6).
+
+  Grimscrolls: its Face is `grimscrolls.cicero` (Cicero), in this record's grimscrolls block.
+source: campaigns/06-the-dark-brotherhood#cicero-the-keeper
+---
+id: the-dark-brotherhood-nazir
+type: monster
+name: Nazir
+knowledge: secret
+tags: [the-dark-brotherhood, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Dark Brotherhood'
+    hp: 9
+    armor: 1
+    STR: 14
+    DEX: 13
+    WIL: 12
+    attacks:
+    - {name: scimitar, damage: d8}
+    - name: throwing knives
+      damage: d4
+      qualities: [ranged]
+    abilities: ["Steady Hand: once per combat, re-roll one of Nazir's failed saves."]
+body: |-
+  ## GM notes
+
+  The dry, unflappable Redguard who hands out the family's contracts and counts its coin. A survivor and a master of light-armored killing; one of the few left standing at the end.
+
+  Elder Scrolls 2e: 9 HP, 1 Armor, 14 STR, 13 DEX, 12 WIL, scimitar (d8), throwing knives (d4, ranged).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/06-the-dark-brotherhood#nazir
+---
+id: the-dark-brotherhood-babette
+type: monster
+name: Babette
+knowledge: secret
+tags: [the-dark-brotherhood, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Dark Brotherhood'
+    hp: 6
+    STR: 14
+    DEX: 16
+    WIL: 15
+    attacks:
+    - {name: vampiric bite, damage: d8}
+    - name: thrown poison-vial
+      damage: d6
+      qualities: [blast]
+    abilities:
+    - "Poisoner: her bite and her vials carry a lingering venom: the first time they wound a creature
+      in a fight, it must pass a STR save or take 1d6 STR, and the venom keeps working for up to three
+      rounds more (see Hazards). She brews the Brotherhood's poisons, and sells the party any of the Crafting
+      chapter's poisons at cost."
+    enhanced_by: [fire]
+    venom: 1d6, lingering
+body: |-
+  ## GM notes
+
+  A vampire (immune to poison and disease; fire against her is Enhanced; sunlight leaves her Deprived): three hundred years old, wearing the body of a small girl — the Sanctuary's master alchemist, gentle in manner and utterly without mercy. Disarming and ancient.
+
+  Elder Scrolls 2e: 6 HP, 14 STR, 16 DEX, 15 WIL, vampiric bite (d8), thrown poison-vial (d6, blast).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/06-the-dark-brotherhood#babette
+---
+id: the-dark-brotherhood-gabriella
+type: monster
+name: Gabriella
+knowledge: secret
+tags: [the-dark-brotherhood, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Dark Brotherhood'
+    hp: 7
+    armor: 1
+    STR: 12
+    DEX: 13
+    WIL: 16
+    attacks:
+    - {name: conjured blade, damage: d6}
+    abilities:
+    - 'Summoner: her conjured familiar fights at her side; while it stands, attacks against Gabriella
+      are Impaired as it interposes.'
+body: |-
+  ## GM notes
+
+  A cool, courtly Dunmer conjurer and a steady hand on the conspiracy's planning. Dies in the fire of Beat 8.
+
+  Elder Scrolls 2e: 7 HP, 1 Armor, 12 STR, 13 DEX, 16 WIL, conjured blade (d6), Conjure Familiar (a wolf-spirit, 4 HP, bite d6 — once per combat).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/06-the-dark-brotherhood#gabriella
+---
+id: the-dark-brotherhood-festus-krex
+type: monster
+name: Festus Krex
+knowledge: secret
+tags: [the-dark-brotherhood, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Dark Brotherhood'
+    hp: 7
+    STR: 12
+    DEX: 11
+    WIL: 17
+    attacks:
+    - name: 'Spell Tome: Firebolt'
+      damage: d8
+      qualities: [ranged]
+    - {name: staff, damage: d6}
+    abilities:
+    - 'Spellfire: as a Spell Tome wielder, his Firebolt may be loosed as a blast once per combat against
+      clustered foes (he adds a Fatigue as normal).'
+body: |-
+  ## GM notes
+
+  A spiteful, brilliant old mage with no patience and a long memory — the family's destruction-magic specialist and architect of the Gourmet ruse. Dies outside the burning Sanctuary in Beat 8.
+
+  Elder Scrolls 2e: 7 HP, 12 STR, 11 DEX, 17 WIL, Spell Tome: Firebolt (d8, ranged), staff (d6).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/06-the-dark-brotherhood#festus-krex
+---
+id: the-dark-brotherhood-emperor-titus-mede-ii
+type: monster
+name: Emperor Titus Mede II
+aliases: [Emperor Titus Mede II (the Target)]
+knowledge: secret
+tags: [the-dark-brotherhood, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Dark Brotherhood'
+    hp: 8
+    armor: 1
+    STR: 11
+    DEX: 12
+    WIL: 15
+    attacks:
+    - name: ceremonial sword
+      damage: d8
+      note: drawn only in self-defense, which he declines
+    abilities:
+    - 'The Last Request: the Emperor will not fight. The "combat" here is moral, not martial — the killing
+      is automatic if the party chooses it. His one ask is that they consider turning the blade on the
+      schemer Amaund Motierre instead of, or as well as, himself.'
+fields: {role: the Target}
+body: |-
+  ## GM notes
+
+  *the Target*
+
+  The aging, clear-eyed ruler of the Empire, alone in his cabin aboard the Katariah. He does not resist. He has expected the knife, and spends his last words asking the assassin to weigh who paid for his death.
+
+  Elder Scrolls 2e: 8 HP, 1 Armor, 11 STR, 12 DEX, 15 WIL, ceremonial sword (d8 — drawn only in self-defense, which he declines).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/06-the-dark-brotherhood#emperor-titus-mede-ii-the-target
+---
+id: the-dark-brotherhood-commander-maro
+type: monster
+name: Commander Maro
+aliases: [Commander Maro (Penitus Oculatus — the Betrayer's Tool)]
+knowledge: secret
+tags: [the-dark-brotherhood, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Dark Brotherhood'
+    hp: 12
+    armor: 2
+    STR: 15
+    DEX: 14
+    WIL: 13
+    attacks:
+    - {name: Imperial sword, damage: d8}
+    - {name: crossbow, damage: d8}
+    abilities:
+    - "Bodyguard's Vigil: Maro never starts a combat unaware; attacks \"from stealth\" against him are
+      resolved normally, not Enhanced."
+    - On taking Critical Damage, he goes down cursing the day he trusted an assassin's word, and his
+      last shout brings every Oculatus agent within earshot.
+  grimscrolls:
+    category: Orders & Armies
+    tier: mook
+    role: tactician
+    sights: red cloth and steel in step
+    sounds: a centurion's cadence
+    smells: oiled leather
+    traits: [fight by the manual, an order outranks a grudge]
+    moves: [Lock Shields and Push, Arrest in the Emperor's Name]
+    wants: the road open and the province quiet — lawful papers make them stand down
+    note: A patrol is a 4d pool under a tough **Tribune**; while a **Legate** stands, it can't drop 
+      below 1d. Its **battlemage** makes open ground +1t. They accept surrender and take prisoners 
+      to trial; the Fourth Era's **Penitus Oculatus**, tough lurkers, do neither.
+fields: {role: Penitus Oculatus — the Betrayer's Tool}
+body: |-
+  ## GM notes
+
+  *Penitus Oculatus — the Betrayer's Tool*
+
+  The grim commander of the Emperor's bodyguard-spies in Skyrim, hunting the Brotherhood to extinction. He cuts the deal with Astrid that burns the Sanctuary — and the party may hunt him down at the Solitude docks before boarding the Katariah. (On the Destroyer's Path he is instead the party's paymaster.)
+
+  Elder Scrolls 2e: 12 HP, 2 Armor, 15 STR, 14 DEX, 13 WIL, Imperial sword (d8), crossbow (d8).
+
+  Grimscrolls: its card is `grimscrolls.imperial-legion-patrol` (Imperial Legion Patrol), in this record's grimscrolls block.
+source: campaigns/06-the-dark-brotherhood#commander-maro-penitus-oculatus--the-betrayers-tool
+---
+id: the-dark-brotherhood-penitus-oculatus-agent
+type: monster
+name: Penitus Oculatus Agent
+aliases: [Penitus Oculatus Agent (use freely)]
+knowledge: secret
+tags: [the-dark-brotherhood, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Dark Brotherhood'
+    hp: 5
+    armor: 2
+    STR: 13
+    DEX: 13
+    WIL: 11
+    attacks:
+    - {name: sword, damage: d8}
+    - {name: crossbow, damage: d8}
+  grimscrolls:
+    category: Orders & Armies
+    tier: mook
+    role: tactician
+    sights: red cloth and steel in step
+    sounds: a centurion's cadence
+    smells: oiled leather
+    traits: [fight by the manual, an order outranks a grudge]
+    moves: [Lock Shields and Push, Arrest in the Emperor's Name]
+    wants: the road open and the province quiet — lawful papers make them stand down
+    note: A patrol is a 4d pool under a tough **Tribune**; while a **Legate** stands, it can't drop 
+      below 1d. Its **battlemage** makes open ground +1t. They accept surrender and take prisoners 
+      to trial; the Fourth Era's **Penitus Oculatus**, tough lurkers, do neither.
+body: |-
+  ## GM notes
+
+  *use freely*
+
+  Disciplined Imperial agent-soldiers in dark leather. They sack the Sanctuary in Beat 8 and crew the Katariah. Groups of four or more are a detachment.
+
+  Elder Scrolls 2e: 5 HP, 2 Armor, 13 STR, 13 DEX, 11 WIL, sword (d8) or crossbow (d8).
+
+  Grimscrolls: its card is `grimscrolls.imperial-legion-patrol` (Imperial Legion Patrol), in this record's grimscrolls block.
+source: campaigns/06-the-dark-brotherhood#penitus-oculatus-agent-use-freely
+---
+id: the-dark-brotherhood-the-tenets
+type: track
+name: The Tenets
+knowledge: secret
+tags: [the-dark-brotherhood, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: "(d6) The Five Tenets forbid betraying the Brotherhood, disobeying the Night Mother, and the like.
+  Tick when the party flagrantly breaks faith — refusing a named contract, harming the coffin, turning
+  on family. At 6, the Wrath of Sithis falls: an unseen spectral assassin hunts the offender (use Astrid's
+  block, hostile) until the debt is paid in blood. (Reset on a sincere act of atonement at the Night Mother's
+  coffin.)"
+source: campaigns/06-the-dark-brotherhood#clocks
+---
+id: the-dark-brotherhood-suspicion
+type: track
+name: Suspicion
+knowledge: secret
+tags: [the-dark-brotherhood, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4, Beats 4–7) Ticks each time a contract is botched loudly, a witness lives, or a Hold's 
+  guards connect a death to the party. At 4, Commander Maro finds his opening — bring the betrayal 
+  of Beat 8 forward and make the fire harder.
+source: campaigns/06-the-dark-brotherhood#clocks
+---
+id: the-dark-brotherhood-the-listeners-standing
+type: track
+name: The Listener's Standing
+knowledge: secret
+tags: [the-dark-brotherhood, clock]
+kind: counter
+min: 0
+value: 0
+note: "(ambient, after Beat 5) Each clean, signature kill that becomes a rumor nudges the party's Infamy
+  and, in the right circles, their standing as Listener — the desperate begin to whisper the Black Sacrament
+  in their direction. (Killing the clearly monstrous never lowers Renown; murdering the innocent for coin
+  is exactly the sort of deed that earns the Infamous rung.) [ambient, after Beat 5: each clean, signature
+  kill that becomes a rumor nudges the party's Infamy (Elder Scrolls 2e: `didact do renown party=<it>
+  step=down deed='…'`; Grimscrolls: fame, Chapter 9) and its standing as Listener]"
+source: campaigns/06-the-dark-brotherhood#clocks

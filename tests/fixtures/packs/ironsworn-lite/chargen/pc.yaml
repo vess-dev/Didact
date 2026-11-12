@@ -1,0 +1,8 @@
+chargen: pc
+title: Ironsworn character (stat array)
+creates: pc
+modes: [random, guided]
+steps:
+  - assign: {fields: [edge, heart, iron, shadow, wits], values: [3, 2, 2, 1, 1], as: stats}
+  - name: {from: [Ashe, Brand, Cora, Dunn, Eir, Finnoc]}
+  - prompt: Swear your background vow. What drives you?

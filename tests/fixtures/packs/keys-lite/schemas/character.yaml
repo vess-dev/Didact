@@ -1,0 +1,6 @@
+type: pc
+label: Player character
+fields:
+  level: {kind: int, min: 1, default: 1}
+  oath: {kind: ref, to: note}
+  blood: {kind: ref, to: track}

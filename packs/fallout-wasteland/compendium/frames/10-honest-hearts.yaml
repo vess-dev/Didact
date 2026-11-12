@@ -1,0 +1,306 @@
+# Honest Hearts (campaigns/10-honest-hearts): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: honest-hearts
+type: quest
+name: Honest Hearts
+tags: [honest-hearts, frame, side-arc]
+goal: The Happy Trails Caravan hires the party to escort a shipment to the New Canaan mission. New 
+  Canaan is already burning by the time they arrive — destroyed by the White Legs, a raider tribe 
+  courting Caesar's favor, under Salt-Upon-Wounds, their war chief. Only Daniel, a New Canaanite 
+  missionary, and Joshua Graham — the Burned Man, former Legion Legate, wrapped in bandages and 
+  righteous fury — made it to Zion. They are fighting different wars in the same canyon.
+date: Wednesday, 19 October 2281
+body: |-
+  *A caravan job into Zion Canyon turns into a four-way tribal war with a missionary on one side and a Legion butcher on the other. The land is the most beautiful thing the party has ever seen. Someone is going to burn it down.*
+
+  ## GM notes
+
+  **Date.** Wednesday, 19 October 2281: a New Vegas side arc; New Canaan burned in 2281 (Vault 70). Open a campaign on it with `didact campaign new <id> --date 'Wednesday, 19 October 2281'`, or move one there with `didact time set 'Wednesday, 19 October 2281'` before its first session.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup Honest Hearts tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** The caravan boss is murdered in an ambush on the way. The party survives. Daniel finds them at the old ranger station and asks for help. Graham is already in the caves.
+
+  **Plot beats.**
+
+  1. The Ambush. The Happy Trails caravan is hit on the approach to Zion. The boss dies. The party survives because a White Leg scout chose to leave them for the canyon. The scout was wrong.
+  2. Daniel at the Ranger Station. Daniel finds the party at a pre-war survivalist's bolt-hole. He is gentle, exhausted, and clear: the Sorrows must leave Zion before Salt-Upon-Wounds's war party reaches them. He needs guides who can talk to the tribes without frightening them.
+  3. Joshua Graham in the Cave. Graham introduces himself plainly and without apology. He has a different plan: arm the Sorrows, train the Dead Horses, meet the White Legs at the Three Marys. The party must now pick a side — or stall between them for a few sessions, which is fine, because the White Legs are getting closer either way.
+  4. Visiting the Tribes. Dead Horse Camp and Sorrows Camp. Follows-Chalk wants to see the Mojave (will leave with the party at campaign's end). Waking Cloud wants to understand the pre-war world she keeps hearing about in Daniel's stories. Each camp has a simple job the party can do to earn loyalty: hunt a yao guai, track a cazador nest, carry a message.
+  5. The Survivalist's Journal. A pre-war U.S. survivalist held out alone in Zion for decades after the war. His rifle, his caches, and his journal are scattered around the canyon. The journal reads like scripture to the Sorrows. Finding it is not the mission — but what the party does with it shapes what Zion remembers about them.
+  6. Scouting the White Legs. The White Legs Staging Ground is a mountain pass. Scouts range from there in pairs. A clean reconnaissance gives Graham what he needs to plan the ambush; a loud one tips Salt-Upon-Wounds and accelerates his attack.
+  7. The Three Marys. The climax. The canyon kill-box where the party's chosen plan — Graham's ambush or Daniel's evacuation route — plays out. Both work. Both cost. See Climax below.
+  8. After Zion. Honest Hearts does not end with a victory — it ends with a departure. Daniel weeps, Graham prays, the tribes scatter or gather. Zion goes back to being Zion. The party leaves with Follows-Chalk or without him. Someone at the ranger station watches them go.
+
+  **Climax.**
+
+  The decision is not *whether* the party fights the White Legs. It is *what survives after*.
+
+  - **Graham's War.** The party helps Graham massacre the White Legs at the Three Marys. Salt-Upon-Wounds is executed. The Sorrows are armed and changed forever. The canyon is safe, and ruined.
+  - **Daniel's Exodus.** The party helps evacuate the Sorrows east to the Grand Staircase. The White Legs take the canyon. The Sorrows survive intact. Zion is lost but remembered.
+  - **The Third Path.** Kill Salt-Upon-Wounds *alone*, surgical, then lead the White Legs away without a general battle. The hardest. The Sorrows keep both the canyon and their innocence. Graham accepts it coldly. Daniel weeps with relief.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "Honest Hearts"}' --auto` drafts the region, 7 places, 3 people, 2 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Bestiary** (Fallout 2e / Grimfall): White Legs Tribesman → `white-legs-tribesman` / `tribal-war-band`; Dead Horse Tribesman → `dead-horse-tribesman` / `tribal-war-band`; Giant Cazador → `giant-cazador` / `cazador`; Green Gecko → `green-gecko` / `gecko-pack`; Yao Guai → `yao-guai` / `yao-guai`; White Leg Storyteller → `white-leg-storyteller` / `tribal-war-band`.
+
+  **Rewards in each system's catalog:** .45 Auto Pistol (fallout-2e.45-auto-pistol); A Light Shining in Darkness (fallout-2e.a-light-shining-in-darkness · grimfall.a-light-shining-in-darkness); Survivalist's Rifle (fallout-2e.survivalists-rifle · grimfall.survivalists-rifle); She's Embrace (fallout-2e.shes-embrace · grimfall.shes-embrace); Dead Horse War Paint (grimfall.tribal-war-paint); Joshua Graham's Armor (fallout-2e.joshua-grahams-armor · grimfall.joshua-grahams-armor); Dead Horse Tribal Armor (fallout-2e.dead-horse-tribal-armor · grimfall.dead-horse-tribal-armor); Salt-Upon-Wounds' Power Fist (fallout-2e.salt-upon-wounds-power-fist · grimfall.salt-upon-wounds-power-fist).
+source: campaigns/10-honest-hearts#pitch
+---
+id: honest-hearts-region
+type: loc
+name: Zion Canyon
+tags: [honest-hearts, region]
+mechanics:
+  fallout-2e: {kind: region}
+  grimfall: {kind: region}
+body: |-
+  ## GM notes
+
+  Open wilderness. The party moves between camps. Each camp is a pointcrawl node.
+source: campaigns/10-honest-hearts#the-place--zion-canyon
+---
+id: honest-hearts-angel-cave
+type: loc
+name: Angel Cave
+tags: [honest-hearts, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Graham's base — a deep cave in the cliffs. The Dead Horses camp outside.
+source: campaigns/10-honest-hearts#the-place--zion-canyon
+---
+id: honest-hearts-dead-horse-camp
+type: loc
+name: Dead Horse Camp
+tags: [honest-hearts, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Friendly tribals. Reaction roll Curious or better. Trade with them for jerky and healing poultice (petty, heals 1 HP).
+source: campaigns/10-honest-hearts#the-place--zion-canyon
+---
+id: honest-hearts-sorrows-camp
+type: loc
+name: Sorrows Camp
+tags: [honest-hearts, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The peaceful Sorrows tribe, hidden in the Narrows. Graham wants them armed. Daniel wants them evacuated.
+source: campaigns/10-honest-hearts#the-place--zion-canyon
+---
+id: honest-hearts-white-legs-staging-ground
+type: loc
+name: White Legs Staging Ground
+tags: [honest-hearts, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Mountain pass. Their boss posts up here with scouts.
+source: campaigns/10-honest-hearts#the-place--zion-canyon
+---
+id: honest-hearts-zions-overlook
+type: loc
+name: Zion's Overlook
+tags: [honest-hearts, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A view that makes people quiet. No combat allowed here.
+source: campaigns/10-honest-hearts#the-place--zion-canyon
+---
+id: honest-hearts-the-three-marys
+type: loc
+name: The Three Marys
+tags: [honest-hearts, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A canyon kill-box on the river below the White Legs' main camp. Either side's final ambush plays out here.
+source: campaigns/10-honest-hearts#the-place--zion-canyon
+---
+id: honest-hearts-a-pre-war-ranger-station
+type: loc
+name: A Pre-war Ranger Station
+tags: [honest-hearts, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A pre-war survivalist's bolt-hole. Cache of .45 pistols, survival gear, and a private journal that reads like scripture to the Sorrows.
+source: campaigns/10-honest-hearts#the-place--zion-canyon
+---
+id: honest-hearts-salt-upon-wounds
+type: monster
+name: Salt-Upon-Wounds
+knowledge: secret
+tags: [honest-hearts, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Honest Hearts'
+    hp: 12
+    armor: 2
+    STR: 15
+    DEX: 14
+    WIL: 13
+    attacks:
+    - name: tribal power fist
+      damage: d10
+      qualities: [bulky]
+    - {name: throwing axe, damage: d6}
+    abilities:
+    - "War Chief's Honor: While he lives and they can see him, his warband fights Enhanced. On his death,
+      the warband routs."
+  grimfall:
+    tier: elite
+    role: brute
+    category: Faces of the Wasteland
+    fact: While his piston fist swings, his warband's pool can't drop below 1d — and it routs the 
+      beat he falls.
+body: |-
+  ## GM notes
+
+  **Salt-Upon-Wounds** — White Legs war chief. Wants Legion recognition. He will not get it — Caesar has no use for tribes that fail.
+
+  White Legs war chief, the man who sacked New Canaan. Ruthless, cunning, canny in a retreat.
+
+  Fallout 2e: 12 HP, 2 Armor, 15 STR, 14 DEX, 13 WIL, tribal power fist (d10, bulky), throwing axe (d6).
+
+  Grimfall: its card is `grimfall.salt-upon-wounds` (Salt-Upon-Wounds), in this record's grimfall block.
+source: campaigns/10-honest-hearts#salt-upon-wounds
+---
+id: honest-hearts-joshua-graham
+type: monster
+name: Joshua Graham
+aliases: ['Joshua Graham (optional, as hazard or ally)']
+knowledge: secret
+tags: [honest-hearts, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Honest Hearts'
+    hp: 14
+    armor: 2
+    STR: 14
+    DEX: 16
+    WIL: 17
+    attacks:
+    - {name: A Light Shining in Darkness, damage: d8}
+    - {name: combat knife, damage: d6}
+    abilities:
+    - "Deliberate: Graham's first attack on any named target in a combat deals Enhanced damage."
+    - 'Righteous: Will not fight the party unless they attack him first or side openly with Salt-Upon-Wounds.'
+  grimfall:
+    tier: elite
+    role: marksman
+    category: Named Threats & Legends
+    senses:
+    - bandaged burns and a pressed pistol
+    - a soft, scripture-quoting calm
+    - gun oil and old smoke
+    traits:
+    - preternatural aim and calm under fire
+    - cannot be frightened
+    - forgives, but never forgets
+    moves: ['Mozambique Drill (precise, lethal)', Walk Through Gunfire, Speak the Word]
+    wants: to protect his people and end the White Legs — wrestling always between mercy and wrath
+    note: An elite gunfighter (a 6d challenge) and a moral compass both. Carries A Light Shining in 
+      Darkness (see the Armory).
+body: |-
+  ## GM notes
+
+  **Joshua Graham** — the Burned Man. Former Legate of the Legion, now a devout New Canaanite. Speaks quietly. Kills very fast.
+
+  The Burned Man. Bandaged, unmoving eyes, the best gun in Zion.
+
+  Fallout 2e: 14 HP, 2 Armor, 14 STR, 16 DEX, 17 WIL, A Light Shining in Darkness (d8), combat knife (d6).
+
+  Grimfall: its card is `grimfall.joshua-graham` (Joshua Graham), in this record's grimfall block.
+source: campaigns/10-honest-hearts#joshua-graham-optional-as-hazard-or-ally
+---
+id: honest-hearts-daniel
+type: npc
+name: Daniel
+knowledge: secret
+tags: [honest-hearts, cast]
+fields: {role: New Canaanite missionary}
+details:
+  wants: Wants the Sorrows taken east to the safety of the Grand Staircase, away from the coming 
+    war.
+body: |-
+  ## GM notes
+
+  **Daniel** — New Canaanite missionary. Pacifist. Wants the Sorrows taken east to the safety of the Grand Staircase, away from the coming war.
+source: campaigns/10-honest-hearts#cast
+---
+id: honest-hearts-follows-chalk
+type: npc
+name: Follows-Chalk
+knowledge: secret
+tags: [honest-hearts, cast]
+fields: {role: a young Dead Horse scout}
+details: {wants: Wants to see the Mojave.}
+body: |-
+  ## GM notes
+
+  **Follows-Chalk** — a young Dead Horse scout. Wants to see the Mojave. Potential companion.
+source: campaigns/10-honest-hearts#cast
+---
+id: honest-hearts-waking-cloud
+type: npc
+name: Waking Cloud
+knowledge: secret
+tags: [honest-hearts, cast]
+fields: {role: a Sorrows midwife and tracker}
+body: |-
+  ## GM notes
+
+  **Waking Cloud** — a Sorrows midwife and tracker. Potential companion.
+source: campaigns/10-honest-hearts#cast
+---
+id: honest-hearts-war-clock
+type: track
+name: War Clock
+knowledge: secret
+tags: [honest-hearts, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: (d6) Graham's offensive timeline. Ticks when the party accepts or trains with Graham, when a 
+  White Legs raid happens within the party's view, or when a named Dead Horse or Sorrows NPC is 
+  killed. At 6, the Three Marys ambush fires whether the party is there or not.
+source: campaigns/10-honest-hearts#clocks
+---
+id: honest-hearts-evacuation-clock
+type: track
+name: Evacuation Clock
+knowledge: secret
+tags: [honest-hearts, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4) Daniel's preparation. Ticks when the party completes a preparation (scouting the route 
+  east, making shoes for children, clearing a bloatfly nest, finding a signal beacon). At 4, Daniel 
+  can move the tribe.
+source: campaigns/10-honest-hearts#clocks

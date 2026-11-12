@@ -1,0 +1,77 @@
+{
+ "format": 1,
+ "packs": [
+  {
+   "id": "cairn-2e",
+   "version": "1.0.0",
+   "kind": "system",
+   "name": "Cairn (Second Edition)",
+   "file": "cairn-2e-1.0.0.didactpack",
+   "sha256": "905371cab983f70314a77ebae18c104bc4ebf50ecbf18f8acb3e37b0f09cd59b"
+  },
+  {
+   "id": "cairn-2e-vald",
+   "version": "1.0.0",
+   "kind": "setting",
+   "name": "Vald (Cairn's implied setting)",
+   "file": "cairn-2e-vald-1.0.0.didactpack",
+   "sha256": "c5e5a1a4bdc52a136ecf5ab8fc6796e12f8cdae0ac14e14b0a521ed94623ab14"
+  },
+  {
+   "id": "elder-scrolls-2e",
+   "version": "0.1.0",
+   "kind": "system",
+   "name": "The Elder Scrolls 2e",
+   "file": "elder-scrolls-2e-0.1.0.didactpack",
+   "sha256": "ee1706d23cd17f361c5d07ba6cc604ae53e6e837fa5fd06afedf7845d219f834"
+  },
+  {
+   "id": "elder-scrolls-skyrim",
+   "version": "0.1.0",
+   "kind": "setting",
+   "name": "Skyrim (The Elder Scrolls 2e's campaigns and Holds)",
+   "file": "elder-scrolls-skyrim-0.1.0.didactpack",
+   "sha256": "db74bb558053c87df28e9a5c19fe5d4d2e674c51db8f8df8cd51f79a1481abe3"
+  },
+  {
+   "id": "fallout-2e",
+   "version": "0.1.0",
+   "kind": "system",
+   "name": "Fallout 2e",
+   "file": "fallout-2e-0.1.0.didactpack",
+   "sha256": "92ae8c3592404e012558d5c9d3b20bbd0f1d6ba179c3ff82b2def80376b328d8"
+  },
+  {
+   "id": "fallout-wasteland",
+   "version": "0.1.0",
+   "kind": "setting",
+   "name": "The Wasteland (Fallout 2e's campaigns and vaults)",
+   "file": "fallout-wasteland-0.1.0.didactpack",
+   "sha256": "0abf543a062ab405347a886e9a333ed6dd939979a5e8ee8abc8deb8598a73f97"
+  },
+  {
+   "id": "grimfall",
+   "version": "0.1.0",
+   "kind": "system",
+   "name": "Grimfall",
+   "file": "grimfall-0.1.0.didactpack",
+   "sha256": "3feff9817441cbad4b753ff779bc5d795c50044d92dfeb49fd0d07281f21f04e"
+  },
+  {
+   "id": "grimscrolls",
+   "version": "0.1.0",
+   "kind": "system",
+   "name": "Grimscrolls",
+   "file": "grimscrolls-0.1.0.didactpack",
+   "sha256": "671fb5c9b42c631c6a6491f8a45de581090cd91a5c57d7874c79daf9941113ed"
+  },
+  {
+   "id": "grimwild-ce",
+   "version": "1.0.0",
+   "kind": "system",
+   "name": "Grimwild (Community Edition)",
+   "file": "grimwild-ce-1.0.0.didactpack",
+   "sha256": "67624b43a4e4a80a18284d8c14de469b79afd96d74da50291fda965eee19c097"
+  }
+ ]
+}

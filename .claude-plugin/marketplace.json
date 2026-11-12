@@ -1,0 +1,13 @@
+{
+  "name": "didact",
+  "owner": {"name": "Didact"},
+  "plugins": [
+    {
+      "name": "didact",
+      "source": "./claude",
+      "description": "Solo tabletop RPGs with Didact: it holds the game state, rolls the dice, runs the rules and keeps the history; Claude narrates.",
+      "version": "0.1.0",
+      "tags": ["ttrpg", "solo", "dice", "oracle"]
+    }
+  ]
+}

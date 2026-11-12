@@ -1,0 +1,121 @@
+# Fallout 2e, Overseer's Guide: Naming Procedures (CC BY-SA 4.0). Settlements are
+# [descriptor] + [noun]; ruins and factions are d10 patterns with an X to fill in.
+# place-names, poi-names and faction-names replace Cairn's tables of those ids: they are
+# what `didact name place`, `name poi` and `name faction` roll. The NPC procedures are in
+# tables/npcs.yaml (first-names).
+table: settlement-descriptor
+title: 'Settlement name: descriptor'
+dice: d10
+source: overseers-guide/naming-procedures#descriptor-d10
+entries:
+  1: Dim
+  2: Long
+  3: Red
+  4: Old
+  5: Last
+  6: Cold
+  7: Far
+  8: Broken
+  9: Lower
+  10: Still
+---
+table: settlement-noun
+title: 'Settlement name: noun'
+dice: d10
+source: overseers-guide/naming-procedures#noun-d10
+entries:
+  1: Hollow
+  2: Crossing
+  3: Watch
+  4: Yard
+  5: Springs
+  6: Field
+  7: Ford
+  8: Flats
+  9: Fork
+  10: End
+---
+table: place-names
+title: Settlement names
+description: "A settlement name in one roll: [descriptor] + [noun], e.g. Dim Hollow, Last Watch, Old Ford.
+  The book's other way: take a surviving pre-war place-name and corrupt it (Hexington from Lexington,
+  Conquord from Concord, Pitt from Pittsburgh, Jay-Cee from a JC road sign)."
+refs: {descriptor: settlement-descriptor, noun: settlement-noun}
+source: overseers-guide/naming-procedures#settlements
+entries: ['{descriptor} {noun}']
+---
+table: poi-names
+title: Ruin names
+description: "Ruins are named after what they used to be or what they've become: fill in the X."
+dice: d10
+about: 'A pattern to fill in: X is what the ruin used to be or what it has become (e.g. {example}).'
+source: overseers-guide/naming-procedures#ruins
+entries:
+  1:
+    text: The X Site
+    data: {example: The Kane Site}
+  2:
+    text: Old X
+    data: {example: Old 93}
+  3:
+    text: X's Grave
+    data: {example: Marshall's Grave}
+  4:
+    text: The Burned X
+    data: {example: The Burned Mall}
+  5:
+    text: X Hole
+    data: {example: Rathole}
+  6:
+    text: The X-works
+    data: {example: The Ironworks}
+  7:
+    text: The Sunken X
+    data: {example: The Sunken Plaza}
+  8:
+    text: X Yard
+    data: {example: Bone Yard}
+  9:
+    text: Hive X
+    data: {example: Hive 4}
+  10:
+    text: The X Garden
+    data: {example: The Glass Garden}
+---
+table: faction-names
+title: Faction names
+description: 'Factions want short, memorable names with an implied agenda: fill in the X (and the Y).'
+dice: d10
+about: A pattern to fill in (e.g. {example}).
+source: overseers-guide/naming-procedures#factions
+entries:
+  1:
+    text: The X
+    data: {example: The Quiet}
+  2:
+    text: X of the Y
+    data: {example: Saints of the Glow}
+  3:
+    text: X's Watch
+    data: {example: Mother Cupper's Watch}
+  4:
+    text: The X-Eaters
+    data: {example: The Ash-Eaters}
+  5:
+    text: X Road
+    data: {example: Copper Road}
+  6:
+    text: X Remnant
+    data: {example: Pre-war Remnant}
+  7:
+    text: The Unbroken X
+    data: {example: The Unbroken Line}
+  8:
+    text: X and Y
+    data: {example: Flint and Iron}
+  9:
+    text: The X Hand
+    data: {example: The Red Hand}
+  10:
+    text: X-Keepers
+    data: {example: Seed-Keepers}

@@ -1,0 +1,4 @@
+# A setting's rule reads the setting's own settings, not the system's.
+action: beacon
+steps:
+  - "beacons: {@settings.torch_uses}; likely: {default(@settings.odds.likely, 'unset')}"

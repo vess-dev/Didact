@@ -1,0 +1,28 @@
+# The adventuring party (Starting a Campaign and Adventuring Party, p. 44; Story Arcs, p. 26;
+# Group-Building Questions, p. 50): made at session zero, before the characters, so they fit it.
+# It's kept as a constant lore entry, which the brief always carries.
+generator: party
+title: The adventuring party
+help: >-
+  Session zero's party, step by step: 2 concepts you see your party as and 1 you definitely
+  aren't; a group arc, a goal or theme to play out together (from the book's examples, detailed
+  to fit your game); and group-building questions to ask across the table. It's kept as a
+  constant lore entry, so the brief always carries it. Prefill by name: concepts (a list of 2),
+  not_concept, group_arc.
+source: "pp. 26, 44, 50"
+steps:
+  - choose_or_roll: {table: party-concepts, as: concepts, count: 2, prompt: "2 concepts you see your party as (to whittle them down, each player and the GM can write one they want and one they won't, then reveal)"}
+  - choose_or_roll: {table: party-concepts, as: not_concept, exclude: "@concepts", prompt: "and 1 that you definitely aren't"}
+  - choose_or_roll: {from: [build a reputation, explore the world, finish the mission, make things right, satisfy desires, uncover the truth, spread the word, expand power, come unraveled, doubt convictions, feed my vices, flirt with betrayal, keep a secret, survive the storm, ignore the problem, burn at both ends, embrace change, escape my past, find belonging, just enjoy life, prove myself, settle debts, make something new, take charge], as: group_arc, prompt: "the group arc, a goal or theme you want to play out together (detail it to fit your game; for a struggle, get everyone's permission)"}
+  - table: group-building-questions
+    times: 3
+    distinct: true
+    as: questions
+  - entity:
+      key: party
+      type: lore
+      name: The adventuring party
+      fields: {keys: [party, the party, group arc, adventuring party], kind: lore, constant: true}
+      body: "The adventuring party: {@concepts}; definitely not {@not_concept}. Its group arc: {@group_arc}. Each PC also has one or two character arcs of their own."
+  - prompt: "Group-building questions (p. 50), for each player to ask the person on their right and left once the characters are introduced: {@questions} (swap \"you\" and \"I\" if it's more interesting)."
+  - prompt: "Then make the characters to fit the theme, setting, party and group arc (`didact char new`), and finish with a montage of your last adventure together (`didact do montage who=<pc>`, 2d each)."

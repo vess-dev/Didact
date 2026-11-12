@@ -1,0 +1,96 @@
+# Diseases, and the curses that come after (players-guide/diseases-and-afflictions,
+# unusual-pcs): catching and curing a disease, Sanguinare Vampiris turning to Vampirism on the
+# third new day, a vampire's feeding, sunlight and drain, the Beast Blood displacing it, the
+# change once a day, and the cures. Seeded, so it plays the same every time.
+test: diseases-and-curses
+script:
+  - world new holds --system {pack} --seed afflictions
+  - campaign new first --seed afflictions
+  - new pc Brynja --set STR=1 --set DEX=12 --set WIL=12 --set hp=4 --set race=Breton --set gold=100
+  - new pc Sees --set STR=10 --set DEX=12 --set WIL=12 --set hp=4 --set race=Argonian
+  - run: do disease who=sees disease=rattles
+    expect: "stop: Hist-Blooded: ordinary disease never takes hold in Sees."
+  - run: do disease who=brynja disease=rattles
+    expect: ["diseases: Rattles", "→ failure", "diseases += rattles", "Brynja is afflicted with Rattles until cured"]
+  - run: do rest who=brynja
+    expect: "stop: The Rattles: a short rest no longer restores Brynja's HP"
+  - run: do disease who=brynja disease=bone-break-fever
+    expect: ["diseases += bone-break-fever", "fatigue += 1"]
+  - run: do make-camp who=brynja
+    expect: ["fatigue = 1", "Bone Break Fever: one Fatigue stays that rest cannot clear."]
+  - inv add brynja 'Potion of Cure Disease'
+  - run: do cure-disease who=brynja how=potion
+    expect: ["diseases = []", "Brynja is cured of rattles, bone-break-fever (potion)", "pc:brynja uses Potion of Cure Disease", "is used up"]
+  - run: do disease who=brynja disease=sanguinare-vampiris
+    expect: ["diseases += sanguinare-vampiris", "hp.max -= 1", "sanguinare_days = 0"]
+  - run: time advance 2 days
+    expect: ["sanguinare_days += 2", "2 of three days uncured"]
+  - run: time advance 1 day
+    expect: ["Sanguinare days reached 3: runs become-vampire", "hp.max += 1", "nature = vampire", "enhanced_by += fire", "rep_volkihar = 1", "rep_dawnguard = -1"]
+  - run: show brynja
+    expect: ["HP 3/4", "nature vampire", "Enhanced by fire", "The Volkihar 1"]
+  - run: do feed who=brynja victim=sees
+    expect: ["used_today += feed", "fatigue = 0", "1d4", "Sees survives, drained and weak"]
+  - run: do feed who=brynja
+    expect: "stop: Brynja has fed today"
+  - run: do sunlight who=brynja
+    expect: ["conditions += sunlit", "conditions += deprived"]
+  - run: do drain who=brynja target=sees
+    expect: ["1d6", "Brynja deals", "In direct sunlight the drain restores no HP."]
+  - run: do sunlight who=brynja state=out
+    expect: ["conditions -= sunlit", "conditions -= deprived"]
+  - run: do disease who=brynja disease=witbane
+    expect: "stop: Brynja is immune to mundane disease (vampire)"
+  - run: time advance 1 day
+    expect: ["elder-scrolls-2e.new-dawn (Brynja)", "used_today = []"]
+  - run: do become-werewolf who=brynja
+    expect: ["enhanced_by -= fire", "Vampirism is lifted", "nature = werewolf", "enhanced_by += silver", "rep_companions = 1"]
+  - run: do transform who=brynja
+    expect: ["conditions += transformed", "Beast Form: claws d6+d6", "weapon=2d6kh1"]
+  - run: do cast who=brynja spell=Flames
+    expect: "stop: Brynja is Transformed"
+  - run: do rest who=brynja
+    expect: "stop: Brynja is Transformed"
+  - run: do revert who=brynja
+    expect: ["conditions -= transformed", "must have fed on a fresh kill by the end of the next watch"]
+  - run: do transform who=brynja
+    expect: "stop: Brynja has already changed today"
+  - run: do cure-lycanthropy who=brynja
+    expect: ["nature = mortal", "enhanced_by -= silver", "The wolf is cut out at Ysgramor's Tomb"]
+---
+test: werebear-and-falion
+help: A werebear's vigor is +1 max HP for good; Falion's rite cures Vampirism; the Lord's form costs a Fatigue and its drain always restores.
+script:
+  - world new holds --system {pack} --seed werebear
+  - campaign new first --seed werebear
+  - new pc Bjorn --set STR=12 --set DEX=10 --set WIL=10 --set hp=3 --set race=Nord
+  - run: do become-werewolf who=bjorn strain=werebear
+    expect: ["nature = werebear", "hp.max += 1", "The bear's vigor: +1 max HP"]
+  - run: show bjorn
+    expect: ["HP 4/4", "nature werebear"]
+  - run: do become-vampire who=bjorn
+    expect: ["The Beast Blood is gone", "hp.max -= 1", "nature = vampire"]
+  - spawn draugr
+  - spawn troll
+  - set bjorn hp=1
+  - run: combat start --party troll
+    expect: "round 1"
+  - run: do drain who=bjorn target=troll
+    expect: ["1d6", "The drain restores", "once_per_combat += drain"]
+  - set bjorn hp=1
+  - run: do drain who=bjorn target=troll
+    expect: "Bjorn's restoring drain is spent this fight"
+    expect_not: "The drain restores"
+  - run: combat end
+    expect: ["fight-over", "once_per_combat = []"]
+  - session start
+  - scene new
+  - run: do transform who=bjorn
+    expect: ["Molag Bal's deeper gift", "fatigue += 1", "The Vampire Lord: claws d8+d8"]
+  - run: do drain who=bjorn target=draugr lord=true
+    expect: ["1d8", "Bjorn deals"]
+  - set bjorn conditions+=resist-frost
+  - run: scene end
+    expect: ["scene-over", "Bjorn's resist potion wears off", "conditions -= transformed", "returns to their own shape"]
+  - run: do cure-vampirism who=bjorn
+    expect: ["nature = mortal", "enhanced_by -= fire", "Falion's rite is done"]

@@ -1,0 +1,62 @@
+# Cutpurse (backgrounds/cutpurse): the background's two d6 tables.
+table: cutpurse-1
+title: What was your last big job?
+dice: d6
+source: backgrounds/cutpurse
+entries:
+  1:
+    text: "A noble's summer home. The place was full of fancy wine (+20gp) but not much else. Take Fence Cutters."
+    data:
+      add: {gold: 20}
+      gear: [Fence Cutters]
+  2:
+    text: "A bank. (You were caught.) You bear a brand only visible by firelight, and anyone who sees the mark can ask you for a beer. Take Retractable Wires."
+    data:
+      gear: [Retractable Wires]
+  3:
+    text: "A guild warehouse. Take a Ladder (bulky, 10ft) and Blinding Powder (1 use)."
+    data:
+      gear: [{name: Ladder, size: bulky, note: 10ft}, {name: Blinding Powder, uses: 1}]
+  4:
+    text: "Moneylender. Someone beat you to the job but left behind a Scroll of Arcane Eye (petty). Arcane Eye: You can see through a magical floating eyeball that flies around at your command."
+    data:
+      gear: [{name: Scroll of Arcane Eye, size: petty, uses: 1, note: "a scroll: no Fatigue, gone after one use"}]
+  5:
+    text: "Constable's quarters. You escaped but left some friends behind. Take Strong Silk Rope (30ft) and a queasy feeling."
+    data:
+      gear: [{name: Strong Silk Rope, note: 30ft}]
+  6:
+    text: "A university. You were seen but not pursued. You still don't know why. Take Smoke Pellets (3 uses)."
+    data:
+      gear: [{name: Smoke Pellets, uses: 3}]
+---
+table: cutpurse-2
+title: What helps you steal?
+dice: d6
+source: backgrounds/cutpurse
+entries:
+  1:
+    text: "Catring: 2 charges. Climb up walls and fall safely. Recharge: Place the ring on a stray cat's tail."
+    data:
+      gear: [{name: Catring, uses: 2, recharge: Place the ring on a stray cat's tail.}]
+  2:
+    text: "Gildfinger: 1 charge. A finger glove that mimics any mundane key. Recharge: Bundle it with at least 100gp for a night."
+    data:
+      gear: [{name: Gildfinger, uses: 1, recharge: Bundle it with at least 100gp for a night.}]
+  3:
+    text: "Glimpse Glass: 3 uses. A monocle that lets you see through walls or other obstructions. It shatters after the last use."
+    data:
+      gear: [{name: Glimpse Glass, uses: 3}]
+  4:
+    text: "Sweetwhistle: 1 charge. Listeners hear a soft, familiar voice in the distance that they cannot resist following. Recharge: Lose a dear memory. (Describe it.)"
+    data:
+      gear: [{name: Sweetwhistle, uses: 1, recharge: "Lose a dear memory. (Describe it.)"}]
+  5:
+    text: "Vagrant's Veil: 1 charge. Wear it to blend seamlessly into crowds, appearing as a simple pauper. Recharge: Donate the day's winnings to the poor. Petty"
+    data:
+      gear:
+        - {name: Vagrant's Veil, uses: 1, size: petty, recharge: Donate the day's winnings to the poor.}
+  6:
+    text: "Reverse Teetotum: 1 use. When spun, time skips backwards 30 seconds. Everyone remembers what happened."
+    data:
+      gear: [{name: Reverse Teetotum, uses: 1}]

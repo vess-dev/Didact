@@ -1,0 +1,57 @@
+# Bonekeeper (backgrounds/bonekeeper): the background's two d6 tables.
+table: bonekeeper-1
+title: What did you take from the dead?
+dice: d6
+source: backgrounds/bonekeeper
+entries:
+  1:
+    text: "A crow-shaped amulet. You can ask a question of the dead but must add a Fatigue each time. They do not always speak truthfully."
+    data:
+      gear: [Crow-shaped Amulet]
+  2:
+    text: "A mortal wound from a freed revenant. You were healed, but the disfigurement has made you a pariah. You require neither air nor sustenance but are still subject to pain and death. Trapped between worlds, the dead see you as one of their own."
+  3:
+    text: "A Blood Pail (bulky) from a local death-cult. Empty it to raise a servant built from whatever is buried below, with 6 HP, 1 Armor, 13 STR, 11 DEX, 4 WIL, and shard fists (d8+d8). Only one servant can be raised at a time. If destroyed, you permanently lose 1d4 STR. Recharge: Fill with the blood of a dying warrior."
+    data:
+      gear: [{name: Blood Pail, size: bulky, recharge: Fill with the blood of a dying warrior.}]
+  4:
+    text: "A burial wagon (+6 slots, slow) from your last job. It came with a stubborn old donkey (+4 slots, only +2 slots if pulling wagon)."
+    data: {companion: stubborn-old-donkey, vehicle: burial-wagon}
+  5:
+    text: "The Detect Magic Spellbook, stolen from an ancient library. Your family worked in service to an obscure underworld deity, but you lost your faith. Though exiled, you continue to serve, even as an apostate. Detect Magic: You can see or hear nearby magical auras. Becomes warm to the touch when magic is used nearby."
+    data:
+      gear: [Detect Magic Spellbook]
+  6:
+    text: "A plague doctor's mask, after its owner succumbed to the disease that wiped out everyone you once knew. They should have kept it on."
+    data:
+      gear: [Plague Doctor's Mask]
+---
+table: bonekeeper-2
+title: What tool was invaluable in your work?
+dice: d6
+source: backgrounds/bonekeeper
+entries:
+  1:
+    text: "Manacles: Though old, it's still effective even against the very strong. You don't have the key."
+    data:
+      gear: [Manacles]
+  2:
+    text: "Sponge: Supposedly made from the remains of a rare sea creature. It never seems to dry out."
+    data:
+      gear: [Sponge]
+  3:
+    text: "Pulley: Great for moving gravestones, rocks, or even bodies."
+    data:
+      gear: [Pulley]
+  4:
+    text: "Incense: Perfect for rituals or to keep the flies at bay. Cools the blood."
+    data:
+      gear: [Incense]
+  5:
+    text: "Crowbar: d6 damage. Sometimes you just need to get the damn thing open!"
+    data:
+      gear: [{name: Crowbar, damage: d6}]
+  6:
+    text: "Repellent: Powerful stuff. Its faded label makes it unclear what it is actually meant to repel, though. Perhaps everything. 3 uses."
+    data:
+      gear: [{name: Repellent, uses: 3}]

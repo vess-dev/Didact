@@ -1,0 +1,13 @@
+# Knacks are offered by id: a choice shows each one's name and summary.
+id: quick-hands
+type: knack
+name: Quick Hands
+summary: Take +1 on anything done with nimble fingers.
+---
+id: keen-eye
+type: knack
+name: Keen Eye
+body: |-
+  You notice what others miss: ask the GM one question about a room.
+
+  > A sidebar that isn't part of the summary.

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE LexicalResource SYSTEM "http://globalwordnet.github.io/schemas/WN-LMF-1.0.dtd">
+<LexicalResource xmlns:dc="https://globalwordnet.github.io/schemas/dc/">
+  <Lexicon id="mini-fr" label="Mini WordNet français (tests)" language="fr" email="tests@example.org"
+           license="https://creativecommons.org/publicdomain/zero/1.0/" version="1.0">
+    <LexicalEntry id="mini-fr-epee-n">
+      <Lemma writtenForm="épée" partOfSpeech="n"/>
+      <Sense id="mini-fr-epee-n-1" synset="mini-fr-1-n"/>
+    </LexicalEntry>
+    <LexicalEntry id="mini-fr-lame-n">
+      <Lemma writtenForm="lame" partOfSpeech="n"/>
+      <Sense id="mini-fr-lame-n-1" synset="mini-fr-1-n"/>
+    </LexicalEntry>
+    <Synset id="mini-fr-1-n" ili="" partOfSpeech="n"/>
+  </Lexicon>
+</LexicalResource>

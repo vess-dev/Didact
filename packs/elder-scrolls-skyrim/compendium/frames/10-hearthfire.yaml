@@ -1,0 +1,346 @@
+# Hearthfire (DLC) (campaigns/10-hearthfire): written by es_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Elder Scrolls 2e's numbers, and Grimscrolls'
+# card where its Bestiary or its Faces has the threat) and clocks.
+id: hearthfire
+type: quest
+name: Hearthfire
+aliases: [Hearthfire (DLC)]
+tags: [hearthfire, frame, side-arc]
+goal: |-
+  The party has fought, schemed, or hauled freight long enough that someone in a Hold's court knows their name. A Jarl (or, more often, the Jarl's Steward, who keeps the land-ledger) lets it be known that a parcel is for sale: a clearing in the pines, a defensible knuckle of marsh, a windswept shelf of tundra. Buy it, and it is yours to build on — a base of operations that is theirs, not an inn room rented by the night.
+
+  What grows there is up to the party. On the page it is a homestead that starts at Population 1 / Defense 1 / Prosperity 1 with one of its eight slots already filled by the bare main hall, exactly as Settlements describes. In the fiction it climbs from a one-room cottage to a great house with wings and outbuildings, a smithy ringing, a garden ripe, children underfoot, and a housecarl at the door. The grand manor is the filled slots; the family is the rising Population; the standing is the Jarl's favor.
+
+  ---
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  *Skyrim belongs to the Nords — but a corner of it can belong to you. A stretch of cleared ground, a raised frame, a hearth lit against the dark, a roof over heads you have chosen to call kin.*
+
+  ## GM notes
+
+  **Date.** Sundas, 17 Last Seed 4E 201: 4E 201, the book's moment; between adventures, whenever the party can buy its land. It is the calendar's start: a new campaign opens on it.
+
+  **The frame's text:** `didact rules lookup hearthfire premise` (and `acquiring a plot`, `building a downtime path`, `hiring the household`, `adopting children`, `troubles that come with a home`, `optional a spriggan in the woods`, `rewards`).
+
+  **Also in the frame:** Acquiring a Plot; Building: a Downtime Path; Hiring the Household; Adopting Children; Troubles That Come With a Home; Optional: a Spriggan in the Woods (Lakeview) (`didact rules lookup hearthfire …`).
+
+  **The frame's records.** `didact gen run elder-scrolls-skyrim.frame --prefill '{"frame": "Hearthfire"}' --auto` drafts the region, 3 places, 0 people, 6 threats, its factions and its clocks, for the world's system; `gen commit` writes them.
+source: campaigns/10-hearthfire#hearthfire-dlc
+---
+id: hearthfire-region
+type: loc
+name: Hearthfire's plots
+tags: [hearthfire, region]
+mechanics:
+  elder-scrolls-2e: {kind: region}
+body: |-
+  ## GM notes
+
+  Three plots are commonly offered across Skyrim. Each sits in a real Hold, answers to a real Jarl, and comes — once the party is named Thane and the manor is built up enough — with a sworn **housecarl**. A Warden may site a fourth elsewhere; the procedure is the same.
+
+  ### Earning the right to buy
+
+  A plot is not sold to strangers. To buy land in a Hold, the party must first be **welcome** there, then pay for it:
+
+  - **Standing with the Jarl.** Do the Jarl (or Steward) a service first — clear a nearby ruin or bandit fort, settle a dispute, run an errand of weight. Treat this as a single adventure or a favor cashed in. In **Faction Reputation** terms, the Hold's court should sit at **Trusted (+1)** or better; the Warden may simply judge it from the fiction. (A party already named **Thane** of the Hold qualifies outright.)
+  - **The price.** The land deed costs **5,000 Septims**, paid to the Steward. This buys the parcel and a starter steading: the cleared ground, a small **on-site quarry** of stone, a **clay deposit**, a **log pile**, and a one-room main hall. On the page, this is the **1/1/1 homestead with one slot (the main hall) filled**.
+  - **A foothold.** The Steward hands over a **Land Deed** (a _petty_ document — proof of title) and points the party at the site. From here, everything is Downtime.
+
+  > **Carriage tie-in.** Each plot sits a hard day or more from its capital. A party that has hired a **carriage driver** (below) can reach the site, the capital, and the other Holds quickly between sessions; without one, factor the travel into wilderness watches per **Wilderness Exploration**.
+source: campaigns/10-hearthfire#acquiring-a-plot
+---
+id: hearthfire-lakeview-manor
+type: loc
+name: Lakeview Manor
+tags: [hearthfire, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  (*Falkreath (Falkreath)*) Falkreath (Falkreath). Wooded land south of Lake Ilinalta, between Falkreath and Riverwood. Timber and game close at hand. Unique outbuilding: **Apiary** (a bee-yard: honey, and beeswax for candles and mead).
+source: campaigns/10-hearthfire#acquiring-a-plot
+---
+id: hearthfire-windstad-manor
+type: loc
+name: Windstad Manor
+tags: [hearthfire, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  (*Hjaalmarch (Morthal)*) Hjaalmarch (Morthal). Cold, fog-bound marsh north of Morthal, near the Sea of Ghosts. Bleak, defensible, far from prying eyes. Unique outbuilding: **Fish hatchery** (penned salmon and slaughterfish roe).
+source: campaigns/10-hearthfire#acquiring-a-plot
+---
+id: hearthfire-heljarchen-hall
+type: loc
+name: Heljarchen Hall
+tags: [hearthfire, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  (*The Pale (Dawnstar)*) The Pale (Dawnstar). High tundra south of Dawnstar, near the Whiterun border. Bitter winters; a mine and a trade road within reach. Unique outbuilding: **Grain mill** (a windmill grinding the Hold's wheat).
+source: campaigns/10-hearthfire#acquiring-a-plot
+---
+id: hearthfire-housecarl
+type: monster
+name: Housecarl
+aliases: [Housecarl (sworn guard)]
+knowledge: secret
+tags: [hearthfire, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: Hearthfire'
+    hp: 6
+    armor: 2
+    STR: 13
+    DEX: 12
+    WIL: 11
+    attacks:
+    - {name: steel sword, damage: d8}
+    - {name: steel battleaxe, damage: d10}
+    abilities:
+    - Loyal to the death while the lord lives; will not break Morale while defending the home. 
+      Fights among the defenders when a raid comes; to count toward Defense, give the housecarl a 
+      Guard Post or Barracks slot (Settlements).
+    - 'Companion option: if taken as the active Companion, use the standard Companion block (Loyalty starts
+      at Devoted (4), given the oath) and the Command action.'
+body: |-
+  ## GM notes
+
+  *sworn guard*
+
+  A Nord (or Redguard) warrior sworn to guard the manor and its lord; quarters in the hall and stands watch by night. Wears light armor and carries a shield (2 Armor; 1 when the shield is slung for the battleaxe).
+
+  Elder Scrolls 2e: 6 HP, 2 Armor, 13 STR, 12 DEX, 11 WIL, steel sword (d8) or steel battleaxe (d10).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/10-hearthfire#housecarl-sworn-guard
+---
+id: hearthfire-bandit
+type: monster
+name: Bandit
+aliases: [Bandit (from the Bestiary)]
+knowledge: secret
+tags: [hearthfire, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: Hearthfire'
+    hp: 4
+    armor: 1
+    STR: 12
+    DEX: 12
+    WIL: 9
+    attacks:
+    - {name: iron sword or war axe, damage: d8}
+    - {name: hunting bow, damage: d6}
+    abilities:
+    - A detachment travels with a leader in heavier mail (2 Armor) wielding a greatsword (d10) or a 
+      crossbow (d8).
+    - "Loyal: test Morale against the leader's WIL (13). If the leader falls, the rest flee."
+  grimscrolls:
+    category: Outlaws & Cults
+    tier: mook
+    role: brute
+    sights: a lookout on a broken tower
+    sounds: dice, dogs, a quarrel over shares
+    smells: woodsmoke and cheap mead
+    traits: [brave in numbers, loyal as far as the loot goes]
+    moves: [Demand the Toll, Rush the One in Robes]
+    wants: your purse without a fight — and no part of anyone who looks expensive to kill
+    note: A camp is a 4d pool that runs or yields at half. Fell the **Bandit Chief**, a tough in the
+      only good armor, and the pool drops 1d. Cyrodiil's **highwaymen** ask a hundred septims and 
+      leave politely; **marauders** are toughs in plate who hate bandits worse than you do.
+body: |-
+  ## GM notes
+
+  *from the Bestiary*
+
+  The most common cutthroat in Skyrim, lairing in caves, forts, and ruined towers. Four or more fight as a detachment.
+
+  Elder Scrolls 2e: 4 HP, 1 Armor, 12 STR, 12 DEX, 9 WIL, iron sword or war axe (d8), or hunting bow (d6).
+
+  Elder Scrolls 2e's Bestiary has the same stat block: `elder-scrolls-2e.bandit`.
+
+  Grimscrolls: its card is `grimscrolls.bandits` (Bandits), in this record's grimscrolls block.
+source: campaigns/10-hearthfire#bandit-from-the-bestiary
+---
+id: hearthfire-giant
+type: monster
+name: Giant
+aliases: [Giant (from the Bestiary)]
+knowledge: secret
+tags: [hearthfire, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: Hearthfire'
+    hp: 18
+    armor: 1
+    STR: 18
+    DEX: 12
+    WIL: 8
+    attacks:
+    - {name: club, damage: d12}
+    abilities:
+    - "A detachment: individuals' attacks on it are Impaired (unless blast); its attacks on individuals
+      are Enhanced and blast."
+    - It will not wade into deep water, and it warns trespassers first — a stamp, a bellow, a raised
+      club.
+    critical: the club launches the target into the sky. They do not survive the landing.
+  grimscrolls:
+    category: Monsters of the Wild
+    tier: elite
+    role: brute
+    sights: a bonfire ringed with mammoth skulls
+    sounds: a grunt felt in the chest
+    smells: ripe cheese
+    traits: [warns before it kills, one clean blow is enough]
+    moves: [Overhead Club, Ground-Shaking Stomp]
+    wants: its herd unharmed and its camp unvisited — it lets go whatever leaves
+    note: 'A 6d elite, with mammoths beside it. It shakes the club, stomps, then swings: fair warning
+      that the club lands at dire stakes, and the dropped travel upward. It will not enter water. A cow
+      painted with spirals buys a farm its peace.'
+body: |-
+  ## GM notes
+
+  *from the Bestiary*
+
+  A towering, primitive herdsman of the mammoths, daubed in war-paint, peaceful until disturbed. Then deadly.
+
+  Elder Scrolls 2e: 18 HP, 1 Armor, 18 STR, 12 DEX, 8 WIL, club (d12), detachment.
+
+  Elder Scrolls 2e's Bestiary has the same stat block: `elder-scrolls-2e.giant`.
+
+  Grimscrolls: its card is `grimscrolls.giant` (Giant), in this record's grimscrolls block.
+source: campaigns/10-hearthfire#giant-from-the-bestiary
+---
+id: hearthfire-confidence-trickster
+type: monster
+name: Confidence Trickster
+aliases: [Confidence Trickster ("the relative")]
+knowledge: secret
+tags: [hearthfire, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: Hearthfire'
+    hp: 4
+    STR: 11
+    DEX: 13
+    WIL: 12
+    attacks:
+    - {name: concealed dagger, damage: d6}
+    abilities:
+    - Avoids a straight fight; flees or pleads if cornered. May have an accomplice or two (use the 
+      Bandit block) waiting to clean the house out once the family sleeps.
+    - Caught in the act, the trickster drops everything and bolts; the first attack made to stop 
+      them is Enhanced.
+body: |-
+  ## GM notes
+
+  *"the relative"*
+
+  A smooth-talking grifter playing on a family's good nature; all charm at the table and light fingers after dark.
+
+  Elder Scrolls 2e: 4 HP, 11 STR, 13 DEX, 12 WIL, concealed dagger (d6).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/10-hearthfire#confidence-trickster-the-relative
+---
+id: hearthfire-dark-brotherhood-assassin
+type: monster
+name: Dark Brotherhood Assassin
+knowledge: secret
+tags: [hearthfire, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: Hearthfire'
+    hp: 8
+    armor: 1
+    STR: 14
+    DEX: 15
+    WIL: 12
+    attacks:
+    - {name: ebony dagger, damage: d6}
+    - name: bow
+      damage: d6
+      qualities: [bulky]
+    abilities:
+    - 'Opens from stealth — its first attack each combat is Enhanced. Its blade is poisoned: the first
+      time it wounds a creature in a fight, that creature must pass a STR save or take 1d4 STR. Targets
+      the lord, then the household.'
+    venom: 1d4
+    critical: the stroke finds the throat. The victim cannot cry out, and dies within the hour 
+      unless someone reaches them.
+  grimscrolls:
+    category: Orders & Armies
+    tier: tough
+    role: lurker
+    sights: a note reading "We know"
+    sounds: the stair that did not creak
+    smells: nightshade
+    traits: [watched you for a week, wants one name only]
+    moves: [Poisoned Blade (4d Slow Poison), Withdraw and Try Again]
+    wants: the contract kept, for Sithis and for pay — the rest of you are in the way
+    note: 'A 4d pool alone, its first strike at high stakes unless the target was warned. Exposed, the
+      assassin leaves and returns: the pool gets a die back each scene until the contract is settled.
+      Their orders lead to a **Speaker**, and beyond to whoever prayed.'
+body: |-
+  ## GM notes
+
+  A black-robed killer of the last Sanctuary, striking from the dark and gone before the body is cold. Comes alone or in a pair.
+
+  Elder Scrolls 2e: 8 HP, 1 Armor, 14 STR, 15 DEX, 12 WIL, ebony dagger (d6) or bow (d6, bulky).
+
+  Grimscrolls: its card is `grimscrolls.dark-brotherhood-assassin` (Dark Brotherhood Assassin), in this record's grimscrolls block.
+source: campaigns/10-hearthfire#dark-brotherhood-assassin
+---
+id: hearthfire-spriggan
+type: monster
+name: Spriggan
+knowledge: secret
+tags: [hearthfire, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: Hearthfire'
+    hp: 8
+    STR: 12
+    DEX: 14
+    WIL: 14
+    attacks:
+    - {name: thorned arms, damage: d8}
+    - name: spore burst
+      damage: d6
+      qualities: [blast]
+    abilities:
+    - Fire damage against it is Enhanced. Once per combat it heals itself of all its hurts, and it 
+      can call nearby beasts to its aid.
+    enhanced_by: [fire]
+    critical: a cloud of spores fills the target's lungs; they lose 1d4 more STR and cannot speak 
+      above a whisper for a day.
+  grimscrolls:
+    category: Monsters of the Wild
+    tier: tough
+    role: trickster
+    sights: a face in the bark
+    sounds: soft laughter in the leaves
+    smells: sap and fern
+    traits: [steps out of a trunk unseen, mends herself whole]
+    moves: [Call the Wild, Stinging Swarm]
+    wants: her grove untouched — put down the axe, walk out, and she may let you
+    note: "The first time her pool would drop, it doesn't: she kneels and heals. Her beasts, a 4d pool,
+      scatter if she falls. Fire drops 1d before her pool rolls, and she will not cross water. **Matrons**
+      and **Earth Mothers** are elites; the **burnt spriggans** of Fourth Era Solstheim throw fire."
+body: |-
+  ## GM notes
+
+  A glowing green spirit of wood and bark in the shape of a woman, blending into the forest until it strikes.
+
+  Elder Scrolls 2e: 8 HP, 12 STR, 14 DEX, 14 WIL, thorned arms (d8), spore burst (d6, blast).
+
+  Elder Scrolls 2e's Bestiary has the same stat block: `elder-scrolls-2e.spriggan`.
+
+  Grimscrolls: its card is `grimscrolls.spriggan` (Spriggan), in this record's grimscrolls block.
+source: campaigns/10-hearthfire#spriggan

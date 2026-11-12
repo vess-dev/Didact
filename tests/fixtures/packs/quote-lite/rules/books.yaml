@@ -1,0 +1,27 @@
+action: shelve
+help: "Quotes '$book' in its expressions (which `pack validate` warns about)."
+params:
+  book: {kind: text}
+steps:
+  - if: "'$book' == 'The Lost Atlas'"
+    then: ["The atlas goes on the top shelf."]
+  - let: {title: "'$book'"}
+  - message: "Shelved: $book ({'$book' == 'The Lost Atlas'}). Ana says '$book' is hers."
+---
+action: read
+help: Reads the title whole.
+params:
+  book: {kind: text}
+steps:
+  - if: "@book == 'The Lost Atlas'"
+    then: ["The atlas: maps of a coast no one sails now."]
+  - message: "Read: {@book}."
+---
+action: dose
+help: Quotes an enum, which can't hold an apostrophe.
+params:
+  dose: {enum: [safe, lethal]}
+  count: {kind: int, default: 1}
+steps:
+  - if: "'$dose' == 'lethal' and '$count' == '1'"
+    then: ["One lethal dose."]

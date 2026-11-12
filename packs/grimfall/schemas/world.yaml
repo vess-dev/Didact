@@ -1,0 +1,40 @@
+# The wasteland's own records (Running the Wasteland): factions keep a standing toward the party,
+# communities a Stockpile, and any place the drift of its weather. These are the mechanics a
+# Grimfall world adds to the core types (the core fields stay).
+type: faction
+label: Faction
+fields:
+  standing: {kind: enum, values: [Idolized, Accepted, Neutral, Shunned, Vilified], default: Neutral, help: "How it sees the party, in one word (`didact do standing`): Idolized, Accepted, Neutral (the default), Shunned (+1t on every dealing), Vilified (shot on sight: a 6d They Find You campaign pool)."}
+  resources: {kind: list, help: "What it has: the only clean well for miles, a militia of shopkeeps."}
+  goals: {kind: list, help: "Its goals, each a faction pool (listed as pool_1, pool_2 for `didact faction turn`)."}
+  pool_1: {kind: ref, to: track}
+  pool_2: {kind: ref, to: track}
+  pool_3: {kind: ref, to: track}
+  pool_4: {kind: ref, to: track}
+  pool_5: {kind: ref, to: track}
+  pool_6: {kind: ref, to: track}
+guidance: >-
+  Keep four to six factions in play, each with a goal or two as faction pools (4d to 8d), rolled
+  between sessions or whenever the story triggers them; in downtime, roll them all, then pick one
+  and run it dry. When one empties, the goal lands on screen, or the faction moves against a
+  rival, a story roll in its favor deciding how. Replace any faction the story uses up.
+---
+type: loc
+label: Place
+fields:
+  kind: {kind: text, help: "region, settlement, site, danger, curiosity, barrier, area, building, point, community, battleground, vault, …"}
+  size: {kind: text, help: "minor or major (a point, a building)."}
+  region: {kind: text, help: "The place it lies in."}
+  point: {kind: text, help: "A site's point: entrance, puzzle, hitch, showdown, reward."}
+  drift: {kind: text, help: "Weather & drift: calm, wind, dust, rad-storm, or the sky goes green (`didact do drift at=<place>`)."}
+  stockpile: {kind: ref, to: track, help: "A community's Stockpile pool."}
+  next_asset: {kind: text, help: "The asset the Stockpile is paying toward."}
+  asset_tier: {kind: enum, values: [minor, major], help: "Minor costs 4 (a wall, a clinic, a bar with a name), major 8 (a working reactor, a caravan company, a radio mast)."}
+  paid: {kind: int, min: 0, default: 0, help: "Dice paid toward the next asset so far."}
+  assets: {kind: list, help: "Its finished assets, each with a face: the barkeep, the militia sergeant, the DJ."}
+  features: {kind: list, help: "A battleground's features: they bend vantage and thorns."}
+  threats: {kind: list, help: "A battleground's threats: each carries 2 suspense of its own, or a timer."}
+  enemies: {kind: list}
+  testing: {kind: text, help: "A vault: what they were testing."}
+  became: {kind: text, help: "A vault: what it became."}
+guidance: "Everything on the map gets a two-word label (Glowing Orchard, Drowned Underpass, Jackal Country)."

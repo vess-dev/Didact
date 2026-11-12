@@ -1,0 +1,101 @@
+# Leveling up, as the book and the options have it (p. 31, pp. 172-187). Seeded, so it plays the
+# same every time.
+test: xp-needs-and-caps
+help: Slow progression and focused growth double the XP to level; smaller scale, low and cozy fantasy cap levels at 3.
+script:
+  - world new t --system {pack} --seed xp
+  - campaign new c --seed xp
+  - new pc Kestrel --set path=Fighter
+  - run: do experience who=kestrel
+    expect: "Kestrel: 1 of 2 XP to the next level."
+  - run: campaign profile slow-progression=on
+    expect: "slow-progression"
+  - run: do experience who=kestrel
+    expect: "Kestrel: 2 of 4 XP to the next level."
+  - campaign new focused --seed xp
+  - campaign profile focused-growth=on
+  - new pc Wren --set path=Bard
+  - run: do experience who=wren why=theme
+    expect: ["Focused growth: Wren takes a bonus XP", "Wren: 1 of 4 XP"]
+  - campaign new low --seed xp
+  - campaign profile flavor=low
+  - new pc Ash --set path=Rogue --set level=3
+  - run: do experience who=ash
+    expect: "the highest level this game allows (3)"
+  - campaign new cozy --seed xp
+  - campaign profile flavor=cozy
+  - new pc Bree --set path=Monk --set level=3
+  - run: do experience who=bree
+    expect: "the highest level this game allows (3)"
+  - campaign new small --seed xp
+  - campaign profile scale=smaller
+  - new pc Cato --set path=Monk --set level=3
+  - run: do experience who=cato
+    expect: "the highest level this game allows (3)"
+---
+test: starting-levels
+help: Larger scale and high fantasy start PCs at level 3, noblebright at 2 with a minor arcana, each level gained as leveling up gains it.
+script:
+  - world new t --system {pack} --seed starts
+  - campaign new larger --seed starts
+  - campaign profile scale=larger
+  - run: >-
+      char new --mode random --prefill '{"name": "Lars", "path": "Witch"}'
+    expect: ["level: 3", "level 2: witch-hidden-magic grows", "This campaign starts PCs at level 3 (larger scale)"]
+  - campaign new noble --seed starts
+  - campaign profile flavor=noblebright
+  - run: >-
+      char new --mode random --prefill '{"name": "Nell", "path": "Fighter"}'
+    expect: ["level: 2", "arcana: [arcana-1]", "tier: minor", "(noblebright)"]
+  - campaign new high --seed starts
+  - campaign profile flavor=high
+  - run: >-
+      char new --mode random --prefill '{"name": "Hal", "path": "Rogue", "arcana_start": "1 major arcana"}'
+    expect: ["level: 3", "tier: major", "level 3: rogue-expertise grows", "(high fantasy)"]
+---
+test: level-zero
+help: Level 0 PCs have no core talent and 3 stat points; 1 XP brings level 1, the core talent with its choices and pools, and the last stat point, and a half core talent gives way to another talent (p. 176).
+script:
+  - world new t --system {pack} --seed zero
+  - campaign new c --seed zero
+  - campaign profile level-zero=on
+  - run: >-
+      char new --mode random --prefill '{"name": "Zed", "path": "Wizard", "talent_list": "Fighter", "talent": "fighter-arcane-training"}'
+    expect: ["level: 0", "talents: [fighter-arcane-training]", "point buy: 3/3 points", "theorem: "]
+  - run: char commit c1
+    expect: "pc:zed"
+  - run: do experience who=zed
+    expect: "level 1 is ready"
+  - run: char advance zed --mode random
+    expect: ["level: 0 → 1", "talents: [fighter-arcane-training] → [wizard-spellcraft, ", "replaces the half core talent fighter-arcane-training"]
+  - run: char commit c2
+    expect: "level 0 → 1"
+  - run: >-
+      char new --mode random --prefill '{"name": "Cleo", "path": "Cleric", "talent_list": "Cleric"}'
+    expect: ["level: 0", "path_notes: [god's domain: "]
+  - run: char commit c3
+    expect: "pc:cleo"
+  - run: do experience who=cleo
+    expect: "level 1 is ready"
+  - run: char advance cleo --mode random
+    expect: ["talents: [cleric-", "rites: major ", "+ track Cleo's ", "kind: pool, pool: power"]
+  - run: char commit c4
+    expect: ["pc:cleo", "track:cleo-s-"]
+  - run: track list
+    expect: "Cleo's "
+---
+test: what-a-level-can-bring
+help: A bard can't take the berserker's Warcry, its own half core; no magic keeps the magical paths' lists out (pp. 59, 172).
+script:
+  - world new t --system {pack} --seed eligible
+  - campaign new c --seed eligible
+  - new pc Bea --set path=Bard --set "talents+=bard-inspiration" --set xp=2
+  - run: >-
+      char advance bea --prefill '{"talent_list": "Berserker"}'
+    expect: ["waiting for talent", "berserker-mighty, berserker-overkill\n"]
+  - run: char discard c1
+    expect: "discarded"
+  - run: campaign profile magic=none
+    expect: "magic: none"
+  - run: char advance bea
+    expect: ["no magic: the magical paths are out", "Background talents, Legacy talents (ask your GM)"]

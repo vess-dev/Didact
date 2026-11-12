@@ -1,0 +1,41 @@
+# A fight starting and ending runs triggers that read it (`@combat.round`, `@combat.fighters`),
+# `for: pcs` too; any rule reads the fight under way.
+trigger: opening
+on: combat_start
+for: pcs
+params: {who: ref}
+when: "@who in @combat.fighters"
+steps:
+  - "{@who.name} draws steel (round {@combat.round}, {count(@combat.fighters)} fighters)."
+---
+trigger: closing
+on: combat_end
+steps:
+  - "The fight ends in round {@combat.round}."
+  - do: tally
+---
+trigger: refresh
+on: combat_end
+for: pcs
+params: {who: ref}
+when: "count(@who.used) > 0"
+steps:
+  - set: who.used
+    value: []
+  - "{@who.name}'s strike is fresh again."
+---
+action: tally
+title: Who fought
+steps:
+  - "Still standing: {@combat.fighters}."
+---
+action: strike
+title: A strike once per fight
+params: {who: ref}
+steps:
+  - if: "'strike' in @who.used"
+    then: [stop: "{@who.name} has struck this fight already."]
+  - set: who.used
+    op: "+="
+    value: strike
+  - "{@who.name} strikes in round {default(@combat.round, 0)}."

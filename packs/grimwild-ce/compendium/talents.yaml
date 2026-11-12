@@ -1,0 +1,1546 @@
+# Talents (Adventurers, pp. 54-89; Spellcasting Talents, p. 38; Legacy Talents, pp. 178-179).
+# `path` is the path, or background, spellcasting or legacy. Lines starting with > are the
+# book's sidebars and notes on that talent.
+id: artificer-infusion
+type: talent
+name: Infusion
+path: artificer
+core: true
+growth: At levels 2, 4, and 6, you can create +1 major arcana, and learn 2 touchstones.
+source: p. 54
+body: |-
+  You harness the power of creativity. You know 6 touchstones from the arcana crucibles (and all functions), and have created 3 major arcana using them. Anyone can use them with the most relevant stat (as arcana), though it always carries risk for those other than you. Given time, you can: disassemble and rebuild them using any touchstones you know—pull off a potent feat of mechanical ingenuity. You can push yourself to do it on the spot.
+
+  Engineer: Take +1d at creating, repairing, or destroying mechanisms and arcana. You can also deconstruct arcana to learn their touchstones, destroying them in the process.
+
+  > Arcana doesn’t regain uses when rebuilt, but those that expand vantage can still do so.
+---
+id: artificer-animate-objects
+type: talent
+name: Animate Objects
+path: artificer
+source: p. 55
+body: |-
+  Given time, you can bestow a semblance of life into objects, giving them a 2d Animated power pool, and controlling them with simple one-word commands. They can roll 1d of their power pool to assist you. You can reliably command up to three of these at a time, with others following their nature.
+
+  > "Following their nature" means they mindlessly do what they were created to do. Brooms sweep, wrenches crank bolts, daggers attack—all without direction from you.
+---
+id: artificer-artificial-parts
+type: talent
+name: Artificial Parts
+path: artificer
+source: p. 55
+body: |-
+  You have enhanced replacement body parts. Choose 3 benefits for them: built-in weapon—detachable—independent—keen sense—storage—strong. Each perk can be activated once per session to take +1d on a related roll. They also have a drawback: noisy—horrifying—unreliable—power source.
+---
+id: artificer-grenades
+type: talent
+name: Grenades
+path: artificer
+per_session: a 3d Grenades resource pool
+source: p. 55
+body: |-
+  Each session, you have a 3d Grenades resource pool. You have access to the following bombs: entangle—force—fiery—gravity—obscuring—stun. These grenades affect multiple targets or an area.
+---
+id: artificer-magnum-opus
+type: talent
+name: Magnum Opus
+path: artificer
+source: p. 55
+body: |-
+  You’re in the process of creating a mythic arcana. It has a 6d power pool as normal, but before each session, roll 3 random touchstones. Each time, you can choose 1 touchstone to lock in, never rolling for it again.
+---
+id: artificer-mischief-maker
+type: talent
+name: Mischief Maker
+path: artificer
+source: p. 55
+body: |-
+  You can overload arcana to create a potent effect with it. Make a 2d story roll as the magic goes haywire. Add +1t to the story roll each time you use this after the first, clearing them each session.
+---
+id: artificer-trap-making
+type: talent
+name: Trap Making
+path: artificer
+source: p. 55
+body: |-
+  Given time, you can set potent traps, with an effect based on the style: blade—collapse—entangle—fire—poison—alarm. Push yourself to deploy a trap on the spot. On a perfect when triggered, take spark.
+---
+id: artificer-wandslinger
+type: talent
+name: Wandslinger
+path: artificer
+source: p. 55
+body: |-
+  You have a specialized wand and can use it to fire the following bolts of magic using Wits: acid burst—force blast—ice shard—inferno bolt—static charge—stun beam. Once per session, you can cause a secondary effect (as a critical) related to the type.
+---
+id: bard-inspiration
+type: talent
+name: Inspiration
+path: bard
+core: true
+growth: At levels 2, 4, and 6, gain +1 inspiration per session.
+per_session: 3 inspiration
+source: p. 56
+body: |-
+  Each session, you have 3 inspiration you can use to bolster the spirits of those around you and influence your foes.
+
+  You can spend inspiration to: increase an ally's die result by 1 (3→4)—calm or intensify a vex response—clear a mark from an ally.
+
+  You can also spend inspiration and roll Presence to: pull off a potent feat of emotional influence—interrupt an impact move—clear rattled from an ally.
+---
+id: bard-bardic-lore
+type: talent
+name: Bardic Lore
+path: bard
+per_session: 1 extra thread
+source: p. 57
+body: |-
+  You gain any 3 wises and 1 extra thread per session. You take +1d on any story rolls pertaining to what you know or story details you add.
+---
+id: bard-dynamic-entrance
+type: talent
+name: Dynamic Entrance
+path: bard
+source: p. 57
+body: |-
+  You can always appear in a scene exactly where and when you want, limited only by your physical capabilities. Make a 3d story roll to describe your entrance and its effect.
+
+  > The player sets the scene for their entrance, allowing extra details based on the result, almost as an action—even an interrupt, itself. The GM will step in if something doesn't fit.
+---
+id: bard-folk-hero
+type: talent
+name: Folk Hero
+path: bard
+source: p. 57
+body: |-
+  You can spend inspiration and spark interchangeably. If your spark die comes up as a 6, you regain it. Tales of your heroism are told throughout the area; track their spread with campaign pools.
+
+  Note: this doesn't grant the inspiration core talent to non-bards.
+
+  > For every free room and home-cooked meal, you're likely to have a plea for help, swindlers, starry-eyed followers, and those looking to pick a fight. Any of these would make great tangles.
+---
+id: bard-forked-tongue
+type: talent
+name: Forked Tongue
+path: bard
+source: p. 57
+body: |-
+  When given time, you can tell potent lies, such as telling the king you're their bastard or a prophecy foretelling the fall of the capital. You can push yourself to do it on the spot.
+---
+id: bard-friendly-face
+type: talent
+name: Friendly Face
+path: bard
+source: p. 57
+body: |-
+  In any new town or district of a city you go to, you can always: know someone useful—quickly make a friend—be recognized by a fan. They’ll gladly do you a reasonable favor. Take spark if you promise to pay them back.
+---
+id: bard-jack-of-all-trades
+type: talent
+name: Jack of All Trades
+path: bard
+source: p. 57
+body: |-
+  You take +1d on montage rolls and have a 3d power pool to represent the smattering of knowledge from your travels.
+
+  > When you get surprising results from this pool, make it meaningful. What past experience helped you here? Do you still remember the story?
+---
+id: bard-wordplay
+type: talent
+name: Wordplay
+path: bard
+source: p. 57
+body: |-
+  On a perfect defense roll when the situation allows for verbal quips, you make them: embarrass themself—let a secret slip—focus on or lose track of you. Once per session, you can goad the GM into spending suspense on conversation.
+---
+id: berserker-frenzy
+type: talent
+name: Frenzy
+path: berserker
+core: true
+growth: At levels 3 and 6, gain 1 free activation of frenzy per session.
+source: p. 58
+body: |-
+  Once per session, or when you get bloodied or take vex, you can enter a frenzy for a scene. During the frenzy, you can only take aggressive actions. You also:
+  - take +1d for each mark you have and ignore all thorns from harm and marks.
+  - always add collateral damage: send something flying—smash mooks—throw insults—wreck something.
+  - always get a final action when dropped. On a critical, ignore getting dropped.
+
+  You can only exit a frenzy when you: see no other challenger—get dropped—push yourself.
+
+  > Collateral damage acts as a narrow secondary effect, as a critical, and shouldn’t be underestimated. Treat this as a perfect on a related roll against the environment or mooks, though this won’t always be a good thing.
+---
+id: berserker-fearsome
+type: talent
+name: Fearsome
+path: berserker
+source: p. 59
+body: |-
+  Your presence instills fear in others. The GM judges an NPC’s response, or you can spend thread to set it: hostile—nervous—respectful—scared. You can push yourself to pull off a potent feat of intimidation, such as staring down a dragon or demanding to see the king.
+
+  > What exactly makes you so frightening to be around? This could merely be your appearance, but it could also be the way you talk, dress, your reputation, or a combination thereof.
+---
+id: berserker-flesh-wounds
+type: talent
+name: Flesh Wounds
+path: berserker
+source: p. 59
+body: |-
+  When you would get bloodied, you can instead take a Flesh Wound, a condition that inflicts +1t on all rolls, and is cleared when the scene ends. On a disaster, you take the harm as normal.
+---
+id: berserker-into-the-fray
+type: talent
+name: Into the Fray
+path: berserker
+source: p. 59
+body: |-
+  When you’re the first into an intense situation, 5s count as 6s, but 4s count as 1s on your first roll. You also setup the first person following you regardless of your roll outcome.
+---
+id: berserker-joyful-warrior
+type: talent
+name: Joyful Warrior
+path: berserker
+source: p. 59
+body: |-
+  On a critical or when bloodied in battle, you take spark and can: clear one mark from each ally—bring a dropped (not dead) ally back into the scene.
+---
+id: berserker-mighty
+type: talent
+name: Mighty
+path: berserker
+source: p. 59
+body: |-
+  When given time, you can pull off potent feats of raw strength. You can push yourself to do it on the spot.
+---
+id: berserker-overkill
+type: talent
+name: Overkill
+path: berserker
+source: p. 59
+body: |-
+  On a critical when bringing violence, threats, or destruction to bear, you can: cause an extra secondary effect—roll the related task pool twice.
+---
+id: berserker-warcry
+type: talent
+name: Warcry
+path: berserker
+source: p. 59
+body: |-
+  Twice per session, you can bolster your allies or strike fear in your foes with an inspiring battle cry, letting you: increase an ally's die result by 1 (3 → 4)—calm or intensify a vex response—clear a mark from an ally. [Prohibited: Bard]
+---
+id: cleric-channel-divinity
+type: talent
+name: Channel Divinity
+path: cleric
+core: true
+growth: At levels 3 and 6, gain +1d to each rite pool.
+per_session: a major rite (6d power pool) and 2 minor rites (4d power pools)
+source: p. 60
+body: |-
+  You have spellcasting ability, calling upon your deity to channel their magic. You roll a rite pool to cast spells, and that pool and your god’s title serve as touchstones. Your major rite is a 6d power pool, and your 2 minor rites are 4d power pools. They replenish each session. You can drop 1d and roll to cast a potent spell. Spells without risk are automatically successful, unless potent.
+
+  > Cleric Spellcasting: Your spellcasting ability comes in the form of power pools, meaning you roll the pool as an action in place of a stat. Read the highest as the result, then drop each die that lands on 1-3. If you add extra dice to the roll (such as from spark), keep them separate from the pool—they don’t affect dice dropping, and aren't added to the power pool.
+---
+id: cleric-blessed
+type: talent
+name: Blessed
+path: cleric
+source: p. 61
+body: |-
+  Once per session, you can re-roll a roll you just made as your god attempts to intervene. The re-roll is made without any thorns on it. On a perfect, take spark.
+---
+id: cleric-devout
+type: talent
+name: Devout
+path: cleric
+source: p. 61
+body: |-
+  Intelligent creatures recognize you as a person of deep honesty and only your most hated enemies would treat you with a lack of respect or doubt your word. You are never seriously injured or killed by an enemy, unless they have no choice. Any creature with speech will always hear you out. This aura is upheld by your unwavering commitment—you must push yourself to act in bad faith.
+
+  > You stick to your principles unwaveringly, and even those acting against you know. How does this impact those around you? This is sure to cause tangles, perhaps even quarrels.
+---
+id: cleric-healer
+type: talent
+name: Healer
+path: cleric
+source: p. 61
+body: |-
+  You take +1d when you heal someone, with magic or treatment. On a critical, both of you take spark. One time only, you can bring back the recently dead. Common sense takes precedent.
+---
+id: cleric-iron-will
+type: talent
+name: Iron Will
+path: cleric
+per_session: a 2d Iron Will resource pool
+source: p. 61
+body: |-
+  Each session, you have a 2d Iron Will resource pool. When you get rattled or take vex, roll the pool to ignore it. If the situation allows for it, you can also lash out at the cause or a bystander and: instill dread in their heart—sow doubt in their mind.
+---
+id: cleric-rings-false
+type: talent
+name: Rings False
+path: cleric
+source: p. 61
+body: |-
+  You always know when someone is lying, though not necessarily the truth. You take +1d on a follow-up if you reveal you know they’re lying.
+
+  > This could be seen through a darker lens, flavored as having been around criminal types and ne-er-do-wells for far too long.
+---
+id: cleric-sermons
+type: talent
+name: Sermons
+path: cleric
+source: p. 61
+body: |-
+  When given time, you can pull off potent feats of persuasion in the name of your beliefs, like commanding a crowd to bring the duke for judgment or showing the goblins the glory of your god. You can push yourself to do it on the spot. One time only, you can make this a ritual-level effect.
+---
+id: cleric-shepherd
+type: talent
+name: Shepherd
+path: cleric
+source: p. 61
+body: |-
+  When you assist an ally on a defense roll that would leave them rattled or with vex, you can invoke your bond to take +1d on the roll. On a perfect, you both take spark.
+---
+id: druid-wild-shape
+type: talent
+name: Wild Shape
+path: druid
+core: true
+growth: At levels 3 and 6, gain +1d to your Wild Shape pool.
+source: p. 62
+body: |-
+  Shift into any familiar beast form by using a 2d Wild Shape resource pool, replenishing each scene. You take on the form’s physical qualities and feral instincts, moving stat points to represent this (min 1, max 3). You lose access to your own physical talents. Drop 1d before rolling for each wild talent, such as: aquatic—smaller than a cat—bigger than a bear—flying—a thematic path talent.
+---
+id: druid-augury
+type: talent
+name: Augury
+path: druid
+per_session: 2 Omens (roll 2d before each session)
+source: p. 63
+body: |-
+  You can read the world around you and interpret its signs. Before each session, roll 2d and record the results. These are your Omens. During the session, you can replace any rolled d6 (by anyone) with an omen result, then erase it.
+---
+id: druid-awaken
+type: talent
+name: Awaken
+path: druid
+source: p. 63
+body: |-
+  Once per scene, you may awaken a living natural feature—plants, animals, fungi, or the like—within or nearby the scene. It gains awareness and purpose, forming a 3d power pool you can direct, guided by its nature. One time only, you can make this a ritual-level effect.
+---
+id: druid-kindred-spirits
+type: talent
+name: Kindred Spirits
+path: druid
+source: p. 63
+body: |-
+  You can speak with all manner of wild things—animals, plants, and spirits. When you meet, they know of you. Make a story roll for their attitude, or spend thread to establish a bond. When you call, those nearby will answer. You always sense the presence of hidden dangers in places teeming with wildlife.
+
+  > Not everything communicates as we do—plants may only impart feelings, spirits might need an offering to even appear. Change it up and make the world feel alive.
+---
+id: druid-primal-growth
+type: talent
+name: Primal Growth
+path: druid
+source: p. 63
+body: |-
+  You can move through any natural terrain quickly and without issue. Once per session you can grow, wither, or shape: crops—dense foliage—entangling vines—fungi—poisonous spores. You can push yourself to do it again. You can perform plant or harvest rituals without anchors.
+---
+id: druid-primordial-bonds
+type: talent
+name: Primordial Bonds
+path: druid
+source: p. 63
+body: |-
+  You have spellcasting ability, using raw elemental power (Fire, Earth, Air, or Water) as the touchstone, and casting spells with Presence. On a critical using an element, charge it. Spend it to cast a potent spell with that element.
+
+  > If the elements are spirits in your setting, consider adding bonds for them. You may find alternative ways to charge an element, such as through great deeds or ritual.
+---
+id: druid-true-shape
+type: talent
+name: True Shape
+path: druid
+source: p. 63
+body: |-
+  Choose 1 beast form. If it has no wild talents, you can shift into it without using a wild shape pool. If it has wild talents, you drop 1d less than normal when you shift into it.
+---
+id: druid-windcaller
+type: talent
+name: Windcaller
+path: druid
+source: p. 63
+body: |-
+  Your voice carries on the winds over great distances. Once per session, you can summon or dismiss, but not control: dense fog—extreme temperatures—heavy rain—snowfall—storms—strong winds. You can push yourself to do it again. You can perform weather rituals without anchors.
+---
+id: fighter-weapon-mastery
+type: talent
+name: Weapon Mastery
+path: fighter
+core: true
+growth: At levels 3 and 6, gain +1 mastery per scene.
+source: p. 64
+body: |-
+  Choose a fighting style you have mastered: brawling—dual-wielding—one-handed—ranged—two-handed. When you fight, defend, or assist in your style, take +1d. Each scene, you have 2 mastery to spend when using this style to add a critical effect.
+---
+id: fighter-arcane-training
+type: talent
+name: Arcane Training
+path: fighter
+per_session: 3 spells and 1 potent spell
+source: p. 65
+body: |-
+  You have spellcasting as the Spellcraft talent. You can cast 3 spells and 1 potent spell per session. You know 3 spell theorems, created with the Spell Crucible, and can learn new spells from scrolls. [Prohibited: Wizard]
+---
+id: fighter-bulwark
+type: talent
+name: Bulwark
+path: fighter
+per_session: a 2d Bulwark resource pool
+source: p. 65
+body: |-
+  Each session, you have a 2d Bulwark resource pool from armor or other defenses. When you take physical harm, you can roll the pool to ignore the damage.
+---
+id: fighter-control
+type: talent
+name: Control
+path: fighter
+source: p. 65
+body: |-
+  Once per session, you can declare a zone that enemies cannot cross without dealing with you. If they attempt to move past you, you can interrupt them. On a perfect, take spark. You can push yourself to do it again.
+
+  > Some foes are too large to control. Even experienced, a warrior with control over an area won't stop a dragon—but they may get a parting shot (roll the pool), move with them, or hinder them in another way.
+---
+id: fighter-got-your-back
+type: talent
+name: Got Your Back
+path: fighter
+source: p. 65
+body: |-
+  Once per session, you can assist an ally after they roll a grim. The ally can also roll 1d. On a perfect, you both take spark. You can push yourself to do it again.
+---
+id: fighter-measured-tones
+type: talent
+name: Measured Tones
+path: fighter
+source: p. 65
+body: |-
+  When you speak in measured tones, people always stop and listen—you can declare low stakes if desired. Unless completely surprised, you can push yourself to interrupt an impact move initiating aggression. If you change their mind, take spark.
+---
+id: fighter-swift-recovery
+type: talent
+name: Swift Recovery
+path: fighter
+source: p. 65
+body: |-
+  On a perfect roll with an unmarked stat, clear a mark on another stat.
+---
+id: fighter-tactician
+type: talent
+name: Tactician
+path: fighter
+source: p. 65
+body: |-
+  Once per session during an intense action sequence, you tag 3 scene elements right away, and 1 later in the sequence. When an ally interacts with a tagged element, you assist without risk on the roll. If no roll is needed, they take spark. You can push yourself to do it again.
+
+  > Scene elements may come from the GM's description, or they could be things that would logically be there. Establish details if needed, the GM will step in if it's too far.
+---
+id: monk-discipline
+type: talent
+name: Discipline
+path: monk
+core: true
+growth: At levels 3 and 6, gain +1 flow per scene and +1 interrupts per session.
+source: p. 66
+body: |-
+  Never face a disadvantage due to a weapon matchup. Once per session, you can interrupt with a: philosophical point—quick reaction—stunning strike. Each scene, you have 4 flow. Spend it to:
+  - Ignore thorns from: being outnumbered—a single imposing opponent.
+  - Attempt a fluid maneuver. Before rolling, declare you want to also: disarm them—redirect momentum—reposition you, them, or both. On a perfect or messy, it happens.
+  - Pull off a potent feat of mystical grace, like running across water or falling harmlessly from a great height. For 1 more flow, extend this to those you’re touching.
+---
+id: monk-healing-hands
+type: talent
+name: Healing Hands
+path: monk
+source: p. 67
+body: |-
+  You can heal an ally that is bloodied. This automatically works, but you must make a Presence defense roll against being bloodied—you take their pain onto yourself and must fend it off.
+---
+id: monk-lightning-reflexes
+type: talent
+name: Lightning Reflexes
+path: monk
+source: p. 67
+body: |-
+  You can always act first, unless completely surprised. You also ignore thorns on Agility defense rolls, except for those from damage.
+---
+id: monk-mind-over-matter
+type: talent
+name: Mind Over Matter
+path: monk
+source: p. 67
+body: |-
+  When you take a physical mark, you can instead choose to take a mental mark. When you clear a mark by rolling it, take spark.
+---
+id: monk-redirect
+type: talent
+name: Redirect
+path: monk
+source: p. 67
+body: |-
+  On a perfect defense against physical attack, you can push yourself to turn it back on your foe.
+
+  > Keep vantage in mind when redirecting attacks. If you're quick, you could very well deflect arrows and bolts. If you're also strong, you could catch and return spears and larger weapons, too.
+---
+id: monk-resonance
+type: talent
+name: Resonance
+path: monk
+source: p. 67
+body: |-
+  When you would drop a foe, you can instead keep their lifeforce. They know you hold their fate. In the near future, you can decide to let go, and: drop them instantly—take spark and release them. One time only on a perfect, you can immediately drop a foe you strike.
+---
+id: monk-tether
+type: talent
+name: Tether
+path: monk
+source: p. 67
+body: |-
+  Once per session, touch someone to link spirits. You can sense their feelings, speak in their mind, and know where they are. You can push yourself to: assist them without risk—take mental damage for them—teleport to them. If they get dropped, so do you.
+
+  > Linking spirits can give you new insight on an ally. Do either of you catch any fleeting memories or thoughts from the other? Consider changing your bond afterward.
+---
+id: monk-there-is-no-try
+type: talent
+name: There Is No Try
+path: monk
+source: p. 67
+body: |-
+  When putting your life or something you hold equally dear on the line, 5s count as 6s, and 4s count as 1s. This generally occurs with high stakes or after being bloodied in battle.
+---
+id: paladin-oathsworn
+type: talent
+name: Oathsworn
+path: paladin
+core: true
+growth: At levels 2, 4, and 6, gain +1 smite per session.
+per_session: 3 smite
+source: p. 68
+body: |-
+  You draw power from your three tenets. When you add a thorn from bloodied, rattled, or desperate you also take +1d. Each session, you have 3 smite. When acting with total conviction, spend it 1-for-1 to drop dice from a task pool after rolling it.
+
+  Affirmation: Before each session, state your tenets and discuss how they came up last session. Give spark to one player who joined a scene involving your tenets. Take 1 less smite for each tenet in violation.
+---
+id: paladin-aegis
+type: talent
+name: Aegis
+path: paladin
+source: p. 69
+body: |-
+  You take +1d when making a defense roll to protect yourself from physical harm. On a perfect, you can also: keep their attention on you—rekindle hope in an ally—inspire action in a bystander.
+---
+id: paladin-authority
+type: talent
+name: Authority
+path: paladin
+source: p. 69
+body: |-
+  Your presence fills the air with authority. The GM judges an NPC’s response, or you can spend thread to set it: admiration—obedience—respect—defiance. You can push yourself to pull off a potent feat of righteous command, such as ordering a demon to kneel or silencing a riot with a word.
+---
+id: paladin-challenge
+type: talent
+name: Challenge
+path: paladin
+source: p. 69
+body: |-
+  Once per session you can challenge a foe, taking +1d on all rolls against them, but give them 1 suspense. If they do anything besides confront you, you can interrupt it. The challenge ends if an ally engages your foe, or your interrupt result is less than a perfect. You can push yourself to do it again.
+---
+id: paladin-dauntless
+type: talent
+name: Dauntless
+path: paladin
+source: p. 69
+body: |-
+  Take spark when your roll is cut. Take +1d on story rolls if dropped. On a perfect, you don't get dropped.
+---
+id: paladin-divine-blessing
+type: talent
+name: Divine Blessing
+path: paladin
+per_session: 1 rite, a 4d power pool
+source: p. 69
+body: |-
+  You have spellcasting as the Channel Divinity talent. Detail your god and choose 1 rite, a 4d power pool (per session). You can drop 1d and roll the pool to cast a potent spell. [Prohibited: Cleric]
+---
+id: paladin-guardian
+type: talent
+name: Guardian
+path: paladin
+source: p. 69
+body: |-
+  Take +1d when you assist on a defense roll. You can also make a defense roll for an ally when they would be affected by an impact move, or push yourself to defend multiple nearby allies from a single attack, like blocking dragon fire.
+
+  > When you "make a defense roll for an ally," you're not assisting—the impact move is instead now targeting you, and they're no longer at risk.
+---
+id: paladin-rebuke
+type: talent
+name: Rebuke
+path: paladin
+source: p. 69
+body: |-
+  When the GM spends suspense to prompt an impact move, you take +1d on any follow-up action against the source. On a critical, take spark.
+---
+id: psion-awakened-mind
+type: talent
+name: Awakened Mind
+path: psion
+core: true
+growth: At levels 3, and 6, you gain +1 instability slot at 0t, and +1 bastion.
+source: p. 70
+body: |-
+  You have spellcasting ability. Choose two bastions below which act as the touchstone for your psionic magic. You can cast spells using Wits, and can make them potent by adding instability, eventually adding increasing thorns to your future spellcasting rolls. You can’t cast potent spells once adding +2t from instability. Thorns from instability can't be ignored and reset at the beginning of each session. You gain more slots that don't add instability with growth.
+---
+id: psion-echo
+type: talent
+name: Echo
+path: psion
+source: p. 71
+body: |-
+  Once per session, you can create a duplicate as a 3d power pool. It is a second version of you, acting as you with shared knowledge, ability, and resources. You can drop 1d of its pool to have it: assist you—trade places with you.
+
+  > This isn't an interrupt, if you're targeted by an impact move, it's too late to switch.
+---
+id: psion-foresight
+type: talent
+name: Foresight
+path: psion
+source: p. 71
+body: |-
+  You can catch small glimpses of the future. Once per session, you can describe a brief course of action while in a calm situation, and the GM will tell you the result. If there’s risk, make a montage roll to see how it would play out. Afterward, you can decide whether to take the action.
+---
+id: psion-mind-blast
+type: talent
+name: Mind Blast
+path: psion
+source: p. 71
+body: |-
+  On a critical on a bastion roll, you don’t add instability, instead clearing one. This causes mental collateral damage around you: confusion—hallucinations—headaches—panic. One time only, you can make this a ritual-level effect, affecting all within miles.
+---
+id: psion-psychic-warrior
+type: talent
+name: Psychic Warrior
+path: psion
+source: p. 71
+body: |-
+  You’re able to turn your psychic volatility against others. You can freely create weapons made from pure willpower, using them with Wits. You take +1d to follow up with them when you: take vex or rattled—increase your instability.
+
+  > This talent can be poached by any spellcaster. Flavor the weapons with your magical trappings.
+---
+id: psion-reader
+type: talent
+name: Reader
+path: psion
+per_session: 1 thread
+source: p. 71
+body: |-
+  You gain 1 thread per session and can spend thread when you first meet someone to know their foremost surface thought—they are like an open book to you. If you follow-up on it, it counts as a setup.
+---
+id: psion-shift-form
+type: talent
+name: Shift Form
+path: psion
+per_session: a 2d Shifter resource pool
+source: p. 71
+body: |-
+  Each session, you have a 2d Shifter resource pool. You can roll the pool to alter your features and appearance, though you keep the same basic shape.
+
+  > This allows you to change your basic physical features. You might disguise yourself to infiltrate or blend in, but you're still clearly humanoid, and have the same capabilities.
+---
+id: psion-tumultuous-mind
+type: talent
+name: Tumultuous Mind
+path: psion
+source: p. 71
+body: |-
+  Your fractured mind bleeds into the consciousness of others. The GM judges an NPC’s response, or you can spend thread to set it: agitated—confused—paranoid—forgetful. Once per session, when you would take vex, a nearby creature must take it instead.
+---
+id: ranger-quarry
+type: talent
+name: Quarry
+path: ranger
+core: true
+growth: At levels 3 and 6, choose +1 Quarry per session.
+per_session: 1 Quarry
+source: p. 72
+body: |-
+  Once per session, you can choose a foe as your Quarry—the focus of your hunt. You have a Quarry die, a special d6. When you or an ally attempts to research, locate, or attack your quarry, add your quarry die to the roll. If a quarry die rolls a ‘6’, you can add a critical effect.
+
+  Survivalist: You take +1d when scouting, wrangling animals, placing traps, and on defense rolls against environmental hazards.
+---
+id: ranger-animal-companion
+type: talent
+name: Animal Companion
+path: ranger
+source: p. 73
+body: |-
+  You’re accompanied by a fiercely loyal animal. Each PC adds a reciprocal bond with it. Choose 3 tricks and 2 flaws. You roll 3d for its tricks and 1d otherwise. It has only two damage boxes, marked (for any mark) and hurt (for any harm). It can always exit a scene when hurt. If lost, you can bond with a new animal.
+
+  TRICKS: distract—fight—guard—perform—rescue—retrieve—scout—search—track—warn
+
+  FLAWS: aggressive—clumsy—grumpy—insatiable—jumpy—noisy—overprotective—scary—unruly
+
+  > Come up with your own tricks & flaws for other companions such as hired bodyguards or homunculi. The GM may let you take this again for 3 extra tricks and another hurt damage box.
+---
+id: ranger-keen-senses
+type: talent
+name: Keen Senses
+path: ranger
+source: p. 73
+body: |-
+  Your senses are twice as sharp as normal. You can pull off potent feats of tracking and you always notice the presence of living creatures near you, though details are unclear.
+---
+id: ranger-relentless
+type: talent
+name: Relentless
+path: ranger
+source: p. 73
+body: |-
+  You can pull off potent feats of traversal and can always move at full speed, unhindered by what’s in your way.
+---
+id: ranger-scout-ahead
+type: talent
+name: Scout Ahead
+path: ranger
+per_session: 1 thread
+source: p. 73
+body: |-
+  You gain 1 thread per session and can spend thread to flashback to scouting ahead and: find an escape route—sabotage something—set a trap—survey the area (ask 2 questions)—take out a danger. Make a 3d montage roll. The GM always takes suspense in place of an impact move.
+---
+id: ranger-seasoned-hunter
+type: talent
+name: Seasoned Hunter
+path: ranger
+source: p. 73
+body: |-
+  You can push yourself to tell your allies to Look Out! and goad the GM into spending suspense on a move you declare to attack your party. Anyone involved takes +1d on a defense roll and follow-up action rolls.
+---
+id: ranger-sharpshooter
+type: talent
+name: Sharpshooter
+path: ranger
+source: p. 73
+body: |-
+  When given time, you can pull off potent feats of ranged precision, such as shooting just beyond maximum range or into near complete cover. You can push yourself to do it on the spot.
+---
+id: ranger-trophies
+type: talent
+name: Trophies
+path: ranger
+source: p. 73
+body: |-
+  When you play a key part in slaying a powerful monster, you can take a trophy from it. This acts as a major expendable arcana. Use the monster’s name, ability, and a function as the touchstones. You also gain 1 major expendable arcana—detail it.
+
+  > Major expendable arcana allows you to produce the effects of a ritual.
+---
+id: rogue-expertise
+type: talent
+name: Expertise
+path: rogue
+core: true
+growth: At levels 3 and 6, gain +1 Competence per session and +1 skill.
+per_session: 2 Competence
+source: p. 74
+body: |-
+  Choose three skills below as your skill set. Take +1d when using a chosen skill. Each session, you have a 2 Competence to represent your focus under pressure. You can spend 1 to pull off a potent feat within your skill set.
+
+  Above board: blend in—charm—investigate—negotiate—network—parkour.
+
+  Below table: ambush—deception—dismantle—provoke—sleight of hand—stealth.
+
+  > Above Board
+  > - Blend in: Keep a low profile.
+  > - Charm: Persuade with personality.
+  > - Investigate: Study, observe, connect dots.
+  > - Negotiate: Bargain and settle terms.
+  > - Network: Use contacts and resources.
+  > - Parkour: Run, climb, leap efficiently.
+  >
+  > Below Table
+  > - Ambush: Plan and attack unseen.
+  > - Deception: Lie, disguise, and act.
+  > - Dismantle: Sabotage, pick locks, disable.
+  > - Provoke: Manipulate, incite emotions.
+  > - Sleight of hand: Pickpocket, filch, steal.
+  > - Stealth: Hide, move unseen.
+---
+id: rogue-distraction
+type: talent
+name: Distraction
+path: rogue
+source: p. 75
+body: |-
+  On a perfect, you can setup an ally and pass them the spotlight, even if the GM wants to spend suspense.
+---
+id: rogue-eldritch-affinity
+type: talent
+name: Eldritch Affinity
+path: rogue
+source: p. 75
+body: |-
+  You have spellcasting, as the Sorcery talent. You roll Presence to cast and choose 3 from magic paths and techniques. You can’t cast potent spells, nor do you risk a magical twist. [Prohibited: Sorcerer]
+
+  > This can be used to give psionics, instead, should it fit your setting. Pick a single bastion (pg. 70), and use Wits to cast spells. You can't cast potent spells.
+---
+id: rogue-lurker
+type: talent
+name: Lurker
+path: rogue
+source: p. 75
+body: |-
+  On a perfect sneaking past or secretly observing sentient creatures, they: let a secret slip—give you a golden opportunity. If caught sneaking, you can push yourself to stay completely still and avoid detection, but must leave the area immediately after.
+---
+id: rogue-mastermind
+type: talent
+name: Mastermind
+path: rogue
+per_session: 1 thread
+source: p. 75
+body: |-
+  You gain 1 thread per session and can spend thread to flashback to employing subterfuge or clever preparation to: make a contact—plant a decoy—prepare reinforcements—set up an interrupt—swipe or stash a useful item. Make a 3d montage roll. The GM must take suspense in place of an impact move.
+
+  > This can cover many kinds of preparation. Consider your other talents and abilities as well, for example: if you have spellcasting, perhaps you prepared by using magic ahead of time.
+---
+id: rogue-opportunist
+type: talent
+name: Opportunist
+path: rogue
+source: p. 75
+body: |-
+  When someone nearby rolls defense, you take +1d on an immediate follow-up. On a critical by a nearby ally, you can push yourself to add a critical bonus.
+---
+id: rogue-poisoner
+type: talent
+name: Poisoner
+path: rogue
+per_session: a 4d Poisons resource pool
+source: p. 75
+body: |-
+  Each session, you have a 4d Poisons resource pool. You have access to the following poisons: hallucinations—knockout—memory loss—nausea—paralytic—truth serum. They each take a bit of time to work and are most effective if ingested.
+---
+id: rogue-weasel
+type: talent
+name: Weasel
+path: rogue
+source: p. 75
+body: |-
+  Once per session, if caught in a lie or red-handed, you can weasel your way out—for now. Make a story roll to see if they realize their mistake later. You can push yourself to do it again.
+---
+id: sorcerer-sorcery
+type: talent
+name: Sorcery
+path: sorcerer
+core: true
+growth: At levels 2, 4, and 6, gain a new magic path or technique.
+source: p. 76
+body: |-
+  You have spellcasting ability. You roll Presence to cast and your magic paths and techniques serve as touchstones. Your spells always carry risk and require a roll. You can push yourself to cast a potent spell. When casting, rolling two or more 1s (thorns included) triggers a magical twist. Choose any 4 of Magic Paths and Techniques (with at least 1 of each) and how your twists manifest below, or talk to the GM to make your own.
+
+  Magical twists: wild surge (2d story roll for effect)—take vex—curse (+1 suspense).
+
+  Magic paths: blood—decay—flame—frost—lux—shadow—stone—tempest.
+
+  Techniques: attack—create—defend—enhance—hinder—influence—transform—traverse.
+
+  > Other Magical Twists: These can be anything, acting similarly to a lesser impact move when triggered. Tie it to your character's story, if possible. Use a timer to build up to a bigger consequence, such as being hunted down, or succumbing to a curse or deadly fate.
+---
+id: sorcerer-eldritch-growth
+type: talent
+name: Eldritch Growth
+path: sorcerer
+source: p. 77
+body: |-
+  Intense magic has twisted your body. You gain a permanent physical feature like metal-rending claws, fiery breath, or venomous fangs.
+---
+id: sorcerer-maelstrom
+type: talent
+name: Maelstrom
+path: sorcerer
+source: p. 77
+body: |-
+  You open yourself fully to the maelstrom of raw magic. When you cast a potent spell, 5s count as 6s, but 4s count as 1s. When rolling two or more 1s (including these 4s), you trigger a magical twist, as Sorcery.
+---
+id: sorcerer-magic-sense
+type: talent
+name: Magic Sense
+path: sorcerer
+source: p. 77
+body: |-
+  You always notice magical effects near you, and take +1d when you disrupt them. Given time, you can discern their details (ask 2 questions).
+---
+id: sorcerer-metamagic
+type: talent
+name: Metamagic
+path: sorcerer
+source: p. 77
+body: |-
+  Twice per session, you can alter your magic as it flows through you, modifying the effect or casting by giving it an extra touchstone: controlled—distant—intense—lasting—subtle—quick.
+
+  > This makes the spell more powerful, but not quite potent. Adding a touchstone should give a clear answer to any question about it. 'Do you have time to cast a spell? It's quick; yes.'
+---
+id: sorcerer-spelleater
+type: talent
+name: Spelleater
+path: sorcerer
+per_session: a 2d Spelleater resource pool
+source: p. 77
+body: |-
+  Each session, you have a 2d Spelleater resource pool. When you suffer from magic, you can roll the pool to ignore the effect. When the pool drops to 0d, your next action is potent.
+---
+id: sorcerer-wisps
+type: talent
+name: Wisps
+path: sorcerer
+source: p. 77
+body: |-
+  Two small magical motes float around you. Give them 2 traits such as: annoying—melancholic—mesmerizing—petty—troublesome—whimsical. You can sacrifice one to have it act independently, making a story roll if needed. They return each session.
+
+  > You could send one to assist an ally, distract a foe, light the way, or even pass a message to someone. The story roll here is about how effective they are, it doesn't prompt an impact move.
+---
+id: sorcerer-wrath
+type: talent
+name: Wrath
+path: sorcerer
+source: p. 77
+body: |-
+  When a nearby ally takes harm or is dropped, you take +1d and potency on your next action, if you immediately lash out.
+---
+id: summoner-vassal
+type: talent
+name: Vassal
+path: summoner
+core: true
+growth: At levels 3 and 6, you gain +1 aspect.
+source: p. 78
+body: |-
+  You have a connection with a creature from another plane, and are able to call upon and direct it with a 4d power pool. The pool returns to its max once at 0d, or when you push yourself. It has 1 aspect, a strange trait defining it such as: big enough to ride—telepathic—a thematic path talent.
+
+  It can take 1 mark and 1 harm, with any more breaking the anchors holding it here. Make a 2d story roll to see the fallout before it disappears. You can resummon it every scene.
+
+  > “Fallout”: There are often consequences to the magic anchoring your vassal to this plane breaking. Consider your summon, and what form that could take beforehand. Demons may require immediate payment for their service, vassals from elemental planes could bring forth raging fire or a tidal wave, while bestial creatures could go berserk. On a perfect, you avoid the trouble.
+---
+id: summoner-binding-word
+type: talent
+name: Binding Word
+path: summoner
+source: p. 79
+body: |-
+  Add contracts as a wise. If you’re present for an agreement, you can make it binding. Both parties know if it’s broken, with the defaulting party afflicted by a potent spell, using the contract details as touchstones. One time only, you can make this a ritual-level effect.
+---
+id: summoner-fierce-protector
+type: talent
+name: Fierce Protector
+path: summoner
+source: p. 79
+body: |-
+  Once per session, a creature you control can interrupt an impact move against you. On a grim, they take the impact move instead. Either way, you take +1d on your follow-up against the attacker.
+
+  > This isn't limited to your vassal. Animal companions, and familiars can protect you just as well.
+---
+id: summoner-ley-magic
+type: talent
+name: Ley Magic
+path: summoner
+source: p. 79
+body: |-
+  Once per session, you can temporarily alter the leylines in the area to: draw or repel certain creatures—enhance or dampen magic. When you alter a place like this, you know when others enter the area. You can push yourself to do it again.
+---
+id: summoner-monster-menagerie
+type: talent
+name: Monster Menagerie
+path: summoner
+source: p. 79
+body: |-
+  You have a bond with 3 different creatures, all with their own aspects. When you summon a vassal, you can choose which answers the call.
+---
+id: summoner-pocket-plane
+type: talent
+name: Pocket Plane
+path: summoner
+source: p. 79
+body: |-
+  Given time, you can open a hole to a small pocket dimension about the size of a room. You can push yourself to open it on the spot. If dropped, make a story roll to see what happens inside as the plane collapses. You don't need anchors for planar travel rituals.
+---
+id: summoner-portal-network
+type: talent
+name: Portal Network
+path: summoner
+source: p. 79
+body: |-
+  Given time, you can: establish a waypoint in your network—open a portal from one waypoint to another. You can push yourself to make a temporary link in the moment, but doing so carries risk. Those around you can use the portal as well. Define how you travel, such as by: shadows—trees—doorways—dreams.
+---
+id: summoner-shared-soul
+type: talent
+name: Shared Soul
+path: summoner
+source: p. 79
+body: |-
+  You can merge with your vassal, sharing path talents, aspects, and incoming harm. You can choose to use the power pool or your own stats, and when your anchors break, take +1d on the story roll.
+
+  > This can open up a lot of character concepts. You could be a werewolf, have the ghost of a family member possessing you, or know the alchemical secret to turn yourself into a mutated monster!
+---
+id: swashbuckler-panache
+type: talent
+name: Panache
+path: swashbuckler
+core: true
+growth: At levels 2, 4, and 6, you gain +1 panache per scene.
+source: p. 80
+body: |-
+  You wield the spotlight as well as any blade, allowing great feats of charm and skill. Each scene, you have 2 panache to fuel your derring-do. Before making a roll, you can spend panache, removing that many thorns. If you remove all thorns, they become panache dice instead, increasing the final result level on a 7 or 8. When one of your rolls is cut by a thorn, you gain 1 panache (ignoring your max).
+
+  Quick Wit: Once per session, you can interrupt an impact move with a: humorous quip—quick flourish—timely distraction.
+---
+id: swashbuckler-audacity
+type: talent
+name: Audacity
+path: swashbuckler
+source: p. 81
+body: |-
+  When you act with pure reckless abandon, 5s count as 6s, but 4s count as 1s. Regardless of the outcome, those around you are briefly struck by: awe—bewilderment—panic—excitement.
+
+  > These aren't your garden variety bad ideas, these are the kinds of ideas that leave bystanders frozen in place trying to figure out what just happened, and often a part of tangles.
+---
+id: swashbuckler-fancy-footwork
+type: talent
+name: Fancy Footwork
+path: swashbuckler
+source: p. 81
+body: |-
+  On a perfect when you fight to setup an advantage or otherwise improve your positioning, you can roll a related task pool by: seizing an opening—unnerving your foe.
+---
+id: swashbuckler-improvise
+type: talent
+name: Improvise
+path: swashbuckler
+source: p. 81
+body: |-
+  You can push yourself and describe your creative use of your surroundings to take +1d. These improvised weapons and tools often stretch the bounds of reality with their use.
+---
+id: swashbuckler-lucky
+type: talent
+name: Lucky
+path: swashbuckler
+per_session: a 1d Luck pool
+source: p. 81
+body: |-
+  Each session you have a 1d Luck pool. You can roll it as a bonus die after any roll you make and story rolls related to you. On a grim, take spark.
+---
+id: swashbuckler-natural-moxie
+type: talent
+name: Natural Moxie
+path: swashbuckler
+source: p. 81
+body: |-
+  Choose two skills from the Expertise talent (pg. 74). Take +1d when using these skills. [Prohibited: Rogue]
+---
+id: swashbuckler-provoke
+type: talent
+name: Provoke
+path: swashbuckler
+source: p. 81
+body: |-
+  Once per session, through insult, boast, or challenge, you can goad the GM into spending suspense on an impact move targeting only you. You take +1d on the defense roll, and on a perfect, your foe: is compelled to keep lashing out—leaves an opening—is utterly embarrassed.
+---
+id: swashbuckler-the-legend-of
+type: talent
+name: The Legend of...
+path: swashbuckler
+source: p. 81
+body: |-
+  Many recognize you as a hero, others as a cad and ne'er-do-well. Track tales of your exploits with campaign pools. Take spark when you play into it by: leaving a calling card—saying your catchphrase in a dramatic moment—indulging a fan. Use the crucible below to discover what people have taken to calling you.
+---
+id: warlock-pact
+type: talent
+name: Pact
+path: warlock
+core: true
+growth: At levels 3 and 6, gain +1 Eldritch Talent.
+source: p. 82
+body: |-
+  You have magic bestowed by a patron, allowing you to make a story roll (usually 3d) to wield their magic as a weapon, or ask to channel a potent magical effect using their nature as the touchstone. They gift you an Eldritch Talent—a changeable path talent manifesting with your patron’s trappings. Given time to commune, you can change an Eldritch Talent.
+
+  You also have an 8d Patience pool, representing service to your fickle patron’s desires. Roll the pool when you ask for a potent magical effect, change an Eldritch Talent, or otherwise displease them. At 0d, your patron will give you a visit to clear up the issue, then the pool resets.
+
+  > "Clear up the Issue": The patience pool dropping to 0d should be bad—don’t be afraid to hit the Warlock hard with interesting consequences from their patron. Consider bestowing conditions, changing their appearance, or even straining the warlock’s bonds with others. If the PC is on their good side, maybe the patron gives them more responsibility, or a thoughtful but misguided gift. Many patrons are antagonistic, but that doesn’t describe all of them. Just ensure the trouble that comes from the patron matches their nature.
+---
+id: warlock-affliction
+type: talent
+name: Affliction
+path: warlock
+source: p. 83
+body: |-
+  Once per session, you can place your hands on another to heal a harm by transferring the injury. Allies can roll defense to resist this effect. Talk with your GM about transferring other maladies, such as conditions.
+---
+id: warlock-blood-rituals
+type: talent
+name: Blood Rituals
+path: warlock
+source: p. 83
+body: |-
+  Take +1d on a ritual’s invocation and replace any one of its anchors with yourself. When you complete a ritual in this way, take spark.
+
+  > This stacks. Make a coven with your fellow casters!
+---
+id: warlock-knowing-gaze
+type: talent
+name: Knowing Gaze
+path: warlock
+source: p. 83
+body: |-
+  When given time, you can stare into someone’s eyes and learn: the price of their loyalty—their biggest fear—their greatest desire—their next move—what they’re hiding—whom they serve. This gaze only works on someone once. You can push yourself to do this on the spot.
+---
+id: warlock-magus
+type: talent
+name: Magus
+path: warlock
+source: p. 83
+body: |-
+  You weave blade and magic together. Once per session, you can enchant your weapon, giving it a trait such as: flaming—pulverizing—seeking. While using it, you can end the enchantment to produce a potent effect with it. You can add your weapon as a touchstone on spells.
+---
+id: warlock-otherworldly-form
+type: talent
+name: Otherworldly Form
+path: warlock
+source: p. 83
+body: |-
+  You can turn into a floating, dispersed form, flavored after your patron’s trappings. Choose three things you can do in this form: appear barely visible—fly high in the sky—interact with objects—move swiftly—slip through small gaps—speak.
+---
+id: warlock-visions
+type: talent
+name: Visions
+path: warlock
+source: p. 83
+body: |-
+  You can open your mind to seek forbidden knowledge. Ask the GM a specific question. The answer may be cryptic or twisted, but it will never be a lie. Make a defense roll against rattled after the answer.
+---
+id: warlock-wayfarer
+type: talent
+name: Wayfarer
+path: warlock
+source: p. 83
+body: |-
+  You can push yourself to teleport. The further or less familiar, the less precise. Max range is two days’ ride away. Make a story roll if you can’t see the destination or take allies you touch with you.
+---
+id: witch-hidden-magic
+type: talent
+name: Hidden Magic
+path: witch
+core: true
+growth: At levels 2, 4, and 6, you gain +2 words of power.
+source: p. 84
+body: |-
+  You understand the ancient magic inherent in the world. You have spellcasting ability, rolling Presence to cast using any 2 words of power as the touchstones. When you use a word, burn it—you can't use it again until the next session. Given time, you can make this spell potent. You begin with 6 words of power from the crucible. Spells without risk are automatically successful and don’t burn words, unless potent.
+
+  Ritualist: Take +1d when completing ritual invocations, and you can use relevant words of power as anchors.
+---
+id: witch-bailiwick
+type: talent
+name: Bailiwick
+path: witch
+source: p. 85
+body: |-
+  You are known to other witches by a title and the power inherent in your magical domain—your Bailiwick. Choose 1 word of power. You can burn any other word to use it, and on a critical, you regain the use of all words.
+
+  > This isn't just a specialty. You're not just a witch that knows the word for Star, you're The Witch of Sacred Stars. This means you have the responsibility of upholding it, as well.
+---
+id: witch-evil-eye
+type: talent
+name: Evil Eye
+path: witch
+source: p. 85
+body: |-
+  You can roll Presence to hex someone with: dread—clumsiness—confusion—forgetfulness—misfortune—sleepiness. Decide when it takes effect: now—soon—much later—specific trigger. This magic only works on someone once.
+---
+id: witch-familiar
+type: talent
+name: Familiar
+path: witch
+source: p. 85
+body: |-
+  You manifest a small magical creature. You can communicate telepathically, use its senses, and send it on simple tasks, making a story roll to see how it goes. You can also push yourself to cast a spell through it. If your familiar takes damage, it vanishes and reappears at the start of the next scene.
+---
+id: witch-herbalism
+type: talent
+name: Herbalism
+path: witch
+per_session: 1 trivial and 1 minor potion
+source: p. 85
+body: |-
+  Before each session, use the herbalism crucible to make two herb names. Each session, you have 1 trivial and 1 minor potion, chosen when they’re used. The name is the touchstone. One time only, you can have 1 major potion.
+---
+id: witch-homely-hovel
+type: talent
+name: Homely Hovel
+path: witch
+source: p. 85
+body: |-
+  Given time, you can bless a homestead to overflow with power. You get outside help on all rolls while on its grounds. Choose two wondrous traits to give it such as: traveling—ritual anchor—healing—caretaker. You can only have one homestead like this at a time. Use the crucible on the right for ideas on your hovel.
+---
+id: witch-soothsayer
+type: talent
+name: Soothsayer
+path: witch
+source: p. 85
+body: |-
+  Once per session, you can tag a spirit in the local area. They offer a 3d Spirit pool rolled as bonus dice when you or an ally invokes their domain. They may ask for aid in return. Spirit domains include things such as: rivers—the night sky—art—furry critters.
+---
+id: witch-wonder-magnet
+type: talent
+name: Wonder Magnet
+path: witch
+source: p. 85
+body: |-
+  You can cause wild surges on any action, as the magical twist in Sorcery. When it triggers, make a 3d story roll for the results. On a perfect, take spark. When strange things happen, they happen to you.
+---
+id: wizard-spellcraft
+type: talent
+name: Spellcraft
+path: wizard
+core: true
+growth: At levels 2, 4, and 6, gain +1 spell and potent spell per session, +1 theorem
+per_session: 4 spells and 2 potent spells
+source: p. 86
+body: |-
+  You have spellcasting ability. You roll Wits to cast and the spell theorem you are casting serves as its touchstone. You know 4 spell theorems inscribed in your spellbook, created using the Spell Crucible (below). Each session, you can cast 4 spells and 2 potent spells. You choose which spell theorem to use when you cast, interpreting it as you see fit. Spells cast with no risk require no roll and don’t count against your limited number per session, unless potent.
+
+  You can learn new theorems from studying and experimenting with scrolls, consuming them.
+---
+id: wizard-alchemist
+type: talent
+name: Alchemist
+path: wizard
+per_session: a 4d Potions resource pool
+source: p. 87
+body: |-
+  Each session, you have a 4d Potions resource pool. You can have a trivial potion (spell effect) by rolling the pool, or drop 1d and roll to make it a minor potion (potent spell effect). You know recipes for your spell theorems, plus two more. Learn new recipes by sacrificing potions you find.
+
+  > Trivial potions offer a single use magic effect, while minor potions bestow a single potent effect. Reflavor the container as an inscribed rune, carved twig, or even a delicious pastry!
+---
+id: wizard-archivist
+type: talent
+name: Archivist
+path: wizard
+source: p. 87
+body: |-
+  You gain 2 minor, and 1 major arcana that you’ve either found or created. When you roll an arcana’s power pool, you drop 1 fewer die unless it’s the last.
+---
+id: wizard-colleagues
+type: talent
+name: Colleagues
+path: wizard
+source: p. 87
+body: |-
+  In every city, some towns, and the occasional dungeon, you can find a powerful, eccentric wizardly colleague who owes you a favor—or maybe you owe them one. If you go out of your way to meet and catch up, take spark, and they may trade theorem research with you.
+---
+id: wizard-component-pouch
+type: talent
+name: Component Pouch
+path: wizard
+per_session: a 2d Components resource pool
+source: p. 87
+body: |-
+  Each session, you have a 2d Components resource pool to help focus your magic. When you get a messy or grim on spellcasting, you can roll the pool to increase a die result by 1 (3→4). Describe what reagent helped.
+---
+id: wizard-countermagic
+type: talent
+name: Countermagic
+path: wizard
+per_session: a 2d power pool
+source: p. 87
+body: |-
+  Each session, you have a 2d power pool you can use to interrupt hostile magic. On a perfect, you can turn the magic back on the source.
+---
+id: wizard-mastered-theorem
+type: talent
+name: Mastered Theorem
+path: wizard
+source: p. 87
+body: |-
+  Choose one of your spell theorems. You take +1d when casting it and gain 1 extra potent spell casting of it per session. Your name becomes linked to it, and it begins to spread in popularity throughout wizardry—track it with campaign pools.
+---
+id: wizard-specialty-school
+type: talent
+name: Specialty School
+path: wizard
+source: p. 87
+body: |-
+  Choose the arcane school of your focus. All of your spell theorems now have it plus another school. When casting, choose which school to use. When you get a critical with this arcane school, take spark.
+---
+id: background-aquatic
+type: talent
+name: Aquatic
+path: background
+source: p. 89
+body: |-
+  You can breathe and move quickly through water, and suffer no other issues that aquatic environments bring.
+---
+id: background-clout
+type: talent
+name: Clout
+path: background
+per_session: a 3d Favor resource pool
+source: p. 89
+body: |-
+  Your name or wealth carries weight in the right circles. Each session, you have a 3d Favor resource pool. You can ask as for a reasonable favor from those in power and roll the pool to have it granted. If it drops to 0d, you’ve asked too much. You can get what you want anyway by burning that bridge.
+---
+id: background-crowd-favorite
+type: talent
+name: Crowd Favorite
+path: background
+source: p. 89
+body: |-
+  Given time and space to entertain a crowd, you and participating allies can take spark for the performance. Give a vignette, then make a story roll to see how it goes.
+---
+id: background-cultural-weapon
+type: talent
+name: Cultural Weapon
+path: background
+source: p. 89
+body: |-
+  While using the iconic weapon of your society, you can push yourself to pull off a potent feat of prowess using one of the styles. These weapons are often highly coveted outside of your ancestral lands.
+---
+id: background-flight
+type: talent
+name: Flight
+path: background
+source: p. 89
+body: |-
+  You have the ability to fly. Choose two of the following benefits that define this ability: Agile—Strong—Swift—Tireless. Be mindful of what you carry; most fliers can’t bring much with them.
+---
+id: background-pint-sized
+type: talent
+name: Pint-Sized
+path: background
+source: p. 89
+body: |-
+  Your slight frame has its advantages. Given time, you can pull off a potent feat of stealth or escape. You can push yourself to do it on the spot.
+---
+id: background-regeneration
+type: talent
+name: Regeneration
+path: background
+source: p. 89
+body: |-
+  When a scene ends while you are bloodied or desperate, make a 2d story roll as a defense against the harm. On a messy, reduce 1 harm to a mark. On a perfect, clear it. Choose a weakness that accompanies this power, such as: fire—iron—sunlight.
+---
+id: background-salt-of-the-earth
+type: talent
+name: Salt of the Earth
+path: background
+source: p. 89
+body: |-
+  You have the air of someone with humble beginnings. The GM judges an NPC’s response, or you can spend thread to set it: disdain—under-estimation—kindred—pity. When you go out of your way to help the common folk, take spark.
+---
+id: background-simple-deduction
+type: talent
+name: Simple Deduction
+path: background
+source: p. 89
+body: |-
+  Once per session when trying to solve a question or puzzle, you can give a specific guess. The GM will tell you: something right about it—something wrong about it—a detail you missed. Use a story roll if the answer is unclear.
+---
+id: background-teamwork
+type: talent
+name: Teamwork
+path: background
+source: p. 89
+body: |-
+  Time in a squad or crew taught you to work well with others. When you assist a roll and share the risk, your 5s count as 6s. When taking part in a group montage roll, your 6 result counts towards a critical success.
+---
+id: background-thieves-cant
+type: talent
+name: Thieves’ Cant
+path: background
+source: p. 89
+body: |-
+  You and those you teach can communicate subtly in company, silently over distances, and through signs and markings. When you get a perfect deceiving others, you also setup an ally following your lead.
+---
+id: spellcasting-cleric
+type: talent
+name: Cleric Spellcasting
+path: spellcasting
+source: p. 38
+body: |-
+  Holy casters that use power pools to track their magic. They cast spells by performing general rites, channeling magic through the lens of their god. Cleric spellcasting can be taken by other paths with the Divine Blessing talent (pg. 69).
+---
+id: spellcasting-druid
+type: talent
+name: Druid Spellcasting
+path: spellcasting
+source: p. 38
+body: |-
+  These naturalists don't have spellcasting on their own, however those wishing to control the elements can take the Primordial Bonds path talent (pg. 63).
+---
+id: spellcasting-psion
+type: talent
+name: Psion Spellcasting
+path: spellcasting
+source: p. 38
+body: |-
+  Mentalists that can unleash potent magic at the cost of coming unraveled, making future spells more difficult. They use bastions, areas of psychic expertise, as their touchstones.
+---
+id: spellcasting-sorcerer
+type: talent
+name: Sorcerer Spellcasting
+path: spellcasting
+source: p. 38
+body: |-
+  Wielders of raw, unbridled, and unlimited magic, that can push beyond normal limits for potent spells. Their dangerous power combines a magic path (the source of power) with a technique (its use) as touchstones. Sorcerer spellcasting can be taken by other paths with the Eldritch Affinity talent (pg. 75).
+---
+id: spellcasting-warlock
+type: talent
+name: Warlock Spellcasting
+path: spellcasting
+source: p. 38
+body: |-
+  Pact makers with no true magic of their own. They instead wield their patron's magic as a weapon, and ask for potent spells—weary of angering their fickle master. The nature of their patron and pact acts as their touchstones.
+---
+id: spellcasting-witch
+type: talent
+name: Witch Spellcasting
+path: spellcasting
+source: p. 38
+body: |-
+  Wonders of magic take time for these mysterious casters. They use words of power, the universal language of magic, to cast spells, combining two as the touchstones. With enough time, they can make them potent, or even rituals.
+---
+id: spellcasting-wizard
+type: talent
+name: Wizard Spellcasting
+path: spellcasting
+source: p. 38
+body: |-
+  Methodical and scholarly, wizards use specific magic formula, spell theorems, to cast spells. They hold an ever growing arsenal, with a limited amount of off-the-cuff magic per session. Wizard spellcasting can be taken by other paths with the Arcane Training talent (pg. 65).
+---
+id: legacy-weapon-mastery
+type: talent
+name: Weapon Mastery (Legacy Fighter Core Talent)
+path: legacy
+core: true
+growth: At levels 3 and 6, you gain +1d mastery die.
+source: p. 178
+body: |-
+  Choose a fighting style that you have mastered: brawling—dual-wielding—one-handed weapons—ranged weapons—thrown weapons—two-handed weapons. You have a mastery die, a special d6. When you fight in your style, take +1d (the mastery die) on the roll. If the mastery die is a 6, it counts as a critical. If it’s already a critical, take spark.
+
+  > Rationale: This talent gets overpowered at higher levels, with a near 50% chance to critical and a minuscule 1.5% chance to fail at level 6. This trivializes fights and can be boring.
+---
+id: legacy-awakened-mind
+type: talent
+name: Awakened Mind (Legacy Psion Core Talent)
+path: legacy
+core: true
+growth: At levels 2, 4, and 6, you gain +1 bastion, and 2 power points per session.
+per_session: 8 power points
+source: p. 178
+body: |-
+  You have spellcasting ability. Your bastions act as touchstones for your magic. Each session, you have 8 power points. Spend 1 power point to cast a spell. You can augment it by spending 1 or more points to: cast a potent spell—take +1d (max once) on the roll—ignore thorns from damage—add another bastion as a touchstone.
+
+  > Rationale: While somewhat overpowered, allowing the same number of spells with more flexibility than wizards, the power point system doesn't give flavor to its magic.
+---
+id: legacy-bardsong
+type: talent
+name: Bardsong (Legacy Bard Core Talent)
+path: legacy
+core: true
+growth: At levels 3 and 6, you gain +1 bardsong and +1 melody per session.
+per_session: 3 bardsongs and 3 melodies
+source: p. 178
+body: |-
+  Each session, you can sing 3 bardsongs, rolling Presence. Sing one to pull off a potent feat of emotional influence, like eliciting a vex response in an NPC, buffing a group of allies, or inflicting hindrances on enemies. You can also sing one to interrupt an impact move. A bardsong's effect flows from its composition. Choose a style, tune, and impact (pg. 56) that matches the effect.
+
+  Each session, you can also sing 3 melodies, spur of the moment tunes without specific composition. Spend them to: assist without risk—calm or intensify a vex response—clear a mark. These don't require a roll. You cannot affect yourself.
+
+  > Rationale: Multiple kinds of tracked abilities, and building bardsongs on the fly can slow the game down. This talent is also quite powerful at low levels.
+---
+id: legacy-cunning-actions
+type: talent
+name: Cunning Actions (CE Rogue)
+path: legacy
+source: p. 179
+body: |-
+  On a perfect in an intense scene, you can keep the spotlight, even if the GM wants to spend suspense. The GM must take suspense as an impact move on your follow-up. Afterward, move the spotlight to an ally.
+---
+id: legacy-trap-sense
+type: talent
+name: Trap Sense (Rogue)
+path: legacy
+source: p. 179
+body: |-
+  You always notice traps near you. When you avoid or disable one, take spark.
+---
+id: legacy-anchorshot
+type: talent
+name: Anchorshot (Artificer)
+path: legacy
+source: p. 179
+body: |-
+  You have a hook, harpoon, and rope contraption that anchors large monsters to the ground. With it, you have potency to hinder the movement of anything elephant-sized or larger. When hit, the target becomes 4d Tethered. It anchors to the ground so you can leave it.
+---
+id: legacy-double-barreled-blunderbuss
+type: talent
+name: Double-Barreled Blunderbuss (Artificer)
+path: legacy
+per_session: one shot of each ammo
+source: p. 179
+body: |-
+  You have a firearm that fires specialized, crafted ammo. You get one shot of each per session. When you shoot, choose the ammo: blast core—drill shot—inferno shot—scatter shot—shrapnel burst—tangler shot. Each shot has a secondary effect related to the type. You can fire two ammo types at the same time for a potent shot.
+---
+id: legacy-mechanical-mount
+type: talent
+name: Mechanical Mount (Artificer)
+path: legacy
+source: p. 179
+body: |-
+  You have a small mechanical vehicle, like a steamwork spider or smoke-belching cart. It has three features: all-terrain—armored—burrowing—grappling hook—submergible—turbo boost. You can activate each perk once per session to pull off a potent feat of piloting. It also has one drawback: conspicuous—horrifying—slow—unreliable.
+---
+id: legacy-steamhammer
+type: talent
+name: Steamhammer (Artificer)
+path: legacy
+per_session: a 6d Steamhammer power pool
+source: p. 179
+body: |-
+  You have a large steam-infused warhammer. Each session, you have a 6d Steamhammer power pool. You can roll the pool to pull off potent feats of pulverizing force. You can also not expend its steam to use it as a normal warhammer.
+---
+id: legacy-swiftwing
+type: talent
+name: Swiftwing (Artificer)
+path: legacy
+source: p. 179
+body: |-
+  You have highly maneuverable wings that allow you to glide (not fly). You gain a 3d resource pool while aloft, or 4d if you have extreme height or speed. You must roll the pool as bonus dice with any physical roll made while aloft, including defenses. At 0d, you coast back to the ground.
+---
+id: legacy-mind-seed
+type: talent
+name: Mind Seed (Psion)
+path: legacy
+source: p. 179
+body: |-
+  When you plant thoughts or alter memories in someone's head, you can always choose to have them take effect exactly when you want them to. You can decide this at any time later. Once per session, you can use this for an interrupt.
+---
+id: legacy-disturbed-mind
+type: talent
+name: Disturbed Mind (Formerly Tumultuous Mind on Psion)
+path: legacy
+source: p. 179
+body: |-
+  You can spend 2 power points to gain potency on any Wits or Presence defense roll. Regardless of the roll, if the attacker is sentient, you can interrupt their next impact move.
+---
+id: legacy-prepared-spell
+type: talent
+name: Prepared Spell (Wizard)
+path: legacy
+per_session: 1 thread
+source: p. 179
+body: |-
+  You gain 1 thread per session and can spend thread to flashback to casting a spell with specific triggers. Roll for the spell’s effectiveness now. The GM always take suspense in place of an impact move.

@@ -1,0 +1,44 @@
+# NPCs (wardens-guide/npc-tables): a background, a goal, a quirk, a virtue and a vice, each
+# chosen or rolled, and a name. Their numbers are made like a hireling's (players-guide/
+# core-rules#hirelings: 3d6 each, 1d6 HP), and a reaction roll (players-guide/core-rules#reactions)
+# says how they take to the party when it isn't obvious. Prefill what you already know:
+#   didact gen run cairn-2e.npc --auto --prefill '{"name": "Old Gannet", "background": "Healer"}'
+generator: npc
+title: An NPC
+help: >-
+  The NPC tables, step by step: a background, a goal, a quirk, a virtue and a vice (choose each,
+  or let the dice), STR, DEX and WIL of 3d6 and 1d6 HP, a reaction to the party (2d6) and a
+  name. Prefill by name: name, background, goal, quirk, virtue, vice, disposition, hp, STR, …
+source: wardens-guide/npc-tables#npc-tables
+steps:
+  - choose_or_roll: {table: npc-background, as: background}
+  - choose_or_roll: {table: npc-goal, as: goal}
+  - choose_or_roll: {table: npc-quirk, as: quirk}
+  - choose_or_roll: {table: npc-virtue, as: virtue}
+  - choose_or_roll: {table: npc-vice, as: vice}
+  - roll: 3d6
+    as: STR
+  - roll: 3d6
+    as: DEX
+  - roll: 3d6
+    as: WIL
+  - roll: 1d6
+    as: hp
+  - choose_or_roll: {table: reactions, as: disposition}
+  - table: first-names
+    as: name
+  - entity:
+      key: npc
+      type: npc
+      name: "{@name}"
+      fields:
+        role: "@background"
+        goal: "@goal"
+        traits: {quirk: "@quirk", virtue: "@virtue", vice: "@vice"}
+        STR: "@STR"
+        DEX: "@DEX"
+        WIL: "@WIL"
+        hp: "@hp"
+        disposition: "@disposition"
+  - prompt: "Describe them in a sentence or two from their background, goal and traits: how they look and sound (`didact about <npc> looks=…`)."
+  - prompt: "What do they want from the party, and what would they do to get it?"

@@ -1,0 +1,14 @@
+chargen: pc
+title: Genesys character (archetype and skills)
+creates: pc
+modes: [random, guided]
+steps:
+  - choose_or_roll: {table: archetypes, as: archetype, field: archetype}
+  - apply:
+      brawn: "@archetype.brawn"
+      agility: "@archetype.agility"
+      intellect: "@archetype.intellect"
+      presence: "@archetype.presence"
+      wounds: "@archetype.wounds"
+  - choose: {from: [Athletics, Charm, Knowledge, Stealth, Survival], as: skills, count: 2, field: skills}
+  - name: {from: [Aldus, Bryn, Corvo, Dessa, Ilse]}

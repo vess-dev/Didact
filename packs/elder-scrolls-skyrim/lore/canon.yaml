@@ -1,0 +1,320 @@
+# The canon the frames and the Holds stand on, as lore: each entry comes up when play mentions
+# it (hand-written from the book's own text; `source:` says where). The Holds are in holds.yaml.
+lore: skyrim-tone
+title: The setting's tone
+kind: preference
+constant: true
+priority: 70
+content: >-
+  Skyrim in 4E 201, a province at the breaking point: civil war, the Talos ban, and the dragons
+  returned with Alduin at their head. The frames are frames, not railroads, lethal and fiction-first:
+  telegraph the deadly things (a dragon, a Dwarven Centurion, a master vampire) and let the players
+  choose their fights; rewards are treasure, not a paycheck. The Voice is a force of the world, not
+  a spell on a character sheet: the Elder Scrolls 2e book gives player characters no Shout, and a
+  quest that turns on one (Dragonrend, Bend Will) treats it as a story device the party enables but
+  does not wield. Under Grimscrolls the Voice is an optional talent the table agrees to first. Each
+  frame names its own tone and touchstones: reread them before every session.
+source: campaigns/00-intro#the-moment-4e-201; campaigns/00-intro#how-to-use-these-frames; campaigns/00-intro#on-the-dragonborn-and-the-voice
+---
+lore: the-dragonborn
+keys: [dragonborn, dovahkiin, last dragonborn, dragon soul, dragon's soul, absorb, thu'um, the voice, shout, shouts, word wall]
+content: >-
+  The legends say a Dragonborn, Dovahkiin, will rise when the World-Eater returns: a mortal born
+  with the soul of a dragon, who devours the souls of slain dovah and speaks their language as a
+  weapon, the Thu'um. Two clean ways to run it: the party are mortal heroes and the Last Dragonborn
+  is an NPC they fight beside, protect or are sent to find; or a player character is touched by
+  Akatosh, a matter of fiction and Growth, not rules (one narrow, permanent boon, earned; never a
+  list of Shouts). Word Walls glow in the tombs, ancient and unreadable to the party.
+source: campaigns/00-intro#on-the-dragonborn-and-the-voice; campaigns/01-the-main-quest#tone--touchstones
+---
+lore: the-dragon-crisis
+keys: [dragon crisis, dragons, dragon, dragon attack, burial mound, burial mounds, helgen, the dragons have returned]
+content: >-
+  The dragons, gone from Skyrim for centuries and dismissed as legend, have returned. The first in
+  an age burned the town of Helgen in Falkreath Hold, on the morning a cart of prisoners reached the
+  headsman's block; Alduin is raising the long-dead dragons from their burial mounds one by one, and
+  the dead stir in their barrows. Every dragon is a detachment.
+source: campaigns/00-intro#the-moment-4e-201; campaigns/01-the-main-quest#pitch; players-guide/skyrim#a-short-history; campaigns/09-dragonborn#threats
+---
+lore: alduin
+keys: [alduin, world-eater, world eater, firstborn of akatosh]
+content: >-
+  The great black World-Eater, eldest child of Akatosh, who ruled over Men in the dawn of history
+  until three heroes, Gormlaith, Hakon and Felldir, cast him out of time atop the Throat of the
+  World with Dragonrend. He has come back to devour the world. In the mortal world he cannot be
+  killed and will not stay down; he feeds on the souls of the honored dead in Sovngarde, and only
+  there, with the three heroes beside them, can the party end him.
+source: players-guide/skyrim#a-short-history; players-guide/skyrim#the-dragon-crisis; campaigns/01-the-main-quest#stakes; campaigns/01-the-main-quest#climax
+---
+lore: the-greybeards
+keys: [greybeards, high hrothgar, throat of the world, 7000 steps, seven thousand steps, arngeir, way of the voice]
+content: >-
+  Silent monks who have mastered the Thu'um, keeping the Way of the Voice at High Hrothgar near the
+  summit of the Throat of the World, Skyrim's tallest mountain, at the top of the 7,000 Steps above
+  Ivarstead. Arngeir alone speaks freely; the others' Voices would level the room. When a dragon's
+  soul is taken, their summons rolls across all of Skyrim.
+source: players-guide/skyrim#the-dragon-crisis; campaigns/01-the-main-quest#cast; campaigns/01-the-main-quest#the-place--skyrim-the-mountain-and-the-bridge-of-worlds
+---
+lore: paarthurnax
+keys: [paarthurnax]
+content: >-
+  The ancient dragon who leads the Greybeards from the summit: once Alduin's lieutenant, he rebelled
+  and taught mortals the Voice. Slow, sad and wise, the party's greatest dragon ally, until the
+  Blades demand his death for crimes committed at the dawn of history.
+source: campaigns/01-the-main-quest#cast; campaigns/01-the-main-quest#climax
+---
+lore: the-blades
+keys: [blades, delphine, esbern, sky haven temple, alduin's wall, akaviri, dragonslayers]
+content: >-
+  A dwindled order of dragonslayers who once served the emperors, waiting all their lives for a
+  Dragonborn. Delphine hides as a Riverwood innkeeper; Esbern, their last loremaster, hides from
+  the Thalmor in the Ratway. Their temple, Sky Haven, lies beyond the Forsworn-held Karthspire,
+  with Alduin's Wall and the katana Dragonbane inside.
+source: players-guide/skyrim#the-dragon-crisis; campaigns/01-the-main-quest#plot-beats; campaigns/01-the-main-quest#cast
+---
+lore: the-elder-scrolls
+keys: [elder scroll, elder scrolls, moth priest, moth priests, time-wound, tower of mzark]
+content: >-
+  Scrolls of prophecy and of time. Read at the Time-Wound on the summit, the Elder Scroll (Dragon)
+  from the Tower of Mzark in Blackreach lets a mind witness Dragonrend, once. The Volkihar want
+  three of them for the Tyranny of the Sun. Only a Moth Priest of the Cult of the Ancestor Moth is
+  trained to read one without being unmade, and even he pays with his sight.
+source: campaigns/01-the-main-quest#the-elder-scroll--dragonrend-how-the-lost-power-works; campaigns/08-dawnguard#pitch; campaigns/08-dawnguard#cast
+---
+lore: sovngarde
+keys: [sovngarde, hall of valor, tsun, shor, honored dead, whale-bone bridge]
+content: >-
+  The Nordic hall of the honored dead: a misted golden valley, the whale-bone bridge guarded by
+  Tsun, shield-thane of Shor, and the Hall of Valor where Ysgramor and the ancient heroes feast. A
+  beast-blooded soul goes to Hircine's Hunting Grounds instead. Alduin has made its mist his snare.
+source: campaigns/01-the-main-quest#the-place--skyrim-the-mountain-and-the-bridge-of-worlds; campaigns/03-the-companions#pitch
+---
+lore: the-civil-war
+keys: [civil war, stormcloak, stormcloaks, imperial legion, the legion, ulfric, ulfric stormcloak, tullius, general tullius, high king, torygg, rebellion]
+content: >-
+  High King Torygg is dead, Shouted down in a duel by Ulfric Stormcloak, Jarl of Windhelm, who leads
+  the Stormcloaks to throw off the Empire and worship Talos openly. General Tullius and the Imperial
+  Legion hold the cities for the Empire. Every Hold leans one way or the other, and none can stay
+  neutral for long; many a household is split down the middle.
+source: campaigns/00-intro#the-moment-4e-201; players-guide/skyrim#the-civil-war; campaigns/02-the-civil-war#pitch
+---
+lore: talos-and-the-concordat
+keys: [talos, white-gold concordat, concordat, talos ban, great war, tiber septim, markarth incident]
+content: >-
+  Tiber Septim, whom the Nords call Talos, united Tamriel and was raised to godhood as the Ninth
+  Divine. The Great War (4E 171–175) with the Aldmeri Dominion ended in the White-Gold Concordat,
+  which outlawed his worship; his shrines are tended in secret. In the Markarth Incident (4E
+  174–176) Ulfric's militia took back the city on a promise of free Talos worship and was arrested
+  when the Thalmor learned of it: the rebellion was born in that broken promise.
+source: players-guide/skyrim#a-short-history; players-guide/skyrim#faith; campaigns/02-the-civil-war#pitch
+---
+lore: the-thalmor
+keys: [thalmor, aldmeri dominion, the dominion, justiciar, justiciars, elenwen, thalmor embassy, high elf, high elves]
+content: >-
+  The High Elf supremacists of the Aldmeri Dominion, who forced the Concordat and ride the roads
+  enforcing the Talos ban. They publicly back the Empire and privately want the war long and bloody,
+  so that whoever wins is weakened. First Emissary Elenwen keeps a dossier on everyone who matters
+  in the embassy above Solitude, and a Justiciar is never quite where a betrayal can be pinned.
+source: campaigns/00-intro#the-moment-4e-201; campaigns/02-the-civil-war#stakes; campaigns/02-the-civil-war#thalmor-justiciar
+---
+lore: the-companions
+keys: [companions, jorrvaskr, harbinger, the circle, ysgramor, wuuthrad, skyforge, kodlak]
+content: >-
+  Warriors-for-hire who keep faith with the band of Ysgramor, who led the Five Hundred Companions
+  out of frozen Atmora. Their hall, Jorrvaskr, the overturned hull of a longship in Whiterun's Wind
+  District, is nearly five thousand years old. Their Harbinger is Kodlak Whitemane; their Circle
+  carries a secret it can't speak; the shards of Ysgramor's axe Wuuthrad are their holiest relic.
+source: players-guide/skyrim#a-short-history; campaigns/03-the-companions#pitch; campaigns/03-the-companions#the-place
+---
+lore: werewolves
+keys: [werewolf, werewolves, beast blood, beast-blood, lycanthropy, hircine, hunting grounds, glenmoril, glenmoril witches, silver hand]
+content: >-
+  The Companions' inner Circle are beast-blooded through an old pact with the Glenmoril Witches in
+  the name of Hircine, Prince of the Hunt: when one dies, the soul hunts forever in his Hunting
+  Grounds rather than feasting in Sovngarde. A Glenmoril witch's head burned in the Flame of the
+  Harbinger cures one soul. The Silver Hand, fanatic werewolf-hunters with silver blades, are
+  murderers who are not entirely wrong.
+source: campaigns/03-the-companions#pitch; campaigns/03-the-companions#the-beast-blood-the-central-branch; campaigns/03-the-companions#cast
+---
+lore: the-college-and-the-eye
+keys: [college of winterhold, the college, eye of magnus, staff of magnus, arch-mage, psijic, psijic order, synod, ancano, saarthal]
+content: >-
+  The College of Winterhold is the only place in Skyrim where magic is taught openly, on a spire
+  above the Sea of Ghosts reached by a single long bridge. Its dig at Saarthal broke into a vault and
+  found the Eye of Magnus, a humming orb left behind when the god Magnus fled the world. A Thalmor
+  "advisor", Ancano, waits beside it; only the Staff of Magnus, in Labyrinthian, can master it.
+source: campaigns/04-college-of-winterhold#stakes; campaigns/04-college-of-winterhold#pitch
+---
+lore: the-great-collapse
+keys: [great collapse, winterhold, the collapse]
+content: >-
+  In 4E 122 most of the city of Winterhold slid into the Sea of Ghosts, leaving a windblown handful
+  of buildings, a bitter Jarl, and the College on its pillar. The townsfolk still blame the College.
+source: players-guide/skyrim#a-short-history; wardens-guide/the-holds#winterhold--capital-winterhold; campaigns/04-college-of-winterhold#stakes
+---
+lore: the-thieves-guild
+keys: [thieves guild, ragged flagon, cistern, ratway, mercer frey, brynjolf, gallus, karliah, guild master]
+content: >-
+  The Thieves Guild of Riften is a shadow of its old self, run from the Ragged Flagon in the Ratway
+  beneath the city. Twenty-five years ago Guild Master Gallus was murdered, and his killer, Mercer
+  Frey, took his chair and framed Gallus's lover Karliah. The Guild's fortune was never luck: it was
+  a covenant with Nocturnal, and Mercer broke it.
+source: campaigns/05-the-thieves-guild#pitch; campaigns/05-the-thieves-guild#the-place--riften--the-ratway
+---
+lore: nocturnal-and-the-nightingales
+keys: [nocturnal, nightingale, nightingales, skeleton key, twilight sepulcher, ebonmere]
+content: >-
+  The Guild's three best thieves were the Nightingales, sworn agents of Nocturnal, Daedric Prince of
+  shadow and luck, who guarded her shrine, the Twilight Sepulcher in Falkreath Hold, in return for
+  her favor. The Skeleton Key holds her luck in the world: while it is gone from the Ebonmere, the
+  Guild's fortune drains.
+source: campaigns/05-the-thieves-guild#pitch; campaigns/05-the-thieves-guild#plot-beats
+---
+lore: the-dark-brotherhood
+keys: [dark brotherhood, sithis, night mother, black sacrament, listener, black door, five tenets, tenets, astrid, cicero]
+content: >-
+  Tamriel's most feared guild of assassins, worshippers of the Dread Father Sithis, bound by old
+  tenets and all but extinct in this Fourth Era. The desperate pray the Black Sacrament, and a knife
+  answers. The Night Mother, Sithis's mummified bride in her Keeper's coffin, speaks only to her
+  Listener; a Black Door asks a riddle and punishes the wrong answer.
+source: campaigns/06-the-dark-brotherhood#pitch; campaigns/06-the-dark-brotherhood#tone--touchstones; campaigns/06-the-dark-brotherhood#the-night-mother--the-listener
+---
+lore: the-daedric-princes
+keys: [daedric prince, daedric princes, daedra, daedric, oblivion, daedric artifact, prince of]
+content: >-
+  The seventeen lords of Oblivion, immortal and endlessly curious about mortals: they cannot create,
+  only meddle. A Prince's bargain always has a moral twist, a betrayal, a murder, a soul sold, and
+  refusing is always a valid ending. Their worship is shunned, but their shrines, cults and
+  artifacts persist, and a gift from Oblivion is a leash: the Prince who lent it is watching.
+source: campaigns/07-the-daedric-quests#the-daedric-quests; campaigns/07-the-daedric-quests#how-the-princes-meddle-with-mortals; players-guide/skyrim#faith
+---
+lore: the-vigil-of-stendarr
+keys: [vigil of stendarr, vigil, vigilant, vigilants, stendarr, abominations]
+content: >-
+  Stendarr's holy order hunts Daedra, their cultists, vampires, werebeasts and the undead,
+  Abominations all, and anyone who carries a Prince's relic. Their Skyrim chapter-house south of
+  Dawnstar was lately sacked by the Volkihar vampires, so those who remain are few, grieving, and
+  zealous to the point of recklessness.
+source: campaigns/07-the-daedric-quests#running-these-frames; campaigns/07-the-daedric-quests#the-vigil-of-stendarr-foe--complication
+---
+lore: vampires-and-the-volkihar
+keys: [vampire, vampires, volkihar, castle volkihar, harkon, lord harkon, vampire lord, tyranny of the sun, daughter of coldharbour, serana]
+content: >-
+  Lord Harkon, master of the Volkihar clan in Castle Volkihar on its fog-bound island in the Sea of
+  Ghosts, means to enact the Tyranny of the Sun, an old elven prophecy that would blot out the sun
+  forever. He needs the Elder Scrolls that hold it, Auriel's Bow, and the blood of his daughter
+  Serana, a Daughter of Coldharbour, who slept four thousand years in Dimhollow Crypt.
+source: campaigns/08-dawnguard#pitch; campaigns/08-dawnguard#the-place; campaigns/08-dawnguard#cast
+---
+lore: the-dawnguard
+keys: [dawnguard, isran, fort dawnguard, dayspring canyon, vampire hunters, vampire-hunters]
+content: >-
+  An order of vampire-hunters scraped back together by the grim Redguard zealot Isran in the ruin of
+  Fort Dawnguard, a half-ruined keep in Dayspring Canyon reached through a long tunnel. Sunlit and
+  safe, and no place for a vampire.
+source: campaigns/08-dawnguard#pitch; campaigns/08-dawnguard#the-place
+---
+lore: the-soul-cairn
+keys: [soul cairn, ideal masters, durnehviir, boneyard, valerica]
+content: >-
+  A boundless plane of Oblivion under a dead, bruise-purple sky, where soul-trapped souls drift as
+  wisps and the Ideal Masters hoard them. The undead dragon Durnehviir patrols its Boneyard. To cross
+  alive you must be a vampire, or leave part of your soul behind. Serana's mother Valerica hides
+  there with an Elder Scroll.
+source: campaigns/08-dawnguard#the-place; campaigns/08-dawnguard#plot-beats
+---
+lore: the-snow-elves
+keys: [snow elf, snow elves, falmer, forgotten vale, auri-el, auriel, auriel's bow, gelebor, vyrthur]
+content: >-
+  The Snow Elves were driven underground, enslaved by the Dwemer, and twisted into the blind
+  Falmer. The last one living, Knight-Paladin Gelebor, keeps the chantry of Auri-El in the Forgotten
+  Vale, a sealed glacial valley beyond Darkfall Cave, and guards Auriel's Bow; his brother Vyrthur,
+  turned vampire, wrote the Tyranny of the Sun.
+source: players-guide/skyrim#a-short-history; campaigns/08-dawnguard#the-place; campaigns/08-dawnguard#cast
+---
+lore: the-dwemer
+keys: [dwemer, dwarves, dwarven, dwemer ruin, dwarven ruin, blackreach, automaton, automatons, centurion]
+content: >-
+  The Dwemer vanished from the world in a single moment, leaving their brass cities empty and
+  humming, and their automatons on guard. Beneath Skyrim lies Blackreach, an enormous fungal
+  cavern-world lit by glowing motes, reached through Alftand, Mzinchaleft or Raldbthar; the Reach is
+  the richest Dwemer country of all.
+source: players-guide/skyrim#a-short-history; campaigns/01-the-main-quest#the-place--skyrim-the-mountain-and-the-bridge-of-worlds; wardens-guide/the-holds#the-pale--capital-dawnstar; wardens-guide/the-holds#the-reach--capital-markarth
+---
+lore: the-dragon-cult
+keys: [dragon priest, dragon priests, dragon cult, draugr, barrow, barrows, nordic barrow, nordic tomb, skuldafn]
+content: >-
+  In the Merethic Era dragons ruled Men through masked Dragon Priests, whose barrows still dot the
+  mountains. The cult buried its honored dead there, the draugr, bound to wake and slay anything that
+  disturbs their rest. Every Hold has its barrow; Alduin's own temple, Skuldafn, stands high in the
+  eastern mountains, reachable only on a dragon's back.
+source: players-guide/skyrim#a-short-history; campaigns/01-the-main-quest#the-place--skyrim-the-mountain-and-the-bridge-of-worlds; wardens-guide/the-holds#the-holds
+---
+lore: miraak
+keys: [miraak, first dragonborn, miraak cultist, miraak cultists, false dragonborn, temple of miraak]
+content: >-
+  Four thousand years ago a Nord dragon-priest named Miraak was the first mortal to bear a dragon's
+  soul. He learned to bend the will of dragons, betrayed his masters, and was dragged into Apocrypha
+  by Hermaeus Mora. He never died. Now his cultists hunt the "false Dragonborn", and on Solstheim his
+  sleepwalking servants rebuild his temple.
+source: campaigns/09-dragonborn#pitch; campaigns/09-dragonborn#arrival
+---
+lore: hermaeus-mora-and-apocrypha
+keys: [hermaeus mora, apocrypha, black book, black books, oghma infinium, septimus signus, demon of knowledge]
+content: >-
+  The Daedric Prince of forbidden knowledge owns Apocrypha, an endless library under a sick green
+  sky, and everything read into it. His Black Books carry a reader there bodily, and every one offers
+  a real gift that costs more than it gives. He uses his champions and discards them; he has no stat
+  block, and cannot be defeated.
+source: campaigns/09-dragonborn#the-place--solstheim--apocrypha; campaigns/09-dragonborn#the-black-books-as-relics--not-shouts; campaigns/09-dragonborn#hermaeus-mora--not-a-stat-block
+---
+lore: the-all-maker-and-the-skaal
+keys: [skaal, all-maker, all-maker stones, stalhrim, storn, frea, skaal village]
+content: >-
+  The Skaal, a Nord tribe of Solstheim's snowbound north coast, honor a single nature-spirit, the
+  All-Maker, live in harmony with the land, and alone know the forging of Stalhrim. A wheel of
+  All-Maker Stones rings the island; Miraak has corrupted them into the engines of his return.
+source: players-guide/skyrim#faith; campaigns/09-dragonborn#the-place--solstheim--apocrypha
+---
+lore: the-oblivion-crisis
+keys: [oblivion crisis, mythic dawn, martin septim, uriel septim, oblivion gates, third era]
+content: >-
+  In 3E 433 the Mythic Dawn cult murdered Emperor Uriel Septim VII, and Oblivion Gates tore open
+  across Cyrodiil until Mehrunes Dagon himself walked the Imperial City; Martin Septim, the last of
+  the line, gave his life to banish him, and the Third Era ended. Two centuries on, a Mythic Dawn
+  relic in a necromancer's hoard is its long shadow.
+source: players-guide/skyrim#a-short-history; campaigns/00-intro#running-campaigns-in-skyrim
+---
+lore: the-red-year
+keys: [red year, red mountain, dunmer refugees, gray quarter, morrowind]
+content: >-
+  In 4E 5 Red Mountain erupted and buried much of Morrowind in fire and ash. Dunmer refugees fled to
+  Skyrim and to Solstheim; in Windhelm they live cramped and despised in the Gray Quarter, the
+  rebellion's conscience and its blind spot.
+source: players-guide/skyrim#a-short-history; campaigns/02-the-civil-war#the-place--key-locations
+---
+lore: the-forsworn
+keys: [forsworn, reachmen, reachfolk, madanach, king in rags, briarheart, briarhearts, cidhna mine]
+content: >-
+  The Reach is the ancestral land of the Reachfolk and the native ground of the Forsworn. Madanach,
+  the King in Rags, runs their rebellion from a secret cell in Cidhna Mine, Markarth's silver mine
+  and prison; their redoubts raid the silver road, and they hold the Karthspire's canyon.
+source: wardens-guide/the-holds#the-reach--capital-markarth; campaigns/01-the-main-quest#the-place--skyrim-the-mountain-and-the-bridge-of-worlds
+---
+lore: homesteads
+keys: [homestead, steading, lakeview manor, windstad manor, heljarchen hall, land deed, steward, plot of land]
+content: >-
+  A party that has earned a little standing can buy a stretch of Hold land: Lakeview Manor in
+  Falkreath, Windstad Manor in Hjaalmarch, Heljarchen Hall in the Pale. A Jarl's Steward sells the
+  deed for 5,000 Septims once the party is welcome there, and owning a home in Skyrim means having
+  something worth taking.
+source: campaigns/10-hearthfire#premise; campaigns/10-hearthfire#acquiring-a-plot
+---
+lore: the-nine-divines
+keys: [nine divines, divines, akatosh, mara, dibella, kynareth, arkay, julianos, zenithar, the eight]
+content: >-
+  Most folk in Skyrim honor the Nine Divines: Akatosh the Dragon-God of Time, Mara, Dibella,
+  Kynareth, Arkay, Stendarr, Julianos, Zenithar, and Talos, the mortal hero who became a god, whose
+  worship the Concordat bans. Older still are the Nordic gods of the Old Ways, many of them the same
+  Divines under harsher northern names.
+source: players-guide/skyrim#faith

@@ -1,0 +1,10 @@
+test: bands
+odds: "2d6 + 1 >= 10"
+chance: 0.2778
+tolerance: 0.001
+---
+test: play
+script:
+  - world new t --system {pack}
+  - do move stat=2
+  - do move stat=-1

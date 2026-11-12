@@ -1,0 +1,4 @@
+# The hack's rule reads its own settings and those it keeps of its base.
+action: lamp
+steps:
+  - "torches: {@settings.torch_uses}; ambush: {@settings.combat.round_one}"

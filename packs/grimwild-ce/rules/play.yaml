@@ -1,0 +1,769 @@
+# The rest of play (Gameplay, pp. 22-39; the GM's suspense, p. 96; Exploring the Grimwild,
+# pp. 130-141; the optional rules, pp. 174-177): suspense, quarrels, vex, bonds and arcs,
+# switching talents, carousing and downtime, the optional rules' pools, active vigilance,
+# exploration tokens, and what sessions and scenes bring by themselves.
+action: suspense
+title: GM suspense
+help: >-
+  The GM's suspense (p. 96), kept on the story oracle's state (`didact oracle show`). Take it
+  for skipping a prompted impact move, a suspense move (Build Up, Clue In, Resolve), pre-session
+  (1), a rest reset (2), an interrupt's messy, a curse or a dark omen (1). Spend it to prompt an
+  impact move at any time (a PC it hits directly gets a defense roll), or to drop 1d from a pool
+  that dropped nothing (`pool=`). A challenge's 2 bonus suspense (p. 104) is its own, spent only
+  on moves relating to it (`challenge=`). With no numbers, it shows the suspense.
+params:
+  take: {kind: int, default: 0, help: "Suspense the GM takes"}
+  spend: {kind: int, default: 0, help: "Suspense the GM spends"}
+  why: {kind: text, optional: true}
+  pool: {kind: ref, optional: true, help: "A pool that dropped nothing: each suspense spent drops 1d anyway"}
+  challenge: {kind: ref, optional: true, help: "A challenge whose own bonus suspense is taken or spent"}
+  oracle: {kind: ref, optional: true, help: "The story oracle's state (supplied)"}
+steps:
+  - if: "default(@oracle, '') == ''"
+    then:
+      - message: "The GM's suspense lives on the story oracle, which hasn't started here yet (a dry run starts nothing): the GM would take {@take} and spend {@spend}."
+    else:
+      - if: "default(@challenge, '') <> ''"
+        then:
+          - let: {own: "default(@challenge.suspense, 0)"}
+          - if: "@spend > @own"
+            then:
+              - stop: "{@challenge.name} has {@own} bonus suspense left, not {@spend}: spend the GM's own instead (`didact do suspense spend={@spend}`)."
+          - set: challenge.suspense
+            value: "@own + @take - @spend"
+          - message: "{@challenge.name}'s bonus suspense: {@challenge.suspense}, for moves relating to it."
+        else:
+          - if: "@spend > @oracle.suspense"
+            then:
+              - stop: "The GM has {@oracle.suspense} suspense, not {@spend}: take some first (skip a prompted impact move, or make a suspense move)."
+          - if: "@take > 0 or @spend > 0"
+            then:
+              - set: oracle.suspense
+                op: "+="
+                value: "@take - @spend"
+          - message: "GM suspense: {@oracle.suspense}."
+      - if: "default(@why, '') <> ''"
+        then: ["Why: {@why}."]
+      - if: "default(@pool, '') <> '' and @spend > 0"
+        then:
+          - if: "@pool.value <= 0"
+            then: ["{@pool.name} is already empty."]
+            else:
+              - pool: "@pool"
+                mode: drop
+                drop: "@spend"
+                as: dropped
+              - message: "The GM spends suspense: {@pool.name} drops {@spend}d anyway ({@dropped.left}d left)."
+      - if: "@spend > 0 and default(@pool, '') == ''"
+        then:
+          - message: "Spent suspense prompts an impact move, at once or later: a PC it hits directly gets a defense roll (`didact do defense`)."
+source: "pp. 18, 96, 103-104"
+---
+action: suspense-move
+title: A suspense move
+help: >-
+  The GM's suspense moves (pp. 98-99), made with cinematic timing: Build Up (a brief scene before
+  the challenge ahead: each PC adds a detail and takes spark, and the GM takes suspense), Clue In
+  (cut away to the forces acting against the PCs: the players learn, the PCs stay in the dark, and
+  the GM takes suspense), Foreshadow (telegraph a danger, without suspense: an impact move
+  follows if it's left unaddressed), Resolve (solve a problem for stuck or cornered PCs, and the
+  GM takes suspense).
+params:
+  move: {enum: [build-up, clue-in, foreshadow, resolve]}
+steps:
+  - if: "'$move' == 'foreshadow'"
+    then:
+      - message: "Foreshadow: telegraph the danger (hoofbeats coming, a 4d timer; the dragon takes a deep breath); if the PCs leave it unaddressed, the impact move follows. No suspense for it."
+    else:
+      - if: "'$move' == 'build-up'"
+        then:
+          - prompt: "Build Up: a vignette before the danger (the PCs' reactions, the looming problem, a cutscene before the action): each PC adds a detail and takes spark (`didact do take-spark who=<pc> why='build up'` for each)."
+      - if: "'$move' == 'clue-in'"
+        then:
+          - prompt: "Clue In: cut away, or zoom out, to show the forces acting against the PCs: the players learn it, the PCs don't."
+      - if: "'$move' == 'resolve'"
+        then:
+          - prompt: "Resolve: a story beat gets the stuck or cornered PCs out of the tough situation and moves the story forward."
+      - do: suspense
+        with: {take: 1, why: "$move"}
+source: "pp. 98-99"
+---
+check: quarrel
+title: Quarrel
+help: >-
+  When two PCs are at odds (p. 23): all agree to the quarrel and state the stakes for winning
+  and losing (err on the dramatic: bruises, not bloodied). Each rolls 2d and the highest wins
+  (5 beats 4); no talents. Others can assist (1d to a side: `helps_first`, `helps_second`) or
+  join at 2d with their own agenda (`third`); spark adds dice. On a tie, compromise or keep
+  quarreling. The winner narrates how they won, then the loser how they handle it; the result is
+  final. All participating PCs take spark.
+params:
+  first: ref
+  second: ref
+  third: {kind: ref, optional: true, help: "A PC joining at 2d with their own agenda"}
+  helps_first: {kind: ref, optional: true, help: "A PC assisting the first (1d)"}
+  helps_second: {kind: ref, optional: true, help: "A PC assisting the second (1d)"}
+  spark_first: {kind: int, default: 0, help: "Spark the first spends: +1d each"}
+  spark_second: {kind: int, default: 0, help: "Spark the second spends: +1d each"}
+  stakes: {kind: text, optional: true, help: "What winning and losing mean"}
+before:
+  - if: "@spark_first > @first.spark or @spark_second > @second.spark"
+    then:
+      - stop: "Each can spend only the spark they have ({@first.name} {@first.spark}, {@second.name} {@second.spark})."
+  - if: "default(@stakes, '') <> ''"
+    then: ["At stake: {@stakes}."]
+  - if: "@spark_first > 0"
+    then:
+      - set: first.spark
+        op: "-="
+        value: "@spark_first"
+  - if: "@spark_second > 0"
+    then:
+      - set: second.spark
+        op: "-="
+        value: "@spark_second"
+  - roll: "(2 + @spark_first)d6"
+    as: side_a
+  - if: "default(@helps_first, '') <> ''"
+    then:
+      - roll: 1d6
+        as: help_a
+  - roll: "(2 + @spark_second)d6"
+    as: side_b
+  - if: "default(@helps_second, '') <> ''"
+    then:
+      - roll: 1d6
+        as: help_b
+  - if: "default(@third, '') <> ''"
+    then:
+      - roll: 2d6
+        as: side_c
+  - let:
+      best_a: "max(max(@side_a.dice), if(default(@helps_first, '') <> '', max(@help_a.dice), 0))"
+      best_b: "max(max(@side_b.dice), if(default(@helps_second, '') <> '', max(@help_b.dice), 0))"
+      best_c: "if(default(@third, '') <> '', max(@side_c.dice), 0)"
+  - message: "{@first.name} {@best_a} · {@second.name} {@best_b}"
+  - if: "@best_c > 0"
+    then: ["{@third.name} {@best_c}"]
+  - do: take-spark  # a side character (solo party mode) takes none: carry on
+    with: {who: "@first"}
+    go_on: true
+  - do: take-spark
+    with: {who: "@second"}
+    go_on: true
+  - if: "default(@third, '') <> ''"
+    then:
+      - do: take-spark
+        with: {who: "@third"}
+        go_on: true
+  - if: "default(@helps_first, '') <> ''"
+    then:
+      - do: take-spark
+        with: {who: "@helps_first"}
+        go_on: true
+  - if: "default(@helps_second, '') <> ''"
+    then:
+      - do: take-spark
+        with: {who: "@helps_second"}
+        go_on: true
+bands:
+  first: "@best_a > @best_b and @best_a > @best_c"
+  second: "@best_b > @best_a and @best_b > @best_c"
+  third: "@best_c > @best_a and @best_c > @best_b"
+  tie: else
+on:
+  first: ["{@first.name} wins: they narrate how they won, then the others how they handle it. The result is final: the story moves in the winner's direction (it's okay to be bitter)."]
+  second: ["{@second.name} wins: they narrate how they won, then the others how they handle it. The result is final: the story moves in the winner's direction (it's okay to be bitter)."]
+  third: ["{@third.name} wins: they narrate how they won, then the others how they handle it. The result is final: the story moves in the winner's direction (it's okay to be bitter)."]
+  tie: ["A tie: compromise, or keep quarreling (roll again)."]
+source: "p. 23"
+---
+action: vex
+title: Vex
+help: >-
+  An intense flash of emotion (anger, fear, confusion), inflicted as a consequence, on its own
+  or with a mark or harm (p. 29). It prompts an immediate, instinctive response lasting a beat
+  or two: choose fight, flight, freeze or freakout, then interpret it. With random vex (an option
+  grimdark sets), the response is rolled.
+params:
+  who: ref
+  response: {enum: [fight, flight, freeze, freakout], optional: true, help: "The response, once chosen"}
+steps:
+  - if: "@option.random_vex"
+    then:
+      - table: vex-responses
+        as: vex
+      - message: "{@who.name} takes vex, and the response is rolled (random vex): {@vex}"
+    else:
+      - if: "'$response' == ''"
+        then:
+          - prompt: "{@who.name} takes vex: choose an immediate, instinctive response and interpret it (a beat or two): fight (lash out recklessly at the subject of your fear or hate), flight (run from the subject, taking whatever path nearest), freeze (stop in your tracks, the emotion taking over your mind), or freakout (do something else to put yourself, others, or your surroundings in harm's way). Driven by emotion, but the player decides how it plays out."
+      - if: "'$response' == 'fight'"
+        then: ["{@who.name} takes vex: fight, lashing out recklessly at the subject of their fear or hate."]
+      - if: "'$response' == 'flight'"
+        then: ["{@who.name} takes vex: flight, running from the subject, taking whatever path nearest."]
+      - if: "'$response' == 'freeze'"
+        then: ["{@who.name} takes vex: freeze, stopping in their tracks, the emotion taking over their mind."]
+      - if: "'$response' == 'freakout'"
+        then: ["{@who.name} takes vex: freakout, doing something else to put themselves, others, or their surroundings in harm's way."]
+  - if: "@option.flavor == 'sword-and-sorcery'"
+    then: ["Sword & sorcery: vex happens more often, but its social fallout is lessened."]
+  - if: "@option.flavor == 'low' or @option.flavor == 'noblebright'"
+    then: ["{if(@option.flavor == 'low', 'Low fantasy', 'Noblebright')}: social fallout from vex is increased."]
+source: "pp. 29, 182-185"
+---
+action: change-bond
+title: Change a bond
+help: >-
+  You can change a bond anytime (p. 22), in response to something they've done or something new
+  you've learned about them: give a short vignette (better together!), and the other PC takes
+  spark. In cozy fantasy it earns +1 XP when the session ends; with focused growth it can be the
+  session's themed XP.
+params:
+  who: ref
+  toward: ref
+  bond: {kind: text, help: "The new bond, an intensity and a nature: 'growing doubts'"}
+  old: {kind: text, optional: true, help: "The bond it replaces, as written on the sheet"}
+steps:
+  - if: "default(@old, '') <> ''"
+    then:
+      - if: "not (@old in @who.bonds)"
+        then:
+          - stop: "{@who.name} has no bond written '{@old}' (bonds: {@who.bonds})."
+      - set: who.bonds
+        op: "-="
+        value: $old
+  - set: who.bonds
+    op: "+="
+    value: "$bond with {@toward.name}"
+  - message: "{@who.name}'s bond with {@toward.name} is now {@bond}: give a short vignette, better together."
+  - do: take-spark
+    with: {who: "@toward"}
+    go_on: true
+  - if: "@option.flavor == 'cozy'"
+    then:
+      - set: who.grew
+        value: true
+      - message: "Cozy fantasy: a changed bond earns {@who.name} +1 XP when the session ends."
+source: "pp. 22, 177, 187"
+---
+action: resolve-arc
+title: Resolve a story arc
+help: >-
+  Take spark by resolving an arc with a meaningful moment, however big or small (p. 26):
+  achieving the goal, adjusting it for the next step, or moving on from it entirely (about every
+  2-3 games). In cozy fantasy, completing a story arc earns +1 XP when the session ends.
+params:
+  who: ref
+  arc: {kind: text, optional: true, help: "The arc resolved, as written on the sheet"}
+  next: {kind: text, optional: true, help: "Where it goes next, if it continues"}
+steps:
+  - if: "default(@arc, '') <> '' and default(@arc, '') in @who.arcs"
+    then:
+      - set: who.arcs
+        op: "-="
+        value: $arc
+  - if: "default(@next, '') <> ''"
+    then:
+      - set: who.arcs
+        op: "+="
+        value: $next
+  - message: "{@who.name} resolves a story arc with a meaningful moment."
+  - do: take-spark
+    with: {who: "@who"}
+    go_on: true
+  - if: "@option.flavor == 'cozy'"
+    then:
+      - set: who.grew
+        value: true
+      - message: "Cozy fantasy: a completed story arc earns {@who.name} +1 XP when the session ends."
+source: "pp. 26, 187"
+---
+action: switch-talent
+title: Switch a talent
+help: >-
+  Swap a talent for another: at in-game milestones once a PC is at the level cap (p. 52; smaller
+  scale, p. 173; cozy fantasy, p. 187), after retraining it with a downtime goal (p. 141), a
+  level 0 PC's half core talent at level 1 (p. 176), a warlock's Eldritch Talent given time to
+  commune (roll Patience), or as the GM allows. Not another path's core talent, nor the path's
+  own half core talent.
+params:
+  who: ref
+  drop: {kind: text, help: "The talent given up (its id)"}
+  take: {kind: text, help: "The new talent (its id)"}
+  why: {kind: text, optional: true}
+steps:
+  - let: {path_now: "default(@who.path, '')"}
+  - if: "not (@drop in @who.talents)"
+    then:
+      - stop: "{@who.name} has no talent {@drop} (talents: {@who.talents})."
+  - if: "@take in @who.talents"
+    then:
+      - stop: "{@who.name} already has {@take}."
+  - if: >-
+      (@take == 'berserker-warcry' and @path_now == 'Bard') or (@take == 'fighter-arcane-training' and @path_now == 'Wizard')
+      or (@take == 'paladin-divine-blessing' and @path_now == 'Cleric') or (@take == 'rogue-eldritch-affinity' and @path_now == 'Sorcerer')
+      or (@take == 'swashbuckler-natural-moxie' and @path_now == 'Rogue')
+    then:
+      - stop: "{@take} is the {@path_now}'s own half core talent ([Prohibited: {@path_now}]): pick another."
+  - set: who.talents
+    op: "-="
+    value: $drop
+  - set: who.talents
+    op: "+="
+    value: $take
+  - message: "{@who.name} switches {@drop} for {@take}."
+  - message: "A talent with a per-session pool of its own (Grenades, Luck, Favor, …) needs it made (`didact track new '<pool>' --kind pool --size <dice> --for {@who.id}`), and the one given up can go (`didact rm <track>`)."
+  - if: "default(@why, '') <> ''"
+    then: ["Why: {@why}."]
+  - if: "@path_now == 'Warlock'"
+    then:
+      - prompt: "A warlock changes an Eldritch Talent given time to commune with the patron: roll Patience (`didact track roll <patience>`), and update the path notes."
+source: "pp. 52, 82, 141, 173, 176, 187"
+---
+action: carouse
+title: Carouse
+help: >-
+  In a settlement, carouse by selling off a minor treasure (p. 39; major and mythic ones too,
+  if a buyer can be found): each PC spends their leisure time as they like; a montage roll for
+  each PC taking part (the best is the outcome: narrate, or suffer, the results), then everyone
+  takes spark regardless of the roll. With wealth, selling off treasure adds +2d to the PC's
+  Coins pool (at most 8d); in sword & sorcery, carousing earns +1 XP. With expanded downtime,
+  selling off treasure lets a PC pick two downtime actions instead.
+params:
+  who: ref
+  stat: {enum: [brawn, agility, wits, presence], optional: true, help: "What the leisure leans on, for the montage roll"}
+  coins: {kind: ref, optional: true, help: "The PC's Coins pool (wealth, an option): +2d, at most 8d"}
+steps:
+  - if: "@option.expanded_downtime"
+    then:
+      - stop: "Expanded downtime (an option) replaces carousing: selling off treasure lets {@who.name} pick two downtime actions (`didact do downtime who={@who.id} act=… also=…`)."
+  - if: "'$stat' <> ''"
+    then:
+      - check: montage
+        with: {who: "@who", stat: $stat}
+    else:
+      - check: montage
+        with: {who: "@who"}
+  - do: take-spark
+    with: {who: "@who"}
+    go_on: true
+  - if: "@option.wealth"
+    then:
+      - if: "default(@coins, '') <> ''"
+        then:
+          - do: grow-pool
+            with: {pool: "@coins", by: 2, most: 8}
+        else:
+          - prompt: "Wealth: selling off treasure adds +2d to {@who.name}'s Coins pool (at most 8d): `didact do grow-pool pool=<coins> by=2 most=8`."
+  - if: "@option.flavor == 'sword-and-sorcery'"
+    then:
+      - do: experience  # none for a side character, or with milestone levels: carry on
+        with: {who: "@who", why: carousing}
+        go_on: true
+  - prompt: "Narrate, or suffer, the results: the best montage result among the PCs is the outcome."
+source: "pp. 16, 39, 176, 184"
+---
+action: downtime
+title: Downtime
+help: >-
+  An extended break, a month or a season (p. 30): the PC fully heals, including relevant
+  conditions, and resets per-session talents; the GM rolls the faction pools (`didact faction
+  turn`), then picks one and depletes it completely (`didact do faction-goal`). With expanded
+  downtime (an option, p. 141), the PC picks a downtime action instead of healing, two different
+  ones if they sell off treasure (`act`, `also`): rest, plan ahead (`plan`), pursue a goal (its
+  task pool: `goal`), unwind or venture. A plan ahead is lost when time passes again.
+params:
+  who: ref
+  act: {enum: [rest, plan, pursue, unwind, venture], optional: true, help: "Expanded downtime: the downtime action"}
+  also: {enum: [rest, plan, pursue, unwind, venture], optional: true, help: "A second, different one, when treasure is sold off"}
+  plan: {kind: text, optional: true, help: "Plan ahead: a few words on the preparation"}
+  goal: {kind: ref, optional: true, help: "Pursue a goal: its task pool"}
+steps:
+  - if: "@option.expanded_downtime and '$act' == ''"
+    then:
+      - stop: "Expanded downtime (an option): pick a downtime action for {@who.name}: act=rest, plan, pursue, unwind or venture (and also=… for a second, different one when treasure is sold off). `didact table show downtime-actions` says what each does."
+  - if: "'$also' <> '' and '$also' == '$act'"
+    then:
+      - stop: "Selling off treasure gives two different downtime actions, not {@act} twice."
+  - if: "default(@who.plan, '') <> ''"
+    then:
+      - set: who.plan
+        value: "''"
+      - message: "Time passes: {@who.name}'s plan ahead thread is lost."
+  - if: "@option.expanded_downtime"
+    then:
+      - if: "default(@goal, '') <> ''"
+        then:
+          - do: downtime-action
+            with: {who: "@who", act: $act, plan: $plan, goal: "@goal"}
+        else:
+          - do: downtime-action
+            with: {who: "@who", act: $act, plan: $plan}
+      - if: "'$also' <> ''"
+        then:
+          - if: "default(@goal, '') <> ''"
+            then:
+              - do: downtime-action
+                with: {who: "@who", act: $also, plan: $plan, goal: "@goal"}
+            else:
+              - do: downtime-action
+                with: {who: "@who", act: $also, plan: $plan}
+    else:
+      - set: who.marks
+        value: []
+      - set: who.harm
+        value: []
+      - message: "{@who.name} fully heals in downtime: marks and harm are cleared, and relevant conditions too (`didact set {@who.id} conditions-='…'`)."
+  - do: talent-resets
+    with: {who: "@who"}
+  - if: "@option.vigor_pool"
+    then:
+      - prompt: "Vigor (an option): {@who.name}'s vigor pool refreshes in downtime (`didact do refresh pool=<vigor>`)."
+  - prompt: "The GM, once for the whole downtime: roll the faction pools (`didact faction turn`), then pick one and deplete it completely to move the story forward (`didact do faction-goal who=<faction> pool=<pool>`)."
+source: "pp. 30, 114, 141, 174"
+---
+procedure: downtime-action
+title: A downtime action
+help: "One of expanded downtime's actions (p. 141): rest, plan ahead, pursue a goal, unwind or venture."
+params:
+  who: ref
+  act: {enum: [rest, plan, pursue, unwind, venture]}
+  plan: {kind: text, optional: true}
+  goal: {kind: ref, optional: true}
+steps:
+  - if: "'$act' == 'rest'"
+    then:
+      - set: who.marks
+        value: []
+      - set: who.harm
+        value: []
+      - message: "Rest: {@who.name} heals all marks and harm, and all non-permanent conditions (the GM may decide some long-term ones persist)."
+  - if: "'$act' == 'plan'"
+    then:
+      - if: "default(@plan, '') <> ''"
+        then:
+          - set: who.plan
+            value: $plan
+          - message: "Plan ahead: {@who.name} prepares ({@plan}): a special thread for story details based on it, beyond their maximum, lost when time passes again."
+        else:
+          - prompt: "Plan ahead: write a few words on {@who.name}'s general preparation, saving the details for later: `didact set {@who.id} plan='…'`."
+  - if: "'$act' == 'pursue'"
+    then:
+      - if: "default(@goal, '') <> ''"
+        then:
+          - if: "@goal.value <= 0"
+            then: ["{@goal.name} is already done."]
+            else:
+              - pool: "@goal"
+                as: progress
+              - message: "Pursue a goal: {@who.name} works on {@goal.name} ({@progress.left}d left); describe the result."
+              - if: "@progress.empty"
+                then:
+                  - prompt: "{@goal.name} is achieved (a talent retrained: `didact do switch-talent who={@who.id} drop=… take=…`; a wise: `didact set {@who.id} wises-='…' wises+='…'`)."
+        else:
+          - prompt: "Pursue a goal: work with the GM on the goal and its task pool (crafting arcana, a new spell theorem, retraining a talent or wise): `didact track new '<goal>' --kind pool --size 4 --pool task --for {@who.id}`, then `didact do downtime who={@who.id} act=pursue goal=<pool>`."
+  - if: "'$act' == 'unwind'"
+    then:
+      - prompt: "Unwind: give a vignette of {@who.name} enjoying themselves (carousing, a forgotten shrine, the arts and theater)."
+      - do: take-spark
+        with: {who: "@who"}
+        go_on: true
+  - if: "'$act' == 'venture'"
+    then:
+      - check: story-roll
+        with: {question: "How does the venture go?"}
+        as: venture
+      - prompt: "Venture: {@who.name} keeps moving, doing odd jobs or adventuring alone; the GM may reward them with a minor treasure, a rumor, or a new ally. On a messy or less, it's complicated."
+source: "p. 141"
+---
+action: vigor
+title: Vigor
+help: >-
+  With the vigor pool (an option, p. 174; for games without healing magic): when the PCs have a
+  moment to catch their breath, roll the pool to clear 1 harm (`heal`: which, else desperate
+  first). It refreshes after an extended rest or downtime (`didact do refresh`).
+params:
+  who: ref
+  pool: {kind: ref, help: "The PC's vigor pool"}
+  heal: {enum: [bloodied, rattled, desperate], optional: true, help: "The harm to clear"}
+steps:
+  - if: "not @option.vigor_pool"
+    then:
+      - stop: "Vigor pools are an optional rule (`didact campaign profile vigor-pool=on`)."
+  - if: "@pool.value <= 0"
+    then:
+      - stop: "{@pool.name} is empty: it refreshes after an extended rest or downtime."
+  - let:
+      healed: >-
+        if('$heal' <> '' and '$heal' in @who.harm, '$heal', if('desperate' in @who.harm, 'desperate',
+        if('bloodied' in @who.harm, 'bloodied', if('rattled' in @who.harm, 'rattled', ''))))
+  - if: "@healed == ''"
+    then:
+      - stop: "{@who.name} has no harm to clear."
+  - pool: "@pool"
+    as: rolled
+  - set: who.harm
+    op: "-="
+    value: "@healed"
+  - message: "{@who.name} catches their breath: {@healed} is cleared ({@pool.name}: {@rolled.left}d left)."
+source: "p. 174"
+---
+action: armor
+title: Armor
+help: >-
+  With the armor option (p. 175): after taking a physical consequence, roll the Armor pool to
+  lessen it, as a messy defense roll (with the reworked Bulwark, to avoid it). Light armor gives
+  a 1d pool each session, heavy 2d, Bulwark +2d; it comes back each session (`didact do refresh`).
+params:
+  who: ref
+  pool: {kind: ref, help: "The PC's armor pool"}
+steps:
+  - if: "not @option.armor"
+    then:
+      - stop: "Armor pools are an optional rule (`didact campaign profile armor=on`); without it, armor is vantage and set dressing."
+  - if: "@pool.value <= 0"
+    then:
+      - stop: "{@pool.name} is spent until the next session."
+  - pool: "@pool"
+    as: rolled
+  - if: "'fighter-bulwark' in @who.talents"
+    then: ["Bulwark: {@who.name} avoids the physical consequence ({@pool.name}: {@rolled.left}d left)."]
+    else: ["{@who.name}'s armor lessens the physical consequence, as a messy defense roll: the GM lessens it ({@pool.name}: {@rolled.left}d left)."]
+source: "p. 175"
+---
+action: tick
+title: Tick a pool
+help: >-
+  With tick pools (an option, p. 177): a predictable pool, usually 2d-4d, that drops exactly 1d
+  when triggered and is never rolled. At 0d its event comes to pass.
+params:
+  pool: {kind: ref, help: "The tick pool"}
+steps:
+  - if: "not @option.tick_pools"
+    then:
+      - stop: "Tick pools are an optional rule (`didact campaign profile tick-pools=on`)."
+  - if: "@pool.value <= 0"
+    then:
+      - stop: "{@pool.name} is already empty."
+  - pool: "@pool"
+    mode: drop
+    as: ticked
+  - message: "{@pool.name} ticks down 1d ({@ticked.left}d left)."
+source: "p. 177"
+---
+action: refresh
+title: Refresh a pool
+help: >-
+  A pool back to its full size: per-session talent and arcana pools and the armor pool each
+  session, a Wild Shape pool each scene, a vassal's pool at 0d or when pushed, a warlock's
+  Patience after the patron's visit, a vigor pool after an extended rest or downtime.
+params:
+  pool: ref
+steps:
+  - set: pool.value.value
+    value: "@pool.value.max"
+  - set: pool.fields.status
+    value: active
+  - message: "{@pool.name} is back to {@pool.value}d."
+source: "pp. 19, 40, 60, 62, 78, 82, 174-175"
+---
+action: grow-pool
+title: Grow a pool
+help: >-
+  More dice for a pool, in its size and in what's left: a core talent's growth (+1d to each rite
+  pool, to Wild Shape), wealth's +2d to the Coins pool when treasure is sold off (at most 8d), a
+  treasure hoard.
+params:
+  pool: ref
+  by: {kind: int, default: 1}
+  most: {kind: int, default: 0, help: "The most it can hold (0: no limit); Coins: 8"}
+steps:
+  - let:
+      size: "if(@most > 0, min(@most, @pool.value.max + @by), @pool.value.max + @by)"
+      left: "if(@most > 0, min(@most, @pool.value + @by), @pool.value + @by)"
+  - set: pool.value.max
+    value: "max(@size, @left)"
+  - set: pool.value.value
+    value: "@left"
+  - set: pool.fields.status
+    value: active
+  - message: "{@pool.name} grows: {@left}d of {@pool.value.max}d."
+source: "pp. 60, 62, 176"
+---
+check: vigilance
+title: Active vigilance
+help: >-
+  With active vigilance (an option, p. 177): when the GM uses vigilance, they spotlight one PC,
+  who makes a story roll affected by their vantage (`dice`: 2, 3 when a wise or talent fits, 1
+  when it doesn't; `thorns` for what hinders them). Perfect: a reveal; messy: a hint; grim or
+  worse: the GM strikes (an impact move that costs suspense as any other).
+params:
+  who: ref
+  dice: {kind: int, default: 2}
+  thorns: {kind: int, default: 0}
+before:
+  - if: "not @option.active_vigilance"
+    then:
+      - stop: "Active vigilance is an optional rule (`didact campaign profile active-vigilance=on`); without it, the GM decides reveal, hint or strike by vantage (`didact table roll vigilance` shows them)."
+  - roll: "(@dice)d6"
+    as: roll
+  - if: "@thorns > 0"
+    then:
+      - roll: "(@thorns)d8"
+        as: thorn
+  - let: {cuts: "if(@thorns > 0, count(@thorn.dice, 7) + count(@thorn.dice, 8), 0)"}
+  - let: {level: "if(max(@roll.dice) == 6, 3, if(max(@roll.dice) >= 4, 2, 1)) - @cuts"}
+  - if: "@option.flavor == 'low'"
+    then: ["Low fantasy: vigilance matters more, and leans to hints over strikes or reveals."]
+bands:
+  reveal: "@level >= 3 or count(@roll.dice, 6) >= 2"
+  hint: "@level == 2"
+  strike: else
+on:
+  reveal: ["Reveal: an obvious unveiling of the imminent threat; {@who.name} can act before it strikes, maybe side-stepping it without a roll."]
+  hint: ["Hint: a subtle clue about the hidden element; the player gets a single chance to interpret it, and a correct response is a reveal."]
+  strike: ["Strike: the danger strikes {@who.name} at once, an impact move that costs suspense as any other (`didact do suspense spend=1`); a PC it hits gets a defense roll."]
+source: "pp. 107, 177, 183"
+---
+action: tokens
+title: Exploration tokens
+help: >-
+  Exploration tokens (p. 130): when the GM expands the map, everyone (the GM too) takes 3
+  (`take=3`); a significant discovery earns 1-3; a thread tied to a wise or story arc can be
+  spent as a token (`thread`: say in character how you knew). Spend them on points and paths
+  (the map's type sets the cost: `didact table show region-map`, settlement-map, site-map); they
+  disappear once the map is expanded (`clear`).
+params:
+  who: ref
+  take: {kind: int, default: 0}
+  spend: {kind: int, default: 0}
+  thread: {kind: flag, default: false, help: "Spend a thread as one token (tied to a wise or story arc)"}
+  clear: {kind: flag, default: false, help: "The map is expanded: unspent tokens disappear"}
+  buys: {kind: text, optional: true, help: "What the tokens buy: a point, a path"}
+steps:
+  - if: "@thread"
+    then:
+      - if: "@who.thread < 1"
+        then:
+          - stop: "{@who.name} has no thread to spend."
+      - set: who.thread
+        op: "-="
+        value: 1
+      - message: "{@who.name} spends a thread as an exploration token: explain in character how they knew."
+  - if: "@spend > @who.tokens"
+    then:
+      - stop: "Not enough exploration tokens: {@who.name} has {@who.tokens}, not {@spend}."
+  - if: "@take > 0 or @spend > 0"
+    then:
+      - set: who.tokens
+        op: "+="
+        value: "@take - @spend"
+  - if: "@clear"
+    then:
+      - set: who.tokens
+        value: 0
+      - message: "The map is expanded: {@who.name}'s unspent tokens disappear."
+  - if: "default(@buys, '') <> ''"
+    then: ["It buys: {@buys}."]
+  - message: "{@who.name}'s exploration tokens: {@who.tokens}."
+source: "pp. 130-136"
+---
+trigger: pre-session-each
+title: Pre-session, for each PC
+help: "Before each session after the first, each PC takes spark and resets thread and per-session talents (p. 31); with rest resets, rests bring them instead."
+on: session_start
+for: pcs
+when: "@session > 1 and not @option.rest_resets"
+params:
+  who: ref
+steps:
+  - do: pre-session
+    with: {who: "@who"}
+source: p. 31
+---
+trigger: pre-session-gm
+title: Pre-session, for the GM
+help: "Before each session after the first, the GM takes suspense and recaps the previous session (p. 31)."
+on: session_start
+when: "@session > 1"
+params:
+  oracle: ref
+steps:
+  - do: suspense
+    with: {take: 1, why: pre-session}
+  - prompt: "Pre-session: once each player has shared their PC's best moment, the GM recaps the previous session's main points, tying those moments together into a proper \"Previously on…\"."
+source: p. 31
+---
+trigger: reset-over
+title: The party's reset is over
+help: "With rest resets, the GM takes 2 suspense once for the party's rest or reset (p. 174): a new scene or session makes the next one a new reset."
+on: scene_start
+when: "default(@oracle.reset_taken, false)"
+params:
+  oracle: ref
+steps:
+  - set: oracle.reset_taken
+    value: false
+source: p. 174
+---
+trigger: reset-over-session
+title: The party's reset is over (a new session)
+help: "With rest resets, the GM takes 2 suspense once for the party's rest or reset (p. 174): a new scene or session makes the next one a new reset."
+on: session_start
+when: "default(@oracle.reset_taken, false)"
+params:
+  oracle: ref
+steps:
+  - set: oracle.reset_taken
+    value: false
+source: p. 174
+---
+trigger: supplies-day
+title: "Supplies: a day passes"
+help: "With the supplies option, roll each PC's supplies pool as time passes outside of civilization (p. 175)."
+on: time
+when: "@option.supplies and @time.passed >= 86400"
+steps:
+  - prompt: "Supplies (an option): a day has passed; outside of civilization, roll each PC's supplies pool (`didact track roll <supplies>`)."
+source: p. 175
+---
+trigger: scene-end-sword-and-sorcery
+title: "Sword & sorcery: marks and harm clear after each scene"
+help: "In sword & sorcery, marks and harm clear after each scene (p. 184)."
+on: scene_end
+for: pcs
+when: "@option.flavor == 'sword-and-sorcery' and (count(@who.marks) > 0 or count(@who.harm) > 0)"
+params:
+  who: ref
+steps:
+  - set: who.marks
+    value: []
+  - set: who.harm
+    value: []
+  - message: "Sword & sorcery: {@who.name}'s marks and harm clear after the scene."
+source: p. 184
+---
+trigger: scene-end-noblebright
+title: "Noblebright: rattled clears after an intense scene"
+help: "In noblebright, rattled clears after any intense scene (p. 185)."
+on: scene_end
+for: pcs
+when: "@option.flavor == 'noblebright' and 'rattled' in @who.harm"
+params:
+  who: ref
+steps:
+  - prompt: "Noblebright: rattled clears after any intense scene; if this one was, `didact set {@who.id} harm-=rattled`."
+source: p. 185
+---
+trigger: scene-end-dropped
+title: Back after being dropped
+help: "A dropped PC is out of the scene (p. 28): resolve it by its end, and they're back afterwards."
+on: scene_end
+for: pcs
+when: "'dropped' in @who.harm and @option.flavor <> 'sword-and-sorcery'"
+params:
+  who: ref
+steps:
+  - prompt: "{@who.name} was dropped this scene: resolve it now if it isn't yet (`didact do dropped who={@who.id}`); unless their story ended, they're back once the scene is over (`didact set {@who.id} harm-=dropped`)."
+source: p. 28

@@ -1,0 +1,126 @@
+# The common backgrounds (Adventurers, p. 48): a name, AKA names and three wises.
+id: charlatan
+type: background
+name: Charlatan
+aka: [Spy, Swindler]
+wises: [social graces, spotting marks, timely misdirects]
+source: p. 48
+---
+id: clergy
+type: background
+name: Clergy
+aka: [Cultist, Priest]
+wises: [allegories, signs of sin, faiths of the world]
+source: p. 48
+---
+id: commoner
+type: background
+name: Commoner
+aka: [Farmer, Villager]
+wises: [local customs, practical wisdom, superstitions]
+source: p. 48
+---
+id: crafter
+type: background
+name: Crafter
+aka: [Artisan, Smith]
+wises: [crafting quality, trade contracts, wear and tear]
+source: p. 48
+---
+id: drifter
+type: background
+name: Drifter
+aka: [Explorer, Vagabond]
+wises: [chance meetings, faraway tales, lay of the land]
+source: p. 48
+---
+id: eccentric
+type: background
+name: Eccentric
+aka: [Hermit, Recluse]
+wises: [hard truths, random facts, strange snacks]
+source: p. 48
+---
+id: entertainer
+type: background
+name: Entertainer
+aka: [Storyteller, Minstrel]
+wises: [legends & tales, crowd behaviors, stage presence]
+source: p. 48
+---
+id: healer
+type: background
+name: Healer
+aka: [Herbalist, Physicker]
+wises: [comfort foods, signs of ailment, herbal properties]
+source: p. 48
+---
+id: hunter
+type: background
+name: Hunter
+aka: [Pathfinder, Trapper]
+wises: [survival, tracks, wildlife behavior]
+source: p. 48
+---
+id: investigator
+type: background
+name: Investigator
+aka: [Guard, Gumshoe]
+wises: [seedy areas, connecting the dots, body language]
+source: p. 48
+---
+id: mariner
+type: background
+name: Mariner
+aka: [Pirate, Sailor]
+wises: [nautical lore, seafaring, weather patterns]
+source: p. 48
+---
+id: mystic
+type: background
+name: Mystic
+aka: [Occultist, Seer]
+wises: [ancient prophecies, leylines, symbology]
+source: p. 48
+---
+id: noble
+type: background
+name: Noble
+aka: [Aristocrat, Diplomat]
+wises: [diplomacy, influential contacts, luxuries]
+source: p. 48
+---
+id: ragamuffin
+type: background
+name: Ragamuffin
+aka: [Cutpurse, Urchin]
+wises: [hidden paths, rumors, street smarts]
+source: p. 48
+---
+id: sage
+type: background
+name: Sage
+aka: [Lorekeeper, Scholar]
+wises: [ancient histories, peoples of the world, philosophy]
+source: p. 48
+---
+id: scoundrel
+type: background
+name: Scoundrel
+aka: [Brigand, Thief]
+wises: [escape routes, signs of weakness, shady connections]
+source: p. 48
+---
+id: trader
+type: background
+name: Trader
+aka: [Merchant, Peddler]
+wises: [cultural tastes, people's desires, rare goods]
+source: p. 48
+---
+id: warrior
+type: background
+name: Warrior
+aka: [Sellsword, Soldier]
+wises: [battle plans, improvised weapons, war stories]
+source: p. 48

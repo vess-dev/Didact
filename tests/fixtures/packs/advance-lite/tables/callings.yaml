@@ -1,0 +1,6 @@
+table: callings
+title: Callings
+dice: d2
+entries:
+  1: {text: Warden, data: {gifts: [ward, watch, hold]}}
+  2: {text: Seeker, data: {gifts: [seek, find, follow]}}

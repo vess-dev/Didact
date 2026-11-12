@@ -1,0 +1,63 @@
+# Character creation applies every background result: a second bond, a private omen, extra HP,
+# gear bought from the Marketplace, companions and vehicles; and the two ways to make hirelings.
+test: background-results
+script:
+  - world new vale --system {pack} --seed chargen
+  - campaign new first --seed chargen
+  - run: >-
+      char new --mode random --prefill '{"background": "Outrider", "name": "Keir", "youngest": "no",
+      "outrider_1": "Always pay your debts: You always repay what you owe, whether in coin or in kind. You expect nothing less from all others. Take a Blacked-Out Ledger, then roll a second time on the Bonds table.",
+      "outrider_2": "Heavy Destrier: A beast built for war, an imposing creature. 8 HP, 1 Armor, hooves (d10+d10), +2 slots."}'
+    expect: ["+ thread Bond: ", "[bond-2]", "+ companion Heavy Destrier [companion-1]", "owner: character"]
+  - run: char commit c1
+    expect: ["pc:keir", "companion:heavy-destrier"]
+  - run: show heavy-destrier
+    expect: ["HP 8/8", "armor 1", "owner pc:keir", "slots 2"]
+  - run: inv add heavy-destrier Rope Rope
+    expect: "Heavy Destrier"
+  - run: >-
+      char new --mode random --prefill '{"background": "Kettlewright", "name": "Bram", "youngest": "no",
+      "kettlewright_1": "You deal in home goods and tools, hawking your wares to townspeople across the lands. Take 20gp worth of items from the gear table. You are fluent in the Traveler'"'"'s Cant."}'
+    expect: ["gear-over-budget", "Gear costing more than the 20-24gp left", "marketplace-gear:"]
+  - char commit c2
+  - run: >-
+      char new --mode random --prefill '{"background": "Kettlewright", "name": "Hester", "youngest": "no", "hp": 2, "more_hp": 3,
+      "kettlewright_1": "You offer protection as a service, quietly watching for threats as money exchanges hands. You start with +d4 HP, and carry a Long Sword (d10, bulky) and a Gambeson (+1 Armor)."}'
+    expect: ["The background adds 3 HP: 5.", "hp: 5"]
+  - char commit c3
+  - run: >-
+      char new --mode random --prefill '{"background": "Foundling", "name": "Wisp", "youngest": "yes"}'
+    expect: ["+ thread Omen: ", "[omen-2]", "Keep this omen private for now"]
+  - run: char commit c4
+    expect: "committed: 4 records"
+  - run: quest list
+    expect: "Omen: "
+  - run: >-
+      char new --mode random --prefill '{"background": "Half-Witch", "name": "Nyx", "youngest": "no", "STR": 15, "DEX": 13, "WIL": 14, "hp": 6,
+      "half_witch_1": "A Living Nightmare that dwells within you but manifests whenever you are in danger. It has your same Attributes and HP and attacks with claws (d8+d8). It disappears on Critical Damage (take 1d4 WIL damage), re-appearing again on the next full moon."}'
+    expect: "+ companion Living Nightmare"
+  - char commit c5
+  - run: show living-nightmare
+    expect: ["STR 15", "DEX 13", "WIL 14", "HP 6/6", "owner pc:nyx"]
+  - run: >-
+      char new --mode random --prefill '{"background": "Bonekeeper", "name": "Rook", "youngest": "no",
+      "bonekeeper_1": "A burial wagon (+6 slots, slow) from your last job. It came with a stubborn old donkey (+4 slots, only +2 slots if pulling wagon)."}'
+    expect: ["+ companion Stubborn Old Donkey", "+ vehicle Burial Wagon"]
+  - char commit c6
+  - run: show burial-wagon
+    expect: ["slots 6", "slow"]
+---
+test: hirelings
+script:
+  - world new vale --system {pack} --seed hirelings
+  - campaign new first --seed hirelings
+  - run: >-
+      char new cairn-2e.hireling --mode random --prefill '{"role": "Alchemist", "name": "Pell"}'
+    expect: ["hireling Pell: role: Alchemist, wage: 30", "physique", "skin", "hair", "face", "speech", "clothing", "virtue", "vice"]
+  - run: char commit c1
+    expect: "hireling:pell"
+  - run: >-
+      char new cairn-2e.hireling-background --mode random --prefill '{"background": "Scrivener", "name": "Hugo"}'
+    expect: ["hireling Hugo: background: Scrivener", "What work did you keep for yourself?", "Rations", "age: "]
+  - run: char commit c2
+    expect: "hireling:hugo"

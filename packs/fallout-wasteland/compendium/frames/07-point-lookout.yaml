@@ -1,0 +1,391 @@
+# Point Lookout (campaigns/07-point-lookout): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: point-lookout
+type: quest
+name: Point Lookout
+tags: [point-lookout, frame, side-arc]
+goal: A paddlewheel ferry, the Duchess Gambit, at the Capital Wasteland docks advertises a weekend 
+  at Point Lookout — the Last Resort! The boatman, Tobar, charges in caps and doesn't ask names. The
+  resort is a waterlogged horror show of punga farmers, Swampfolk, and a ghoulified British spy 
+  running a two-hundred-year feud with a psychic pre-war brain.
+date: Tuesday, 23 October 2277
+body: |-
+  *A half-sunken Maryland swamp full of inbred swampfolk, a punga-drug cult, a pre-war Chinese sleeper cell, and an actual witch in the bog. Everyone here has a claim on the place. None of them should win.*
+
+  ## GM notes
+
+  **Date.** Tuesday, 23 October 2277: a Fallout 3 side arc: that frame's date, or whenever the Duchess Gambit docks. It is the calendar's start: a new campaign opens on it.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup Point Lookout tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** Tobar's ferry. The trip takes a night and he slips the party a drink laced with punga pollen — a PC who fails a STR save wakes up with 1 Fatigue and a memory gap (they'll find out what later).
+
+  **Plot beats.**
+
+  1. The Ferry Arrival. Tobar lands them at the pier in the fog. The boardwalk is partially alive — ghoul shopkeepers, a shooting gallery, a tilt-a-whirl still running. The party's memory gap from the pollen drink kicks in here: they're missing one scene from the crossing the Overseer knows about.
+  2. The Battle at Calvert Mansion. Almost as soon as the party explores, the Brethren of the Punga assault Calvert Mansion. Desmond Lockheart begs the party to help him defend it. Fighting for Desmond earns his patronage and opens his vault of pre-war British-intelligence supplies; refusing means picking the mansion clean after it burns.
+  3. The Punga Trial. The Brethren of the Punga cult test every visitor. A PC who breathes Mother Punga's pollen takes the Punga Rite and sees a vision — the Overseer should show them something real about the island they could not otherwise know. Mechanically, the PC may immediately take back one perk they once swapped out (dropping a current one if all five slots are full) without needing a fresh copy of its magazine, once this session, and takes 1d4 Fatigue. The Cathedral will then ask a favor in return. God is listening (God is a radar dish).
+  4. Obadiah Blackhall's Tome. Blackhall, patriarch of the old southern family at Blackhall Manor, has lost an occult book — the Krivbeknih — to the swampfolk. Recovering it from their ritual site is a classic side trail that leads the party into the swamp and introduces Marguerite's moonshine still and Plik's ghoul safari.
+  5. The Lighthouse. Calvert's voice finally reaches the party directly — a pre-war brain in a jar under the lighthouse, broadcasting through the radar dish. He pitches himself as the only reasonable man on the island and promises a cure for ghoulification. He is lying about the cure. He is not lying about being reasonable.
+  6. The Underground Lab. Beneath the lighthouse, a pre-war medical research facility — the St. Aubin medical facility — has been sealed since 2077. The party fights Robobrain security and retrieves a pre-war prototype — the Microwave Emitter or its variant. Separately, a Chinese Intelligence Bunker hidden beneath the aviary next to Calvert Mansion can be found during this arc — its logs reveal the pre-war Chinese spy ring that worked the resort, and the shadow war Desmond once fought in.
+  7. Pick Your Ghoul. The party must side with Desmond, side with Calvert, or eliminate both. Each has a sponsor's weapon ready as a reward. The Punga cult will back the survivor — whoever that is — and the swamp will remember who chose what.
+  8. Silence the Obelisk. Final scene. The obelisk is whatever broadcasts the island's influence — radar, brain tank, cult speaker. Silence it, claim it, or walk away with Tobar waiting at the pier (Tobar will try to drug them again on the way out).
+
+  **Climax.**
+
+  Calvert and Lockheart both offer the party the same job: kill the other. A third path is the Punga Rite, which lets the party enter the Obelisk directly.
+
+  - **Kill Calvert.** Lockheart rewards you, steals the lab, vanishes east.
+  - **Kill Lockheart.** Calvert promises a cure for ghoulification. He is lying — the only gratitude he pays is murder, and the party is next in his Great Game.
+  - **Burn them both.** The Obelisk is the real monster. Shutting it down frees the swampfolk from their generational exposure. In the punga-haze, a deathclaw walks out of the mist and refuses to fight. It is not really there — no deathclaw has ever walked these swamps. Only the Overseer knows what the vision means.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "Point Lookout"}' --auto` drafts the region, 7 places, 4 people, 4 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Bestiary** (Fallout 2e / Grimfall): Swampfolk, Brawler → `swampfolk-brawler` / `swampfolk`; Swampfolk, Tracker → `swampfolk-tracker` / `swampfolk`; Swampfolk, Scrapper → `swampfolk-scrapper` / `swampfolk`; Punga Creeper → `punga-creeper` / `punga-creeper`; Children of Atom, Apostle → `children-of-atom-apostle` / `children-of-atom`.
+
+  **Rewards in each system's catalog:** The Dismemberer (fallout-2e.the-dismemberer · grimfall.the-dismemberer); Backwater Rifle (fallout-2e.backwater-rifle · grimfall.backwater-rifle); Microwave Emitter (fallout-2e.microwave-emitter · grimfall.microwave-emitter); Punga-Ash War Paint (grimfall.tribal-war-paint).
+source: campaigns/07-point-lookout#pitch
+---
+id: point-lookout-region
+type: loc
+name: Point Lookout
+tags: [point-lookout, region]
+mechanics:
+  fallout-2e: {kind: region}
+  grimfall: {kind: region}
+body: ''
+source: campaigns/07-point-lookout#the-place--point-lookout
+---
+id: point-lookout-point-lookout-pier-and-boardwalk
+type: loc
+name: Point Lookout Pier & Boardwalk
+tags: [point-lookout, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The resort. Ghoul shopkeepers, a shooting gallery, a tilt-a-whirl still running.
+source: campaigns/07-point-lookout#the-place--point-lookout
+---
+id: point-lookout-calvert-mansion
+type: loc
+name: Calvert Mansion
+tags: [point-lookout, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The Calvert family estate, now the ghoulified Desmond Lockheart's stronghold. He pays for damage done to his enemy.
+source: campaigns/07-point-lookout#the-place--point-lookout
+---
+id: point-lookout-professor-calverts-lighthouse
+type: loc
+name: Professor Calvert's Lighthouse
+tags: [point-lookout, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A pre-war brain in a jar. Broadcasts a mind-beam on certain frequencies.
+source: campaigns/07-point-lookout#the-place--point-lookout
+---
+id: point-lookout-the-swamp
+type: loc
+name: The Swamp
+tags: [point-lookout, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Cypress islands, punga fields, a sunken church, Plik's Safari (a feral-ghoul hunt for caps).
+source: campaigns/07-point-lookout#the-place--point-lookout
+---
+id: point-lookout-the-ark-and-dove-cathedral
+type: loc
+name: The Ark & Dove Cathedral
+tags: [point-lookout, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The Brethren of the Punga — Point Lookout's punga-farming tribals. They huff pollen and speak with god. God is a pre-war anti-aircraft radar — and the voice on it is Calvert's.
+source: campaigns/07-point-lookout#the-place--point-lookout
+---
+id: point-lookout-the-sacred-bog
+type: loc
+name: The Sacred Bog
+tags: [point-lookout, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A drowned grove where the Brethren of the Punga perform the Punga Rite around Mother Punga, a punga plant grown vast and old. A PC who breathes her pollen gains a vision: the PC may immediately take back one perk they once swapped out, without a fresh copy of its magazine, once this session, and takes 1d4 Fatigue.
+source: campaigns/07-point-lookout#the-place--point-lookout
+---
+id: point-lookout-the-chinese-intelligence-bunker
+type: loc
+name: The Chinese Intelligence Bunker
+tags: [point-lookout, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A pre-war Chinese spy cell hidden beneath the aviary next to Calvert Mansion. The underground lab beneath the lighthouse is a separate pre-war medical facility.
+source: campaigns/07-point-lookout#the-place--point-lookout
+---
+id: point-lookout-professor-calvert
+type: monster
+name: Professor Calvert
+aliases: [Brain in a Jar, Brain in a Jar (Professor Calvert)]
+knowledge: secret
+tags: [point-lookout, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Point Lookout'
+    hp: 10
+    armor: 3
+    STR: 3
+    DEX: 8
+    WIL: 18
+    attacks:
+    - name: mesmerizer beam
+      damage: d6
+      qualities: [ranged]
+    abilities:
+    - 'Mesmerize: As an action, any PC in line of sight makes a WIL save or spends their next action attacking
+      an ally.'
+    - 'Vulnerable Shell: A Critical Damage result on the tank glass ends the encounter immediately.'
+  grimfall:
+    tier: elite
+    role: trickster
+    category: Faces of the Wasteland
+    fact: A mesmerist bell-jar mind that turns friends on each other — one clean crack in the glass 
+      ends everything.
+body: |-
+  ## GM notes
+
+  **Professor Calvert** — a brain in a tank. Charismatic, threatening, promises a cure for ghoulification.
+
+  Professor Calvert, a pre-war brain preserved in a sealed tank.
+
+  Fallout 2e: 10 HP, 3 Armor, 3 STR, 8 DEX, 18 WIL, mesmerizer beam (d6, ranged).
+
+  Grimfall: its card is `grimfall.professor-calvert` (Professor Calvert), in this record's grimfall block.
+source: campaigns/07-point-lookout#brain-in-a-jar-professor-calvert
+---
+id: point-lookout-swamplurk-queen
+type: monster
+name: Swamplurk Queen
+knowledge: secret
+tags: [point-lookout, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Point Lookout'
+    hp: 18
+    armor: 2
+    STR: 16
+    DEX: 12
+    WIL: 8
+    attacks:
+    - {name: claws, damage: d12}
+    - name: acid spit
+      damage: d8
+      qualities: [ranged]
+    abilities:
+    - 'Cypress Ambush: Enhanced the first round of any combat that began in dense growth or standing water.'
+  grimfall:
+    tier: boss
+    role: blaster
+    category: Bosses of the Wasteland
+    senses:
+    - a mountain of barnacled shell over a writhing brood
+    - a deafening shriek and the patter of hatchlings
+    - rot, brine, acid
+    pools:
+    - name: The Queen
+      dice: 8
+      traits: armored bulk, anchored to the nest
+      moves: Caustic Spit (ranged, area), Tail Sweep
+    - name: The Brood
+      dice: 4
+      traits: a renewing pool; replenishes each time she shrieks them up
+      moves: Swarm, Overrun
+    fail: 6d "Buried in Brood" — a timer; when it runs dry, the brood buries your position and you 
+      must flee.
+    wants: to defend the nest and propagate — not the nest burned or to be drawn onto dry land
+    note: A linked challenge — clear or wall off the Brood pool or be buried, then crack the Queen. 
+      Point Lookout's Swamplurk Queen plays the same from cypress cover — her first strike out of 
+      the growth comes at high stakes.
+body: |-
+  ## GM notes
+
+  A monstrous swamp-bred mirelurk queen, grown enormous on punga and the cypress mire's background radiation. Lurks half-submerged in the shallows.
+
+  Fallout 2e: 18 HP, 2 Armor, 16 STR, 12 DEX, 8 WIL, claws (d12), acid spit (d8, ranged).
+
+  Grimfall: its card is `grimfall.mirelurk-queen` (Mirelurk Queen), in this record's grimfall block.
+source: campaigns/07-point-lookout#swamplurk-queen
+---
+id: point-lookout-tobar-the-ferryman
+type: monster
+name: Tobar the Ferryman
+knowledge: secret
+tags: [point-lookout, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Point Lookout'
+    hp: 7
+    armor: 1
+    STR: 12
+    DEX: 13
+    WIL: 11
+    attacks:
+    - name: lever-action rifle
+      damage: d8
+      qualities: [bulky]
+    - {name: bonesaw, damage: d6}
+    abilities: ['Surgeon: Enhanced against a PC already carrying 1+ Fatigue.']
+  grimfall:
+    tier: tough
+    role: trickster
+    category: Faces of the Wasteland
+    fact: Cheerful, helpful, handy with a bonesaw — and his moves come at high stakes against anyone
+      already hurt. Check your scalp.
+body: |-
+  ## GM notes
+
+  **Tobar the Ferryman** — captain of the Duchess Gambit. Takes a hidden toll from sleeping passengers. Charming.
+
+  Charming, friendly, a surgeon on the sly. Fights dirty when cornered.
+
+  Fallout 2e: 7 HP, 1 Armor, 12 STR, 13 DEX, 11 WIL, lever-action rifle (d8, bulky), bonesaw (d6).
+
+  Grimfall: its card is `grimfall.tobar-the-ferryman` (Tobar the Ferryman), in this record's grimfall block.
+source: campaigns/07-point-lookout#tobar-the-ferryman
+---
+id: point-lookout-desmond-lockheart
+type: monster
+name: Desmond Lockheart
+knowledge: secret
+tags: [point-lookout, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Point Lookout'
+    hp: 9
+    armor: 1
+    STR: 12
+    DEX: 14
+    WIL: 17
+    rad_immune: true
+    attacks:
+    - {name: silenced 10mm, damage: d8}
+    - {name: cane-sword, damage: d6}
+    abilities: ['Century of Patience: Once per combat, re-rolls a failed save.']
+  grimfall:
+    tier: elite
+    role: tactician
+    category: Faces of the Wasteland
+    fact: A pre-war intelligence war still running on two legs; once per fight, he Counters a 
+      success out of sheer spite.
+body: |-
+  ## GM notes
+
+  **Desmond Lockheart** — ghoul, pre-war British intelligence, hates Calvert with the heat of two centuries.
+
+  Pre-war ghoul spy. Hates Calvert. Carries two hundred years of grudge and a working pistol.
+
+  Fallout 2e: 9 HP, 1 Armor, 12 STR, 14 DEX, 17 WIL, silenced 10mm (d8), cane-sword (d6).
+
+  Grimfall: its card is `grimfall.desmond-lockheart` (Desmond Lockheart), in this record's grimfall block.
+source: campaigns/07-point-lookout#desmond-lockheart
+---
+id: point-lookout-obadiah-blackhall
+type: npc
+name: Obadiah Blackhall
+knowledge: secret
+tags: [point-lookout, cast]
+fields: {role: patriarch of the Blackhall family}
+details: {wants: "Wants the Krivbeknih, his family's stolen occult tome, back."}
+body: |-
+  ## GM notes
+
+  **Obadiah Blackhall** — patriarch of the Blackhall family. Wants the Krivbeknih, his family's stolen occult tome, back.
+source: campaigns/07-point-lookout#cast
+---
+id: point-lookout-plik
+type: npc
+name: Plik
+knowledge: secret
+tags: [point-lookout, cast]
+fields: {role: a ghoul running a feral-ghoul safari for paying hunters}
+body: |-
+  ## GM notes
+
+  **Plik** — a ghoul running a feral-ghoul safari for paying hunters. Charges a rich man's entry fee.
+source: campaigns/07-point-lookout#cast
+---
+id: point-lookout-marguerite
+type: npc
+name: Marguerite
+knowledge: secret
+tags: [point-lookout, cast]
+fields: {role: a moonshiner in a stilt shack}
+body: |-
+  ## GM notes
+
+  **Marguerite** — a moonshiner in a stilt shack. Sells a unique brew (Marguerite's moonshine — heal d4 STR, take 1 Fatigue).
+source: campaigns/07-point-lookout#cast
+---
+id: point-lookout-jackson
+type: npc
+name: Jackson
+knowledge: secret
+tags: [point-lookout, cast]
+fields:
+  role: tribal leader of the Brethren, interpreter of the god on the dish, sane in his fashion
+body: |-
+  ## GM notes
+
+  **Jackson** — tribal leader of the Brethren, interpreter of the god on the dish, sane in his fashion.
+source: campaigns/07-point-lookout#cast
+---
+id: point-lookout-feud-clock
+type: track
+name: Feud Clock
+knowledge: secret
+tags: [point-lookout, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4) Lockheart vs. Calvert. Ticks when the party accepts a task from either faction, refuses a
+  bribe from either, or is seen on the other side's ground. Each tick the two sides escalate; at 4, 
+  they'll try to use the party as the final weapon.
+source: campaigns/07-point-lookout#clocks
+---
+id: point-lookout-swamp-clock
+type: track
+name: Swamp Clock
+knowledge: secret
+tags: [point-lookout, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: '(d6) The bog gets weirder. Ticks when the party chews a punga fruit, kills a swampfolk elder, touches
+  the Obelisk, or spends a watch unsheltered in the bog. Each tick, a new horror surfaces: 1 punga dreams
+  shared, 2 swampfolk multiply, 3 a whale on the beach, 4 a flood, 5 a storm. At 6, the Obelisk sings.'
+source: campaigns/07-point-lookout#clocks

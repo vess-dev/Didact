@@ -1,0 +1,413 @@
+# Far Harbor (campaigns/14-far-harbor): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: far-harbor
+type: quest
+name: Far Harbor
+tags: [far-harbor, frame, side-arc]
+goal: A Commonwealth detective agency — Valentine's Detective Agency — hires the party to find a 
+  missing girl, Kasumi Nakano. The trail leads to Far Harbor, an island off the Maine coast where 
+  the Fog crawls off the sea and rewrites the land. Kasumi isn't missing; she ran to Far Harbor 
+  because she thinks she's a synth. Whether she is or isn't becomes the smallest of the island's 
+  problems.
+date: Sunday, 23 October 2287
+body: |-
+  *An island off the Maine coast, north of the Commonwealth, bathed in a permanent radioactive fog. Three communities — hard-bitten fishermen, a hidden synth refuge, and a Children of Atom fortress — hate each other. The fog is winning.*
+
+  ## GM notes
+
+  **Date.** Sunday, 23 October 2287: a Fallout 4 side arc: that frame's date, or whenever Valentine's agency calls. Open a campaign on it with `didact campaign new <id> --date 'Sunday, 23 October 2287'`, or move one there with `didact time set 'Sunday, 23 October 2287'` before its first session.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup Far Harbor tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** A boat out of the Commonwealth docks. One night at sea. The harbormaster warns the party that the island is worse than they've heard.
+
+  **Plot beats.**
+
+  1. Docking at Far Harbor. The party steps off the Nakanos' boat into the town. Fog on the wharf, condensers humming, Captain Avery running the militia. Kasumi Nakano's family letter gets the party through the gate. The Fog Clock starts ticking at 1.
+  2. Finding Kasumi at Acadia. A short trail through the Cranberry Island Bog leads the party to the pre-war observatory on the highest peak. The synth community of Acadia welcomes them warily. Kasumi is here, and she is fine — she ran to the refuge, not from it. DiMA asks to speak privately.
+  3. DiMA's Memories. DiMA confesses he has lost memories — pieces of his own past he cannot access on his own. He asks the party to walk into his memory den, a pre-war simulation rig, and recover them. The memories reveal things about Far Harbor the party will wish they didn't know.
+  4. The Nucleus. A pre-war nuclear submarine base run by the Children of Atom. High Confessor Tektus preaches a new, hungrier gospel. Sister Mai, a moderate, offers the party a way to speak to the faithful without igniting them. The party learns Atom has been planning to sabotage the fog condensers.
+  5. Tending the Condensers. The five condensers keep Far Harbor breathable. A side trail that stretches across three of the island's dangerous locations — the lumber mill, the Vim! factory, the National Park Visitor Center. Each repair buys the town time; each one the party skips ticks the Fog Clock up.
+  6. Avery's Secret. The turning point. DiMA's memories reveal that Captain Avery is a synth replacement for the real Avery, whom DiMA killed decades ago — and Avery herself does not know. DiMA made the decision alone, in desperation, in good faith, years ago. The party now holds a truth that will end the town if spoken aloud.
+  7. The Three Plans. Each faction makes its final move. Tektus wants to attack the town. DiMA wants his secrets kept. Far Harbor wants its enemies dead and its truth protected. The party is the only group with a complete picture.
+  8. The Climax. See Climax below — Peace, Wipe Out Acadia, Wipe Out the Children of Atom, Wipe Out Far Harbor, or walk away with Kasumi. The fog will keep coming either way; the question is who's still standing under it.
+
+  **Climax.**
+
+  The fog is rising. The three factions are at the tipping point. DiMA's secret — that **Avery is a synth replacement for the woman DiMA killed** — will unbind everything when it surfaces.
+
+  - **Peace.** The hardest ending. Tell Avery what she is, on her own terms. Hide the truth from Far Harbor at large. Convince Tektus to step down (an inside job via Sister Mai). All three communities remain. Far Harbor becomes a Commonwealth settlement with three permanent NPCs.
+  - **Wipe out Acadia.** The synths die. Far Harbor survives. Atom survives. The party carries a heavy bond.
+  - **Wipe out the Children of Atom.** Acadia survives. Far Harbor survives. A gentler ending, but Atom cells in the Commonwealth will remember.
+  - **Wipe out Far Harbor.** Only Acadia and the Nucleus remain. The fog takes the town. The party should not feel clean about this one.
+  - **Take Kasumi home or leave her.** Separate from the climax. Her family pays either way; the caps are dirty.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "Far Harbor"}' --auto` drafts the region, 8 places, 7 people, 3 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Bestiary** (Fallout 2e / Grimfall): Fog Crawler → `fog-crawler` / `fog-crawler`; Gulper → `gulper` / `gulper`; Angler → `angler` / `angler`; Children of Atom, Zealot → `children-of-atom-zealot` / `children-of-atom`; Synth, Gen-1 → `synth-gen-1` / `synth-patrol`; Hermit Crab → `hermit-crab` / (no Grimfall card); Trapper (Far Harbor) → `trapper-far-harbor` / `raider`.
+
+  **Rewards in each system's catalog:** Kiloton Radium Rifle (fallout-2e.kiloton-radium-rifle · grimfall.kiloton-radium-rifle); Admiral's Friend (fallout-2e.admirals-friend · grimfall.admirals-friend); Marine Tactical Armor (fallout-2e.marine-tactical-armor · grimfall.marine-tactical-armor); Fog Condenser Part (grimfall.fog-condenser-part); Memory Holotape (grimfall.memory-holotape).
+source: campaigns/14-far-harbor#pitch
+---
+id: far-harbor-region
+type: loc
+name: The Island
+tags: [far-harbor, region]
+mechanics:
+  fallout-2e: {kind: region, rad_zone: ambient}
+  grimfall: {kind: region}
+body: |-
+  ## GM notes
+
+  The island is a proper regional sandbox. Three factions, several pointcrawl locations.
+
+  **The Fog itself.** Beyond the condensers' reach the Fog is an ambient rad zone — 1 Rad per watch (see **Hazards → Rad Zones**) — and thick enough that ranged attacks beyond close range are Impaired. A working condenser clears both for the ground around it.
+source: campaigns/14-far-harbor#the-place--the-island
+---
+id: far-harbor-far-harbor-town
+type: loc
+name: Far Harbor town
+tags: [far-harbor, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Fishermen, a working tavern, a church turned warehouse. Protected by the Hull and the fog condensers DiMA built, scattered around the island.
+source: campaigns/14-far-harbor#the-place--the-island
+---
+id: far-harbor-acadia
+type: loc
+name: Acadia
+tags: [far-harbor, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The synth refuge, hidden in a pre-war observatory on the highest peak. DiMA, a prototype synth, leads the community. A dozen or so runaway synths live here in secret.
+source: campaigns/14-far-harbor#the-place--the-island
+---
+id: far-harbor-the-nucleus
+type: loc
+name: The Nucleus
+tags: [far-harbor, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A pre-war nuclear submarine base. The Children of Atom worship here. Their high confessor, Tektus, is new and zealous.
+source: campaigns/14-far-harbor#the-place--the-island
+---
+id: far-harbor-echo-lake-lumber-mill
+type: loc
+name: Echo Lake Lumber Mill
+tags: [far-harbor, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Abandoned. Trapper ambushes and a Fog Crawler nest.
+source: campaigns/14-far-harbor#the-place--the-island
+---
+id: far-harbor-the-vim-pop-factory
+type: loc
+name: The Vim! Pop Factory
+tags: [far-harbor, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Pre-war soft drink plant. A unique Vim! Captain's Blend recipe lives here — consumed, the drinker smells faintly of the sea, and sea creatures will not attack them unprovoked for one scene.
+source: campaigns/14-far-harbor#the-place--the-island
+---
+id: far-harbor-the-cranberry-island-bog
+type: loc
+name: The Cranberry Island Bog
+tags: [far-harbor, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Hunters, gulpers in the pools, a ghoul trapper who sells bait.
+source: campaigns/14-far-harbor#the-place--the-island
+---
+id: far-harbor-the-national-park-visitor-center
+type: loc
+name: The National Park Visitor Center
+tags: [far-harbor, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A mirelurk queen in the basement.
+source: campaigns/14-far-harbor#the-place--the-island
+---
+id: far-harbor-the-fog-condensers
+type: loc
+name: The Fog Condensers
+tags: [far-harbor, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Five of them, scattered, keeping the town breathable. Sabotaging them is a viable Atom play.
+source: campaigns/14-far-harbor#the-place--the-island
+---
+id: far-harbor-atom-cleanser
+type: monster
+name: Atom Cleanser
+knowledge: secret
+tags: [far-harbor, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Far Harbor'
+    hp: 10
+    armor: 1
+    STR: 14
+    DEX: 12
+    WIL: 13
+    rad_immune: true
+    attacks:
+    - name: flamer
+      damage: d8
+      qualities: [blast, bulky]
+    - {name: ritual bat, damage: d8}
+    abilities:
+    - 'Cleansed: Ignores Rads entirely. A Critical Damage result from a Cleanser adds 1 Rad to the target.'
+  grimfall:
+    tier: tough
+    role: blaster
+    category: The Factions Under Arms
+    senses:
+    - rag-robes over blistered skin
+    - a hymn through a geiger crackle
+    - hot metal and incense
+    traits: [radiation feeds their faith (and their flesh), the hottest ground is their altar]
+    moves: [Gamma Gun Benediction, Embrace the Pilgrim (irradiating grapple)]
+    wants: converts and Division — your resistance is just a longer sermon
+    note: Apostles are 4d pools that fight where you can't breathe; a Zealot in painted plate is a 
+      6d elite. Their gamma guns are murder on the living and nothing at all to ghouls, machines, 
+      and mutants. The Children of the Glow are the same faith gone feral around a crater choir.
+body: |-
+  ## GM notes
+
+  Children of Atom zealot in blessed radiation gear. Rad-resistant to a fault.
+
+  Fallout 2e: 10 HP, 1 Armor, 14 STR, 12 DEX, 13 WIL, flamer (d8, blast, bulky), ritual bat (d8).
+
+  Grimfall: its card is `grimfall.children-of-atom` (Children of Atom), in this record's grimfall block.
+source: campaigns/14-far-harbor#atom-cleanser
+---
+id: far-harbor-dima
+type: monster
+name: DiMA
+knowledge: secret
+tags: [far-harbor, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Far Harbor'
+    hp: 8
+    armor: 1
+    STR: 10
+    DEX: 13
+    WIL: 17
+    attacks:
+    - {name: laser pistol, damage: d8}
+    abilities:
+    - "Memory Den: A PC who has spent a scene in DiMA's memory vault gains a free re-roll on one save
+      during any confrontation with him."
+  grimfall:
+    tier: tough
+    role: trickster
+    category: Faces of the Wasteland
+    fact: Would rather lose an argument than a life — and has memories he chose to forget in a 
+      drawer.
+body: |-
+  ## GM notes
+
+  **DiMA** — a prototype synth, spiritual leader of Acadia. Calm, weary, full of secrets including a memory den in his head.
+
+  Prototype synth, Acadia's leader. Peaceful by default, but capable in extremis.
+
+  Fallout 2e: 8 HP, 1 Armor, 10 STR, 13 DEX, 17 WIL, laser pistol (d8).
+
+  Grimfall: its card is `grimfall.dima` (DiMA), in this record's grimfall block.
+source: campaigns/14-far-harbor#dima
+---
+id: far-harbor-captain-avery
+type: monster
+name: Captain Avery
+knowledge: secret
+tags: [far-harbor, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Far Harbor'
+    hp: 9
+    armor: 1
+    STR: 13
+    DEX: 14
+    WIL: 13
+    attacks:
+    - name: lever-action rifle
+      damage: d8
+      qualities: [bulky]
+    - {name: harbor knife, damage: d6}
+    abilities: ['Oath of the Harbor: While defending the town, her attacks are Enhanced.']
+  grimfall:
+    tier: tough
+    role: protector
+    category: Faces of the Wasteland
+    fact: The town's spine; fights like it when the fog comes. May not know what she is.
+body: |-
+  ## GM notes
+
+  **Captain Avery** — mayor of Far Harbor. Tough, honest, extremely guarded. She is a synth replacement for the real Avery, and does not know it.
+
+  Mayor of Far Harbor. A synth replacement for the woman DiMA killed. Does not know.
+
+  Fallout 2e: 9 HP, 1 Armor, 13 STR, 14 DEX, 13 WIL, lever-action rifle (d8, bulky), harbor knife (d6).
+
+  Grimfall: its card is `grimfall.captain-avery` (Captain Avery), in this record's grimfall block.
+source: campaigns/14-far-harbor#captain-avery
+---
+id: far-harbor-allen-lee
+type: npc
+name: Allen Lee
+knowledge: secret
+tags: [far-harbor, cast]
+fields: {role: Far Harbor's gunsmith and local hardliner}
+details: {wants: Wants to wipe out the Children of Atom.}
+body: |-
+  ## GM notes
+
+  **Allen Lee** — Far Harbor's gunsmith and local hardliner. Wants to wipe out the Children of Atom. Loud, angry, and armed.
+source: campaigns/14-far-harbor#cast
+---
+id: far-harbor-the-mariner
+type: npc
+name: The Mariner
+knowledge: secret
+tags: [far-harbor, cast]
+fields: {role: "Far Harbor's shipwright, quietly dying of an old-world illness"}
+body: |-
+  ## GM notes
+
+  **The Mariner** — Far Harbor's shipwright, quietly dying of an old-world illness. Maintains the Hull. Will help if asked.
+source: campaigns/14-far-harbor#cast
+---
+id: far-harbor-kasumi-nakano
+type: npc
+name: Kasumi Nakano
+knowledge: secret
+tags: [far-harbor, cast]
+fields: {role: the runaway}
+body: |-
+  ## GM notes
+
+  **Kasumi Nakano** — the runaway. Believes she's a synth. May or may not be.
+source: campaigns/14-far-harbor#cast
+---
+id: far-harbor-high-confessor-tektus
+type: npc
+name: High Confessor Tektus
+knowledge: secret
+tags: [far-harbor, cast]
+fields: {role: Atom's new zealot}
+body: |-
+  ## GM notes
+
+  **High Confessor Tektus** — Atom's new zealot. Suspicious, vicious, secretly insecure.
+source: campaigns/14-far-harbor#cast
+---
+id: far-harbor-sister-mai
+type: npc
+name: Sister Mai
+knowledge: secret
+tags: [far-harbor, cast]
+fields:
+  role: a moderate Child of Atom, the Nucleus's shopkeeper; good-faith contact inside
+body: |-
+  ## GM notes
+
+  **Sister Mai** — a moderate Child of Atom, the Nucleus's shopkeeper; good-faith contact inside.
+source: campaigns/14-far-harbor#cast
+---
+id: far-harbor-old-longfellow
+type: npc
+name: Old Longfellow
+knowledge: secret
+tags: [far-harbor, cast]
+fields: {role: an old hunter who guides the party through the fog for a jug of whiskey}
+body: |-
+  ## GM notes
+
+  **Old Longfellow** — an old hunter who guides the party through the fog for a jug of whiskey. Potential companion.
+source: campaigns/14-far-harbor#cast
+---
+id: far-harbor-nick-valentine
+type: npc
+name: Nick Valentine
+knowledge: secret
+tags: [far-harbor, cast]
+fields: {role: 'a Gen-2 synth detective from the Commonwealth, on his way in'}
+body: |-
+  ## GM notes
+
+  **Nick Valentine** — a Gen-2 synth detective from the Commonwealth, on his way in. If the party needs help: him.
+source: campaigns/14-far-harbor#cast
+---
+id: far-harbor-fog-clock
+type: track
+name: Fog Clock
+knowledge: secret
+tags: [far-harbor, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: (d6) Condenser failure. Ticks when the party returns to Far Harbor without having tended a 
+  condenser since their last visit (max one tick per return). Tending a condenser walks the clock 
+  back one. At 6, the town evacuates.
+source: campaigns/14-far-harbor#clocks
+---
+id: far-harbor-atom-clock
+type: track
+name: Atom Clock
+knowledge: secret
+tags: [far-harbor, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4) Tektus's sermon count. Ticks when the party challenges Atom doctrine inside the Nucleus, 
+  interferes with a Cleanser's mission in Far Harbor, or is revealed to have accepted Far Harbor's 
+  hospitality while inside the Nucleus. At 4, he declares holy war.
+source: campaigns/14-far-harbor#clocks
+---
+id: far-harbor-dima-clock
+type: track
+name: DiMA Clock
+knowledge: secret
+tags: [far-harbor, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: (d6) DiMA's secret works its way loose. Ticks when the party asks Avery about her past, speaks
+  DiMA's name inside Far Harbor, recovers a memory segment in the Memory Den, or is seen leaving 
+  Acadia by a Harbor native. At 6, Acadia is exposed to both Far Harbor and Atom, whether the party 
+  wants it or not.
+source: campaigns/14-far-harbor#clocks

@@ -1,0 +1,14 @@
+id: era-setting
+name: Era (test pack)
+kind: setting
+version: 0.1.0
+description: A calendar whose years are written with their era.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}
+settings:
+  calendar:
+    hours: 24
+    week: [Moonday, Tidesday, Rootday]
+    months: [{name: Frost, days: 20}, {name: High Sun, days: 20}, {name: Ember, days: 20}]
+    start: {year: 201, month: 2, day: 17}
+    year: "3A {year}"

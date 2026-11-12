@@ -1,0 +1,22 @@
+# No guard: taking away what isn't there changes nothing.
+trigger: ward-wears-off
+title: A ward wears off
+on: scene_end
+for: pcs
+params: {who: ref}
+steps:
+  - set: who.conditions
+    op: "-="
+    value: warded
+---
+# A pack's mistake: `@who.doom` is no field of the sheet.
+trigger: curse-bites
+title: The curse bites
+on: scene_end
+for: pcs
+params: {who: ref}
+when: "'cursed' in @who.conditions"
+steps:
+  - set: who.hp
+    op: "-="
+    value: "@who.doom"

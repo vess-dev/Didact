@@ -1,0 +1,8 @@
+# `+=` keeps a repeat in a list (and in slots); tags, conditions and refs hold a value once.
+type: pc
+label: Player character
+fields:
+  used_today: {kind: list}
+  marks: {kind: tags}
+  conditions: {kind: conditions}
+  allies: {kind: refs, to: npc}

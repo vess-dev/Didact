@@ -1,0 +1,652 @@
+# Surviving the Wasteland (Chapter 6): rads, stimpaks, chems, caps and hauls, scavenging, and the
+# passage of time. All built from the Core Engine's tools: conditions, pools, buffs, treatment.
+action: rad
+title: Radiation
+help: >-
+  Radiation is set dressing until the fiction says otherwise. A hot zone (`dose=zone`) inflicts +1t
+  while you work in it, or a mark as you push through (`stat=`, the GM's call): a rad mark, which
+  lingers like a condition (+1t on every roll with that stat until RadAway, a real rest, or a perk
+  sheds it; mark the stat again and you take harm as usual). A bad dose is a condition: rad-sick
+  (short-term) or rad-poisoned (long-term, until properly treated). A lethal dose (drinking
+  glowing water) is an urgent condition, a 4d Lethal Dose rolled as time passes (a warhead's
+  embrace is 2d): at 0d you're dropped. Rad-X makes radiation set dressing for the scene. Lead Belly
+  (and Cyborg) land it a step lighter, Ghoulish turns a hot zone into food, Rad Tolerance starts an
+  urgent radiation condition 2d larger, and Grit eats a rad mark like any other (`grit`).
+params:
+  who: ref
+  dose: {enum: [zone, bad, lethal, warhead], help: "A hot zone, a bad dose, a lethal dose, a warhead's embrace"}
+  stat: {enum: [brawn, agility, wits, presence], optional: true, help: "The stat a hot zone marks as you push through (left out: +1t while you work in it)"}
+  condition: {enum: [rad-sick, rad-poisoned], default: rad-sick, help: "A bad dose's condition: rad-sick (short-term) or rad-poisoned (long-term)"}
+  grit: {kind: flag, default: false, help: "Dig deep (Toughness): 1 Grit instead of the rad mark"}
+steps:
+  - let:
+      lighter: "'lead-belly' in @who.perks or 'cyborg' in @who.perks"
+      tolerance: "if('rad-tolerance' in @who.perks, 2, 0)"
+  - if: "'rad-x' in @who.chems"
+    then: ["Rad-X: radiation hazards are set dressing for {@who.name} this scene."]
+    else:
+      - if: "'ghoulish' in @who.perks and '$dose' == 'zone'"
+        then:
+          - message: "Ghoulish: radiation doesn't poison {@who.name}, it feeds them. In a hot zone the rads never mark or sicken them: each time they would mark them, clear a mark instead."
+          - if: "'$stat' <> '' and '$stat' in @who.marks"
+            then:
+              - set: who.marks
+                op: "-="
+                value: $stat
+              - message: "The mark on $stat clears."
+            else:
+              - if: "count(@who.marks) > 0"
+                then:
+                  - prompt: "Clear one of {@who.name}'s marks ({@who.marks}): `didact set {@who.id} marks-=<stat>`."
+        else:
+          - if: "@lighter"
+            then:
+              - message: "{if('lead-belly' in @who.perks, 'Lead Belly', 'Cyborg')}: radiation lands one step lighter on {@who.name}."
+              - if: "'$dose' == 'zone'"
+                then: ["Exposure that would mark {@who.name} is +1t for a beat instead."]
+              - if: "'$dose' == 'bad'"
+                then:
+                  - if: "'$stat' <> ''"
+                    then:
+                      - do: rad-mark
+                        with: {who: "@who", stat: $stat, grit: "@grit"}
+                    else:
+                      - prompt: "A condition it would give {@who.name} arrives as a mark: a rad mark on a stat: `didact do rad who={@who.id} dose=bad stat=<stat>`."
+              - if: "'$dose' == 'lethal' or '$dose' == 'warhead'"
+                then:
+                  - set: who.conditions
+                    op: "+="
+                    value: $condition
+                  - message: "A lethal dose arrives as a bad one: {@who.name} is $condition{if('$condition' == 'rad-sick', ' (short-term: queasy, weak)', ' (long-term, until properly treated)')}."
+            else:
+              - if: "'$dose' == 'zone'"
+                then:
+                  - if: "'$stat' <> ''"
+                    then:
+                      - do: rad-mark
+                        with: {who: "@who", stat: $stat, grit: "@grit"}
+                    else: ["The hot zone inflicts +1t on {@who.name}'s rolls while they work in it (pushing through, it's a rad mark: `stat=`)."]
+              - if: "'$dose' == 'bad'"
+                then:
+                  - set: who.conditions
+                    op: "+="
+                    value: $condition
+                  - message: "A bad dose: {@who.name} is $condition{if('$condition' == 'rad-sick', ' (short-term: queasy, weak)', ' (long-term, until properly treated)')}; +1t when it specifically hinders them."
+              - if: "'$dose' == 'lethal' or '$dose' == 'warhead'"
+                then:
+                  - let: {size: "if('$dose' == 'warhead', 2, 4) + @tolerance"}
+                  - message: "A lethal dose: an urgent condition, a {@size}d Lethal Dose rolled as time passes{if(@tolerance > 0, ' (Rad Tolerance: 2d larger)', '')}. At 0d {@who.name} is dropped: get treatment before it runs dry."
+                  - do: lethal-dose
+                    with: {who: "@who", size: "@size"}
+      - if: "'rad-resistance' in @who.perks"
+        then: ["Rad Resistance: once per scene, {@who.name} can treat one step of radiation exposure as set dressing (taken again: hot zones stop thorning them)."]
+source: "surviving-the-wasteland/rads; the-classes/the-everlast#lead-belly; the-classes/the-everlast#ghoulish; the-perk-compendium/everlast-perks#rad-tolerance; the-perk-compendium/everlast-perks#cyborg"
+---
+procedure: lethal-dose
+title: A Lethal Dose
+help: "An urgent condition: a Lethal Dose timer (4d; a warhead's embrace 2d; Rad Tolerance 2d larger), made at once and rolled as time passes; at 0d, dropped. RadAway on a lethal dose still takes a roll."
+params:
+  who: ref
+  size: {kind: int, default: 4}
+steps:
+  - entity:
+      type: track
+      name: "{@who.name}: Lethal Dose"
+      fields: {kind: pool, pool: timer, value: {value: "@size", max: "@size"}, note: dropped}
+      links: [{rel: of, to: "@who"}]
+    as: dose
+  - let: {carried: "{@size}d Lethal Dose"}
+  - if: "@carried in @who.conditions"
+    then: ["{@who.name} already carries a {@carried} ({@dose.id}): it keeps running."]
+    else:
+      - set: dose.value.max
+        value: "@size"
+      - set: dose.value.value
+        value: "@size"
+      - set: dose.fields.status
+        value: active
+      - set: who.conditions
+        op: "+="
+        value: "{@size}d Lethal Dose"
+      - set: who.lethal_dose
+        value: "@dose"
+      - message: "{@who.name}'s {@size}d Lethal Dose ({@dose.id}) runs: roll it as time passes (`didact track roll {@dose.id}`); treatment clears it (`didact do treat who={@who.id} condition='{@size}d Lethal Dose'`)."
+source: "surviving-the-wasteland/rads; the-perk-compendium/everlast-perks#rad-tolerance"
+---
+procedure: rad-mark
+title: A rad mark
+help: "A mark from radiation lingers: +1t on every roll with that stat until it clears. Mark an already-marked stat and you take harm as usual; a side character takes harm instead; Grit eats it like any other mark."
+params:
+  who: ref
+  stat: {enum: [brawn, agility, wits, presence]}
+  grit: {kind: flag, default: false}
+steps:
+  - if: "@grit"
+    then:
+      - do: mark
+        with: {who: "@who", stat: $stat, grit: true}
+    else:
+      - if: "@who.side or '$stat' in @who.marks or '$stat' in @who.rad_marks"
+        then:
+          - message: "{@who.name}'s $stat is already marked{if(@who.side, ' (or a side character)', '')}: the rads inflict harm instead."
+          - do: harm
+            with: {who: "@who", kind: "if('$stat' == 'brawn' or '$stat' == 'agility', 'bloodied', 'rattled')"}
+        else:
+          - set: who.rad_marks
+            op: "+="
+            value: $stat
+          - message: "{@who.name} takes a rad mark on $stat: +1t on every $stat roll until RadAway, a real rest, or a perk sheds it."
+source: surviving-the-wasteland/rads
+---
+action: chem
+title: Chem up
+help: >-
+  Anyone can chem up. A dose is a trivial expendable: a single device-level effect whose buff
+  lasts the scene (+1d with `chem` on a roll it helps), and the strong stuff always kicks back when
+  it fades at the scene's end (Didact applies the kick then). Rad-X makes radiation hazards set
+  dressing for a scene; RadAway is treatment: with a breather, clear your rad marks, or treat a rad
+  condition (a lethal one still takes a roll). Ride a chem through a grim or disaster and the GM may
+  hand you Hooked: [chem]. A stash is as deep as the fiction says; the Chemist's 4d Chems pool
+  hands over a dose each roll.
+params:
+  who: ref
+  chem: {enum: [buffout, psycho, jet, mentats, med-x, cateye, hydra, fixer, rad-x, radaway]}
+  treat: {enum: [marks, rad-sick, rad-poisoned, lethal], default: marks, help: "RadAway: clear the rad marks, or treat a rad condition"}
+  from: {enum: [stash, chems], optional: true, help: "Where the dose comes from: the 2d Chem Stash (an option), or a Chemist's 4d Chems pool (the sheet's own); rolled first"}
+steps:
+  - if: "'$from' == 'stash'"
+    then:
+      - if: "default(@who.chem_stash, '') == ''"
+        then:
+          - stop: "{@who.name}'s sheet points at no Chem Stash (an option: `didact campaign profile chem-stash=on`; or `didact set {@who.id} chem_stash=<track>`)."
+      - do: dose-from
+        with: {who: "@who", pool: "@who.chem_stash"}
+  - if: "'$from' == 'chems'"
+    then:
+      - if: "not ('chemist' in @who.perks) or default(@who.chems_pool, '') == ''"
+        then:
+          - stop: "A Chems pool is the Chemist's (`didact set {@who.id} chems_pool=<track>` points the sheet at it)."
+      - do: dose-from
+        with: {who: "@who", pool: "@who.chems_pool"}
+  - if: "'$chem' == 'radaway'"
+    then:
+      - if: "'$treat' == 'marks'"
+        then:
+          - set: who.rad_marks
+            value: []
+          - message: "RadAway: with a breather, {@who.name}'s rad marks clear."
+      - if: "'$treat' == 'rad-sick' or '$treat' == 'rad-poisoned'"
+        then:
+          - if: "not ('$treat' in @who.conditions)"
+            then:
+              - stop: "{@who.name} isn't $treat (conditions: {@who.conditions})."
+          - set: who.conditions
+            op: "-="
+            value: $treat
+          - message: "RadAway treats {@who.name}'s $treat."
+      - if: "'$treat' == 'lethal'"
+        then:
+          - prompt: "RadAway on a lethal dose still takes a roll: a treatment action roll (`didact do action who=<healer> stat=wits`, a Field Surgeon's perk +1d); on a success it clears: `didact do treat who={@who.id} condition='<the Lethal Dose>'` (conditions: {@who.conditions}) takes the condition off and its timer with it."
+    else:
+      - table: chems
+        with: {chem: $chem}
+        as: dose
+      - if: "'$chem' in @who.chems"
+        then: ["{@who.name} is already riding $chem this scene: a second dose adds no die (one of each kind), and leaning on it is how addiction starts."]
+        else:
+          - set: who.chems
+            op: "+="
+            value: $chem
+      - message: "{@dose.chem}: {@dose.lasts}, while it lasts (the scene). The kick, when it fades: {@dose.kick}."
+      - if: "'$chem' == 'rad-x'"
+        then: ["Rad-X: radiation hazards are set dressing for {@who.name} this scene (`didact do rad` knows)."]
+      - if: "'$chem' == 'med-x'"
+        then:
+          - prompt: "Med-X: pick one of {@who.name}'s harm or conditions ({@who.harm}; {@who.conditions}): it adds no thorns while the dose lasts (leave it out of the roll's thorns)."
+      - if: "'$chem' == 'hydra'"
+        then:
+          - prompt: "Hydra: a crippled limb works again, and a long-term limb condition steps down to short-term (`didact set {@who.id} conditions-='…' conditions+='…'`)."
+      - if: "'$chem' == 'fixer'"
+        then: ["Fixer: cravings go quiet: Hooked adds no thorns, and the dose counts as treatment toward kicking it."]
+      - if: "'$chem' == 'buffout' or '$chem' == 'psycho' or '$chem' == 'jet' or '$chem' == 'mentats'"
+        then: ["On a roll the buff helps, add the chem die: `didact do action who={@who.id} … chem`."]
+      - if: "'chem-resistant' in @who.perks"
+        then: ["Chem Resistant: {@who.name}'s kicks and comedowns run one step lighter (a mark or vex becomes +1t for a beat; anything lighter is just set dressing), and addiction needs a disaster to stick."]
+source: "surviving-the-wasteland/chems; surviving-the-wasteland/rads; the-perk-compendium/everlast-perks#chem-resistant"
+---
+procedure: dose-from
+title: A dose out of a pool
+help: "A dose handed over from a resource pool (a Chem Stash, a Chemist's Chems): use it, then roll it; at 0d it's gone, and there's no dose to take."
+params:
+  who: ref
+  pool: {kind: ref, to: track}
+steps:
+  - if: "@pool.value <= 0"
+    then:
+      - stop: "{@pool.name} is empty: no dose to take."
+  - pool: "@pool"
+    as: dosed
+  - message: "A dose out of {@pool.name} ({@dosed.left}d left)."
+source: "surviving-the-wasteland/chems; the-classes/the-inventor#chemist"
+---
+trigger: chems-fade
+title: The kick comes due
+help: "One dose, one scene, then the comedown: when the scene ends, each chem a survivor rode fades and kicks back (Buffout marks Brawn, Psycho brings vex, Jet the crash, Mentats marks Wits, Med-X numbs, Cateye dazzles, Hydra marks Presence, Fixer nauseates)."
+on: scene_end
+for: pcs
+when: "count(@who.chems) > 0"
+params:
+  who: ref
+steps:
+  - do: chem-kicks
+    with: {who: "@who"}
+source: surviving-the-wasteland/chems
+---
+procedure: chem-kicks
+title: The chems' kicks
+help: "Each chem a survivor rode this scene fades, and the kick comes due; then they're off it. Chem Resistant: one step lighter, a mark or vex becomes +1t for a beat and anything lighter is just set dressing."
+params:
+  who: ref
+steps:
+  - if: "'chem-resistant' in @who.perks"
+    then:
+      - if: "'buffout' in @who.chems"
+        then: ["Buffout fades: Chem Resistant steps the mark on Brawn down to +1t for a beat."]
+      - if: "'mentats' in @who.chems"
+        then: ["Mentats fade: Chem Resistant steps the mark on Wits down to +1t for a beat."]
+      - if: "'hydra' in @who.chems"
+        then: ["Hydra fades: Chem Resistant steps the mark on Presence down to +1t for a beat."]
+      - if: "'psycho' in @who.chems"
+        then: ["Psycho fades: Chem Resistant steps the vex (anger) down to +1t for a beat."]
+      - if: "'jet' in @who.chems or 'med-x' in @who.chems or 'cateye' in @who.chems or 'fixer' in @who.chems"
+        then: ["Chem Resistant: the lighter comedowns (Jet's crash, Med-X's numbness, Cateye's dazzle, Fixer's nausea) are just set dressing on {@who.name}."]
+    else:
+      - if: "'buffout' in @who.chems"
+        then:
+          - message: "Buffout fades: {@who.name} marks Brawn."
+          - do: mark
+            with: {who: "@who", stat: brawn}
+            go_on: true
+      - if: "'mentats' in @who.chems"
+        then:
+          - message: "Mentats fade: {@who.name} marks Wits."
+          - do: mark
+            with: {who: "@who", stat: wits}
+            go_on: true
+      - if: "'hydra' in @who.chems"
+        then:
+          - message: "Hydra fades (it burned the whole time): {@who.name} marks Presence."
+          - do: mark
+            with: {who: "@who", stat: presence}
+            go_on: true
+      - if: "'psycho' in @who.chems"
+        then:
+          - message: "Psycho fades: {@who.name} takes vex (anger)."
+          - do: vex
+            with: {who: "@who"}
+            go_on: true
+      - if: "'jet' in @who.chems"
+        then: ["Jet's crash: +1t on {@who.name}'s rolls for a beat after."]
+      - if: "'med-x' in @who.chems"
+        then: ["Med-X fades: {@who.name} is numbed, +1t on Wits and Presence rolls."]
+      - if: "'cateye' in @who.chems"
+        then: ["Cateye fades: bright light dazzles {@who.name}, +1t for a beat whenever it hits."]
+      - if: "'fixer' in @who.chems"
+        then: ["Fixer fades: nausea, +1t on {@who.name}'s next roll."]
+  - set: who.chems
+    value: []
+source: surviving-the-wasteland/chems
+---
+action: stimpak
+title: Stimpaks
+help: >-
+  Every survivor carries a 3d Stimpaks resource pool (a robot's 3d Repair Kit works the same way).
+  Given a breather (a moment in cover to catch your breath), jab one into yourself or an ally
+  (`on=`): clear one harm (`heal=`, else desperate first), then roll the pool. It refills after a
+  night somewhere safe or in downtime, or sooner with a restock (a Caps roll) or a looted stash.
+  Mid-firefight there's no breather: treating a wound under fire is a risky action roll. Medic: a
+  stimpak you administer clears a mark along with the harm; Fast Metabolism: one that clears harm
+  on you also clears a mark or a short-term condition (`mark=`). The stimpak dial: grimmer (pick one: 2d, or
+  only yourself, or a single 3d pool for the party) or softer (4d, refilled by any real rest).
+  The pool is the giver's own (their sheet's `stimpaks`) unless `pool=` names another.
+params:
+  who: ref
+  pool: {kind: ref, to: track, optional: true, help: "The Stimpaks pool jabbed from (left out: the sheet's own, or a Repair Kit)"}
+  on: {kind: ref, optional: true, help: "The ally jabbed (left out: yourself)"}
+  heal: {enum: [bloodied, rattled, desperate], optional: true, help: "The harm to clear (left out: desperate first)"}
+  mark: {enum: [brawn, agility, wits, presence], optional: true, help: "Medic or Fast Metabolism: the mark that clears too"}
+steps:
+  - let: {target: "if(default(@on, '') <> '', @on, @who)"}
+  - if: "default(@pool, '') <> ''"
+    then:
+      - do: stimpak-jab
+        with: {who: "@who", pool: "@pool", target: "@target", heal: $heal, mark: $mark}
+    else:
+      - if: "default(@who.stimpaks, '') == ''"
+        then:
+          - stop: "Name the pool (`pool=<track>`), or point {@who.name}'s sheet at theirs: `didact set {@who.id} stimpaks=<track>`."
+      - do: stimpak-jab
+        with: {who: "@who", pool: "@who.stimpaks", target: "@target", heal: $heal, mark: $mark}
+source: "surviving-the-wasteland/stimpaks; options-and-dials/gear-and-survival#stimpaks; the-perk-compendium/inventor-perks#medic; the-perk-compendium/everlast-perks#fast-metabolism"
+---
+procedure: stimpak-jab
+title: A stimpak jabbed
+help: "Given a breather: one harm clears, then the pool rolls (`stimpak`, from the pool it names or the sheet's own)."
+params:
+  who: ref
+  pool: {kind: ref, to: track}
+  target: ref
+  heal: {kind: text, optional: true}
+  mark: {kind: text, optional: true}
+steps:
+  - if: "@pool.value <= 0"
+    then:
+      - stop: "{@pool.name} is empty (0d): it refills after a night somewhere safe or in downtime, or with a restock (a Caps roll) or a looted stash."
+  - if: "@target.id <> @who.id and @option.stimpaks == 'grimmer-self'"
+    then:
+      - stop: "Grimmer stimpaks (only yourself): {@who.name} can't jab an ally."
+  - do: stimpak-heal
+    with: {target: "@target", giver: "@who", heal: $heal, mark: $mark}
+  - pool: "@pool"
+    as: jabbed
+  - message: "{@pool.name}: {@jabbed.left}d left."
+source: "surviving-the-wasteland/stimpaks; options-and-dials/gear-and-survival#stimpaks; the-perk-compendium/inventor-perks#medic; the-perk-compendium/everlast-perks#fast-metabolism"
+---
+action: party-stimpaks
+title: The party's shared Stimpaks (grimmer)
+help: >-
+  The stimpak dial's grimmer setting can be a single 3d pool the whole party shares, in place of
+  each survivor's: made once (a second run takes the one there), and every survivor's sheet
+  pointed at it, so `didact do stimpak` jabs from it. Run when a session starts, and whenever a
+  survivor joins mid-session.
+steps:
+  - if: "@option.stimpaks <> 'grimmer-shared'"
+    then:
+      - stop: "Only with the grimmer dial's shared pool (`didact campaign profile stimpaks=grimmer-shared`)."
+  - entity:
+      type: track
+      name: Party Stimpaks
+      fields: {kind: pool, pool: resource, value: {value: 3, max: 3}, note: "Out until a night somewhere safe or downtime refills it, or a restock (a Caps roll) or a looted stash: the party's one Stimpaks pool (grimmer)."}
+    as: shared
+  - for: pcs
+    as: member
+    steps:
+      - if: "default(@member.stimpaks, '') <> @shared.id"
+        then:
+          - set: member.stimpaks
+            value: "@shared"
+          - message: "{@member.name} jabs from the party's Stimpaks now."
+source: "options-and-dials/gear-and-survival#stimpaks; surviving-the-wasteland/stimpaks"
+---
+trigger: party-stimpaks-each-session
+title: The party's shared Stimpaks, when a session starts
+help: "With the grimmer dial's shared pool, the party's Stimpaks is made (once) and every survivor's sheet pointed at it when a session starts."
+on: session_start
+when: "@option.stimpaks == 'grimmer-shared'"
+steps:
+  - do: party-stimpaks
+source: options-and-dials/gear-and-survival#stimpaks
+---
+procedure: stimpak-heal
+title: A stimpak clears one harm
+help: "One harm clears (desperate first, unless named); a Medic giving it, or Fast Metabolism taking it, clears a mark too."
+params:
+  target: ref
+  giver: ref
+  heal: {kind: text, optional: true, help: "The harm to clear (left out: desperate first)"}
+  mark: {kind: text, optional: true, help: "Medic or Fast Metabolism: the mark that clears too"}
+steps:
+  - let:
+      healed: >-
+        if(default(@heal, '') in @target.harm, @heal, if('desperate' in @target.harm, 'desperate',
+        if('bloodied' in @target.harm, 'bloodied', if('rattled' in @target.harm, 'rattled', ''))))
+  - if: "@healed == ''"
+    then:
+      - stop: "{@target.name} carries no harm for a stimpak to clear{if('dropped' in @target.harm, ' (a dropped survivor makes their story roll)', '')}."
+  - set: target.harm
+    op: "-="
+    value: "@healed"
+  - message: "A stimpak clears {@target.name}'s {@healed}."
+  - if: "'medic' in @giver.perks or 'fast-metabolism' in @target.perks"
+    then:
+      - if: "default(@mark, '') in @target.marks"
+        then:
+          - set: target.marks
+            op: "-="
+            value: $mark
+          - message: "{if('medic' in @giver.perks, 'Medic', 'Fast Metabolism')}: the mark on $mark clears too."
+        else:
+          - prompt: "{if('medic' in @giver.perks, 'Medic: a stimpak administered clears a mark along with the harm', 'Fast Metabolism: it also clears a mark or a short-term condition')}: name it (`mark=<stat>`, or `didact set {@target.id} conditions-='…'`)."
+source: surviving-the-wasteland/stimpaks
+---
+action: spend
+title: Spend big (the Caps pool)
+help: >-
+  Roll your Caps pool when you spend big (bribes, gear, a doctor's miracle), dropping 1d first for
+  the huge asks (`huge`): the survivor's own (their sheet's `caps`) unless `pool=` names another.
+  The roll itself: `caps-roll`.
+params:
+  who: ref
+  pool: {kind: ref, to: track, optional: true, help: "The Caps pool (left out: the sheet's own)"}
+  huge: {kind: flag, default: false, help: "A huge ask: drop 1d first"}
+  workshop: {kind: flag, default: false, help: "Workshop spending (mods, repairs, builds)"}
+  perk: {kind: flag, default: false, help: "A perk applies: +1d, rolled alongside"}
+  spark: {kind: int, default: 0, help: "Spark to spend: +1d each, rolled alongside"}
+  thorns: {kind: int, default: 0}
+  stakes: {enum: [low, regular, high, dire], optional: true}
+steps:
+  - let: {stakes_now: "if('$stakes' <> '', '$stakes', 'regular')"}
+  - if: "default(@pool, '') <> ''"
+    then:
+      - check: caps-roll
+        with: {who: "@who", pool: "@pool", huge: "@huge", workshop: "@workshop", perk: "@perk", spark: "@spark", thorns: "@thorns", stakes: "@stakes_now"}
+    else:
+      - if: "default(@who.caps, '') == ''"
+        then:
+          - stop: "Name the Caps pool (`pool=<track>`), or point {@who.name}'s sheet at theirs: `didact set {@who.id} caps=<track>` (with the caps option off, money is pure vantage)."
+      - check: caps-roll
+        with: {who: "@who", pool: "@who.caps", huge: "@huge", workshop: "@workshop", perk: "@perk", spark: "@spark", thorns: "@thorns", stakes: "@stakes_now"}
+source: "surviving-the-wasteland/caps-and-barter; options-and-dials/gear-and-survival#caps"
+---
+check: caps-roll
+title: The Caps pool, rolled (spending big)
+help: >-
+  Caps are vantage and set dressing: walking-around money (a drink, a bed, a box of shells) never
+  rolls. Every survivor carries a personal 4d Caps power pool: roll it when you spend big (bribes,
+  gear, a doctor's miracle), and drop 1d first for the huge asks (`huge`). Read it as a power pool
+  rolled in place of a stat: the highest die is the result (an impact move can mean a hitch, a
+  flaw, a cheat, a debt, even when the deal goes through), then the 1-3s drop. At 0d, you're
+  broke. Hard Bargain: one die that would drop stays (unless it's the last), and +1d on barter and
+  bribery (`perk`); Scribe Counter: workshop spending (`workshop`) never needs the huge-ask drop,
+  and takes +1d.
+params:
+  who: ref
+  pool: {kind: ref, to: track, help: "The survivor's Caps pool"}
+  huge: {kind: flag, default: false, help: "A huge ask: drop 1d first"}
+  workshop: {kind: flag, default: false, help: "Workshop spending (mods, repairs, builds)"}
+  perk: {kind: flag, default: false, help: "A perk applies: +1d, rolled alongside"}
+  spark: {kind: int, default: 0, help: "Spark to spend: +1d each, rolled alongside"}
+  thorns: {kind: int, default: 0}
+  stakes: {enum: [low, regular, high, dire], optional: true}
+before:
+  - if: "@spark > @who.spark"
+    then:
+      - stop: "{@who.name} has {@who.spark} spark to spend, not {@spark}."
+  - if: "@pool.value <= 0"
+    then:
+      - stop: "{@pool.name} is 0d: {@who.name} is broke. Selling off a minor haul adds +2d, a major one +4d (`didact do sell`)."
+  - let:
+      scribe: "@workshop and 'scribe-counter' in @who.perks"
+      bargain: "'hard-bargain' in @who.perks"
+      stakes_now: "if('$stakes' <> '', '$stakes', 'regular')"
+  - if: "@huge and not @scribe"
+    then:
+      - pool: "@pool"
+        mode: drop
+        drop: 1
+        as: asked
+      - message: "A huge ask: {@pool.name} drops 1d first ({@asked.left}d left)."
+  - if: "@huge and @scribe"
+    then: ["Scribe Counter: workshop spending never needs the huge-ask drop."]
+  - let: {available: "if(@huge and not @scribe, @asked.left, @pool.value)"}
+  - if: "@available <= 0"
+    then:
+      - stop: "{@pool.name} ran dry on the huge ask: {@who.name} is broke."
+  - let: {extra: "@spark + if(@perk or @scribe, 1, 0)"}
+  - if: "@spark > 0"
+    then:
+      - set: who.spark
+        op: "-="
+        value: "@spark"
+  - roll: "(@available)d6"
+    as: caps
+  - if: "@extra > 0"
+    then:
+      - roll: "(@extra)d6"
+        as: along
+  - if: "@thorns > 0"
+    then:
+      - roll: "(@thorns)d8"
+        as: thorn
+  - let:
+      low: "count(@caps.dice, 1) + count(@caps.dice, 2) + count(@caps.dice, 3)"
+  - let:
+      kept: "if(@bargain and @low > 0 and @available > 1, 1, 0)"
+  - let:
+      drops: "@low - @kept"
+      highest: "max(max(@caps.dice), if(@extra > 0, max(@along.dice), 0))"
+      sixes: "count(@caps.dice, 6) + if(@extra > 0, count(@along.dice, 6), 0)"
+      cuts: "if(@thorns > 0, count(@thorn.dice, 7) + count(@thorn.dice, 8), 0)"
+  - if: "@kept > 0"
+    then: ["Hard Bargain: one die that would drop stays."]
+  - if: "@drops > 0"
+    then:
+      - pool: "@pool"
+        mode: drop
+        drop: "@drops"
+        as: spent
+  - let: {level: "if(@highest == 6, 3, if(@highest >= 4, 2, 1)) - @cuts"}
+  - let: {left: "if(@drops > 0, @spent.left, @available)"}
+  - message: "highest {@highest} · {@pool.name} drops {@drops}d, {@left}d left{if(@left <= 0, ': broke', '')}"
+bands:
+  critical: "@sixes >= 2"
+  perfect: "@level >= 3"
+  messy: "@level == 2"
+  grim: "@level == 1"
+  disaster: else
+on:
+  critical: ["Critical: the deal goes through, and then some (a critical bonus)."]
+  perfect: ["Perfect: the deal goes through, clean."]
+  messy:
+    - message: "Messy: the deal goes through, with a hitch: a flaw, a cheat, a debt (an impact move)."
+    - do: impact
+      with: {who: "@who", stakes: "@stakes_now", result: messy}
+  grim:
+    - message: "Grim: the deal doesn't go through as hoped, and the GM makes an impact move."
+    - do: impact
+      with: {who: "@who", stakes: "@stakes_now", result: grim}
+  disaster:
+    - set: who.spark
+      value: "min(2, @who.spark + 1)"
+    - message: "Disaster: the worst case; {@who.name} takes spark as consolation."
+    - do: impact
+      with: {who: "@who", stakes: "@stakes_now", result: disaster}
+source: "surviving-the-wasteland/caps-and-barter; the-classes/the-charmer#hard-bargain; the-perk-compendium/inventor-perks#scribe-counter; options-and-dials/gear-and-survival#caps"
+---
+action: sell
+title: Sell off a haul
+help: >-
+  Selling off a minor haul in a settlement adds +2d to your Caps pool, a major one +4d (max 8d),
+  and earns you a second, different downtime action. For anything truly priceless (a mythic haul),
+  the price is a story: a favor, a job, a debt. Cap Collector: whenever your Caps pool grows, it
+  grows by 1d more (still max 8d). Hauls belong to the party unless you decide otherwise.
+params:
+  who: ref
+  pool: {kind: ref, to: track, optional: true, help: "The survivor's Caps pool (left out: the sheet's own)"}
+  haul: {enum: [minor, major], default: minor, help: "The haul's size"}
+steps:
+  - let: {by: "if('$haul' == 'major', 4, 2) + if('cap-collector' in @who.perks, 1, 0)"}
+  - if: "default(@pool, '') <> ''"
+    then:
+      - do: grow-pool
+        with: {pool: "@pool", by: "@by", most: 8}
+    else:
+      - if: "default(@who.caps, '') == ''"
+        then:
+          - stop: "Name the Caps pool (`pool=<track>`), or point {@who.name}'s sheet at theirs: `didact set {@who.id} caps=<track>`."
+      - do: grow-pool
+        with: {pool: "@who.caps", by: "@by", most: 8}
+  - if: "'cap-collector' in @who.perks"
+    then: ["Cap Collector: the haul's split comes out quietly bigger: 1d more."]
+  - message: "{@who.name} sells off a $haul haul: a second, different downtime action when time passes (`didact do downtime who={@who.id} act=… also=…`)."
+source: "surviving-the-wasteland/caps-and-barter; surviving-the-wasteland/downtime; the-perk-compendium/charmer-perks#cap-collector"
+---
+check: scavenge
+title: Scavenging
+help: >-
+  Picking over the old world is set dressing until it matters. When it does, make a story roll for
+  the place: 1d if it's been picked clean, 2d for an ordinary ruin, 3d for somewhere sealed since
+  the bombs. Perfect: a minor haul, or a stash that refills one pool (Stimpaks, a Chem Stash,
+  ordinary ammunition). Messy: a find with a catch (trapped, claimed, needs a part). Grim: nothing,
+  and now something knows you're here. A thorough search takes time: if anything is closing in,
+  roll its pool.
+params:
+  place: {enum: [picked, ordinary, sealed], default: ordinary}
+  who: {kind: ref, optional: true, help: "Whose spark is spent"}
+  spark: {kind: int, default: 0}
+  perk: {kind: flag, default: false, help: "A perk applies (a Longshot's Charmed life: what's in the locker): +1d"}
+  thorns: {kind: int, default: 0}
+before:
+  - if: "@spark > default(@who.spark, 0)"
+    then:
+      - stop: "Spending spark needs who= and that much spark ({@spark})."
+  - if: "@spark > 0"
+    then:
+      - set: who.spark
+        op: "-="
+        value: "@spark"
+  - table: scavenging
+    with: {place: $place}
+    as: site
+  - roll: "(@site.dice + @spark + if(@perk, 1, 0))d6"
+    as: roll
+  - if: "@thorns > 0"
+    then:
+      - roll: "(@thorns)d8"
+        as: thorn
+  - let: {cuts: "if(@thorns > 0, count(@thorn.dice, 7) + count(@thorn.dice, 8), 0)"}
+  - let: {level: "if(max(@roll.dice) == 6, 3, if(max(@roll.dice) >= 4, 2, 1)) - @cuts"}
+bands:
+  perfect: "@level >= 3 or count(@roll.dice, 6) >= 2"
+  messy: "@level == 2"
+  grim: "@level == 1"
+  disaster: else
+on:
+  perfect: ["Perfect: a minor haul, or a stash that refills one pool (Stimpaks, a Chem Stash, ordinary ammunition: `didact do refresh pool=<pool>`)."]
+  messy: ["Messy: a find with a catch: it's trapped, it's claimed, it needs a part."]
+  grim: ["Grim: nothing, and now something knows you're here."]
+  disaster: ["Grim, and worse: nothing, and now something knows you're here."]
+prompt: "A thorough search takes time: if anything is closing in, roll its pool (`didact track roll <pool>`)."
+source: surviving-the-wasteland/caps-and-barter#scavenging
+---
+action: time-passes
+title: Time passes
+help: >-
+  When the GM declares that time passes, the game jumps ahead, usually a month or a season. Give
+  each stretch three sensory details, and let one be wrong for the old world (or just track the
+  year on a 3d campaign timer). Campaign pools roll, factions move, and downtime opens: per-session
+  perks refresh, each survivor picks a downtime action, stimpaks refill, a community rolls its
+  Stockpile, and a plan ahead is lost.
+params:
+  what: {kind: text, optional: true, help: "How long: a month, a season"}
+steps:
+  - table: time-details
+    as: detail
+  - if: "default(@what, '') <> ''"
+    then:
+      - prompt: "Time passes: {@what}. Three sensory details for the stretch, one of them wrong for the old world (the book offers: {@detail})."
+    else:
+      - prompt: "Time passes. Three sensory details for the stretch, one of them wrong for the old world (the book offers: {@detail})."
+  - prompt: "Campaign pools roll and factions move: `didact faction turn`, then pick one faction pool and run it dry (`didact do faction-goal who=<faction> pool=<pool>`)."
+  - prompt: "Downtime opens: for each survivor, `didact do downtime who=<pc> act=rest|venture|steam|pursue|plan` (two different ones if they sold off a haul). A community rolls its Stockpile (`didact do stockpile community=<place> act=roll`), and the weather drifts (`didact do drift at=<place>`)."
+source: "surviving-the-wasteland/the-long-road#the-passage-of-time; surviving-the-wasteland/downtime"

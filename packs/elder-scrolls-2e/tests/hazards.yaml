@@ -1,0 +1,75 @@
+# Hazards (players-guide/hazards) come off an attribute, not HP: falling, drowning, fire, cold,
+# lightning, venom (lingering too), inhaled toxins, Skooma's crash; and magical healing's
+# once-a-day limit. Seeded, so it plays the same every time.
+test: hazards
+script:
+  - world new holds --system {pack} --seed hazards
+  - campaign new first --seed hazards
+  - new pc Aela --set STR=16 --set DEX=12 --set WIL=12 --set hp=4 --set race=Imperial
+  - new pc Ulf --set STR=14 --set DEX=10 --set WIL=10 --set hp=4 --set race=Nord
+  - new pc Lifts --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set race=Argonian
+  - new pc Kyn --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set race=Imperial --set nature=dremora
+  - run: do fall who=aela feet=5
+    expect: "stop: A drop of less than 10 ft costs Aela nothing but pride."
+  - run: do fall who=aela feet=25 landing=hard
+    expect: ["2d6", "1d6", "1d20", "Aela falls 25 ft and loses"]
+  - run: do drown who=lifts
+    expect: "stop: Lifts doesn't drown: they breathe water as easily as air."
+  - run: do drown who=kyn
+    expect: "stop: Kyn doesn't drown: they need no breath."
+  - run: do drown who=ulf
+    expect: ["Past the three rounds' grace", "1d20"]
+  - run: do ablaze who=ulf
+    expect: ["conditions += ablaze", "1d4", "Ulf burns"]
+  - run: do ablaze who=ulf state=out
+    expect: ["conditions -= ablaze", "The flames on Ulf are out."]
+  - run: do exposure who=ulf
+    expect: "stop: Cold and snow alone never leave Ulf Deprived (Frost-Hardy)."
+  - run: do exposure who=aela
+    expect: ["Cold exposure reached 1: now deprived", "A watch in the cold without warmth: Aela is Deprived."]
+  - run: do exposure who=aela
+    expect: ["Another watch exposed: a Fatigue.", "fatigue += 1"]
+  - run: do exposure who=aela warm=true
+    expect: "stop: Aela's warm clothing holds off the cold this watch."
+  - run: do warm-up who=aela
+    expect: ["cold_watches = 0", "conditions -= deprived", "Aela is warm again"]
+  - run: do exposure who=lifts extreme=true
+    expect: ["conditions += deprived", "The blizzard leaves Lifts Deprived from the cold at once"]
+  - run: do lightning who=aela
+    expect: ["1d6", "The charge runs through Aela", "1d20"]
+  - run: do venom who=aela amount=1d4 lingering=true
+    expect: ["check elder-scrolls-2e.venom", "1d20"]
+  - set aela venom_turns=2
+  - run: do venom-tick who=aela
+    expect: ["check elder-scrolls-2e.venom-tick", "1d20"]
+  - inv add aela Antitoxin
+  - run: do cure-venom who=aela
+    expect: ["venom_turns = 0", "Antitoxin ends the venom in Aela.", "pc:aela uses Antitoxin"]
+  - run: do venom-tick who=aela
+    expect: "stop: No venom lingers in Aela."
+  - run: do inhale who=kyn
+    expect: "stop: Kyn draws no breath: immune to inhaled poison and gas."
+  - run: do inhale who=aela
+    expect: ["WIL -= 1", "The fumes cost Aela 1 WIL this round.", "1d20"]
+  - run: do skooma who=aela pass=true
+    expect: "stop: Aela rides the rush and shrugs off the crash."
+  - set aela STR=6
+  - run: do heal who=aela
+    expect: ["1d6", "STR +=", "healed_today = true", "their magical healing for the day"]
+  - run: do heal who=aela
+    expect: ["hp = 4", "stop: Aela's STR has had its magical mending today"]
+  - run: do heal who=aela magic=false amount=1d4
+    expect: ["1d4", "STR +="]
+  - run: time advance 1 day
+    expect: ["elder-scrolls-2e.new-dawn (Aela)", "healed_today = false"]
+  - run: do heal who=kyn
+    expect: "stop: Restoration meant for mortals does not mend Kyn"
+  - run: do binding-mend who=kyn
+    expect: ["1d6", "STR +=", "binding-craft knits Kyn's vestige"]
+  - set kyn WIL=4
+  - run: do recover who=kyn
+    expect: "oblivion=true"
+  - run: do recover who=kyn oblivion=true
+    expect: ["WIL = ", "crosses the Barrier again, whole"]
+  - run: do recover who=aela barrow=true
+    expect: "stop: Only a draugr revenant mends in a barrow"

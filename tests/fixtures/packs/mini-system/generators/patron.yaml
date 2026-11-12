@@ -1,0 +1,15 @@
+# One record (`creates: npc`): a number chosen from a list, a question any answer will do
+# (`ask`), a table choice whose entry data an answer of one's own doesn't have, a pick of two
+# (one option holds a comma of its own) and a list read into a prompt.
+generator: patron
+title: A patron
+help: A patron, their favor, what they want (asked), the gear they deal in, and a name.
+creates: npc
+steps:
+  - choose_or_roll: {from: [4, 6, 8], as: favor, field: favor}
+  - ask: {as: wants, prompt: "what they want for {@favor} favors", field: goal}
+  - choose_or_roll: {table: armory, as: deals, field: deals}
+  - apply: {deals_in: "@deals.kind"}
+  - choose_or_roll: {from: [rope, "lamp, hooded", chalk], as: gear, count: 2, field: gear}
+  - name: {prompt: "a name"}
+  - prompt: "They carry {@gear}."

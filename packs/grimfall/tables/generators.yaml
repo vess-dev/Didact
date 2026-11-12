@@ -1,0 +1,32 @@
+# The pick-lists Grimfall's generators place things from when nobody chooses (the book leaves it to
+# the table, so each is as likely), under the parent's ids where its generators had the same: the
+# token menu's points (region-points) and paths (region-paths), and a settlement's buildings.
+# Hand-written from Chapter 6's token menu (Surviving the Wasteland, The Long Road).
+table: region-points
+title: "The map: a point to place"
+description: "A point for a generator to place when nobody chooses: a settlement, site or danger, minor (1 token) or major (2 tokens). Specials (a curiosity, barrier or area: 3 tokens) the GM adds free. Each entry's data holds the point and its size; its two-word label comes from the GM crucible."
+source: surviving-the-wasteland/the-long-road#the-token-menu
+entries:
+  - {text: "minor settlement", data: {point: settlement, size: minor}}
+  - {text: "major settlement", data: {point: settlement, size: major}}
+  - {text: "minor site", data: {point: site, size: minor}}
+  - {text: "major site", data: {point: site, size: major}}
+  - {text: "minor danger", data: {point: danger, size: minor}}
+  - {text: "major danger", data: {point: danger, size: major}}
+---
+table: region-paths
+title: "The map: a path"
+description: "Points are joined by paths: major roads (2 tokens), minor trails (1 token), rough scrambles (free). Passes (bridges, tunnels) ride along free; waypoints are the GM's, one for each day of hard travel."
+source: surviving-the-wasteland/the-long-road#the-token-menu
+entries:
+  - {text: "a major road (2 tokens)", data: {path: major}}
+  - {text: "a minor trail (1 token)", data: {path: minor}}
+  - {text: "a rough scramble (free)", data: {path: rough}}
+---
+table: settlement-buildings
+title: "Street scale: a notable building"
+description: "Settlement maps work the same at street scale: roads (1 token) and notable buildings, minor (2 tokens, lower-case on the map) or major (3 tokens, CAPITALS). Each entry's data holds its size; its two-word label comes from the GM crucible."
+source: surviving-the-wasteland/the-long-road#the-token-menu
+entries:
+  - {text: "a minor building (2 tokens, lower-case on the map)", data: {size: minor}}
+  - {text: "a major building (3 tokens, CAPITALS on the map)", data: {size: major}}

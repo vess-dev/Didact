@@ -1,0 +1,25 @@
+# Every kind of rule reads the session, the scene and the game time, as a trigger does; only a
+# time trigger's own event has `@time.passed`.
+action: tell
+title: Where play stands
+steps:
+  - "session {@session}; scene {@scene}; day {@time.day}; hour {@time.hour}; passed {default(@time.passed, 'none')}"
+---
+check: late
+title: Is it late?
+roll: d6
+success: "@time.hour >= 18"
+---
+procedure: renown
+title: Renown moves once a session
+steps:
+  - if: "@session == 0"
+    then: [stop: "No session is open."]
+  - "Renown moves in session {@session}."
+---
+trigger: dusk
+on: time
+when: "@time.passed >= 3600"
+steps:
+  - "{@time.passed} seconds passed."
+  - do: tell

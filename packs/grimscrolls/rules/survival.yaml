@@ -1,0 +1,940 @@
+# Surviving Tamriel (Chapter 6), with the GM's kit of Chapter 9 that keeps state: potions and
+# coin, plunder, crime and bounty, shrines and blessings, disease and the two curses, exposure,
+# treatment, the standing stones, standing, the Princes' patience, guilds, a holding's stores,
+# the weather's drift and Sheogorath's dial. Where the book starts a pool (a bounty, a curse's
+# timer, a Prince's Patience, a guild's rise, They Find You), the rule makes it at once
+# (`entity:`, with a key no field holds), or takes the one of that name already there.
+action: potion
+title: Drink or pour a potion
+help: >-
+  Every hero carries a 3d Potions resource pool. Given a breather (a moment out of reach to catch
+  your breath), drink one or hand it to an ally: clear one harm, then roll the pool. It refills
+  after a night somewhere safe or in downtime, or sooner with a restock (a Coin roll) or a looted
+  stash. Mid-fight there's no breather: getting a potion into a friend under fire is a risky
+  action roll. Mara's blessing, or Benefactor once per session for a potion poured for someone
+  else, means the pool doesn't roll (`free`). The potions dial (an option) makes it 2d, yourself
+  only, or one pool the party shares (grimmer), or 4d (softer).
+params:
+  who: ref
+  giver: {kind: ref, optional: true, help: "Whose Potions pool it comes from (left out: the drinker's own)"}
+  heal: {enum: [bloodied, rattled, desperate], optional: true, help: "The harm to clear (left out: desperate first)"}
+  free: {kind: flag, default: false, help: "The pool doesn't roll (Mara's blessing; Benefactor, once a session, for someone else)"}
+steps:
+  - let:
+      from: "if(default(@giver, '') <> '', @giver, @who)"
+      healed: >-
+        if('$heal' <> '' and '$heal' in @who.harm, '$heal', if('desperate' in @who.harm, 'desperate',
+        if('bloodied' in @who.harm, 'bloodied', if('rattled' in @who.harm, 'rattled', ''))))
+  - if: "@option.potions == 'self-only' and default(@giver, '') <> '' and @giver <> @who"
+    then:
+      - stop: "Grimmer potions (yourself only): a hero's potions are for the hero who carries them."
+  - if: "@healed == ''"
+    then:
+      - stop: "{@who.name} has no harm to clear."
+  - if: "default(@giver, '') <> ''"
+    then:
+      - if: "default(@giver.potions, '') == ''"
+        then:
+          - stop: "{@giver.name} carries no Potions pool (`didact show {@giver.id}`)."
+      - do: potion-pour
+        with: {pool: "@giver.potions", free: "@free"}
+        as: poured
+    else:
+      - if: "default(@who.potions, '') == ''"
+        then:
+          - stop: "{@who.name} carries no Potions pool (`didact show {@who.id}`)."
+      - do: potion-pour
+        with: {pool: "@who.potions", free: "@free"}
+        as: poured
+  - set: who.harm
+    op: "-="
+    value: "@healed"
+  - message: "{@who.name} catches their breath and drinks: {@healed} clears."
+  - if: "default(@giver, '') <> '' and 'alchemy-benefactor' in @giver.talents"
+    then: ["Benefactor: a draught from {@giver.name}'s own Potions sets {@who.name} up for their next roll."]
+source: "surviving-tamriel/potions; options-and-dials/gear-and-survival#potions-on-by-default; the-classes/alchemy#benefactor"
+---
+procedure: potion-pour
+title: A Potions pool, rolled after use
+help: "Use it, then roll it: the use always works, and the roll only shows how much is left."
+params:
+  pool: {kind: ref, to: track}
+  free: {kind: flag, default: false}
+steps:
+  - if: "@pool.value <= 0"
+    then:
+      - stop: "{@pool.name} is empty: it refills after a night somewhere safe or in downtime, or with a restock (a Coin roll: `didact do spend-coin`) or a looted stash."
+  - if: "@free"
+    then: ["The pool doesn't roll ({@pool.name}: {@pool.value}d)."]
+    else:
+      - pool: "@pool"
+        as: rolled
+      - message: "{@pool.name}: {@rolled.left}d left."
+source: "surviving-tamriel/potions"
+---
+action: party-potions
+title: The company's shared Potions (grimmer)
+help: >-
+  The potions dial's grimmer setting can be a single 3d pool the whole party shares, in place of
+  each hero's: made once (a second run takes the one there), and every hero's sheet pointed at
+  it, so `didact do potion` pours from it, and a rest or downtime refills it. Didact runs it when
+  a session starts; run it yourself when a hero joins mid-session.
+steps:
+  - if: "@option.potions <> 'shared'"
+    then:
+      - stop: "Only with the grimmer dial's shared pool (`didact campaign profile potions=shared`)."
+  - entity:
+      type: track
+      name: The company's Potions
+      fields: {kind: pool, pool: resource, value: {value: 3, max: 3}, note: "The party's one Potions pool (grimmer): given a breather, drink one or hand it to an ally to clear one harm, then roll it; it refills after a night somewhere safe or in downtime."}
+    as: shared
+  - for: pcs
+    as: member
+    steps:
+      - if: "default(@member.potions, '') <> @shared.id"
+        then:
+          - set: member.potions
+            value: "@shared"
+          - message: "{@member.name} pours from the company's Potions now."
+source: "options-and-dials/gear-and-survival#potions-on-by-default; surviving-tamriel/potions"
+---
+trigger: party-potions-each-session
+title: The company's shared Potions, when a session starts
+help: "With the grimmer dial's shared pool, the company's Potions is made (once) and every hero's sheet pointed at it when a session starts."
+on: session_start
+when: "@option.potions == 'shared'"
+steps:
+  - do: party-potions
+source: "options-and-dials/gear-and-survival#potions-on-by-default"
+---
+action: spend-coin
+title: Spend big (roll your Coin)
+help: >-
+  Every hero carries a personal 4d Coin power pool (on by default: the coin dial). A drink, a bed,
+  a quiver of arrows are set dressing; roll the pool when you spend big (a bribe, a horse, a
+  healer's miracle), and drop 1d first for the huge asks (`huge`). It's an action roll: an impact
+  move can mean a hitch (a flaw, a cheat, a debt) even when the deal goes through. At 0d, you're
+  broke. One die that would drop stays, unless it's the last (`keep`: Haggling always; Voice of the
+  Emperor and Zenithar's blessing once; Transmute Ore).
+params:
+  who: ref
+  huge: {kind: flag, default: false, help: "A huge ask: drop 1d first"}
+  keep: {kind: flag, default: false, help: "One die that would drop stays, unless it's the last"}
+  thorns: {kind: int, default: 0}
+  spark: {kind: int, default: 0}
+  stakes: {enum: [low, regular, high, dire], optional: true}
+steps:
+  - if: "not @option.coin"
+    then:
+      - stop: "Coin is off (the coin dial): money is pure vantage, walking-around septims are set dressing, and serious wealth moves only in hauls."
+  - if: "default(@who.coin, '') == ''"
+    then:
+      - stop: "{@who.name} carries no Coin pool (`didact show {@who.id}`)."
+  - let:
+      stakes_now: "if('$stakes' <> '', '$stakes', 'regular')"
+      haggler: "'mercantile-haggling' in @who.talents"
+  - check: pool-action
+    with: {who: "@who", pool: "@who.coin", drop: "if(@huge, 1, 0)", thorns: "@thorns", spark: "@spark", stakes: "@stakes_now"}
+    as: deal
+  - if: "(@keep or @haggler) and default(@deal.rolled.dropped, 0) > 0 and default(@deal.rolled.left, 0) > 0"
+    then:
+      - do: pool-regain
+        with: {pool: "@who.coin", n: 1}
+      - message: "{if(@haggler, 'Haggling', 'Kept')}: one die that would drop stays."
+  - if: "default(@deal.rolled.left, 1) <= 0"
+    then: ["{@who.name} is broke."]
+source: "surviving-tamriel/coin-and-barter; options-and-dials/gear-and-survival#coin-on-by-default; the-classes/mercantile#haggling; blood-stars-and-stones/blood-the-ten-races#imperial; surviving-tamriel/shrines-and-blessings"
+---
+action: sell-haul
+title: Sell off a haul
+help: >-
+  Hauls belong to the party unless you decide otherwise. Selling off a minor haul in a town adds
+  +2d to a hero's Coin (max 8d) and earns a second, different downtime action. For anything truly
+  priceless, the price is a story: a favor, a job, a debt. A haul can go into a holding's Stores
+  instead (`didact do stores`).
+params:
+  who: ref
+  size: {enum: [minor, major, mythic], default: minor}
+steps:
+  - if: "'$size' <> 'minor'"
+    then:
+      - stop: "The book prices selling a minor haul (+2d Coin, max 8d); a major or mythic one is a story: a buyer, a price, a favor, a job, a debt. Trade it into a holding's Stores instead (`didact do stores pool=<stores> haul=$size`), or work the price out with the GM."
+  - if: "default(@who.coin, '') == ''"
+    then:
+      - stop: "{@who.name} carries no Coin pool."
+  - do: grow-pool
+    with: {pool: "@who.coin", by: 2, most: 8}
+  - message: "Selling off a minor haul earns {@who.name} a second, different downtime action (`didact do downtime who={@who.id} act=… also=…`)."
+source: "surviving-tamriel/coin-and-barter; surviving-tamriel/downtime"
+---
+check: plunder
+title: Plunder
+help: >-
+  Picking over a ruin is set dressing until it matters. When it does, make a story roll for the
+  place: 1d if it's been robbed already, 2d for an ordinary barrow or bandit camp, 3d for
+  somewhere sealed since the First Era. Perfect: a minor haul, or a cache that refills one pool
+  (Potions, an alchemist's Satchel, a relic's charge). Messy: a find with a catch (it's trapped,
+  it's claimed, it's cursed). Grim: nothing, and now something knows you're here. A thorough
+  search takes time; if anything is closing in, roll its pool.
+params:
+  place: {enum: [robbed, ordinary, sealed], default: ordinary}
+  thorns: {kind: int, default: 0}
+before:
+  - table: plunder-odds
+    with: {place: $place}
+    as: odds
+  - roll: "(@odds.dice)d6"
+    as: roll
+  - if: "@thorns > 0"
+    then:
+      - roll: "(@thorns)d8"
+        as: thorn
+  - let: {cuts: "if(@thorns > 0, count(@thorn.dice, 7) + count(@thorn.dice, 8), 0)"}
+  - let: {level: "if(max(@roll.dice) == 6, 3, if(max(@roll.dice) >= 4, 2, 1)) - if(count(@roll.dice, 6) >= 2, 0, @cuts)"}
+bands:
+  perfect: "@level >= 3"
+  messy: "@level == 2"
+  grim: else
+on:
+  perfect:
+    - table: plunder
+      with: {result: perfect}
+      as: found
+    - message: "Perfect: {@found}"
+  messy:
+    - table: plunder
+      with: {result: messy}
+      as: found
+    - message: "Messy: {@found}"
+  grim:
+    - table: plunder
+      with: {result: grim}
+      as: found
+    - message: "Grim: {@found}"
+prompt: "A thorough search takes time: if anything is closing in, roll its pool."
+source: "surviving-tamriel/coin-and-barter#plunder"
+---
+action: crime
+title: Crime and bounty
+help: >-
+  Every hold, county and Great House keeps its own ledger. When you're seen breaking the law, or a
+  witness lives to describe you, the GM starts or shortens a pressure pool for that jurisdiction
+  (6d The Guards Know Your Face for a theft or a brawl, 4d for blood): roll it whenever you show
+  yourself in that hold's towns, and whenever you add to the list. No witness, no bounty. At 0d, a
+  patrol stops you with the old words (`didact do arrest`).
+params:
+  pool: {kind: ref, to: track, optional: true, help: "The jurisdiction's bounty pool, to roll it (you show yourself in its towns)"}
+  jurisdiction: {kind: text, optional: true, help: "The hold, county or Great House where the crime was seen: its pool starts, or rolls if it's there already"}
+  blood: {kind: flag, default: false, help: "Blood on the ledger: a 4d pool (else 6d, for a theft or a brawl)"}
+steps:
+  - if: "default(@pool, '') <> ''"
+    then:
+      - do: bounty-roll
+        with: {pool: "@pool"}
+    else:
+      - if: "default(@jurisdiction, '') == ''"
+        then:
+          - stop: "Name the jurisdiction the crime was seen in (`jurisdiction='Whiterun Hold'`), or roll its bounty (`pool=<it>`). No witness, no bounty."
+      - entity:
+          type: track
+          name: "The Guards Know Your Face ($jurisdiction)"
+          fields: {kind: pool, pool: pressure, value: {value: "{if(@blood, 4, 6)}", max: "{if(@blood, 4, 6)}"}, note: "a patrol stops you with the old words: didact do arrest", crimes: 0}
+        as: bounty
+      - set: bounty.crimes
+        op: "+="
+        value: 1
+      - if: "@bounty.crimes > 1"
+        then:
+          - message: "{@bounty.name} is on the books already: a crime added to the list rolls it."
+          - do: bounty-roll
+            with: {pool: "@bounty"}
+        else:
+          - message: "{@bounty.name} ({@bounty.id}) starts at {@bounty.value}d: roll it whenever you show yourself in its towns (`didact do crime pool={@bounty.id}`), and whenever you add to the list."
+source: "surviving-tamriel/crime-and-bounty"
+---
+procedure: bounty-roll
+title: A bounty pool, rolled
+help: "Roll it whenever you show yourself in that jurisdiction's towns, and whenever you add to the list. At 0d, a patrol stops you with the old words."
+params:
+  pool: {kind: ref, to: track}
+steps:
+  - if: "@pool.value <= 0"
+    then:
+      - stop: "{@pool.name} is at 0d: the patrol is already here (`didact do arrest who=<hero> choice=… pool={@pool.id}`)."
+  - pool: "@pool"
+    as: rolled
+  - message: "{@pool.name}: {@rolled.left}d left."
+  - if: "@rolled.empty"
+    then:
+      - prompt: "At 0d a patrol stops you with the old words, and you choose: pay the fine, serve the time, or resist arrest (`didact do arrest who=<hero> choice=pay-the-fine|serve-the-time|resist-arrest pool={@pool.id}`). A thane's title forgives one arrest; the Thieves Guild can make a ledger disappear for a price; the next hold over has never heard of you."
+source: "surviving-tamriel/crime-and-bounty"
+---
+action: arrest
+title: At 0d, the old words
+help: >-
+  A patrol stops you. Pay the fine: roll your Coin (drop 1d first if there's blood on the ledger);
+  anything stolen is confiscated; the pool clears. Serve the time: time passes without a downtime
+  action, and you come out with the pool cleared and nothing in your pockets. Resist arrest: it's
+  a fight with the Hold Guards, the next pool starts at 4d, and your standing in that hold drops a
+  step.
+params:
+  who: ref
+  choice: {enum: [pay-the-fine, serve-the-time, resist-arrest]}
+  pool: {kind: ref, to: track, optional: true, help: "The bounty pool"}
+  blood: {kind: flag, default: false, help: "Blood on the ledger"}
+  faction: {kind: ref, to: faction, optional: true, help: "The hold's faction, whose standing drops a step when you resist arrest"}
+  stolen: {kind: text, optional: true, help: "Pay the fine: a stolen thing the hero carries, confiscated (one a call)"}
+steps:
+  - if: "'$choice' == 'pay-the-fine'"
+    then:
+      - do: spend-coin
+        with: {who: "@who", huge: "@blood"}
+      - if: "default(@stolen, '') <> ''"
+        then:
+          - take: "$stolen"
+            from: "@who"
+          - message: "Confiscated: $stolen. Anything else stolen goes too (`stolen=` each, or `didact inv drop {@who.id} '<item>'`). The pool clears."
+        else: ["Anything stolen is confiscated (`stolen=` names it: Didact takes it; or `didact inv drop {@who.id} '<item>'`). The pool clears."]
+      - if: "default(@pool, '') <> ''"
+        then: ["The bounty is paid: `didact rm {@pool.id}`."]
+  - if: "'$choice' == 'serve-the-time'"
+    then:
+      - prompt: "Serve the time: time passes without a downtime action (`didact time advance …`), and {@who.name} comes out with the pool cleared and nothing in their pockets."
+      - if: "default(@pool, '') <> ''"
+        then: ["The bounty is served: `didact rm {@pool.id}`."]
+  - if: "'$choice' == 'resist-arrest'"
+    then:
+      - prompt: "Resist arrest: it's a fight with the Hold Guards (`didact gen run grimscrolls.foe --prefill '{{\"creature\": \"Hold Guards\"}}'`)."
+      - if: "default(@pool, '') <> ''"
+        then:
+          - set: pool.value.max
+            value: 4
+          - set: pool.value.value
+            value: 4
+          - set: pool.fields.status
+            value: active
+          - message: "The next bounty starts at 4d: {@pool.name} is back at 4d."
+        else: ["The next bounty pool for that hold starts at 4d (`didact do crime jurisdiction=… blood` makes a 4d one)."]
+      - if: "default(@faction, '') <> ''"
+        then:
+          - do: standing
+            with: {who: "@faction", shift: -1, why: "resisted arrest"}
+        else: ["{@who.name}'s standing in that hold drops a step (`didact do standing who=<faction> shift=-1`)."]
+source: "surviving-tamriel/crime-and-bounty"
+---
+action: pray
+title: Pray at a shrine
+help: >-
+  Pray at a shrine of the Divines (a chapel, a wayshrine, a hillside with offerings in the snow):
+  every ordinary disease you carry is cured, and you take that god's blessing, a single boon held
+  until you use it or until the next session ends. You carry one at a time, and a shrine blesses
+  you once a session. The Tribunal Temple's shrines in Morrowind do the same under other names and
+  cure the Blight besides (`tribunal`). Daedric shrines offer no blessings, only bargains.
+params:
+  who: ref
+  divine: {enum: [akatosh, arkay, dibella, julianos, kynareth, mara, stendarr, talos, zenithar]}
+  tribunal: {kind: flag, default: false, help: "A Tribunal Temple shrine: it cures the Blight too"}
+steps:
+  - do: cure-ordinary
+    with: {who: "@who", blight: "@tribunal"}
+  - table: divine-blessings
+    with: {divine: $divine}
+    as: boon
+  - if: "default(@who.blessing, '') <> ''"
+    then: ["{@who.name} carries one blessing at a time: {@who.blessing} gives way."]
+  - set: who.blessing
+    value: "{@boon.name}: {@boon.blessing}"
+  - set: who.blessed_in
+    value: "default(@session, 0)"
+  - message: "{@who.name} takes {@boon.name}'s blessing, once: {@boon.blessing}. It's held until used (`didact do use-blessing who={@who.id}`) or until the next session ends."
+  - if: "'$divine' == 'talos'"
+    then: ["In the Fourth Era, the shrine itself is a crime."]
+source: "surviving-tamriel/shrines-and-blessings"
+---
+procedure: cure-ordinary
+title: Every ordinary disease, cured
+help: "A shrine's prayer cures every ordinary disease (the Blight only at a Tribunal shrine; Corprus is a quest), and any cure for disease ends the two curses' timers before they run out."
+params:
+  who: ref
+  blight: {kind: flag, default: false}
+steps:
+  - if: "'Ataxia' in @who.conditions"
+    then: [{set: who.conditions, op: "-=", value: Ataxia}]
+  - if: "'Rockjoint' in @who.conditions"
+    then: [{set: who.conditions, op: "-=", value: Rockjoint}]
+  - if: "'Bone Break Fever' in @who.conditions"
+    then: [{set: who.conditions, op: "-=", value: "'Bone Break Fever'"}]
+  - if: "'Brain Rot' in @who.conditions"
+    then: [{set: who.conditions, op: "-=", value: "'Brain Rot'"}]
+  - if: "'Witbane' in @who.conditions"
+    then: [{set: who.conditions, op: "-=", value: Witbane}]
+  - if: "'Swamp Fever' in @who.conditions"
+    then: [{set: who.conditions, op: "-=", value: "'Swamp Fever'"}]
+  - if: "'Greenspore' in @who.conditions"
+    then: [{set: who.conditions, op: "-=", value: Greenspore}]
+  - if: "'Droops' in @who.conditions"
+    then: [{set: who.conditions, op: "-=", value: Droops}]
+  - if: "'Rattles' in @who.conditions"
+    then: [{set: who.conditions, op: "-=", value: Rattles}]
+  - if: "@blight and 'Ash Woe Blight' in @who.conditions"
+    then: [{set: who.conditions, op: "-=", value: "'Ash Woe Blight'"}]
+  - if: "@blight and 'Chanthrax Blight' in @who.conditions"
+    then: [{set: who.conditions, op: "-=", value: "'Chanthrax Blight'"}]
+  - if: "@blight and 'Black-Heart Blight' in @who.conditions"
+    then: [{set: who.conditions, op: "-=", value: "'Black-Heart Blight'"}]
+  - if: "'Sanguinare Vampiris' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: "'Sanguinare Vampiris'"
+      - do: curse-lifted
+        with: {who: "@who"}
+  - if: "'Sanies Lupinus' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: "'Sanies Lupinus'"
+      - do: curse-lifted
+        with: {who: "@who"}
+  - message: "{@who.name}'s ordinary diseases are cured{if(@blight, ', the Blight too', '')}."
+source: "surviving-tamriel/shrines-and-blessings; surviving-tamriel/disease; surviving-tamriel/the-two-curses"
+---
+action: use-blessing
+title: Use a blessing
+help: "A Divine's blessing is a single boon: once, then it's gone."
+params:
+  who: ref
+steps:
+  - if: "default(@who.blessing, '') == ''"
+    then:
+      - stop: "{@who.name} carries no blessing (`didact do pray`)."
+  - message: "{@who.name} uses the blessing: {@who.blessing}."
+  - set: who.blessing
+    value: "''"
+source: "surviving-tamriel/shrines-and-blessings"
+---
+trigger: blessing-ends
+title: A blessing ends with the next session
+help: "A blessing is held until used or until the next session ends: one taken in a session survives that session's end and goes at the next one's; one taken between sessions goes when the next session ends."
+on: session_end
+for: pcs
+when: "default(@who.blessing, '') <> '' and default(@session, 0) > default(@who.blessed_in, 0)"
+params:
+  who: ref
+steps:
+  - set: who.blessing
+    value: "''"
+  - message: "{@who.name}'s blessing ends with the session, unused."
+source: "surviving-tamriel/shrines-and-blessings"
+---
+action: disease
+title: Catch a disease
+help: >-
+  A disease is a long-term condition: +1t whenever it specifically gets in your way. When a
+  carrier's blow lands as harm, or the GM spends suspense, the disease can come with it; you'll
+  notice at your next rest. A Cure Disease draught, a shrine's blessing, a healer's purging, or a
+  downtime Rest ends an ordinary one; the Blight needs a Temple shrine, a cure-blight draught, or
+  a potent purging; Corprus is a permanent condition, and curing it is a quest. The two curses
+  are `didact do curse`.
+params:
+  who: ref
+  disease: {enum: [ataxia, rockjoint, bone-break-fever, brain-rot, witbane, swamp-fever, greenspore, droops, rattles, ash-woe, chanthrax, black-heart, corprus]}
+steps:
+  - if: "default(@who.blood, '') <> '' or 'vampire-sanguinare-vampiris' in @who.talents"
+    then:
+      - stop: "{@who.name} doesn't sicken: disease is nothing to a vampire."
+  - if: "'werewolf-beast-blood' in @who.talents or 'werewolf-lycanthropy' in @who.talents"
+    then:
+      - stop: "No disease takes root in {@who.name}: the beast is always with them."
+  - table: disease-costs
+    with: {disease: $disease}
+    as: sick
+  - if: "@sick.name in @who.conditions"
+    then:
+      - stop: "{@who.name} already carries {@sick.name}."
+  - set: who.conditions
+    op: "+="
+    value: "@sick.name"
+  - message: "{@sick}. {@who.name} will notice at their next rest."
+  - if: "'argonian-histskin' in @who.talents or 'bosmer-command-animal' in @who.talents"
+    then: ["Disease lands one step lighter on {@who.name} (their blood)."]
+source: "surviving-tamriel/disease; the-classes/vampire; the-classes/werewolf; blood-stars-and-stones/blood-the-ten-races"
+---
+action: cure
+title: Cure a disease or condition
+help: "A condition ends when the fiction says so: a Cure Disease draught, a shrine, a healer's purging, a downtime Rest, time, or a task pool. Name it as the sheet has it."
+params:
+  who: ref
+  condition: {kind: text, help: "The condition, as the sheet has it (Rockjoint, Chanthrax Blight, Hooked, …)"}
+steps:
+  - if: "not (@condition in @who.conditions)"
+    then:
+      - stop: "{@who.name} has no {@condition} (conditions: {@who.conditions})."
+  - set: who.conditions
+    op: "-="
+    value: $condition
+  - message: "{@who.name}'s {@condition} ends."
+  - if: "@condition == 'Sanguinare Vampiris' or @condition == 'Sanies Lupinus'"
+    then:
+      - do: curse-lifted
+        with: {who: "@who"}
+source: "surviving-tamriel/disease; surviving-tamriel/the-two-curses"
+---
+procedure: curse-lifted
+title: A curse's timer ends
+help: "Any cure for disease ends a curse's timer before it runs out: the sheet lets it go, so the nights stop rolling it; the record is the GM's to remove."
+params:
+  who: ref
+steps:
+  - if: "default(@who.curse_timer, '') <> ''"
+    then:
+      - prompt: "Any cure for disease ends the curse before it runs out: {@who.name}'s timer stops (remove its record: `didact rm {@who.curse_timer}`)."
+      - unset: who.curse_timer
+    else: ["Any cure for disease ends the curse before it runs out: remove its timer, if it has one (`didact rm <timer>`)."]
+source: "surviving-tamriel/the-two-curses"
+---
+action: curse
+title: Catch one of the two curses
+help: >-
+  Sanguinare Vampiris (Porphyric Hemophilia) comes from a vampire's bite or its draining spell: a
+  4d timer, rolled each night you sleep; at 0d you die quietly before dawn and get up a vampire.
+  Sanies Lupinus comes from a werewolf's teeth (or the Circle's cup): a 4d timer, rolled each
+  nightfall; at 0d the first change comes that night, and the GM plays the wolf for a scene. Any
+  cure for disease ends either. A hero can't carry both curses: the beast blood burns the other
+  out.
+params:
+  who: ref
+  curse: {enum: [sanguinare-vampiris, sanies-lupinus]}
+steps:
+  - if: "default(@who.turned, '') <> '' or default(@who.blood, '') <> '' or 'werewolf-beast-blood' in @who.talents"
+    then:
+      - stop: "{@who.name} already carries a curse: a hero can't carry both (the beast blood burns the other out), and the cursed don't sicken."
+  - let: {name: "if('$curse' == 'sanguinare-vampiris', 'Sanguinare Vampiris', 'Sanies Lupinus')"}
+  - set: who.conditions
+    op: "+="
+    value: "@name"
+  - entity:
+      type: track
+      name: "{@who.name}: {@name}"
+      fields: {kind: pool, pool: timer, value: {value: 4, max: 4}, note: "{if('$curse' == 'sanguinare-vampiris', 'at 0d, a vampire', 'at 0d, the first change')}: didact do turn"}
+      links: [{rel: of, to: "@who"}]
+    as: curse_timer
+  - do: refresh
+    with: {pool: "@curse_timer"}
+  - set: who.curse_timer
+    value: "@curse_timer"
+  - message: "{@who.name} carries {@name}: an urgent condition, a 4d timer ({@curse_timer.id}) rolled each {if('$curse' == 'sanguinare-vampiris', 'night they sleep', 'nightfall')}: Didact rolls it as days pass (`didact time advance`), or roll it yourself (`didact track roll {@curse_timer.id}`). Any cure for disease ends it."
+source: "surviving-tamriel/the-two-curses"
+---
+trigger: curse-nights
+title: The curses' timers, rolled by night
+help: "Sanguinare Vampiris is rolled each night you sleep, Sanies Lupinus each nightfall: for each night that passes, each hero who carries one rolls its timer; at 0d they turn."
+on: time
+for: pcs
+when: "@time.passed >= 86400 and ('Sanguinare Vampiris' in @who.conditions or 'Sanies Lupinus' in @who.conditions)"
+params:
+  who: ref
+steps:
+  - if: "default(@who.curse_timer, '') == ''"
+    then:
+      - prompt: "A night has passed: roll {@who.name}'s {if('Sanguinare Vampiris' in @who.conditions, 'Sanguinare Vampiris', 'Sanies Lupinus')} timer (`didact track roll <timer>`; `didact set {@who.id} curse_timer=<timer>` lets Didact roll it); at 0d, `didact do turn who={@who.id} curse={if('Sanguinare Vampiris' in @who.conditions, 'vampire', 'werewolf')}`."
+    else:
+      - repeat: "floor(@time.passed / 86400)"
+        as: night
+        steps:
+          - if: "default(@who.curse_timer, '') <> ''"
+            then:
+              - do: curse-night
+                with: {who: "@who", timer: "@who.curse_timer"}
+                go_on: true
+source: "surviving-tamriel/the-two-curses"
+---
+procedure: curse-night
+title: A night with the curse in the blood
+help: "One night: the curse's timer rolls (Sanguinare Vampiris each night you sleep, Sanies Lupinus each nightfall); at 0d, you turn."
+params:
+  who: ref
+  timer: {kind: ref, to: track}
+steps:
+  - if: "@timer.value <= 0 or not ('Sanguinare Vampiris' in @who.conditions or 'Sanies Lupinus' in @who.conditions)"
+    then:
+      - stop: "{@timer.name} has run its course."
+  - pool: "@timer"
+    as: night
+  - message: "A night: {@timer.name}, {@night.left}d left."
+  - if: "@night.empty"
+    then:
+      - do: turn
+        with: {who: "@who", curse: "{if('Sanguinare Vampiris' in @who.conditions, 'vampire', 'werewolf')}"}
+source: "surviving-tamriel/the-two-curses"
+---
+action: turn
+title: Turned
+help: >-
+  At 0d the curse takes you: a vampire dies quietly before dawn and gets up a vampire; a werewolf's
+  first change comes that night, and it isn't yours to steer (the GM plays the wolf for a scene).
+  Once you've turned, the curse is a permanent condition with its price but none of its gifts: a
+  vampire burns in the sun and catches fire easily; a werewolf fears silver and changes when the
+  GM spends suspense to say so. To take the gifts as well, take the curse's talent (Sanguinare
+  Vampiris, Lycanthropy) at your next level, or at once by trading away the last talent you
+  gained. Cures are adventures.
+params:
+  who: ref
+  curse: {enum: [vampire, werewolf]}
+steps:
+  - if: "'$curse' == 'vampire' and 'Sanguinare Vampiris' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: "'Sanguinare Vampiris'"
+  - if: "'$curse' == 'werewolf' and 'Sanies Lupinus' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: "'Sanies Lupinus'"
+  - set: who.turned
+    value: $curse
+  - if: "default(@who.curse_timer, '') <> ''"
+    then:
+      - prompt: "The curse's timer has run its course (remove its record: `didact rm {@who.curse_timer}`)."
+      - unset: who.curse_timer
+  - if: "'$curse' == 'vampire'"
+    then:
+      - set: who.conditions
+        op: "+="
+        value: "'vampire (turned): burns in the sun, catches fire easily'"
+      - message: "{@who.name} dies quietly before dawn, and gets up a vampire: the price (the sun, fire), none of the gifts."
+    else:
+      - set: who.conditions
+        op: "+="
+        value: "'werewolf (turned): fears silver, changes when the GM spends suspense to say so'"
+      - message: "{@who.name}'s first change comes that night, and it isn't theirs to steer: the GM plays the wolf for a scene."
+  - prompt: "To take the gifts as well: take {if('$curse' == 'vampire', 'Sanguinare Vampiris (vampire-sanguinare-vampiris: The Blood at 3d, never grows)', 'Lycanthropy (werewolf-lycanthropy: Beast Blood, Bloodlust at 3d, never more changes)')} at the next level (`didact char advance {@who.id}` offers it), or at once by trading away the last talent gained (`didact do switch-talent who={@who.id} drop=<last talent> take={if('$curse' == 'vampire', 'vampire-sanguinare-vampiris', 'werewolf-lycanthropy')}`: its pool is made with it). The curse's talents open its list. Cures are adventures, not purchases."
+source: "surviving-tamriel/the-two-curses; the-classes/introduction#the-curses"
+---
+action: exposure
+title: "Exposure: hard country"
+help: >-
+  Weather is set dressing until the fiction says otherwise. Hard country (a blizzard in the Pale,
+  an ash storm off Red Mountain, the Alik'r at noon, the Deadlands' air) inflicts +1t while you
+  work in it, or a mark as you push through (the GM's call). A mark from exposure lingers like a
+  condition: +1t on every roll with that stat until you're properly warm, fed, or clear of it.
+  Mark that stat again and you take harm as usual. A fire, a cloak, a Resist draught, or a Nord's
+  blood lightens all of this a step.
+params:
+  who: ref
+  stat: {enum: [brawn, agility, wits, presence]}
+steps:
+  - if: "@who.side or '$stat' in @who.marks or '$stat' in @who.lingering"
+    then:
+      - message: "{@who.name}'s $stat is already marked: exposure is harm instead."
+      - do: harm
+        with: {who: "@who", kind: "if('$stat' == 'brawn' or '$stat' == 'agility', 'bloodied', 'rattled')"}
+    else:
+      - set: who.lingering
+        op: "+="
+        value: $stat
+      - message: "{@who.name} takes a mark from exposure on $stat: it lingers, +1t on every $stat roll until they're properly warm, fed, or clear of it (`didact do shelter who={@who.id}`)."
+  - if: "'nord-battle-cry' in @who.talents"
+    then: ["A Nord's blood: cold lands one step lighter on {@who.name}."]
+source: "surviving-tamriel/cold-ash-and-hard-country"
+---
+action: shelter
+title: Warm, fed, or clear of it
+help: "Lingering exposure marks clear when you're properly warm, fed, or clear of the hard country."
+params:
+  who: ref
+steps:
+  - if: "count(@who.lingering) == 0"
+    then:
+      - stop: "{@who.name} has no lingering exposure marks."
+  - set: who.lingering
+    value: []
+  - message: "{@who.name} is properly warm, fed, or clear of it: the lingering marks clear."
+source: "surviving-tamriel/cold-ash-and-hard-country"
+---
+action: treat
+title: Treatment
+help: >-
+  Treatment takes time, tools and know-how: a healer's hands, clean linen, a quiet room. It nearly
+  always works; the drama is what it costs. Marks are too light to bother treating; harm clears
+  with treatment or a potent spell. Physician takes +1d when a roll is called for.
+params:
+  who: ref
+  heal: {enum: [bloodied, rattled, desperate], optional: true, help: "The harm treated (left out: desperate first)"}
+steps:
+  - let:
+      healed: >-
+        if('$heal' <> '' and '$heal' in @who.harm, '$heal', if('desperate' in @who.harm, 'desperate',
+        if('bloodied' in @who.harm, 'bloodied', if('rattled' in @who.harm, 'rattled', ''))))
+  - if: "@healed == ''"
+    then:
+      - stop: "{@who.name} has no harm to treat (marks clear themselves)."
+  - set: who.harm
+    op: "-="
+    value: "@healed"
+  - message: "{@who.name} is treated: {@healed} clears. What did it cost: the time, the tools, the healer's price?"
+source: "the-core-engine/damage-and-recovery#healing"
+---
+action: take-stone
+title: Take a standing stone's blessing
+help: >-
+  Lay a hand on the stone and accept. You hold one stone's blessing at a time: take another, and
+  the first fades. While you hold it, the blessing is a talent like any other; it need not match
+  your birthsign.
+params:
+  who: ref
+  stone: {enum: [the-warrior-stone, the-mage-stone, the-thief-stone, the-apprentice-stone, the-atronach-stone, the-lady-stone, the-lord-stone, the-lover-stone, the-ritual-stone, the-serpent-stone, the-shadow-stone, the-steed-stone, the-tower-stone]}
+steps:
+  - if: "'$stone' in @who.talents"
+    then:
+      - stop: "{@who.name} already holds that stone's blessing."
+  - if: "default(@who.stone, '') <> '' and @who.stone in @who.talents"
+    then:
+      - set: who.talents
+        op: "-="
+        value: "@who.stone"
+      - message: "The first blessing fades ({@who.stone})."
+  - set: who.talents
+    op: "+="
+    value: $stone
+  - set: who.stone
+    value: $stone
+  - message: "{@who.name} lays a hand on the stone and accepts: `didact compendium show $stone`."
+  - if: "'$stone' == 'the-apprentice-stone'"
+    then: ["The Apprentice Stone needs magic to regain (spells, illusions, a magic pool, strain or Destruction's potent spells)."]
+source: "blood-stars-and-stones/stones-the-standing-stones"
+---
+action: standing
+title: Standing
+help: >-
+  For each faction that matters, one word for how it sees the party (or one hero who has earned a
+  name): honored, trusted, stranger (the default), watched, outlawed. Standing is vantage: it
+  sets the thorns on every dealing with that faction (watched: +1t), and what's certain,
+  doubtful, or impossible to ask of them. It moves a step when you do something that faction will
+  tell stories about; the same deed usually moves two factions in opposite directions.
+params:
+  who: {kind: ref, to: faction}
+  shift: {kind: int, default: 0, help: "Steps up (toward honored) or down (toward outlawed): 1 or -1"}
+  why: {kind: text, optional: true}
+steps:
+  - let:
+      now: >-
+        if(default(@who.standing, 'stranger') == 'honored', 1, if(default(@who.standing, 'stranger') == 'trusted', 2,
+        if(default(@who.standing, 'stranger') == 'watched', 4, if(default(@who.standing, 'stranger') == 'outlawed', 5, 3))))
+  - let: {next: "min(5, max(1, @now - @shift))"}
+  - let: {word: "if(@next == 1, 'honored', if(@next == 2, 'trusted', if(@next == 3, 'stranger', if(@next == 4, 'watched', 'outlawed'))))"}
+  - if: "@shift <> 0"
+    then:
+      - set: who.standing
+        value: "@word"
+  - table: standing
+    with: {standing: "@word"}
+    as: buys
+  - message: "{@who.name}: {@buys}"
+  - if: "@word == 'outlawed' and @shift <> 0"
+    then:
+      - entity:
+          type: track
+          name: "They Find You ({@who.name})"
+          fields: {kind: pool, pool: campaign, value: {value: 6, max: 6}, note: "{@who.name} has the party outlawed: somebody's paying, and they find you."}
+          links: [{rel: of, to: "@who"}]
+        as: hunt
+      - message: "Outlawed: somebody's paying. A 6d They Find You campaign pool ({@hunt.id}) rolls with {@who.name}'s faction pools (`didact faction turn`)."
+      - do: faction-lists
+        with: {who: "@who", pool: "@hunt"}
+  - if: "default(@why, '') <> ''"
+    then: ["Why: {@why}."]
+source: "running-tamriel/the-greywatch-powderkeg#standing"
+---
+procedure: faction-lists
+title: A pool on a faction's list
+help: "A campaign pool listed on the faction's first free slot (pool_1 … pool_6), so `didact faction turn` rolls it."
+params:
+  who: {kind: ref, to: faction}
+  pool: {kind: ref, to: track}
+steps:
+  - if: "default(@who.pool_1, '') == @pool.id or default(@who.pool_2, '') == @pool.id or default(@who.pool_3, '') == @pool.id or default(@who.pool_4, '') == @pool.id or default(@who.pool_5, '') == @pool.id or default(@who.pool_6, '') == @pool.id"
+    then: ["{@pool.name} is on {@who.name}'s list already."]
+    else:
+      - if: "default(@who.pool_1, '') == ''"
+        then: [{set: who.pool_1, value: "@pool"}]
+        else:
+          - if: "default(@who.pool_2, '') == ''"
+            then: [{set: who.pool_2, value: "@pool"}]
+            else:
+              - if: "default(@who.pool_3, '') == ''"
+                then: [{set: who.pool_3, value: "@pool"}]
+                else:
+                  - if: "default(@who.pool_4, '') == ''"
+                    then: [{set: who.pool_4, value: "@pool"}]
+                    else:
+                      - if: "default(@who.pool_5, '') == ''"
+                        then: [{set: who.pool_5, value: "@pool"}]
+                        else:
+                          - if: "default(@who.pool_6, '') == ''"
+                            then: [{set: who.pool_6, value: "@pool"}]
+                            else: ["{@who.name} lists six pools already: roll {@pool.name} with them by hand (`didact track roll {@pool.id}`)."]
+source: "running-tamriel/the-greywatch-powderkeg"
+---
+action: prince-task
+title: A Prince's task
+help: >-
+  A Prince is never a stat block: a voice, a bargain, and a campaign pool. When a hero accepts a
+  Prince's task, start an 8d Patience pool and roll it whenever they stall, bargain, or disappoint.
+  At 0d the Prince clears the matter up in person, and nobody enjoys it. Finish the task and the
+  relic is yours, along with the Prince's attention, which doesn't end when the task does.
+params:
+  who: ref
+  prince: {kind: text, help: "The Prince (Azura, Boethiah, …)"}
+steps:
+  - entity:
+      type: track
+      name: "$prince's Patience"
+      fields: {kind: pool, pool: campaign, value: {value: 8, max: 8}, note: "the Prince clears the matter up in person"}
+      links: [{rel: of, to: "@who"}]
+    as: patience
+  - message: "{@prince}'s task: an 8d Patience pool ({@patience.id}, {@patience.value}d now). Roll it whenever {@who.name} stalls, bargains, or disappoints (`didact track roll {@patience.id}`); at 0d the Prince clears the matter up in person. What the Prince wants and pays in: `didact compendium find {@prince}`."
+source: "running-tamriel/the-daedric-princes"
+---
+action: guild
+title: Rise in a guild
+help: >-
+  Joining a guild (Fighters, Mages, Thieves, the Companions, the College, a Great House, the
+  Legion) is a story detail and a set of duties. Track your rise with a task pool (6d Rise in the
+  Guild), rolled when you finish its contracts or pursue it in downtime. Each time it empties you
+  gain a rank and something real (a bed and a fence, a key to the library, a title that opens
+  doors), and a guild-master who now knows your name.
+params:
+  who: ref
+  guild: {kind: text, optional: true, help: "The guild, to join it"}
+  pool: {kind: ref, to: track, optional: true, help: "Its Rise pool, to roll it (a contract finished)"}
+steps:
+  - if: "default(@pool, '') == ''"
+    then:
+      - if: "default(@guild, '') == ''"
+        then:
+          - stop: "Name the guild to join (`guild='The Mages Guild'`), or roll its Rise (`pool=<it>`)."
+      - entity:
+          type: track
+          name: "Rise in the Guild ($guild)"
+          fields: {kind: pool, pool: task, value: {value: 6, max: 6}, note: "a rank, and something real"}
+          links: [{rel: of, to: "@who"}]
+        as: rise
+      - message: "{@who.name} joins {@guild}: a story detail and a set of duties. Its 6d Rise in the Guild ({@rise.id}) rolls when a contract is finished (`didact do guild who={@who.id} pool={@rise.id}`) or in downtime (`didact do downtime who={@who.id} act=pursue goal={@rise.id}`)."
+    else:
+      - do: guild-rise
+        with: {who: "@who", pool: "@pool"}
+source: "surviving-tamriel/downtime#guilds"
+---
+procedure: guild-rise
+title: A contract finished
+help: "The Rise in the Guild rolls when a contract is finished; each time it empties, a rank and something real."
+params:
+  who: ref
+  pool: {kind: ref, to: track}
+steps:
+  - if: "@pool.value <= 0"
+    then:
+      - do: refresh
+        with: {pool: "@pool"}
+  - pool: "@pool"
+    as: rise
+  - message: "{@pool.name}: {@rise.left}d left."
+  - if: "@rise.empty"
+    then:
+      - prompt: "{@who.name} gains a rank and something real (a bed and a fence, a key to the library, a title that opens doors), and a guild-master who now knows their name. The next rank: the pool fills again the next time it's rolled."
+source: "surviving-tamriel/downtime#guilds"
+---
+action: stores
+title: A holding's Stores
+help: >-
+  When the party plants a flag (a homestead, a guild hall, a fort they cleared and kept) it becomes
+  a holding, and it grows on a Stores pool. Trade hauls into it (a minor haul adds +2d, a major
+  +4d, a mythic +8d); when time passes, roll it (`roll`), and every die that drops pays toward the
+  next asset: minor, 4 (a wall, a forge, an alchemy garden, a tavern with a name) or major, 8 (a
+  mine that pays, a shrine with a priest, a trade road that comes to you). Damage to an asset
+  costs a die or two of stores to fix.
+params:
+  pool: {kind: ref, to: track, help: "The holding's Stores pool"}
+  haul: {enum: [minor, major, mythic], optional: true, help: "A haul traded into it"}
+  roll: {kind: flag, default: false, help: "Time passes: roll it"}
+steps:
+  - if: "'$haul' <> ''"
+    then:
+      - table: stores
+        with: {size: $haul}
+        as: adds
+      - do: grow-pool
+        with: {pool: "@pool", by: "@adds.dice"}
+  - if: "@roll"
+    then:
+      - if: "@pool.value <= 0"
+        then:
+          - stop: "{@pool.name} is empty: trade a haul into it first."
+      - pool: "@pool"
+        as: rolled
+      - message: "{@rolled.dropped} dice drop: they pay toward the next asset (minor 4, major 8: `didact gen run grimscrolls.holding` gives it a face). {@pool.name}: {@rolled.left}d left."
+  - if: "'$haul' == '' and not @roll"
+    then:
+      - stop: "Trade a haul into it (`haul=minor|major|mythic`), or roll it as time passes (`roll`)."
+source: "running-tamriel/homes-worth-keeping"
+---
+action: drift
+title: Weather and drift
+help: >-
+  Track a drifting condition (weather, an occupying army's mood, an ashfall) as a wandering step:
+  each downtime or dawn, roll a d6: 1-2, a step toward calm; 3-4, hold; 5-6, a step toward the
+  worst, along clear, wind, snow, blizzard, the storm has a voice. It wanders back the way weather
+  does. It's kept on a counter, 1 calm to 5 worst (`name=` another drift: an army's mood, an
+  ashfall; `track=` a counter of your own).
+params:
+  track: {kind: ref, to: track, optional: true, help: "The counter that holds the step (1 calm to 5 worst); left out: the one named `name`, made at 1 the first time"}
+  name: {kind: text, default: Weather, help: "The drift's name, when no counter is named"}
+steps:
+  - if: "default(@track, '') == ''"
+    then:
+      - entity:
+          type: track
+          name: "$name"
+          fields: {kind: counter, max: 5, value: 1, note: "a step from calm (1) to the worst (5): didact do drift"}
+        as: drifting
+      - do: drift-step
+        with: {track: "@drifting"}
+    else:
+      - do: drift-step
+        with: {track: "@track"}
+source: "running-tamriel/the-gms-prep-kit#weather-and-drift"
+---
+procedure: drift-step
+title: A drift step
+help: "Roll a d6: 1-2, a step toward calm; 3-4, hold; 5-6, a step toward the worst."
+params:
+  track: {kind: ref, to: track}
+steps:
+  - table: weather-drift
+    as: wander
+  - let: {now: "max(1, min(5, @track.value))"}
+  - let: {next: "max(1, min(5, @now + @wander.step))"}
+  - set: track.value
+    value: "@next"
+  - table: weather-steps
+    with: {step: "@next"}
+    as: weather
+  - message: "{@track.name}: {@wander}: now {@weather}."
+source: "running-tamriel/the-gms-prep-kit#weather-and-drift"
+---
+action: madness
+title: Sheogorath's dial
+help: >-
+  An option: Tamriel gets strange. When things tip (a critical on a story roll, a disaster in the
+  middle of nowhere), roll a thorn (d8) on the Madgod's crucible, or choose, and play it
+  absolutely straight.
+steps:
+  - if: "not @option.sheogorath"
+    then:
+      - stop: "Sheogorath's dial is an option (`didact campaign profile sheogorath=on`)."
+  - table: madgod-crucible
+    as: madness
+  - prompt: "Play it absolutely straight: {@madness}."
+source: "running-tamriel/sheogoraths-dial"

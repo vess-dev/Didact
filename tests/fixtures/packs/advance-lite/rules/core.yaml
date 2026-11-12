@@ -1,0 +1,10 @@
+trigger: session-xp
+title: XP after the session
+on: session_end
+for: pcs
+params:
+  who: ref
+steps:
+  - set: who.xp
+    op: "+="
+    value: 1

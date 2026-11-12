@@ -1,0 +1,39 @@
+# A faction (Factions and Campaign Pools, p. 114), labelled with the factions crucible (p. 139):
+# its resources (assets, traits, relationships) and its goals, each tracked with a faction pool
+# (a timer) rolled between sessions or when events trigger it (`didact faction turn` rolls the
+# pools listed on the faction as pool_1, pool_2). When one empties, the goal is accomplished or the
+# faction moves against another (a story roll in its favor says how).
+generator: faction
+title: A faction
+help: >-
+  A faction, step by step: a label from the factions crucible, major or minor, a name, and two
+  goals, each with its faction pool (4d, 6d or 8d: choose, or let the dice). Then its resources.
+  Prefill by name: adjective, noun, size, name, goal_1, pool_1, goal_2, pool_2.
+source: "p. 114"
+creates: faction
+steps:
+  - choose_or_roll: {table: factions-crucible-1, as: adjective, prompt: "a word to label it (the first grid)"}
+  - choose_or_roll: {table: factions-crucible-2, as: noun, prompt: "and what it is (the second grid)"}
+  - choose_or_roll: {from: [major, minor], as: size, field: size, prompt: "a major or a minor force (keep 4-6 active, balancing the two)"}
+  - apply: {crucible: "{@adjective} {@noun}"}
+  - name: {prompt: "its name (the crucible says: {@adjective} {@noun}), e.g. the Druids of Oldgrove, Shaz's warband"}
+  - ask: {as: goal_1, prompt: "a goal it's working toward: its first faction pool (squander the treasury, march on Pemtown)"}
+  - choose_or_roll: {from: [4, 6, 8], as: pool_1, prompt: "how long until it happens: the pool's dice"}
+  - entity:
+      key: goal
+      type: track
+      name: "{@goal_1}"
+      fields: {kind: pool, pool: campaign, value: {value: "@pool_1", max: "@pool_1"}, note: "the goal is accomplished, or the faction moves against another (`didact do faction-goal`)"}
+      links: [{rel: of, to: character}]
+  - apply: {pool_1: "@goal"}  # the faction lists its pools: `didact faction turn` rolls them
+  - ask: {as: goal_2, prompt: "a second goal, competing with other factions'"}
+  - choose_or_roll: {from: [4, 6, 8], as: pool_2, prompt: "how long until it happens: the pool's dice"}
+  - entity:
+      key: goal
+      type: track
+      name: "{@goal_2}"
+      fields: {kind: pool, pool: campaign, value: {value: "@pool_2", max: "@pool_2"}, note: "the goal is accomplished, or the faction moves against another (`didact do faction-goal`)"}
+      links: [{rel: of, to: character}]
+  - apply: {pool_2: "@goal"}
+  - prompt: "Its resources, which show its power and influence: assets, traits and relationships (tax collectors (corrupt), a secret tribute, magical wards): `didact set <faction> resources+='…'`."
+  - prompt: "Roll its pools between sessions or when events trigger them: `didact faction turn` rolls every faction's listed pools (pool_1, pool_2, …; list another with `didact set <faction> pool_3=<track>`). When one empties, the goal is accomplished, or the faction moves against another, a story roll in its favor saying how (`didact do faction-goal`). Keep 4-6 active factions, major and minor, with competing goals."

@@ -1,0 +1,69 @@
+# A site map (Site Maps, pp. 136-137): the 5-Point Site. The GM adds the Reward first, then the
+# Entrance, a Puzzle, a Hitch and the Showdown, each described with a two-word phrase from the
+# sites or dangers crucibles (p. 138). The GM decides the path: here the points are joined in
+# order, from the entrance to the reward. The site itself is labelled from the sites crucible.
+generator: site
+title: A site map
+help: >-
+  A 5-point site, step by step: a label from the sites crucible, then its Reward, Entrance,
+  Puzzle, Hitch and Showdown, each a two-word phrase from the sites or dangers crucible (choose
+  them, or let the dice), joined in order from the entrance. region=<place> puts it inside a
+  place. Prefill by name: adjective, noun, reward_adjective, reward_noun, entrance_adjective, …
+params:
+  region: {kind: text, default: "", help: "The place it lies in, e.g. loc:the-grimwild"}
+source: "pp. 136-137"
+steps:
+  - choose_or_roll: {table: sites-crucible-1, as: adjective, prompt: "a word to label the site (the first grid)"}
+  - choose_or_roll: {table: sites-crucible-2, as: noun, prompt: "and what it is (the second grid)"}
+  - entity:
+      key: site
+      type: loc
+      name: "{@adjective} {@noun}"
+      fields: {kind: site, region: "$region"}
+
+  # The Reward first: the loot, or knowledge the party sought.
+  - choose_or_roll: {table: sites-crucible-1, as: reward_adjective, prompt: "the Reward (the GM places it first): a word"}
+  - choose_or_roll: {table: sites-crucible-2, as: reward_noun, prompt: "the Reward: what it is"}
+  - entity:
+      key: reward
+      type: loc
+      name: "{@reward_adjective} {@reward_noun}"
+      fields: {kind: point, point: reward, region: "@site"}
+  # The Entrance: a challenge that blocks the way and sets the tone.
+  - choose_or_roll: {table: sites-crucible-1, as: entrance_adjective, prompt: "the Entrance: a word"}
+  - choose_or_roll: {table: sites-crucible-2, as: entrance_noun, prompt: "the Entrance: what it is"}
+  - entity:
+      key: entrance
+      type: loc
+      name: "{@entrance_adjective} {@entrance_noun}"
+      fields: {kind: point, point: entrance, region: "@site"}
+      links: [{rel: path, to: puzzle-1}]  # the next point's draft key
+  # A Puzzle: clever thinking, roleplaying or teamwork, never just one answer.
+  - choose_or_roll: {table: sites-crucible-1, as: puzzle_adjective, prompt: "the Puzzle: a word"}
+  - choose_or_roll: {table: sites-crucible-2, as: puzzle_noun, prompt: "the Puzzle: what it is"}
+  - entity:
+      key: puzzle
+      type: loc
+      name: "{@puzzle_adjective} {@puzzle_noun}"
+      fields: {kind: point, point: puzzle, region: "@site"}
+      links: [{rel: path, to: hitch-1}]
+  # A Hitch: something unexpected (a betrayal, an illusion, a trap, a dilemma, a hidden threat).
+  - choose_or_roll: {table: dangers-crucible-1, as: hitch_adjective, prompt: "the Hitch: a word"}
+  - choose_or_roll: {table: dangers-crucible-2, as: hitch_noun, prompt: "the Hitch: what it is"}
+  - entity:
+      key: hitch
+      type: loc
+      name: "{@hitch_adjective} {@hitch_noun}"
+      fields: {kind: point, point: hitch, region: "@site"}
+      links: [{rel: path, to: showdown-1}]
+  # The Showdown: the site's central conflict, with high stakes.
+  - choose_or_roll: {table: dangers-crucible-1, as: showdown_adjective, prompt: "the Showdown: a word"}
+  - choose_or_roll: {table: dangers-crucible-2, as: showdown_noun, prompt: "the Showdown: what it is"}
+  - entity:
+      key: showdown
+      type: loc
+      name: "{@showdown_adjective} {@showdown_noun}"
+      fields: {kind: point, point: showdown, region: "@site"}
+      links: [{rel: path, to: "@reward"}]
+  - prompt: "The GM decides the path: here it runs entrance, puzzle, hitch, showdown, reward (`didact link <point> path <point>` to change it). Add curiosities, barriers and areas as the site calls for them."
+  - prompt: "Decide what monsters, dangers and challenges await at each point (`didact gen run grimwild-ce.challenge`, `grimwild-ce.monster`), and what the reward holds (`grimwild-ce.treasure`)."

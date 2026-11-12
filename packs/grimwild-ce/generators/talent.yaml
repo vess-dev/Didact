@@ -1,0 +1,40 @@
+# A new talent, made with the GM. The book has no step-by-step way to design one, but asks for
+# them: a heritage's innate gift (Background talents, p. 88: "work with the GM to create one"),
+# a magic talent's limits (p. 35), a talent reflavored to a theme (p. 52). This walks through
+# what a talent is (p. 20) in the terms talents are written in (p. 53), and makes a talent
+# record that leveling up can offer.
+generator: talent
+title: A new talent, made with the GM
+help: >-
+  A talent is a special advantage that expands vantage: often a per-session resource or a
+  pool, a new kind of action, or a rule it bends, in a short paragraph. Themed for a path (every
+  path talent is open to every path) or a heritage's innate gift; the GM has the last word on
+  whether it's strong enough to be a talent, or better as set dressing.
+creates: talent
+steps:
+  - choose: {from: [path, heritage], as: kind, prompt: "a talent themed for a path, or a heritage's innate gift (p. 88)"}
+  - if: "@kind == 'path'"
+    then:
+      - choose: {table: paths, as: path, prompt: "the path it's themed for (every path talent is open to every path, p. 52)"}
+      - apply: {path: "@path.id"}
+    else:
+      - apply: {path: background}
+  - choose: {from: [a per-session resource, a resource pool, a new kind of action, a rule it bends], as: gives, prompt: "what it gives (p. 20: it expands vantage)"}
+  - if: "@gives == 'a per-session resource'"
+    then:
+      - choose: {from: [1, 2, 3], as: uses, prompt: "how many each session (3 is common: 3 inspiration, 3 smites)"}
+      - ask: {as: resource, prompt: "what they're called (inspiration, smites, favors, …)"}
+      - apply: {per_session: "{@uses} {@resource}"}
+  - if: "@gives == 'a resource pool'"
+    then:
+      - choose: {from: [2d, 3d, 4d], as: pool, prompt: "the pool it gives each session (3d is common; rolled, it shrinks)"}
+      - ask: {as: resource, prompt: "the pool's name (Favor, Wild Shape, …)"}
+      - apply: {per_session: "a {@pool} {@resource} resource pool"}
+  - ask: {as: body, field: body, prompt: "what it does, in a short paragraph and the book's terms (p. 53): choices (one—two—three), Always, Given Time, Push Yourself, Interrupt, On a Perfect or On a Grim, a Bonus Dice Pool, Potency"}
+  - name: {prompt: "its name (like Bardic Lore, Flesh Wounds or Clout)"}
+  - choose: {from: ["no", "yes"], as: thematic, prompt: "is it a thematic path talent, a temporary or changeable one (a warlock's Eldritch Talent, a vassal's aspect, a wild shape's wild talent, p. 53)?"}
+  - if: "@thematic == 'yes'"
+    then:
+      - prompt: "A thematic path talent is fleeting: PCs (and vassals) can't use its \"One time only…\" features, and its trappings fit the character and their source (p. 53)."
+  - prompt: "With the GM: is it strong enough to be a talent, or better as set dressing (p. 88)?"
+source: "pp. 20, 35, 52-53, 88"

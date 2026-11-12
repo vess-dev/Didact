@@ -1,0 +1,45 @@
+# The world: places (regions, terrain, points of interest, rooms) and factions (setting-seeds,
+# forest-seeds, dungeon-seeds, pointcrawls).
+type: loc
+label: Place
+fields:
+  kind: {kind: text, help: "Where it sits on the map: region, terrain, poi, forest, dungeon, room."}
+  terrain: {kind: text, help: "Plains, forest, hills, mountains, swamp, …"}
+  difficulty: {kind: enum, values: [easy, tough, perilous], help: "Travel: tough +1 watch, perilous +2."}
+  landmark: {kind: text, help: "A terrain's unique, visible landmark: a reference point, best seen from high ground."}
+  poi: {kind: text, help: "Its die-drop type: settlement, waypoint, curiosity, lair, dungeon; in a forest monster, ruins, shelter, hazard; in a dungeon monster, lore, special, trap."}
+  feature: {kind: text, help: "What it is and its detail, e.g. 'Citadel, Built Atop Ruins'."}
+  culture: {kind: text, help: "Its people's character and ambition (setting seed)."}
+  abundance: {kind: text, help: "What is plentiful."}
+  scarcity: {kind: text, help: "What is rare."}
+  weather: {kind: map, help: "Average weather by season, e.g. {spring: Fair, winter: Inclement}."}
+  unusual_weather: {kind: text, help: "Unusual Weather around this terrain or landmark (the unusual-weather option)."}
+  traits: {kind: map, help: "The spirit of a forest or the attitude of a dungeon's denizens: {virtue, vice}."}
+  agenda: {kind: text, help: "What a forest wants as a whole."}
+  obstacle: {kind: text, help: "What stands in the way of its agenda."}
+  heart: {kind: flag, help: "The region's Heart: its primary settlement, POI 1."}
+  trails: {kind: list, help: "A forest's trails: runs of paths linking 3–4 points, each with its marker."}
+guidance: >-
+  A region holds terrain (each with a landmark) and 4–9 points of interest, the Heart first;
+  paths join them. Forests and dungeons are regions of their own: their POIs or rooms sit
+  inside them (`region`). Filter every rolled result through the place's theme.
+---
+type: faction
+label: Faction
+fields:
+  kind: {kind: text, help: "Its type: Artisans, Commoners, Criminals, …"}
+  advantages: {kind: list, help: "What gives them power: influence, materials, wealth, …"}
+  goals: {kind: list, help: "3–5 progressive goals toward the agenda; each gains an advantage the next one needs."}
+  progress: {kind: counter, min: 0, help: "Goals achieved (faction actions)."}
+  obstacles: {kind: list, help: "Obstacles added in play, besides the agenda's primary one."}
+  traits: {kind: list, help: "Two traits, e.g. [Secretive, Zealous]."}
+  agents: {kind: refs, to: npc, help: "Representatives, each in charge of one or more goals."}
+  WIL: {kind: int, min: 0, max: 20, default: 10, help: "Its highest-ranking agent's WIL, for opposed faction saves."}
+  resources: {kind: list}
+  leader: {kind: ref, to: npc}
+  secret: {kind: text, secret: true}
+guidance: >-
+  A faction has a type and an agent, two traits, 1–4 advantages, an agenda (what it wants) and
+  its primary obstacle, and 3–5 progressive goals toward the agenda, one of which deals with
+  the obstacle. Agents have personal motives and a WIL score. Factions act even if the PCs do
+  nothing: `didact do faction-action who=<faction>` (or `didact faction turn`).

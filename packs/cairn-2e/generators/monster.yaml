@@ -1,0 +1,59 @@
+# Creating monsters (wardens-guide/creating-monsters): roll the prompts, describe the creature
+# in plain words, then stat it. Prefill what you already know (describe it, get it):
+#   didact gen run cairn-2e.monster --auto --prefill '{"name": "Thunder Snail", "hp": 6,
+#     "armor": 2, "STR": 14, "DEX": 6, "WIL": 4, "damage": "d10"}'
+generator: monster
+title: A new monster
+help: >-
+  The Creating Monsters tables: appearance (physique and feature), traits (quirk and weakness),
+  attacks (type and critical damage) and abilities (what and whom). Describe it in plain words,
+  then stat it: HP 3 average, 6 hardy, 10+ a serious threat; Armor 0–3; STR, DEX and WIL 3
+  deficient, 6 weak, 10 average, 14 noteworthy, 18 legendary. Prefill name, hp, armor, STR,
+  DEX, WIL, damage or any roll.
+source: wardens-guide/creating-monsters
+steps:
+  - table: monster-physique
+    as: physique
+  - table: monster-feature
+    as: feature
+  - table: monster-quirk
+    as: quirk
+  - table: monster-weakness
+    as: weakness
+  - table: monster-attack-type
+    as: attack
+  - table: monster-critical-damage
+    as: critical
+  - table: monster-ability
+    as: ability
+  - table: monster-ability-target
+    as: target
+  - table: monster-categories
+    as: category
+  - let:
+      name: "{@physique} {@feature}"
+      hp: 3
+      armor: 0
+      STR: 10
+      DEX: 10
+      WIL: 10
+      damage: "'d6'"
+  - entity:
+      key: monster
+      type: monster
+      name: "{@name}"
+      fields:
+        hp: "@hp"
+        armor: "@armor"
+        STR: "@STR"
+        DEX: "@DEX"
+        WIL: "@WIL"
+        category: "@category"
+        attacks: [{name: "{@attack}", damage: "@damage"}]
+        abilities: ["{@ability} ({@target})", "Quirk: {@quirk}", "Weakness: {@weakness}"]
+        critical: "Critical Damage: {@critical}. (Write what happens to a target that fails.)"
+      body: "Appearance: {@physique}, {@feature}."
+  - prompt: "Describe it in plain words from the rolls: its appearance, traits, attacks and abilities. Then name it."
+  - prompt: "Stat it from that description: HP for avoiding harm (toughness, speed, skill), STR for surviving it, DEX 10 up or down, WIL for presence and magic. Armor only if it can take a hit without moving (1–3)."
+  - prompt: "Can it be avoided or blocked by ordinary means? Then it's an attack, through HP. If not, it's an ability: one target takes it at once; a group saves."
+  - prompt: "Write its critical damage: what happens to a target that fails the save, leaning into its threat or strangeness (e.g. 'Victim is choked unconscious')."

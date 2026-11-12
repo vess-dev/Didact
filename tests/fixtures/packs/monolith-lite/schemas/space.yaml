@@ -1,0 +1,13 @@
+type: starship
+label: Starship
+fields:
+  hull: {kind: resource, min: 0, help: "The ship's HP."}
+  shields: {kind: int, min: 0, max: 3, default: 0}
+  cargo: {kind: slots, capacity: 20, sizes: {petty: 0, normal: 1, bulky: 2}}
+  crew: {kind: refs, to: pc}
+---
+type: weapon
+label: Weapon
+fields:
+  die: {kind: dice, default: d6}
+  steps: {kind: int, min: 0, max: 3, default: 0, help: "How far overclocking has stepped its die up."}

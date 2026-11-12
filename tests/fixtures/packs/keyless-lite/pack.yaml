@@ -1,0 +1,7 @@
+id: keyless-lite
+name: Keyless (test pack)
+kind: system
+version: 0.1.0
+description: "Records made without a `key:`, whose fields hold words that read like keys."
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

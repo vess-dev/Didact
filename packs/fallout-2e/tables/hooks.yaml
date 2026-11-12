@@ -1,0 +1,242 @@
+# Fallout 2e, Overseer's Guide: Adventure Hooks (CC BY-SA 4.0). The mission-of-the-week
+# generator: a Mission Type (d6), that mission's Specific Hook (d20), a Complication (d10)
+# and a Reward (d10).
+table: hook-mission
+title: Mission Type
+description: "Step 1 of a hook: what the party is asked to do. Then roll that mission's d20 table (the
+  entry's `table`), a Complication (d10) and a Reward (d10)."
+dice: d6
+source: overseers-guide/adventure-hooks#mission-type-d6
+entries:
+  1:
+    text: Rescue — somebody is missing, captured, or stuck.
+    data: {table: hook-rescue}
+  2:
+    text: Retrieve — a specific object needs to be recovered.
+    data: {table: hook-retrieve}
+  3:
+    text: Investigate — something is wrong, and the client wants to know what.
+    data: {table: hook-investigate}
+  4:
+    text: Escort — a person or cargo needs to get somewhere alive.
+    data: {table: hook-escort}
+  5:
+    text: Negotiate — two parties are about to fight and the client wants peace (or a favorable 
+      deal).
+    data: {table: hook-negotiate}
+  6:
+    text: Sabotage — something needs to stop working, or someone needs to stop being a problem.
+    data: {table: hook-sabotage}
+---
+table: hook-rescue
+title: Rescue Hooks
+description: "Step 2 of a rescue hook: who's asking, and why."
+dice: d20
+source: overseers-guide/adventure-hooks#rescue-d20
+entries:
+  1: A settler's child has wandered into a pre-war subway and hasn't come back.
+  2: A Followers medic went to treat a distant village and never sent word home.
+  3: A caravan guard was taken by slavers on the last run; the caravaneer has caps and no crew.
+  4: A ghoul who knows a specific pre-war code is being held by a Brotherhood patrol.
+  5: A Minuteman's spouse was conscripted by raiders as a "cook."
+  6: A synth runaway has been cornered in a sealed pre-war bunker by a Courser.
+  7: A Vault-Tec scientist's granddaughter is in the vault the scientist helped seal.
+  8: A tribal elder's son was lured away by an Atom Cultist preacher.
+  9: A Pre-war Survivor thawed out of a cryo-pod and wandered off before anyone could talk to them.
+  10: A Tinker's apprentice is now deep inside a pre-war factory that has reactivated its 
+    automation.
+  11: A Followers scholar has been abducted by a pre-war AI that wants a conversation partner.
+  12: A mute child was taken by ghouls who think the child is one of their dead returned.
+  13: A caravaneer's brahmin-handler fell into a sinkhole leading to an old bunker.
+  14: A Railroad courier was captured by the Institute; the Railroad wants them freed, or silenced.
+  15: A raider chief's daughter ran off to join a Minuteman settlement.
+  16: A settlement's only doctor was kidnapped by a ghoul cult that wants its dying patriarch 
+    treated.
+  17: A pre-war auto-doc is holding a cryo-pod patient hostage and refuses to release them without 
+    clearance.
+  18: A named radio DJ's last broadcast placed them in a specific ruin under attack.
+  19: A companion from a previous campaign has gone missing and left a message behind.
+  20: Someone from the party's past. Overseer picks. The debt is real.
+---
+table: hook-retrieve
+title: Retrieve Hooks
+description: "Step 2 of a retrieve hook: who's asking, and why."
+dice: d20
+source: overseers-guide/adventure-hooks#retrieve-d20
+entries:
+  1: A pre-war cookbook the settlement's kitchen refuses to function without.
+  2: A specific Perk Magazine a Tinker needs to finish a repair.
+  3: A fusion core, fresh, for a settlement's water purifier.
+  4: A pre-war family photograph from a specific ruined house.
+  5: A holotape containing a pre-war love letter, promised to a dying ghoul.
+  6: A Water Chip. Somewhere. The settlement has weeks.
+  7: A specific unique weapon the client knows by name.
+  8: A pre-war dog tag belonging to a soldier whose great-grandchild now pays in caps.
+  9: A stolen ledger a slaver-turned-reformer needs to free the people in it.
+  10: A Vault-Tec access keycard a vault Overseer's grandson needs to open his grandfather's 
+    cold-storage unit.
+  11: A pre-war plant seed from a specific downed Vertibird's cargo hold.
+  12: A Courser chip removed from a deactivated synth — the Railroad will pay.
+  13: A functional Pip-Boy 3000. Any working unit.
+  14: A single Star Cap from a specific pre-war bottling line.
+  15: A Declaration of Independence, or an equivalent pre-war historical document.
+  16: A pre-war military codebook that the Brotherhood wants and the Enclave wants more.
+  17: A snow globe, one of seven.
+  18: A ghoul's pre-war wedding ring, left in the building where they were wed.
+  19: Something the client will not name, sealed in a lead-lined box, from a specific hot zone.
+  20: A pre-war relic the party has seen before in someone else's hands.
+---
+table: hook-investigate
+title: Investigate Hooks
+description: "Step 2 of a investigate hook: who's asking, and why."
+dice: d20
+source: overseers-guide/adventure-hooks#investigate-d20
+entries:
+  1: A settlement's water has turned red overnight. The mayor wants to know why before the people 
+    do.
+  2: A caravan vanished on a safe stretch of road. No bodies, no wreckage.
+  3: A pre-war radio tower started broadcasting again last night. Unknown signal.
+  4: Three ghoul elders in three different settlements all died at the same moment.
+  5: Children in a farming town are all drawing the same unfamiliar symbol.
+  6: A Brotherhood patrol went into a ruin and sent back a distress call on an old frequency, then 
+    silence.
+  7: A named pre-war figure has been sighted alive — impossible. The settlement wants verification.
+  8: A specific raider gang has not raided in a month; the settlements are nervous, not relieved.
+  9: A synth in a settlement has been behaving oddly. The settlement does not know they're a synth.
+  10: A pre-war vault's terminal sent a data burst to the settlement's radio. Nothing since.
+  11: A settler woke up remembering events they could not possibly have lived.
+  12: The local deathclaw population has begun moving together in formation.
+  13: A Minuteman's old war journal has entries no one remembers writing.
+  14: Three pre-war corpses appeared in a dry well overnight, dressed for the Before.
+  15: A named settlement leader has not spoken in a week and will not explain why.
+  16: An old holotape recording has begun playing on every radio in the region at the same hour.
+  17: A specific farmer's mutfruit is bearing fruit that causes nightmares.
+  18: A pre-war underground test facility has started venting steam through a collapsed grate.
+  19: The party's own rumor network reports seeing them somewhere they never went.
+  20: Something none of the senior NPCs will speak about. Only the children talk. Quietly.
+---
+table: hook-escort
+title: Escort Hooks
+description: "Step 2 of a escort hook: who's asking, and why."
+dice: d20
+source: overseers-guide/adventure-hooks#escort-d20
+entries:
+  1: A traveling merchant with an unusually heavy brahmin train.
+  2: A Followers medic going to treat a plague in a distant village.
+  3: A pre-war ghoul going home to a settlement that may not still exist.
+  4: A young vault dweller who has never been outside and needs to be delivered to the Followers 
+    clinic.
+  5: A Railroad courier who must not be caught alive.
+  6: A Brotherhood scribe carrying a single sealed case three days on foot.
+  7: A caravan of clean water bound for a settlement in a hot zone.
+  8: A political prisoner being transferred to a neutral court.
+  9: A pre-war AI copied onto a portable drive that needs to reach a specific terminal.
+  10: A condemned man being walked to his execution, who insists on his innocence.
+  11: A Minuteman recruiter on a four-settlement tour through contested ground.
+  12: A ghoul cellist carrying a pre-war instrument to a festival in a town that still remembers 
+    music.
+  13: A sealed pre-war cryogenic capsule that must be kept cold for the journey.
+  14: A super mutant who wants to testify at a human court for the death of her brother.
+  15: A synth child whose existence must not become public.
+  16: An Atom Cultist carrying a sacred relic to a specific crater for a festival.
+  17: A dying raider chief who wants to reach their home settlement to make peace before the end.
+  18: A Pre-war Survivor who wants to see a pre-war landmark before accepting that the world ended.
+  19: A Prydwen scribe going under deep cover into a settlement that hates the Brotherhood.
+  20: A Vault-Tec rep trying to reach a specific vault to deliver the mail she was assigned in 2077.
+---
+table: hook-negotiate
+title: Negotiate Hooks
+description: "Step 2 of a negotiate hook: who's asking, and why."
+dice: d20
+source: overseers-guide/adventure-hooks#negotiate-d20
+entries:
+  1: A farming settlement and a caravaneer are about to feud over a broken trade deal.
+  2: Two raider crews are about to fight for a contested ruin; a third party wants peace.
+  3: The Brotherhood and a local settlement are both claiming a reactivated pre-war facility.
+  4: A ghoul community and a human settlement have been throwing rocks over a shared well for a 
+    month.
+  5: A Minuteman militia and a ranger company both think they're protecting the same caravan route.
+  6: A tribal council wants a peace talk with a Legion frumentarius; no outsiders trust either side.
+  7: A super mutant warband and a super mutant peace-faction are about to shoot each other.
+  8: A raider chief wants to surrender and the settlement wants to hang him; a fair trial is 
+    possible.
+  9: A caravaneer owes debts to three different crews and wants an honest arbitrator.
+  10: A dying ghoul wants the party to carry a final message to the ghoul who killed him, to forgive
+    them.
+  11: Two settlements are both claiming the same newborn child from a traveling woman who died.
+  12: An Atom cult and an NCR garrison want to share a glowing crater without shooting each other.
+  13: A Followers medic and a pre-war auto-doc are both demanding to treat the same patient.
+  14: A Railroad courier and an Institute Courser want to trade one captured synth for another.
+  15: A pre-war ghoul in a locked vault wants to be allowed to leave under a general amnesty.
+  16: A settlement wants to buy out a raider gang's local raid territory; the raiders want to be 
+    heard.
+  17: A synth has become attached to a pre-war family and wants formal adoption — the family's 
+    minister objects.
+  18: A Brotherhood paladin and a Wasteland Medic want to jointly run a clinic; neither will accept 
+    the other's authority.
+  19: A ghoul and the grandchildren of the ghoul's pre-war betrayer want to sit at the same table.
+  20: Two parties from the party's past, whose conflict the party started.
+---
+table: hook-sabotage
+title: Sabotage Hooks
+description: "Step 2 of a sabotage hook: who's asking, and why."
+dice: d20
+source: overseers-guide/adventure-hooks#sabotage-d20
+entries:
+  1: A raider chief's generator is too well-defended to fight — disable it for an attack.
+  2: A Brotherhood Vertibird landing on a contested ruin must not take off again.
+  3: A pre-war automated turret network in a pre-war lab needs to be spoofed, not cleared.
+  4: A slaver caravan needs to be intercepted and its collars defused.
+  5: An Institute data-relay has to be disconnected from the settlement terminal it infiltrated.
+  6: A settlement's water pump is being drained by a distant rival's hidden tap.
+  7: A pre-war propaganda broadcast that is drawing ferals to the region must stop.
+  8: A sentient pre-war AI is running a ruin as a hunting preserve — shut it down without tripping 
+    the defenses.
+  9: A corrupted Overseer's terminal is ordering the vault's last robots to kill residents.
+  10: A pre-war Tesla grid around a bandit fortress needs a hole blown in it.
+  11: A caravan carrying weapons to a rival faction needs to be stopped without the rival knowing 
+    who.
+  12: An Institute relay in an old factory must be severed before the Institute locates a runaway.
+  13: A named raider's chem supply must be cut — the chief has held on to the gang by the chems.
+  14: An Enclave radio broadcast is being relayed through a single pre-war antenna.
+  15: A pre-war Vault-Tec tracking beacon has begun pinging a sleeping Overseer awake.
+  16: A pre-war surveillance network in a settlement is feeding data somewhere unknown.
+  17: A specific named villain needs to lose a specific pre-war relic without dying.
+  18: The Brotherhood's Citadel reactor needs to be throttled below a threshold — quietly.
+  19: A Courser's recall signal needs to be severed before the Institute can extract them.
+  20: The party's own past mission needs to be undone. The client knows who did it.
+---
+table: hook-complication
+title: Complications
+description: 'Step 3: every job has something wrong with it. Roll one.'
+dice: d10
+source: overseers-guide/adventure-hooks#complications-d10
+entries:
+  1: The client is lying about the target.
+  2: A rival party is also after the objective.
+  3: The client cannot pay in full up front.
+  4: The location is deeper in a hot zone than advertised.
+  5: A faction the party has history with is involved.
+  6: The target has a sympathetic reason for being where they are.
+  7: A clock ticks — the party has less time than they were told.
+  8: The objective is not what the client believes it is.
+  9: One of the party's companions will be compromised if the job succeeds.
+  10: A pre-war relic is involved, and someone else wants it.
+---
+table: hook-reward
+title: Rewards
+description: 'Step 4: base pay plus a bonus. Base pay for an ordinary job is 2d6 × 25 caps for the whole
+  party — more from a rich client, less from a desperate one. Roll one bonus.'
+dice: d10
+source: overseers-guide/adventure-hooks#rewards-d10
+entries:
+  1: 'Caps: the base pay again. Straight pay.'
+  2: 'Gear: a specific marketplace item worth ~200 caps the client has spare.'
+  3: 'Ammo: 3d4 boxes of a useful ammo type.'
+  4: A Perk Magazine (Overseer's pick, scene-appropriate).
+  5: A relic (Overseer's pick from Relic Roll Tables → Common Relics).
+  6: Faction reputation up one step with a friendly faction.
+  7: Settlement standing — a specific settlement owes the party a favor.
+  8: A map to a further adventure the Overseer has been holding onto.
+  9: A contact — a new NPC who now owes the party their life.
+  10: A relic and a complication — the pay is generous, and the party picks up a secondary hook.

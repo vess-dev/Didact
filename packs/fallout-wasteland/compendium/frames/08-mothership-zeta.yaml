@@ -1,0 +1,296 @@
+# Mothership Zeta (campaigns/08-mothership-zeta): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: mothership-zeta
+type: quest
+name: Mothership Zeta
+tags: [mothership-zeta, frame, side-arc]
+goal: An alien recon saucer crashed in the Capital Wasteland and began transmitting a homing beacon 
+  on a hidden band. Anyone within range gets teleported aboard the Mothership Zeta, an alien cruiser
+  in low orbit, stripped of their gear and dropped in a containment cell. The rest of the campaign 
+  is an escape, then a mutiny, then a takeover.
+date: Tuesday, 23 October 2277
+body: |-
+  *A crashed alien recon craft's signal pulls the party into the sky. Aboard a vast saucer in orbit, human abductees from every era — a samurai, a cowboy, a little girl, an astronaut, an Army medic — are waking up angry. The aliens have questions. So do the humans.*
+
+  ## GM notes
+
+  **Date.** Tuesday, 23 October 2277: a Fallout 3 side arc: that frame's date, or whenever the beacon calls. It is the calendar's start: a new campaign opens on it.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup Mothership Zeta tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** The party investigates the crash site (Point 1 below). A cold blue beam takes them. They wake in stasis tubes in a cell, gearless. Their equipment is in the ship's Relic Locker, somewhere forward near the bridge. A little girl named Sally in the next cell knows the way out — she's been here for two hundred years and she remembers the hallways.
+
+  **Plot beats.**
+
+  1. Waking in the Cell. The party comes to in stasis tubes. A Zetan worker is reading vitals from a glowing panel. Sally is already out of her tube, in the next cell, and hisses at the party to play dead. The escape window is short. The first alien they kill is the one that was tending them.
+  2. Finding Somah (and the Others). The first friendly abductee. Somah is bewildered but capable. She reveals there are more humans scattered across the ship and asks the party to find them. This scene sets the co-op tone: the party is not alone, but they are also not in charge.
+  3. The Cryo Labs. Rows of frozen humans from every era. Thawing them brings allies — Paulson the cowboy, Toshiro Kago the samurai, Elliott Tercorien the medic, and Sally's sister if the Overseer wants a heartbreak. Colonel Hartigan's pod is here too, but he has been dead inside it since the 1960s — his spacesuit is the prize. Each thaw gives the PC who opens the pod 1 Fatigue from the coolant leak. The party picks its ensemble here.
+  4. The Weapons Lab and the Relic Locker. Alien weaponry on autopsy benches. Most of the party's original gear is in a secure locker near the bridge; getting it back is its own detour. A PC who can read an alien panel may reprogram one alien weapon to recognize them as crew.
+  5. The Engineering Deck. The reactor core, gravity generators, and the Captain's Log — a translated holotape that explains why humans are being collected. The party can sabotage the gravity here to turn off the ship's death ray, at a cost: the act locks the hangar behind them.
+  6. The Observation Deck. A silent scene. A full window on Earth, in orbit, at night. No save and no mechanical effect — the Overseer asks each player, what does your character think when they see home from here? Record the answer. It will matter at the end.
+  7. The Bridge Assault. The climax. The Captain, his Guardians, and the ship's consoles. The fight is winnable in a straight shootout but more interesting if the party has pulled strings in the earlier beats (sabotaged gravity, reprogrammed an alien weapon, rallied the abductees).
+  8. The Hangar Escape. However the bridge resolves, the party leaves by stealing an intact saucer from the hangar bay. The saucer becomes a relic for the rest of the campaign (see Rewards).
+
+  **Climax.**
+
+  The party reaches the bridge. Three endings:
+
+  - **Kill the captain.** The ship drifts, its crew leaderless. The saucer is free. Every abductee who lives returns to Earth.
+  - **Sabotage the reactor.** The ship falls into the ocean. The party escapes on the saucer; the other abductees do not. The party carries those ghosts.
+  - **Take the throne.** The party takes the bridge and *keeps* it. The aliens recognize a new chain of command. The ship becomes a permanent party relic — accessible only once per campaign, but from anywhere on Earth. Whatever this costs the Overseer's campaign balance is the point.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "Mothership Zeta"}' --auto` drafts the region, 8 places, 6 people, 1 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Bestiary** (Fallout 2e / Grimfall): Zetan Worker → `zetan-worker` / `zetan`; Zetan Guardian → `zetan-guardian` / `zetan`; Zetan Captain → `zetan-captain` / `zetan`; Alien Abomination → `alien-abomination` / `zetan`; Alien Turret → `alien-turret` / `automated-turrets`; Stasis Pod Guardian → `stasis-pod-guardian` / `zetan`.
+
+  **Rewards in each system's catalog:** Captain's Sidearm (fallout-2e.captains-sidearm · grimfall.captains-sidearm); Atomic Pulverizer (fallout-2e.atomic-pulverizer · grimfall.atomic-pulverizer); Drone Cannon Ex-B (fallout-2e.drone-cannon-ex-b · grimfall.drone-cannon-ex-b); Destabilizer (fallout-2e.destabilizer); Samurai's Sword (fallout-2e.samurais-sword · grimfall.samurais-sword); Samurai Armor (fallout-2e.samurai-armor-mothership-zeta · grimfall.samurai-armor); Alien Captain's Key (grimfall.alien-captains-key); The Zeta Saucer (grimfall.the-zeta-saucer).
+source: campaigns/08-mothership-zeta#pitch
+---
+id: mothership-zeta-region
+type: loc
+name: Zeta
+tags: [mothership-zeta, region]
+mechanics:
+  fallout-2e: {kind: region}
+  grimfall: {kind: region}
+body: |-
+  ## GM notes
+
+  The ship is a single-direction dungeon. No going back. Doors seal behind the party.
+source: campaigns/08-mothership-zeta#the-place--zeta
+---
+id: mothership-zeta-the-crash-site-earth
+type: loc
+name: The Crash Site (Earth)
+tags: [mothership-zeta, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A shallow crater northwest of the Greener Pastures disposal site. A half-melted probe. The beacon still pulses.
+source: campaigns/08-mothership-zeta#the-place--zeta
+---
+id: mothership-zeta-holding-cells
+type: loc
+name: Holding Cells
+tags: [mothership-zeta, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The drop-in. Cells, stasis tubes, an alien Abduction Log holotape (tells the party they've been selected at random).
+source: campaigns/08-mothership-zeta#the-place--zeta
+---
+id: mothership-zeta-cryo-labs
+type: loc
+name: Cryo Labs
+tags: [mothership-zeta, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Abductees frozen in ice. Thaw any or all. Each thawed prisoner is a potential ally. Each thaw gives the PC who opens the pod 1 Fatigue from the coolant leak.
+source: campaigns/08-mothership-zeta#the-place--zeta
+---
+id: mothership-zeta-weapons-lab
+type: loc
+name: Weapons Lab
+tags: [mothership-zeta, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Alien atomizers and other alien energy weapons on autopsy benches. Party gear is not here.
+source: campaigns/08-mothership-zeta#the-place--zeta
+---
+id: mothership-zeta-hangar-bay
+type: loc
+name: Hangar Bay
+tags: [mothership-zeta, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Flying saucers. One is intact. The party may steal it at the climax.
+source: campaigns/08-mothership-zeta#the-place--zeta
+---
+id: mothership-zeta-engineering
+type: loc
+name: Engineering
+tags: [mothership-zeta, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The Captain's Log, the reactor core, and the ship's gravity generator. Blowing the generator kills half the crew and locks the hangar — a desperate play.
+source: campaigns/08-mothership-zeta#the-place--zeta
+---
+id: mothership-zeta-the-observation-deck
+type: loc
+name: The Observation Deck
+tags: [mothership-zeta, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A window on Earth. No combat, no save — but each player must describe what their character is thinking.
+source: campaigns/08-mothership-zeta#the-place--zeta
+---
+id: mothership-zeta-the-bridge
+type: loc
+name: The Bridge
+tags: [mothership-zeta, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The alien Captain and his three Guardians. The climax.
+source: campaigns/08-mothership-zeta#the-place--zeta
+---
+id: mothership-zeta-somah
+type: monster
+name: Somah
+aliases: ['Somah (Abductee, Ally)']
+knowledge: secret
+tags: [mothership-zeta, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Mothership Zeta'
+    hp: 5
+    STR: 12
+    DEX: 13
+    WIL: 11
+    attacks:
+    - name: pipe rifle
+      damage: d6
+      qualities: [bulky]
+    abilities:
+    - 'Grateful: On the same round the party protects her from harm, her next attack is Enhanced.'
+body: |-
+  ## GM notes
+
+  **Somah** — a wasteland survivor taken last week. Wants to get home.
+
+  A thawed wasteland survivor. Fights with the party; will not leave their side.
+
+  Fallout 2e: 5 HP, 12 STR, 13 DEX, 11 WIL, pipe rifle (d6, bulky).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/08-mothership-zeta#somah-abductee-ally
+---
+id: mothership-zeta-sally
+type: npc
+name: Sally
+knowledge: secret
+tags: [mothership-zeta, cast]
+fields: {role: a little girl abducted shortly after the bombs fell in 2077}
+body: |-
+  ## GM notes
+
+  **Sally** — a little girl abducted shortly after the bombs fell in 2077. Knows the ship better than anyone. Keeps a teddy bear in her cell.
+source: campaigns/08-mothership-zeta#cast
+---
+id: mothership-zeta-paulson
+type: npc
+name: Paulson
+knowledge: secret
+tags: [mothership-zeta, cast]
+fields: {role: a cowboy from the 1890s}
+body: |-
+  ## GM notes
+
+  **Paulson** — a cowboy from the 1890s. Revolver in his boot.
+source: campaigns/08-mothership-zeta#cast
+---
+id: mothership-zeta-toshiro-kago
+type: npc
+name: Toshiro Kago
+knowledge: secret
+tags: [mothership-zeta, cast]
+fields: {role: a samurai from feudal Japan (late 1500s)}
+body: |-
+  ## GM notes
+
+  **Toshiro Kago** — a samurai from feudal Japan (late 1500s). Speaks no English. Cuts like a laser.
+source: campaigns/08-mothership-zeta#cast
+---
+id: mothership-zeta-colonel-hartigan
+type: npc
+name: Colonel Hartigan
+knowledge: secret
+tags: [mothership-zeta, cast]
+fields: {role: a 1960s astronaut abducted mid-spaceflight}
+body: |-
+  ## GM notes
+
+  **Colonel Hartigan** — a 1960s astronaut abducted mid-spaceflight. Found dead in his cryo pod — his spacesuit is salvageable, but he is not.
+source: campaigns/08-mothership-zeta#cast
+---
+id: mothership-zeta-the-zetan-captain
+type: npc
+name: The Zetan Captain
+knowledge: secret
+tags: [mothership-zeta, cast]
+fields: {role: does not speak to lesser beings}
+body: |-
+  ## GM notes
+
+  **The Zetan Captain** — does not speak to lesser beings. Will fight to the last.
+source: campaigns/08-mothership-zeta#cast
+---
+id: mothership-zeta-elliott-tercorien
+type: npc
+name: Elliott Tercorien
+knowledge: secret
+tags: [mothership-zeta, cast]
+fields:
+  role: a pre-war Army medic from the 108th Infantry Battalion, stationed at Anchorage before 
+    abduction
+body: |-
+  ## GM notes
+
+  **Elliott Tercorien** — a pre-war Army medic from the 108th Infantry Battalion, stationed at Anchorage before abduction. Has one dose of a cure in his kit that will remove a single Rad Scar.
+source: campaigns/08-mothership-zeta#cast
+---
+id: mothership-zeta-alien-alert-clock
+type: track
+name: Alien Alert Clock
+knowledge: secret
+tags: [mothership-zeta, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: (d6) The ship's awareness. Ticks when the party fights loud (explosives, gunfire in a non-lab 
+  corridor), thaws a prisoner from stasis, or trips a Zetan security panel. At 6, a Guardian patrol 
+  sweeps every room.
+source: campaigns/08-mothership-zeta#clocks
+---
+id: mothership-zeta-reactor-clock
+type: track
+name: Reactor Clock
+knowledge: secret
+tags: [mothership-zeta, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4) Starts once the party has sabotaged the generator. Ticks when the party damages another 
+  ship system (gravity plating, coolant line, external hull), fires the main cannon, or detonates a 
+  Zetan power cell. At 4, the ship begins to fall.
+source: campaigns/08-mothership-zeta#clocks

@@ -1,0 +1,217 @@
+# People and threats (Building a Survivor; The Bestiary; Running the Wasteland). Each replaces the
+# parent's generator of the same id (npc, monster, faction, party) or is Grimfall's own (foe,
+# companion, gang). Prefill what you already know, by the names the steps bind:
+#   didact gen run grimfall.foe --auto --prefill '{"creature": "Deathclaw"}'
+generator: npc
+title: A face of the wasteland
+help: >-
+  An NPC, step by step: a background and its wises, two traits they are, what they want, what
+  they're wearing and what they'd never trade (the survivor crucibles), a tier and a role for when
+  it comes to a fight, and a name (the crucible's: what they call them). Prefill by name:
+  background, traits, desire, wearing, never_trade, tier, role, name.
+source: "building-a-survivor/backgrounds-of-the-wasteland; building-a-survivor/machines-and-strangers#survivor-crucibles; the-bestiary/introduction"
+creates: npc
+steps:
+  - choose_or_roll: {table: backgrounds, as: background, prompt: "a background (its three wises come with it)"}
+  - add: {field: backgrounds, value: "@background"}
+  - add: {field: wises, value: "@background.wises"}
+  - choose_or_roll: {table: traits, as: traits, count: 2, field: traits, prompt: "two traits they are"}
+  - choose_or_roll: {table: desires, as: desire, prompt: "what they want"}
+  - add: {field: desires, value: "@desire"}
+  - choose_or_roll: {table: survivor-wearing, as: wearing, prompt: "what they're wearing"}
+  - choose_or_roll: {table: survivor-never-trade, as: never_trade, prompt: "what they'd never trade"}
+  - apply:
+      details:
+        looks: "{@wearing}"
+        wants: "@desire"
+  - choose_or_roll: {table: combat-tiers, as: tier, prompt: "their tier, if it comes to a fight"}
+  - choose_or_roll: {table: combat-roles, as: role, prompt: "how they fight, and what makes them falter"}
+  - apply: {tier: "@tier.id", role: "@role.id"}
+  - name: {table: survivor-names}
+  - prompt: "Three features people notice (a ghoul's rasp, a thousand-caps smile; they're wearing {@wearing}): `didact set <npc> features+='…'`."
+  - prompt: "They want {@desire}: what do they want from the party, and what would they do to get it? They'd never trade {@never_trade}."
+  - prompt: "If it comes to a fight: {@tier.id}, a {@role.id} ({@role}); enemies never roll, a group of them is a pool (`didact gen run grimfall.foe`)."
+---
+generator: companion
+title: A companion
+help: >-
+  A fiercely loyal companion (the Charmer's Inspirational; a lone PC's in solo play): a hired gun,
+  a scrappy mutt, a patched-up robot, a settler you saved; 3 tricks and 2 flaws; two damage boxes,
+  marked and hurt. Its survivor rolls 3d for its tricks, 1d otherwise. Prefill by name: kind,
+  tricks, flaws, name.
+source: "the-classes/the-charmer#inspirational; running-the-wasteland/running-solo-and-duet"
+creates: companion
+steps:
+  - choose_or_roll: {from: [a hired gun, a scrappy mutt, a patched-up robot, a settler you saved], as: kind, field: kind, prompt: "what they are"}
+  - choose_or_roll: {table: companion-tricks, as: tricks, count: 3, field: tricks, prompt: "3 tricks (their survivor rolls 3d for them, 1d otherwise)"}
+  - choose_or_roll: {table: companion-flaws, as: flaws, count: 2, field: flaws, prompt: "2 flaws"}
+  - name: {table: survivor-names}
+  - prompt: "Link them to their survivor (`didact set <companion> owner=<pc>`); each PC adds a reciprocal bond with them. Two damage boxes: marked (any mark: `didact set <companion> marked=true`) and hurt (any harm); a hurt companion can always exit a scene. If you lose them, you can bond with another."
+---
+generator: monster
+title: A threat, built
+help: >-
+  A threat is a tier and a role (Building Your Own), plus what makes it vivid: senses, traits,
+  moves, what it wants, and a note on its variants. The dice give its tier, its role and an idea
+  from the GM crucible; the draft waits for a name. Prefill by name: tier, role, idea, name.
+source: "the-bestiary/introduction; options-and-dials/building-your-own"
+creates: monster
+steps:
+  - choose_or_roll: {table: combat-tiers, as: tier, prompt: "its tier: its presence"}
+  - choose_or_roll: {table: combat-roles, as: role, prompt: "its role: how it fights, and what makes it falter"}
+  - table: gm-crucible
+    as: idea
+  - name: {prompt: "what it is ({@tier.id} · {@role.id}; the GM crucible offers {@idea})"}
+  - apply: {tier: "@tier.id", role: "@role.id"}
+  - prompt: "{@tier} Put it in play as its pool with `didact gen run grimfall.foe` once it's a card (`didact compendium add`), or `didact track new '<name>' --kind pool --size {@tier.pool}`."
+  - prompt: "Its senses: what you see, hear and smell of it (`didact set <monster> senses+='…'`); its traits (what's true about it) and moves (what it does: impact moves); what it wants, and what it doesn't (`wants='…'`); and a note on its variant strains and ranks."
+  - prompt: "As a {@role.id}, it fights by {@role.fights_by}, and falters when {@role.falters_when}."
+---
+generator: foe
+title: A threat in play
+help: >-
+  Put a Bestiary threat in play: its card (a monster record) and its pools. Enemies never roll: a
+  dangerous foe is a task pool, and hurting it rolls the pool (`didact track roll`); at 0d it's
+  beaten. A pack of mooks is a single pool (usually 4d), a knot of toughs too (usually 6d); an
+  elite is a challenge unto itself (usually 6d), a boss owns the scene at 8d, or as a linked
+  challenge whose parts each carry their own pool, traits and moves, with a fail state. Elites and
+  bosses framed as challenges bring 2 bonus suspense of their own. Prefill by name: creature,
+  dice.
+source: "the-bestiary/introduction; running-the-wasteland/combat-rulings; running-the-wasteland/challenges"
+steps:
+  - choose_or_roll: {table: bestiary, as: creature, prompt: "the threat (`didact compendium find grimfall.<name>`)"}
+  - entity: {key: card, from: "@creature.id"}
+  - let:
+      whole: "{@creature}"
+      challenge: "@creature.tier == 'elite' or @creature.tier == 'boss'"
+  - if: "@creature.parts > 0"
+    then:
+      - entity:
+          key: part
+          type: track
+          name: "{@whole}: {@creature.part.1.name}"
+          fields: {kind: pool, pool: task, value: {value: "@creature.part.1.dice", max: "@creature.part.1.dice"}, suspense: 2, linked: "{@whole}", note: beaten, traits: "{default(@creature.part.1.traits, '')}", moves: "{default(@creature.part.1.moves, '')}"}
+          links: [{rel: of, to: "@card"}]
+      - entity:
+          key: part
+          type: track
+          name: "{@whole}: {@creature.part.2.name}"
+          fields: {kind: pool, pool: task, value: {value: "@creature.part.2.dice", max: "@creature.part.2.dice"}, suspense: 2, linked: "{@whole}", note: beaten, traits: "{default(@creature.part.2.traits, '')}", moves: "{default(@creature.part.2.moves, '')}"}
+          links: [{rel: of, to: "@card"}]
+      - if: "@creature.parts >= 3"
+        then:
+          - entity:
+              key: part
+              type: track
+              name: "{@whole}: {@creature.part.3.name}"
+              fields: {kind: pool, pool: task, value: {value: "@creature.part.3.dice", max: "@creature.part.3.dice"}, suspense: 2, linked: "{@whole}", note: beaten, traits: "{default(@creature.part.3.traits, '')}", moves: "{default(@creature.part.3.moves, '')}"}
+              links: [{rel: of, to: "@card"}]
+      - if: "@creature.parts >= 4"
+        then:
+          - entity:
+              key: part
+              type: track
+              name: "{@whole}: {@creature.part.4.name}"
+              fields: {kind: pool, pool: task, value: {value: "@creature.part.4.dice", max: "@creature.part.4.dice"}, suspense: 2, linked: "{@whole}", note: beaten, traits: "{default(@creature.part.4.traits, '')}", moves: "{default(@creature.part.4.moves, '')}"}
+              links: [{rel: of, to: "@card"}]
+      - if: "default(@creature.fail.dice, 0) > 0"
+        then:
+          - entity:
+              key: fail
+              type: track
+              name: "{@whole}: {@creature.fail.name}"
+              fields: {kind: pool, pool: timer, value: {value: "@creature.fail.dice", max: "@creature.fail.dice"}, note: "{@creature.fail.text}"}
+              links: [{rel: of, to: "@card"}]
+      - prompt: "A linked challenge: each part is a task pool with its own traits and moves, and 2 bonus suspense of its own (`didact do suspense spend=1 challenge=<part>`). Beat the parts that lock the whole to reach it. Its fail state: {default(@creature.fail.text, 'see the card')}"
+    else:
+      - let: {dice: "@creature.dice"}
+      - entity:
+          key: pool
+          type: track
+          name: "{@whole}"
+          fields: {kind: pool, pool: task, value: {value: "@dice", max: "@dice"}, suspense: "{if(@challenge, 2, 0)}", note: beaten}
+          links: [{rel: of, to: "@card"}]
+      - if: "@challenge"
+        then:
+          - prompt: "A {@creature.tier}: a challenge unto itself, {@dice}d, with 2 bonus suspense of its own for moves relating to it (`didact do suspense spend=1 challenge=<it>`)."
+        else:
+          - prompt: "{if(@creature.tier == 'mook', 'Mooks are fodder: one good roll clears several, and the pack is this one task pool', 'Toughs fall one at a time: one good roll takes one out, and a knot of them is this pool')} ({@dice}d); a pool of mooks or toughs is just a pool, no bonus suspense."
+  - prompt: "Hurt it and roll its pool (`didact track roll <pool>`); at 0d it's beaten. It hits back through impact moves (its moves) on the survivors' messy and grim rolls, and whenever the GM spends suspense; a move they didn't invite gets a defense roll. The card's note has its variants (`didact show <card>`)."
+---
+generator: faction
+title: A faction
+help: >-
+  A faction that matters, step by step: a name, what it has (its resources), one or two goals,
+  each tracked with a faction pool (4d, 6d or 8d: choose, or let the dice), and its standing
+  toward the party (Neutral to start). Rolled between sessions or whenever the story triggers
+  them (`didact faction turn`); keep four to six in play. Prefill by name: name, resources,
+  goal_1, pool_1, goal_2, pool_2.
+source: "running-the-wasteland/the-canyon-junction-powderkeg; running-the-wasteland/standing"
+creates: faction
+steps:
+  - name: {prompt: "the faction: Junction Town Council, the Jackal Boys, a Brotherhood Recon Lance (a raider gang: `didact gen run grimfall.gang`)"}
+  - ask: {as: resources, field: resources, prompt: "what it has: its resources (the only clean well for miles, a militia of shopkeeps)"}
+  - apply: {standing: Neutral}
+  - ask: {as: goal_1, prompt: "a goal it's working toward: its first faction pool (Hire Guns, Mark the Town for Caesar)"}
+  - choose_or_roll: {from: [4, 6, 8], as: pool_1, prompt: "how long until it lands: the pool's dice"}
+  - entity:
+      key: goal
+      type: track
+      name: "{@goal_1}"
+      fields: {kind: pool, pool: campaign, value: {value: "@pool_1", max: "@pool_1"}, note: "the goal lands on screen, or the faction moves against a rival (`didact do faction-goal`)"}
+      links: [{rel: of, to: character}]
+  - apply: {pool_1: "@goal"}
+  - ask: {as: goal_2, prompt: "a second goal (or the same faction keeps one: prefill goal_2 as '-')"}
+  - if: "@goal_2 <> '-'"
+    then:
+      - choose_or_roll: {from: [4, 6, 8], as: pool_2, prompt: "how long until it lands: the pool's dice"}
+      - entity:
+          key: goal
+          type: track
+          name: "{@goal_2}"
+          fields: {kind: pool, pool: campaign, value: {value: "@pool_2", max: "@pool_2"}, note: "the goal lands on screen, or the faction moves against a rival (`didact do faction-goal`)"}
+          links: [{rel: of, to: character}]
+      - apply: {pool_2: "@goal"}
+  - prompt: "Roll its pools between sessions or whenever the story triggers them (`didact faction turn`); in downtime, roll them all, then pick one and run it dry (`didact do faction-goal`). When one empties, the goal lands on screen, or the faction moves against a rival, with a story roll in its favor deciding how it goes; every other faction reacts. Its standing toward the party moves a step when they do something it will tell stories about (`didact do standing`)."
+---
+generator: gang
+title: A raider gang
+help: >-
+  The gang crucible (The Factions Under Arms): every campaign re-skins the raiders weekly. Roll or
+  pick a color, a name-shape, and a signature cruelty, and the next gang is nothing like the last;
+  then name it. A gang is a 4d pool led by a tough Raider Boss with better gear (`didact gen run
+  grimfall.foe --prefill '{"creature": "Raider"}'`). Prefill by name: colors, names, cruelty, name.
+source: "the-bestiary/the-factions-under-arms#gang-crucible; the-bestiary/predators-and-horrors#raider"
+creates: faction
+steps:
+  - choose_or_roll: {table: gang-colors, as: colors, field: colors, prompt: "its colors"}
+  - choose_or_roll: {table: gang-names, as: names, prompt: "its name's shape"}
+  - choose_or_roll: {table: gang-cruelty, as: cruelty, field: cruelty, prompt: "its signature cruelty"}
+  - name: {prompt: "the gang's name (its shape: {@names})"}
+  - apply: {standing: Neutral, name_shape: "@names"}
+  - prompt: "{@name}: {@colors}; {@cruelty}. In a fight, a gang is a 4d pool led by a tough Raider Boss with better gear: `didact gen run grimfall.foe` (its creature: Raider)."
+---
+generator: party
+title: The crew
+help: >-
+  Build the party first, then the people in it: 2 concepts that fit your crew and 1 that
+  definitely doesn't, a group arc (the next stretch of road, not the destination), and the
+  group-building questions to ask around the campfire. Kept as a constant lore entry, so the
+  brief always carries it. Prefill by name: concepts (a list of 2), not_concept, group_arc.
+source: "building-a-survivor/the-party; building-a-survivor/machines-and-strangers#group-building-questions"
+steps:
+  - choose_or_roll: {table: party-concepts, as: concepts, count: 2, prompt: "2 concepts that fit your party"}
+  - choose_or_roll: {table: party-concepts, as: not_concept, exclude: "@concepts", prompt: "and 1 that definitely doesn't"}
+  - choose_or_roll: {table: group-arcs, as: group_arc, prompt: "the group arc: the next stretch of road, not the destination (or write your own)"}
+  - table: group-building-questions
+    times: 3
+    distinct: true
+    as: questions
+  - entity:
+      key: party
+      type: lore
+      name: The crew
+      fields: {keys: [party, the party, the crew, group arc], kind: lore, constant: true}
+      body: "The crew: {@concepts}; definitely not {@not_concept}. Its group arc: {@group_arc}. Each survivor also has one or two character arcs of their own."
+  - prompt: "Group-building questions, at session zero or around a campfire (ask the player to your left one of these): {@questions}."
+  - prompt: "Then build the survivors to fit the crew and the arc (`didact char new`), review that the party concept, group arc and setting still fit, and run the last job you pulled together as a montage (`didact do montage who=<pc>`, 2d each)."

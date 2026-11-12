@@ -1,0 +1,24 @@
+# Bard (backgrounds/bard): the background's two d6 tables.
+table: bard-1
+title: "How did the Bards College mark you?"
+dice: d6
+source: backgrounds/bard#how-did-the-bards-college-mark-you-roll-1d6
+entries:
+  1: {text: "You went into a barrow after a lost verse of the Poetic Edda and came out with it — and with nightmares. Take your book of old songs (petty); once per day, sing the right old verse to a Nord and shift their Reaction toward you one step better.", data: {gear: [{name: "Book of old songs", size: "petty"}]}}
+  2: "You played a Jarl's hall for a season and learned that gossip is a key. Once per session, name a person of standing and the Warden tells you one true secret the court whispers about them."
+  3: "A rival skald shamed you off the stage, and you answered with a song. Give yourself a night to compose a mocking ditty about anyone, and within a week the whole settlement is singing it: that person's standing there falls one step, and they know exactly who to blame."
+  4: "You learned the lute from Inge Six Fingers herself. While you play in a calm moment, a tense room that has not yet come to blows will not, so long as you keep playing and no one is struck."
+  5: {text: "You debuted a ballad so cutting that a Thane put a price on your head. Take a false name that holds up in any city, and the warrant for your arrest (petty), folded in your boot.", data: {gear: [{name: "Warrant for your arrest", size: "petty", note: "folded in your boot"}]}}
+  6: {text: "You sang a lord under the table and walked out with his purse. Take 2d6 extra Septims and a signet ring (petty) you have not yet decided whether to return.", data: {gold_dice: "2d6", gear: [{name: "Signet ring", size: "petty"}]}}
+---
+table: bard-2
+title: "What is your signature?"
+dice: d6
+source: backgrounds/bard#what-is-your-signature-roll-1d6
+entries:
+  1: "Saga-Maker: You turn deeds into songs, and your songs carry. A deed of the party's that you set to verse counts as public for Renown, even if no one saw it, so long as it truly happened."
+  2: {text: "War-Drum: A slung marching drum. Once per day, beat it as a fight begins: until the fight ends, allies who hear it need not save against fear.", data: {gear: [{name: "Marching drum"}]}}
+  3: "Honeyed Words: You can talk almost anyone into almost anything, briefly. Once per day, talk a wary listener into one small favor; they may pass a WIL save to refuse you."
+  4: "The Mockery: A repertoire of biting verse. Once per combat, hurl a jeer at a foe who can understand you: it must pass a WIL save or its next attack is Impaired as it loses its temper."
+  5: "Ear for Coin: A trained memory for prices, debts, and who owes whom. You always know the fair value of goods, and you spot a forged coin or a tampered seal on sight."
+  6: {text: "Silver Flute: A silver-chased flute worth 100 Septims, a parting gift from Pantea Ateia of the College, and a hand for any tune. Play for your supper at any inn and you eat and sleep for free.", data: {gear: [{name: "Silver flute", note: "worth 100 Septims"}]}}

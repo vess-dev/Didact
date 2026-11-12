@@ -1,0 +1,24 @@
+# Weather in Vald (wardens-guide/vald#weather-in-vald), by Vald's seasons.
+table: vald-weather-dead
+title: Weather in the Dead season
+dice: d6
+source: wardens-guide/vald#weather-in-vald
+entries: {1: Cold and clear, 2: Frosty mornings, 3: Overcast skies, 4: Light snow, 5: Snow showers, 6: Freezing rain}
+---
+table: vald-weather-dry
+title: Weather in the Dry season
+dice: d6
+source: wardens-guide/vald#weather-in-vald
+entries: {1: Hot and sunny, 2: Warm and sunny, 3: Warm and breezy, 4: Hot and humid, 5: Occasional heatwave, 6: Dry and windy}
+---
+table: vald-weather-wet
+title: Weather in the Wet season
+dice: d6
+source: wardens-guide/vald#weather-in-vald
+entries: {1: Light rain, 2: Overcast, 3: Breezy, 4: Heavy rain, 5: Thunderstorms, 6: Occasional showers}
+---
+table: vald-weather-harvest
+title: Weather in the Harvest season
+dice: d6
+source: wardens-guide/vald#weather-in-vald
+entries: {1: Mild and sunny, 2: Cool and clear, 3: Warm and sunny, 4: Warm and breezy, 5: Light rain, 6: Heavy rain}

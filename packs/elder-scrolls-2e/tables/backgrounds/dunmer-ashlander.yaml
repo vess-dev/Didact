@@ -1,0 +1,24 @@
+# Dunmer Ashlander (backgrounds/dunmer-ashlander): the background's two d6 tables.
+table: dunmer-ashlander-1
+title: "What did the Red Year leave you?"
+dice: d6
+source: backgrounds/dunmer-ashlander#what-did-the-red-year-leave-you-roll-1d6
+entries:
+  1: {text: "Your ancestors. You carry a forebear's ashes in a clay urn (petty). Once per session, pour out a measure and ask the dead one question; they answer truly, if not kindly.", data: {gear: [{name: "Ancestor's urn", size: "petty", note: "a forebear's ashes in a clay urn"}]}}
+  2: "Azura's favor. You came north with the refugees who raised the great statue of Azura above Winterhold, where she foretold the Red Year. Once per day, at dusk or dawn — her hours — re-roll a failed WIL save."
+  3: "The long walk. You walked from the ashlands to Skyrim with a tribe of the old and the young. Once per journey, you may drive the party on through a night without making camp, and no one suffers Fatigue or Deprivation for it."
+  4: {text: "Sujamma, the strong black liquor of your people (3 uses). Share a cup of it with a Dunmer and they will tell you one thing they would never tell an outlander.", data: {gear: [{name: "Sujamma", uses: 3}]}}
+  5: {text: "A refugee's guide. You led families across the wastes for coin and oaths. Take 2d6 extra Septims and a tattered map of the old roads; you never lose your way in ash, dust, or volcanic country.", data: {gold_dice: "2d6", gear: [{name: "Tattered map", note: "of the old roads"}]}}
+  6: {text: "The Argonian chains. Raiders took you in the invasion after the Red Year, and you slipped their chains. Take a hidden shiv (d6), and the knack of slipping any rope or manacle, given a quiet moment.", data: {gear: [{name: "Shiv", damage: "d6"}]}}
+---
+table: dunmer-ashlander-2
+title: "What does a proud nomad carry?"
+dice: d6
+source: backgrounds/dunmer-ashlander#what-does-a-proud-nomad-carry-roll-1d6
+entries:
+  1: {text: "Ancestor's Ire: An amulet of ghost-worn iron (petty), bound to your bloodline. Once per day, add a Fatigue to call an ancestral shade to fight beside you for the scene (3 HP, spectral blade d6).", data: {gear: [{name: "Ancestor's Ire", size: "petty"}]}}
+  2: {text: "Glass Stinger: A glass dagger (d6) of old Velothi make, green as a beetle's back and light as a feather. It is worth a small fortune.", data: {gear: [{name: "Glass Stinger", damage: "d6"}]}}
+  3: "Dust-Walker: In ashfall, dust, or smoke, you see as on a clear day, and you need not save to slip away through it."
+  4: "The Old Ways: You keep the rites of the tribes and the songs of the Nerevarine. Dunmer everywhere hear you out and trust your word, and in Windhelm's Gray Quarter and at Raven Rock you are never without a bed."
+  5: {text: "Censer of Embers: A brass censer carried from a fallen shrine (3 uses). Fling its coals at a foe: d6 damage, and anything flammable on it catches.", data: {gear: [{name: "Censer of Embers", uses: 3, damage: "d6"}]}}
+  6: {text: "Cliff Racer Plume: A dried plume from one of the cliff racers Saint Jiub drove out of Morrowind (petty). Any Dunmer who sees it laughs, curses, and buys you a drink.", data: {gear: [{name: "Cliff Racer Plume", size: "petty"}]}}

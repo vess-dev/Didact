@@ -1,0 +1,419 @@
+# Grimwild: Community Edition (Preview 5.3), Chapter 7: Extras (pp. 188-195). CC0 1.0.
+# Hex flowers (p. 189), the story kit A Plague of Goblins (p. 191) and the solo rules (pp. 192-194).
+# Fiction pillars (p. 188) are a prep method with worked examples, and solo party mode (p. 195) is
+# rules text: neither has a table. The GM crucible reprinted on p. 192 is gm-crucible (tables/gm.yaml).
+#
+# Hex flowers: the keys are lookups by the hex the party is on (--with hex=4). hex-flower-move is not
+# printed as a table: it is the movement the book draws (p. 189), worked out hex by hex: a 1d roll
+# moves 1 up-left, 2 up, 3 up-right, 4 down-right, 5 down, 6 down-left; off the flower you wrap
+# around to the far end of the same row or column; the walls (above hex 7, and the floor under hexes
+# 3, 1 and 2, including hex 1's lower corners) keep you in place.
+#
+# The solo rules on pp. 193-194 are credited "Additional Solo Rules adapted from @slander.x on
+# Discord, with permission" (p. 192). solo-consequences is read by the scene's stakes
+# (--with stakes=high) and rolls the d8 table for them; solo-consequence-kinds says what each means.
+table: hex-flower-move
+title: "Hex flower: move"
+description: "Hex flowers are an alternative to random tables: the result depends on where you start. The party begins at the bottom hex (1) and moves to an adjacent hex based on a 1d roll: read this by the current hex (--with hex=1), then look up the key (hex-flower-spring-weather, hex-flower-kalthazar-foothills, or your own). Off the flower, you wrap around and appear in the same row or column on the side opposite; the walls at the top and bottom keep you in place, which keeps the bottom hexes most common and those at the top more rare. Worked out from the book's diagrams."
+lookup: hex
+source: "p. 189"
+entries:
+  1:
+    table: hex-flower-from-1
+  2:
+    table: hex-flower-from-2
+  3:
+    table: hex-flower-from-3
+  4:
+    table: hex-flower-from-4
+  5:
+    table: hex-flower-from-5
+  6:
+    table: hex-flower-from-6
+  7:
+    table: hex-flower-from-7
+---
+table: hex-flower-from-1
+title: "Hex flower: moving from hex 1"
+description: "Roll 1d to move from hex 1 (hex-flower-move). The flower: 7 at the top, 6 and 5 below it, 4 in the middle, 3 and 2 below that, 1 at the bottom."
+dice: d6
+source: "p. 189"
+entries:
+  1:
+    text: "hex 3 (up-left)"
+    data:
+      hex: 3
+  2:
+    text: "hex 4 (up)"
+    data:
+      hex: 4
+  3:
+    text: "hex 2 (up-right)"
+    data:
+      hex: 2
+  4:
+    text: "hex 1 (down-right: a wall, stay)"
+    data:
+      hex: 1
+  5:
+    text: "hex 1 (down: a wall, stay)"
+    data:
+      hex: 1
+  6:
+    text: "hex 1 (down-left: a wall, stay)"
+    data:
+      hex: 1
+---
+table: hex-flower-from-2
+title: "Hex flower: moving from hex 2"
+description: "Roll 1d to move from hex 2 (hex-flower-move). The flower: 7 at the top, 6 and 5 below it, 4 in the middle, 3 and 2 below that, 1 at the bottom."
+dice: d6
+source: "p. 189"
+entries:
+  1:
+    text: "hex 4 (up-left)"
+    data:
+      hex: 4
+  2:
+    text: "hex 5 (up)"
+    data:
+      hex: 5
+  3:
+    text: "hex 1 (up-right: off the flower, wrap around)"
+    data:
+      hex: 1
+  4:
+    text: "hex 6 (down-right: off the flower, wrap around)"
+    data:
+      hex: 6
+  5:
+    text: "hex 2 (down: a wall, stay)"
+    data:
+      hex: 2
+  6:
+    text: "hex 1 (down-left)"
+    data:
+      hex: 1
+---
+table: hex-flower-from-3
+title: "Hex flower: moving from hex 3"
+description: "Roll 1d to move from hex 3 (hex-flower-move). The flower: 7 at the top, 6 and 5 below it, 4 in the middle, 3 and 2 below that, 1 at the bottom."
+dice: d6
+source: "p. 189"
+entries:
+  1:
+    text: "hex 1 (up-left: off the flower, wrap around)"
+    data:
+      hex: 1
+  2:
+    text: "hex 6 (up)"
+    data:
+      hex: 6
+  3:
+    text: "hex 4 (up-right)"
+    data:
+      hex: 4
+  4:
+    text: "hex 1 (down-right)"
+    data:
+      hex: 1
+  5:
+    text: "hex 3 (down: a wall, stay)"
+    data:
+      hex: 3
+  6:
+    text: "hex 5 (down-left: off the flower, wrap around)"
+    data:
+      hex: 5
+---
+table: hex-flower-from-4
+title: "Hex flower: moving from hex 4"
+description: "Roll 1d to move from hex 4 (hex-flower-move). The flower: 7 at the top, 6 and 5 below it, 4 in the middle, 3 and 2 below that, 1 at the bottom."
+dice: d6
+source: "p. 189"
+entries:
+  1:
+    text: "hex 6 (up-left)"
+    data:
+      hex: 6
+  2:
+    text: "hex 7 (up)"
+    data:
+      hex: 7
+  3:
+    text: "hex 5 (up-right)"
+    data:
+      hex: 5
+  4:
+    text: "hex 2 (down-right)"
+    data:
+      hex: 2
+  5:
+    text: "hex 1 (down)"
+    data:
+      hex: 1
+  6:
+    text: "hex 3 (down-left)"
+    data:
+      hex: 3
+---
+table: hex-flower-from-5
+title: "Hex flower: moving from hex 5"
+description: "Roll 1d to move from hex 5 (hex-flower-move). The flower: 7 at the top, 6 and 5 below it, 4 in the middle, 3 and 2 below that, 1 at the bottom."
+dice: d6
+source: "p. 189"
+entries:
+  1:
+    text: "hex 7 (up-left)"
+    data:
+      hex: 7
+  2:
+    text: "hex 2 (up: off the flower, wrap around)"
+    data:
+      hex: 2
+  3:
+    text: "hex 3 (up-right: off the flower, wrap around)"
+    data:
+      hex: 3
+  4:
+    text: "hex 7 (down-right: off the flower, wrap around)"
+    data:
+      hex: 7
+  5:
+    text: "hex 2 (down)"
+    data:
+      hex: 2
+  6:
+    text: "hex 4 (down-left)"
+    data:
+      hex: 4
+---
+table: hex-flower-from-6
+title: "Hex flower: moving from hex 6"
+description: "Roll 1d to move from hex 6 (hex-flower-move). The flower: 7 at the top, 6 and 5 below it, 4 in the middle, 3 and 2 below that, 1 at the bottom."
+dice: d6
+source: "p. 189"
+entries:
+  1:
+    text: "hex 2 (up-left: off the flower, wrap around)"
+    data:
+      hex: 2
+  2:
+    text: "hex 3 (up: off the flower, wrap around)"
+    data:
+      hex: 3
+  3:
+    text: "hex 7 (up-right)"
+    data:
+      hex: 7
+  4:
+    text: "hex 4 (down-right)"
+    data:
+      hex: 4
+  5:
+    text: "hex 3 (down)"
+    data:
+      hex: 3
+  6:
+    text: "hex 7 (down-left: off the flower, wrap around)"
+    data:
+      hex: 7
+---
+table: hex-flower-from-7
+title: "Hex flower: moving from hex 7"
+description: "Roll 1d to move from hex 7 (hex-flower-move). The flower: 7 at the top, 6 and 5 below it, 4 in the middle, 3 and 2 below that, 1 at the bottom."
+dice: d6
+source: "p. 189"
+entries:
+  1:
+    text: "hex 5 (up-left: off the flower, wrap around)"
+    data:
+      hex: 5
+  2:
+    text: "hex 7 (up: a wall, stay)"
+    data:
+      hex: 7
+  3:
+    text: "hex 6 (up-right: off the flower, wrap around)"
+    data:
+      hex: 6
+  4:
+    text: "hex 5 (down-right)"
+    data:
+      hex: 5
+  5:
+    text: "hex 4 (down)"
+    data:
+      hex: 4
+  6:
+    text: "hex 6 (down-left)"
+    data:
+      hex: 6
+---
+table: hex-flower-spring-weather
+title: "Hex flower key: Spring weather"
+description: "An example hex flower key (What is today's weather like?): look up the hex the party lands on (--with hex=4). The party begins at the bottom hex (1) and moves with hex-flower-move."
+lookup: hex
+source: "p. 189"
+entries:
+  1: "Bright and sunny"
+  2: "Sparse clouds"
+  3: "Cloudy"
+  4: "Cloudy and windy"
+  5: "Light rain"
+  6: "Heavy rain"
+  7: "Thunderstorms"
+---
+table: hex-flower-kalthazar-foothills
+title: "Hex flower key: Kalthazar Foothills"
+description: "An example hex flower key (What will the terrain be in a day's travel?): look up the hex the party lands on (--with hex=4). The party begins at the bottom hex (1) and moves with hex-flower-move."
+lookup: hex
+source: "p. 189"
+entries:
+  1: "Rolling grasslands"
+  2: "Rolling grasslands"
+  3: "Light forest"
+  4: "Green hills"
+  5: "Cave Entrance"
+  6: "Rocky Outcropping"
+  7: "Goblin Hideout (first time)"
+---
+table: plague-of-goblins-hooks
+title: "A Plague of Goblins: hooks"
+description: "Ways to introduce the story kit A Plague of Goblins to your players. Each night, doors lock, windows shut, and Dreghill Village holds its breath as the goblins come. Fighting back only led to disappearances, so now they stay inside and refuse to speak on what happens at night. It keeps their sanity, and keeps self and neighbor alike safe from the goblin plague that transforms them all."
+source: "p. 191"
+entries:
+  - "A note nailed to a sign reads, \"Dreghill at night—keep walking.\""
+  - "A shoe lies abandoned in the square, bloody and torn."
+  - "Arriving just after sunset, things are quiet—far too quiet, really."
+---
+table: plague-of-goblins-plague
+title: "A Plague of Goblins: goblin plague"
+description: "Set it up: choose 2 causes of the sickness and 1 odd thing that's ultimately a false trail."
+source: "p. 191"
+entries:
+  - "Villagers started eating exotic roots"
+  - "A Hag in the forest"
+  - "Dead goblin in the well"
+  - "Goblin relics from a mine"
+  - "Farmer acting really suspicious"
+  - "Artifact from the god of goblins"
+---
+table: plague-of-goblins-death
+title: "A Plague of Goblins: death"
+description: "Set it up: choose 1 usual outcome when a goblin dies and 1 rare possibility that's always untimely."
+source: "p. 191"
+entries:
+  - "Dies like a goblin normally would"
+  - "Reverts into a human, dead"
+  - "Reverts into a human, alive"
+  - "Releases a cloud of plague spores"
+  - "Doesn’t stay dead"
+  - "Becomes a mass of bubbling goo"
+---
+table: plague-of-goblins-desires
+title: "A Plague of Goblins: desires"
+description: "Set it up: choose 2 goblins crave with wild abandon and 1 that strikes them with irrational dread."
+source: "p. 191"
+entries:
+  - "shiny things"
+  - "weapons"
+  - "hijinx"
+  - "animals"
+  - "humans"
+  - "flames"
+  - "sunrise"
+  - "arcana"
+  - "bell tolls"
+  - "kindness"
+  - "shadows"
+  - "secrets"
+---
+table: plague-of-goblins-twists
+title: "A Plague of Goblins: mix it up"
+description: "Twists to radically shift the scenario, perfect for replays."
+source: "p. 191"
+entries:
+  - "Mella Gortis is a hag in disguise"
+  - "villagers originally goblins"
+  - "goblin village with A Plague of Humans"
+---
+table: solo-stale-scene
+title: "Solo: when a scene gets stale"
+description: "When a scene gets stale, pick one. Solo rules adapted from @slander.x on Discord, with permission (p. 192)."
+source: "p. 193"
+entries:
+  - "spend suspense"
+  - "foreshadow a threat to come"
+  - "montage to a low stakes scene"
+  - "build up to a high stakes scene"
+---
+table: solo-consequences-low-normal
+title: "Solo consequences: low & normal stakes"
+description: "When you make an impact move, choose the most fitting consequence, or use the crucibles for ideas or randomized trouble (roll d8, pick between two). Remember that harm is reserved for particularly hard hits. Solo rules adapted from @slander.x on Discord, with permission (p. 192)."
+dice: d8
+source: "p. 193"
+entries:
+  1: ["set dressing", "set dressing"]
+  2: ["lose something", "collateral damage"]
+  3: ["one mark", "vex"]
+  4: ["strain bond", "lose something"]
+  5: ["collateral damage", "one mark"]
+  6: ["condition (short)", "lock down"]
+  7: ["two marks", "raise stakes"]
+  8: ["pressure pool", "harm"]
+---
+table: solo-consequences-high-dire
+title: "Solo consequences: high & dire stakes"
+description: "When you make an impact move, choose the most fitting consequence, or use the crucibles for ideas or randomized trouble (roll d8, pick between two). Remember that harm is reserved for particularly hard hits. On a disaster, or with dire stakes, you take the normal consequences, plus: roll a peril pool (p. 194)—harm. Solo rules adapted from @slander.x on Discord, with permission (p. 192)."
+dice: d8
+source: "p. 193"
+entries:
+  1: ["vex", "lose something"]
+  2: ["collateral damage", "condition (short)"]
+  3: ["strain bond", "two marks"]
+  4: ["harm", "condition (long)"]
+  5: ["pressure pool", "harm"]
+  6: ["twist", "lock down"]
+  7: ["counter", "condition (urgent)"]
+  8: ["two harm", "harm & condition"]
+---
+table: solo-consequences
+title: "Solo consequences"
+description: "Randomized trouble for an impact move: read by the scene's stakes (--with stakes=low|normal|high|dire), roll d8 and pick between the two. Solo rules adapted from @slander.x on Discord, with permission (p. 192)."
+lookup: stakes
+source: "p. 193"
+entries:
+  low:
+    table: solo-consequences-low-normal
+  normal:
+    table: solo-consequences-low-normal
+  high:
+    table: solo-consequences-high-dire
+  dire:
+    table: solo-consequences-high-dire
+---
+table: solo-consequence-kinds
+title: "Solo: consequences"
+description: "What the consequences in solo-consequences mean. Solo rules adapted from @slander.x on Discord, with permission (p. 192)."
+source: "p. 193"
+entries:
+  - "Set Dressing: The trouble is only narrative."
+  - "Strain Bond: Relationship with a faction or ally is strained."
+  - "Collateral Damage: The environment is destroyed or bystanders are hurt."
+  - "Lose Something: Gear or resources are ruined or lost."
+  - "Lock Down: You lose an opportunity or are forced to make a bad choice."
+  - "Raise Stakes: The scene gets more tense, moving stakes up a level."
+  - "Twist: There's an unexpected change for the worse, such as a betrayal."
+  - "Pressure Pool: Create or roll a pool."
+---
+table: quest-difficulty
+title: "Quest difficulty"
+description: "A quest is broken up into story arcs represented by linked task pools; their number and size vary based on the quest difficulty (A daunting quest is 4d+4d+6d). There should be 1 fewer pool for peril than for the quest. Completing each story arc awards 1 XP, +1 bonus XP for completing the quest. Solo rules adapted from @slander.x on Discord, with permission (p. 192)."
+source: "p. 194"
+entries:  # data: the quest's linked task pools and its peril's (one fewer; none for a trivial quest)
+  - {text: "Trivial: 4d", data: {id: trivial, pools: [4], first: 4, peril: [], peril_first: 0}}
+  - {text: "Moderate: 4d+4d", data: {id: moderate, pools: [4, 4], first: 4, peril: [4], peril_first: 4}}
+  - {text: "Daunting: 4d+4d+6d", data: {id: daunting, pools: [4, 4, 6], first: 4, peril: [4, 4], peril_first: 4}}
+  - {text: "Epic: 4d+4d+6d+6d", data: {id: epic, pools: [4, 4, 6, 6], first: 4, peril: [4, 4, 6], peril_first: 4}}
+  - {text: "Legendary: 4d+4d+6d+6d+8d", data: {id: legendary, pools: [4, 4, 6, 6, 8], first: 4, peril: [4, 4, 6, 6], peril_first: 4}}

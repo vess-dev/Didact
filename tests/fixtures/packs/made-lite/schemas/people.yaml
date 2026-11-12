@@ -1,0 +1,11 @@
+type: character
+fields:
+  hp: {kind: resource, min: 0}
+  bleeding: {kind: ref, to: track}
+  stimpaks: {kind: ref, to: track}
+---
+type: pc
+extends: character
+---
+type: npc
+extends: character

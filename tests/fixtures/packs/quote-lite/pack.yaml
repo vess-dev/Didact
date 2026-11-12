@@ -1,0 +1,7 @@
+id: quote-lite
+name: Quote (test pack)
+kind: system
+version: 0.1.0
+description: Rules that quote a parameter's text in an expression, and rules that read it whole.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

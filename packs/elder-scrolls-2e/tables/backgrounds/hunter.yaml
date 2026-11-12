@@ -1,0 +1,24 @@
+# Hunter (backgrounds/hunter): the background's two d6 tables.
+table: hunter-1
+title: "What did the hunt take from you?"
+dice: d6
+source: backgrounds/hunter#what-did-the-hunt-take-from-you-roll-1d6
+entries:
+  1: {text: "A bear killed your kin, and you killed the bear. Take its five claws on a thong (petty). When you fail a STR save against Critical Damage, you may re-roll it, and one claw falls from the thong.", data: {gear: [{name: "Bear claws on a thong", size: "petty", note: "five: when you fail a STR save against Critical Damage, re-roll it, and one claw falls"}]}}
+  2: {text: "Frostbite took two fingers on a winter hunt, and taught you the cold. Take a wolf-pelt hood (petty). When you choose where the party makes camp, the cold leaves no one Deprived that night.", data: {gear: [{name: "Wolf-pelt hood", size: "petty"}]}}
+  3: {text: "You tracked a poacher into the Pale and found only his bow. Take the yew bow (d6, bulky) and his quiver of glass arrows (3 uses): an arrow of volcanic glass punches through anything, and a hit with one ignores Armor.", data: {gear: [{name: "Yew bow", damage: "d6", size: "bulky"}, {name: "Glass arrows", uses: 3}]}}
+  4: {text: "A spriggan spared you in one of Kyne's groves and marked you kin to the wild. Once per day, a natural beast about to attack you must pass a WIL save or turn away. Take a vial of spriggan sap (petty, 1 use): rubbed into a wound, it restores 1d6 STR, and you smell of pine for a week.", data: {gear: [{name: "Spriggan sap", size: "petty", uses: 1}]}}
+  5: {text: "A sabre cat tore your leg, and you learned the rough country the slow way. Once per journey, you find a way through: one stretch of Tough or Perilous terrain costs the party no extra watch. Take a sturdy boar spear (d8).", data: {gear: [{name: "Boar spear", damage: "d8"}]}}
+  6: {text: "A Forsworn arrow nearly ended you. You kept the briar arrowhead (petty) and learned their signs: a cairn of stones, a feathered branch, a hagraven's totem. You never walk onto Forsworn ground unwarned, and their hunters know your face.", data: {gear: [{name: "Briar arrowhead", size: "petty"}]}}
+---
+table: hunter-2
+title: "What is your woodcraft?"
+dice: d6
+source: backgrounds/hunter#what-is-your-woodcraft-roll-1d6
+entries:
+  1: "Kyne's Patience: When you join the Supply action, the party's bounty die is one step larger (up to d12)."
+  2: "The Long Sight: Your eyes are a hawk's. The Warden tells you what is moving on any open ground you can see, long before the others spot it."
+  3: {text: "Hide Blind: A roll of stitched hides and pine boughs (bulky). Given an hour, you raise a blind that no passer-by will spot; you and one other can wait in it unseen through a day and a night.", data: {gear: [{name: "Hide Blind", size: "bulky"}]}}
+  4: "Pelt-Wise: Given a watch, you can dress a large fresh kill into a fine pelt (bulky) worth 2d6 × 10 Septims to the right buyer, and predators give your kills a wide berth."
+  5: {text: "Elk Whistle: A carved horn whistle that draws curious game near — or, blown wrong, something hungrier. The Warden decides what answers.", data: {gear: [{name: "Elk Whistle", note: "a carved horn whistle"}]}}
+  6: {text: "Trapsmith: A sack of iron-jaw traps (bulky, 3 uses). A creature that springs one takes d6 damage and is held fast until it passes a STR save to tear free.", data: {gear: [{name: "Iron-jaw traps", size: "bulky", uses: 3}]}}

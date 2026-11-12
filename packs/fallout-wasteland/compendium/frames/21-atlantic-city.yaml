@@ -1,0 +1,495 @@
+# Atlantic City (campaigns/21-atlantic-city): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: atlantic-city
+type: quest
+name: Atlantic City
+tags: [atlantic-city, frame, side-arc]
+goal: |-
+  In 2105, the Russo family opens the Rose Room, a supper club in an old Savage Divide mansion, and invites all of Appalachia. They are refugees from Atlantic City, "Acee," the boardwalk town on the Jersey shore that the Great War spared from a direct hit. The floods that followed drowned its center to the second floor, but the Casino Quarter stayed dry, and Acee has been running ever since on three powers held apart by a treaty:
+
+  - the Lombardi Family, the mob that owns the Casino Quarter, ruled in the name of the ailing Don Quentino by his sister Concerta;
+  - the Munis, the Atlantic City Municipal Government under Mayor Tim Lane, who keep the water pumped, the lights on, and the plant monsters out;
+  - the Showmen, the carnival clan that owns the Boardwalk under Mother Charlotte and turns every entertainment into blood sport.
+
+  The Russos left because Antonio Russo, Quentino's favored heir, lost the succession to Concerta and ran before she could finish him. Now Antonio sits upstairs pretending to be senile. His son Vin keeps the bar, his wife Evelyn sings, and his daughter Abbie is going through withdrawal from Devil's Blood, the rarest and most addictive chem on the East Coast. When the hitmen come on opening night, the party is the only muscle in the room. Following them home means following the Russos' debts all the way back to the Jersey shore.
+date: Friday, 23 October 2105
+body: |-
+  *A nightclub opens in the Savage Divide, and on opening night hitmen from New Jersey shoot up the stage. The family that owns it came from a city the bombs never touched, a boardwalk town still running on casinos, dues, and a truce three factions are dying to break. The cure for their daughter is out in the Pine Barrens, and it has wings.*
+
+  ## GM notes
+
+  **Date.** Friday, 23 October 2105: 'In 2105' (the frame); the day is Reclamation Day's. Open a campaign on it with `didact campaign new <id> --date 'Friday, 23 October 2105'`, or move one there with `didact time set 'Friday, 23 October 2105'` before its first session.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup Atlantic City tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** Flyers for the Rose Room's opening night are pinned up in every train station in Appalachia. The party arrives for the show. Evelyn Russo sings, a pair of hecklers get thrown out, and Vin, behind the bar, asks the party to keep the peace for the second set. Halfway through a tuba solo, hitmen open fire on the family. When the smoke clears, the dying ringleader admits his crew jumped the gun, and Abbie is on the floor, shaking, begging for Devil's Blood.
+
+  **Plot beats.**
+
+  1. Opening Night. The Rose Room, the hitmen, Abbie's breakdown. Evelyn storms off, Antonio babbles, and Vin asks the party to help his sister, for pay. The only dose of Devil's Blood is in Atlantic City.
+  2. The Flight to Acee. The only aircraft in Appalachia with the range is Lennox's vertibird at the Whitespring Refuge, the rebuilt Responders' new headquarters on the resort grounds. Lennox, a pre-war Air Force pilot who swears she once shot at a UFO, needs clearance from Orlando, the resort's manager. Evelyn talks; the party's reputation seals it. A refugee warns them the Jersey Devil is real. Evelyn laughs.
+  3. The Casino Quarter. Evelyn's old contact, Stanley Soriano, a low-level Lombardi, can get Devil's Blood — for a favor, and only in the high rollers' lounge of the Neapolitan Casino. Getting in takes money, luck, or nerve. The treaty means no one draws a weapon on the casino floor, which makes every conversation more dangerous.
+  4. Showman's Pier. Stanley's price is a Showman named Zayde, humiliated in front of his own crowd. The party slips backstage on the Boardwalk's pier, performs in the show, and makes Zayde a laughingstock. Back in Appalachia, Abbie is dosed and steady, for now.
+  5. Honor Bound. Vin remembers his father's trips into the flooded city center. He calls on his old Muni friend Sloane Cao, chief of the Pine Barrens Forestry Division, who kills Overgrown for a living. Once the party has pulled her scattered crew out from among the Overgrown, the Munis lead the party to the Lombardis' old warehouse, where the treaty forbids violence: talk in, bluff in, or knock four times at the back door. Behind it, a sealed chem lab. Reversing the city's flood pumps drowns it out.
+  6. Sins of the Father. Confronted, Antonio drops the act. He faked his senility to keep Concerta from finishing him, and he is the one who invented Devil's Blood. He killed a Lesser Devil that wandered in from the Pine Barrens, and his chemist, Gene, found what its blood could do. The synthetic drug cannot cure itself. An antidote needs blood from an adult Jersey Devil.
+  7. The Devil. Five pheromone lures across the flooded city center, a long night on the rooftops, and then the Jersey Devil comes down out of the dark. Kill it, and decide how much of its blood to take: enough for Abbie's cure, or enough for a fortune. See Climax.
+
+  **Climax.**
+
+  **Sins of the Father.** The Jersey Devil lies dead in the floodwater, and the party holds its blood. Abbie and Antonio face each other in the ruins of the city they both grew up in. Three resolutions:
+
+  - **The Cure.** The party harvests enough blood for the antidote and nothing more. Abbie takes it. Antonio has to decide whether to tell her he pushed her away to keep her out of the Family, and Abbie has to decide whether that is an excuse. The Russos go home to the Rose Room as a family, or at least as something like one.
+  - **The Fortune.** The party takes all the blood. Antonio sees his edge on Concerta come back to life; Gene sees a new lab; Abbie sees her father choose the drug again. With a supply of Devil's Blood in the party's hands, every faction in Acee comes looking. The Treaty Clock ticks twice.
+  - **Abbie's Choice.** Abbie refuses the cure, or takes it and walks away from all of them — to Sloane and the Munis, or back to Appalachia on her own. Antonio is left with a sealed vial and a dead monster. The Overseer decides whether Concerta has heard Antonio is alive yet.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "Atlantic City"}' --auto` drafts the region, 6 places, 13 people, 5 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Bestiary** (Fallout 2e / Grimfall): Mirelurk (Hunter) → `mirelurk-hunter` / `mirelurk`; Mirelurk King → `mirelurk-king` / `mirelurk-king`; Feral Ghoul → `feral-ghoul` / `feral-ghoul`; Radroach → `radroach` / `radroach`; Bloodbug → `bloodbug` / `bloodbug`; Protectron → `protectron` / `protectron`; Mister Handy → `mister-handy` / `mister-handy`; Thug → `thug` / `raider`; Crew Boss → `crew-boss` / `raider`; Psycho → `psycho-creature` / `raider-psycho`.
+source: campaigns/21-atlantic-city#pitch
+---
+id: atlantic-city-region
+type: loc
+name: Acee
+tags: [atlantic-city, region]
+mechanics:
+  fallout-2e: {kind: region}
+  grimfall: {kind: region}
+body: |-
+  ## GM notes
+
+  A boardwalk city between the Pine Barrens and the Atlantic.
+source: campaigns/21-atlantic-city#the-place--acee
+---
+id: atlantic-city-the-rose-room
+type: loc
+name: The Rose Room
+tags: [atlantic-city, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The Russos' supper club in the old Ingram Mansion in the Savage Divide, recently a cultist shrine, now all velvet and brass.
+source: campaigns/21-atlantic-city#the-place--acee
+---
+id: atlantic-city-the-whitespring-refuge
+type: loc
+name: The Whitespring Refuge
+tags: [atlantic-city, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The Responders' new home on the resort grounds, and the vertibird pad for Acee.
+source: campaigns/21-atlantic-city#the-place--acee
+---
+id: atlantic-city-the-casino-quarter
+type: loc
+name: The Casino Quarter
+tags: [atlantic-city, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Dry, humid, vine-choked streets around the Lombardis' spotless establishments: Quentino's Night Club and the Neapolitan Casino.
+source: campaigns/21-atlantic-city#the-place--acee
+---
+id: atlantic-city-the-atlantic-city-boardwalk
+type: loc
+name: The Atlantic City Boardwalk
+tags: [atlantic-city, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The Showmen's territory. Stage shows, arcades, rigged games, and Showman's Pier, which runs out to the Aquarium of the Atlantic, the Showmen's underwater arena.
+source: campaigns/21-atlantic-city#the-place--acee
+---
+id: atlantic-city-the-flooded-city-center
+type: loc
+name: The Flooded City Center
+tags: [atlantic-city, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Streets under water to the second floor, rowboats, rooftop walkways, Muni pump stations, City Hall, the community center, and the Lombardis' warehouse and hidden lab.
+source: campaigns/21-atlantic-city#the-place--acee
+---
+id: atlantic-city-the-pine-barrens
+type: loc
+name: The Pine Barrens
+tags: [atlantic-city, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The forest on the city's edge, where the Overgrown grow and the Jersey Devil nests. Few who go in come back out.
+source: campaigns/21-atlantic-city#the-place--acee
+---
+id: atlantic-city-lombardi-mobster
+type: monster
+name: Lombardi Mobster
+knowledge: secret
+tags: [atlantic-city, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Atlantic City'
+    hp: 6
+    armor: 1
+    STR: 12
+    DEX: 13
+    WIL: 11
+    attacks:
+    - name: .45 submachine gun
+      damage: d8
+      qualities: [bulky]
+    - {name: switchblade, damage: d6}
+    abilities:
+    - Groups of four or more are a detachment.
+    - 'Omertà: A captured mobster will not talk about Family business unless the party has something to
+      trade.'
+body: |-
+  ## GM notes
+
+  A made man of the Lombardi Family in a pinstripe suit with plating sewn into the lining. Polite on treaty ground, lethal off it.
+
+  Fallout 2e: 6 HP, 1 Armor, 12 STR, 13 DEX, 11 WIL, .45 submachine gun (d8, bulky), switchblade (d6).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/21-atlantic-city#lombardi-mobster
+---
+id: atlantic-city-showman
+type: monster
+name: Showman
+knowledge: secret
+tags: [atlantic-city, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Atlantic City'
+    hp: 6
+    STR: 13
+    DEX: 14
+    WIL: 9
+    attacks:
+    - {name: baseball bat, damage: d8}
+    - name: throwing knives
+      damage: d4
+      qualities: [ranged]
+    abilities:
+    - 'Play to the Crowd: A Showman who has an audience makes its first attack each combat Enhanced.'
+body: |-
+  ## GM notes
+
+  A performer of the Boardwalk cult in greasepaint and sequins. Every fight is a show, and every show needs an audience.
+
+  Fallout 2e: 6 HP, 13 STR, 14 DEX, 9 WIL, baseball bat (d8), throwing knives (d4, ranged).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/21-atlantic-city#showman
+---
+id: atlantic-city-overgrown
+type: monster
+name: Overgrown
+knowledge: secret
+tags: [atlantic-city, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Atlantic City'
+    hp: 5
+    armor: 1
+    STR: 14
+    DEX: 10
+    WIL: 3
+    attacks:
+    - {name: thorned lash, damage: d8}
+    abilities:
+    - Groups of four or more are a detachment.
+    - 'Rooted: Fire damage against an Overgrown is Enhanced. On its first turn in any scene, it can hold
+      still and pass for an ordinary thicket.'
+body: |-
+  ## GM notes
+
+  Ambulatory mutant flora out of the Pine Barrens — "plantfolk" to the locals. Roots, thorns, and a blossom where a face should be.
+
+  Fallout 2e: 5 HP, 1 Armor, 14 STR, 10 DEX, 3 WIL, thorned lash (d8).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/21-atlantic-city#overgrown
+---
+id: atlantic-city-lesser-devil
+type: monster
+name: Lesser Devil
+knowledge: secret
+tags: [atlantic-city, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Atlantic City'
+    hp: 7
+    STR: 14
+    DEX: 15
+    WIL: 6
+    attacks:
+    - {name: claws and bite, damage: '{d8, d6}kh1'}
+    abilities: ['Flight: Ranged attacks against a Lesser Devil in flight are Impaired.']
+body: |-
+  ## GM notes
+
+  A juvenile Jersey Devil: a goat-headed, bat-winged mutant that wanders out of the Pine Barrens into Acee's streets. Its blood is the raw stuff of Devil's Blood.
+
+  Fallout 2e: 7 HP, 14 STR, 15 DEX, 6 WIL, claws and bite (d8+d6).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/21-atlantic-city#lesser-devil
+---
+id: atlantic-city-jersey-devil
+type: monster
+name: Jersey Devil
+knowledge: secret
+tags: [atlantic-city, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Atlantic City'
+    hp: 16
+    armor: 2
+    STR: 17
+    DEX: 15
+    WIL: 10
+    attacks:
+    - {name: claws and bite, damage: '{d12, d8}kh1'}
+    - name: wing-buffet
+      damage: d8
+      qualities: [blast]
+    abilities:
+    - 'Flight: Ranged attacks against the Jersey Devil in flight are Impaired.'
+    - 'Shriek: Once per combat, every PC who can hear it makes a WIL save or loses their next action.'
+    critical: The target is carried into the air and dropped into the floodwater.
+body: |-
+  ## GM notes
+
+  The adult: a dragon-like horror the size of a vertibird, the real thing behind two centuries of Pine Barrens folklore. Drawn by pheromones; enraged by fire.
+
+  Fallout 2e: 16 HP, 2 Armor, 17 STR, 15 DEX, 10 WIL, claws and bite (d12+d8), wing-buffet (d8, blast).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/21-atlantic-city#jersey-devil
+---
+id: atlantic-city-vin-russo
+type: npc
+name: Vin Russo
+knowledge: secret
+tags: [atlantic-city, cast]
+fields: {role: the Rose Room's bartender and the Russos' only adult}
+body: |-
+  ## GM notes
+
+  **Vin Russo** — the Rose Room's bartender and the Russos' only adult. Left a job he loved with the Munis to hold his family together. Tired, decent, underpaid by his own relatives.
+source: campaigns/21-atlantic-city#cast
+---
+id: atlantic-city-evelyn-russo
+type: npc
+name: Evelyn Russo
+knowledge: secret
+tags: [atlantic-city, cast]
+fields: {role: once the finest lounge singer in Acee and a star of the Showmen's stages}
+body: |-
+  ## GM notes
+
+  **Evelyn Russo** — once the finest lounge singer in Acee and a star of the Showmen's stages. Proud, prickly, and more loyal to her children than she knows how to show.
+source: campaigns/21-atlantic-city#cast
+---
+id: atlantic-city-abbie-russo
+type: npc
+name: Abbie Russo
+knowledge: secret
+tags: [atlantic-city, cast]
+fields: {role: her father's favorite until he pushed her out of the family business}
+body: |-
+  ## GM notes
+
+  **Abbie Russo** — her father's favorite until he pushed her out of the family business. Chose the one drug she knew would hurt him most. Smart, furious, and trying to want to get clean.
+source: campaigns/21-atlantic-city#cast
+---
+id: atlantic-city-antonio-russo
+type: npc
+name: Antonio Russo
+knowledge: secret
+tags: [atlantic-city, cast]
+fields: {role: 'former heir to the Lombardi Family, playing a senile old man upstairs'}
+body: |-
+  ## GM notes
+
+  **Antonio Russo** — former heir to the Lombardi Family, playing a senile old man upstairs. Invented Devil's Blood to get an edge on Concerta. Loves his daughter badly.
+source: campaigns/21-atlantic-city#cast
+---
+id: atlantic-city-concerta-lombardi
+type: npc
+name: Concerta Lombardi
+knowledge: secret
+tags: [atlantic-city, cast]
+fields:
+  role: ruler of the Lombardi Family in her ailing brother's name, and its real power for decades
+body: |-
+  ## GM notes
+
+  **Concerta Lombardi** — ruler of the Lombardi Family in her ailing brother's name, and its real power for decades. Elegant, patient, and never forgets.
+source: campaigns/21-atlantic-city#cast
+---
+id: atlantic-city-stanley-soriano
+type: npc
+name: Stanley Soriano
+knowledge: secret
+tags: [atlantic-city, cast]
+fields: {role: a small-time Lombardi with a big mouth and the right connections}
+body: |-
+  ## GM notes
+
+  **Stanley Soriano** — a small-time Lombardi with a big mouth and the right connections.
+source: campaigns/21-atlantic-city#cast
+---
+id: atlantic-city-gene
+type: npc
+name: Gene
+knowledge: secret
+tags: [atlantic-city, cast]
+fields: {role: "the Lombardis' chemist, who helped Antonio turn devil blood into a drug"}
+body: |-
+  ## GM notes
+
+  **Gene** — the Lombardis' chemist, who helped Antonio turn devil blood into a drug.
+source: campaigns/21-atlantic-city#cast
+---
+id: atlantic-city-sloane-cao
+type: npc
+name: Sloane Cao
+knowledge: secret
+tags: [atlantic-city, cast]
+fields:
+  role: chief of the Munis' Pine Barrens Forestry Division, a monster hunter who keeps the Overgrown
+    out of Acee
+body: |-
+  ## GM notes
+
+  **Sloane Cao** — chief of the Munis' Pine Barrens Forestry Division, a monster hunter who keeps the Overgrown out of Acee. Vin's oldest friend.
+source: campaigns/21-atlantic-city#cast
+---
+id: atlantic-city-mayor-tim-lane
+type: npc
+name: Mayor Tim Lane
+knowledge: secret
+tags: [atlantic-city, cast]
+fields:
+  role: the Munis' leader, more worried about the mob and the Showmen than the plants
+body: |-
+  ## GM notes
+
+  **Mayor Tim Lane** — the Munis' leader, more worried about the mob and the Showmen than the plants.
+source: campaigns/21-atlantic-city#cast
+---
+id: atlantic-city-mother-charlotte
+type: npc
+name: Mother Charlotte
+knowledge: secret
+tags: [atlantic-city, cast]
+fields:
+  role: "with Veracio Cruz: the Showmen's matriarch and her favorite son, master of the Boardwalk's bloodiest
+    game"
+body: |-
+  ## GM notes
+
+  **Mother Charlotte and Veracio Cruz** — the Showmen's matriarch and her favorite son, master of the Boardwalk's bloodiest game.
+source: campaigns/21-atlantic-city#cast
+---
+id: atlantic-city-veracio-cruz
+type: npc
+name: Veracio Cruz
+knowledge: secret
+tags: [atlantic-city, cast]
+fields:
+  role: "with Mother Charlotte: the Showmen's matriarch and her favorite son, master of the Boardwalk's
+    bloodiest game"
+body: |-
+  ## GM notes
+
+  **Mother Charlotte and Veracio Cruz** — the Showmen's matriarch and her favorite son, master of the Boardwalk's bloodiest game.
+source: campaigns/21-atlantic-city#cast
+---
+id: atlantic-city-lennox
+type: npc
+name: Lennox
+knowledge: secret
+tags: [atlantic-city, cast]
+fields:
+  role: "with Orlando: the Whitespring Refuge's vertibird pilot and the resort's manager, who speaks for
+    its mysterious \"management\" and helps the Responders run the refuge"
+body: |-
+  ## GM notes
+
+  **Lennox and Orlando** — the Whitespring Refuge's vertibird pilot and the resort's manager, who speaks for its mysterious "management" and helps the Responders run the refuge.
+source: campaigns/21-atlantic-city#cast
+---
+id: atlantic-city-orlando
+type: npc
+name: Orlando
+knowledge: secret
+tags: [atlantic-city, cast]
+fields:
+  role: "with Lennox: the Whitespring Refuge's vertibird pilot and the resort's manager, who speaks for
+    its mysterious \"management\" and helps the Responders run the refuge"
+body: |-
+  ## GM notes
+
+  **Lennox and Orlando** — the Whitespring Refuge's vertibird pilot and the resort's manager, who speaks for its mysterious "management" and helps the Responders run the refuge.
+source: campaigns/21-atlantic-city#cast
+---
+id: atlantic-city-treaty-clock
+type: track
+name: Treaty Clock
+knowledge: secret
+tags: [atlantic-city, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: "(d6) The truce that keeps Acee's three powers from open war. Ticks when the party spills blood
+  on another faction's ground, humiliates a made man or a Showman, or carries Lombardi secrets to the
+  Munis (or the reverse). At 6, the treaty breaks: the Casino Quarter, the Boardwalk, and City Hall go
+  to war, and every faction wants the party on its side or dead."
+source: campaigns/21-atlantic-city#clocks
+---
+id: atlantic-city-concerta-clock
+type: track
+name: Concerta Clock
+knowledge: secret
+tags: [atlantic-city, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4, hidden) Concerta learning that Antonio is not senile. Ticks when the party is seen with a
+  Russo in Acee, asks about the Devil's Blood lab, or leaves a hitman alive to report. At 4, 
+  Concerta sends her best people to the Rose Room — not hitmen who jump the gun this time.
+source: campaigns/21-atlantic-city#clocks
+---
+id: atlantic-city-withdrawal-clock
+type: track
+name: Withdrawal Clock
+knowledge: secret
+tags: [atlantic-city, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: (d6) Abbie's hold on herself. Ticks each week without a dose or a cure, and each time her 
+  father lies to her. At 6, Abbie goes missing, back to Acee and the one dealer who will sell to 
+  her.
+source: campaigns/21-atlantic-city#clocks

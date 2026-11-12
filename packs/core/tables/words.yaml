@@ -1,0 +1,29 @@
+# Didact's own word lists (CC0). Roll one from each for a meaning pair: `didact meaning`.
+table: action
+title: Action
+entries: [abandon, awaken, bargain, betray, bind, break, build, burn, call, capture, carry,
+  chase, claim, conceal, corrupt, cross, deceive, defend, delay, deliver, demand, destroy,
+  discover, divide, dream, drown, escape, feast, follow, forget, gather, guard, guide, harvest,
+  heal, hide, hunt, imprison, inherit, judge, keep, lead, lose, mend, mourn, oppose, pursue,
+  question, release, remember, repay, rescue, return, reveal, sacrifice, search, seize, shelter,
+  sing, steal, summon, surrender, tempt, trade, transform, trap, trust, unite, wait, wander,
+  warn, weaken, whisper, wound]
+---
+table: theme
+title: Theme
+entries: [ambition, ancestors, ash, balance, blood, bones, bread, burden, cold, crown, debt,
+  desire, dogs, door, duty, echo, exile, faith, family, fear, fire, flood, fog, forest, freedom,
+  gate, ghost, gift, gold, grief, guilt, harvest, home, honor, hunger, iron, key, law, letter,
+  lie, light, loyalty, map, mask, memory, mirror, moon, name, oath, omen, path, plague, power,
+  promise, rain, relic, river, road, root, ruin, salt, secret, seed, shadow, silence, smoke,
+  song, stone, storm, stranger, thread, throne, tide, tower, trade, wall, war, water, wealth,
+  winter, wolf, youth]
+---
+table: descriptor
+title: Descriptor
+entries: [ancient, bitter, bright, broken, buried, calm, careful, clever, cold, cracked,
+  crooked, cruel, dark, dead, distant, drowned, dusty, eager, empty, faded, "false", feral,
+  fragile, frozen, gentle, gilded, grim, heavy, hidden, hollow, honest, hungry, lost, loud,
+  lucky, mad, mournful, narrow, noble, old, pale, patient, proud, quiet, rare, restless, rotten,
+  rusted, sacred, savage, secret, shattered, sick, silent, slow, small, sour, strange, sweet,
+  tangled, tired, twisted, vast, veiled, warm, wary, weary, wet, wicked, wild, withered, young]

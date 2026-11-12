@@ -1,0 +1,84 @@
+# Bonds, omens and the time between sessions (overseers-guide/bonds-and-omens, growth;
+# players-guide/procedures#downtime). Fallout 2e has no XP and no growth triggers: characters
+# grow through Scars (the attack applies them), Training (a Downtime Action, recorded with `didact
+# char advance`) and Acquisition (what they carry). Each rule replaces the parent's of the same id.
+action: resolve-bond
+title: Resolve a Bond
+help: >-
+  A Bond resolved in play (its debt paid, its letter delivered, its battery cell removed): its
+  thread is done and it leaves the sheet. A removed Lead Battery Cell weighs nothing any more.
+params:
+  who: ref
+  bond: {kind: ref, help: "The Bond's thread, made with the character (`didact quest list`)"}
+steps:
+  - if: "default(@bond.goal, '') == ''"
+    then:
+      - stop: "{@bond.name} has no Bond text (goal): name the Bond's thread, e.g. `didact quest list`."
+  - set: who.bond
+    op: "-="
+    value: "@bond.goal"
+  - set: bond.status
+    value: done
+  - if: "'Lead Battery Cell' in @bond.goal and default(@who.burden, 0) > 0"
+    then:
+      - unset: who.burden
+      - if: "'Lead Battery Cell' in @who.inventory"
+        then:
+          - take: Lead Battery Cell
+            from: "@who"
+      - message: "The Lead Battery Cell is out: it weighs nothing now, and {@who.name} can truly die again."
+  - message: "{@who.name} resolves a Bond: {@bond.name}."
+source: overseers-guide/bonds-and-omens#bonds
+---
+action: resolve-omen
+title: Resolve an Omen
+help: >-
+  An Omen is the slow pulse of the campaign; it needn't resolve in one session or ten. When the
+  party reveals the truth behind it or ends its danger, its thread is done.
+params:
+  omen: {kind: ref, help: "The Omen's thread (`didact quest list`)"}
+steps:
+  - set: omen.status
+    value: done
+  - message: "The Omen is resolved: {@omen.name}."
+source: overseers-guide/bonds-and-omens#omens
+---
+trigger: between-sessions
+title: Between sessions
+help: >-
+  When a session ends, for each PC: a Downtime Action, growth through Training, and the Bonds and
+  Omen kept alive.
+on: session_end
+for: pcs
+params: {who: ref}
+when: "@who.status <> 'dead' and @who.status <> 'feral'"
+steps:
+  - reminder: "Between sessions {@who.name} may take one Downtime Action somewhere safe and out of recovery: research, training, strengthening ties (`didact do downtime who={@who.id} action=…`), scavenging a mapped ruin (`didact do scavenge`), crafting (`didact do craft`) or curing an addiction (`didact do cure-addiction`). Training that pays off is growth: `didact char advance {@who.id}`. Did {@who.name} come out of the session with something new (a Scar, a trick, a friend, an enemy)?"
+  - reminder: "A Bond untouched for three sessions should activate: the NPC comes to collect, the place becomes reachable, the cell grows heavier. And every session should show one small piece of evidence that the Omen is still unfolding."
+source: overseers-guide/growth#overseers-job
+---
+trigger: stone-heart
+title: The Lead Battery Cell grows heavier
+help: >-
+  Bond 15: the Lead Battery Cell an auto-doc installed grows heavier by one slot each month (its
+  weight is the `burden` counter). A calendar with months counts its own; without one, a month is
+  30 days. A long skip past several months counts the first by the calendar and the others as 30
+  days each.
+on: time
+for: pcs
+params: {who: ref}
+when: >-
+  default(@who.burden, 0) > 0 and if(default(@time.day_of_month, 0) > 0,
+  @time.passed > (@time.day_of_month - 1) * 86400 + @time.seconds % 86400,
+  (@time.day - 1) // 30 > ((@time.seconds - @time.passed) // 86400) // 30)
+steps:
+  - let:
+      months: >-
+        if(default(@time.day_of_month, 0) > 0,
+        1 + (@time.passed - (@time.day_of_month - 1) * 86400 - @time.seconds % 86400 - 1) // 2592000,
+        (@time.day - 1) // 30 - ((@time.seconds - @time.passed) // 86400) // 30)
+  - set: who.burden
+    op: "+="
+    value: "@months"
+  - message: "{@who.name}'s Lead Battery Cell grows heavier: it takes {@who.burden} slots now. Until someone who knows what they're doing removes it, they cannot truly die: the cell keeps their heart beating."
+source: players-guide/character-creation#bonds--11-to-20

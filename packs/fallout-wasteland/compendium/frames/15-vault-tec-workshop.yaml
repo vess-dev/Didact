@@ -1,0 +1,397 @@
+# Vault-Tec Workshop (campaigns/15-vault-tec-workshop): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: vault-tec-workshop
+type: quest
+name: Vault-Tec Workshop
+tags: [vault-tec-workshop, frame, side-arc]
+goal: A radio broadcast on a pre-war Vault-Tec frequency advertises Vault 88 — "the future of 
+  American living, opening soon." The vault was under construction when the bombs fell. Now Overseer
+  Valery Barstow, a ghoul from the pre-war staff, is still at her post and ready to finish the job. 
+  She needs test subjects, researchers, and someone expendable to run experiments on the settlers 
+  she promises to invite. She is polite, brilliant, and monstrous in the old Vault-Tec way.
+date: Sunday, 23 October 2287
+body: |-
+  *Vault 88, never finished, never sealed, never populated. The vault's pre-war Overseer is still alive — two centuries a ghoul — and she has big plans for its first real residents. The party is invited to help her run her overdue experiments. On living subjects. Forever.*
+
+  ## GM notes
+
+  **Date.** Sunday, 23 October 2287: a Fallout 4 side arc: that frame's date, or whenever Vault 88's broadcast is heard. Open a campaign on it with `didact campaign new <id> --date 'Sunday, 23 October 2287'`, or move one there with `didact time set 'Sunday, 23 October 2287'` before its first session.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup Vault-Tec Workshop tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** The radio signal. A cave on the south edge of the Commonwealth opens into the vault's main construction shaft. The party descends into an unfinished concrete cathedral. Barstow greets them from a monitor.
+
+  **Plot beats.**
+
+  1. The Descent. The party follows the signal into a cave mouth and down a pre-war construction shaft. The vault is an unfinished concrete cathedral — sconces hanging loose, blueprints fluttering on the walls, a half-built blast door waiting for someone to cut the final weld.
+  2. Meeting Barstow. Overseer Valery Barstow greets them from a monitor in her cheerful, polite voice. She explains the situation, thanks them for coming, and asks them to help her finish the vault. Her first favor sounds small: clear a nest of radscorpions from the Deep Caverns. She frames it as settler safety. It is.
+  3. Clearing the Deep Caverns. The excavation zones are Thermal Radscorpion country. Foreman Hunter and his ghoulified work crew live down there too. If the party approaches from the right angle, Hunter will talk first — he is friendly from behind and hostile from the front, which is a nice metaphor for the whole campaign.
+  4. The First Experimental Pod. Barstow hands the party a blueprint for one of the four pods — Phoropter, Slot Machine, Soda Fountain, or Power Cycle 1000. Each is a pre-war compliance-conditioning experiment with a deliverable relic at the end. Building the first pod is presented as structural work. The experiment is something they will have to reckon with later.
+  5. Clem Arrives. The first real volunteer settler. A simple, friendly man named Clem shows up at the Intake Bay, attracted by Barstow's broadcast. Barstow asks the party to "help orient him." What the party does with Clem is the campaign's first hard moral test — the Overseer should draw the scene out and let each player speak.
+  6. The Second and Third Pods. As pods come online, more settlers arrive, drawn by the radio. The Mutiny Clock starts ticking. Each subsequent pod ratchets the ethical weight. The fourth pod is the breaking point for any party that still has a conscience.
+  7. Ezra Caldwell in the Intake Bay. A hidden settler Barstow invited before the party arrived, sealed inside the Intake Bay. A day of food left. Finding him is a discovery; freeing him without Barstow's knowledge sets up the climactic confrontation.
+  8. Confronting Barstow. The party must decide what the vault becomes. Stop her, take over, run the experiments her way, or collapse the cave mouth and seal her in. See Climax below.
+
+  **Climax.**
+
+  Barstow wants to run the full experimental program on a full settler population. The party has to choose what Vault 88 becomes.
+
+  - **Stop her.** Confront Barstow in her suite. She fights like a ghoul who remembers her pre-war commission. Kill her, and two centuries of Vault-Tec know-how die with her. Cut her loose, and she walks out a changed woman.
+  - **Take over.** Kill Barstow, finish the experiments ethically (each experiment relic can be "cleaned up" with a DEX or WIL save to retain the benefit without the cruelty). Open the vault as a party-run settlement. A surprising number of settlers show up anyway.
+  - **Run the experiments her way.** The vault fills. The party gains caps, relics, and a reputation that closes a lot of doors in the Commonwealth. Karma slides to −2 (Infamous), one step per session as word spreads.
+  - **Collapse the vault.** Blow the cave mouth. Seal Barstow inside with her ghouls. She outlives the party by a century. She remembers the party's names.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "Vault-Tec Workshop"}' --auto` drafts the region, 10 places, 3 people, 3 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Bestiary** (Fallout 2e / Grimfall): Radscorpion → `radscorpion` / `radscorpion`; Radscorpion, Giant → `radscorpion-giant` / `radscorpion`; Thermal Radscorpion → `thermal-radscorpion` / `radscorpion`; Protectron → `protectron` / `protectron`; Feral Ghoul → `feral-ghoul` / `feral-ghoul`.
+
+  **Rewards in each system's catalog:** The Phoropter (grimfall.the-phoropter); Lucky Slot Amulet (grimfall.lucky-slot-amulet); Bottoms-Up Tap (grimfall.bottoms-up-tap); Power Cycle 1000 (grimfall.power-cycle-1000); Vault-Tec Lab Coat (grimfall.vault-tec-lab-coat).
+source: campaigns/15-vault-tec-workshop#pitch
+---
+id: vault-tec-workshop-region
+type: loc
+name: Vault 88
+tags: [vault-tec-workshop, region]
+mechanics:
+  fallout-2e: {kind: region}
+  grimfall: {kind: region}
+body: |-
+  ## GM notes
+
+  Vault 88 is a literal construction site. Big empty caverns, scattered pre-war equipment, half-built section walls. The party can choose how to build it — or refuse.
+source: campaigns/15-vault-tec-workshop#the-place--vault-88
+---
+id: vault-tec-workshop-main-entry
+type: loc
+name: Main Entry
+tags: [vault-tec-workshop, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A huge vault door, half-installed. Functional enough to lock someone in.
+source: campaigns/15-vault-tec-workshop#the-place--vault-88
+---
+id: vault-tec-workshop-the-overseers-suite
+type: loc
+name: The Overseer's Suite
+tags: [vault-tec-workshop, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Barstow's command room. Monitors, a terminal that orders experiments, two centuries of tidy Vault-Tec paperwork.
+source: campaigns/15-vault-tec-workshop#the-place--vault-88
+---
+id: vault-tec-workshop-the-dormitories
+type: loc
+name: The Dormitories
+tags: [vault-tec-workshop, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Bare rooms, mattresses, graffiti from construction workers.
+source: campaigns/15-vault-tec-workshop#the-place--vault-88
+---
+id: vault-tec-workshop-the-cafeteria
+type: loc
+name: The Cafeteria
+tags: [vault-tec-workshop, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Ancient Vault-Tec mess hall, still stocked.
+source: campaigns/15-vault-tec-workshop#the-place--vault-88
+---
+id: vault-tec-workshop-experimental-pod-a-the-phoropter
+type: loc
+name: Experimental Pod A — The Phoropter
+tags: [vault-tec-workshop, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A pre-war eye-test rig wired to a mind-alteration experiment. Finishing it creates a relic helmet.
+source: campaigns/15-vault-tec-workshop#the-place--vault-88
+---
+id: vault-tec-workshop-experimental-pod-b-the-slot-machine
+type: loc
+name: Experimental Pod B — The Slot Machine
+tags: [vault-tec-workshop, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A gambling-reward rig designed to reinforce compliance via dopamine spikes. Finishing it creates a relic amulet.
+source: campaigns/15-vault-tec-workshop#the-place--vault-88
+---
+id: vault-tec-workshop-experimental-pod-c-the-soda-fountain
+type: loc
+name: Experimental Pod C — The Soda Fountain
+tags: [vault-tec-workshop, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A cola dispenser that mixes subject-specific chems into drinks. Finishing it creates a relic drink tap.
+source: campaigns/15-vault-tec-workshop#the-place--vault-88
+---
+id: vault-tec-workshop-experimental-pod-d-the-power-cycle-1000
+type: loc
+name: Experimental Pod D — The Power Cycle 1000
+tags: [vault-tec-workshop, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A stationary bike that powers the vault when pedaled and doses the rider with addictive stimulants. Finishing it creates a relic bicycle.
+source: campaigns/15-vault-tec-workshop#the-place--vault-88
+---
+id: vault-tec-workshop-the-deep-caverns
+type: loc
+name: The Deep Caverns
+tags: [vault-tec-workshop, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The unfinished excavation zones. A Radscorpion Queen nests here. One pre-war construction foreman, ghoulified, still roams the tunnels with his crew.
+source: campaigns/15-vault-tec-workshop#the-place--vault-88
+---
+id: vault-tec-workshop-the-settler-intake-bay
+type: loc
+name: The Settler Intake Bay
+tags: [vault-tec-workshop, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Empty, as far as anyone has told the party (see Ezra Caldwell). Where arriving settlers are processed.
+source: campaigns/15-vault-tec-workshop#the-place--vault-88
+---
+id: vault-tec-workshop-vault-88-radscorpion-queen
+type: monster
+name: Vault-88 Radscorpion Queen
+knowledge: secret
+tags: [vault-tec-workshop, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Vault-Tec Workshop'
+    hp: 20
+    armor: 3
+    STR: 17
+    DEX: 12
+    WIL: 7
+    attacks:
+    - {name: stinger, damage: d12}
+    - {name: claws, damage: d10}
+    abilities:
+    - 'Burrow: Once per combat, when first reduced to 0 HP, she retreats into the wall and returns the
+      next round at half HP.'
+  grimfall:
+    tier: tough
+    role: lurker
+    category: Predators & Horrors
+    senses:
+    - gleaming black armor and a whipping tail
+    - grinding sand and clacking pincers
+    - hot dust and acrid venom
+    traits: [burrows and ambushes, 'armored, but the tail is exposed']
+    moves: [Venom Sting (4d Poison), Pincer Grapple]
+    wants: to sting, then drag off the paralyzed — not to be flipped or lose its stinger
+    note: "Sever the tail to defang it — a setup worth chasing. Albinos and giants are elite-sized burrowers
+      whose venom kills yao guai; the deep-cavern thermal strain bleeds furnace heat that armor can't
+      answer, and dies within a day of leaving its caves. A nest queen (Vault 88 keeps one) is an 8d boss
+      whose fail state is escape: at 2d it burrows away and comes back healed — collapse the bolt-hole
+      first."
+body: |-
+  ## GM notes
+
+  Nest-mother of the Deep Caverns. Armored above, soft beneath — attacks from below or behind ignore her Armor.
+
+  Fallout 2e: 20 HP, 3 Armor, 17 STR, 12 DEX, 7 WIL, stinger (d12), claws (d10).
+
+  Grimfall: its card is `grimfall.radscorpion` (Radscorpion), in this record's grimfall block.
+source: campaigns/15-vault-tec-workshop#vault-88-radscorpion-queen
+---
+id: vault-tec-workshop-foreman-hunter
+type: monster
+name: Foreman Hunter
+aliases: [Foreman Hunter (Ghoulified)]
+knowledge: secret
+tags: [vault-tec-workshop, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Vault-Tec Workshop'
+    hp: 8
+    armor: 1
+    STR: 13
+    DEX: 11
+    WIL: 12
+    rad_immune: true
+    attacks:
+    - {name: rivet gun, damage: d8}
+    - {name: pipe wrench, damage: d6}
+    abilities:
+    - 'Old Crew: He leads a detachment of ghoulified workers (3 HP, 10 STR, 10 DEX, 8 WIL, pipe tools
+      (d6)).'
+  grimfall:
+    tier: mook
+    upto: tough
+    role: protector
+    category: Faces of the Wasteland
+    fact: Foremen, tinkers, comedians, assistants — two centuries at their posts. Usually a 
+      conversation, always a story.
+body: |-
+  ## GM notes
+
+  **Foreman Hunter** — the ghoulified construction boss in the deep tunnels. Friendly if approached from behind the lines, hostile if approached from Barstow's side.
+
+  Pre-war construction foreman, still wearing his hardhat. Friendly from behind, hostile from the front.
+
+  Fallout 2e: 8 HP, 1 Armor, 13 STR, 11 DEX, 12 WIL, rivet gun (d8), pipe wrench (d6).
+
+  Grimfall: its card is `grimfall.the-vault-keepers` (The Vault Keepers), in this record's grimfall block.
+source: campaigns/15-vault-tec-workshop#foreman-hunter-ghoulified
+---
+id: vault-tec-workshop-overseer-valery-barstow
+type: monster
+name: Overseer Valery Barstow
+knowledge: secret
+tags: [vault-tec-workshop, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Vault-Tec Workshop'
+    hp: 10
+    armor: 1
+    STR: 9
+    DEX: 12
+    WIL: 18
+    rad_immune: true
+    attacks:
+    - {name: 10mm pistol, damage: d8}
+    - {name: lab scalpel, damage: d6}
+    abilities:
+    - 'Terminal Override: Once per combat, she activates every Protectron in the vault against a single
+      target for one round.'
+    - 'Smiling Voice: Automatically passes Morale saves.'
+  grimfall:
+    tier: elite
+    role: tactician
+    category: Faces of the Wasteland
+    fact: Two centuries dead and still running the experiment; every protectron in Vault 88 answers 
+      her smile.
+body: |-
+  ## GM notes
+
+  **Overseer Valery Barstow** — pre-war Vault-Tec, ghoulified, crisp, pitiless. Still wearing a Vault-Tec blazer. Has a cheerful tone.
+
+  Vault 88's ghoulified pre-war Overseer. Calm, brilliant, monstrous.
+
+  Fallout 2e: 10 HP, 1 Armor, 9 STR, 12 DEX, 18 WIL, 10mm pistol (d8), lab scalpel (d6).
+
+  Grimfall: its card is `grimfall.overseer-barstow` (Overseer Barstow), in this record's grimfall block.
+source: campaigns/15-vault-tec-workshop#overseer-valery-barstow
+---
+id: vault-tec-workshop-clem
+type: npc
+name: Clem
+aliases: ['Clem, the first volunteer']
+knowledge: secret
+tags: [vault-tec-workshop, cast]
+fields: {role: a simple-minded settler the party may invite down for "work"}
+body: |-
+  ## GM notes
+
+  **Clem, the first volunteer** — a simple-minded settler the party may invite down for "work." A test: what the party does with Clem defines the campaign.
+source: campaigns/15-vault-tec-workshop#cast
+---
+id: vault-tec-workshop-the-vault-tec-representative
+type: npc
+name: The Vault-Tec Representative
+knowledge: secret
+tags: [vault-tec-workshop, cast]
+fields:
+  role: the door-to-door ghoul salesman who never got a vault spot of his own; pitches Vault 88 
+    apartments like a timeshare
+body: |-
+  ## GM notes
+
+  **The Vault-Tec Representative** — (optional cameo) the door-to-door ghoul salesman who never got a vault spot of his own; pitches Vault 88 apartments like a timeshare.
+source: campaigns/15-vault-tec-workshop#cast
+---
+id: vault-tec-workshop-ezra-caldwell
+type: npc
+name: Ezra Caldwell
+knowledge: secret
+tags: [vault-tec-workshop, cast]
+fields: {role: a settler Barstow invited before the party arrived}
+body: |-
+  ## GM notes
+
+  **Ezra Caldwell** — (optional) a settler Barstow invited before the party arrived. Still sealed in the Intake Bay alive, with a day of food left.
+source: campaigns/15-vault-tec-workshop#cast
+---
+id: vault-tec-workshop-experiment-clock
+type: track
+name: Experiment Clock
+knowledge: secret
+tags: [vault-tec-workshop, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4) Barstow's patience with the party's progress. Starts at 0; ticks when the party refuses 
+  an experimental pod, frees a subject mid-experiment, or spends a Downtime Action on anything other
+  than her work. Completing an experimental pod walks it back one. At 4, she starts issuing threats 
+  to the first Bond-NPC the party knows from outside the vault.
+source: campaigns/15-vault-tec-workshop#clocks
+---
+id: vault-tec-workshop-tunnel-clock
+type: track
+name: Tunnel Clock
+knowledge: secret
+tags: [vault-tec-workshop, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: (d6) Radscorpion intrusion from the deep caverns. Ticks when the party detonates explosives in
+  the caverns, breaches an unmapped wall, or leaves a scouting radscorpion alive to skitter back to 
+  the nest. At 6, a queen breaks through a wall of the dormitories.
+source: campaigns/15-vault-tec-workshop#clocks
+---
+id: vault-tec-workshop-mutiny-clock
+type: track
+name: Mutiny Clock
+knowledge: secret
+tags: [vault-tec-workshop, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4) Settler patience, once any settler has been strapped into a pod. Ticks when a settler 
+  sees the party participate in an experiment, when a pod subject visibly deteriorates in front of 
+  the others, or when Barstow publicly overrules the party on a settler's behalf. At 4, the settlers
+  revolt against Barstow and the party.
+source: campaigns/15-vault-tec-workshop#clocks

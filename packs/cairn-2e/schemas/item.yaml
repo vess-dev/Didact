@@ -1,0 +1,44 @@
+# Items, spellbooks and relics (players-guide/marketplace, wardens-guide/spellbooks, reliquary).
+type: item
+label: Item
+fields:
+  size: {kind: enum, values: [petty, normal, bulky], default: normal, help: "Petty: no slot; bulky: two."}
+  damage: {kind: dice, help: "A weapon's damage die, e.g. d8; two at once (the book's d8+d8: roll both, keep the highest) is '{d8, d8}kh1'."}
+  armor: {kind: int, min: 0, max: 3, help: "Armor it gives while worn or held (+1 for shields)."}
+  uses: {kind: uses, help: "Uses before it's gone: torches 3, rations 3, an oil can 6."}
+  price: {kind: int, min: 0, help: "In gold pieces."}
+  slots: {kind: int, min: 0, help: "Extra inventory slots it gives (carts, horses, mules)."}
+  qualities: {kind: tags, help: "blast, bulky, petty, slow, …"}
+  note: {kind: text, help: "Anything else the book says: \"fits 2\", \"10ft\", \"per night\"."}
+guidance: >-
+  Price it against the Marketplace. Weapons: d6 5gp (dagger, staff, sling), d8 10gp (sword,
+  axe, spear), d10 bulky 20gp (halberd, long sword); a bow is d6 bulky 20gp, a crossbow d8
+  bulky 30gp. Armor 1 costs 10–20gp (shield, helmet, gambeson; brigandine is bulky), chainmail
+  (2, bulky) 40gp, plate (3, bulky) 60gp; armor never goes past 3. Common gear runs 5–15gp,
+  tools and kits 20–25gp, fine instruments and books 50gp, a compass 75gp. Uses: torches 3,
+  rations 3, an oil can 6. Petty items take no slot; bulky ones take two.
+---
+type: spellbook
+extends: item
+label: Spellbook
+fields:
+  spell: {kind: text, help: "The spell's effect. Casting adds a Fatigue."}
+guidance: >-
+  A spellbook holds one spell and takes one slot. They can't be copied or made: they're found in
+  tombs, dungeons and manors. Write the spell as one plain sentence of effect (`spell`), then the
+  book's own oddity in `description`: a smell when opened, a mind of its own, legible only by
+  moonlight ("Warm to the touch, and smells of roses."). Casting needs both hands and adds a
+  Fatigue; a scroll is petty and adds none.
+---
+type: relic
+extends: item
+label: Relic
+fields:
+  charges: {kind: uses, help: "Uses before it must recharge."}
+  recharge: {kind: text, help: "The condition that restores its charges."}
+  effect: {kind: text}
+guidance: >-
+  A relic is a magic item with a story: an effect in a sentence or two, and either uses (gone
+  once spent) or charges with a recharge condition that costs something in the fiction
+  ("Recharge: bathe it in a king's blood"). Give damage or armor if it's a weapon or worn.
+  Relics don't cause Fatigue. Names hint at their past (Mace of the Kingslayer, Wraith Lantern).

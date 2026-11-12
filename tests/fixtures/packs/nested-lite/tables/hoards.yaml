@@ -1,0 +1,12 @@
+# Entries whose data holds a mapping (`pool`) beside plain keys: read as `@row.pool.dice`.
+table: hoards
+dice: d2
+entries:
+  1: {text: Cache, data: {dice: 4, pool: {dice: 6, kind: task}}}
+  2: {text: Vault, data: {dice: 2, pool: {dice: 8, kind: timer}}}
+---
+# A two-step table: what it carries from the table it rolls next is read the same way.
+table: lairs
+dice: d1
+entries:
+  1: {text: Den, data: {beast: {name: Wolf}}, then: [{table: hoards}]}

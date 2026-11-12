@@ -1,0 +1,17 @@
+# A piece of gear from the Marketplace (players-guide/marketplace#gear): chosen or rolled, as its
+# compendium entry has it. The book prices its goods but gives no die: every item is equally
+# likely. Name it anew if it has a story of its own.
+generator: gear
+title: A piece of gear
+help: >-
+  A piece of gear from the Marketplace (choose it, or let the dice): its uses, size and price
+  as the book gives them. Prefill by name: gear, name.
+source: players-guide/marketplace#gear
+steps:
+  - choose_or_roll: {table: marketplace-gear, as: gear}
+  - let: {name: "@gear"}
+  - entity:
+      key: gear
+      from: "@gear.id"
+      name: "{@name}"
+  - prompt: "Is it new, worn or strange? Anything about it worth a line of description?"

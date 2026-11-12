@@ -1,0 +1,60 @@
+# Fieldwarden (backgrounds/fieldwarden): the background's two d6 tables.
+table: fieldwarden-1
+title: What got the better of you?
+dice: d6
+source: backgrounds/fieldwarden
+entries:
+  1:
+    text: "A voracious swarm of pests that swallowed crops and animals alike. With nothing to defend, you left. Take Gale Seed Extract (3 uses). Ingesting it lets you sprint with a speed four times your regular rate. Afterward you add two Fatigue."
+    data:
+      gear: [{name: Gale Seed Extract, uses: 3}]
+  2:
+    text: "A crop spirit, angered by a poor tithing. The fires consumed nearly everything, and afterward you were able to gather a pouch of Fireseeds (d8, blast, 4 uses)."
+    data:
+      gear: [{name: Fireseeds, damage: d8, uses: 4, qualities: [blast]}]
+  3:
+    text: "An antlered, toothy demon that nearly ended you. Take a blood-stained Bone Knife (d6). On Critical Damage, its next attack becomes enhanced from contact with blood."
+    data:
+      gear: [{name: Bone Knife, damage: d6}]
+  4:
+    text: "The Withering, a type of stem rot from the Roots. Take a Diseased Crop (6 uses) that quickly decays any plant it touches."
+    data:
+      gear: [{name: Diseased Crop, uses: 6, note: quickly decays any plant it touches}]
+  5:
+    text: "Wolves, or so you thought. You are now a Werewolf [8 HP, 15 STR, 14 DEX, claws (d6+d6), bite (d8)]. Your WIL remains the same. You can turn at will (once per day) but must make a WIL save to revert. Anyone left alive from your attacks must make a WIL save to avoid infection."
+    data: {companion: werewolf-form}
+  6:
+    text: "Crop thieves. Not all of them survived, but you were outnumbered. Start with +d4 HP and a Cusped Falchion (d8)."
+    data:
+      extra_hp: true
+      gear: [{name: Cusped Falchion, damage: d8}]
+---
+table: fieldwarden-2
+title: What tool saved your life?
+dice: d6
+source: backgrounds/fieldwarden
+entries:
+  1:
+    text: "Bloodvine Whip: d8 damage. On Critical Damage, it drains the target's blood, granting the weapon's next attack the blast quality"
+    data:
+      gear: [{name: Bloodvine Whip, damage: d8}]
+  2:
+    text: "Clatter Keeper: A hand-cranked device that emits a loud noise, frightening away most creatures."
+    data:
+      gear: [Clatter Keeper]
+  3:
+    text: "Sun Stick: Provides ample warmth and light for up to one hour. Recharge: Leave in heavy sunlight for a full day. 1 use."
+    data:
+      gear: [{name: Sun Stick, uses: 1, recharge: Leave in heavy sunlight for a full day.}]
+  4:
+    text: "Root Tether: When thrown, binds a creature as large as a wolf to the soil for a short time."
+    data:
+      gear: [Root Tether]
+  5:
+    text: "Greenwhistle: A small flute that calms plants, making passage through areas heavy with plant life a bit easier."
+    data:
+      gear: [Greenwhistle]
+  6:
+    text: "Everbloom Band: A circlet adorned with flowers that never wilt. On Critical Damage, the flowers dissolve into dust, but you act as if your save succeeded (STR loss still occurs)."
+    data:
+      gear: [Everbloom Band]

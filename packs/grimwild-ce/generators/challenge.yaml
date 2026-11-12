@@ -1,0 +1,55 @@
+# A challenge (Challenges, p. 104; Building Challenges, p. 105; Using Challenges, p. 106): a task
+# pool for its tenacity, 1 or 2 traits that shape the situation, 2 or 3 short, punchy moves, and a
+# fail state. Challenges are for moments of narrative importance: they make whatever you assign
+# them to a proactive element in the story. Each gives the GM 2 bonus suspense, kept on it, to be
+# spent on moves relating to it. The dice give the pool and an idea (the GM crucible, p. 93).
+# Several linked together are the linked-challenge generator.
+generator: challenge
+title: A challenge
+help: >-
+  A challenge, step by step: its task pool (2d to 8d: choose it, or let the dice), an idea from
+  the GM crucible, and a name; it keeps the GM's 2 bonus suspense for moves relating to it. Then
+  its traits, its moves and its fail state. Prefill by name: dice, idea, name.
+source: "pp. 104-106"
+creates: track
+steps:
+  - choose_or_roll: {from: [2, 3, 4, 5, 6, 7, 8], as: dice, prompt: "its task pool, for its tenacity (2d to 8d)"}
+  - table: gm-crucible
+    as: idea
+  - name: {prompt: "what it is: Navigate the Channel, The Sleeping Dragon Wakes, Negotiate Peace (the GM crucible offers {@idea})"}
+  - apply: {kind: pool, pool: task, value: {value: "@dice", max: "@dice"}, suspense: 2}
+  - prompt: "Each challenge gives the GM 2 bonus suspense, kept on it and spent on moves relating to it: `didact do suspense spend=1 challenge=<challenge>`. Introduce it with a Build Up (each PC takes spark, the GM takes suspense) when it fits."
+  - prompt: "1 or 2 traits that shape the situation (✱): skip the obvious (the storm is windy) and highlight what matters (strong winds are blinding): `didact set <challenge> traits+='…'`."
+  - prompt: "2 or 3 short, punchy moves (◉), examples rather than limits: `didact set <challenge> moves+='…'`."
+  - prompt: "Its fail state (✘): a specific trigger that prevents it being accomplished, one that creates tension (breaking a code of honor): `didact set <challenge> fail='…'`. A competing timer is a pool of its own: `didact track new '<fail state>' --kind pool --size 4 --pool timer`. A Lock Down impact move can trigger it too."
+  - prompt: "Players should know the fail state unless mystery is part of the fun. Challenges don't always have all three."
+---
+# A linked challenge (Using Challenges and Linked Challenges, p. 106): greater, more complex
+# interactions, like epically powerful enemies or unbelievably tense social situations, where each
+# part of the whole has its own proactive presence in the scene: its own task pool, traits, moves,
+# fail state and 2 suspense.
+generator: linked-challenge
+title: A linked challenge
+help: >-
+  A linked challenge, step by step: what the whole is, how many parts it has (2 to 5), and each
+  part's name and task pool (2d to 8d: choose, or let the dice); each keeps the GM's 2 bonus
+  suspense for moves relating to it. Then each part's traits (some prompting impact moves when
+  the fiction triggers them), moves and fail state. The book has no name tables: prefill whole
+  and part (a list, one name each). Prefill by name: whole, parts, part, dice.
+source: "p. 106"
+steps:
+  - ask: {as: whole, prompt: "what the whole is: The Great Red Dragon, Negotiating Peace in a Civil War"}
+  - choose_or_roll: {from: [2, 3, 4, 5], as: parts, prompt: "how many parts, each a challenge with its own proactive presence (the dragon: claws, body, tail, wings, kobold minions)"}
+  - repeat: "@parts"
+    as: n
+    steps:
+      - ask: {as: part, prompt: "part {@n}: its name (Claws, Body; Duchess Lysandra)"}
+      - choose_or_roll: {from: [2, 3, 4, 5, 6, 7, 8], as: dice, prompt: "{@part}'s task pool (2d to 8d)"}
+      - entity:
+          key: part
+          type: track
+          name: "{@whole}: {@part}"
+          fields: {kind: pool, pool: task, value: {value: "@dice", max: "@dice"}, suspense: 2, linked: "{@whole}"}
+  - prompt: "Each part keeps 2 bonus suspense for moves relating to it: `didact do suspense spend=1 challenge=<part>`."
+  - prompt: "Give the parts traits that prompt impact moves when the fiction triggers them (the dragon's claws 'protect the body': striking the body prompts a claw impact move), moves, and fail states: `didact set <part> traits+='…' moves+='…' fail='…'`."
+  - prompt: "Beating one part doesn't mean it's gone: it's defeated in the greater challenge, hindered, weakened or overcome."

@@ -1,0 +1,7 @@
+test: play
+script:
+  - world new t --system {pack}
+  - campaign new c
+  - new pc Wren --fill
+  - do duality who=wren trait=agility
+  - do duality who=wren trait=agility difficulty=15

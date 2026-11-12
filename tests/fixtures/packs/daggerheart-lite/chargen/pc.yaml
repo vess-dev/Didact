@@ -1,0 +1,8 @@
+chargen: pc
+title: Daggerheart character (class and trait array)
+creates: pc
+modes: [random, guided]
+steps:
+  - choose: {from: [Bard, Guardian, Ranger, Wizard], as: class, field: class}
+  - assign: {fields: [agility, strength, finesse], values: [2, 1, 0], as: traits}
+  - name: {from: [Ember, Ilyan, Marrow, Siv, Tamsk]}

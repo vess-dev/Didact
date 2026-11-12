@@ -1,0 +1,9 @@
+id: hide-heir
+name: Hide Heir (fixture)
+kind: system
+version: 0.1.0
+description: A hack of a hack.
+requires: {packs: [core, hide-hack]}
+extends: [hide-hack]
+hides: {table: [spell-ice], entry: [mole]}
+license: {spdx: CC0-1.0}

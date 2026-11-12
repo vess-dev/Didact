@@ -1,0 +1,9 @@
+type: pc
+label: Adventurer
+fields:
+  class: {kind: enum, values: [fighter, wizard]}
+  level: {kind: int, min: 1, max: 20, default: 1}
+  STR: {kind: int, min: 3, max: 20}
+  DEX: {kind: int, min: 3, max: 20}
+  CON: {kind: int, min: 3, max: 20}
+  hp: {kind: resource, min: 0}

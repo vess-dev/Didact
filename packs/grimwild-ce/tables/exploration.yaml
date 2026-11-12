@@ -1,0 +1,992 @@
+# Grimwild: Community Edition (Preview 5.3), Chapter 4: Exploration (pp. 128-143). CC0 1.0.
+# The three realities, the map pick-lists (what exploration tokens buy on region, settlement and site
+# maps), the building and exploration crucibles, custom months and atmospherics, and downtime
+# actions. Communities (pp. 142-143) have no table: its example assets are left out (the section is
+# "Adapted from @Studious' Stronghold Rules on Discord, and used with permission").
+#
+# Crucibles are d66 read both ways (`both_ways`, p. 5): the row die is the tens digit and the column
+# die the units, and 31 also gives 13; pick the one that grabs you. Each two-grid crucible has its
+# halves (-1, -2) and a combined roll that rolls once on each. season-months and atmospherics are read
+# by season (--with season=fall), each pointing at its season's table.
+table: grimwild-realities
+title: "The three realities"
+description: "The Remnants, the Wilds, and the Ruins have fused into the Grimwild. When you place something on the map, you can also label it [Remnants] [Wilds] [Ruins], if you want to specify which reality it is mostly from. Each entry's data holds its basic truths."
+source: "p. 129"
+entries:
+  - text: "The Remnants, Forgotten People of the Borderlands"
+    data:
+      truths:
+        - "Fiercely Independent: Long before the cataclysm, the borderlands thrived as a melting pot of cultures, blending traditions into something uniquely their own."
+        - "Scattered Settlements: Villages, homesteads, and the occasional keep dot the harsh landscape, home to survivors who endure isolation."
+        - "Simple Monsters: Orcs, goblins, and a few larger beasts lurk, but they're nothing compared to the horrors of the Ruins and Wilds."
+        - "Blended Heritage: A patchwork of languages, customs, and traditions born from centuries of border nations mingling."
+  - text: "The Wilds, Untamed and Unforgiving Wilderness"
+    data:
+      truths:
+        - "Tribal Nomads: Scattered tribes thrive where others perish. Each tribe has its own customs, some steeped in ancient magic, while others forge brutal pacts with the Wilds’ predators."
+        - "Raw Magic: The land itself pulses with ancient, untamed power, twisting flora, fauna, and even the air into something alive and unpredictable."
+        - "Deadly Terrain: Shifting rivers, jagged cliffs, and choking forests make navigation a perilous gamble for outsiders."
+        - "Primal Beasts: Terrible creatures stalk the Wilds, from towering apex predators to grotesque hybrids warped by magic."
+  - text: "The Ruins, A Fallen Empire"
+    data:
+      truths:
+        - "Shattered Greatness: Once a realm of truly unmatched knowledge and power, now reduced to crumbling relics of its glory."
+        - "Forgotten Relics: Ancient artifacts of magic and technology linger, broken or lost, yet still brimming with untapped potential."
+        - "Corrupted Wasteland: Overgrown cities and desolate ruins seethe with decay, haunted by strange energies and whispers of the past."
+        - "Eldritch Horrors: Nightmarish creatures lurk in the shadows—aberrations, cursed beings, and the tortured echoes of those consumed by the empire’s collapse."
+---
+table: joy-of-exploration
+title: "The joy of exploration"
+description: "Take spark when you engage with the wonder of exploration as such:"
+source: "p. 131"
+entries:
+  - "Pause and take in the world around you. Let your roleplaying bring out a moment of beauty— what does your character notice, and how do they feel about it? Take spark when it creates a meaningful scene."
+  - "Ask a question about the world that nobody knows the answer to, sparking curiosity in yourself and others. Encourage wonder. Take spark when the table embraces it."
+  - "Travel somewhere far off, simply to see what’s there. Everyone on the journey takes spark."
+  - "Highlight the unique nature of a place, even a seemingly mundane one. Make the scene about the location itself—exploration is at its heart. Take spark when you realize you’ll never forget that place."
+---
+table: region-map
+title: "Region map: what tokens buy"
+description: "Here's what you can spend exploration tokens on, and how much they cost. Points of interest (settlement, site, danger): minor (1 token) or major (2 tokens); major points are larger and have a greater impact on the world around them. Paths: 0-2 tokens, and passes such as bridges or tunnels are free along them; the GM adds waypoints, each 1 day of travel on horseback. Special locations (curiosity, barrier, area): 3 tokens, though the GM can add them for free."
+source: "p. 132"
+entries:
+  - "Settlement: Places people live—towns, tribes, or villages."
+  - "Site: Places that hold rewards—dungeons, ruins, unique natural features."
+  - "Danger: Hostile monsters, hazardous nature, or enemies."
+  - "Major Path (2 tokens): Well-maintained roadways or trade routes. Travel is quicker, less dangerous, and waypoints are more spread out."
+  - "Minor Path (1 token): Lesser trails—footpaths, forest tracks, game trails."
+  - "Rough Path (free): Difficult and dangerous terrain—overgrown paths, rocky trails, dry creek beds. These may not have waypoints, if travel time is unclear."
+  - "Curiosity: Unclear but intriguing signs or information waiting to be explored."
+  - "Barrier: Obstacles to travel—rivers, mountains, cliffs. Only crossable via dangerous rough paths or passes."
+  - "Area: Large, usually natural, spaces with a single theme—lakes, swamps, deserts."
+---
+table: region-points
+title: "Region map: a point to place"
+description: "A point of interest for a generator to place when nobody chooses (the book leaves it to the table, so each is as likely): a settlement, site or danger, minor (1 token) or major (2 tokens), or a curiosity (a special location, 3 tokens). Each entry's data names the crucible that labels it (p. 138)."
+source: "p. 132"
+entries:
+  - {text: "minor settlement", data: {point: settlement, size: minor, first: settlements-crucible-1, second: settlements-crucible-2}}
+  - {text: "major settlement", data: {point: settlement, size: major, first: settlements-crucible-1, second: settlements-crucible-2}}
+  - {text: "minor site", data: {point: site, size: minor, first: sites-crucible-1, second: sites-crucible-2}}
+  - {text: "major site", data: {point: site, size: major, first: sites-crucible-1, second: sites-crucible-2}}
+  - {text: "minor danger", data: {point: danger, size: minor, first: dangers-crucible-1, second: dangers-crucible-2}}
+  - {text: "major danger", data: {point: danger, size: major, first: dangers-crucible-1, second: dangers-crucible-2}}
+  - {text: "curiosity", data: {point: curiosity, size: special, first: curiosities-crucible-1, second: curiosities-crucible-2}}
+---
+table: region-paths
+title: "Region map: a path"
+description: "The three kinds of path (p. 132), for a generator to give each path when nobody chooses (each as likely). Passes (bridges, tunnels) come free along any of them; waypoints, each a day of travel on horseback, are the GM's."
+source: "p. 132"
+entries:
+  - "major path: a well-maintained roadway or trade route; travel is quicker, less dangerous, and waypoints are more spread out"
+  - "minor path: a lesser trail (a footpath, forest track or game trail)"
+  - "rough path: difficult and dangerous terrain (an overgrown path, rocky trail or dry creek bed), perhaps without waypoints"
+---
+table: settlement-map
+title: "Settlement map: what tokens buy"
+description: "Settlement maps are built with Expand the Map, but with a different drawing style: the GM begins by drawing the town's outline, then you add roads (1 token) and notable buildings (2-3 tokens; detail them or use building-crucible), and barriers, areas, curiosities, and passes as normal. Special locations (3 tokens) can be added by the GM for free to spice up the map, or as the story requires."
+source: "p. 134"
+entries:
+  - "Road: Draw a straight line between any two other lines on the map. These act as the main roads used throughout the settlement. Passes can be added to roads for free when placed, allowing them to cross areas and barriers as needed."
+  - "Minor Building (2 tokens): When you add a minor building, write it on the map in lower case letters."
+  - "Major Building (3 tokens): Adding a these buildings tells the GM that you want the location to be more important in the setting or story. When you add a major building, write it on the map in capital letters."
+  - "Curiosity: Rumors or interesting locations and happenings that can be explored."
+  - "Barrier: Obstacles such as rivers, changes in elevation, and walls that prevent easy travel. These are only crossable via passes."
+  - "Area: Large spaces that are thematically distinct from the larger settlement. Natural areas could include lakes or indoor caverns, while artificial areas might include city districts."
+---
+table: building-crucible-1
+title: "Building crucible (first table)"
+description: "Roll 2 on each table, smash them together, and interpret. The first table: a d66 read both ways (31 or 13). `building-crucible` rolls both tables."
+dice: d66
+both_ways: true
+source: "p. 135"
+entries:
+  11: "ancient"
+  12: "haunted"
+  13: "sacred"
+  14: "shadowy"
+  15: "festive"
+  16: "seedy"
+  21: "crumbling"
+  22: "verdant"
+  23: "sprawling"
+  24: "overgrown"
+  25: "gloomy"
+  26: "opulent"
+  31: "ornate"
+  32: "forgotten"
+  33: "mysterious"
+  34: "arcane"
+  35: "immaculate"
+  36: "lonely"
+  41: "weathered"
+  42: "sturdy"
+  43: "thriving"
+  44: "bustling"
+  45: "crude"
+  46: "grimy"
+  51: "enchanted"
+  52: "humble"
+  53: "dilapidated"
+  54: "secluded"
+  55: "battered"
+  56: "timeworn"
+  61: "gilded"
+  62: "hidden"
+  63: "majestic"
+  64: "somber"
+  65: "towering"
+  66: "bleak"
+---
+table: building-crucible-2
+title: "Building crucible (second table)"
+description: "Roll 2 on each table, smash them together, and interpret. The second table: a d66 read both ways (31 or 13). `building-crucible` rolls both tables."
+dice: d66
+both_ways: true
+source: "p. 135"
+entries:
+  11: "alchemist"
+  12: "shrine"
+  13: "temple"
+  14: "watchtower"
+  15: "gemcutter"
+  16: "observatory"
+  21: "docks"
+  22: "barracks"
+  23: "armory"
+  24: "guild hall"
+  25: "scribe"
+  26: "graveyard"
+  31: "orphanage"
+  32: "stable"
+  33: "tower"
+  34: "market"
+  35: "library"
+  36: "brewery"
+  41: "baker"
+  42: "blacksmith"
+  43: "arena"
+  44: "keep"
+  45: "jail"
+  46: "teahouse"
+  51: "herbalist"
+  52: "tavern"
+  53: "inn"
+  54: "fletcher"
+  55: "manor"
+  56: "bathhouse"
+  61: "carpenter"
+  62: "fortune teller"
+  63: "weaver"
+  64: "glassblower"
+  65: "warehouse"
+  66: "clocktower"
+---
+table: building-crucible
+title: "Building crucible"
+description: "Roll 2 on each table, smash them together, and interpret: one roll on each grid (each reads both ways). Use it to detail a settlement's notable buildings."
+refs:
+  first: "building-crucible-1"
+  second: "building-crucible-2"
+entries: ["{first} + {second}"]
+source: "p. 135"
+---
+table: site-map
+title: "Site map: what tokens buy"
+description: "The 5-Point Site technique: the GM adds the Reward point first, then everybody spends their 3 exploration tokens on rooms, paths, and special locations. Minor rooms cost 1 token, while major rooms play a more impactful role, costing 2; special locations cost 3 tokens. Describe each point with a two-word phrase, or use the settlements, sites, or dangers crucibles (p. 138). Stop when you have all 5 points and the map is just detailed enough to enter."
+source: "p. 136"
+entries:
+  - "Entrance: The entrance to the site has a challenge that blocks the way—it may be trapped, hidden, require a key (word, ceremony, object), or has a guardian to overcome. This point sets the tone and tests the adventurers’ mettle."
+  - "Puzzle: An encounter that requires clever thinking, roleplaying, or teamwork. Creativity should always be rewarded, as there should never be just one resolution to the challenge. This is usually a non-combat encounter, adding variety to the narrative."
+  - "Hitch: Something unexpected catches the party off-guard. This may be a betrayal, illusion, trap, dilemma, or hidden threat. If the site calls for it, this may be another puzzle or unique combat. This point keeps everyone engaged and on edge."
+  - "Showdown: The dungeon’s central conflict—usually a big combat or intense encounter with high stakes. Incorporate the theme, location, and terrain to make this memory. This point brings resolution and key rewards."
+  - "Reward: The loot, or knowledge the party sought, sometimes with a twist or hook for future adventures. This point ends with a memorable moment."
+  - "Curiosity: These are vague signs of something more to be explored. They might lead to new information, trouble, or both. This point adds more context or a new hook."
+  - "Barrier: Obstacles that make getting around the site more difficult, such as chasms, and flowing lava. This point offers texture and the occasional challenge."
+  - "Area: Spaces, usually natural, that cover some part or all of the site, such as a lake, or ruined debris. This part of the map gives a backdrop, and ties it to the outside world."
+---
+table: settlements-crucible-1
+title: "Exploration crucible: Settlement (first table)"
+description: "Roll 2 on each table, smash them together, and interpret. The first table: a d66 read both ways (31 or 13). `settlements-crucible` rolls both tables."
+dice: d66
+both_ways: true
+source: "p. 138"
+entries:
+  11: "bustling"
+  12: "prosperous"
+  13: "ancient"
+  14: "secluded"
+  15: "snowy"
+  16: "dusty"
+  21: "quiet"
+  22: "deserted"
+  23: "trade"
+  24: "forgotten"
+  25: "shady"
+  26: "windy"
+  31: "walled"
+  32: "fortified"
+  33: "haunted"
+  34: "peaceful"
+  35: "remote"
+  36: "coastal"
+  41: "hidden"
+  42: "overgrown"
+  43: "foggy"
+  44: "hilly"
+  45: "barren"
+  46: "flooded"
+  51: "sacred"
+  52: "thriving"
+  53: "nomadic"
+  54: "sunlit"
+  55: "rocky"
+  56: "mountainous"
+  61: "isolated"
+  62: "ruined"
+  63: "abandoned"
+  64: "forested"
+  65: "sprawling"
+  66: "reclaimed"
+---
+table: settlements-crucible-2
+title: "Exploration crucible: Settlement (second table)"
+description: "Roll 2 on each table, smash them together, and interpret. The second table: a d66 read both ways (31 or 13). `settlements-crucible` rolls both tables."
+dice: d66
+both_ways: true
+source: "p. 138"
+entries:
+  11: "village"
+  12: "camp"
+  13: "port"
+  14: "base"
+  15: "oasis"
+  16: "watch"
+  21: "outpost"
+  22: "settlement"
+  23: "market"
+  24: "stronghold"
+  25: "manor"
+  26: "hideout"
+  31: "town"
+  32: "colony"
+  33: "watchtower"
+  34: "ranch"
+  35: "harbor"
+  36: "den"
+  41: "encampment"
+  42: "fortress"
+  43: "crossroads"
+  44: "grove"
+  45: "cliffside"
+  46: "homestead"
+  51: "trading post"
+  52: "hamlet"
+  53: "sanctuary"
+  54: "plaza"
+  55: "peak"
+  56: "monastery"
+  61: "citadel"
+  62: "refuge"
+  63: "commune"
+  64: "farmstead"
+  65: "cavern"
+  66: "bastion"
+---
+table: settlements-crucible
+title: "Exploration crucible: Settlement"
+description: "Roll 2 on each table, smash them together, and interpret: one roll on each grid (each reads both ways)."
+refs:
+  first: "settlements-crucible-1"
+  second: "settlements-crucible-2"
+entries: ["{first} + {second}"]
+source: "p. 138"
+---
+table: sites-crucible-1
+title: "Exploration crucible: Sites (first table)"
+description: "Roll 2 on each table, smash them together, and interpret. The first table: a d66 read both ways (31 or 13). `sites-crucible` rolls both tables."
+dice: d66
+both_ways: true
+source: "p. 138"
+entries:
+  11: "ancient"
+  12: "abandoned"
+  13: "cursed"
+  14: "frozen"
+  15: "charred"
+  16: "silent"
+  21: "forgotten"
+  22: "lost"
+  23: "enchanted"
+  24: "mossy"
+  25: "clear"
+  26: "secluded"
+  31: "sacred"
+  32: "mystic"
+  33: "weird"
+  34: "moonlit"
+  35: "foggy"
+  36: "collapsed"
+  41: "haunted"
+  42: "sunken"
+  43: "buried"
+  44: "ruined"
+  45: "sulfurous"
+  46: "smoldering"
+  51: "crumbling"
+  52: "shattered"
+  53: "burned"
+  54: "underground"
+  55: "blessed"
+  56: "windblown"
+  61: "hidden"
+  62: "overgrown"
+  63: "desolate"
+  64: "echoing"
+  65: "forgotten"
+  66: "shaded"
+---
+table: sites-crucible-2
+title: "Exploration crucible: Sites (second table)"
+description: "Roll 2 on each table, smash them together, and interpret. The second table: a d66 read both ways (31 or 13). `sites-crucible` rolls both tables."
+dice: d66
+both_ways: true
+source: "p. 138"
+entries:
+  11: "altar"
+  12: "circle"
+  13: "well"
+  14: "chamber"
+  15: "labyrinth"
+  16: "archway"
+  21: "monument"
+  22: "sanctuary"
+  23: "tower"
+  24: "obelisk"
+  25: "fountain"
+  26: "sanctum"
+  31: "temple"
+  32: "catacombs"
+  33: "crypt"
+  34: "cairn"
+  35: "portal"
+  36: "hall"
+  41: "grove"
+  42: "shrine"
+  43: "spring"
+  44: "pillar"
+  45: "grotto"
+  46: "mine"
+  51: "ruins"
+  52: "cavern"
+  53: "mausoleum"
+  54: "pit"
+  55: "cemetery"
+  56: "lair"
+  61: "tomb"
+  62: "statue"
+  63: "gate"
+  64: "throne"
+  65: "dungeon"
+  66: "vault"
+---
+table: sites-crucible
+title: "Exploration crucible: Sites"
+description: "Roll 2 on each table, smash them together, and interpret: one roll on each grid (each reads both ways)."
+refs:
+  first: "sites-crucible-1"
+  second: "sites-crucible-2"
+entries: ["{first} + {second}"]
+source: "p. 138"
+---
+table: dangers-crucible-1
+title: "Exploration crucible: Dangers (first table)"
+description: "Roll 2 on each table, smash them together, and interpret. The first table: a d66 read both ways (31 or 13). `dangers-crucible` rolls both tables."
+dice: d66
+both_ways: true
+source: "p. 138"
+entries:
+  11: "savage"
+  12: "foul"
+  13: "vile"
+  14: "twisted"
+  15: "wailing"
+  16: "writhing"
+  21: "cursed"
+  22: "haunted"
+  23: "corrupted"
+  24: "reckless"
+  25: "hungry"
+  26: "shrieking"
+  31: "raging"
+  32: "chaotic"
+  33: "maddening"
+  34: "brutal"
+  35: "rampaging"
+  36: "vicious"
+  41: "hidden"
+  42: "shadowed"
+  43: "darkened"
+  44: "lurking"
+  45: "restless"
+  46: "silent"
+  51: "venomous"
+  52: "forbidden"
+  53: "bloodthirsty"
+  54: "forgotten"
+  55: "seething"
+  56: "stalking"
+  61: "relentless"
+  62: "feral"
+  63: "ancient"
+  64: "ensnaring"
+  65: "malevolent"
+  66: "violent"
+---
+table: dangers-crucible-2
+title: "Exploration crucible: Dangers (second table)"
+description: "Roll 2 on each table, smash them together, and interpret. The second table: a d66 read both ways (31 or 13). `dangers-crucible` rolls both tables."
+dice: d66
+both_ways: true
+source: "p. 138"
+entries:
+  11: "beasts"
+  12: "monsters"
+  13: "brigands"
+  14: "shadows"
+  15: "specters"
+  16: "demons"
+  21: "spirits"
+  22: "bog"
+  23: "cults"
+  24: "crypt"
+  25: "forest"
+  26: "cliffs"
+  31: "caverns"
+  32: "abyss"
+  33: "behemoth"
+  34: "fiends"
+  35: "serpents"
+  36: "warriors"
+  41: "ruins"
+  42: "wraiths"
+  43: "crevice"
+  44: "wilds"
+  45: "graveyard"
+  46: "shades"
+  51: "storm"
+  52: "marsh"
+  53: "gorge"
+  54: "tangle"
+  55: "depths"
+  56: "pathways"
+  61: "woods"
+  62: "swarm"
+  63: "mire"
+  64: "mists"
+  65: "crags"
+  66: "fog"
+---
+table: dangers-crucible
+title: "Exploration crucible: Dangers"
+description: "Roll 2 on each table, smash them together, and interpret: one roll on each grid (each reads both ways)."
+refs:
+  first: "dangers-crucible-1"
+  second: "dangers-crucible-2"
+entries: ["{first} + {second}"]
+source: "p. 138"
+---
+table: curiosities-crucible-1
+title: "Exploration crucible: Curiosities (first table)"
+description: "Roll 2 on each table, smash them together, and interpret. The first table: a d66 read both ways (31 or 13). `curiosities-crucible` rolls both tables."
+dice: d66
+both_ways: true
+source: "p. 139"
+entries:
+  11: "lingering"
+  12: "mysterious"
+  13: "dancing"
+  14: "curious"
+  15: "singing"
+  16: "low"
+  21: "strange"
+  22: "distant"
+  23: "soft"
+  24: "melancholy"
+  25: "absurd"
+  26: "twinkling"
+  31: "faint"
+  32: "haunting"
+  33: "glowing"
+  34: "humming"
+  35: "pale"
+  36: "hazy"
+  41: "echoing"
+  42: "hidden"
+  43: "fading"
+  44: "shadowy"
+  45: "colorful"
+  46: "glittering"
+  51: "flickering"
+  52: "pulsing"
+  53: "whispering"
+  54: "radiant"
+  55: "resonant"
+  56: "rumbling"
+  61: "shimmering"
+  62: "ethereal"
+  63: "drifting"
+  64: "moving"
+  65: "enveloping"
+  66: "floating"
+---
+table: curiosities-crucible-2
+title: "Exploration crucible: Curiosities (second table)"
+description: "Roll 2 on each table, smash them together, and interpret. The second table: a d66 read both ways (31 or 13). `curiosities-crucible` rolls both tables."
+dice: d66
+both_ways: true
+source: "p. 139"
+entries:
+  11: "smoke"
+  12: "glow"
+  13: "tree line"
+  14: "stone face"
+  15: "monolith"
+  16: "cloud"
+  21: "obelisk"
+  22: "spire"
+  23: "ray"
+  24: "silhouette"
+  25: "reflection"
+  26: "canopy"
+  31: "tower"
+  32: "waterfall"
+  33: "statue"
+  34: "bridge"
+  35: "bend"
+  36: "wall"
+  41: "bonfire"
+  42: "arch"
+  43: "tombstone"
+  44: "gate"
+  45: "light"
+  46: "ravine"
+  51: "pillar"
+  52: "ruin"
+  53: "monument"
+  54: "lights"
+  55: "canyon"
+  56: "crater"
+  61: "mist"
+  62: "campfire"
+  63: "cliff"
+  64: "spire"
+  65: "cave"
+  66: "hilltop"
+---
+table: curiosities-crucible
+title: "Exploration crucible: Curiosities"
+description: "Roll 2 on each table, smash them together, and interpret: one roll on each grid (each reads both ways)."
+refs:
+  first: "curiosities-crucible-1"
+  second: "curiosities-crucible-2"
+entries: ["{first} + {second}"]
+source: "p. 139"
+---
+table: barriers-crucible-1
+title: "Exploration crucible: Barrier (first table)"
+description: "Roll 2 on each table, smash them together, and interpret. The first table: a d66 read both ways (31 or 13). `barriers-crucible` rolls both tables."
+dice: d66
+both_ways: true
+source: "p. 139"
+entries:
+  11: "jagged"
+  12: "deep"
+  13: "craggy"
+  14: "shadowy"
+  15: "barren"
+  16: "thick"
+  21: "steep"
+  22: "narrow"
+  23: "thorny"
+  24: "frozen"
+  25: "marshy"
+  26: "howling"
+  31: "muddy"
+  32: "overgrown"
+  33: "dark"
+  34: "misty"
+  35: "choked"
+  36: "sinking"
+  41: "twisting"
+  42: "slippery"
+  43: "broken"
+  44: "winding"
+  45: "tangled"
+  46: "rough"
+  51: "dense"
+  52: "windy"
+  53: "snow-covered"
+  54: "treacherous"
+  55: "raging"
+  56: "icy"
+  61: "rocky"
+  62: "uneven"
+  63: "swampy"
+  64: "shifting"
+  65: "stony"
+  66: "rolling"
+---
+table: barriers-crucible-2
+title: "Exploration crucible: Barrier (second table)"
+description: "Roll 2 on each table, smash them together, and interpret. The second table: a d66 read both ways (31 or 13). `barriers-crucible` rolls both tables."
+dice: d66
+both_ways: true
+source: "p. 139"
+entries:
+  11: "ravine"
+  12: "forest"
+  13: "hills"
+  14: "swamp"
+  15: "undergrowth"
+  16: "scree"
+  21: "cliffs"
+  22: "ridge"
+  23: "valley"
+  24: "crevasse"
+  25: "crags"
+  26: "mire"
+  31: "trail"
+  32: "pass"
+  33: "canyon"
+  34: "path"
+  35: "peaks"
+  36: "desert"
+  41: "thicket"
+  42: "marsh"
+  43: "river"
+  44: "shale"
+  45: "glacier"
+  46: "brush"
+  51: "bog"
+  52: "caves"
+  53: "brambles"
+  54: "mud flats"
+  55: "shoals"
+  56: "ice sheet"
+  61: "slopes"
+  62: "scrub"
+  63: "lava"
+  64: "trees"
+  65: "tundra"
+  66: "underbrush"
+---
+table: barriers-crucible
+title: "Exploration crucible: Barrier"
+description: "Roll 2 on each table, smash them together, and interpret: one roll on each grid (each reads both ways)."
+refs:
+  first: "barriers-crucible-1"
+  second: "barriers-crucible-2"
+entries: ["{first} + {second}"]
+source: "p. 139"
+---
+table: factions-crucible-1
+title: "Exploration crucible: Factions (first table)"
+description: "Roll 2 on each table, smash them together, and interpret. The first table: a d66 read both ways (31 or 13). `factions-crucible` rolls both tables."
+dice: d66
+both_ways: true
+source: "p. 139"
+entries:
+  11: "fierce"
+  12: "noble"
+  13: "hidden"
+  14: "seeking"
+  15: "sacred"
+  16: "ragtag"
+  21: "warlike"
+  22: "shadowed"
+  23: "cunning"
+  24: "relentless"
+  25: "untamed"
+  26: "radiant"
+  31: "hostile"
+  32: "zealous"
+  33: "forbidden"
+  34: "guarded"
+  35: "loyal"
+  36: "defiant"
+  41: "peaceful"
+  42: "ruthless"
+  43: "honorable"
+  44: "wise"
+  45: "vengeful"
+  46: "forgotten"
+  51: "curious"
+  52: "ancient"
+  53: "silent"
+  54: "lost"
+  55: "eternal"
+  56: "secretive"
+  61: "mystic"
+  62: "wandering"
+  63: "restless"
+  64: "merciless"
+  65: "patient"
+  66: "unseen"
+---
+table: factions-crucible-2
+title: "Exploration crucible: Factions (second table)"
+description: "Roll 2 on each table, smash them together, and interpret. The second table: a d66 read both ways (31 or 13). `factions-crucible` rolls both tables."
+dice: d66
+both_ways: true
+source: "p. 139"
+entries:
+  11: "blades"
+  12: "brotherhood"
+  13: "coven"
+  14: "seekers"
+  15: "cult"
+  16: "envoys"
+  21: "order"
+  22: "legion"
+  23: "sentinels"
+  24: "council"
+  25: "guardians"
+  26: "shapers"
+  31: "clan"
+  32: "syndicate"
+  33: "alliance"
+  34: "hunters"
+  35: "cadre"
+  36: "misfits"
+  41: "keepers"
+  42: "knights"
+  43: "scouts"
+  44: "pilgrims"
+  45: "raiders"
+  46: "brigade"
+  51: "guild"
+  52: "society"
+  53: "heralds"
+  54: "companions"
+  55: "guard"
+  56: "cabal"
+  61: "circle"
+  62: "band"
+  63: "tribe"
+  64: "wanderers"
+  65: "wardens"
+  66: "watchers"
+---
+table: factions-crucible
+title: "Exploration crucible: Factions"
+description: "Roll 2 on each table, smash them together, and interpret: one roll on each grid (each reads both ways)."
+refs:
+  first: "factions-crucible-1"
+  second: "factions-crucible-2"
+entries: ["{first} + {second}"]
+source: "p. 139"
+---
+table: season-months-spring
+title: "Passage of time: Spring"
+description: "Try creating custom months to add a fantastic touch to your world. Stick to a four-season cycle with three months per season, rolled on the tables: a word from each column (+) makes a month's name. Spring is followed by summer."
+dice: d6
+columns: ["first", "second"]
+read: "{first}{second}"
+source: "p. 140"
+entries:
+  1: ["Green", "bloom"]
+  2: ["Petal", "wind"]
+  3: ["Moss", "wave"]
+  4: ["Eager", "dawn"]
+  5: ["Fresh", "shine"]
+  6: ["Well", "hope"]
+---
+table: season-months-summer
+title: "Passage of time: Summer"
+description: "Try creating custom months to add a fantastic touch to your world. Stick to a four-season cycle with three months per season, rolled on the tables: a word from each column (+) makes a month's name. Summer is followed by fall."
+dice: d6
+columns: ["first", "second"]
+read: "{first}{second}"
+source: "p. 140"
+entries:
+  1: ["Ash", "storm"]
+  2: ["Flood", "haze"]
+  3: ["Sear", "flare"]
+  4: ["Lazy", "glow"]
+  5: ["Gold", "breeze"]
+  6: ["Buzz", "surge"]
+---
+table: season-months-fall
+title: "Passage of time: Fall"
+description: "Try creating custom months to add a fantastic touch to your world. Stick to a four-season cycle with three months per season, rolled on the tables: a word from each column (+) makes a month's name. Fall is followed by winter."
+dice: d6
+columns: ["first", "second"]
+read: "{first}{second}"
+source: "p. 140"
+entries:
+  1: ["Husk", "mist"]
+  2: ["Wilt", "moon"]
+  3: ["Amber", "dew"]
+  4: ["Rust", "chill"]
+  5: ["Bitter", "flow"]
+  6: ["Turn", "smoke"]
+---
+table: season-months-winter
+title: "Passage of time: Winter"
+description: "Try creating custom months to add a fantastic touch to your world. Stick to a four-season cycle with three months per season, rolled on the tables: a word from each column (+) makes a month's name. Winter is followed by spring."
+dice: d6
+columns: ["first", "second"]
+read: "{first}{second}"
+source: "p. 140"
+entries:
+  1: ["Storm", "tide"]
+  2: ["Bleak", "gale"]
+  3: ["Quiet", "sheen"]
+  4: ["Howl", "hush"]
+  5: ["Frost", "freeze"]
+  6: ["Drift", "morn"]
+---
+table: season-months
+title: "Passage of time: custom months"
+description: "Custom months, read by season (--with season=spring|summer|fall|winter): three months per season, each named from a word in each of its table's two columns."
+lookup: season
+source: "p. 140"
+entries:
+  spring:
+    table: season-months-spring
+  summer:
+    table: season-months-summer
+  fall:
+    table: season-months-fall
+  winter:
+    table: season-months-winter
+---
+table: season-parts
+title: "Parts of the season"
+description: "If tracking specific months isn’t appealing, try just using parts of the season."
+source: "p. 140"
+entries: ["The beginning of…", "The height of…", "The end of…"]
+---
+table: atmospherics-spring
+title: "Example atmospherics: Spring"
+description: "Include three simple details like atmospherics, weather, or flora—don’t forget to mix in fantastic elements! When you reach another month, add three more for it."
+source: "p. 140"
+entries:
+  - "frost melts"
+  - "rivers swell"
+  - "buds bloom"
+  - "emerald fields"
+  - "luminous spores"
+  - "humming bees"
+  - "light rainfalls"
+  - "velvet moss"
+  - "flower fields"
+  - "calm winds"
+  - "glowing fungi"
+  - "clear skies"
+---
+table: atmospherics-summer
+title: "Example atmospherics: Summer"
+description: "Include three simple details like atmospherics, weather, or flora—don’t forget to mix in fantastic elements! When you reach another month, add three more for it."
+source: "p. 140"
+entries:
+  - "endless downpours"
+  - "roaring rivers"
+  - "lightning skies"
+  - "heavy stillness"
+  - "rising heat"
+  - "warm winds"
+  - "rippling fields"
+  - "golden shimmer"
+  - "insect swarms"
+  - "pollen bursts"
+  - "blooming thistles"
+  - "dying fungi"
+---
+table: atmospherics-fall
+title: "Example atmospherics: Fall"
+description: "Include three simple details like atmospherics, weather, or flora—don’t forget to mix in fantastic elements! When you reach another month, add three more for it."
+source: "p. 140"
+entries:
+  - "drifting embers"
+  - "ashen haze"
+  - "harvested fields"
+  - "pale fog"
+  - "rustling stalks"
+  - "crumbling leaves"
+  - "silver light"
+  - "creeping chill"
+  - "frosty mornings"
+  - "sharp scents"
+  - "stinging dew drops"
+  - "pollen fires"
+---
+table: atmospherics-winter
+title: "Example atmospherics: Winter"
+description: "Include three simple details like atmospherics, weather, or flora—don’t forget to mix in fantastic elements! When you reach another month, add three more for it."
+source: "p. 140"
+entries:
+  - "whispering winds"
+  - "iced branches"
+  - "long nights"
+  - "dark ice"
+  - "frozen rivers"
+  - "pale starlight"
+  - "raging blizzards"
+  - "splintering ice"
+  - "howling skies"
+  - "eerie auroras"
+  - "endless drifts"
+  - "frozen silence"
+---
+table: atmospherics
+title: "Example atmospherics"
+description: "Example atmospherics, read by season (--with season=spring|summer|fall|winter). Include three simple details like atmospherics, weather, or flora—don’t forget to mix in fantastic elements! When you reach another month, add three more for it."
+lookup: season
+source: "p. 140"
+entries:
+  spring:
+    table: atmospherics-spring
+  summer:
+    table: atmospherics-summer
+  fall:
+    table: atmospherics-fall
+  winter:
+    table: atmospherics-winter
+---
+table: downtime-actions
+title: "Downtime actions"
+description: "When time passes, pick one of the following to show how you spent your time. If you sell off treasure, you can pick two different actions. Each entry's data holds its id: `didact do downtime who=<pc> act=<id>` (expanded downtime, an option)."
+source: "p. 141"
+entries:
+  - text: "Rest: Heal all marks, harm, and all non-permanent conditions. The GM may decide certain long-term conditions persist through normal rest."
+    data:
+      id: rest
+      examples:
+        - "The bard's 8d Broken Arm heals."
+        - "The berserker, after taking on a fierce dragon, makes a full recovery."
+  - text: "Plan Ahead: You prepare for a future adventure, giving you a special kind of thread. Write a few words describing the general preparation you make, but save the details for later. This thread doesn’t count towards your maximum, and can only be used to add story details based on the preparation. The thread is lost when time passes again."
+    data:
+      id: plan
+      examples:
+        - "The Warlock does a favor for the local nobility, earning goodwill."
+        - "The Rogue borrows a few horses for a quick getaway."
+  - text: "Pursue a Goal: You take action to work on a side goal. Each endeavor is tracked by a task pool. Roll the pool each time you take this downtime action, and describe the result. Your goal can cover anything from crafting arcana, creating a new spell theorem, or even retraining a talent or wise. Work with your GM to determine the goal and starting pool size."
+    data:
+      id: pursue
+      examples:
+        - "The druid cleanses the nearby forest (6d pool)."
+        - "The cleric learns about esoteric magic (retrain a wise, 4d pool)."
+  - text: "Unwind: You spend time enjoying yourself. While this is often carousing with drink and friends, it could just as easily be tending to a forgotten shrine, or partaking in the arts and theater. Give a vignette and take spark."
+    data:
+      id: unwind
+      examples:
+        - "The Fighter gets a new drink named after her."
+        - "The Monk meditates on top of a lonely hill."
+  - text: "Venture: You keep moving, doing odd jobs or adventuring on your own. Make a story roll to see how it goes. The GM may reward you with a minor treasure, rumor, or new ally. On a messy or less, it's complicated."
+    data:
+      id: venture
+      examples:
+        - "The Wizard joins an expedition for the University."
+        - "The paladin defends a nearby town from a gnoll attack."

@@ -1,0 +1,1858 @@
+# Grimwild: Community Edition (Preview 5.3), Chapter 5: Monsters A-Z (pp. 146-171). CC0 1.0.
+# One entry per monster block, in book order. Each block's d6 table is in tables/monsters.yaml
+# (`table:`; `tables:` lists every table of a block that has more than one).
+#
+# Expanded entries also carry the rest of their double-sized block:
+#   scenario       {title, text}: the ready-to-use scene (`end`: the closing note, Remorhaz).
+#   section        {title, text, ...}: an extra part that is not a scenario (Dragon, Lich, Vampire).
+#   pools          linked challenges: {name, dice, traits, moves, fail, says, links, leads_to}.
+#                  dice: 8, or "8+8" for "8d + 8d". fail: the ✘ fail states. says: the speech
+#                  bubbles beside a pool (Hill Giant). links: pools joined by a line in the book's
+#                  diagram, each line listed once; brackets hold the line's printed label (rough,
+#                  hidden, secret) or where it starts. leads_to: an arrow to the next pool.
+#   battlegrounds  {name, features, threats, enemies, leads_to} (Battlegrounds, p. 105): enemies
+#                  as printed, "4d archers" for a group in one task pool and "8d | dragon" for a
+#                  creature acting as its own challenge.
+# Text is as printed; moves, palette colors and headings are printed in capitals and are given
+# here in title case.
+id: basilisk
+type: monster
+name: "Basilisk"
+role: lurker
+palette: [Scaly Green, Mossy Brown, Rocky Gray]
+traits: [Sluggish stealth, Spiny hide, Keen sense of smell]
+moves: [Petrifying Gaze, Bite & Thrash, Slink Away]
+wants: "Wants to munch on a delicious statue, later."
+doesnt_want: "Doesn’t want light revealing its hiding place."
+sights: "gleam of scales, slithering trails through dust"
+sounds: "silence, rasping hiss, crunching of chewed stone"
+smells: "chalky scent of ground stone, desiccated air"
+table: basilisk-hiding-spots
+source: "p. 146"
+body: |
+  Spiny, eight-legged reptiles that lurk in forgotten, shadowy places. They patiently lay in wait to ambush prey, then feast on the petrified remains.
+---
+id: behir
+type: monster
+name: "Behir"
+role: predator
+palette: [Scaly Gray, Stormy Gray, Azure Blue]
+traits: [Cling to walls, Serpentine flexibility, Speech]
+moves: [Electric Breath, Bite & Constrict, Swallow Whole]
+wants: "Wants to expand its hunting grounds, to savor meals."
+doesnt_want: "Doesn’t want rival predators challenging its territory."
+sights: "deep claw marks, static sparks, lightning strike marks"
+sounds: "sizzling electric snaps, sudden boom, shuffling legs"
+smells: "metallic tang, faint acrid smell, scorched hide"
+table: behir-unearthed-by
+source: "p. 146"
+body: |
+  Massive, solitary serpentine creatures with a dozen legs and brilliant azure scales. They live in dark, decaying places and rarely tolerate intruders.
+---
+id: carcass-crawler
+type: monster
+name: "Carcass Crawler"
+role: brute
+palette: [Rotten Brown, Dull Olive, Vile Green]
+traits: [Paralytic touch, Cling to walls]
+moves: [Tentacle Slaps, Spew Bile, Brief Scuttle]
+wants: "Wants more flesh, always more flesh."
+doesnt_want: "Doesn’t want to suffer the sheer panic of hunger."
+sights: "pristine bones, writhing tentacles, clouds of flies"
+sounds: "wet slithering, grotesque squelching, bone snaps"
+smells: "rancid stench, sickly-sweet venom, mold and rot"
+table: carcass-crawler-feeding-grounds
+source: "p. 146"
+body: |
+  Massive, slimy worms with dozens of grasping tentacles, lurking underground to feast on dead or paralyzed prey. They're drawn to the scent of death.
+---
+id: chimera
+type: monster
+name: "Chimera"
+role: brute
+palette: [Dark Brown, Burnt Umber, Fiery Red]
+traits: [Multi-headed, Unpredictable, Understands language]
+moves: [Fire Breath, Flying Pounce, "Claw, Bite, Horns"]
+wants: "Wants to keep wandering."
+doesnt_want: "Doesn’t want to face choices that its heads disagree on."
+sights: "streaks of scorched earth, smoke from its nostrils"
+sounds: "growls, roars, and hisses, sudden whoosh and crackle"
+smells: "acrid scent of sulfur and ash, musky wet fur"
+table: chimera-hybrid-heads
+source: "p. 146"
+body: |
+  Violent, chaotic monstrous hybrids of a lion, goat, and dragon. They rarely stay in one place long, suffering relentless wanderlust.
+---
+id: chuul
+type: monster
+name: "Chuul"
+role: predator
+palette: [Crustacean Brown, Deep Yellow, Swamp Green]
+traits: [Hardened shell, Sense nearby magic, Speech]
+moves: [Stunning Tentacle, Claw Lock, Drag Under]
+wants: "Wants to hoard sources of magic, instinctually."
+doesnt_want: "Doesn’t want to venture from the moistness of the swamp."
+sights: "roiling water, slick tendrils"
+sounds: "bubbling groan of water, wet slap of tentacles"
+smells: "cloying tang of magic, pungent crustacean odor"
+table: chuul-eldritch-mutations-crucible
+source: "p. 147"
+body: |
+  Enormous, lobster-like aberrations with a mouthful of tentacles. They are drawn to magic and hoard the relics they find in their cluttered lairs.
+---
+id: cockatrice
+type: monster
+name: "Cockatrice"
+role: swarmer
+palette: [Rust Orange, Feathered Brown, Dusky Gold]
+traits: [Flocking instinct, Ferocious swarming]
+moves: [Petrifying Pecks, Winged Retreat, Flappy Distraction]
+wants: "Wants to mark its territory with petrified victims."
+doesnt_want: "Doesn’t want to have its flock's authority challenged."
+sights: "small petrified animals, mass of scattered feathers"
+sounds: "flurry of wings, chorus of shrill squawks, beak snaps"
+smells: "mismatched smell of feathers and scales"
+table: cockatrice-migrations
+source: "p. 147"
+body: |
+  Small, chicken-like creatures with reptilian features. They roam in flocks and their peck turns flesh to stone, which they use to mark their territory.
+---
+id: couatl
+type: monster
+name: "Couatl"
+role: protector
+palette: [Bronze Gold, Iridescent Blue, Emerald Green]
+traits: [Truthbound, Shapechanger, Telepathy]
+moves: [Read Minds, Constrict, Radiant Magic]
+wants: "Wants to ensure sacred sites stay hidden."
+doesnt_want: "Doesn’t want its wisdom being ignored."
+sights: "iridescent scales, vivid feathers, trail of light"
+sounds: "otherworldly hum, gentle rustling, whispering winds"
+smells: "clean fresh breeze, soothing incense, hopeful magic"
+table: couatl-sacred-task
+source: "p. 147"
+body: |
+  Celestial serpents with rainbow feathers that act as wise protectors and guardians of sacred places. They seek to preserve balance and impart wisdom.
+---
+id: cyclops
+type: monster
+name: "Cyclops"
+role: brute
+palette: [Weathered Beige, Eyeball White, Stone Brown]
+traits: ["Singular, intense focus", Immensely strong, Understands language]
+moves: [Boulder Toss, Ground Slam, Fearsome Bellow]
+wants: "Wants boulder caches, a symbol of territory and power."
+doesnt_want: "Doesn’t want to get distracted or feel like it's being tricked."
+sights: "piles of boulders, massive cave entrance"
+sounds: "guttural rumbling, whoosh of a boulder flying"
+smells: "unwashed skin, earthy cave, sharp stone dust"
+table: cyclops-cyclopean-curses
+source: "p. 147"
+body: |
+  Solitary, towering figures that value their personal territory above all else. They gather boulders and stones, treating them as symbols of power.
+---
+id: demon-balor
+type: monster
+name: "Demon, Balor"
+category: Demon
+role: tactician
+palette: [Inferno Red, Smoky Black, Ember Orange]
+traits: [Pierces deceptions, Fiery aura, "Speech, telepathy"]
+moves: [Burning Whip, Crackling Sword, Booming Teleport]
+wants: "Wants to bask in its own greatness."
+doesnt_want: "Doesn’t want its absolute control to waver, even for a second."
+sights: "chaotic dancing flames, large smoking footprints"
+sounds: "whip cracks, crackling lightning, guttural chanting"
+smells: "overwhelming brimstone, smothering ash"
+table: demon-balor-death-throes
+scenario:
+  title: "Hell to Pay"
+  text: "The balor emerges from the shattered summoning circle as the cathedral erupts in flames around it. Those who disturbed it lie dead and now the capital will feel its fury."
+pools:
+  - name: "Head"
+    dice: 8
+    traits: [well-defended]
+    moves: [Horrific Taunts, Cruel]
+    links: [Demonic Magic, Burning Whip, Crackling Sword]
+  - name: "Demonic Magic"
+    dice: 8
+    traits: [ward the balor]
+    moves: [Summon Demons, Create Firestorm]
+  - name: "Burning Whip"
+    dice: 4
+    traits: [protects the head]
+    moves: [Whipcrack, Drag In Close]
+    links: [Body]
+  - name: "Crackling Sword"
+    dice: 4
+    traits: [protects the head]
+    moves: [Behead, Arcing Strike]
+    links: [Body]
+  - name: "Body"
+    dice: "8+8"
+    traits: [impenetrable hide, immensely strong]
+source: "p. 148"
+body: |
+  Towering embodiments of pure evil, with massive bat-like wings. They rule with chaos and destruction, and have an insatiable hunger for more power.
+---
+id: demon-glabrezu
+type: monster
+name: "Demon, Glabrezu"
+category: Demon
+role: trickster
+palette: [Blood Red, Demonic Purple, Deep Gray]
+traits: [Devious schemer, Magic resistance, "Speech, telepathy"]
+moves: [Create Darkness, Know Desires, Grant Wish]
+wants: "Wants to know what would make you happy."
+doesnt_want: "Doesn’t want for its offers to be turned down."
+sights: "stone gouged away, hulking silhouette, eerie glow"
+sounds: "faint whispers of magic, clicking claws, alluring voice"
+smells: "bitter burnt incense, unknown sickly-sweet aromas"
+table: demon-glabrezu-wishes-granted
+source: "p. 148"
+body: |
+  Hulking fiends with four arms, two of which are claws. They tempt ambitious mortals, granting wishes and delighting as it all backfires.
+---
+id: demon-vrock
+type: monster
+name: "Demon, Vrock"
+category: Demon
+role: brute
+palette: [Feathered Gray, Sickly Green, Bone White]
+traits: [Terrifying flight, Disgusting plumage, Understands language]
+moves: [Deafening Screech, Spore Cloud, Summon Flock]
+wants: "Wants to keep the battle going as long as possible."
+doesnt_want: "Doesn’t want to be drawn directly into the conflict itself."
+sights: "cloud of spores, dark shadow, ichor-covered feathers"
+sounds: "wet slapping of wings, rustle of diseased feathers"
+smells: "rancid decay, spores clogging nostrils"
+table: demon-vrock-spore-effects
+source: "p. 148"
+body: |
+  A vulture-like fiend that is drawn to the mayhem of battlefields. They spread poisonous spores with each wingbeat, reveling in the chaos it brings below.
+---
+id: devil-barbed
+type: monster
+name: "Devil, Barbed"
+category: Devil
+role: lurker
+palette: [Soot Black, Ember Red, Dark Green]
+traits: [Hooked barbs, Horrifying presence, "Speech, telepathy"]
+moves: [Barbed Embrace, Throw Hellfire, Slow Taunting]
+wants: "Wants to slowly savor the agony and pleas of mercy."
+doesnt_want: "Doesn’t want for the pain it inflicts to be endured."
+sights: "shadows writhing unnaturally, barbs twitching"
+sounds: "scratching of barbs along walls, tearing sound of flesh"
+smells: "coppery fresh blood and agony"
+table: devil-barbed-summoned-into
+source: "p. 149"
+body: |
+  Horrific fiends covered in jagged barbs. They savor fear and torment, often stretching out the suffering as long as possible before delivering the final blow.
+---
+id: devil-chain
+type: monster
+name: "Devil, Chain"
+category: Devil
+role: tactician
+palette: [Iron Gray, Steel Blue, Crimson]
+traits: [Animated chains aura, Serrated links, "Speech, telepathy"]
+moves: [Summon Chains, Chain Lash, Reel In]
+wants: "Wants its victims to resist before breaking."
+doesnt_want: "Doesn’t want to find itself confined by others."
+sights: "glinting metal, slow chain shadows, slow laughter"
+sounds: "clinking and rattling, tightening snaps, clangs"
+smells: "rusty, reeking metal, pungent sweat and fear"
+table: devil-chain-imprisoned-within
+source: "p. 149"
+body: |
+  Sadistic fiends that manipulate chains like serpents to ensnare and flay their victims. They relish in the terror and struggle of their confined captives.
+---
+id: devil-horned
+type: monster
+name: "Devil, Horned"
+category: Devil
+role: brute
+palette: [Fiery Red, Burnt Orange, Deep Black]
+traits: [Impenetrable hide, "Speech, telepathy"]
+moves: [Flaming Fork, Hellfire Bolt, Festering Wound]
+wants: "Wants to be both revered and feared."
+doesnt_want: "Doesn’t want to be forced into any compromise."
+sights: "stretching horn shadows, gleaming fork, stab wounds"
+sounds: "resonant telepathic voice, malevolent chuckles"
+smells: "acrid sulfur, suffocating smoke, brimstone"
+table: devil-horned-broken-summoning-circles
+source: "p. 149"
+body: |
+  Fearsome, powerful fiends with towering horns, a spiked tail, and massive wings. They wield a flaming fork and rule with terror and cruelty.
+---
+id: devil-imp
+type: monster
+name: "Devil, Imp"
+category: Devil
+role: trickster
+palette: [Wicked Red, Tarnished Gold, Smoky Gray]
+traits: [Compulsive mischief, Invisibility at-will, "Speech, telepathy"]
+moves: [Venomous Sting, Vermin Form, Enchant Item]
+wants: "Wants to sew subtle seeds of chaos."
+doesnt_want: "Doesn’t want to be confronted directly, ruining the surprise."
+sights: "quick flash of movement, clawed footprints"
+sounds: "buzz of wings, eerie silence, lingering snickering"
+smells: "faint whiffs of venom and sulfur"
+table: devil-imp-impish-snares
+source: "p. 149"
+body: |
+  Tiny, winged fiends driven by trickery and chaos. They delight in sowing mischief and confusion, stinging with mind-warping venoms before vanishing.
+---
+id: dire-bear
+type: monster
+name: "Dire Bear"
+category: Dire Animal
+role: brute
+palette: [Deep Brown, Furry Black, Grizzly Brown]
+traits: [Dense fur, Surprising speed]
+moves: [Testing Charge, Bellowing Roar, Mauling Grapple]
+wants: "Wants to foster the next generation of rulers."
+doesnt_want: "Doesn’t want for its boundaries to be broken."
+sights: "snapped trees, breath steaming in the cold air"
+sounds: "deafening roar echoing, pounding footsteps"
+smells: "crisp pine, overturnt earth, wet fur"
+table: dire-bear-territory-woes
+source: "p. 150"
+body: |
+  Fiercely territorial, colossal animals with thick fur and enormous claws. It responds viciously to any intrusion into its territory.
+---
+id: dire-centipede
+type: monster
+name: "Dire Centipede"
+category: Dire Animal
+role: skirmisher
+palette: [Burnt Sienna, Earthly Brown, Chitin Black]
+traits: [Cling to walls, Terrifying speed]
+moves: [Warning Hiss, Drop Down, Snip Off Limbs]
+wants: "Wants to expand its labyrinth of tunnels."
+doesnt_want: "Doesn’t want bright light or loud noises."
+sights: "endlessly writhing legs, shining chitin, twitching pincers"
+sounds: "rhythmic clicking, sharp hiss, unsettling rustling"
+smells: "nutty insect aroma, sour rotting wood"
+table: dire-centipede-home-tunnels
+source: "p. 150"
+body: |
+  Gigantic, armored insects with venomous pincers and countless legs. They skitter through dark tunnels, creating a labyrinthine network of hunting grounds.
+---
+id: dire-crab
+type: monster
+name: "Dire Crab"
+category: Dire Animal
+role: brute
+palette: [Shell Red, Coral Pink, Fleshy Orange]
+traits: [Impenetrable shell, Voracious appetites]
+moves: ["Click, Clack", "Snip, Snap", Rip in Half]
+wants: "Wants its offspring to overrun the beaches."
+doesnt_want: "Doesn’t want for anything to get under it."
+sights: "boulders clipped in half, odd holes in the sand"
+sounds: "creak of its shell grinding, clicking of legs"
+smells: "wet sand, seaweed, and decaying marine life"
+table: dire-crab-dire-hermit-crab-shells
+source: "p. 150"
+body: |
+  Towering crustaceans with enormous crushing claws, only vulnerable when they molt. They scuttle along coastal shallows, devouring anything in their path.
+---
+id: dire-crocodile
+type: monster
+name: "Dire Crocodile"
+category: Dire Animal
+role: lurker
+palette: [Swamp Green, Muddy Brown, Scaly Black]
+traits: [Swampy camouflage]
+moves: [Snapping Lunge, Death Roll, Drown Prey]
+wants: "Wants to eat anything that comes close."
+doesnt_want: "Doesn’t want to move when unnecessary."
+sights: "massive eyes above the waterline, still waters"
+sounds: "scraping of belly on ground, thrashing water"
+smells: "mud and algae, stagnant swamp water"
+table: dire-crocodile-worshipers
+source: "p. 150"
+body: |
+  Enormous reptiles with iron-like scales and jagged maws. They lurk in wait in murky waters, virtually imperceptible until they move.
+---
+id: dire-eagle
+type: monster
+name: "Dire Eagle"
+category: Dire Animal
+role: predator
+palette: [Feathery White, Earthy Brown, Stormy Gray]
+traits: [Keen eyesight, Extremely swift]
+moves: [Plunging Strike, Swooping Snatch, Piercing Cry]
+wants: "Wants other predators to see and fear it."
+doesnt_want: "Doesn’t want anything coming near its nest."
+sights: "huge falling feather, talon gouges in the earth"
+sounds: "whoosh of massive wings, rustling of feathers"
+smells: "crisp high-altitude air, faint carrion scent"
+table: dire-eagle-unique-eyries
+source: "p. 151"
+body: |
+  Vast raptors with massive wingspans and razor-sharp talons. They soar from high cliffs and dive with deadly precision and perfect timing to bring down prey.
+---
+id: dire-shark
+type: monster
+name: "Dire Shark"
+category: Dire Animal
+role: predator
+palette: [Ocean Gray, Bone White, Deep Blue]
+traits: [Blends into the depths, Knows no fear]
+moves: [From the Depths, Frenzied Thrash, Bite Off a Chunk]
+wants: "Wants to instill deep fear long before it strikes."
+doesnt_want: "Doesn’t want for ships to operate in its waters."
+sights: "patch of red-stained ocean, ominous dorsal fin"
+sounds: "heavy thud hitting the ship, eerie silence"
+smells: "briny saltwater, upturned seawater"
+table: dire-shark-destroyed-ships
+source: "p. 151"
+body: |
+  Massive beasts of the ocean's depth, with rows of serrated teeth and a sleek, powerful body. They prowl the seas, always in search of sizable prey.
+---
+id: dire-spider
+type: monster
+name: "Dire Spider"
+category: Dire Animal
+role: tactician
+palette: [Venom Green, Midnight Black, Dark Crimson]
+traits: [Vibration sense, Complex webbing]
+moves: [Surprise Drop, Venomous Bite, Wrap Prey]
+wants: "Wants to always have enough food for later."
+doesnt_want: "Doesn’t want to be anywhere near fire."
+sights: "thick silk strands, barely visible in shadow, thick hairs"
+sounds: "unsettling skitter, eerie silence, soft thud, slurping"
+smells: "sickly-sweet venom, putrid wrapped bodies"
+table: dire-spider-dire-spider-varieties
+source: "p. 151"
+body: |
+  Monstrously huge arachnids with legs like tree trunks and venomous fangs. They spin vast webs coating entire areas or drop from enormous heights on prey.
+---
+id: dire-wolf
+type: monster
+name: "Dire Wolf"
+category: Dire Animal
+role: tactician
+palette: [Ashen Gray, Light Brown, Frosty Gray]
+traits: [Relentless pursuer, Pack coordination]
+moves: [Call Pack, Tackle Prey, Pack Attack]
+wants: "Wants to protect its pack."
+doesnt_want: "Doesn’t want anything that prevents it from roaming free."
+sights: "silhouette at edge of clearing, tracks in the mud"
+sounds: "haunting howl, guttural growl, heavy breathing"
+smells: "fur mixed with fresh earth, sweat, mountain air"
+table: dire-wolf-lunar-behaviors
+source: "p. 151"
+body: |
+  Hulking wolf with bristling fur and dagger-like fangs. They hunt with a pack of lesser wolves, using fearsome coordination to trap and bring down prey.
+---
+id: dislocation-beast
+type: monster
+name: "Dislocation Beast"
+role: trickster
+palette: [Shadow Black, Midnight Blue, Mystic Purple]
+traits: [Phantom forms, Ethereal agility]
+moves: [Tentacle Swipes, Disorienting Blurs, Sudden Pounce]
+wants: "Wants to swiftly harness the chaos it creates."
+doesnt_want: "Doesn’t want to ever put itself in danger."
+sights: "shifting blurs, disrupted reality, phantom images"
+sounds: "distorted growl, strange echoes, swish of movement"
+smells: "spicy musk, sharply cut aromas, caustic undertone"
+table: dislocation-beast-bizarre-phenomena
+source: "p. 152"
+body: |
+  Elusive, panther-like creatures with six legs and barbed tentacles. They warp reality to disorient and confuse, blending into their surroundings.
+---
+id: doppelganger
+type: monster
+name: "Doppelganger"
+role: trickster
+palette: [Neutral Gray]
+traits: [Shapechanger, Mindreader, "Speech, telepathy"]
+moves: [Shift Appearance, Mental Probe, Psychic Scream]
+wants: "Wants to experience new lives."
+doesnt_want: "Doesn’t want its true form to be seen."
+sights: "shifting facial features, subtle posture changes"
+sounds: "disconcerting silence, soft self-reprimanding"
+smells: "a smell fully unexpected of that person"
+table: doppelganger-identities-you-know
+source: "p. 152"
+body: |
+  Shapeshifting figures with gray, featureless skin. They can perfectly mimic any humanoid, infiltrating societies to achieve their own mysterious goals.
+---
+id: dragon
+type: monster
+name: "Dragon"
+role: blaster
+palette: [Scale Emerald, Crimson Flame, Gold Accent]
+traits: [Frightful presence, Ancient memories, Speech]
+moves: [Elemental Breath, Wing Buffet, Chomp Down]
+wants: "Wants to assert its supremacy over all."
+doesnt_want: "Doesn’t want to be humbled in any way."
+sights: "massive features, self-important posture"
+sounds: "thunderous roar, wings beating, intake of breath"
+smells: "faint scent of gold and ancient relics"
+table: dragon-hoarding-instincts
+section:
+  title: "Dragon Breath Weapons"
+  text: "A dragon's elemental breath is a potent weapon, as well as a versatile tool. Give elder dragons an extra 2 suspense that they can use on these breath weapon utility moves."
+  breath_weapons:
+    - name: "Acid"
+      moves: [Caustic Pools, Corrode Armor, Eat Away Stone]
+    - name: "Cold"
+      moves: [Ice Wall, Freeze in Place, Slow Movement]
+    - name: "Fire"
+      moves: [Burn Barriers, Melt Weapons, Smoke Screen]
+    - name: "Lightning"
+      moves: [Chained Stun, Disable Machine, Thunder Roar]
+    - name: "Poison"
+      moves: [Confusion, Force Wretching, Lingering Cloud]
+    - name: "Necrosis"
+      moves: [Deathly Fear, Life Drain, Wither Plants]
+  # The book leaves out the page number: the dragon linked challenge is The Great Red
+  # Dragon on p. 106, played out in the example of play on pp. 120-121.
+  note: "Also, reference the dragon linked challenge on pg. ."
+source: "p. 152"
+body: |
+  Massive, scaled beasts with wings and elemental breath attacks. They hoard treasures and instill deep, instinctual fears as a top apex predator.
+---
+id: elemental-air
+type: monster
+name: "Elemental, Air"
+category: Elemental
+role: trickster
+palette: [Cloud White, Sky Blue, Whisper Gray]
+traits: [Cyclonic form, Untouchable, Speech]
+moves: [Gale Force, Whirlwind, Suffocate]
+wants: "Wants to flow ever free."
+doesnt_want: "Doesn’t want to be ignored."
+sights: "leaves and debris swirling, dust and sand kicked up"
+sounds: "howling wind, rush of air, whistling gusts"
+smells: "high-altitude winds, rain and freshly turned earth"
+table: elemental-air-form-personality
+source: "p. 153"
+body: |
+  Swirling masses of wind and cloud that can change shape. They represent the raw power of storms and wind, mercurial and unpredictable.
+---
+id: elemental-earth
+type: monster
+name: "Elemental, Earth"
+category: Elemental
+role: brute
+palette: [Mossy Green, Rocky Brown, Stone Gray]
+traits: [Rock-solid, Tremor sense, Speech]
+moves: [Earthquake, Stone Spires, Boulder Toss]
+wants: "Wants to endure beyond time."
+doesnt_want: "Doesn’t want for its form to be chipped away."
+sights: "ground trembling, boulders rolling, spikes of stone"
+sounds: "rumbling groans, deafening crack of rocks, thumps"
+smells: "loamy disturbed soil, moss, wet stone, mineral tang"
+table: elemental-earth-biome-personality
+source: "p. 153"
+body: |
+  Massive, rock-like creatures embodying the raw strength of the earth. They're slow but nearly unstoppable, lumbering through anything in their way.
+---
+id: elemental-fire
+type: monster
+name: "Elemental, Fire"
+category: Elemental
+role: brute
+palette: [Blazing Red, Burnt Gold, Molten Orange]
+traits: [Blazing aura, Insatiable hunger, Speech]
+moves: [Flame Lash, Melt Metals, Summon Firelings]
+wants: "Wants to consume and move on."
+doesnt_want: "Doesn’t want to let embers die out."
+sights: "roiling mass, flickering edges, glowing embers"
+sounds: "crackle and pop, roaring, hum of molten metals"
+smells: "sulfur, brimstone, smoke, char, tang of metals"
+table: elemental-fire-ignition-personality
+source: "p. 153"
+body: |
+  Constantly shifting infernos that consume everything in their path. They blaze with insatiable hunger, leaving behind smoldering ash and molten ruin.
+---
+id: elemental-water
+type: monster
+name: "Elemental, Water"
+category: Elemental
+role: blaster
+palette: [Ocean Blue, Wavecrest White, Seafoam Green]
+traits: [Turbulent shape, Rushing flow, Speech]
+moves: [Undertow, Surge, Whirpool]
+wants: "Wants to flow along channels towards growth."
+doesnt_want: "Doesn’t want to lose touch with the ground."
+sights: "crashing waters, churning currents, glistening tendrils"
+sounds: "roar of waves, splashing, sloshing, bubbling, gurgling"
+smells: "briny ocean, soaked soil, sharp freshwater"
+table: elemental-water-water-source-personality
+source: "p. 153"
+body: |
+  Fluid, amorphous entities resembling a wave or torrent. They represent the relentless and ever-changing nature of water, adaptable and hard to contain.
+---
+id: ettin
+type: monster
+name: "Ettin"
+role: brute
+palette: [Fleshy Gray, Dark Leather, Ashen White]
+traits: [Constantly bickering, Clumsy stride, Speech]
+moves: [Swing Weapons, Headbutts, Dual Shouting]
+wants: "Wants simple pleasures both heads can agree on."
+doesnt_want: "Doesn’t want to do anything that requires precision."
+sights: "chaotic movements, dragging feet, frustrated glaring"
+sounds: "constant bickering, clumsy thuds, mismatched words"
+smells: "sweaty musk, animal hides, unkempt hair"
+table: ettin-unlikely-protector-of
+scenario:
+  title: "Two Heads Are Worse Than One"
+  text: "To pass an ettin without a fight, you'll need to persuade both heads. Remember, they're dim and don't get along."
+pools:
+  - name: "Stonevoice"
+    dice: 4
+    traits: ["calm, rational", seeks a good chat, reacts to wordplay]
+    links: [Gorebark]
+  - name: "Gorebark"
+    dice: 6
+    traits: ["aggressive, loud", seeks violence, reacts to weakness]
+  - name: "Runejaw"
+    dice: 6
+    traits: ["cryptic, curious", seeks to prophesize, reacts to symbolism]
+    links: [Goldmaw]
+  - name: "Goldmaw"
+    dice: 6
+    traits: ["sharp, greedy", seeks material gain, reacts to rare goods]
+  - name: "Hootfang"
+    dice: 4
+    traits: ["flamboyant, selfish", seeks real praise, reacts to boredom]
+    links: [Foulhorn]
+  - name: "Foulhorn"
+    dice: 8
+    traits: ["quiet, manipulative", seeks to swindle, reacts to confusion]
+source: "p. 154"
+body: |
+  Towering, two-headed figure with mismatched weapons. They lumber through the wilderness, both heads bickering endlessly about trivial matters.
+---
+id: ettercap
+type: monster
+name: "Ettercap"
+role: tactician
+palette: [Spider Gray, Venom Purple, Forest Green]
+traits: [Clever silk traps, Clings to walls, "Speech (rarely)"]
+moves: [Sling Webbing, Venomous Bite, Web Skitter]
+wants: "Wants to never face danger directly."
+doesnt_want: "Doesn’t want for its hard work webbing to be destroyed."
+sights: "webs between trees, struggling victims, shiny fangs"
+sounds: "faint skitter of legs, whirr of web-spinning"
+smells: "rotting wood, wet earth, decaying bodies"
+table: ettercap-webbed-domains
+scenario:
+  title: "Masters of Their Webbed Domain"
+  text: "The ettercap has enmeshed its lair in silken traps and shepherds a vast colony of monstrous spiders. It can detect even the faintest disturbance across the webbed expanse."
+pools:
+  - name: "Alarm Strands"
+    dice: 4
+    traits: [nearly invisible]
+    moves: [Startled Spider, Another Victim]
+    links: ["Deadly Traps (rough)", "Cocoons (hidden)", "Spider Nest (from Startled Spider)"]
+  - name: "Holding Traps"
+    dice: 4
+    traits: [incredibly sticky]
+    moves: [Ensnaring Pull, Tangling Webs]
+    leads_to: [Cocoons]
+  - name: "Deadly Traps"
+    dice: 4
+    traits: [serrated webbing]
+    moves: [Neck Slice, Constricting Web]
+    links: ["Ettercap (secret)"]
+    leads_to: [Spider Nest]
+  - name: "Cocoons"
+    dice: 4
+    traits: [wriggling victims]
+    moves: [Desperate Pleas, Horrific Feasting]
+    links: ["Ettercap (rough)"]
+  - name: "Spider Nest"
+    dice: 8
+    traits: [rabbit-sized spiders]
+    moves: [Split Up Prey, Biting Frenzy]
+  - name: "Ettercap"
+    dice: 6
+    traits: [can appear anytime]
+    moves: [Lethal Bite, Flee to Safety]
+source: "p. 154"
+body: |
+  Hunched, two-legged spider-like creature with web-spinning claws. They lurk within a maze of webbed traps and often control huge spider colonies.
+---
+id: fey-dryad
+type: monster
+name: "Fey, Dryad"
+category: Fey
+role: protector
+palette: [Mossy Green, Bark Brown, Forest Green]
+traits: [Melds with trees, One with nature, Speech]
+moves: [Entangling Roots, Charm Person, Blossoming Burst]
+wants: "Wants to welcome those with good intentions."
+doesnt_want: "Doesn’t want any form of unnatural change."
+sights: "twisting vines, blooming flowers, swirling leaves"
+sounds: "soft rustling, melodic birdsong, crackle of twigs"
+smells: "earthy scent, woody aroma, crisp fresh leaves"
+table: fey-dryad-arboreal-lineage
+source: "p. 155"
+body: |
+  Mystical tree spirits that embody the essence of a specific tree, guarding it and the surrounding grove. They are fiercely protective of their home.
+---
+id: fey-faery
+type: monster
+name: "Fey, Faery"
+category: Fey
+role: trickster
+palette: [Petal Pink, Soft Lavender, Pale Blue]
+traits: [Swarm together, Invisibility at-will, Speech]
+moves: [Fairy Dust, Dazzling Lights, Minor Illusions]
+wants: "Wants to play mostly harmless tricks on mortals."
+doesnt_want: "Doesn’t want to be anywhere near iron."
+sights: "glittering trails, darting figures, fleeting glimpses"
+sounds: "airy giggling, fluttering of tiny wings, melodic chimes"
+smells: "delicate nectar, lavender and jasmine, sugary aroma"
+table: fey-faery-fairy-circles
+source: "p. 155"
+body: |
+  Tiny, winged creatures with a mischievous nature. They flit through meadows, casting illusions and playing tricks on wanderers for their own amusement.
+---
+id: fey-redcap
+type: monster
+name: "Fey, Redcap"
+category: Fey
+role: skirmisher
+palette: [Blood Red, Aged Leather, Thicket Green]
+traits: [Bloodlust, Grim cackling, Speech]
+moves: [Scythe Slash, Blood Frenzy, Make Skin Crawl]
+wants: "Wants its hat to never fully dry."
+doesnt_want: "Doesn’t want to be shown its own weaknesses."
+sights: "bloodshot eyes, malevolent grin, shiny scythe"
+sounds: "sharp shing of a scythe, cackling laughter"
+smells: "thick coppery scent of fresh blood like a fog"
+table: fey-redcap-warband-bosses
+source: "p. 155"
+body: |
+  Malicious, bloodthirsty creatures with a blood-red cap, driven by violence and a love for carnage. They often manifest near murder sites.
+---
+id: fey-satyr
+type: monster
+name: "Fey, Satyr"
+category: Fey
+role: brute
+palette: [Earthly Brown, Autumn Tawny, Grassy Green]
+traits: [Revelrous spirit, Enchanting tunes, Speech]
+moves: [Pan Pipes, Headbutt, Jeering Calls]
+wants: "Wants to loosen mortal ties."
+doesnt_want: "Doesn’t want mortals to try to resist its invitations."
+sights: "travelers into the woods, playfully malicious grin"
+sounds: "hypnotic melody of panpipes, dancing and revelry"
+smells: "rich scent of wine, wild berries, lingering sweetness"
+table: fey-satyr-contests-rewards
+source: "p. 155"
+body: |
+  Merry, goat-legged tricksters with a love for wine, music, and revelry. They invite wanderers into their revelry, at times with a sense of maliciousness.
+---
+id: gargoyle
+type: monster
+name: "Gargoyle"
+role: protector
+palette: [Stone Gray, Ash Black, Mossy Green]
+traits: [Stone camouflage, Eternal vigilance, Speech]
+moves: [Jump Scare, Snatch and Fly, Stone Talons]
+wants: "Wants to let intruders go past the point of no return."
+doesnt_want: "Doesn’t want to outlive its duty."
+sights: "nothing of interest, wings unfurling, eyes opening"
+sounds: "slow scrape of stone, soft whoosh of wings, heavy thud"
+smells: "dusty earth, ancient stone, tang of rainwater"
+table: gargoyle-odd-wards
+source: "p. 156"
+body: |
+  Winged stone-like creatures that masquerade as part of buildings, serving as guardians. They can remain motionless for years until intruders approach.
+---
+id: gelatinous-cube
+type: monster
+name: "Gelatinous Cube"
+role: brute
+palette: [Acidic Green, Translucent Blue, Pale Lime]
+traits: [Nearly invisible, Very slow]
+moves: [Absorb Prey, Corrosive Splash, Quick Dissolve]
+wants: "Wants to keep moving forward."
+doesnt_want: "Doesn’t want tenacious objects lingering inside it."
+sights: "faint shimmer, half-dissolved items suspended in air"
+sounds: "wet sloshing, soft acidic hiss, unsettling gurgling"
+smells: "sour odor of acid, stinging scent of corroded metal"
+table: gelatinous-cube-aberrations
+source: "p. 156"
+body: |
+  Transparent, jelly-like masses big enough to fill the dungeon halls they slide through. They engulf anything they touch and dissolve it with acidic digestion.
+---
+id: genie
+type: monster
+name: "Genie"
+role: blaster
+palette: [Burnished Gold, Sapphire Blue, Mystic Purple]
+traits: [Elemental mastery, Regal confidence, Speech]
+moves: [Twisted Wish, Command Element, Whirlwind]
+wants: "Wants its wishes to teach mortals a lesson."
+doesnt_want: "Doesn’t want to be bound or controlled."
+sights: "flowing robes, runes and symbols etched in the air"
+sounds: "ethereal hum, whoosh of wind, crackle of magic"
+smells: "crisp air, lingering jasmine and lotus, alluring spice"
+table: genie-genie-twists
+source: "p. 156"
+body: |
+  Powerful elemental spirits that command the forces of nature. They grant wishes, but often twist them to serve mysterious and unpredictable ends.
+---
+id: gibbering-mouther
+type: monster
+name: "Gibbering Mouther"
+role: brute
+palette: [Pale Flesh, Meaty Red, Fleshy Pink]
+traits: [Maddening babble, Chaotic form]
+moves: [Blinding Spittle, Mind Haze, Swallow Whole]
+wants: "Wants to add more eyes and mouths to itself."
+doesnt_want: "Doesn’t want for its gibberish to be understood."
+sights: "droplets of saliva, bits of meat, bubbling flesh"
+sounds: "slurping, high-pitched screeches, moans, laughter"
+smells: "sour odor of bile and rot, viscera, rancid meat"
+table: gibbering-mouther-voices-in-the-chaos
+source: "p. 156"
+body: |
+  Writhing masses of eyes and mouths, constantly babbling incoherently. They confuse and madden foes with the chaotic sounds and frenzied mayhem.
+---
+id: golem
+type: monster
+name: "Golem"
+role: brute
+palette: [Clay Brown, Iron Rust, Stone Gray]
+traits: [Unyielding, Immune to magic]
+moves: [Smashing Fists, Booming Stomps, Mindless Charge]
+wants: "Wants to obey its creator's commands to the exact letter."
+doesnt_want: "Doesn’t want to be uncertain of what to do."
+sights: "lumbering form, carved runes, glowing cracks"
+sounds: "grinding joints, hollow thuds, faint buzz of magic"
+smells: "overwhelming scent of the material it was made of"
+table: golem-golem-construction
+source: "p. 157"
+body: |
+  Magically animated constructs forged from various materials. They fulfill their creator's commands with unwavering obedience.
+---
+id: gorgon
+type: monster
+name: "Gorgon"
+role: brute
+palette: [Metallic Gray, Bronze Highlights, Gaseous Green]
+traits: [Thick metallic hide]
+moves: [Petrifying Breath, Bull Rush, Horn Toss]
+wants: "Wants to charge anything that dares confront it."
+doesnt_want: "Doesn’t want flashy distractions."
+sights: "serpentine eyes, gas tendrils seeping from nostrils"
+sounds: "sliding metal plates, mechanical snorts, hiss of steam"
+smells: "heavy metallic odor, slight staleness in the air"
+table: gorgon-metallic-variation
+source: "p. 157"
+body: |
+  Metal-plated bulls that snort out a cloud of petrifying gas. They charge through it and shatter the stone victim into a thousand pieces.
+---
+id: grick
+type: monster
+name: "Grick"
+role: lurker
+palette: [Slate Gray, Mauve Gray, Dark Olive]
+traits: [Rocky camouflage, Extended reach]
+moves: [Tentacle Swipe, Beak Snap, Hasty Retreat]
+wants: "Wants to leave no trace of its hunt."
+doesnt_want: "Doesn’t want to miss a chance at a meal."
+sights: "squirming tentacles, intense gaze, faint movement"
+sounds: "soft slithering, faint clicking, sudden snapping"
+smells: "musty earth, damp rock, faintly fishy scent"
+table: grick-side-effects-of-magical-experimentation
+source: "p. 157"
+body: |
+  Slithering, worm-like creatures with hooked tentacles and a beak. They hide in dark caverns, taking great care to ambush prey with precise strikes.
+---
+id: griffon
+type: monster
+name: "Griffon"
+role: predator
+palette: [Lion Gold, Feathery White, Stormy Blue]
+traits: [Keen watch, Wild majesty]
+moves: [Warning Whoosh, Beak Snap, Resonant Screech]
+wants: "Wants for its screeches to warn intruders away."
+doesnt_want: "Doesn’t want any threat at all to its kin."
+sights: "majestic soaring, flash of golden fur, knowing eyes"
+sounds: "beak snap, flutter of feathers, scratching the ground"
+smells: "crisp mountain air, faint scent of wild prey"
+table: griffon-people-it-terrorizes
+source: "p. 157"
+body: |
+  Majestic creatures with the body of a lion and the wings of an eagle. They're fierce predators and highly territorial, often nesting on high mountain peaks.
+---
+id: giant-fire
+type: monster
+name: "Giant, Fire"
+category: Giant
+role: lurker
+palette: [Burnt Ember, Fiery Red, Coal Black]
+traits: [Magma-blooded, Blazing aura]
+moves: [Flaming Hammer, Hurl Magma, Blaze Wave]
+wants: "Wants to haul plunder back to its volcanic fortress."
+doesnt_want: "Doesn’t want to cross bodies of water."
+sights: "huge swathes of scorched earth, trails of magma"
+sounds: "roaring crackle, whoosh of fire, rumble of lava"
+smells: "stifling smoky odor, charred earth, scorched stone"
+table: giant-fire-seat-of-power
+scenario:
+  title: "Douse the Flames of War"
+  text: "You’ve reached the volcanic lair of the fire giant, bent on unleashing fire and war with its devil allies."
+pools:
+  - name: "Head & Magic"
+    dice: 8
+    moves: [Collapse Tunnels, Offer Alliance, Summon Devils]
+    links: [Body & Prowess]
+  - name: "Body & Prowess"
+    dice: 8
+    traits: [thick armor, fiery spear]
+    moves: [Spear Sweep, Foot Stomp, Grab & Throw]
+battlegrounds:
+  - name: "Volcanic Lair"
+    features: [lava pits, choking sulfuric clouds]
+    threats: ["6d Spew Magma"]
+    enemies: ["6d Firelings (mook blasters)", "3 Hellhounds (tough brutes)", "4d | Fire Elemental (elite blaster)"]
+source: "p. 158"
+body: |
+  Ironclad tyrants of flame and forge, valuing order and dominance above all. They shape kingdoms through fire, steel, and unyielding will.
+---
+id: giant-frost
+type: monster
+name: "Giant, Frost"
+category: Giant
+role: lurker
+palette: [Icy Blue, Frosty Gray, Stone Gray]
+traits: [Icy footsteps, Slowness aura, Speech]
+moves: [Frost Breath, Summon Blizzard, Frozen Hammer]
+wants: "Wants to rule the sweeping vistas of the tundra."
+doesnt_want: "Doesn’t want to feel the cold seep from its bones."
+sights: "massive hanging icicles, clouds of snowflakes"
+sounds: "crack of freezing, howling icy winds, crunch of frost"
+smells: "biting cold, frigid air, pine trees, fresh snow"
+table: giant-frost-unexpected-locations
+scenario:
+  title: "Break the Everfrost Curse"
+  text: "You see the palace ahead, but the ice starts cracking beneath you and you hear crystals shattering overhead."
+battlegrounds:
+  - name: "Outer Courtyard"
+    features: [cracked ice pillars and statues]
+    enemies: ["4d Iceling (mook swarmer)", "8d | Remorhaz (elite predator)"]
+    leads_to: [Icy Halls]
+  - name: "Icy Halls"
+    features: [labyrinthine halls]
+    threats: ["4d Terrifying Howling"]
+    enemies: ["6d Winter Wolves (tough predators)", "6d | Dire Winter Wolf (elite tactician)"]
+    leads_to: [Frozen Throneroom]
+  - name: "Frozen Throneroom"
+    features: [intensely cold]
+    threats: ["4d Falling Icicles"]
+    enemies: ["3 Ice Trolls (tough brutes)", "6d Air Elementals (elite blasters)", "8d + 8d | Frost Giant (boss blaster)"]
+source: "p. 158"
+body: |
+  Brutal lords of ice and stone, honoring strength and tradition above all. They seek to prove themselves worthy of the harsh, unforgiving frozen wastes.
+---
+id: giant-hill
+type: monster
+name: "Giant, Hill"
+category: Giant
+role: brute
+palette: [Dusty Tan, Earthy Brown, Muddy Green]
+traits: [Bottomless appetite, Too dumb to trick, "Speech (limited)"]
+moves: [Smash It, Throw It, Eat It]
+wants: "Wants to force weaker creatures to bring it food."
+doesnt_want: "Doesn’t want to be confronted with logic and reason."
+sights: "bulging muscles, bloated belly, ragged clothes"
+sounds: "guttural burps, dumb chuckles, heavy breathing"
+smells: "overpowering stench of sweat, sour rotting food"
+table: giant-hill-quirks
+scenario:
+  title: "Brute Diplomacy"
+  text: "The Hill Giant has what you need, but you'd rather not fight. Convincing it, though, may be even harder."
+pools:
+  - name: "The Basic Concept"
+    dice: 4
+    traits: [hates big words]
+    moves: [Scratches Head, Repeats Wrongly, Loses Track]
+    fail: ["4d Gets Cranky"]
+    says: ["uhh…", "hrmph…", "heh heh!", "hmm?"]
+    links: [What It Wants]
+  - name: "What It Wants"
+    dice: 6
+    moves: [Wants Too Much, Belly Rumbles, Wants Proof]
+    fail: [Mention food]
+    says: ["hooo?", "oh, gimme!", "bleh."]
+    links: [Sealing the Deal]
+  - name: "Sealing the Deal"
+    dice: 6
+    moves: ["Sudden “Good” Idea", Changes the Deal, Repeats the Obvious]
+    fail: ["Fickle (roll a grim)"]
+    says: ["me see!", "nom nom.", "mmm hmm."]
+source: "p. 159"
+body: |
+  Massive, dim-witted gluttons with big bellies and bulging muscles. They crush and consume all in their path, living only for the next feast.
+---
+id: giant-storm
+type: monster
+name: "Giant, Storm"
+category: Giant
+role: blaster
+palette: [Electric Blue, Cloudy Sky, Stormy Gray]
+traits: [Crackling aura, Commanding presence, Speech]
+moves: [Thunderbolt, Thunderclap, Summon Storm]
+wants: "Wants to enforce what it sees as the natural order."
+doesnt_want: "Doesn’t want to see established order devolve into chaos."
+sights: "crackling arcs of lightning, regal figure on the horizon"
+sounds: "deafening boom, wind rushing, building static hum"
+smells: "electrified air, rain-soaked earth, wet stone"
+table: giant-storm-arrives-alongside
+scenario:
+  title: "Storm of the Century"
+  text: "The ritual complete, the king thought he had saved the city from famine—but he had defied nature’s will."
+pools:
+  - name: "Twin Tornadoes"
+    dice: "8+8"
+    moves: [Rip through Town, Debris Barrage]
+  - name: "Head & Magic"
+    dice: 8
+    moves: [Arcane Static, Summon Elementals, Sheet Lightning]
+    links: [Body & Prowess]
+  - name: "Body & Prowess"
+    dice: 8
+    moves: [Kick Over Wall, Throw Castle Turret, Shake Off Climbers]
+    fail: [The king dies]
+source: "p. 159"
+body: |
+  Regal rulers of sea and sky, embodying wisdom and natural order. They summon storms to enforce balance, driven to maintain the world's harmony.
+---
+id: hag-night
+type: monster
+name: "Hag, Night"
+category: Hag
+role: trickster
+palette: [Midnight Blue, Shadow Black, Deep Purple]
+traits: [Was in your dreams, Shadowy teleport, Speech]
+moves: [Nightmares, Phantasmal Form, Eerie Whisper]
+wants: "Wants to explore the true depths of your fears."
+doesnt_want: "Doesn’t want to have its own fears exposed."
+sights: "shrouded in shadows, trail of purple mist"
+sounds: "eerie whispers, fluttering cloak, creak of unseen steps"
+smells: "cool night air, hint of aged leather"
+table: hag-night-night-spell-crucible
+source: "p. 160"
+body: |
+  Sinister figures that embody nightmares, manipulating dreams to terrorize mortals. They're devious and deal in dark bargains.
+---
+id: hag-sea
+type: monster
+name: "Hag, Sea"
+category: Hag
+role: tactician
+palette: [Seaweed Green, Dark Driftwood, Sea Blue]
+traits: [Knows your sins, Watery teleport, Speech]
+moves: [Hideous Gaze, Drowning Curse, Call Creatures]
+wants: "Wants to collect souls lost to the depths of the seas."
+doesnt_want: "Doesn’t want someone to make their fortune on the seas."
+sights: "slimy skin, kelp entangled hair, glassy eyes"
+sounds: "waves crashing, soft gurgles, echoing calls"
+smells: "saltwater, fish rot, briny scent of seaweed"
+table: hag-sea-sea-spell-crucible
+source: "p. 160"
+body: |
+  Grotesque sea-dwellers whose gaze inspires terror. They lurk in coastal caves, cursing sailors and reveling in the fearful cries of the drowning.
+---
+id: hag-storm
+type: monster
+name: "Hag, Storm"
+category: Hag
+role: blaster
+palette: [Electric Blue, Rainy Teal, Stormy Gray]
+traits: [Always stormy, Windrider, Speech]
+moves: [Conjure Tempests, Lightning Strike, Thunder Boom]
+wants: "Wants to wreak havoc where stability prevails."
+doesnt_want: "Doesn’t want the calm center of its own fury revealed."
+sights: "dark clouds swirling, crackling electricity"
+sounds: "howling winds, crackle of lightning, roaring thunder"
+smells: "rain-soaked air, faint scent of wet earth"
+table: hag-storm-storm-spell-crucible
+source: "p. 160"
+body: |
+  Fierce figures that roam coastal cliffs, summoning winds and lightning. They unleash their wrath on settlements, making sure none grow too comfortable.
+---
+id: hag-swamp
+type: monster
+name: "Hag, Swamp"
+category: Hag
+role: trickster
+palette: [Bog Green, Dank Moss, Peat Brown]
+traits: [Swampy camouflage, Decaying touch, Speech]
+moves: [Illusions, Toxic Cloud, Ensnaring Vines]
+wants: "Wants to let the creatures of the swamp do all the work."
+doesnt_want: "Doesn’t want its swamp becoming someone's shortcut."
+sights: "gnarled branches, hanging moss, buzzing flies"
+sounds: "creaking of trees, croak of swamp creatures, cackling"
+smells: "decaying leaves, putrid water, mud"
+table: hag-swamp-swamp-spell-crucible
+source: "p. 160"
+body: |
+  Wicked figures lurking in fetid bogs, weaving illusions to torment travelers. They spread decay and poison with sadistic glee.
+---
+id: hell-hound
+type: monster
+name: "Hell Hound"
+role: predator
+palette: [Ember Red, Coal Black, Charcoal Gray]
+traits: [Pack hunter, Fiery tracks, Understands language]
+moves: [Flame Breath, Howling Call, Warning Growl]
+wants: "Wants to make the guilty pay."
+doesnt_want: "Doesn’t want being forced out into the stinging rains."
+sights: "smoking nostrils, singed grass, bed of ashes"
+sounds: "deep growls, crackling flames, claws scraping stone"
+smells: "sulfur and brimstone, charred flesh"
+table: hell-hound-call-to-hunt
+source: "p. 161"
+body: |
+  Fiery, vicious hounds with glowing eyes and smelling of brimstone. They hunt in packs and track down souls marked for damnation.
+---
+id: hippogriff
+type: monster
+name: "Hippogriff"
+role: protector
+palette: [Chestnut Brown, Soft Ivory, Golden Tawny]
+traits: [Noble presence, Elegant speed]
+moves: [Talon Strike, Beak Snap, Take Flight]
+wants: "Wants for its young to grow strong and wild."
+doesnt_want: "Doesn’t want those who confront others with aggression."
+sights: "majestic wings, sharp beak, talons gripping the earth"
+sounds: "rush of wind, shrill cries, gallop of hooves"
+smells: "earthy scent of open fields, fresh mountain air"
+table: hippogriff-chosen-riders
+source: "p. 161"
+body: |
+  Noble creatures with the body of a horse and wings of an eagle. They soar over plains and mountains, loyal and protective to those who earn their trust.
+---
+id: hydra
+type: monster
+name: "Hydra"
+role: brute
+palette: [Marsh Green, Dusky Blue, Rusty Red]
+traits: [Incredibly vigilant, Regenerating heads]
+moves: [Pull Arms & Legs, Frenzied Biting, Regrow Head Now]
+wants: "Wants to keep threats in front of it."
+doesnt_want: "Doesn’t want anything ever touching its body."
+sights: "wide-open jaws, glistening scales"
+sounds: "hissing, splash of water, snapping of giant jaws"
+smells: "rotting vegetation, stagnant muck water"
+table: hydra-unique-head-regrowths
+scenario:
+  title: "Severance Pay"
+  text: "A wizard’s offering good coin for the heads of a hydra, each the size of a big soup pot. He swears he can brew the perfect regeneration potion—with some trial and error."
+pools:
+  - name: "First Head"
+    dice: 2
+    traits: [protects the body, "3d Regrow Head"]
+    links: [Body]
+  - name: "Second Head"
+    dice: 2
+    traits: [protects the body, "3d Regrow Head"]
+    links: [Body]
+  - name: "Third Head"
+    dice: 2
+    traits: [protects the body, "3d Regrow Head"]
+    links: [Body]
+  - name: "Fourth Head"
+    dice: 2
+    traits: [protects the body, "3d Regrow Head"]
+    links: [Body]
+  - name: "Body"
+    dice: 8
+    traits: [mostly submerged]
+  - name: "Fifth Head"
+    dice: 2
+    traits: [watches behind, "3d Regrow Head"]
+    links: [Body]
+source: "p. 161"
+body: |
+  Massive, reptilian beasts with multiple heads that can regrow when severed, making them almost impossible to kill. They lurk in swamps and dark waters.
+---
+id: kraken
+type: monster
+name: "Kraken"
+role: tactician
+palette: [Abyssal Indigo, Bioluminescent Cyan, Mottled Ink Black]
+traits: [Ancient intelligence, Endless tentacles, Telepathic speech]
+moves: [Drag Under, Tentacle Slap, Psychic Scream]
+wants: "Wants to observe, then steer the course of fate."
+doesnt_want: "Doesn’t want the chaos of small folk in its domain."
+sights: "bioluminescent shapes, trembling water"
+sounds: "silence where there should be sound, deep pressure"
+smells: "old brine, ancient ink and salt"
+table: kraken-how-it-wants-to-shape-the-future
+scenario:
+  title: "Awakened from the Deep"
+  text: "A deep rumbling comes from beneath the ship as the water around you begins to tremble. It knows why you’re here."
+pools:
+  - name: "Long Tentacles"
+    dice: 4
+    traits: [protects the body]
+    moves: [Forceful Fling, Squeeze]
+    links: [Body]
+  - name: "Long Tentacles"
+    dice: 4
+    traits: [protects the body]
+    moves: [Wrap Around, Pull Asunder]
+    links: [Body]
+  - name: "Body"
+    dice: 4
+    traits: [slick hide, dark knowledge]
+    moves: [Whisper Secrets, Consume]
+battlegrounds:
+  - name: "Aquatic Lair"
+    features: [rocky crevasses, ink clouds]
+    threats: ["6d Steam Jet"]
+    enemies: ["6d Jellyfish (mook swarmers)", "3 Dire Sharks (tough brutes)", "4d | Naga Priest (elite tactician)"]
+source: "p. 162"
+body: |
+  It’s a being older than language, stirring in deep slumber. Immense, alien, and beyond comprehension, it uses its vast intelligence to bend the world to its will.
+---
+id: lamia
+type: monster
+name: "Lamia"
+role: trickster
+palette: [Dark Jade, Desert Brown, Sandy Gold]
+traits: [Graceful agility, Illusory person form, Speech]
+moves: [Cursed Touch, Illusions, Enchantment]
+wants: "Wants to gather secrets and amusement from its victims."
+doesnt_want: "Doesn’t want to think about the nature of its existence."
+sights: "golden adornments, graceful silhouette, soft ripples"
+sounds: "seductive laughter, sand rustling, chants on the wind"
+smells: "desert breeze, faint jasmine, spicy myrrh"
+table: lamia-false-renown
+source: "p. 162"
+body: |
+  Decadent, lion-bodied enchantresses that lure victims with charm and illusion, seeking to corrupt and control them. They're driven by hedonistic desires.
+---
+id: land-shark
+type: monster
+name: "Land Shark"
+role: lurker
+palette: [Slate Gray, Dusty Ochre, Old Bone]
+traits: [impenetrable hide, vibration sense, swift ambushes]
+moves: [Burrow in Earth, Crushing Bite, Drag Down Hole]
+wants: "Wants to claim a territory of its own."
+doesnt_want: "Doesn’t want to be stuck on hard surfaces."
+sights: "layered plates on hide, hump gliding through soil"
+sounds: "rumbling earth, sudden silence, deep growl"
+smells: "damp stone, churned dirt, dust in the air"
+table: land-shark-where-the-tunnel-ends
+source: "p. 162"
+body: |
+  A hulking beast of plated muscle and burrowing claws. It bursts from the earth to hunt anything foolish enough to walk above its domain.
+---
+id: manticore
+type: monster
+name: "Manticore"
+role: marksman
+palette: [Burnt Brown, Desert Ochre, Dusty Dawn]
+traits: [Barbed hide, Cautious, "Speech (crude)"]
+moves: [Cruel Words, Spike Volley, Terrifying Roar]
+wants: "Wants to scare its prey into fleeing for an easy kill."
+doesnt_want: "Doesn’t want to let fleeing prey get away."
+sights: "spikes in trees, dust clouds, long blood trails"
+sounds: "guttural roars, sharp cracking of spikes landing"
+smells: "dry fur, acrid dust, musky feline scent"
+table: manticore-symbiotic-pairings
+source: "p. 163"
+body: |
+  Fierce beasts with a feline body and spiked tail. They prowl deserts and plains, driving prey into flight then pelting them with volleys of deadly tail spikes.
+---
+id: medusa
+type: monster
+name: "Medusa"
+role: trickster
+palette: [Viper Green, Bronze Gold, Ancient Stone]
+traits: [Vigilant serpent hair, Unnatural beauty, Speech]
+moves: [Petrifying Gaze, Snake Hair Strike, Hypnotic Charm]
+wants: "Wants for you to just go away."
+doesnt_want: "Doesn’t want to be reminded of its past."
+sights: "writhing serpent hair, statues of victims, angry eyes"
+sounds: "soft hissing, vengeful muttering, sudden snap of scales"
+smells: "ancient rot, moss-covered stone, stagnant air"
+table: medusa-curse-origins
+source: "p. 163"
+body: |
+  Cursed figures with serpentine hair and a gaze that turns onlookers into stone. They hide in ancient ruins, haunted by past sorrow and bitterness.
+---
+id: mephit
+type: monster
+name: "Mephit"
+role: blaster
+palette: [The Color of Their Element]
+traits: [elemental origin, mischievous & petty, explodes when it dies]
+moves: [Energy Belch, Distracting Flitter, Summon Mephit]
+wants: "Wants to spread its native elemental type, quickly."
+doesnt_want: "Doesn’t want to suffer the smallest of inconveniences."
+sights: "nasty wings, trailing smoke or sludge"
+sounds: "snickering, bubbling laughter, hissing steam"
+smells: "acrid smoke, damp rot, scorched greenery"
+table: mephit-types-of-mephit
+source: "p. 163"
+body: |
+  Impish elementals born of chaos and frayed planes. They wildly spread their element, and are often summoned by careless mages.
+---
+id: mimic
+type: monster
+name: "Mimic"
+role: lurker
+palette: [Corrupted Purple, Iron Black, Aged Oak]
+traits: [Shapeshifter, Adhesive touch, Understands language]
+moves: [Raise Curiosity, Deflect Suspicion, Swallow Whole]
+wants: "Wants to be carried to places with tastier meals."
+doesnt_want: "Doesn’t want to turn into the same thing twice."
+sights: "shifting surfaces like melting wax, texture rippling"
+sounds: "sticky slurps, sudden snaps, creaking of pressure"
+smells: "sour decay of old adhesive, whiffs of trapped air"
+table: mimic-object-forms
+source: "p. 163"
+body: |
+  Shapeshifting creature that disguises itself as objects to lure prey. They stretch to devour victims in one gulp, springing to life when a meal is assured.
+---
+id: minotaur
+type: monster
+name: "Minotaur"
+role: brute
+palette: [Dark Leather, Bull Brown, Bestial Red]
+traits: [Thick hide, Labyrinth sense, Speech]
+moves: [Maze Ambush, Bull Snorts, Horn Toss]
+wants: "Wants victims to enter its maze, to satisfy its bloodlust."
+doesnt_want: "Doesn’t want to feel the sting of solitude yet again."
+sights: "bulging muscles, hooves kicking up dust"
+sounds: "angry snorts, thud of cloven hooves on stone"
+smells: "earthy musk, old blood and sweat"
+table: minotaur-labyrinth-layouts
+source: "p. 164"
+body: |
+  Towering, bull-headed figures that guard labyrinths. They relentlessly stalk its passages, charging with savage force at the first sign of intruders.
+---
+id: naga
+type: monster
+name: "Naga"
+role: blaster
+palette: [Scaled Green, Reptilian Blue, Aged Gold]
+traits: [Serpentine grace, Ancient wisdom, Speech]
+moves: [Venomous Fangs, Constrict, Hex Magic]
+wants: "Wants to keep its secrets for itself, no matter the cost."
+doesnt_want: "Doesn’t want to be insulted with offers, as if it can be bought."
+sights: "iridescent scales, gleaming eyes"
+sounds: "hiss of scales sliding across stone, whispering"
+smells: "exotic incense, floral notes mixed with musk"
+table: naga-forbidden-knowledge
+source: "p. 164"
+body: |
+  Malevolent serpentine figures, guarding ancient wisdom. They defend sacred groves and lost ruins with potent magic against any who dare trespass.
+---
+id: nightmare
+type: monster
+name: "Nightmare"
+role: brute
+palette: [Hellfire Red, Shadow Black, Ember Gray]
+traits: [Flame-wreathed, Slips between planes, Understands language]
+moves: [Hellfire Breath, Shadowy Teleport, Rear Up & Neigh]
+wants: "Wants to carry those who seek vengeance."
+doesnt_want: "Doesn’t want to witness acts of mercy or kindness."
+sights: "charred hoofprints, trail of smoke, glowing red eyes"
+sounds: "crackle of flames, pounding of hooves, eerie neighs"
+smells: "burnt sulfur, smoldering ashes"
+table: nightmare-wrathful-riders
+source: "p. 164"
+body: |
+  Flame-wreathed steeds that emerge from the underworld, galloping through the night. Their hooves leave scorched trails across the land.
+---
+id: ochre-jelly
+type: monster
+name: "Ochre Jelly"
+role: brute
+palette: [Ochre, Sickly Yellow, Murky Brown]
+traits: [Extremely sticky, Divides when struck]
+moves: [Slurp Forward, Absorb, Slink Away]
+wants: "Wants to grow into the greatest of all jellies."
+doesnt_want: "Doesn’t want to split into new rivals."
+sights: "unsettling motion, remnants of absorbed creatures"
+sounds: "wet sloshing, faint bubbling, the quiet pull of suction"
+smells: "sour decay, moldy dampness"
+table: ochre-jelly-newly-split-jellies
+source: "p. 164"
+body: |
+  Pulsing, acidic oozes that dissolve anything they touch as they silently slither through dungeons. They split into smaller versions when struck.
+---
+id: ogre
+type: monster
+name: "Ogre"
+role: brute
+palette: [Rustic Tan, Dirty Brown, Forest Green]
+traits: [Overwhelming power, Slow & stubborn, Speech]
+moves: [Grab & Crush, Raging Roar, Body Slam]
+wants: "Wants to wander and destroy—a good life."
+doesnt_want: "Doesn’t want to be outwitted by smaller creatures."
+sights: "towering silhouette in the trees, gnarled club"
+sounds: "heavy footfalls, low growls"
+smells: "stale sweat, dirt, lingering scent of raw meat"
+table: ogre-chosen-leader-of-the
+source: "p. 165"
+body: |
+  Towering, brutish creatures with thick skin and crude weapons. They roam forests and caves, smashing anything in its path to keep itself amused.
+---
+id: otyugh
+type: monster
+name: "Otyugh"
+role: brute
+palette: [Putrid Brown, Sewer Green, Rotten Flesh]
+traits: [Diseased touch, Reeking stench, "Understands, telepathy"]
+moves: [Spray Filth, Putrid Gulp, Sludge Tentacle]
+wants: "Wants to strike simple truces for territory."
+doesnt_want: "Doesn’t want for its accumulated filth to be washed clean."
+sights: "slimy tentacles, rotting filth, scattered bones"
+sounds: "squishy movements, wet gurgles, buzzing flies"
+smells: "putrid rot, decay, stagnant swamp water"
+table: otyugh-filthy-accomplices
+source: "p. 165"
+body: |
+  Grotesque, tentacled scavengers lurking in sewers and refuse heaps. They devour rotting carcasses and overwhelm any disturbance with diseased filth.
+---
+id: owlbear
+type: monster
+name: "Owlbear"
+role: brute
+palette: [Tawny Feather, Furry Brown, Talon Slate]
+traits: [Nocturnal hunter, Lumbering speed]
+moves: [Territorial Roar, Crushing Beak, Piercing Screech]
+wants: "Wants to protect its territory."
+doesnt_want: "Doesn’t want any threat to its nesting cave."
+sights: "clawed tree bark, deep gouges in the ground"
+sounds: "rasping hoots, heavy thuds, trees shaking"
+smells: "rank musk, trampled leaves, tang of blood"
+table: owlbear-victims-still-fresh
+source: "p. 165"
+body: |
+  Fiercely territorial, hulking beasts with the body of a bear and head of an owl. They hunt in forests, using their keen senses and raw power.
+---
+id: pegasus
+type: monster
+name: "Pegasus"
+role: protector
+palette: [Silvery Gray, Sky Blue, Cloud White]
+traits: [Graceful flier, Pure-hearted, Understands language]
+moves: [Winged Charge, Wing Buffet, Celestial Whinny]
+wants: "Wants to come to aid in dire moments."
+doesnt_want: "Doesn’t want to be ridden."
+sights: "shimmering feathers, graceful gait"
+sounds: "powerful wing beats, soft neighing, wind rushing"
+smells: "fresh air, faint scent of wildflowers"
+table: pegasus-carried-messages
+source: "p. 165"
+body: |
+  Majestic, winged horses with a noble spirit. They soar through the skies, drawn to those with courage and kindness, appearing in moments of dire need.
+---
+id: phoenix
+type: monster
+name: "Phoenix"
+role: blaster
+palette: [Inferno Gold, Flaming Orange, Ash Gray]
+traits: [Radiates intense heat, Reborn upon death, Speech]
+moves: [Flame Burst, Ember Trail, Call Firestorm]
+wants: "Wants to only come when they're needed most."
+doesnt_want: "Doesn’t want to face the pain and horror of its rebirth."
+sights: "fiery wings, glowing ember trails, vibrant plumage"
+sounds: "crackling flames, occasional soft cooing"
+smells: "warm ash, hints of sulfur, sweet smokiness"
+table: phoenix-alchemical-powers
+source: "p. 166"
+body: |
+  Mythical birds of fire, emerging to bring both destruction and new beginnings. As they blaze across the sky, their embers spread cleansing infernos.
+---
+id: rakshasa
+type: monster
+name: "Rakshasa"
+role: trickster
+palette: [Silken Gold, Regal Purple, Tiger Orange]
+traits: [Illusion magic, Elegant manipulator, Speech]
+moves: [Enchant Person, Illusions, Perfect Lies]
+wants: "Wants to surround itself in luxury."
+doesnt_want: "Doesn’t want for crude company to sully its refined tastes."
+sights: "ornate clothing, well-groomed fur"
+sounds: "smooth voice, rustle of silk, faintly echoing footsteps"
+smells: "incense, hints of expensive perfumes"
+table: rakshasa-influence-networks
+source: "p. 166"
+body: |
+  Cunning, tiger-headed fiends with reversed hands that revel in wealth and opulence. They manipulate mortals with illusions and lies, gaining great power.
+---
+id: remorhaz
+type: monster
+name: "Remorhaz"
+role: predator
+palette: [Serpentine Blue, Molten Red, Chitin Gray]
+traits: [Radiates intense heat, Swift burrower, Powerful mandibles]
+moves: [Emerging Strike, Heat Wave, Devour]
+wants: "Wants to find hot springs or lava flows to lay its eggs."
+doesnt_want: "Doesn’t want to feel the cold seep under its carapace."
+sights: "glowing red-hot spines, icy blue eyes, sharp ridges"
+sounds: "hissing steam, grinding mandibles, cracking ice"
+smells: "burnt metal, scorched earth, sulfur"
+table: remorhaz-worms-of-dark-prophecy
+scenario:
+  title: "Worm Wrangling"
+  text: "You grab its tail as it barrels past, chasing prey through icy canyons. The rope to sling around its neck will bewitch it, but you gotta get up there before it sees you and burrows."
+  end: "You haven’t planned this far. Now, how exactly do you get the rope around this thing’s neck?"
+pools:
+  - name: "Tail"
+    dice: 8
+    traits: ["erratic, flicking tail", few handholds]
+    moves: [Flying Ice Shards, Tail Hits Wall]
+    fail: ["8d It notices you (shared across next challenge)"]
+    leads_to: [Midsection]
+  - name: "Midsection"
+    dice: 4
+    traits: [red hot spines, few cool spots]
+    moves: [Shimmering Haze, Sudden Turn]
+    fail: ["8d It notices you"]
+    leads_to: [Flared Hood]
+  - name: "Flared Hood"
+    dice: 4
+    traits: [wide plates, loose scales]
+    moves: [Swift Head Turn, Swallow Prey]
+battlegrounds:
+  - name: "Ice Canyon Threats"
+    threats: ["4d Gusting Winds", "6d Collapsing Walls"]
+source: "p. 166"
+body: |
+  Massive, heat-radiating worms with red-hot spines along their back. They burrow through frozen tundra, devouring all in their path with searing jaws.
+---
+id: roc
+type: monster
+name: "Roc"
+role: brute
+palette: [Feathered Sand, Dusty Brown, Stormy Blue]
+traits: [Blocks out the sun, Impervious to damage]
+moves: [Gale Force Winds, Talon Grasp, Swallow Whole]
+wants: "Wants to return to its nest."
+doesnt_want: "Doesn’t want to be distracted from what it must do."
+sights: "as big as the clouds, vast silhouette on the horizon"
+sounds: "resonating wingbeats, massive gusts of wind"
+smells: "overwhelming earthy musk, dry feathers"
+table: roc-potential-egg-buyers
+source: "p. 167"
+body: |
+  Colossal birds with wings that block out the sun. They appear in times of stagnation to bring change by carrying away that which no longer belongs.
+---
+id: roper
+type: monster
+name: "Roper"
+role: lurker
+palette: [Cave Earth, Rocky Gray, Slate Brown]
+traits: [Cave camouflage, Extended tendrils, Speech]
+moves: [Survive Scrutiny, Reel In, Cause Paranoia]
+wants: "Wants to strike lone targets."
+doesnt_want: "Doesn’t want to be scrutinized and revealed."
+sights: "tendril shadows, unremarkable stalagmites"
+sounds: "low rumbling growl, rocky slithering"
+smells: "earthy stone, dank moss, faint rotting flesh"
+table: roper-how-it-survives-scrutiny
+source: "p. 167"
+body: |
+  Lurking predators in caverns, blending with stalagmites to ambush prey. Their tendrils drag victims in for a deadly bite, leaving escape nearly impossible.
+---
+id: rustmaw
+type: monster
+name: "Rustmaw"
+role: skirmisher
+palette: [Metal Decay, Corroded Umber, Oxide Red]
+traits: [Rusts metal it touches, Hard carapace]
+moves: [Skitter and Hide, Eat Weapon, Twitch Antennae]
+wants: "Wants to consume every last trace of metal."
+doesnt_want: "Doesn’t want to accidentally munch on wood or glass."
+sights: "twitching antennae, scattered rust crumbs"
+sounds: "scraping mandibles, rustling movement"
+smells: "sharp metallic tang, faint odor of decay"
+table: rustmaw-residual-effects-of-eating-arcana
+source: "p. 167"
+body: |
+  Chitinous creatures that feed on metal, rusting weapons and armor with a touch. Their twitching antennae guide them straight to their next metallic meal.
+---
+id: shambling-mound
+type: monster
+name: "Shambling Mound"
+role: brute
+palette: [Vine Green, Muck Brown, Rotting Green]
+traits: [Absorbs and grows, Swampy camouflage]
+moves: [Regrowth, Vine Lash, Engulf]
+wants: "Wants to find and consume prosperity."
+doesnt_want: "Doesn’t want to consume desiccated creatures."
+sights: "mass of tangled vines, streaks in the muck"
+sounds: "wet sloshing, cracking branches, earthy groan"
+smells: "rotting vegetation, swamp muck, wet earth"
+table: shambling-mound-buried-within
+source: "p. 167"
+body: |
+  Hulking masses of vines and swamp muck lumbering through marshes. They engulf prey and grow larger with each and every victim.
+---
+id: sphinx
+type: monster
+name: "Sphinx"
+role: tactician
+palette: [Ancient Gold, Dusky Blue, Desert Sand]
+traits: [Master of riddles, Unfooled by deception, Speech]
+moves: [Wing Buffet, Divination Spell, Teleport]
+wants: "Wants to allow the truly worthy to pass by."
+doesnt_want: "Doesn’t want to face trickery or deception of any kind."
+sights: "golden fur, regal posture, watchful eyes"
+sounds: "resonant voice, wind sweeping by, distant roars"
+smells: "warm sand, ancient incense, faint floral scents"
+table: sphinx-wish-choices
+tables: [sphinx-wish-choices, sphinx-riddle]
+source: "p. 168"
+body: |
+  Majestic creatures with the body of a lion and head of a human. They guard secrets and grant wishes, testing people with riddles to prove their worth.
+---
+id: troll
+type: monster
+name: "Troll"
+role: brute
+palette: [Earthy Brown, Granite Gray, Muddy Green]
+traits: [Regenerates, "Weak vs. fire, acid", "Speech (grunts, gestures)"]
+moves: [Convincing Offer, Hurl Enemy, Topple Trees]
+wants: "Wants its lair to be filled with bones and trophies."
+doesnt_want: "Doesn’t want to let on that it's more cunning than it looks."
+sights: "an oddly shaped mound, glint of sharp claws"
+sounds: "low grumbling, crunch of bones, wet chewing"
+smells: "stale swamp water, wet fur, strong musk of mold"
+table: troll-overlooked-lairs
+source: "p. 168"
+body: |
+  Regenerating creatures that lair in overlooked places, hoarding strange trophies. They make simple demands and usually negotiate before cracking skulls.
+---
+id: underscourge
+type: monster
+name: "Underscourge"
+role: tactician
+palette: [Chitin Bronze, Earthen Ochre, Stone Ochre]
+traits: [Burrows effortlessly, Tough chitin, Speech]
+moves: [Hypnotic Gaze, Rapid Burrowing, Collapse Ground]
+wants: "Wants to feast on surface creatures."
+doesnt_want: "Doesn’t want to venture into the sunlight."
+sights: "large burrow holes, cracked earth, glistening chitin"
+sounds: "distant rumbling, shifting soil, clicking mandibles"
+smells: "fresh-turned earth, mineral-rich tang, earthy musk"
+table: underscourge-collapses
+source: "p. 168"
+body: |
+  Burrowing creatures with chitin armor and hypnotic eyes. They strike from below, collapsing the ground to trap victims.
+---
+id: undead-ghast
+type: monster
+name: "Undead, Ghast"
+category: Undead
+role: brute
+palette: [Weathered Flesh, Decayed Green, Bloodstain Red]
+traits: [Rotting Stench, Plague carrier, "Speech (archaic)"]
+moves: [Putrid Exhale, Festering Claws, Numbing Grasp]
+wants: "Wants to feed, inadvertently spreading the plague."
+doesnt_want: "Doesn’t want to give up on a fleshy meal."
+sights: "pallid skin, jagged teeth, bloated and yellowed"
+sounds: "guttural snarls, heavy breathing, slap of bare feet"
+smells: "decayed flesh, sour stench, mold"
+table: undead-ghast-bygone-plagues
+source: "p. 169"
+body: |
+  Rotting corpses driven by an ancient plague that wishes to spread once more. They're full of hunger and rage, and leave victims messily scattered about.
+---
+id: undead-ghost
+type: monster
+name: "Undead, Ghost"
+category: Undead
+role: blaster
+palette: [Spirit Silver, Pale Mist, Misty Blue]
+traits: [Ethereal form, Anchored spirit, Speech]
+moves: [Shared Memories, Wail of Sorrow, Spirit Siphon]
+wants: "Wants to do something, if only it could remember what."
+doesnt_want: "Doesn’t want for its presence to go unnoticed."
+sights: "fading in and out, subtly shifting, drifting figure"
+sounds: "faint sobs, echoing footsteps, an occasional scream"
+smells: "old books, lavender, childhood memories"
+table: undead-ghost-unfinished-business
+source: "p. 169"
+body: |
+  Spectral entities bound to the mortal realm, haunting familiar places and reliving past moments. Their presence terrifies all who witness their sorrow.
+---
+id: undead-lich
+type: monster
+name: "Undead, Lich"
+category: Undead
+role: tactician
+palette: [Ancient Purple, Rotten Green, Bone White]
+traits: ["8 Wizard spells (pg. 86)", Two steps ahead, Speech]
+moves: [Cast Spell, Raise Undead, Soul Leech]
+wants: "Wants to obtain the power it needs for its grand scheme."
+doesnt_want: "Doesn’t want anything near its phylactery."
+sights: "tattered robes, skeletal hands, piercing eyes"
+sounds: "hoarse incantations, eerie silence between words"
+smells: "ancient dust, burnt incense, sharp cloying decay"
+table: undead-lich-overly-grandiose-dark-rituals
+section:
+  title: "Lich Spellbook"
+  text: "A lich knows 8 wizard spells. Choose a spellbook below, or make one. They gain 1 bonus suspense for each spell."
+  spellbooks:
+    -
+      - {name: Slow Worm, school: Transmutation}
+      - {name: Pain Cascade, school: Necromancy}
+      - {name: Screaming Aura, school: Enchantment}
+      - {name: Mesmerising Mask, school: Illusion}
+      - {name: Mind Guide, school: Divination}
+      - {name: Flesh Beacon, school: Transmutation}
+      - {name: Oil Shield, school: Abjuration}
+      - {name: Bone Wall, school: Conjuration}
+    -
+      - {name: Expanding Flesh, school: Transmutation}
+      - {name: Hungry Wings, school: Conjuration}
+      - {name: Dazzling Vine, school: Illusion}
+      - {name: Terrible Lore, school: Divination}
+      - {name: Slow Chains, school: Transmutation}
+      - {name: Binding Word, school: Enchantment}
+      - {name: Prismatic Smoke, school: Evocation}
+      - {name: Hungry Terror, school: Necromancy}
+source: "p. 169"
+body: |
+  Immortal magicians driven by a singular, dark purpose. They control hordes of undead from a well-defended lair, executing schemes with cold calculation.
+---
+id: undead-vampire
+type: monster
+name: "Undead, Vampire"
+category: Undead
+role: skirmisher
+palette: [Deep Crimson, Midnight Black, Moonlit Ivory]
+traits: [Unnatural allure, Supernatural strength, Speech]
+moves: [Blood Drain, Regeneration, Reveal Teeth]
+wants: "Wants to pursue its desires, with no end-goal in mind."
+doesnt_want: "Doesn’t want to be reminded of when it was mortal."
+sights: "flickering candlelight, blood-stained velvet"
+sounds: "soft whispers, the rustle of fabric"
+smells: "old blood, faint rose perfume"
+table: undead-vampire-siring-intentions
+tables: [undead-vampire-siring-intentions, undead-vampire-path, undead-vampire-power, undead-vampire-weakness]
+section:
+  title: "From Hero to Vampire"
+  text: "Roll 2d6 (pick 1) for path/core. Roll 1d8 and count on their talent list (on 8, roll 2d8). Adapt as traits and moves. For every 50 years of unlife, roll a new power and weakness."
+source: "p. 170"
+body: |
+  Elegant, nocturnal hunters driven by a thirst for blood. They seamlessly integrate into society, all while avoiding daylight at all costs.
+---
+id: undead-wight
+type: monster
+name: "Undead, Wight"
+category: Undead
+role: brute
+palette: [Void Black, Ghostly White, Deathly Gray]
+traits: [Regenerative strikes, Victims become wights, "Speech (wheezes, gasps)"]
+moves: [Destroy Bonds, Raise Undead, Sense Life]
+wants: "Wants to forever defend its final resting place."
+doesnt_want: "Doesn’t want to face that which caused its undying hatred."
+sights: "glowing red eyes, corroded armor"
+sounds: "groaning breaths, rusty clinking of ancient weapons"
+smells: "damp earth, rot, stale air"
+table: undead-wight-cursed-armaments
+source: "p. 170"
+body: |
+  Risen corpses consumed by hatred, wielding cursed weapons to drain life from their foes. They defend their domains with unrelenting malice.
+---
+id: undead-wraith
+type: monster
+name: "Undead, Wraith"
+category: Undead
+role: brute
+palette: [Shadowy Purple, Foggy Gray, Ghastly Blue]
+traits: [Incorporeal form, Deathly cold aura, Speech]
+moves: [Draining Touch, Shadow Meld, Wail of Despair]
+wants: "Wants for others to feel the emotions that formed it."
+doesnt_want: "Doesn’t want for true joy to cut through its malice."
+sights: "swirling mist, flickering blue light"
+sounds: "eerie wails, distant rustle of air, faint whispers"
+smells: "frigid air, damp stone, metallic tang of fear"
+table: undead-wraith-horrific-origins
+source: "p. 170"
+body: |
+  Shadowy, spectral figures formed of pure volatile lament. They glide silently through the darkness, draining warmth from everything they touch.
+---
+id: unicorn
+type: monster
+name: "Unicorn"
+role: protector
+palette: [Dusky Lavender, Pale Rose, Verdant Mint]
+traits: [Pure spirit, Protected by nature, "Understands, telepathy"]
+moves: [Healing Touch, Blessing, Luminous Horn]
+wants: "Wants to keep the few true purities in the world unspoiled."
+doesnt_want: "Doesn’t want to sense malevolence in a creature's heart."
+sights: "calming glow, pristine fur, faint sparkles"
+sounds: "soft clip-clop, soft whinny, soothing hum of magic"
+smells: "whiff of lavender, morning dew, ancient woods"
+table: unicorn-blessings
+source: "p. 171"
+body: |
+  Graceful, magical horses with a single spiraling horn. They roam ancient forests, bestowing healing, light, and blessings to those with pure hearts.
+---
+id: will-o-wisp
+type: monster
+name: "Will-o’-Wisp"
+role: trickster
+palette: [Haunted Green, Phantom Violent, Spectral Blue]
+traits: [Ethereal form, Swift & elusive, Understands language]
+moves: [Luring Light, Flicker Vanish, Bewilder]
+wants: "Wants to find out how far your curiosity will take you."
+doesnt_want: "Doesn’t want for followers to actually reach its destination."
+sights: "faint flickering, eerie shadows, shifting colors"
+sounds: "faint whispers, low hum, far off footstep echoes"
+smells: "fleeting yet familiar and nostalgic smells"
+table: will-o-wisp-secrets-to-reveal
+source: "p. 171"
+body: |
+  Glowing, flickering orbs that haunt swamps and bogs, luring travelers with eerie lights. They guide them to reveal secrets that only they understand.
+---
+id: wyvern
+type: monster
+name: "Wyvern"
+role: predator
+palette: [Dark Slate, Bronzed Ember, Savage Green]
+traits: [Relentless pursuer, Hardened scales]
+moves: [Venomous Sting, Diving Strike, Snatch and Fly]
+wants: "Wants to teach its young the thrill of the hunt."
+doesnt_want: "Doesn’t want to feel a bond with a creature outside its kin."
+sights: "darting between clouds, animals scurrying for cover"
+sounds: "screech from impossibly high, whoosh of its dive"
+smells: "smell of their far off nesting location"
+table: wyvern-wyvern-masters
+source: "p. 171"
+body: |
+  Fierce, winged reptiles with a venomous, barbed tail. They swoop from unseen heights, securing their prey with swift, brutal strikes.
+---
+id: yeti
+type: monster
+name: "Yeti"
+role: brute
+palette: [Frostbite Gray, Glacial White, Icy Blue]
+traits: [Frigid aura, Snowy camouflage, "Speech (roars, gestures)"]
+moves: [Frost Breath, Howling Roar, Icicle Throw]
+wants: "Wants to maintain its lonesome vigil, instinctually."
+doesnt_want: "Doesn’t want for the terrible secrets below to see light."
+sights: "the snow moving, steaming breath, pale blue eyes"
+sounds: "crunch of snow under massive feet, deep roars"
+smells: "fresh snow cut by a wild tang"
+table: yeti-under-the-ice
+source: "p. 171"
+body: |
+  Massive, furry beasts roaming between icy peaks, fiercely guarding the remote passes as if bound to the land by some unseen force.

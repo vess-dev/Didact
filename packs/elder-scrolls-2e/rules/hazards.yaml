@@ -1,0 +1,389 @@
+# Hazards (players-guide/hazards): falling, drowning, fire, cold, lightning, venom and poison,
+# and the alchemist's vices and cures (players-guide/crafting#skooma--moon-sugar, #healing-has-
+# limits). Environmental harm comes off an Attribute, usually STR, not HP; Armor helps only
+# where it realistically would.
+action: fall
+title: A fall
+help: >-
+  Every full 10 ft fallen deals 1d6 STR (less than 10 ft costs nothing but pride). A soft landing
+  (deep snow, water, rotted sacking) removes 1d6 from the roll; a hard one (jagged rock, an iron
+  spike, a Dwemer floor) adds 1d6. A DEX save to land well halves the total (round down).
+params:
+  who: ref
+  feet: {kind: int, help: "How far they fall, in feet"}
+  landing: {enum: [normal, soft, hard], default: normal}
+steps:
+  - let: {tens: "@feet // 10"}
+  - if: "@tens <= 0"
+    then:
+      - stop: "A drop of less than 10 ft costs {@who.name} nothing but pride."
+  - roll: "(@tens)d6"
+    as: fall
+  - let: {total: "@fall"}
+  - if: "@landing == 'hard'"
+    then:
+      - roll: 1d6
+        as: harder
+      - let: {total: "@fall + @harder"}
+  - if: "@landing == 'soft'"
+    then:
+      - roll: 1d6
+        as: softer
+      - let: {total: "max(0, @fall - @softer)"}
+  - check: save
+    with: {who: "@who", attr: DEX}
+    as: land
+  - if: "@land == 'success'"
+    then:
+      - let: {total: "@total // 2"}
+      - message: "{@who.name} twists to land well: the damage is halved."
+  - set: who.STR
+    op: "-="
+    value: "@total"
+  - message: "{@who.name} falls {@feet} ft and loses {@total} STR."
+source: players-guide/hazards#falling
+---
+check: drown
+title: Drowning
+help: >-
+  A PC holds their breath for three rounds; every round after that, a STR save or 1d6 STR, until
+  they reach air or are dragged out (heavy armor, a full pack or being knocked senseless cut the
+  grace short). Argonians breathe water, Dremora and draugr revenants need no breath, and
+  waterbreathing (a potion, an enchantment) spares the save. Icy water is drowning and cold at
+  once.
+params:
+  who: ref
+  icy: {kind: flag, default: false, help: "Icy water: also Deprived from the cold the moment they go under"}
+before:
+  - let: {nature: "default(@who.nature, 'mortal')"}
+  - if: "default(@who.race, '') == 'Argonian' or @nature == 'dremora' or @nature == 'draugr-revenant' or 'waterbreathing' in @who.conditions"
+    then:
+      - stop: "{@who.name} doesn't drown: {if(default(@who.race, '') == 'Argonian', 'they breathe water as easily as air', if('waterbreathing' in @who.conditions, 'they breathe water for now', 'they need no breath'))}."
+  - if: "@icy"
+    then:
+      - do: exposure
+        with: {who: "@who", plunge: true}
+        go_on: true
+prompt: "Past the three rounds' grace (or sooner, at the Warden's call)."
+roll: d20
+success: "@roll <= @who.STR"
+auto: {1: success, 20: failure}
+on:
+  success: ["{@who.name} holds on, lungs burning."]
+  failure:
+    - roll: 1d6
+      as: water
+    - set: who.STR
+      op: "-="
+      value: "@water"
+    - message: "{@who.name} swallows water: {@water} STR. Each round until they reach air: `didact do drown who={@who.id}`."
+source: players-guide/hazards#drowning
+---
+action: ablaze
+title: On fire
+help: >-
+  A creature that catches fire takes 1d4 STR each round until the flames are out
+  (state=burning, once a round); smothering them takes an action (state=out). Standing in a
+  sustained blaze, a DEX save each round or catch fire (state=blaze). Armor doesn't apply unless
+  it's rated against fire.
+params:
+  who: ref
+  state: {enum: [burning, blaze, out], default: burning}
+steps:
+  - if: "@state == 'out'"
+    then:
+      - if: "'ablaze' in @who.conditions"
+        then:
+          - set: who.conditions
+            op: "-="
+            value: ablaze
+          - message: "The flames on {@who.name} are out."
+        else: ["{@who.name} isn't burning."]
+  - if: "@state == 'blaze'"
+    then:
+      - check: save
+        with: {who: "@who", attr: DEX}
+        as: dodge
+      - if: "@dodge == 'failure' and not ('ablaze' in @who.conditions)"
+        then:
+          - set: who.conditions
+            op: "+="
+            value: ablaze
+          - message: "{@who.name} catches fire."
+      - if: "@dodge == 'success'"
+        then: ["{@who.name} stays clear of the flames this round."]
+  - if: "@state == 'burning' or ('ablaze' in @who.conditions and @state == 'blaze')"
+    then:
+      - if: "not ('ablaze' in @who.conditions)"
+        then:
+          - set: who.conditions
+            op: "+="
+            value: ablaze
+      - roll: 1d4
+        as: burn
+      - set: who.STR
+        op: "-="
+        value: "@burn"
+      - message: "{@who.name} burns: {@burn} STR (each round until put out: drop and roll, snow or water, a beating cloak; `didact do ablaze who={@who.id} state=out`)."
+source: players-guide/hazards#fire
+---
+action: exposure
+title: Exposed to the cold
+help: >-
+  A watch in snow or bitter cold without warm clothing, shelter or fire leaves a PC Deprived;
+  each further watch so exposed adds a Fatigue (the cold_watches counter). Extreme weather (a
+  full blizzard, a Reach ice-storm) leaves anyone without shelter Deprived at once, warm clothes
+  or not (extreme=true). A plunge into icy water counts them Deprived from the cold the moment
+  they go under (plunge=true). Cold and snow alone never deprive a Nord or a vampire. Once warm
+  again: `didact do warm-up`.
+params:
+  who: ref
+  warm: {kind: flag, default: false, help: "Warm clothing: furs, a fur-lined cloak, wilderness clothes"}
+  shelter: {kind: flag, default: false, help: "Shelter or a fire"}
+  extreme: {kind: flag, default: false, help: "Extreme weather: a full blizzard"}
+  plunge: {kind: flag, default: false, help: "Into icy water"}
+steps:
+  - if: "default(@who.race, '') == 'Nord' or default(@who.nature, 'mortal') == 'vampire'"
+    then:
+      - stop: "Cold and snow alone never leave {@who.name} Deprived ({if(default(@who.race, '') == 'Nord', 'Frost-Hardy', 'the Long Cold')})."
+  - if: "@shelter"
+    then:
+      - stop: "Shelter or a fire keeps the cold off {@who.name}."
+  - if: "@extreme or @plunge"
+    then:
+      - if: "not ('deprived' in @who.conditions)"
+        then:
+          - set: who.conditions
+            op: "+="
+            value: deprived
+      - set: who.cold_watches
+        value: "max(1, default(@who.cold_watches, 0))"
+      - message: "{if(@plunge, 'The icy water', 'The blizzard')} leaves {@who.name} Deprived from the cold at once, warm clothes or not."
+      - stop: "Until they reach shelter and a fire: `didact do warm-up who={@who.id}`."
+  - if: "@warm"
+    then:
+      - stop: "{@who.name}'s warm clothing holds off the cold this watch."
+  - let: {was: "default(@who.cold_watches, 0)"}
+  - set: who.cold_watches
+    op: "+="
+    value: 1
+  - if: "@was == 0"
+    then: ["A watch in the cold without warmth: {@who.name} is Deprived."]
+    else:
+      - message: "Another watch exposed: a Fatigue."
+      - do: fatigue
+        with: {who: "@who"}
+  - reminder: "Frostbite and numbing are narrative; if exposure turns severe, the Warden may apply a Scar instead. Warmed by a hearth or a fire: `didact do warm-up who={@who.id}`."
+source: players-guide/hazards#frost--cold
+---
+action: warm-up
+title: Warm again
+help: "A warm hearth, shelter and a fire, or a Resist Frost effect end the cold's deprivation (a need still unmet, like hunger, keeps them Deprived)."
+params: {who: ref}
+steps:
+  - if: "default(@who.cold_watches, 0) == 0"
+    then:
+      - stop: "{@who.name} isn't suffering from the cold."
+  - set: who.cold_watches
+    value: 0
+  - if: "'deprived' in @who.conditions and default(@who.deprived_days, 0) == 0 and not ('sunlit' in @who.conditions)"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: deprived
+  - message: "{@who.name} is warm again: the cold's deprivation lifts."
+source: players-guide/hazards#frost--cold
+---
+action: lightning
+title: Lightning and shock
+help: "A storm-struck crag, a Dwemer arc-pylon, a shock rune, a charged bolt: 1d6 STR, and a DEX save or drop whatever is held. Metal armor doesn't help; it conducts the charge."
+params: {who: ref}
+steps:
+  - roll: 1d6
+    as: shock
+  - set: who.STR
+    op: "-="
+    value: "@shock"
+  - message: "The charge runs through {@who.name}: {@shock} STR."
+  - check: save
+    with: {who: "@who", attr: DEX}
+    as: grip
+  - if: "@grip == 'failure'"
+    then: ["{@who.name} drops whatever they hold: it falls (`didact inv drop {@who.id} <item>` if it's lost)."]
+    else: ["{@who.name} keeps their grip."]
+source: players-guide/hazards#lightning--shock
+---
+check: venom
+title: Venom or poison
+help: >-
+  A venom (a frostbite spider's bite, a poisoned blade, a doctored cup): a STR save, or it deals
+  1d6 STR (amount= as the creature's entry says). A fang or coated blade delivers it only when
+  the attack deals damage after Armor, and a creature's own venom troubles a victim only the first
+  time it hits them in a fight. A lingering venom (lingering=true) keeps working: a fresh save at
+  the start of each of the victim's next three turns, 1 STR more on each failure (`didact do
+  venom-tick`). Antitoxin, a Cure Poison draught or the right Restoration ends it.
+params:
+  who: ref
+  amount: {kind: dice, default: 1d6}
+  lingering: {kind: flag, default: false}
+roll: d20
+success: "@roll <= @who.STR"
+auto: {1: success, 20: failure}
+on:
+  success: ["{@who.name} fights the venom off."]
+  failure:
+    - roll: $amount
+      as: poisoned
+    - set: who.STR
+      op: "-="
+      value: "@poisoned"
+    - message: "The venom takes hold of {@who.name}: {@poisoned} STR."
+    - if: "@lingering"
+      then:
+        - set: who.venom_turns
+          value: 3
+        - reminder: "It lingers: at the start of each of {@who.name}'s next three turns, `didact do venom-tick who={@who.id}` (a save; 1 STR on a failure; a success ends it)."
+source: players-guide/hazards#poison--venom
+---
+check: venom-tick
+title: Lingering venom
+help: "At the start of each of the victim's next three turns, a lingering venom calls for a fresh STR save: 1 more STR on a failure; a success ends it early."
+params: {who: ref}
+before:
+  - if: "default(@who.venom_turns, 0) <= 0"
+    then:
+      - stop: "No venom lingers in {@who.name}."
+roll: d20
+success: "@roll <= @who.STR"
+auto: {1: success, 20: failure}
+on:
+  success:
+    - set: who.venom_turns
+      value: 0
+    - message: "{@who.name} shakes the venom off."
+  failure:
+    - set: who.STR
+      op: "-="
+      value: 1
+    - set: who.venom_turns
+      op: "-="
+      value: 1
+    - message: "The venom works on: 1 STR ({@who.venom_turns} turn(s) left)."
+source: players-guide/hazards#poison--venom
+---
+action: cure-venom
+title: An antidote
+help: "Antitoxin, a Cure Poison draught or the right Restoration ends a lingering venom (an antitoxin cures one venom). The cure the patient carries is spent from their pack."
+params:
+  who: ref
+  with_item: {kind: text, default: Antitoxin, help: "What cures it (an item it uses up)"}
+steps:
+  - set: who.venom_turns
+    value: 0
+  - message: "$with_item ends the venom in {@who.name}."
+  - if: "default(@{who.inventory.$with_item.uses}, 0) > 0"
+    then:
+      - use: $with_item
+        from: "@who"
+    else: ["Spend it from whoever carries it: `didact inv use <them> '$with_item'` (a spell or a rite spends nothing)."]
+source: players-guide/hazards#poison--venom
+---
+check: inhale
+title: Breathing a toxin
+help: "Inhaled toxins (a gas-trap's vapor, swamp damp, fungal spores, alchemical smoke) deal 1 WIL each round of exposure, and a WIL save is required to avoid hallucination while breathing them. Dremora and draugr revenants are immune to inhaled poison and gas."
+params: {who: ref}
+before:
+  - if: "default(@who.nature, 'mortal') == 'dremora' or default(@who.nature, 'mortal') == 'draugr-revenant'"
+    then:
+      - stop: "{@who.name} draws no breath: immune to inhaled poison and gas."
+  - set: who.WIL
+    op: "-="
+    value: 1
+  - message: "The fumes cost {@who.name} 1 WIL this round."
+roll: d20
+success: "@roll <= @who.WIL"
+auto: {1: success, 20: failure}
+on:
+  success: ["{@who.name} keeps their wits."]
+  failure: ["{@who.name} hallucinates while they breathe it: the Warden describes what they see."]
+source: players-guide/hazards#poison--venom
+---
+check: skooma
+title: Skooma
+help: "Skooma grants a brief, reckless rush, then the crash: a STR save, or Deprived until the next safe rest. There is no addiction track: the danger is the crash, the crime and the company it keeps. pass=true when a power spares the save."
+params:
+  who: ref
+  pass: {kind: flag, default: false, help: "A power means no save (the Mead-Oath)"}
+before:
+  - if: "@pass"
+    then:
+      - stop: "{@who.name} rides the rush and shrugs off the crash."
+roll: d20
+success: "@roll <= @who.STR"
+auto: {1: success, 20: failure}
+on:
+  success: ["{@who.name} rides out the crash."]
+  failure:
+    - if: "not ('deprived' in @who.conditions)"
+      then:
+        - set: who.conditions
+          op: "+="
+          value: deprived
+    - message: "The crash: {@who.name} is Deprived until they next rest safely (`didact do relieve who={@who.id}` then)."
+source: players-guide/crafting#skooma--moon-sugar
+---
+action: heal
+title: Mend STR
+help: >-
+  Restore STR: a Potion of Healing (1d6), a Greater one (all), a healing spell, a poultice, a
+  surgeon's kit. Magic (spell, potion, Relic or blessing, magic=true, the default) mends a given
+  creature's STR only once per day: more magic that day restores HP but no more STR. Craft
+  (bandages, a surgeon's kit, a herbalist's poultice: magic=false) is not counted. A healing
+  potion or spell also stabilizes one suffering critical damage. Restoration meant for mortals
+  doesn't mend a Dremora, and nothing mends a draugr revenant this way. The Atronach stone makes
+  healing spells (spell=true) fizzle.
+params:
+  who: ref
+  amount: {kind: text, default: 1d6, help: "Dice of STR restored, or all"}
+  magic: {kind: flag, default: true, help: "Magical healing (counts toward the once-per-day limit)"}
+  spell: {kind: flag, default: false, help: "A healing spell (the Atronach stone makes it fizzle)"}
+steps:
+  - let: {nature: "default(@who.nature, 'mortal')"}
+  - if: "@nature == 'draugr-revenant'"
+    then:
+      - stop: "No Restoration, potion, temple or healer can knit {@who.name}: they are already dead (`didact do absorb-life`, or a week in a barrow)."
+  - if: "@nature == 'dremora' and @magic"
+    then:
+      - stop: "Restoration meant for mortals does not mend {@who.name} (`didact do binding-mend`)."
+  - if: "@spell and default(@who.standing_stone, '') == 'The Atronach' and @option.standing_stones"
+    then:
+      - stop: "The Atronach stone: healing spells cast on {@who.name} fizzle."
+  - if: "@magic and default(@who.healed_today, false)"
+    then:
+      - set: who.hp
+        value: "@who.hp.max"
+      - stop: "{@who.name}'s STR has had its magical mending today: this closes cuts and bruises (HP restored) but mends no more STR until the next dawn."
+  - if: "@amount == 'all'"
+    then:
+      - let: {mended: "@who.STR.max - @who.STR"}
+    else:
+      - roll: $amount
+        as: mended
+  - set: who.STR
+    op: "+="
+    value: "@mended"
+  - if: "@magic"
+    then:
+      - set: who.healed_today
+        value: true
+  - message: "{@who.name} is mended: STR {@who.STR}/{@who.STR.max}{if(@magic, ' (their magical healing for the day)', '')}."
+  - if: "'critical' in @who.conditions and @magic"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: critical
+      - set: who.conditions
+        op: "+="
+        value: stabilized
+      - message: "The healing stabilizes {@who.name}: out of danger, but in recovery until a week's rest (`didact do recover`)."
+source: players-guide/crafting#healing-has-limits

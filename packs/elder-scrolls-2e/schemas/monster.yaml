@@ -1,0 +1,60 @@
+# Monsters and detachments (wardens-guide/bestiary, creating-monsters, detachments), companions
+# and mounts (players-guide/companions, mounts). These replace cairn-2e's `monster` (its
+# `detachment` extends it) and `companion`: what an attack's kind does against a creature
+# (Impaired or Enhanced), the disease or venom its blows carry, and a companion's Loyalty.
+type: monster
+label: Monster
+fields:
+  hp:
+    kind: resource
+    min: 0
+    label: HP
+    on_zero: "Lone foes save morale when they're reduced to 0 HP: `didact do morale who=<it>`."
+    help: "Ordinary folk 2–4, soldiers and beasts 3–6, serious threats 7–12, legends 12–18."
+  armor: {kind: int, min: 0, max: 3, default: 0, help: "Subtracted from damage; never more than 3."}
+  STR: {kind: stat, range: [0, 20], on_zero: {trigger: death}}
+  DEX: {kind: stat, range: [0, 20], on_zero: {condition: paralyzed}}
+  WIL: {kind: stat, range: [0, 20], on_zero: {condition: delirious}}
+  attacks: {kind: list, help: "e.g. [{name: bite, damage: d8}]; two at once keep the highest: '{d8, d8}kh1' (the book's d8+d8)."}
+  abilities: {kind: list, help: "Traits and special abilities, one line each."}
+  critical: {kind: text, help: "What happens when a target fails its critical damage save (the attack shows it)."}
+  category: {kind: text, help: "Draugr, Undead, Dragon, Automaton, Falmer, Chaurus, Predator, …"}
+  impaired_by: {kind: tags, label: Impaired by, help: "Attacks of these kinds against it are Impaired: fire, frost, shock, poison, magic, mundane, …"}
+  enhanced_by: {kind: tags, label: Enhanced by, help: "Attacks of these kinds against it are Enhanced: fire, frost, silver, magic, …"}
+  disease: {kind: text, help: "The disease its blows may carry (STR save or contract it): rockjoint, ataxia, …"}
+  venom: {kind: text, help: "Its venom: the first time it hits a creature in a fight, a STR save or lose this much STR (1d4, 1d6)."}
+  conditions: {kind: conditions}
+guidance: >-
+  Describe it in plain words first, then stat it (or roll prompts: `didact gen run
+  elder-scrolls-2e.monster`). HP is avoiding harm: ordinary folk 2–4, soldiers and beasts 3–6,
+  serious threats 7–12, legends 12–18 (nothing needs more than 18). Armor 0–3. STR, DEX and WIL
+  3–18 (0 WIL for the mindless). Damage d4–d12; several attacks become blast or two dice kept
+  highest ('{d8, d8}kh1'). Resistances and weaknesses are the attack kinds that are Impaired or
+  Enhanced against it (`impaired_by`, `enhanced_by`). Always write its Critical Damage: what
+  happens to a target that fails the save. Groups of four or more, and a few enormous creatures
+  (dragons, giants, a Dwarven Centurion), fight as a detachment.
+---
+type: companion
+extends: monster
+label: Companion or mount
+fields:
+  hp: {kind: resource, min: 0, label: HP}
+  owner: {kind: ref, help: "The character it follows."}
+  loyalty:
+    kind: int
+    min: 1
+    max: 5
+    on_full: "Sworn: they will die for the party and mean it. Once per day they may take a hit meant for their PC."
+    help: "1 Wary · 2 Tested · 3 Trusting (the default) · 4 Devoted · 5 Sworn (`didact do loyalty`). Hirelings and mounts have none."
+  trick: {kind: text, help: "The one special thing they reliably do that a PC cannot."}
+  trained: {kind: flag, help: "A trained warhorse or steed: it never makes the startled-mount save."}
+  slots: {kind: int, min: 0, default: 0, help: "What it can carry: a horse +4, a mule +6 (the Marketplace)."}
+  inventory: {kind: slots, capacity: slots, sizes: {petty: 0, normal: 1, bulky: 2}, help: "What it carries, outside its rider's ten slots."}
+  qualities: {kind: tags, help: "slow, …"}
+  price: {kind: int, min: 0, help: "In Septims (the Marketplace)."}
+  note: {kind: text}
+guidance: >-
+  A companion travels with a PC for reasons beyond coin: 1d6 HP, 3d6 attributes (swap two), 1
+  Armor unless their background says otherwise, one weapon, one special trick, and Loyalty 3 to
+  start (a housecarl 4). One active companion per PC. A mount carries its own load (`didact inv
+  add <it> Rope`) and eats a Ration when the party makes camp; a riding horse eases travel.

@@ -1,0 +1,329 @@
+# Tables the core rules and procedures roll (players-guide/core-rules, procedures, rad-scars):
+# Fallout's Scars, Ruin and Wasteland Events and weather replace Cairn's under the parent's ids,
+# so the parent's rules that roll them keep working; the Rad Scars, ghoulification and chem
+# tables are new. Hand-written: the rules read their `data`.
+table: scars
+title: Scars
+lookup: hp_lost
+description: >-
+  Looked up by the HP lost in the attack that took a PC to exactly 0 HP. The book's table stops
+  at 12; more HP lost (max HP can pass 12) reads as 12, Doomed. `didact do scar who=<pc> lost=<n>`
+  rolls where, which limb or which attribute, and applies it.
+source: players-guide/core-rules#scars-table
+entries:
+  1:
+    text: "Close Shave. A round clipped something. Roll 1d6 for where: 1 neck, 2 hand, 3 eye, 4 chest, 5 leg, 6 ear. Then roll 1d6 — if higher than max HP, replace."
+    data: {kind: close-shave}
+  2:
+    text: "Concussed. Your helmet rang like a gong. Describe how you shake it off. Roll 1d6; if higher than max HP, replace."
+    data: {kind: concussed}
+  3:
+    text: "Flung Clear. A blast tossed you through the rubble. You're winded, bruised, and Deprived until you rest a few hours. Then roll 1d6 and add it to max HP."
+    data: {kind: flung-clear}
+  4:
+    text: "Broken. Roll 1d6: 1–2 leg (crushed under debris), 3–4 arm (wrong angle), 5 rib (a raider's rebar), 6 jaw (a ghoul's fist). When mended, roll 2d6; if higher than max HP, replace."
+    data: {kind: broken}
+  5:
+    text: "Rad-Necrotic Wound. Something radioactive got into the cut and it's not healing clean. When it finally clears — RadAway, auto-doc, a pre-war antibiotic — roll 2d6; if higher than max HP, replace."
+    data: {kind: rad-necrotic-wound}
+  6:
+    text: "Scrambled. A nearby mini nuke, a plasma burst, a chem overdose — your head is still rattling. Roll 1d6: 1–2 STR, 3–4 DEX, 5–6 WIL. Roll 3d6; if higher than current value of that attribute, replace."
+    data: {kind: scrambled}
+  7:
+    text: "Crippled. A round to the knee, a super sledge to the hip, or a bear trap that wouldn't let go. You cannot walk unassisted until you get serious medical help. After full recovery, roll 3d6; if higher than max DEX, replace."
+    data: {kind: crippled}
+  8:
+    text: "Burst Eardrums. A frag grenade too close, or the shriek of a Tesla arc. Deaf until extraordinary aid. Make a WIL save; on a success, max WIL +1d4."
+    data: {kind: burst-eardrums}
+  9:
+    text: "Shell-Shocked. Something in your mind comes loose — the sound of an incoming missile, the last radio broadcast from the old world, whatever it was. Roll 3d6; if higher than max WIL, replace."
+    data: {kind: shell-shocked}
+  10:
+    text: "Severed. You lose a limb or an eye (Overseer's choice). A prosthetic or a cybernetic graft in a big settlement can restore some function. Make a WIL save; on a success, max WIL +1d6."
+    data: {kind: severed}
+  11:
+    text: "Bleeding Out. Gut shot. Deprived, immobile. You die in one hour without aid — a Stimpak, a bandage, an auto-doc. On recovery, roll 2d6 and replace your max HP with the result."
+    data: {kind: bleeding-out}
+  12:
+    text: "Doomed. Death breathed on your neck in a pre-war bunker nobody's walked out of. If you fail your next Critical Damage save, you die horribly. If you pass, roll 3d6; if higher than max HP, replace."
+    data: {kind: doomed}
+  13-999:
+    text: "Doomed (the book's table stops at 12 HP lost; more reads as 12). Death breathed on your neck in a pre-war bunker nobody's walked out of. If you fail your next Critical Damage save, you die horribly. If you pass, roll 3d6; if higher than max HP, replace."
+    data: {kind: doomed}
+---
+table: scar-location
+title: Where the Close Shave clipped
+dice: d6
+source: players-guide/core-rules#scars-table
+entries: {1: Neck, 2: Hand, 3: Eye, 4: Chest, 5: Leg, 6: Ear}
+---
+table: broken-limb
+title: What breaks
+dice: d6
+source: players-guide/core-rules#scars-table
+entries:
+  1-2: {text: "Leg (crushed under debris)", data: {condition: broken-leg}}
+  3-4: {text: "Arm (wrong angle)", data: {condition: broken-arm}}
+  5: {text: "Rib (a raider's rebar)", data: {condition: broken-rib}}
+  6: {text: "Jaw (a ghoul's fist)", data: {condition: broken-jaw}}
+---
+table: deathclaw-scar
+title: A deathclaw's Scar re-roll
+description: >-
+  A deathclaw's Scar rolls never use the Severed or Bleeding Out entries: re-roll. The book
+  (core-rules#scars): roll 1d12 for the row instead, again on a row you never get; that is a d10
+  over the other ten rows (Close Shave to Shell-Shocked, and Doomed).
+dice: d10
+source: players-guide/unusual-pcs#what-the-wasteland-does
+entries:
+  1: {text: "Close Shave", data: {row: 1}}
+  2: {text: "Concussed", data: {row: 2}}
+  3: {text: "Flung Clear", data: {row: 3}}
+  4: {text: "Broken", data: {row: 4}}
+  5: {text: "Rad-Necrotic Wound", data: {row: 5}}
+  6: {text: "Scrambled", data: {row: 6}}
+  7: {text: "Crippled", data: {row: 7}}
+  8: {text: "Burst Eardrums", data: {row: 8}}
+  9: {text: "Shell-Shocked", data: {row: 9}}
+  10: {text: "Doomed", data: {row: 12}}
+---
+table: no-bleeding-out-scar
+title: A Scar re-roll without Bleeding Out
+description: >-
+  Pressure Blood (a super mutant's result): their Scar rolls never use the Bleeding Out entry:
+  re-roll. The book (core-rules#scars): roll 1d12 for the row instead, again on Bleeding Out;
+  that is a d11 over the other eleven rows.
+dice: d11
+source: backgrounds/super-mutant
+entries:
+  1: {text: "Close Shave", data: {row: 1}}
+  2: {text: "Concussed", data: {row: 2}}
+  3: {text: "Flung Clear", data: {row: 3}}
+  4: {text: "Broken", data: {row: 4}}
+  5: {text: "Rad-Necrotic Wound", data: {row: 5}}
+  6: {text: "Scrambled", data: {row: 6}}
+  7: {text: "Crippled", data: {row: 7}}
+  8: {text: "Burst Eardrums", data: {row: 8}}
+  9: {text: "Shell-Shocked", data: {row: 9}}
+  10: {text: "Severed", data: {row: 10}}
+  11: {text: "Doomed", data: {row: 12}}
+---
+table: dungeon-events
+title: Ruin Events
+description: >-
+  Roll when the party spends more than one exploration cycle in a room, moves hurriedly through
+  one, enters a new area, level or zone, or makes a loud disturbance (`didact do dungeon-turn`).
+dice: d6
+source: players-guide/procedures#ruin-events
+entries:
+  1: {text: "Encounter: Roll on the encounter table. Possibly hostile — check Reactions.", data: {kind: encounter}}
+  2: {text: "Sign: A clue, spoor, scorch mark, old corpse, fresh footprint, or abandoned nest.", data: {kind: sign}}
+  3: {text: "Environment: Ceiling collapses, a water pipe bursts, a generator backfires, a radiation leak spreads.", data: {kind: environment}}
+  4: {text: "Loss: A torch blows out, a program crashes, a battery dies, a door seals itself. Resolve before moving on.", data: {kind: loss}}
+  5: {text: "Exhaustion: The party must rest (triggering another roll on this table), add a Fatigue, or consume a Ration.", data: {kind: exhaustion}}
+  6: {text: "Quiet: Safe. For now.", data: {kind: quiet}}
+---
+table: wilderness-events
+title: Wasteland Events
+dice: d6
+source: players-guide/procedures#wasteland-events
+entries:
+  1: {text: "Encounter: Roll on the terrain encounter table. Use Reactions.", data: {kind: encounter}}
+  2: {text: "Sign: A clue: spent casings, a cold campfire, a distant plume of smoke, an old Pip-Boy recording.", data: {kind: sign}}
+  3: {text: "Environment: Weather or terrain shifts.", data: {kind: environment}}
+  4: {text: "Loss: A resource cost: a wheel breaks, a water flask cracks, a horse throws a shoe, an ambush forces a detour.", data: {kind: loss}}
+  5: {text: "Exhaustion: A barrier: rockfall, deep mud, a collapsed bridge. Spend another Wilderness Action, add a Fatigue, or both.", data: {kind: exhaustion}}
+  6: {text: "Discovery: Food, caps, fuel, a secret. The Overseer may reveal the primary feature of the next point instead.", data: {kind: discovery}}
+---
+table: weather-spring
+title: Spring weather
+description: "Each day roll on the season's table. Two Extreme results in a row → Catastrophic."
+dice: d6
+source: players-guide/procedures#weather
+entries:
+  1: Clear
+  2-3: Fair
+  4: Gusty
+  5: Stormy
+  6: {text: Extreme, repeat: {text: Catastrophic}}
+---
+table: weather-summer
+title: Summer weather
+description: "Each day roll on the season's table. Two Extreme results in a row → Catastrophic."
+dice: d6
+source: players-guide/procedures#weather
+entries:
+  1-2: Hot
+  3: Fair
+  4: Dusty
+  5: Stormy
+  6: {text: Extreme, repeat: {text: Catastrophic}}
+---
+table: weather-fall
+title: Fall weather
+description: "Each day roll on the season's table. Two Extreme results in a row → Catastrophic."
+dice: d6
+source: players-guide/procedures#weather
+entries:
+  1-2: Fair
+  3: Cold
+  4: Harsh
+  5: Stormy
+  6: {text: Extreme, repeat: {text: Catastrophic}}
+---
+table: weather-winter
+title: Winter weather
+description: "Each day roll on the season's table. Two Extreme results in a row → Catastrophic."
+dice: d6
+source: players-guide/procedures#weather
+entries:
+  1: Fair
+  2: Cold
+  3-4: Harsh
+  5-6: {text: Extreme, repeat: {text: Catastrophic}}
+---
+table: weather-effects
+title: Weather effects
+lookup: weather
+description: >-
+  What the day's weather does to travel. Rad weather: when Stormy or worse weather hits a region
+  that holds a hot zone, it is rad-rain or a rad storm, and the Fatigue it would inflict is a Rad
+  instead (the Overseer says so before the party chooses).
+source: players-guide/procedures#weather-effects
+entries:
+  Clear: {text: "Good travel (sunny, overcast, mild).", data: {watches: 0, fatigue: 0, step: 0}}
+  Fair: {text: "Good travel (sunny, overcast, mild).", data: {watches: 0, fatigue: 0, step: 0}}
+  Cold: {text: "No effect if sheltered or dressed for it; prolonged exposure without shelter is a hazard (chilly): `didact do exposure`.", data: {watches: 0, fatigue: 0, step: 0, exposure: true}}
+  Hot: {text: "No effect if sheltered or dressed for it; prolonged exposure without shelter is a hazard (warm): `didact do exposure`.", data: {watches: 0, fatigue: 0, step: 0, exposure: true}}
+  Gusty: {text: "No effect if sheltered or dressed for it; prolonged exposure without shelter is a hazard (breezy).", data: {watches: 0, fatigue: 0, step: 0, exposure: true}}
+  Dusty: {text: "Add a Fatigue or add +1 watch (dust storm, thunder, driving rain).", data: {watches: 1, fatigue: 0, step: 0, either: true}}
+  Harsh: {text: "Add a Fatigue or add +1 watch (dust storm, thunder, driving rain).", data: {watches: 1, fatigue: 0, step: 0, either: true}}
+  Stormy: {text: "Add a Fatigue or +1 watch. Terrain difficulty up one step (lightning, flooding, rad-rain).", data: {watches: 1, fatigue: 0, step: 1, either: true, rad_weather: true}}
+  Extreme: {text: "Add a Fatigue and +1 watch. Terrain difficulty up one step (blizzard, firestorm, rad storm).", data: {watches: 1, fatigue: 1, step: 1, rad_weather: true}}
+  Catastrophic: {text: "Travel impossible for most parties (full rad storm, atomic squall, tidal surge).", data: {impassable: true, rad_weather: true}}
+---
+table: rad-scars
+title: Rad Scars
+description: >-
+  When a Rad Scar save fails, roll 1d20: 1–10 is a Minor Rad Scar, 11–20 a Major one. Roll once
+  and keep it (`didact do rad-scar-save` rolls and applies it).
+dice: d20
+source: players-guide/rad-scars#minor-rad-scars-1d20-results-110
+entries:
+  1: {text: "Patchy Hair Loss. Cosmetic, but strangers stare: −1 to first-meeting Reaction rolls.", data: {name: Patchy Hair Loss, grade: minor}}
+  2: {text: "Radiation Burns. A stretch of skin is permanently raw and pink. −1 max HP.", data: {name: Radiation Burns, grade: minor, hp: -1}}
+  3: {text: "Cracked Teeth. Chronic pain. −1 max WIL.", data: {name: Cracked Teeth, grade: minor, WIL: -1}}
+  4: {text: "Rotgut. One day each week, you are Deprived unless you drink purified water.", data: {name: Rotgut, grade: minor}}
+  5: {text: "Shakes. When Deprived, ranged attacks are Impaired.", data: {name: Shakes, grade: minor}}
+  6: {text: "Tumored. A visible soft growth has appeared somewhere on your body (Overseer picks where). It does not hurt. It makes fitted armor sit wrong — any body armor you wear provides 1 less Armor (minimum 0) until it has been re-cut around the growth at an Armor Workbench (one Craft action and 1 Scrap per suit). Strangers notice.", data: {name: Tumored, grade: minor}}
+  7: {text: "Milky Eye. One eye clouds permanently. −1 max DEX.", data: {name: Milky Eye, grade: minor, DEX: -1}}
+  8: {text: "Radio Hum. Within 40 ft of a live pre-war terminal or robot, you always know it is there.", data: {name: Radio Hum, grade: minor}}
+  9: {text: "Leathered Skin. You may re-roll a failed STR save against environmental damage (heat, cold, rad burn) once per scene. You look visibly changed.", data: {name: Leathered Skin, grade: minor}}
+  10: {text: "Dry Mouth. You can no longer taste food. You gain no benefit from cooked Meals (see Crafting).", data: {name: Dry Mouth, grade: minor}}
+  11: {text: "Glowing Marrow. Once per session, when you would roll on the Scars table, you may take 1 Rad to instead treat that roll as a Close Shave (row 1).", data: {name: Glowing Marrow, grade: major}}
+  12: {text: "Rad-Clever. You detect hot zones at twice normal range without a Geiger counter.", data: {name: Rad-Clever, grade: major}}
+  13: {text: "Withered Hand. Your grip is weakened on one side. Any two-handed weapon you wield — rifle, super sledge, heavy weapon — is Impaired unless braced against a wall, the ground, a bipod, or power-armor servos.", data: {name: Withered Hand, grade: major}}
+  14: {text: "Pale Eyes. You cannot see clearly in direct sunlight. Ranged attacks at midday outdoors are Impaired.", data: {name: Pale Eyes, grade: major}}
+  15: {text: "Scabbed-Over Ear. You are deaf on one side. You cannot detect threats approaching from that direction by sound alone.", data: {name: Scabbed-Over Ear, grade: major}}
+  16: {text: "Mutfruit Smell. Bloatflies, bloodbugs, and mirelurk hatchlings track you at short range.", data: {name: Mutfruit Smell, grade: major}}
+  17: {text: "Thinned Blood. The first Scar you roll in any session gains +1 HP Lost on the lookup (maximum 12).", data: {name: Thinned Blood, grade: major}}
+  18: {text: "Radiant. You glow faintly in pitch dark. Stealth in darkness is impossible. Allies within 20 ft gain a soft light.", data: {name: Radiant, grade: major}}
+  19: {text: "Pre-war Memory. Once per session the Overseer tells you something true about the pre-war world you could not possibly know.", data: {name: Pre-war Memory, grade: major}}
+  20: {text: "Ghoul-Kissed. Counts as two Rad Scars toward ghoulification — a PC who rolls this while already carrying any other Rad Scar reaches the three-Scar threshold and rolls for ghoulification at the next long rest. +1 max HP, −1 max WIL.", data: {name: Ghoul-Kissed, grade: major, count: 2, hp: 1, WIL: -1}}
+---
+table: ghoulification
+title: Ghoulification
+description: >-
+  A PC with three Rad Scars rolls 1d6 at the next long rest (`didact do ghoulify who=<pc>`; the
+  long rest rolls it by itself). With two or more Rad Scars, a PC who wants to become a ghoul may
+  skip the roll and take result 1.
+dice: d6
+source: players-guide/core-rules#rad-scars--ghoulification
+entries:
+  1-3: {text: "Ghoulify. Their background converts to Ghoul (keep attributes, HP, perks, gear). Their face and skin change. They stop rolling for Rad Scars, though Rads still fill their slots. They may re-roll Bonds if they wish.", data: {kind: ghoulify}}
+  4-5: {text: "Resist. The transformation stalls. One of their Rad Scars may be re-rolled at the Overseer's option, but a new one will come. Flag this PC — the next one sticks.", data: {kind: resist}}
+  6: {text: "Break bad. The PC becomes a feral ghoul under the Overseer's control. The player makes a new character. The old one may be fought later.", data: {kind: feral}}
+---
+table: chems
+title: Medical supplies and chems
+lookup: chem
+description: >-
+  What each medical supply and chem does (players-guide/marketplace#medical--chems), for
+  `didact do chem who=<pc> chem=<name>`: healing, Rads cleared, Fatigue, addiction. Chems are
+  petty, consumed on use, and never cause Rads. The backgrounds' medkits (a slot, 3 uses) heal
+  as a Stimpak does.
+source: players-guide/marketplace#medical--chems
+entries:
+  Stimpak: {text: "Heals 1d6 STR. The wasteland's universal painkiller.", data: {heal: 1d6}}
+  Medi-Kit: {text: "A background's medical kit, one slot: 3 uses, each heals 1d6 STR as a Stimpak.", data: {heal: 1d6, stimpak: true}}
+  Followers Medical Kit: {text: "The Followers Scholar's kit, one slot: 3 uses, each heals 1d6 STR as a Stimpak.", data: {heal: 1d6, stimpak: true}}
+  Combat Medkit: {text: "The Enclave Defector's kit, one slot: 3 uses, each heals 1d6 STR as a Stimpak.", data: {heal: 1d6, stimpak: true}}
+  Super Stimpak: {text: "Heals full STR. Adds 1 Fatigue after use.", data: {heal: full, fatigue: 1}}
+  RadAway: {text: "Clears 1 Rad. Non-addictive.", data: {clear_rads: 1}}
+  Rad-X: {text: "Immune to the next Rad exposure: a dose negates the next Rad from any source. Non-addictive.", data: {rad_x: true}}
+  Antivenom: {text: "Cures cazador, nightstalker and radscorpion poison: any creature venom.", data: {cures: venom}}
+  Healing powder: {text: "Tribal remedy. Heals 1d4 STR. Blurs vision: ranged attacks Impaired for one scene.", data: {heal: 1d4, effect: "ranged attacks are Impaired for one scene"}}
+  Addictol: {text: "Cures one addiction immediately. Non-addictive.", data: {cure: true}}
+  Fixer: {text: "Cures one addiction immediately. Non-addictive.", data: {cure: true}}
+  Med-X: {text: "Ignore a single Scar's onset for one scene. Addictive.", data: {addictive: true, effect: "ignore a single Scar's onset for one scene"}}
+  Psycho: {text: "Your attacks deal Enhanced damage for one combat. Addictive.", data: {addictive: true, effect: "attacks deal Enhanced damage for one combat (mode=enhanced)"}}
+  Buffout: {text: "Immune to Critical Damage for one scene. Addictive.", data: {addictive: true, effect: "immune to Critical Damage for one scene"}}
+  Mentats: {text: "Cannot fail WIL saves against deception or confusion for one scene. Addictive.", data: {addictive: true, effect: "cannot fail WIL saves against deception or confusion for one scene"}}
+  Berry Mentats: {text: "A berry-flavored batch; works as Mentats: cannot fail WIL saves against deception or confusion for one scene. Addictive.", data: {addictive: true, effect: "cannot fail WIL saves against deception or confusion for one scene"}}
+  Jet: {text: "Take an extra action this round. Addictive, inhaled.", data: {addictive: true, effect: "an extra action this round"}}
+  Turbo: {text: "You automatically pass the first-round DEX save to act this combat. Addictive.", data: {addictive: true, effect: "automatically passes the first-round DEX save to act this combat"}}
+  Day Tripper: {text: "Reaction rolls shift one step better for one scene. Addictive.", data: {addictive: true, effect: "Reaction rolls shift one step better for one scene"}}
+  Calmex: {text: "First attack from stealth this scene deals Enhanced damage. Addictive.", data: {addictive: true, effect: "the first attack from stealth this scene is Enhanced"}}
+  Overdrive: {text: "For one combat, any target your attacks push past 0 HP automatically fails its Critical Damage save. Only one dose per session has any effect. Addictive.", data: {addictive: true, effect: "for one combat, targets your attacks push past 0 HP automatically fail their Critical Damage save (one dose per session has any effect)"}}
+  Steady: {text: "Ranged attacks are not Impaired for one scene. Addictive.", data: {addictive: true, effect: "ranged attacks are not Impaired for one scene"}}
+  Cateye: {text: "For one scene, see in darkness as clearly as in daylight; bright sun washes the world grey until it wears off. Not addictive.", data: {effect: "sees in darkness as in daylight for one scene; bright sun washes the world grey"}}
+  Hydra: {text: "Mends one Broken or Crippled Scar over a single night's rest instead of weeks. Addictive.", data: {addictive: true, effect: "mends one Broken or Crippled Scar over a single night's rest (then `didact do scar-heal`)"}}
+  Ultrajet: {text: "Take an extra action this round and the next. Works on ghouls. Addictive; its addiction save counts as STR −2.", data: {addictive: true, save_bonus: -2, effect: "an extra action this round and the next"}}
+---
+table: consumables
+title: Food, drink and alcohol
+lookup: food
+description: >-
+  What eating or drinking does (players-guide/marketplace#consumables, alcohol; crafting#cooking-
+  recipes), for `didact do consume who=<pc> food=<name>`. Packaged and wasteland food is one
+  meal (a Ration's use); drinks and meals heal as written; each alcoholic drink heals 1 HP and
+  adds a Fatigue the next morning.
+source: players-guide/marketplace#consumables
+entries:
+  Purified water: {text: "Clean and safe. Restores all HP on a short rest.", data: {water: clean}}
+  Dirty water: {text: "Adds 1 Rad per drink. Restores HP on rest anyway.", data: {water: dirty, rads: 1}}
+  Nuka-Cola: {text: "Heals 1 HP immediately. The taste of the Before.", data: {hp: 1}}
+  Nuka-Cherry: {text: "Heals 2 HP immediately. Cherry-flavored pre-war variant.", data: {hp: 2}}
+  Nuka-Grape: {text: "Heals 2 HP immediately. Grape-flavored pre-war variant.", data: {hp: 2}}
+  Nuka-Cola Orange: {text: "Heals 1 HP immediately. The citrus kick lets the drinker re-roll one failed WIL save this scene.", data: {hp: 1, effect: "may re-roll one failed WIL save this scene"}}
+  Sunset Sarsaparilla: {text: "Heals 1 HP. Mojave's hometown soda. Check the cap for a star.", data: {hp: 1}}
+  Beer: {text: "Alcohol: heals 1 HP but adds 1 Fatigue the next morning.", data: {hp: 1, alcohol: true}}
+  Whiskey: {text: "Alcohol: heals 1 HP but adds 1 Fatigue the next morning.", data: {hp: 1, alcohol: true}}
+  Wine: {text: "Alcohol: heals 1 HP but adds 1 Fatigue the next morning.", data: {hp: 1, alcohol: true}}
+  Moonshine: {text: "Alcohol: heals 1 HP but adds 1 Fatigue the next morning.", data: {hp: 1, alcohol: true}}
+  Wasteland tequila: {text: "Alcohol: heals 1 HP but adds 1 Fatigue the next morning.", data: {hp: 1, alcohol: true}}
+  Vodka: {text: "Alcohol: heals 1 HP but adds 1 Fatigue the next morning.", data: {hp: 1, alcohol: true}}
+  Nuka-Cola Dark: {text: "Alcohol: heals 1 HP but adds 1 Fatigue the next morning.", data: {hp: 1, alcohol: true}}
+  Ration: {text: "One use of Rations, or any packaged or wasteland food: one meal.", data: {meal: true}}
+  Vault-Tec ration pack: {text: "One of the three meals in a sealed pack.", data: {meal: true}}
+  Brahmin Steak: {text: "Cooked meal: full HP, clears 1 Fatigue.", data: {meal: true, cooked: true, full_hp: true, clear_fatigue: 1}}
+  Radstag Stew: {text: "Cooked meal: full HP. For one watch, cannot become Deprived from hunger or cold.", data: {meal: true, cooked: true, full_hp: true, effect: "for one watch, cannot become Deprived from hunger or cold"}}
+  Mirelurk Cakes: {text: "Cooked meal: full HP, clears 1 Rad.", data: {meal: true, cooked: true, full_hp: true, clear_rads: 1}}
+  Yao Guai Roast: {text: "Cooked meal: full HP. For one watch, you cannot fail a STR save from physical exertion.", data: {meal: true, cooked: true, full_hp: true, effect: "for one watch, cannot fail a STR save from physical exertion"}}
+  Deathclaw egg: {text: "Rare, dangerous to acquire, delicious. Cook for full HP + full STR.", data: {meal: true, cooked: true, full_hp: true, full_str: true}}
+  Fresh meat: {text: "A large amount of fresh meat: a deathclaw PC restores 1d6 STR, once per day (players-guide/unusual-pcs#deathclaw-pcs).", data: {meal: true, deathclaw_heal: 1d6}}
+---
+table: reactions
+title: Reactions
+description: >-
+  2d6 for a stranger whose mood is unclear; party karma adds its value (karma=n). Past the ends,
+  the first or last rung.
+dice: "2d6 + default(@karma, 0)"
+clamp: true
+source: players-guide/core-rules#reactions
+entries:
+  2: Hostile
+  3-5: Wary
+  6-8: Curious
+  9-11: Kind
+  12: Helpful

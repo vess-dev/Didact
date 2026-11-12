@@ -1,0 +1,7 @@
+id: daggerheart-lite
+name: daggerheart paper test
+kind: system
+version: 0.1.0
+description: A paper test proving the pack format can express daggerheart's core mechanics.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

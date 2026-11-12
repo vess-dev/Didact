@@ -1,0 +1,49 @@
+# Settlements (wardens-guide/settlements): a homestead from the generator (1/1/1, its main hall),
+# buildings raising Population, Defense (a Palisade for anything above 2) and Prosperity, petty
+# comforts taking no slot, Cottages more than once, upkeep, the season's raid roll and its outcome.
+test: homestead
+script:
+  - world new holds --system {pack} --seed settlement
+  - campaign new first --seed settlement
+  - new pc Lydia --set STR=13 --set DEX=10 --set WIL=10 --set hp=5 --set race=Nord --set gold=400
+  - run: >-
+      gen run {pack}.homestead --auto --prefill '{"plot": "Heljarchen Hall"}'
+    expect: ["+ settlement Heljarchen Hall", "hold: the Pale", "Main hall"]
+  - run: gen commit g1
+    expect: "settlement:heljarchen-hall"
+  - run: show heljarchen-hall
+    expect: ["population 1", "defense 1", "prosperity 1", "Slots filled 1"]
+  - run: do build who=heljarchen-hall building='Guard Post' cost=100 by=lydia
+    expect: ["gold -= 100", "raises Guard Post (2 of 8 slots): Pop 1 / Def 2 / Prosperity 1"]
+  - run: do build who=heljarchen-hall building=Barracks cost=100 by=lydia
+    expect: "raises Barracks (3 of 8 slots): Pop 1 / Def 2 / Prosperity 1"
+  - run: do build who=heljarchen-hall building='Palisade & Gate' cost=50 by=lydia
+    expect: ["Pop 1 / Def 4 / Prosperity 1", "Upkeep: 4 filled slots outrun Population 1 × 2"]
+  - run: do build who=heljarchen-hall building=Watchtower
+    expect: "Pop 1 / Def 5 / Prosperity 1"
+  - run: do build who=heljarchen-hall building=Watchtower
+    expect: "stop: Heljarchen Hall already has Watchtower"
+  - run: do build who=heljarchen-hall building=Cottages
+    expect: "Pop 2 / Def 5"
+  - run: do build who=heljarchen-hall building=Cottages
+    expect: "Pop 3 / Def 5"
+  - run: do build who=heljarchen-hall building="Apothecary's Garden"
+    expect: ["comforts += Apothecary's Garden", "a petty comfort, no slot"]
+  - run: do build who=heljarchen-hall building="Apothecary's Garden"
+    expect: "stop: Heljarchen Hall already has Apothecary's Garden."
+  - run: do build who=heljarchen-hall building=Smithy cost=500 by=lydia
+    expect: "stop: Smithy costs 500 Septims; Lydia has 150."
+  - run: do build who=heljarchen-hall building=Smithy
+    expect: "raises Smithy (8 of 8 slots): Pop 3 / Def 5 / Prosperity 2"
+  - run: do build who=heljarchen-hall building=Mill
+    expect: "stop: All 8 of Heljarchen Hall's building slots are filled"
+  - run: do settlement-season who=heljarchen-hall
+    expect: ["Upkeep: 8 filled slots outrun Population 3 × 2", "1d6"]
+  - run: do raid-outcome who=heljarchen-hall outcome=lost building=Watchtower
+    expect: ["population_shift -= 1", "buildings -= Watchtower", "Pop 2 / Def 4 / Prosperity 2"]
+  - run: do raid-outcome who=heljarchen-hall outcome=won hardwon=true
+    expect: ["defense_shift += 1", "The settlers learned to fight: Defense 5."]
+  - run: do raze who=heljarchen-hall building='Guard Post'
+    expect: "loses Guard Post"
+  - run: do raze who=heljarchen-hall building="Apothecary's Garden"
+    expect: ["comforts -= Apothecary's Garden", "loses Apothecary's Garden"]

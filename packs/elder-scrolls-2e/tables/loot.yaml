@@ -1,0 +1,137 @@
+# Loot (roll-tables/marketplace): the hoard and its tables. Prices and dice follow the
+# Marketplace; potions, ingredients and soul gems follow Crafting.
+table: hoard
+title: "What's in the hoard?"
+description: "To stock an urn, a chest, a lockbox or a coffin without designing it: weighted toward the common stuff. data.table names the table a result says to roll next (`didact gen run elder-scrolls-2e.loot` rolls it)."
+dice: d100
+source: roll-tables/marketplace#whats-in-the-hoard-d100
+entries:
+  1-10: "Empty. Picked clean long ago. Cobwebs, a cracked tankard, a single Septim wedged in a seam."
+  11-22: {text: "A handful of Septims. Roll 2d10 × 5 Septims.", data: {coins: "2d10*5"}}
+  23-34: {text: "A purse of coin. Roll 3d10 × 10 Septims.", data: {coins: "3d10*10"}}
+  35-46: {text: "Common gear. Roll once on Random Gear.", data: {table: "random-gear"}}
+  47-55: {text: "A weapon. Roll once on Random Weapon (re-roll a 20 unless the fiction supports a fine blade).", data: {table: "random-weapon"}}
+  56-63: "Provisions. Rations (3 uses) and a full waterskin, plus 1d4 common reagents (see Potions & Ingredients)."
+  64-71: {text: "Potions & ingredients. Roll once on Potions & Ingredients.", data: {table: "potions-and-ingredients"}}
+  72-78: {text: "Armor. Roll once on Random Armor.", data: {table: "random-armor"}}
+  79-84: {text: "A better weapon. Roll once on Random Weapon; it is already tempered — its die one rung higher (to a max of d12).", data: {table: "random-weapon", tempered: true}}
+  85-89: {text: "Coin & treasure. Roll on Coin & Treasure.", data: {table: "coin-and-treasure"}}
+  90-92: "A soul gem. Petty (1–3), lesser (4–5), or common (6) on a d6 — empty unless the fiction says otherwise."
+  93-95: {text: "A Spell Tome or Scroll. Warden's pick, or roll on the Spell Tome roll table.", data: {table: "spellbooks"}}
+  96: "A named weapon. Roll on the Unique Weapons roll table."
+  97: "A named piece of armor. Roll on the Unique Armors roll table."
+  98: {text: "A Relic. Bound magic with charges to spend — roll on the Relics roll table.", data: {table: "relics"}}
+  99: "A trap. Something is in the hoard, but a ward or a rigged lid guards it: DEX save or take 1d6 STR damage (a poison needle, a falling lid, a flame rune). The loot beneath is one extra roll on this table, ignoring results of 96+."
+  100: "The jackpot. A delver's dream. Roll twice more on this table and take both."
+---
+table: random-weapon
+title: "Random weapon"
+dice: d20
+source: roll-tables/marketplace#random-weapon-d20
+entries:
+  1: "Iron dagger (d6)"
+  2: "Hunting knife or shiv (d6)"
+  3: "Hatchet or hand axe (d6)"
+  4: "Club or quarterstaff (d6)"
+  5: "Sling and pouch of stones (d6)"
+  6: "Iron sword (d8)"
+  7: "Steel sword (d8)"
+  8: "War axe (d8)"
+  9: "Mace (d8)"
+  10: "Spear or war-pick (d8)"
+  11: "Iron greatsword (d10, bulky, two-handed)"
+  12: "Battleaxe (d10, bulky, two-handed)"
+  13: "Warhammer (d10, bulky, two-handed)"
+  14: "Hunting bow and quiver (d6, bulky)"
+  15: "Longbow and quiver (d6, bulky)"
+  16: "Crossbow and bolts (d8, bulky)"
+  17: "Loose quiver of arrows or bolts (petty, no bow)"
+  18: "Coated blade — any d8 weapon with 1d3 uses of coating poison (STR save or 1d6 STR)"
+  19: "Fine-make weapon — Warden's pick of a Dwarven or elven d8 weapon (worth several times its price)"
+  20: "Roll on the Unique Weapons roll table"
+---
+table: random-armor
+title: "Random armor"
+dice: d20
+source: roll-tables/marketplace#random-armor-d20
+entries:
+  1: "Fur jerkin or thick furs (1 Armor)"
+  2: "Wooden or banded shield (+1 Armor)"
+  3: "Iron or hide helmet (+1 Armor)"
+  4: "Hide armor (1 Armor)"
+  5: "Leather armor (1 Armor)"
+  6: "Studded leather (1 Armor)"
+  7: "Fur armor — Stormcloak make (1 Armor)"
+  8: "Bandit patchwork harness (1 Armor)"
+  9: "Imperial light armor — boiled leather and bronze (1 Armor)"
+  10: "Iron banded mail (2 Armor, bulky)"
+  11: "Steel mail (2 Armor, bulky)"
+  12: "Scaled armor (2 Armor, bulky)"
+  13: "Dwarven mail (2 Armor, bulky; worth several times steel)"
+  14: "Imperial or Stormcloak officer's cuirass (2 Armor, bulky)"
+  15: "Steel shield and helmet together (+1 Armor each)"
+  16: "Elven or glass light armor (1 Armor; worth many times leather)"
+  17: "Iron or steel plate (3 Armor, bulky)"
+  18: "Orcish plate (3 Armor, bulky; worth several times steel)"
+  19: "Ebony or dragonplate (3 Armor, bulky; dreaded, and a noble's ransom)"
+  20: "Roll on the Unique Armors roll table"
+---
+table: random-gear
+title: "Random gear"
+dice: d20
+source: roll-tables/marketplace#random-gear-d20
+entries:
+  1: "Torch (3 uses)"
+  2: "Lantern and a flask of oil (6 uses)"
+  3: "Lockpicks / thieving tools (a hard lock may snap a cheap pick)"
+  4: "A bundle of 1d6 spare lockpicks (petty)"
+  5: "Rope (25 ft)"
+  6: "Grappling hook"
+  7: "Climbing gear — pitons, spikes, pulley"
+  8: "Bandages (3 uses)"
+  9: "Bedroll and outdoor comfort"
+  10: "Containers — a sack and a waterskin"
+  11: "Rations (3 uses)"
+  12: "Common tools — hammer, shovel, pry-bar"
+  13: "Cooking gear — pot and utensils"
+  14: "Common agents — glue, grease, pitch, lamp oil"
+  15: "Sewing kit or tanning awl"
+  16: "Spyglass"
+  17: "Caltrops, or a hunter's trap (d6 STR damage)"
+  18: "A handful of 1d6 common reagents (see Potions & Ingredients)"
+  19: "An empty soul gem — petty (1–4) or lesser (5–6) on a d6"
+  20: "A book — mundane (1–4), a Skill Book of the Warden's choice (5), or roll on the Spell Tome roll table (6)"
+---
+table: potions-and-ingredients
+title: "Potions and ingredients"
+dice: d20
+source: roll-tables/marketplace#potions--ingredients-d20
+entries:
+  1-4: "1d4 common reagents — blue mountain flower, lavender, mudcrab chitin, and the like (petty)"
+  5-6: "1d4 uncommon reagents — nightshade, deathbell, frost mirriam (petty)"
+  7: "A prized reagent — giant's toe, salmon roe, or (rarely) a daedra heart (petty)"
+  8-10: "Potion of Healing (restores 1d6 STR, petty, 1 use)"
+  11: "Potion of Greater Healing (restores all lost STR, petty, 1 use)"
+  12: "Potion of Cure Disease (petty, 1 use)"
+  13: "Potion of Resist Fire, Frost, or Shock — attacks of that element against you are Impaired for the scene (petty, 1 use)"
+  14: "Draught of Fortitude — re-roll one failed save before your next Downtime (petty, 1 use)"
+  15: "Potion of Invisibility — unseen until you attack, cast, or the scene ends (petty, 1 use)"
+  16: "Potion of Waterbreathing — breathe water for a scene (petty, 1 use)"
+  17: "Coating poison (3 uses; the next hit with a coated weapon forces a STR save or 1d6 STR)"
+  18: "A cruel poison — Paralytic or Lingering Poison, 1d3 uses (see Crafting)"
+  19: "Antitoxin (cures one venom) and a Potion of Cure Disease"
+  20: "A dose of Skooma — illegal and potent; STR save on use or be Deprived until a safe rest"
+---
+table: coin-and-treasure
+title: "Coin and treasure"
+dice: d8
+source: roll-tables/marketplace#coin--treasure-d8
+entries:
+  1: {text: "Loose Septims (a pouch, a spilled drawer): 2d10 × 5 Septims", data: {value: "2d10 × 5 Septims"}}
+  2: {text: "A purse or strongbox of coin: 3d10 × 10 Septims", data: {value: "3d10 × 10 Septims"}}
+  3: {text: "Worked goods — silverware, candlesticks, a circlet: 2d6 × 25 Septims to fence", data: {value: "2d6 × 25 Septims to fence"}}
+  4: {text: "Loose gems — garnet, amethyst, sapphire, a flawless diamond: 1d6 × 50 Septims (Warden picks the stone)", data: {value: "1d6 × 50 Septims (Warden picks the stone)"}}
+  5: {text: "Smithing ingots — steel, Dwarven, silver, gold, moonstone: 1d4 ingots, 50–200 Septims the lot, or smithing stock", data: {value: "1d4 ingots, 50–200 Septims the lot, or smithing stock"}}
+  6: {text: "A small treasure cache: 2d6 × 50 Septims in mixed jewelry, ingots, and curios", data: {value: "2d6 × 50 Septims in mixed jewelry, ingots, and curios"}}
+  7: {text: "A filled soul gem: petty (1–3), lesser (4–5), or common (6) on a d6 — ready to enchant or recharge", data: {value: "petty (1–3), lesser (4–5), or common (6) on a d6 — ready to enchant or recharge"}}
+  8: {text: "A locked or warded chest: Roll once more on What's in the Hoard? for the contents within", data: {value: "Roll once more on What's in the Hoard? for the contents within"}}

@@ -1,0 +1,724 @@
+# Dawnguard (DLC) (campaigns/08-dawnguard): written by es_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Elder Scrolls 2e's numbers, and Grimscrolls'
+# card where its Bestiary or its Faces has the threat) and clocks.
+id: dawnguard
+type: quest
+name: Dawnguard
+aliases: [Dawnguard (DLC)]
+tags: [dawnguard, frame, side-arc]
+goal: |-
+  A war that has slept for an age is stirring. Lord Harkon, master of the Volkihar vampire clan, means to enact the Tyranny of the Sun — an old elven prophecy that, fulfilled, would blot the sun from the sky forever and free his kind to hunt the day. To do it he needs three things: the Elder Scrolls that hold the prophecy, the lost Auriel's Bow, and the blood of his own daughter, a Daughter of Coldharbour. Against him stands the Dawnguard, an order of vampire-hunters scraped back together by the grim zealot Isran in the ruin of Fort Dawnguard.
+
+  Into that gap walks the party. Sent to investigate vampire raids, they break open Dimhollow Crypt and free Serana — the ancient vampire who carries one of the Scrolls. From there the road forks hard, and the choice is the whole campaign: ride with the Dawnguard and hunt Harkon down, or take Harkon's gift, become a Vampire Lord, and enact the prophecy yourself. Either way the road runs the same haunted stations — the Soul Cairn where Serana's mother is exiled, the Forgotten Vale where the Bow is kept — and ends with one master of the night dead on a cathedral floor.
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  *A **Dawnguard DLC** frame. Vampires are stealing folk from the roads, and a grim Redguard is rebuilding a fortress of vampire-hunters in a forgotten canyon. Crack open a Nordic crypt and you wake a four-thousand-year-old vampire who carries an Elder Scroll — and a secret her father would unmake the sun to keep. Before the arc is out you must choose: hunt the Volkihar with the Dawnguard, or drink Lord Harkon's blood and become one of the undying.*
+
+  ## GM notes
+
+  **Date.** Sundas, 17 Last Seed 4E 201: 4E 201, the book's moment; no day of its own: whenever the rumor of the vanished reaches the party. It is the calendar's start: a new campaign opens on it.
+
+  **The frame's text:** `didact rules lookup dawnguard pitch` (and `stakes`, `tone touchstones`, `arrival`, `the branch`, `plot beats`, `the place`, `cast`, `clocks`, `threats`, `rewards`, `climax`).
+
+  **Stakes.** The sun itself. If the Tyranny of the Sun is fulfilled, daylight fails over Skyrim and the Volkihar hunt the living forever; if it is thwarted, a vampire court four thousand years old is broken. Between those ends stands a woman out of time who must choose between her father, her mother, and the strangers who woke her — and a party that may end the campaign as hunters, or as monsters.
+
+  **Arrival.** Rumor reaches the party in any tavern from Riften to Solitude: people are vanishing from the roads at night, and a new order of hunters in **Dayspring Canyon** is paying good Septims for anyone willing to fight the undead. Or a tattered **Vigilant of Stendarr** staggers up with his last breath, warning that the Hall of the Vigilant has been burned and "the ones who did it came for a crypt by Morthal." Either thread leads to **Fort Dawnguard** and Isran, who sends the party straight to **Dimhollow Crypt**.
+
+  A PC with the Dawnguard Hunter background is already one of Isran's first recruits, and starts at **Dawnguard +1**. (If a PC is a Vampire Fledgling, Isran will not have them in his fort — but Serana will trust them faster, and Harkon's offer in Beat 3 lands as a homecoming.)
+
+  **Plot beats.**
+
+  1. **Dimhollow Crypt (shared).** Isran sends the party east of Morthal to learn why vampires want an old Nordic tomb. Inside, they trail a Volkihar raiding party led by **Lokil**, who is torturing a captured Vigilant for the way down. At the heart of the crypt stands a sealed stone monolith ringed by unlit braziers — a **brazier puzzle** (press the stud on the central pedestal, then push the braziers along their tracks until the violet fire reaches the outer ring). Solving it opens the monolith and frees **Serana**, who has slept here some four thousand years cradling an **Elder Scroll**. She asks only to be taken home. Lokil's vampires attack as the party leaves.
+  2. **The Long Road Home (shared).** Serana asks to be escorted to **Castle Volkihar**, on an island in the Sea of Ghosts west of Solitude, reached by a ferryman at a ruined dock. Along the way she is wary, then warmer; she lets slip that she is a *Daughter of Coldharbour*, that her mother **Valerica** vanished long ago, and that she would rather not see her father at all. This is the beat to make the party *like* her before the fork.
+  3. **Bloodline — the Choice (the branch).** In the great hall of Castle Volkihar, **Lord Harkon** receives his daughter coldly and the party warily. He reveals the **Tyranny of the Sun** and offers the party his blood — the **Vampire Lord** gift — to join the Volkihar. **Here the campaign forks.**
+     - **Dawnguard track:** Refuse. Harkon casts the party out (or hunts them through the castle); they flee back to **Fort Dawnguard**, where Isran is rebuilding the order — *A New Order* begins.
+     - **Volkihar track:** A PC accepts and is remade as a Vampire Lord (see the note above). Harkon welcomes them into the clan and sets them the same hunt — find the Scrolls and the Bow — only now in his service.
+  4. **Mustering / The Court (the branch, parallel).** Each side gathers its strength and learns it needs a **Moth Priest** to read an Elder Scroll safely.
+     - **Dawnguard track — *A New Order*:** Help Isran beat off a vampire assault on the fort, then recruit **Gunmar** (a smith and beast-tamer, found hunting a bear) and **Sorine Jurard** (an inventor of crossbows, found in the wilds). The fort wakes back into an order: a forge, armored war-trolls, and **crossbows** for the party.
+     - **Volkihar track — the court:** Harkon's court of vampires (the adviser **Garan Marethi**, the alchemist, the smith) takes the party's measure. Harkon names them his hunters and sends them after the Moth Priest in his name.
+  5. **The Moth Priest — *Prophet* (the branch, parallel).** A **Moth Priest** named **Dexion Evicus** has come north to read the Scrolls; both sides race for him. The trail runs through **Dragon Bridge** to **Forebears' Holdout**, where a vampire called **Malkus** has already taken him.
+     - **Dawnguard track:** Rescue Dexion (kill Malkus) and bring him to the fort. He reads Serana's Scroll: a vision of **Auriel's Bow**, and word that **two more Scrolls** are needed to read the whole prophecy.
+     - **Volkihar track:** Isran's hunters got there first — Malkus is dead and they are trying to free the priest. Kill them and **enthrall** Dexion, dragging him back to the castle to read the Scroll for Harkon. The vision is the same; the captive is yours.
+  6. **The Soul Cairn — *Chasing Echoes* & *Beyond Death* (shared, welcome reversed).** Serana believes her mother **Valerica** fled into the **Soul Cairn** with a second Scroll. From a hidden courtyard beneath Castle Volkihar (reached by fighting through the undercroft and repairing a **moondial** — set the Half, Full, and Crescent crests), Serana's blood opens a portal to that bleak plane. **To cross alive you must be a vampire** — or let part of your soul be trapped (returnable later). In the Soul Cairn the party finds Valerica behind a barrier of three **Keepers**; slay them, follow her into the Boneyard, and face the undead dragon **Durnehviir**. They recover the **Blood Elder Scroll**. *(Welcome differs only in flavor: to the Dawnguard, Valerica is a grudging ally against her husband; to the Volkihar, she is a traitor to the clan — and Serana must choose her mother over her father either way.)*
+  7. **The Ancestor Glade & the Forgotten Vale — *Unseen Visions* / *Touching the Sky* (shared).** The third Scroll — the **Elder Scroll (Dragon)** — lies in the Tower of Mzark beneath Alftand (the Main Quest, Beat 7), unless the party already carries it. With all three Scrolls, the party seeks the **Ancestor Glade** near Falkreath, harvests bark from a Canticle Tree, and draws the **Ancestor Moths** to sanctify a reader. Reading the three Scrolls together reveals the Bow's resting place: **Darkfall Cave**, and beyond it the hidden **Forgotten Vale**. There the last living Snow Elf, **Knight-Paladin Gelebor**, will give up **Auriel's Bow** only if the party cleanses the Vale's wayshrines and ends his corrupted brother, **Arch-Curate Vyrthur** — the vampire who *authored* the Tyranny of the Sun out of spite after an Initiate's bite made him a vampire and, as he saw it, Auri-El turned away. Kill Vyrthur; claim the **Bow** and **Sunhallowed arrows**.
+  8. **Kindred Judgment — the Climax (the branch).** All three Scrolls, the Bow, and a Daughter of Coldharbour are now in play. The prophecy can be made or unmade.
+     - **Dawnguard track:** Isran leads an assault on **Castle Volkihar**. The party storms the Cathedral and faces Harkon in **Vampire Lord** form. *Deny* him the sun.
+     - **Volkihar track:** The party returns to the Cathedral to enact the prophecy at Harkon's altar — and discovers the rite was only ever meant to crown *him*. He demands the Bow; refuse, and he attacks. Either way, **Harkon dies** (the killing blow comes through his altar-ward, pierced by **Auriel's Bow**). See the **Climax** below for resolutions.
+
+  **Climax.**
+
+  The prophecy can be made or unmade, and Harkon must die either way. The Bow, the three Scrolls, and a Daughter of Coldharbour are all in play; Harkon shields himself at his blood-altar in the Cathedral of Castle Volkihar, in **Vampire Lord** form, and his ward blunts every mundane blow (attacks against him are _Impaired_) until it is broken (by **Auriel's Bow**, or by Isran's holy light). Three ways it can land:
+
+  - **The Dawnguard ending — deny the sun.** Isran's order storms the castle; the party breaks the altar-ward, slays Harkon in his winged form, and the Tyranny of the Sun dies with him. Serana, freed of her father, may renounce her curse (sought through Falion in Morthal) or keep it — her choice, and the campaign's quiet last beat. The Dawnguard hold Castle Volkihar as a sun-lit garrison.
+  - **The Volkihar ending — the crown was never yours.** The party gathered everything to enact the prophecy, only to find Harkon meant the eternal night for himself alone. They turn on him at his own altar. With his death the prophecy is theirs to enact — or to abandon. A party that *does* dim the sun rules a Skyrim of the undying, hunted forever by what's left of the Dawnguard and every Vigilant alive; a party that walks away keeps the power and spares the world. Garan Marethi (or Serana) holds the castle for the clan.
+  - **Serana's ending — neither parent.** If Serana's Trust reached 5, give the table a third door: with the Bow in hand and both her parents' schemes in ruins, **Serana** herself ends it — refusing to be the key to anyone's prophecy, destroying the altar, and walking out into the snow beside the party as her own person at last. Harkon dies; the Tyranny of the Sun is unmade not by hunters or monsters but by the daughter both sides tried to use. This is the ending to aim a long campaign toward.
+
+  Whatever the resolution, the sun comes up over the Sea of Ghosts — or it doesn't — and a four-thousand-year-old quarrel is finally, bloodily, over.
+
+  **Also in the frame:** The Branch (read this before play) (`didact rules lookup dawnguard …`).
+
+  **The frame's records.** `didact gen run elder-scrolls-skyrim.frame --prefill '{"frame": "Dawnguard"}' --auto` drafts the region, 7 places, 12 people, 3 threats, its factions and its clocks, for the world's system; `gen commit` writes them.
+
+  **Bestiary** (Elder Scrolls 2e / Grimscrolls): Vampires → `vampire` / `vampire-clan`; Death Hounds → `death-hound` / `vampire-clan`; Gargoyles → `gargoyle` / `gargoyle`; Draugr → `draugr` / `draugr`; Bonemen → `boneman` / `the-dead-of-the-soul-cairn`; Mistmen → `boneman` / `the-dead-of-the-soul-cairn`; Wrathmen → `boneman` / `the-dead-of-the-soul-cairn`; Falmer → `falmer` / `falmer`; Chaurus → `chaurus` / `chaurus`; Frost Troll → `frost-troll` / `troll`.
+
+  **Rewards in each system's catalog:** Auriel's Bow (elder-scrolls-2e.auriels-bow · grimscrolls.auriels-bow); Auriel's Shield (elder-scrolls-2e.auriels-shield · grimscrolls.auriels-shield); The Aetherial Crown (elder-scrolls-2e.aetherial-crown · grimscrolls.aetherial-crown); Aetherial Shield (elder-scrolls-2e.aetherial-shield); Aetherial Staff (elder-scrolls-2e.aetherial-staff); Aetherium Forge (grimscrolls.the-aetherium-forge); Zephyr (elder-scrolls-2e.zephyr · grimscrolls.zephyr); Harkon's Sword (elder-scrolls-2e.harkons-sword · grimscrolls.harkons-sword); Dawnguard armor (grimscrolls.dawnguard-armor); Dawnguard Rune Axe (elder-scrolls-2e.dawnguard-rune-axe).
+source: campaigns/08-dawnguard#pitch
+---
+id: dawnguard-region
+type: loc
+name: Dawnguard pointcrawl
+tags: [dawnguard, region]
+mechanics:
+  elder-scrolls-2e: {kind: region}
+body: |-
+  ## GM notes
+
+  A pointcrawl of five stations, plus the two home bases the branch hangs on. Treat travel between them as Skyrim wilderness travel; the cold is always a threat (see Hazards).
+source: campaigns/08-dawnguard#the-place
+---
+id: dawnguard-fort-dawnguard
+type: loc
+name: Fort Dawnguard
+tags: [dawnguard, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  (*Dayspring Canyon*) A half-ruined keep in a green canyon, reached through a long tunnel that hides it from the world. The Dawnguard home base. Begins crumbling and grows — a forge, a war-troll pen, a crossbow range — as Isran's order rebuilds. Sunlit and safe; a vampire PC is *not* welcome here.
+source: campaigns/08-dawnguard#the-place
+---
+id: dawnguard-dimhollow-crypt
+type: loc
+name: Dimhollow Crypt
+tags: [dawnguard, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  A vast, water-flooded Nordic barrow east of Morthal. Draugr in the dark, Volkihar raiders ahead of the party, and at its heart the sealed monolith and the **brazier puzzle** that frees Serana.
+source: campaigns/08-dawnguard#the-place
+---
+id: dawnguard-castle-volkihar
+type: loc
+name: Castle Volkihar
+tags: [dawnguard, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  A castle of black stone on a fog-bound island in the Sea of Ghosts, reached only by a ferryman. Elegant and rotten — a vampire court above, a flooded undercroft and a moondial **courtyard** below. The Volkihar home base, and the site of the climax. A mortal here walks among polite predators.
+source: campaigns/08-dawnguard#the-place
+---
+id: dawnguard-forebears-holdout
+type: loc
+name: Forebears' Holdout
+tags: [dawnguard, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  A small cave where the vampire Malkus holds the Moth Priest Dexion. A quick, sharp fight.
+source: campaigns/08-dawnguard#the-place
+---
+id: dawnguard-ancestor-glade
+type: loc
+name: Ancestor Glade
+tags: [dawnguard, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  A hidden, sun-dappled grove near Falkreath, full of luminous **Ancestor Moths**. No combat — a place of ritual, where the Scrolls are read.
+source: campaigns/08-dawnguard#the-place
+---
+id: dawnguard-the-soul-cairn
+type: loc
+name: The Soul Cairn
+tags: [dawnguard, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  A boundless plane of Oblivion under a dead, bruise-purple sky, where soul-trapped souls drift as glowing wisps and the **Ideal Masters** hoard them. Bone towers, purple lightning, and the undead dragon **Durnehviir** patrolling the Boneyard. The living do not belong here.
+source: campaigns/08-dawnguard#the-place
+---
+id: dawnguard-the-forgotten-vale
+type: loc
+name: The Forgotten Vale
+tags: [dawnguard, place]
+mechanics:
+  elder-scrolls-2e: {kind: poi}
+body: |-
+  ## GM notes
+
+  (*via Darkfall Cave*) A breathtaking glacial valley sealed from the world, blue ice and golden chantry-stone, frozen lakes and falls. Falmer and chaurus infest the ruins; **frost giants** wander the ice. Gelebor keeps the first wayshrine at the cave's mouth; five **wayshrines** ring the valley, leading to the **Inner Sanctum** where Vyrthur rules.
+source: campaigns/08-dawnguard#the-place
+---
+id: dawnguard-isran
+type: monster
+name: Isran
+knowledge: secret
+tags: [dawnguard, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: Dawnguard'
+    hp: 10
+    armor: 2
+    STR: 14
+    DEX: 13
+    WIL: 15
+    attacks:
+    - name: Dawnguard warhammer
+      damage: d10
+      qualities: [bulky, two-handed]
+    - name: crossbow
+      damage: d8
+      qualities: [bulky]
+    abilities:
+    - "Against vampires and the undead his attacks are Enhanced. He wards himself with Stendarr's Aura:
+      once per scene he can loose a burst of holy light, a blast attack (d6) that ignores the Armor of
+      undead and leaves a vampire Deprived for the round."
+    critical: the hammer lands with sacred force and breaks what it strikes; an undead target is 
+      destroyed outright.
+  grimscrolls:
+    category: The Night's Children
+    tier: tough
+    role: marksman
+    sights: a crossbow levelled before hello
+    sounds: a troll snuffling in its armor
+    smells: wet dog
+    traits: [bolts punch through plate, used to faster prey]
+    moves: [Volley from Three Sides, Loose the Armored Troll]
+    wants: every vampire in Skyrim ash — the living they would sooner recruit
+    note: A hunting party is a 6d pool, +1t until you close, fronted by a 4d **armored troll** or 
+      war **huskies**. **Isran** commands and trusts no one. Step into sunlight or take the cure and
+      the quarrel ends; a vampire who will not gets no terms. Refounded 4E 201.
+fields: {role: founder of the Dawnguard}
+body: |-
+  ## GM notes
+
+  **Isran** — founder of the Dawnguard. A grim, zealous Redguard who trusts no vampire, not even Serana, and would burn the world clean to be rid of them.
+
+  The founder of the Dawnguard: a scarred, iron-willed Redguard zealot in heavy mail, sworn to end every vampire in Skyrim. An ally on the Dawnguard path, a furious foe on the Volkihar one.
+
+  Elder Scrolls 2e: 10 HP, 2 Armor, 14 STR, 13 DEX, 15 WIL, Dawnguard warhammer (d10, bulky, two-handed) or crossbow (d8, bulky).
+
+  Grimscrolls: its card is `grimscrolls.the-dawnguard` (The Dawnguard), in this record's grimscrolls block.
+source: campaigns/08-dawnguard#isran
+---
+id: dawnguard-serana
+type: monster
+name: Serana
+knowledge: secret
+tags: [dawnguard, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: Dawnguard'
+    hp: 8
+    armor: 1
+    STR: 12
+    DEX: 13
+    WIL: 17
+    attacks:
+    - {name: draining bite, damage: d6}
+    - name: Ice Spike
+      damage: d8
+      qualities: [ranged]
+    abilities:
+    - 'Her bite drains: the HP it deals are restored to her. Immune to poison and disease; fire against
+      her is Enhanced; sunlight leaves her Deprived. She never tires of the cold.'
+    - She can become a Vampire Lord as a PC vampire can, but rarely does so unbidden. Only Serana's 
+      blood can open the way to the Soul Cairn.
+    enhanced_by: [fire]
+  grimscrolls:
+    tier: elite
+    role: blaster
+    fact: A pure-blood vampire sealed in a crypt for an age with an Elder Scroll on her back. Her 
+      blood is the last thing her father's prophecy needs, and she would rather he went without. (4E
+      201)
+fields: {role: the ancient Volkihar who carries an Elder Scroll}
+body: |-
+  ## GM notes
+
+  **Serana** — the ancient Volkihar who carries an Elder Scroll; a Daughter of Coldharbour. Sardonic, lonely, four thousand years out of time. **The party's companion the whole campaign, on either path** (see Rewards). Her arc is choosing her own side against both parents.
+
+  The campaign's deep companion: an ancient Volkihar vampire and a powerful necromancer, sardonic and weary and slowly thawing. She walks with the party down either path. Run her as a companion (see Companions) — a named ally, hardier than a rolled one — with her Loyalty set by the Serana's Trust clock; her trick is necromancy: once per day, she raises a fresh corpse as a thrall (3 HP, its own weapon or d4) that crumbles at the scene's end.
+
+  Elder Scrolls 2e: 8 HP, 1 Armor, 12 STR, 13 DEX, 17 WIL, draining bite (d6), Ice Spike (d8, ranged).
+
+  Grimscrolls: its Face is `grimscrolls.serana` (Serana), in this record's grimscrolls block.
+source: campaigns/08-dawnguard#serana
+---
+id: dawnguard-lord-harkon
+type: monster
+name: Lord Harkon
+aliases: [Lord Harkon (Vampire Lord)]
+knowledge: secret
+tags: [dawnguard, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: Dawnguard'
+    hp: 18
+    armor: 1
+    STR: 16
+    DEX: 14
+    WIL: 18
+    attacks:
+    - {name: raking claws, damage: '{d8, d8}kh1'}
+    - name: Vampiric Drain
+      damage: d8
+      qualities: [blast, ranged]
+    abilities:
+    - Immune to poison; fire against him is Enhanced; sunlight leaves him Deprived. His drain heals 
+      him for the damage dealt. Each round he may summon a Gargoyle, raise the dead, or Vampiric 
+      Grip a foe (a STR save or be dragged in and lose its next action). While he hovers, melee from
+      grounded foes is Impaired unless they reach him.
+    - "The altar-ward: in the Cathedral, Harkon shields himself with a font of blood-magic — mundane attacks
+      against him are Impaired until the ward is broken. Auriel's Bow (or the holy light of Isran's aura)
+      shatters it; then he is vulnerable."
+    impaired_by: [magic, mundane]
+    enhanced_by: [fire]
+    critical: his paralyzing bite drains d8 WIL and the target loses its next action.
+  grimscrolls:
+    category: Bosses of Tamriel
+    tier: boss
+    role: skirmisher
+    sights: wings unfolding across a cathedral window
+    sounds: your own pulse, loud and slowing
+    smells: old blood on cold stone
+    pools:
+    - name: The Vampire Lord
+      dice: 8
+      traits: aloft to cast and landing only to claw; pressed, it is bats, then mist
+      moves: [Drain Life Across the Hall, Grip and Hurl]
+    - name: The Court
+      dice: 6
+      traits: thralls, fledglings, death hounds, and your own dead raised to join them
+      moves: [Bar the Doors, Raise the Fallen]
+    - name: The Gargoyles
+      dice: 4
+      traits: statues until it calls, and called again when broken
+      moves: [Burst from the Plinth, Pin for the Master]
+    fail: It leaves as mist with one of you taken for a thrall — and it knows the rest by name.
+    wants: a court that fears it, a herd that feeds it, and no sun — it offers its blood to the 
+      useful, once
+    note: "A linked challenge (6d + 4d + 8d): the Lord is locked while its court stands. Sunlight or fire
+      drops 1d before its pool rolls, and a narrow door is a setup against wings. **Lord Harkon** of Castle
+      Volkihar (4E 201) retreats to a shielded blood altar: the first time his pool would drop, it doesn't,
+      unless Auriel's Bow breaks the shield. He wants that bow, his daughter's blood, and the sun put
+      out."
+fields: {role: master of Castle Volkihar and the Volkihar clan}
+body: |-
+  ## GM notes
+
+  **Lord Harkon** — master of Castle Volkihar and the Volkihar clan. An elegant, ancient Vampire Lord who means to enact the Tyranny of the Sun and rule the eternal night. Charming until he isn't.
+
+  The master of Castle Volkihar in his towering, winged Vampire Lord form — an ancient blood-mage who would unmake the sun. The campaign's final foe on both paths.
+
+  Elder Scrolls 2e: 18 HP, 1 Armor, 16 STR, 14 DEX, 18 WIL, raking claws (d8+d8), Vampiric Drain (d8, blast, ranged).
+
+  Grimscrolls: its card is `grimscrolls.vampire-lord` (Vampire Lord), in this record's grimscrolls block.
+source: campaigns/08-dawnguard#lord-harkon-vampire-lord
+---
+id: dawnguard-valerica
+type: monster
+name: Valerica
+knowledge: secret
+tags: [dawnguard, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: Dawnguard'
+    hp: 12
+    armor: 1
+    STR: 12
+    DEX: 13
+    WIL: 17
+    attacks:
+    - name: Vampiric Drain
+      damage: d8
+      qualities: [ranged]
+    abilities:
+    - Immune to poison; fire against her is Enhanced. Once per scene she conjures a Frost Atronach 
+      (6 HP, 1 Armor, slam d8, as the Spell Tome) to guard her. Within the Soul Cairn she cannot be 
+      permanently slain — the plane sustains her.
+    enhanced_by: [fire]
+fields:
+  role: Serana's mother, an alchemist and conjurer who hid herself (and a Scroll) in the Soul Cairn 
+    to keep the prophecy from her husband
+body: |-
+  ## GM notes
+
+  **Valerica** — Serana's mother, an alchemist and conjurer who hid herself (and a Scroll) in the Soul Cairn to keep the prophecy from her husband. Cold, brilliant, estranged from both husband and daughter.
+
+  Serana's mother: a brilliant, frost-cold vampire alchemist and conjurer, self-exiled to the Soul Cairn with a Scroll to thwart her husband. An ally once the Keepers fall; never quite warm.
+
+  Elder Scrolls 2e: 12 HP, 1 Armor, 12 STR, 13 DEX, 17 WIL, Vampiric Drain (d8, ranged).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/08-dawnguard#valerica
+---
+id: dawnguard-dexion-evicus
+type: monster
+name: Dexion Evicus
+aliases: [Dexion Evicus (Moth Priest)]
+knowledge: secret
+tags: [dawnguard, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: Dawnguard'
+    hp: 6
+    STR: 13
+    DEX: 11
+    WIL: 14
+    attacks:
+    - {name: staff, damage: d6}
+    abilities:
+    - Reading Serana's Scroll in haste (Beat 5) blinds him for good. For the three Scrolls (Beat 7) 
+      he talks a PC through the Ancestor Moth rite instead; a reader who skips the rite must pass a 
+      WIL save or be blinded and lose all action for the scene. On the Volkihar path he reads while 
+      enthralled, his will not his own.
+fields:
+  role: a Moth Priest of the Cult of the Ancestor Moth, come north from the White-Gold Tower
+body: |-
+  ## GM notes
+
+  **Dexion Evicus** — a **Moth Priest** of the Cult of the Ancestor Moth, come north from the White-Gold Tower; the one man in Skyrim trained to read an Elder Scroll. Reading Serana's costs him his sight. A prize both sides seize.
+
+  A mild Imperial Moth Priest, trained to read an Elder Scroll without being unmade — and blind from Beat 5 on. A captive, then a guide. He does not fight if he can help it.
+
+  Elder Scrolls 2e: 6 HP, 13 STR, 11 DEX, 14 WIL, staff (d6).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/08-dawnguard#dexion-evicus-moth-priest
+---
+id: dawnguard-knight-paladin-gelebor
+type: monster
+name: Knight-Paladin Gelebor
+knowledge: secret
+tags: [dawnguard, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: Dawnguard'
+    hp: 12
+    armor: 2
+    STR: 14
+    DEX: 15
+    WIL: 15
+    attacks:
+    - {name: enchanted Falmer-make sword, damage: d8}
+    - name: bound bow
+      damage: d8
+      qualities: [ranged]
+    abilities:
+    - His attacks against the undead are Enhanced and shine with sunlight (ignore 1 Armor). He gives
+      up the Bow only once Vyrthur is dead.
+fields:
+  role: the last living Snow Elf, keeper of the Vale's chantry of Auri-El, who guards Auriel's Bow
+body: |-
+  ## GM notes
+
+  **Knight-Paladin Gelebor** — the last living Snow Elf, keeper of the Vale's chantry of Auri-El, who guards **Auriel's Bow**.
+
+  The last living Snow Elf, ancient guardian of the chantry of Auri-El in the Forgotten Vale — sorrowful, courteous, the keeper of Auriel's Bow. An ally if the party will avenge the Vale.
+
+  Elder Scrolls 2e: 12 HP, 2 Armor, 14 STR, 15 DEX, 15 WIL, enchanted Falmer-make sword (d8), bound bow (d8, ranged).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/08-dawnguard#knight-paladin-gelebor
+---
+id: dawnguard-arch-curate-vyrthur
+type: monster
+name: Arch-Curate Vyrthur
+knowledge: secret
+tags: [dawnguard, cast, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: Dawnguard'
+    hp: 14
+    armor: 1
+    STR: 14
+    DEX: 13
+    WIL: 18
+    attacks:
+    - name: frost magic
+      damage: d8
+      qualities: [ranged]
+    - {name: drain, damage: d8}
+    abilities:
+    - Immune to poison; fire against him is Enhanced; sunlight leaves him Deprived. Once per scene 
+      he raises a shield of frost (mundane attacks against him Impaired for the round) and wakes the
+      Falmer and Chaurus frozen in the chapel's ice, or conjures a Frost Atronach.
+    enhanced_by: [fire]
+    critical: a lance of black ice freezes the target in place; they lose their next action.
+fields:
+  role: Gelebor's brother, the corrupted Snow Elf who authored the Tyranny of the Sun
+body: |-
+  ## GM notes
+
+  **Arch-Curate Vyrthur** — Gelebor's brother, the corrupted Snow Elf who authored the Tyranny of the Sun. The Vale's final foe.
+
+  Gelebor's brother, corrupted into a vampire and twisted by spite — the true author of the Tyranny of the Sun, who wrote a prophecy to spite the god he believes forsook him. The Vale's final foe.
+
+  Elder Scrolls 2e: 14 HP, 1 Armor, 14 STR, 13 DEX, 18 WIL, frost magic (d8, ranged), drain (d8).
+
+  Grimscrolls: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: campaigns/08-dawnguard#arch-curate-vyrthur
+---
+id: dawnguard-durnehviir
+type: monster
+name: Durnehviir
+knowledge: secret
+tags: [dawnguard, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: Dawnguard'
+    hp: 18
+    armor: 3
+    STR: 16
+    DEX: 12
+    WIL: 18
+    attacks:
+    - {name: rotting bite, damage: d12}
+    - name: Corrosive Breath
+      damage: d10
+      qualities: [blast]
+    abilities:
+    - "A detachment: individuals' attacks on it are Impaired (unless blast); its attacks on individuals
+      are Enhanced and blast."
+    - 'A detachment, like every dragon: lone attackers are Impaired unless they strike with blast. Immune
+      to poison and paralysis; cannot be soul-trapped. His breath rots flesh and armor alike, and ignores
+      Armor. Each round he may raise a Boneman or Mistman from the soil to fight beside him.'
+    critical: the corrosive jaws close and tear the target apart; a slain mortal's soul risks being 
+      claimed by the Cairn (Warden's call).
+  grimscrolls:
+    category: Bosses of Tamriel
+    tier: boss
+    role: blaster
+    sights: a shadow crossing the whole valley
+    sounds: a roar that arrives before the sound of wings
+    smells: scorched pine and hot stone
+    pools:
+    - name: The Dragon
+      dice: 8
+      traits: armored in scale and pride, and reachable only once it is grounded
+      moves: [Bite and Toss, Tail Sweep]
+    - name: Its Wings
+      dice: 6
+      traits: bring it down with arrows, a ballista, a rival's challenge, or a Shout that names it 
+        mortal
+      moves: [Strafe the Line, Wheel Away]
+    - name: Its Thu'um
+      dice: 4
+      traits: fire or frost in a single word; break its breath and you break its concentration
+      moves: [Breath of Fire, Shout the Ranks Apart]
+    fail: It takes to the sky with someone in its jaws — or it finishes the town it came for.
+    wants: dominion, tribute, and to be answered — a dragon challenged or flattered in its own 
+      tongue may prefer talk to killing
+    note: "A linked challenge (6d + 4d + 8d): the Dragon itself is locked until it is grounded or goaded
+      down. **Frost** dragons trade fire for ice. **Blood**, **Elder**, and **Ancient** dragons add a
+      die to each part in turn; a **Revered** or **Legendary** one drains what it bites. A dragon's soul
+      does not rest: unless a Dragonborn takes it, the bones can be raised again."
+body: |-
+  ## GM notes
+
+  The undead dragon of the Soul Cairn — green-gray, half-skeletal, bound by old bargain to serve the Ideal Masters and patrol the Boneyard. Bars the way to the Blood Scroll.
+
+  Elder Scrolls 2e: 18 HP, 3 Armor, 16 STR, 12 DEX, 18 WIL, rotting bite (d12), Corrosive Breath (d10, blast), detachment.
+
+  Grimscrolls: its card is `grimscrolls.dragon` (Dragon), in this record's grimscrolls block.
+source: campaigns/08-dawnguard#durnehviir
+---
+id: dawnguard-soul-cairn-keeper
+type: monster
+name: Soul Cairn Keeper
+knowledge: secret
+tags: [dawnguard, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: Dawnguard'
+    hp: 12
+    armor: 2
+    STR: 14
+    DEX: 12
+    WIL: 14
+    attacks:
+    - name: spectral greatsword
+      damage: d10
+      qualities: [bulky]
+    - name: soul-fire bolt
+      damage: d8
+      qualities: [ranged]
+    abilities:
+    - Immune to poison; mundane attacks against it are Impaired; fire and sunlight against it are 
+      Enhanced. While even one Keeper stands, the barrier around Valerica holds — drop all three to 
+      free her.
+    - 'When a Keeper falls it bursts in a gout of cold soul-fire: d6, blast, against everything adjacent.'
+    impaired_by: [mundane]
+    enhanced_by: [fire]
+  grimscrolls:
+    category: The Restless Dead & the Blighted
+    tier: mook
+    role: swarmer
+    sights: black bones under a lightning sky
+    sounds: a wind with voices in it
+    smells: cold ash
+    traits: [rises where a Master or conjurer wills, nothing left to lose]
+    moves: [Ring of Black Bone, Frost From the Mist, Two-Handed Ruin]
+    wants: your soul, kept — the Ideal Masters call it peace, and mean it
+    note: '**Bonemen** are a 4d pool; **mistmen** float behind throwing frost; **wrathmen** are toughs
+      in Nord plate. A **Keeper** is a 6d elite in dragonbone, draining penned souls to hold a barrier.
+      Summoned ones vanish with their conjurer.'
+body: |-
+  ## GM notes
+
+  A towering, faceless warden of the Boneyard, one of three who hold Valerica's barrier. Tall as two men, wrapped in tattered death-light.
+
+  Elder Scrolls 2e: 12 HP, 2 Armor, 14 STR, 12 DEX, 14 WIL, spectral greatsword (d10, bulky), soul-fire bolt (d8, ranged).
+
+  Grimscrolls: its card is `grimscrolls.the-dead-of-the-soul-cairn` (The Dead of the Soul Cairn), in this record's grimscrolls block.
+source: campaigns/08-dawnguard#soul-cairn-keeper
+---
+id: dawnguard-frost-giant
+type: monster
+name: Frost Giant
+knowledge: secret
+tags: [dawnguard, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: Dawnguard'
+    hp: 14
+    armor: 2
+    STR: 18
+    DEX: 9
+    WIL: 8
+    attacks:
+    - name: ice-crusted club
+      damage: d10
+      qualities: [bulky]
+    abilities:
+    - "A detachment: individuals' attacks on it are Impaired (unless blast); its attacks on individuals
+      are Enhanced and blast."
+    - A detachment. Frost damage against it is Impaired. Its club sends a foe flying — a struck 
+      target makes a STR save or is knocked prone and loses its next action.
+    impaired_by: [frost]
+    critical: the blow shatters bone; the target loses d6 STR.
+  grimscrolls:
+    category: Monsters of the Wild
+    tier: elite
+    role: brute
+    sights: a bonfire ringed with mammoth skulls
+    sounds: a grunt felt in the chest
+    smells: ripe cheese
+    traits: [warns before it kills, one clean blow is enough]
+    moves: [Overhead Club, Ground-Shaking Stomp]
+    wants: its herd unharmed and its camp unvisited — it lets go whatever leaves
+    note: 'A 6d elite, with mammoths beside it. It shakes the club, stomps, then swings: fair warning
+      that the club lands at dire stakes, and the dropped travel upward. It will not enter water. A cow
+      painted with spirals buys a farm its peace.'
+body: |-
+  ## GM notes
+
+  A pale, hulking giant of the Forgotten Vale's ice fields, frost rimed across its hide. Solitary and territorial; it ignores those who keep their distance.
+
+  Elder Scrolls 2e: 14 HP, 2 Armor, 18 STR, 9 DEX, 8 WIL, ice-crusted club (d10, bulky), detachment.
+
+  Grimscrolls: its card is `grimscrolls.giant` (Giant), in this record's grimscrolls block.
+source: campaigns/08-dawnguard#frost-giant
+---
+id: dawnguard-gunmar
+type: npc
+name: Gunmar
+knowledge: secret
+tags: [dawnguard, cast]
+fields: {role: a smith and beast-master who arms the order with trolls and steel}
+body: |-
+  ## GM notes
+
+  **Gunmar** *(Dawnguard track)* — a smith and beast-master who arms the order with trolls and steel.
+source: campaigns/08-dawnguard#cast
+---
+id: dawnguard-sorine-jurard
+type: npc
+name: Sorine Jurard
+knowledge: secret
+tags: [dawnguard, cast]
+fields: {role: a Breton inventor who supplies the order's crossbows}
+body: |-
+  ## GM notes
+
+  **Sorine Jurard** *(Dawnguard track)* — a Breton inventor who supplies the order's **crossbows**.
+source: campaigns/08-dawnguard#cast
+---
+id: dawnguard-garan-marethi
+type: npc
+name: Garan Marethi
+knowledge: secret
+tags: [dawnguard, cast]
+fields:
+  role: Harkon's Dunmer adviser, who manages the court and (after the climax) the castle
+body: |-
+  ## GM notes
+
+  **Garan Marethi** *(Volkihar track)* — Harkon's Dunmer adviser, who manages the court and (after the climax) the castle.
+source: campaigns/08-dawnguard#cast
+---
+id: dawnguard-lokil
+type: npc
+name: Lokil
+knowledge: secret
+tags: [dawnguard, cast]
+fields: {role: 'with Malkus: lesser Volkihar'}
+body: |-
+  ## GM notes
+
+  **Lokil / Malkus** — lesser Volkihar; the raid-captain in Dimhollow and the vampire holding Dexion. Run as **Vampires** from the Bestiary.
+source: campaigns/08-dawnguard#cast
+---
+id: dawnguard-malkus
+type: npc
+name: Malkus
+knowledge: secret
+tags: [dawnguard, cast]
+fields: {role: 'with Lokil: lesser Volkihar'}
+body: |-
+  ## GM notes
+
+  **Lokil / Malkus** — lesser Volkihar; the raid-captain in Dimhollow and the vampire holding Dexion. Run as **Vampires** from the Bestiary.
+source: campaigns/08-dawnguard#cast
+---
+id: dawnguard-the-tyranny-clock
+type: track
+name: The Tyranny Clock
+knowledge: secret
+tags: [dawnguard, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: '(d6) How close Harkon comes to the eternal night. Ticks each time the party hands him an advantage
+  — a Scroll read in his service, the Bow brought to the castle, a Volkihar victory left unanswered. (On
+  the Volkihar track the party is usually advancing this themselves.) At 6, if the climax has not resolved,
+  Harkon enacts the prophecy: the sun dims over Skyrim, every vampire is emboldened, and the final assault
+  begins on his terms.'
+source: campaigns/08-dawnguard#clocks
+---
+id: dawnguard-seranas-trust
+type: track
+name: Serana's Trust
+knowledge: secret
+tags: [dawnguard, clock]
+kind: counter
+min: 1
+max: 5
+value: 3
+note: (a Loyalty track, 1–5) Serana begins at 3 (Trusting). She rises a step when the party shields 
+  her from her father's plans, takes her counsel, or treats her as a person and not a relic; she 
+  falls a step when they hand her to Isran's suspicion, threaten her mother, or treat her only as a 
+  key. At 5 (Sworn) she gives the party the Bloodcursed arrows and stands at their shoulder in the 
+  climax; at 1 (Wary) she may walk away before the Forgotten Vale, taking her Scroll with her.
+source: campaigns/08-dawnguard#clocks

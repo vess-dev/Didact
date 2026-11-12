@@ -1,0 +1,8 @@
+#!/bin/sh
+# Run the Didact this plugin ships with: the repository's .venv, else `uv run` in the repository.
+repo="$(cd "$(dirname "$0")/../.." && pwd)"
+unset DIDACT_LANG  # an LLM reads Didact in English, whatever language the player's browser app shows
+if [ -x "$repo/.venv/bin/didact" ]; then
+  exec "$repo/.venv/bin/didact" "$@"
+fi
+exec uv run --quiet --project "$repo" didact "$@"

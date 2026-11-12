@@ -1,0 +1,347 @@
+# Relics (wardens-guide/reliquary). `charges` holds the book's charges or uses: relics with
+# uses have no `recharge` and are gone once spent. `damage` and `armor` are the stats the book
+# gives in each heading (and the Tupshead Crown's horns).
+id: a-blade-called-hope
+type: relic
+name: A Blade Called Hope
+effect: "A thin, curved sword that glows with faint light, visible only in total darkness. When bathed in heavy sunlight, its first attack is Enhanced."
+damage: d6
+source: wardens-guide/reliquary#a-blade-called-hope-d6
+---
+id: assassins-goblets
+type: relic
+name: "Assassin's Goblets"
+effect: "A pair of fragile wine flutes. Any liquid poured into one is swapped with the other."
+source: wardens-guide/reliquary#assassins-goblets
+---
+id: babbleflask
+type: relic
+name: Babbleflask
+effect: "A foreign language is automatically understood and can be spoken back with fluency, so long as the drinker's native tongue is neither spoken nor heard."
+charges: 2
+source: wardens-guide/reliquary#babbleflask-2-uses
+---
+id: barbed-epaulets
+type: relic
+name: Barbed Epaulets
+effect: "Spiked shoulder pads that poison anyone that touches them (STR save or lose consciousness)."
+armor: 1
+source: wardens-guide/reliquary#barbed-epaulets-1-armor
+---
+id: betterwand
+type: relic
+name: Betterwand
+effect: "Vibrates with increased intensity when pointed at the best of a series of objects."
+charges: 2
+recharge: "Willingly accept a poor deal or trade while in possession of the wand."
+source: wardens-guide/reliquary#betterwand-2-charges
+---
+id: bloodmap
+type: relic
+name: Bloodmap
+effect: "A blank leather parchment that absorbs any blood spilled on its surface before rolling into a tight scroll. Unroll to see a rough map revealing the current location of any remaining blood. The image disappears after a few minutes."
+charges: 1
+recharge: "Pour a pint of your own life essence onto the map, blood for blood. You are deprived until you can rest and eat a Ration."
+source: wardens-guide/reliquary#bloodmap-1-charge
+---
+id: coin-of-the-father
+type: relic
+name: Coin of the Father
+effect: "Flip this worthless-looking hunk of flat metal in the air, and it will transform into d100 gold coins. The illusory coins disappear after one hour."
+charges: 1
+recharge: "Carry the coin for three days without spending or earning any money."
+size: petty
+source: wardens-guide/reliquary#coin-of-the-father-1-charge-petty
+---
+id: dryads-tear
+type: relic
+name: "Dryad's Tear"
+effect: "Shatter this crystal to merge with a tree you can touch. You can perceive the goings-on within whatever forest that tree belongs to."
+charges: 1
+source: wardens-guide/reliquary#dryads-tear-1-use
+---
+id: empathy-rod
+type: relic
+name: Empathy Rod
+effect: "When two creatures touch this wooden pole at the same time, their physical and emotional states become fully intertwined until they let go."
+charges: 3
+recharge: "Give the rod to a former enemy as a gift. This is a one-way transaction."
+source: wardens-guide/reliquary#empathy-rod-3-charges
+---
+id: eyestone
+type: relic
+name: Eyestone
+effect: "Choose an object created by living creatures. You can sense the nearest example."
+charges: 3
+recharge: "Place in a bucket of rainwater overnight."
+source: wardens-guide/reliquary#eyestone-3-charges
+---
+id: falconstone
+type: relic
+name: Falconstone
+effect: "Perceive the world through the eyes and ears of a nearby bird of prey. You feel whatever it feels but have no control over it."
+charges: 3
+recharge: "Kill and eat a common quarry, cooking the meat alongside the stone."
+source: wardens-guide/reliquary#falconstone-3-charges
+---
+id: footpads-friend
+type: relic
+name: "Footpad's Friend"
+effect: "Soft leather shoes that adapt to fit any foot size. Leave behind footprints that scatter and turn in a confusing manner, making tracking nigh-impossible."
+source: wardens-guide/reliquary#footpads-friend
+---
+id: gate-chalk
+type: relic
+name: Gate Chalk
+effect: "Draw a doorway on any flat surface to open a one-way passage to the Roots. Good luck."
+charges: 1
+size: petty
+source: wardens-guide/reliquary#gate-chalk-1-use-petty
+---
+id: golden-wheat-paste
+type: relic
+name: Golden Wheat Paste
+effect: "When mixed with water, this substance chemically bonds any two objects."
+charges: 2
+source: wardens-guide/reliquary#golden-wheat-paste-2-uses
+---
+id: gossip-box
+type: relic
+name: Gossip Box
+effect: "Wind the crank to replay any sound made in the past day in your current location. Each crank goes back one hour."
+charges: 1
+recharge: "Successfully spread one falsehood in the presence of the box."
+source: wardens-guide/reliquary#gossip-box-1-charge
+---
+id: harbingers-bell
+type: relic
+name: "Harbinger's Bell"
+effect: "Hang at chest height to ring when danger is imminent."
+charges: 1
+recharge: "Melt and reforge. Each time, roll a d6. On a 1-2, it breaks forever."
+source: wardens-guide/reliquary#harbingers-bell-1-charge
+---
+id: homunculus-nail
+type: relic
+name: Homunculus Nail
+effect: "Prick a finger with the pointy end and hammer into any small object to form a loyal servant [3 HP, 4 STR, 13 DEX, 5 WIL] completely devoted to you. If not destroyed, it will outlive you."
+charges: 1
+size: petty
+source: wardens-guide/reliquary#homunculus-nail-1-use-petty
+---
+id: honest-earworm
+type: relic
+name: Honest Earworm
+effect: "A foul-smelling, pinky-sized worm that feeds on earwax by crawling into the ear canal of a sleeping person. The victim then loses the ability to lie for 1d4 hours."
+charges: 1
+source: wardens-guide/reliquary#honest-earworm-1-use
+---
+id: jar-of-ants
+type: relic
+name: Jar of Ants
+effect: "Break to release a colony of fire ants [6 HP, 2 STR, 10 DEX, 1 WIL, bite (d10), detachment]. Consumes a ration every two days."
+source: wardens-guide/reliquary#jar-of-ants
+---
+id: last-breath
+type: relic
+name: Last Breath
+effect: "A chipped short sword of dubious quality. Drive into the earth to form a crystal dome that encircles and immobilizes the wielder. The dome is impenetrable by mundane means, and shatters once the sword is lifted again."
+charges: 1
+recharge: "Deliver a killing blow with the sword, absorbing the dying victim's soul into the blade. There is a cunning intelligence within that speaks to the wielder, forever asking for more souls, more!"
+damage: d6
+source: wardens-guide/reliquary#last-breath-d6-1-charge
+---
+id: lightsucker-candle
+type: relic
+name: Lightsucker Candle
+effect: "Once lit, this black tallow wax sheds darkness rather than light, even in the brightest of days."
+charges: 3
+source: wardens-guide/reliquary#lightsucker-candle-3-uses
+---
+id: lovers-covenant
+type: relic
+name: "Lover's Covenant"
+effect: "A bottle of red-tinted ink, a broken heart emblazoned on the front. Write up a contract of any length. Any who sign are bound to obey by penalty of death."
+charges: 1
+source: wardens-guide/reliquary#lovers-covenant-1-use
+---
+id: mace-of-the-kingslayer
+type: relic
+name: Mace of the Kingslayer
+effect: "Hold the weapon aloft and shout an order or declaration. Any who fail a WIL save must obey, against their better judgment."
+charges: 2
+recharge: "Deliver a fatal blow to the leader of a group or faction."
+damage: d8
+source: wardens-guide/reliquary#mace-of-the-kingslayer-d8-2-charges
+---
+id: moth-mirror
+type: relic
+name: Moth Mirror
+effect: "A full-length, double-sided glass mirror. Step into the mirror to be transported to another mirror you know. You come out of the other side as an enormous swarm of buzzing moths, striking those around you with paralysis (WIL save to avoid) as they gaze upon you in horror. You can revert to your normal form at will. The mirror only operates in one direction."
+size: bulky
+source: wardens-guide/reliquary#moth-mirror-bulky
+---
+id: muffle-dust
+type: relic
+name: Muffle Dust
+effect: "A pouch of fine dust that muffles all sound in a 40ft radius when scattered."
+charges: 2
+source: wardens-guide/reliquary#muffle-dust-2-uses
+---
+id: nightstone
+type: relic
+name: Nightstone
+effect: "Rare moon-shaped stones dredged from underwater caves and jungle dolines. Swallow whole to relieve all fatigue and deprivation as if you had a good night's sleep and a good meal. The stone will eventually pass through your system. It isn't fun."
+charges: 1
+source: wardens-guide/reliquary#nightstone-1-use
+---
+id: obliteration-scroll
+type: relic
+name: Obliteration Scroll
+effect: "A single-page document filled with gibberish. Sign anywhere on the page to remove any knowledge of your existence from this plane of reality. No one will know or remember you, and any references to your name or lineage will vanish. The scroll disappears in a puff of smoke that smells faintly of sulfur."
+charges: 1
+size: petty
+source: wardens-guide/reliquary#obliteration-scroll-1-use-petty
+---
+id: parliaments-promise
+type: relic
+name: "Parliament's Promise"
+effect: "A helmet in the form of an owl's head. Its wearer can twist their head around like an owl and can see in darkness with perfect clarity. While wearing the helm, the wearer loses the ability to speak, uttering only the simplest of cooing noises."
+armor: 1
+source: wardens-guide/reliquary#parliaments-promise-1-armor
+---
+id: phoenix-ash
+type: relic
+name: Phoenix Ash
+effect: "Sprinkle over a corpse to resurrect the deceased. They return with full health but no memory of their past life."
+charges: 1
+source: wardens-guide/reliquary#phoenix-ash-1-use
+---
+id: ring-of-the-snake
+type: relic
+name: Ring of the Snake
+effect: "A wrought-iron serpent ring. Place it on your finger and fall into a sleep so deep that most will think you are dead. If the ring is removed, you will awaken feeling refreshed. Otherwise, the effect will wear off after one month."
+charges: 1
+recharge: "Bury the ring with a corpse. A month later, exhume the corpse and retrieve it."
+size: petty
+source: wardens-guide/reliquary#ring-of-the-snake-1-charge-petty
+---
+id: roc-feather
+type: relic
+name: Roc Feather
+effect: "Hold while falling to float safely to the ground from any height."
+charges: 1
+source: wardens-guide/reliquary#roc-feather-1-use
+---
+id: skull-whistle
+type: relic
+name: Skull Whistle
+effect: "Produces a chilling scream that forces any who hear it (including the blower) to make a WIL save or become temporarily incapacitated."
+charges: 3
+recharge: "Feed the instrument a clump of human hair pulled from a living skull."
+source: wardens-guide/reliquary#skull-whistle-3-charges
+---
+id: soul-clump
+type: relic
+name: Soul Clump
+effect: "A hard, fist-sized ball covered in small bumps. When rolled on a flat surface, it collects any objects smaller than its current mass, which subsequently increases as more items are attached to its surface. Only living creatures are immune."
+source: wardens-guide/reliquary#soul-clump
+---
+id: spystone
+type: relic
+name: Spystone
+effect: "A smooth, flat stone that is slightly warm to the touch. Squeeze to record audio in a 40ft radius. Squeeze again to play it back, as many times as you like."
+charges: 1
+recharge: "To record a new sound, skip the rock at least three times on a body of water and recover it."
+source: wardens-guide/reliquary#spystone-1-charge
+---
+id: sticky-rope
+type: relic
+name: Sticky Rope
+effect: "A 100ft rope that can stick to any surface."
+charges: 1
+recharge: "Cut off 10ft of rope, which then withers away."
+source: wardens-guide/reliquary#sticky-rope-1-charge
+---
+id: stone-eater
+type: relic
+name: Stone Eater
+effect: "A rodent-sized centipede that consumes and digests stone, capable of cutting a small tunnel in under an hour. It can be used more than once, but only if you can catch it (DEX 18)."
+charges: 1
+source: wardens-guide/reliquary#stone-eater-1-use
+---
+id: stonewax-gum
+type: relic
+name: Stonewax Gum
+effect: "Chew, then spit. The gum will harden and stretch, making a perfect, unbreakable seal."
+charges: 3
+size: petty
+source: wardens-guide/reliquary#stonewax-gum-3-uses-petty
+---
+id: sponge-army
+type: relic
+name: Sponge Army
+effect: "A dozen miniature soldiers made of carved sea sponges. When splashed with water, they grow to full size [8 HP, 6 STR, 13 DEX, 5 WIL, hardened sponge (d6), detachment] and follow the orders of the person they see until they are destroyed or dry out completely (about 10 minutes)."
+charges: 1
+source: wardens-guide/reliquary#sponge-army-1-use
+---
+id: tupshead-crown
+type: relic
+name: Tupshead Crown
+effect: "A beautifully rendered ram's head helm wrought from tough alpine oak. The horns can be used as weapons (d6+d6)."
+damage: "{d6, d6}kh1"
+armor: 1
+size: bulky
+source: wardens-guide/reliquary#tupshead-crown-1-armor-bulky
+---
+id: veilsilk-grip
+type: relic
+name: Veilsilk Grip
+effect: "A hand wearing this glove can phase through solid objects."
+charges: 1
+recharge: "Snip off one of the fingers."
+size: petty
+source: wardens-guide/reliquary#veilsilk-grip-1-charge-petty
+---
+id: voice-of-the-mountain
+type: relic
+name: Voice of the Mountain
+effect: "A rough pebble imbued with the essence of a mountain spirit. Crush to call forth an earthquake or similar natural disaster. Do not expect to be spared."
+charges: 1
+source: wardens-guide/reliquary#voice-of-the-mountain-1-use
+---
+id: ward-stone
+type: relic
+name: Ward Stone
+effect: "A flat, unassuming river stone notched with faded symbols. Smash to release a silvery powder in a 20ft radius that pacifies anyone who breathes it."
+charges: 1
+source: wardens-guide/reliquary#ward-stone-1-use
+---
+id: whispergale
+type: relic
+name: Whispergale
+effect: "A balloon-shaped plant that captures a spoken message and delivers it to a location within a day's walk."
+charges: 1
+source: wardens-guide/reliquary#whispergale-1-use
+---
+id: whistle-rope
+type: relic
+name: Whistle-Rope
+effect: "15ft of highly flexible leather. Swirl in the air to generate a powerful subsonic effect that drives away wildlife. Also works underwater."
+source: wardens-guide/reliquary#whistle-rope
+---
+id: wonder-bar
+type: relic
+name: Wonder Bar
+effect: "Pressing the switch on the side of this iron bar freezes it in place, even in midair. Once frozen, it cannot be moved by any force until the switch is depressed."
+charges: 1
+recharge: "Hold the bar with both hands without letting go for one continuous hour (WIL save to succeed). You can make only one attempt each day."
+source: wardens-guide/reliquary#wonder-bar-1-charge
+---
+id: wraith-lantern
+type: relic
+name: Wraith Lantern
+effect: "Write someone's name onto its glass, and the name will disappear. The lantern reveals a path to their current location, visible only to the holder (day or night)."
+charges: 1
+recharge: "Kill the last person found with the help of the lantern, trapping their spirit inside. The lantern must be nearby when they are killed."
+source: wardens-guide/reliquary#wraith-lantern-1-charge

@@ -1,0 +1,11 @@
+type: pc
+label: Traveller
+fields:
+  STR: {kind: int, min: 2, max: 15}
+  DEX: {kind: int, min: 2, max: 15}
+  END: {kind: int, min: 2, max: 15}
+  career: {kind: text}
+  terms: {kind: int, min: 0, default: 0}
+  age: {kind: int, min: 18, default: 18}
+  credits: {kind: int, min: 0, default: 0}
+  skills: {kind: list}

@@ -1,0 +1,6 @@
+action: recruit
+title: Bram joins
+steps:
+  - entity: {from: bram}
+    as: alpha
+  - "{@alpha.name} joins."

@@ -1,0 +1,24 @@
+# Sellsword (backgrounds/sellsword): the background's two d6 tables.
+table: sellsword-1
+title: "What kind of work made your name?"
+dice: d6
+source: backgrounds/sellsword#what-kind-of-work-made-your-name-roll-1d6
+entries:
+  1: "Caravan guard on the Khajiit roads, riding with Ri'saad's traders from hold to hold. You read an ambush in the set of a stranger's shoulders: on a road or trail, no ambush takes you by surprise."
+  2: {text: "Pit-fighting in the back rooms of Riften and Markarth, bare steel for a purse and a roaring crowd. Take a pair of hunting knives (d6+d6, bulky) and a nose broken three times. You size up a fighter at a glance: ask the Warden which foe in sight is the most dangerous, and get a true answer.", data: {gear: [{name: "Hunting knives", damage: "{d6, d6}kh1", size: "bulky"}]}}
+  3: "A reputation for finishing the job. You did one piece of ugly, quiet work, and word got around. Folk in the trade treat you one step better on the Reaction ladder when your name is spoken — and the law, one step worse."
+  4: {text: "Guarding scholars in the Dwemer ruins beneath the Reach. You can tell a sleeping construct from a dead one at a glance, and you know where to hit one so it stays down. Take a Dwarven war axe (d8) and a lump of Dwemer scrap (bulky) worth 30 Septims to any smith.", data: {gear: [{name: "Dwarven war axe", damage: "d8"}, {name: "Dwemer scrap", size: "bulky", note: "worth 30 Septims to any smith"}]}}
+  5: {text: "A losing siege. You walked off the field when the pay stopped, like any sensible mercenary. Take the captain's steel war axe (d8) you \"requisitioned,\" and the habit of looting fast: gain 1d6 extra Septims whenever you search the fallen.", data: {gear: [{name: "Steel war axe", damage: "d8"}]}}
+  6: {text: "Both sides of this war, in turn. You wore blue, then red, then neither. Start at Stormcloaks −1 and Imperial Legion −1 — but every quartermaster in Skyrim knows your face, and you can buy or sell arms anywhere.", data: {add: {rep_stormcloaks: -1, rep_legion: -1}}}
+---
+table: sellsword-2
+title: "What's the tool of your trade?"
+dice: d6
+source: backgrounds/sellsword#whats-the-tool-of-your-trade-roll-1d6
+entries:
+  1: "The Hard Word: You've talked your way out of more fights than you've won. Once per day, make a WIL save to convince a foe the odds, or the pay, aren't worth it; on a success, it hesitates and you act first."
+  2: {text: "A Bloodied Blade: A steel greatsword (d10, bulky, two-handed) notched from a dozen contracts, each notch a name you would rather forget.", data: {gear: [{name: "Steel greatsword", damage: "d10", size: "bulky", qualities: ["two-handed"], note: "notched from a dozen contracts"}]}}
+  3: {text: "Hold Commission: A sealed commission (petty) from a Jarl's steward naming you a sworn blade of the Hold for a season. While it lasts, you may bear arms anywhere in that Hold, and its guards will not trouble you.", data: {gear: [{name: "Hold Commission", size: "petty"}]}}
+  4: {text: "Old Warhorse: A scarred Skyrim horse (+4 slots; see Mounts) that has carried you through two wars. It never startles at steel or fire, and it bites everyone but you.", data: {companion: "old-warhorse"}}
+  5: {text: "Crossbow: A heavy crossbow (d8, bulky) you keep loaded across your knee in any tavern. Its bolts punch through mail: they ignore 1 Armor.", data: {gear: [{name: "Crossbow", damage: "d8", size: "bulky"}]}}
+  6: "No Loose Ends: You don't leave witnesses or debts. Once per session, name a past job; the Warden tells you one useful fact about a person or place tied to it, because you made it your business to know."

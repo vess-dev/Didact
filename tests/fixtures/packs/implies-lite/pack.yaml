@@ -1,0 +1,7 @@
+id: implies-lite
+name: Implies (test pack)
+kind: system
+version: 0.1.0
+description: Options that imply options that imply others, defaults that imply, and two options that imply each other.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

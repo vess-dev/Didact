@@ -1,0 +1,442 @@
+# Wilderness Seeds tables (wardens-guide/wilderness-seeds): the hack's wildcrawl is Cairn's
+# forestcrawl, so the tables keep cairn-2e's forest-* ids, which its forest-seed generator
+# (replaced here by the wilderness seed) rolls.
+table: forest-description-1
+title: "Wilderness Description"
+dice: d20
+source: wardens-guide/wilderness-seeds#wilderness-description
+entries:
+  1: "Barren"
+  2: "Crystalline"
+  3: "Diseased"
+  4: "Dying"
+  5: "Flowering"
+  6: "Glacial"
+  7: "Hallowed"
+  8: "Mossy"
+  9: "Murky"
+  10: "Perilous"
+  11: "Petrified"
+  12: "Steaming"
+  13: "Primeval"
+  14: "Scorched"
+  15: "Secluded"
+  16: "Suffocating"
+  17: "Timeless"
+  18: "Uncharted"
+  19: "Unspoilt"
+  20: "Winding"
+---
+table: forest-description-2
+title: "Wilderness Description (second)"
+dice: d20
+source: wardens-guide/wilderness-seeds#wilderness-description
+entries:
+  1: "Ancient"
+  2: "Ash-Choked"
+  3: "Blizzard-Struck"
+  4: "Decaying"
+  5: "Flooded"
+  6: "Foggy"
+  7: "Frigid"
+  8: "Frozen"
+  9: "Fungal"
+  10: "Hidden"
+  11: "Infested"
+  12: "Misty"
+  13: "Moonlit"
+  14: "Overgrown"
+  15: "Sacred"
+  16: "Snowbound"
+  17: "Silent"
+  18: "Smoldering"
+  19: "Sunlit"
+  20: "Wild"
+---
+table: forest-traits-virtue
+title: "The Spirit of the Wild: Virtues"
+dice: d20
+source: wardens-guide/wilderness-seeds#traits
+entries:
+  1: "Adaptive"
+  2: "Balanced"
+  3: "Brave"
+  4: "Clever"
+  5: "Cultivating"
+  6: "Empathic"
+  7: "Enduring"
+  8: "Graceful"
+  9: "Hardy"
+  10: "Harmonious"
+  11: "Independent"
+  12: "Learned"
+  13: "Nurturing"
+  14: "Observant"
+  15: "Purifying"
+  16: "Resolute"
+  17: "Sensible"
+  18: "Sharp"
+  19: "Stable"
+  20: "Trusting"
+---
+table: forest-traits-vice
+title: "The Spirit of the Wild: Vices"
+dice: d20
+source: wardens-guide/wilderness-seeds#traits
+entries:
+  1: "Aggressive"
+  2: "Aloof"
+  3: "Covetous"
+  4: "Detached"
+  5: "Dominating"
+  6: "Doubtful"
+  7: "Invasive"
+  8: "Judgmental"
+  9: "Naive"
+  10: "Obscuring"
+  11: "Overzealous"
+  12: "Parasitic"
+  13: "Passive"
+  14: "Polluting"
+  15: "Predatory"
+  16: "Prideful"
+  17: "Rigid"
+  18: "Scatterbrained"
+  19: "Selfish"
+  20: "Territorial"
+---
+table: forest-agenda-goal
+title: "Wilderness Agenda: Goal"
+dice: d20
+source: wardens-guide/wilderness-seeds#wilderness-agenda
+entries:
+  1: "Abundance"
+  2: "Awakening"
+  3: "Balance"
+  4: "Cleansing"
+  5: "Conservation"
+  6: "Defense"
+  7: "Discovery"
+  8: "Emancipation"
+  9: "Enrichment"
+  10: "Evolution"
+  11: "Expansion"
+  12: "Harmony"
+  13: "Healing"
+  14: "Integration"
+  15: "Justice"
+  16: "Metamorphosis"
+  17: "Purification"
+  18: "Rebirth"
+  19: "Tranquility"
+  20: "Unity"
+---
+table: forest-agenda-obstacle
+title: "Wilderness Agenda: Obstacle"
+dice: d20
+source: wardens-guide/wilderness-seeds#wilderness-agenda
+entries:
+  1: "Agreements"
+  2: "Belief"
+  3: "Contamination"
+  4: "Disease"
+  5: "Exploitation"
+  6: "Fragmentation"
+  7: "Frailty"
+  8: "Greed"
+  9: "Ignorance"
+  10: "Infestation"
+  11: "Invasion"
+  12: "Isolation"
+  13: "Leadership"
+  14: "Oppression"
+  15: "Pollution"
+  16: "Scarcity"
+  17: "Stasis"
+  18: "Turmoil"
+  19: "Vulnerability"
+  20: "Wildfire"
+---
+table: forest-die-drop
+title: "Wilderness Die Drop Table"
+description: "The face of each POI die dropped on the map. Then roll that POI's two tables."
+dice: d6
+source: wardens-guide/wilderness-seeds#wilderness-die-drop-table
+entries:
+  1: {text: "Monster", data: {poi: "monster", what: "forest-monster", detail: "forest-monster-activity"}}
+  2-3: {text: "Ruins", data: {poi: "ruins", what: "forest-ruin", detail: "forest-ruin-feature"}}
+  4: {text: "Shelter", data: {poi: "shelter", what: "forest-shelter", detail: "forest-shelter-feature"}}
+  5-6: {text: "Hazard", data: {poi: "hazard", what: "forest-hazard", detail: "forest-hazard-feature"}}
+---
+table: forest-trail-type
+title: "Trail Features: Type"
+dice: d20
+source: wardens-guide/wilderness-seeds#trail-features
+entries:
+  1: "Game Trail"
+  2: "Bandit's Run"
+  3: "Bouldered Way"
+  4: "Hallowed Grove"
+  5: "Deer Crossing"
+  6: "Dry Riverbed"
+  7: "Spriggan Path"
+  8: "Farm Trail"
+  9: "Foraging Path"
+  10: "Hunter's Track"
+  11: "Old Imperial Road"
+  12: "Merchant's Road"
+  13: "Old Logging Road"
+  14: "Orchard Path"
+  15: "Pilgrim's Path"
+  16: "Spore-Saturated"
+  17: "Sap-Sticky Path"
+  18: "Marked-Tree Trail"
+  19: "Ridgeline Heights"
+  20: "War Route"
+---
+table: forest-trail-marker
+title: "Trail Features: Marker"
+dice: d20
+source: wardens-guide/wilderness-seeds#trail-features
+entries:
+  1: "Bear Rubbings"
+  2: "Bent Pines"
+  3: "Claw Marks"
+  4: "Trampled Heather"
+  5: "Deer Tracks"
+  6: "Distant Horn"
+  7: "Faint Chanting"
+  8: "Fox Prints"
+  9: "Fresh Spiderwebs"
+  10: "Hawk Feathers"
+  11: "Glowing Mushrooms"
+  12: "Muffled Bells"
+  13: "Worn Cart Ruts"
+  14: "Rabbit Droppings"
+  15: "Bone Chimes"
+  16: "Smoke"
+  17: "Stillness"
+  18: "Stone Piles"
+  19: "Swaying Branches"
+  20: "Rune-Carvings"
+---
+table: forest-monster
+title: "Monster"
+dice: d20
+source: wardens-guide/wilderness-seeds#monster
+entries:
+  1: "Bandit"
+  2: "Sabre Cat"
+  3: "Horker"
+  4: "Giant"
+  5: "Spriggan"
+  6: "Frost Troll"
+  7: "Mammoth"
+  8: "Dragon"
+  9: "Cave Bear"
+  10: "Ice Wraith"
+  11: "Hagraven"
+  12: "Snowy Sabre Cat"
+  13: "Forsworn"
+  14: "Skeever Swarm"
+  15: "Draugr"
+  16: "Spriggan Matron"
+  17: "Elk Herd"
+  18: "Wisp & Wispmother"
+  19: "Wolf Pack"
+  20: "Frostbite Spider"
+---
+table: forest-monster-activity
+title: "Monster: Activity"
+dice: d20
+source: wardens-guide/wilderness-seeds#monster
+entries:
+  1: "Burrowing"
+  2: "Burying"
+  3: "Destroying"
+  4: "Devouring"
+  5: "Dying"
+  6: "Fighting"
+  7: "Foraging"
+  8: "Guarding"
+  9: "Hiding"
+  10: "Hunting"
+  11: "Killing"
+  12: "Mating"
+  13: "Mourning"
+  14: "Patrolling"
+  15: "Prowling"
+  16: "Recuperating"
+  17: "Scouting"
+  18: "Stalking"
+  19: "Torturing"
+  20: "Trapped"
+---
+table: forest-ruin
+title: "Ruins"
+dice: d20
+source: wardens-guide/wilderness-seeds#ruins
+entries:
+  1: "Abandoned Steading"
+  2: "Toppled Standing Stone"
+  3: "Cracked Bell Tower"
+  4: "Fallen Word Wall"
+  5: "Crumbled Watchtower"
+  6: "Beached Longship"
+  7: "Entangled Wayshrine"
+  8: "Exposed Dwemer Vent"
+  9: "Flooded Shrine"
+  10: "Moldering Farmhouse"
+  11: "Neglected Shrine"
+  12: "Overrun Estate"
+  13: "Ash-Buried Camp"
+  14: "Rotted Mill"
+  15: "Ruined Sanctum"
+  16: "Sacked Marketplace"
+  17: "Shattered Bridge"
+  18: "Sunken Barrow"
+  19: "Collapsed Mine"
+  20: "Toppled Statue"
+---
+table: forest-ruin-feature
+title: "Ruins: Feature"
+dice: d20
+source: wardens-guide/wilderness-seeds#ruins
+entries:
+  1: "A Nature Spirit, Ready to Die"
+  2: "A Hagraven Gathering Ingredients"
+  3: "A Mirror of Itself"
+  4: "A Vain Wisp"
+  5: "A Silent, Ghostly Vigil"
+  6: "A Tiny Ruined Hamlet"
+  7: "Bound by an Unbreakable Curse"
+  8: "A Bound Creature"
+  9: "A Broken Portal"
+  10: "Fresh Corpses"
+  11: "A Hidden Cache"
+  12: "Cultists at a Ritual"
+  13: "Whispers From All Directions"
+  14: "Marked by Battles of Yore"
+  15: "Overrun with Strange Flora"
+  16: "Lifelike Carved Warriors"
+  17: "Remnants of a Failed Ritual"
+  18: "The Veil Between Worlds Is Thin"
+  19: "Visions of the Past"
+  20: "Warded Ground"
+---
+table: forest-shelter
+title: "Shelter"
+dice: d20
+source: wardens-guide/wilderness-seeds#shelter
+entries:
+  1: "Bandit Camp"
+  2: "Hawker's Tower"
+  3: "Fishing Shack"
+  4: "Forgotten Barrow"
+  5: "Hermit's Hut"
+  6: "Hidden Steading"
+  7: "Hillside Cave"
+  8: "Hollow Stump"
+  9: "Hunter's Lodge"
+  10: "Wise Woman's Hut"
+  11: "Ivy-Wrapped Tower"
+  12: "Lean-To"
+  13: "Lumber Camp"
+  14: "Mountain Retreat"
+  15: "Mossy Spring"
+  16: "Night Market"
+  17: "Hagraven's Roost"
+  18: "Ranger's Outpost"
+  19: "Smoking Cabin"
+  20: "Tattered Windmill"
+---
+table: forest-shelter-feature
+title: "Shelter: Feature"
+dice: d20
+source: wardens-guide/wilderness-seeds#shelter
+entries:
+  1: "Abandoned, for Now"
+  2: "Draws Wild Beasts"
+  3: "Built in Defiance of Custom"
+  4: "Carved Into a Great Crag"
+  5: "A Wandering Knight Offers a Trial"
+  6: "Guarded by Tamed Beasts"
+  7: "Haunted by Sullen Ghosts"
+  8: "Hides a Powerful Artifact"
+  9: "Hunting Is Forbidden Here"
+  10: "Home to a Spirit"
+  11: "Held by Army Deserters"
+  12: "Overrun with Cultists"
+  13: "A Falmer Feasting-Place"
+  14: "Choked by Parasitic Vines"
+  15: "A Forsworn Hunting Ground"
+  16: "Popular with Smugglers"
+  17: "A Meal Already Laid Out"
+  18: "Watched by a Playful Spirit"
+  19: "Site of an Ancient Murder"
+  20: "A Thieves' Bolthole"
+---
+table: forest-hazard
+title: "Hazard"
+dice: d20
+source: wardens-guide/wilderness-seeds#hazard
+entries:
+  1: "Animal Trap"
+  2: "Bog Shadows"
+  3: "Bone Field"
+  4: "Bramble Tunnels"
+  5: "Frozen Troll"
+  6: "Spider Nest"
+  7: "Insect Swarm"
+  8: "Moving Thickets"
+  9: "Poisonous Plants"
+  10: "Witch's Fog"
+  11: "Sap Trap"
+  12: "Sleeping Giant"
+  13: "Slippery Moss"
+  14: "Slow Quicksand"
+  15: "Spiked Pit"
+  16: "Stinging Nettles"
+  17: "Thorny Thickets"
+  18: "Toxic Spores"
+  19: "Troll Den"
+  20: "Unstable Ground"
+---
+table: forest-hazard-feature
+title: "Hazard: Feature"
+dice: d20
+source: wardens-guide/wilderness-seeds#hazard
+entries:
+  1: "A Tamed Frostbite Spider"
+  2: "A Spell Gone Wrong"
+  3: "Animated Armor"
+  4: "Hawk Spies"
+  5: "Bleeding Trees"
+  6: "Ghosts Trapped in Crystal"
+  7: "Skeever Feeding Grounds"
+  8: "A Pocket of Foul Weather"
+  9: "Howling Stones"
+  10: "An Injured Creature"
+  11: "Invisible Webs"
+  12: "Animate Scarecrows"
+  13: "Memory-Thieving Spirits"
+  14: "Mimic Vines"
+  15: "Paths That Shift"
+  16: "Scavengers That Wait"
+  17: "The Watchful Dead"
+  18: "Tracks Erased by Mist"
+  19: "Trees Growing From Bones"
+  20: "Wisps Gather"
+---
+table: forest-example-encounters
+title: "Encounters (the example wild)"
+description: "The example wild's own d6 encounter table: write one like it for each wild (two or three denizens, a hazard, a sign of the Spirit's agenda, one oddity)."
+dice: d6
+source: wardens-guide/wilderness-seeds#encounters
+entries:
+  1: "A small moss-bearded man argues with a screeching hawk. The bird clutches something bright."
+  2: "A spriggan sits on a stone, a purple fungus creeping up her arms. There is murder in her eyes."
+  3: "A patch of quicksand hides under soft-looking snow. A broken coil of rope lies nearby."
+  4: "A snarling wolf pack rings a fresh kill. They have no wish to share."
+  5: "Snowberries grow here in abundance. None have been touched, not even by birds."
+  6: "A trap, hastily set and badly hidden. It reeks of bait."

@@ -1,0 +1,15 @@
+type: character
+fields:
+  hp: {kind: resource, min: 0}
+---
+type: pc
+extends: character
+---
+type: npc
+extends: character
+fields:
+  role: {kind: enum, values: [brute, tactician]}
+---
+type: loc
+fields:
+  kind: {kind: enum, values: [region, point]}

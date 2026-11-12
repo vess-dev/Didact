@@ -1,0 +1,35 @@
+# Two-step tables: an entry that rolls another table instead (`table:`), and entries whose
+# `then:` rolls more. What a rule or a draft binds for them carries the data of what they rolled
+# next: a key the entry itself sets keeps its value, and of two follow-ups, the first one's.
+table: relics
+dice: d1
+entries:
+  1: {table: rings, data: {found: deep, kind: relic}}
+---
+table: blade-cache
+dice: d1
+entries:
+  1: {text: A blade, data: {size: bulky}, then: [{table: blades}]}
+---
+table: ring-and-blade
+dice: d1
+entries:
+  1: {text: A ring and a blade, then: [{table: rings}, {table: blades}]}
+---
+table: rings
+dice: d1
+entries:
+  1: {text: Ring of Ash, data: {id: ring-of-ash, kind: ring, gear: [Ring of Ash]}}
+---
+table: blades
+dice: d1
+entries:
+  1: {text: Ashen Sword, data: {id: ashen-sword, kind: blade, size: normal, gear: [Ashen Sword]}}
+---
+# Who lives in a lair, by a d4 roll: prefilled by the entry's text, its id or a roll.
+table: groups
+dice: d4
+entries:
+  1-2: {text: Beasts, data: {ids: [wolf, bear]}}
+  3: {text: Spirits, data: {id: restless-dead, ids: [wisp, shade]}}
+  4: {text: Folk, data: {ids: [hermit, ferryman]}}

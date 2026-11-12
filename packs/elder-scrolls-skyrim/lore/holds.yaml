@@ -1,0 +1,95 @@
+# The nine Holds and Solstheim, as lore: each comes up when play names the Hold or its capital
+# (hand-written from the gazetteer, wardens-guide/the-holds, and the Player's Guide's lay of the
+# land; `source:` says where). Their places and people are records: `gen run …hold`.
+lore: whiterun-hold
+keys: [whiterun hold, whiterun, dragonsreach, balgruuf, riverwood, rorikstead, bleak falls barrow]
+content: >-
+  The breadbasket at Skyrim's heart: a windswept tundra plain ringed by mountains. Whiterun, the
+  Jewel of the North, rises in stepped districts to the great hall of Dragonsreach, where Jarl
+  Balgruuf the Greater labors to keep his Hold neutral while both armies court him; should the
+  Stormcloaks take the city, Vignar Gray-Mane is installed in his place. In its skies a dragon is
+  first fought and felled, days after Helgen burns.
+source: wardens-guide/the-holds#whiterun-hold--capital-whiterun; players-guide/skyrim#the-nine-holds
+---
+lore: haafingar
+keys: [haafingar, solitude, blue palace, castle dour, elisif, elisif the fair]
+content: >-
+  A small, sheer coastal Hold of sea-cliffs and salt wind in the far northwest, and the seat of
+  Imperial power in Skyrim. Solitude straddles a colossal arch of stone above the Karth delta, the
+  largest city in the province and the High King's court, ruled by Elisif the Fair, young widow of
+  the slain High King Torygg. It does not change hands unless the rebellion wins the whole war.
+source: wardens-guide/the-holds#haafingar--capital-solitude; players-guide/skyrim#the-nine-holds
+---
+lore: eastmarch
+keys: [eastmarch, windhelm, palace of the kings, city of kings, gray quarter]
+content: >-
+  A northeastern Hold where snowfields steam over sulfur hot springs. Windhelm, the ancient City of
+  Kings, black stone and bitter cold, is the oldest settlement in Skyrim and the heart of the
+  rebellion, ruled by Ulfric Stormcloak from the Palace of the Kings; should the Legion win it, the
+  fair-minded Brunwulf Free-Winter takes his seat. Its Dunmer refugees are given little welcome.
+source: wardens-guide/the-holds#eastmarch--capital-windhelm; players-guide/skyrim#the-nine-holds
+---
+lore: the-rift
+keys: [the rift, riften, mistveil keep, laila law-giver, black-briar, black-briars, ivarstead]
+content: >-
+  A temperate southeastern Hold of golden autumn forests and still lakes, and the most corrupt
+  corner of Skyrim. Riften, a canal-laced town of wooden walkways on Lake Honrich, is ruled in name
+  by Jarl Laila Law-Giver and in truth by the Black-Briar family and the Thieves Guild beneath it;
+  if the Imperials take the Rift, Maven Black-Briar is installed openly.
+source: wardens-guide/the-holds#the-rift--capital-riften; players-guide/skyrim#the-nine-holds
+---
+lore: the-reach
+keys: [the reach, markarth, city of stone, understone keep, silver-blood, silver-bloods, igmund]
+content: >-
+  A harsh, vertical country of gorges and crags in the southwest, the ancestral land of the
+  Reachfolk and the native ground of the Forsworn. Markarth, the City of Stone, is built into a
+  cliff atop the bones of a Dwemer city, dominated by the silver-rich Silver-Blood clan. Jarl Igmund
+  is an Imperial loyalist; the Reach is bitterly contested, and a Stormcloak victory seats Thongvor
+  Silver-Blood.
+source: wardens-guide/the-holds#the-reach--capital-markarth; players-guide/skyrim#the-nine-holds
+---
+lore: falkreath-hold
+keys: [falkreath hold, falkreath, siddgeir, lake ilinalta, falkreath graveyard]
+content: >-
+  A quiet, mournful land of dense pine forest on the southern border, where Skyrim meets Cyrodiil
+  and Hammerfell. Falkreath is known for its enormous graveyard, the largest in Skyrim. Its young,
+  idle, pro-Imperial Jarl Siddgeir took the seat from his uncle, Dengeir of Stuhn, whom a Stormcloak
+  victory restores. Helgen burned on its Cyrodiil road.
+source: wardens-guide/the-holds#falkreath-hold--capital-falkreath; players-guide/skyrim#the-nine-holds
+---
+lore: hjaalmarch
+keys: [hjaalmarch, morthal, drajkmyr, idgrod, idgrod ravencrone]
+content: >-
+  A poor, isolated Hold of fog-bound marshland, the Drajkmyr, in the north. Morthal is a small,
+  eerie lumber village wrapped in mist, governed by Idgrod Ravencrone, a riddling seer who rules by
+  prophecy and keeps the Hold nominally with the Empire; the Stormcloaks would seat Sorli the
+  Builder. Ustengrav and the ruin of Labyrinthian lie in its marches.
+source: wardens-guide/the-holds#hjaalmarch--capital-morthal; players-guide/skyrim#the-nine-holds
+---
+lore: the-pale
+keys: [the pale, dawnstar, white hall, skald, skald the elder, nightmares]
+content: >-
+  A frigid north-central Hold of windswept tundra along the icy shore of the Sea of Ghosts. Dawnstar,
+  a small mining-and-fishing port, cannot sleep: every soul in it is gripped by nightmares. Its aged,
+  fervent Stormcloak Jarl, Skald the Elder, would sooner lose the Pale than bend a knee; the
+  Imperials would seat Brina Merilis.
+source: wardens-guide/the-holds#the-pale--capital-dawnstar; players-guide/skyrim#the-nine-holds
+---
+lore: winterhold-hold
+keys: [winterhold hold, winterhold, korir, frozen hearth, sea of ghosts]
+content: >-
+  The northernmost and bleakest Hold of all: a thin coast of ice, snow and hardy fisherfolk facing
+  the Sea of Ghosts. Winterhold was once a great city until the Great Collapse swept most of it into
+  the sea; Jarl Korir, embittered, blames the College and wishes the mages gone. The Imperials would
+  seat the College-friendly Kraldar.
+source: wardens-guide/the-holds#winterhold--capital-winterhold; players-guide/skyrim#the-nine-holds
+---
+lore: solstheim
+keys: [solstheim, raven rock, bulwark, tel mithryn, northern maiden, house redoran, house telvanni]
+content: >-
+  A windswept island in the Sea of Ghosts between Skyrim and Morrowind, reached by the boat Northern
+  Maiden out of Windhelm: ash-choked in the south under distant Red Mountain, snow-bound in the north.
+  Councilor Lleril Morvayn of House Redoran governs the Dunmer colony of Raven Rock behind the
+  Bulwark; there is no Civil War here. The Telvanni wizard Neloth keeps Tel Mithryn, and the Skaal
+  the north coast.
+source: wardens-guide/the-holds#solstheim--raven-rock-skaal-village--beyond; players-guide/skyrim#beyond-skyrim

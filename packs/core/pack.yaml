@@ -1,0 +1,9 @@
+id: core
+name: Didact core
+kind: base
+version: 1.0.0
+description: >-
+  What every campaign has, whatever the system: base entity types and system-agnostic tools.
+license: {spdx: CC0-1.0, redistributable: true}
+settings:
+  odds: {very-unlikely: -2, unlikely: -1, even: 0, likely: 1, very-likely: 2}

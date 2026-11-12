@@ -1,0 +1,24 @@
+# College Apprentice (backgrounds/college-apprentice): the background's two d6 tables.
+table: college-apprentice-1
+title: "Which master took you on?"
+dice: d6
+source: backgrounds/college-apprentice#which-master-took-you-on-roll-1d6
+entries:
+  1: {text: "Faralda, of Destruction. Take a Spell Tome: Flames, Frostbite, or Sparks — your choice — and her first and only rule: never cast into the wind.", data: {tome_choice: ["Flames", "Frostbite", "Sparks"]}}
+  2: {text: "Colette Marence, of Restoration — much mocked, and quietly the best teacher there. Take a Spell Tome: Healing, and her eye for sickness: you know every common disease by its signs.", data: {gear: [{name: "Spell Tome: Healing"}]}}
+  3: {text: "Tolfdir, of Alteration, who taught you to harden your skin before you threw a single bolt. Take a Spell Tome: Oakflesh and a brass pocket sundial (petty) that hums in the presence of active magic.", data: {gear: [{name: "Spell Tome: Oakflesh"}, {name: "Pocket sundial", size: "petty"}]}}
+  4: {text: "Drevis Neloren, of Illusion, who you are fairly sure was in the room the whole time. Take a Spell Tome: Muffle, and an ear for the unspoken: once per day, ask the Warden whether what someone just told you was a lie, and get a true answer.", data: {gear: [{name: "Spell Tome: Muffle"}]}}
+  5: {text: "Phinis Gestor, of Conjuration, who watched you the way one watches a lit fuse. Take a Spell Tome: Conjure Familiar and a petty soul gem (petty), already filled.", data: {gear: [{name: "Spell Tome: Conjure Familiar"}, {name: "Petty soul gem", size: "petty"}]}}
+  6: {text: "Urag gro-Shub, of the Arcanaeum, where you read more than you cast. Take a Spell Tome: Clairvoyance borrowed from his shelves, and his help: each visit, Urag will research one obscure question for you — so long as you bring that tome back one day.", data: {gear: [{name: "Spell Tome: Clairvoyance"}]}}
+---
+table: college-apprentice-2
+title: "Your over-eager experiment went wrong. What happened?"
+dice: d6
+source: backgrounds/college-apprentice#your-over-eager-experiment-went-wrong-what-happened-roll-1d6
+entries:
+  1: "Backfire Scar: A botched casting burned a sigil into your palm, and it aches before magic goes wrong. The Warden tells you whenever a casting you are about to attempt would call for a WIL save."
+  2: "The Stuck Familiar: You summoned something small and could not send it back. A candle-bright mote of conjured light trails you always, lighting close quarters; it hides when you wish, but it will not be dismissed."
+  3: "Frost-Bitten: You froze half a lecture hall, yourself included, and the chill never left your hands. With a turn's concentration, you can glaze a puddle, a cup, or the works of a lock with solid ice. Warm rooms make you faint."
+  4: "The Stone Hand: An Alteration mishap turned your left hand to stone for a week. It came back gray, numb, and hard as oak: you can grip a live coal or a red-hot blade barehanded, and it punches for d6."
+  5: {text: "The Looking-Glass: You scried something that scried back. Take a cracked hand mirror (petty); once per day, glance into it to learn whether anything unseen is watching you or lurking close by. The glance leaves you dizzy for a moment.", data: {gear: [{name: "Cracked hand mirror", size: "petty"}]}}
+  6: "Probation: You set the Hall of Attainment on fire. The Arch-Mage has barred you from lessons until you make amends — but a fellow apprentice owes you everything, and will vouch for you once, when it matters most."

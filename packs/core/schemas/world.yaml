@@ -1,0 +1,23 @@
+type: loc
+label: Location
+fields:
+  description: {kind: text}
+  region: {kind: ref, to: loc}
+  discovered: {kind: flag, default: false}
+---
+type: item
+label: Item
+fields:
+  description: {kind: text}
+---
+type: faction
+label: Faction
+fields:
+  agenda: {kind: text}
+  obstacle: {kind: text}
+---
+type: quest
+label: Quest
+fields:
+  goal: {kind: text}
+  status_note: {kind: text}

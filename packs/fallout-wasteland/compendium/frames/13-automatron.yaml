@@ -1,0 +1,349 @@
+# Automatron (campaigns/13-automatron): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: automatron
+type: quest
+name: Automatron
+tags: [automatron, frame, side-arc]
+goal: A genius wasteland engineer — Isabel Cruz — has put on a mask, taken up a megaphone, and 
+  declared herself the Mechanist, using a cache of modular robot parts to "protect" the Commonwealth
+  by force. Her creations are rewriting themselves faster than she can command. The party is hired 
+  to find her lair, shut down the production line, and confront whatever she has become.
+date: Sunday, 23 October 2287
+body: |-
+  *A caravan begs for help on the radio. By the time the party arrives the caravan is a pile of scrap and the robots that killed them are still standing in formation. A voice calling itself the Mechanist is building an army. Somebody has to unbuild it.*
+
+  ## GM notes
+
+  **Date.** Sunday, 23 October 2287: a Fallout 4 side arc: that frame's date, or whenever the distress call comes. Open a campaign on it with `didact campaign new <id> --date 'Sunday, 23 October 2287'`, or move one there with `didact time set 'Sunday, 23 October 2287'` before its first session.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup Automatron tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** The Distress Call: a radio beacon from the ambushed caravan. Survivors point to an old warehouse. From there, a robot finger points to a robot mouth, points to a robot ear, points — eventually — to the Mechanist's lair.
+
+  **Plot beats.**
+
+  1. The Caravan Wreck. The distress call leads to a line of destroyed brahmin, a scattered shipment of scrap, and a single surviving robot — Ada — standing over the bodies of her crew. She is shaken but lucid. She wants to find the Mechanist and put her down.
+  2. Ada Joins. The party meets Ada properly. She is the campaign's moral weight — a robot who watched her people die. Let her speak during quiet scenes; she does not say much, but she says the right things. She pushes the party toward the trail.
+  3. Interrogating the Signal. The party builds a robot workbench (or finds one) and interrogates a captured Robobrain to trace the Mechanist's command signal. The signal bounces through old military and pre-war infrastructure. A PC who cracks the Robobrain's encryption learns the source is routed through a pre-war satellite relay at Fort Hagen.
+  4. Fort Hagen Satellite Array. The relay station the Mechanist uses to broadcast commands. Ahab, the Rust Devils' deathclaw-skulled sentry bot, holds the hangar bay; Rust Devil scavengers under their leader Ivey lurk in the tunnels; and a Robobrain head on a shelf named Jezebel — immobile, charming, and cruel — offers to bargain. She will give up the Mechanist's lair coordinates if the party carries her head out with them. She is a risk either way.
+  5. The Approach to the Lair. A short journey to the Mechanist's headquarters at the RobCo Sales & Service Center — a pre-war showroom with a hidden underground complex. Rogue Mister Handies in the approach tunnels, each one convinced it is still running a pre-war errand. The Army Clock should be ticking hard by this point — if it hits 6, a wave of Isabel's robots assaults the party's nearest settlement off-camera.
+  6. The Lair. Isabel Cruz waits on a metal throne above a pit of failed prototypes beneath the RobCo building. Her mask distorts her voice into something imperial. The Isabel Clock determines how ready she is to listen when the party confronts her. The climax is a conversation as often as it is a fight. See Climax below.
+
+  **Climax.**
+
+  Confronting the Mechanist on her throne. Three outcomes:
+
+  - **Unmask her.** A peaceful resolution if the party has been ticking the **Isabel Clock** toward 4. She takes off the mask and weeps. Ada forgives her — or doesn't. Isabel becomes a Workshop NPC.
+  - **Take the throne.** Kill Isabel and take the factory. The party now has a *robot production line* — one custom bot per Downtime Action, but every robot rolls 1d6 on build; a 1 means it went rogue and will return later.
+  - **Blow the factory.** Ada gets her revenge. Everything collapses. The party walks out with the head of Jezebel clipped to their belt and a story told at every settlement for months.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "Automatron"}' --auto` drafts the region, 4 places, 4 people, 4 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Bestiary** (Fallout 2e / Grimfall): Junkbot → `junkbot` / `scrap-bots`; Protectron → `protectron` / `protectron`; Mister Handy → `mister-handy` / `mister-handy`; Mister Gutsy → `mister-gutsy` / `mister-gutsy`; Robobrain → `robobrain` / `robobrain`; Assaultron → `assaultron` / `assaultron`; Sentry Bot → `sentry-bot` / `sentry-bot`.
+
+  **Rewards in each system's catalog:** The Mechanist's Helmet (fallout-2e.the-mechanists-helmet · grimfall.the-mechanists-helmet); Robobrain Chassis Plans (grimfall.robobrain-chassis-plans).
+source: campaigns/13-automatron#pitch
+---
+id: automatron-region
+type: loc
+name: The Robobrain Trail
+tags: [automatron, region]
+mechanics:
+  fallout-2e: {kind: region}
+  grimfall: {kind: region}
+body: |-
+  ## GM notes
+
+  A three-step trail of robot nests, then the lair.
+source: campaigns/13-automatron#the-place--the-robobrain-trail
+---
+id: automatron-the-caravan-wreck
+type: loc
+name: The Caravan Wreck
+tags: [automatron, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Drop-in. A head-swiveling Robobrain Scout is still watching the bodies. Interrogating it is a WIL save; a Tinker, or anyone with the Robotics Expert perk, needs no save.
+source: campaigns/13-automatron#the-place--the-robobrain-trail
+---
+id: automatron-fort-hagen-satellite-array
+type: loc
+name: Fort Hagen Satellite Array
+tags: [automatron, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The pre-war military relay station the Mechanist uses to broadcast commands. Sentry Bots, Rust Devils, and Jezebel (a Robobrain head on a shelf) are here.
+source: campaigns/13-automatron#the-place--the-robobrain-trail
+---
+id: automatron-the-robco-sales-and-service-center
+type: loc
+name: The RobCo Sales & Service Center
+tags: [automatron, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A derelict pre-war robotics showroom hiding a massive underground complex. Ancient protectrons, a Mr. Handy receptionist who still greets visitors cheerfully.
+source: campaigns/13-automatron#the-place--the-robobrain-trail
+---
+id: automatron-the-mechanists-lair
+type: loc
+name: The Mechanist's Lair
+tags: [automatron, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Beneath the RobCo building. Workshop, barracks, a control room. The Mechanist waits in a chair above a pit full of failed prototypes.
+source: campaigns/13-automatron#the-place--the-robobrain-trail
+---
+id: automatron-rust-devil-scavenger
+type: monster
+name: Rust Devil Scavenger
+knowledge: secret
+tags: [automatron, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Automatron'
+    hp: 5
+    armor: 1
+    STR: 12
+    DEX: 13
+    WIL: 9
+    attacks:
+    - name: pipe rifle
+      damage: d6
+      qualities: [bulky]
+    - {name: robotic arm-blade, damage: d6}
+    abilities:
+    - 'Scavenged Frame: On Critical Damage, she swaps in a salvaged limb and keeps fighting for one more
+      round before dropping.'
+  grimfall:
+    tier: mook
+    role: tactician
+    category: The Factions Under Arms
+    senses:
+    - arm-blades where arms were
+    - servo whines under war cries
+    - solder, blood, machine oil
+    traits: [fight beside their own builds, spare parts on every belt]
+    moves: [Send in the Bots, Swap a Limb Mid-Fight]
+    wants: chassis to strip and flesh to improve — your Pip-Boy counts as both
+    note: A crew is a 4d pool fighting alongside a scrap-bot wave. Jezebel — a caged robobrain head 
+      with a poisonous personality — navigates for them. The Mechanist behind them all is a 6d elite
+      on an armored throne commanding every machine in the lair; out of the chair, just a tired 
+      idealist who surrenders.
+body: |-
+  ## GM notes
+
+  A raider grafted onto salvaged robot parts, picking over whatever the Mechanist's machines leave behind — and stealing the machines when she can.
+
+  Fallout 2e: 5 HP, 1 Armor, 12 STR, 13 DEX, 9 WIL, pipe rifle (d6, bulky), robotic arm-blade (d6).
+
+  Grimfall: its card is `grimfall.rust-devils` (Rust Devils), in this record's grimfall block.
+source: campaigns/13-automatron#rust-devil-scavenger
+---
+id: automatron-jezebel-a-robobrain-head
+type: monster
+name: Jezebel (a Robobrain head)
+aliases: [Jezebel, Jezebel (Robobrain Head)]
+knowledge: secret
+tags: [automatron, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Automatron'
+    hp: 4
+    armor: 2
+    WIL: 18
+    rad_immune: true
+    attacks:
+    - name: mesmerizer pulse
+      damage: d6
+      note: WIL save or the target loses their next action
+    abilities:
+    - Its stat block gives no STR, DEX (written —).
+    - 'Negotiator: A party that agrees to install her in a chassis gains a powerful hireling — and a liability.'
+  grimfall:
+    tier: mook
+    role: tactician
+    category: The Factions Under Arms
+    senses:
+    - arm-blades where arms were
+    - servo whines under war cries
+    - solder, blood, machine oil
+    traits: [fight beside their own builds, spare parts on every belt]
+    moves: [Send in the Bots, Swap a Limb Mid-Fight]
+    wants: chassis to strip and flesh to improve — your Pip-Boy counts as both
+    note: A crew is a 4d pool fighting alongside a scrap-bot wave. Jezebel — a caged robobrain head 
+      with a poisonous personality — navigates for them. The Mechanist behind them all is a 6d elite
+      on an armored throne commanding every machine in the lair; out of the chair, just a tired 
+      idealist who surrenders.
+body: |-
+  ## GM notes
+
+  **Jezebel (a Robobrain head)** — a disembodied Robobrain on a shelf at Fort Hagen. Charming, cruel. Will bargain. The head itself is portable, bulky, 2 slots.
+
+  A disembodied pre-war robobrain on a shelf; her HP is the brain case. Immobile. Brilliant. Malicious.
+
+  Fallout 2e: 4 HP, 2 Armor, — STR, — DEX, 18 WIL, mesmerizer pulse (d6; WIL save or the target loses their next action).
+
+  Grimfall: its card is `grimfall.rust-devils` (Rust Devils), in this record's grimfall block.
+source: campaigns/13-automatron#jezebel-robobrain-head
+---
+id: automatron-the-mechanist-throned
+type: monster
+name: The Mechanist (Throned)
+knowledge: secret
+tags: [automatron, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Automatron'
+    hp: 14
+    armor: 3
+    STR: 11
+    DEX: 13
+    WIL: 16
+    attacks:
+    - {name: energy cannon, damage: d12, note: 6/day}
+    abilities:
+    - 'Throne Link: While on the throne, she may command any robot in the lair without spending her action.'
+    - 'The Chair: Reduced to 0 HP, or dragged or blasted out of the throne, she becomes The Mechanist
+      (Unseated).'
+  grimfall:
+    tier: elite
+    role: tactician
+    category: Faces of the Wasteland
+    fact: Every robot in earshot obeys the chair; unseat her and there's just a person who wanted to
+      help.
+body: |-
+  ## GM notes
+
+  Isabel Cruz in her armored command throne; the Armor is the throne's plating. She speaks through a pre-war broadcast filter.
+
+  Fallout 2e: 14 HP, 3 Armor, 11 STR, 13 DEX, 16 WIL, energy cannon (d12, 6/day).
+
+  Grimfall: its card is `grimfall.the-mechanist` (The Mechanist), in this record's grimfall block.
+source: campaigns/13-automatron#the-mechanist-throned
+---
+id: automatron-the-mechanist-unseated
+type: monster
+name: The Mechanist (Unseated)
+knowledge: secret
+tags: [automatron, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Automatron'
+    hp: 8
+    armor: 1
+    STR: 10
+    DEX: 12
+    WIL: 16
+    attacks:
+    - {name: 10mm pistol, damage: d8}
+    - {name: pipe shock-glove, damage: d6}
+    abilities: ['Human: Surrenders at Critical Damage.']
+  grimfall:
+    tier: elite
+    role: tactician
+    category: Faces of the Wasteland
+    fact: Every robot in earshot obeys the chair; unseat her and there's just a person who wanted to
+      help.
+body: |-
+  ## GM notes
+
+  Isabel out of her chair, ragged, sleep-deprived, reaching for a sidearm she does not want to fire.
+
+  Fallout 2e: 8 HP, 1 Armor, 10 STR, 12 DEX, 16 WIL, 10mm pistol (d8), pipe shock-glove (d6).
+
+  Grimfall: its card is `grimfall.the-mechanist` (The Mechanist), in this record's grimfall block.
+source: campaigns/13-automatron#the-mechanist-unseated
+---
+id: automatron-isabel-cruz-the-mechanist
+type: npc
+name: Isabel Cruz / The Mechanist
+knowledge: secret
+tags: [automatron, cast]
+fields: {role: a genuine engineer who thought she could fix the wasteland with machines}
+body: |-
+  ## GM notes
+
+  **Isabel Cruz / The Mechanist** — a genuine engineer who thought she could fix the wasteland with machines. The voice-filter on her mask makes her sound like a god. She's been sleeping five hours a week.
+source: campaigns/13-automatron#cast
+---
+id: automatron-ada
+type: npc
+name: Ada
+knowledge: secret
+tags: [automatron, cast]
+fields:
+  role: a custom robot, sole survivor of the caravan the Mechanist's robots destroyed
+details: {wants: Wants revenge.}
+body: |-
+  ## GM notes
+
+  **Ada** — a custom robot, sole survivor of the caravan the Mechanist's robots destroyed. Wants revenge. A potential companion — see Rewards.
+source: campaigns/13-automatron#cast
+---
+id: automatron-kl-e-o
+type: npc
+name: KL-E-O
+knowledge: secret
+tags: [automatron, cast]
+fields: {role: 'an Assaultron shopkeep in Goodneighbor, if the party needs parts'}
+body: |-
+  ## GM notes
+
+  **KL-E-O** — an Assaultron shopkeep in Goodneighbor, if the party needs parts. Will also buy robot heads for a premium.
+source: campaigns/13-automatron#cast
+---
+id: automatron-rogue-mister-handies
+type: npc
+name: Rogue Mister Handies
+knowledge: secret
+tags: [automatron, cast]
+fields:
+  role: Isabel's former assistants, now malfunctioning and in denial that she's in charge
+body: |-
+  ## GM notes
+
+  **Rogue Mister Handies** — Isabel's former assistants, now malfunctioning and in denial that she's in charge.
+source: campaigns/13-automatron#cast
+---
+id: automatron-army-clock
+type: track
+name: Army Clock
+knowledge: secret
+tags: [automatron, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: (d6) The Mechanist's production line. Ticks when the party defeats a Mechanist patrol without 
+  destroying the factory relay, leaves an intact Robobrain behind, or broadcasts on an open channel.
+  At 6, she sends an attack wave at the nearest settlement — party's home base, if they have one.
+source: campaigns/13-automatron#clocks
+---
+id: automatron-isabel-clock
+type: track
+name: Isabel Clock
+knowledge: secret
+tags: [automatron, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: '(d4) Her grip on reality. Ticks when the party spares one of her robots or contacts her by radio
+  without naming her. Each tick is a new reveal: 1 doubts herself, 2 sets aside the megaphone, 3 asks
+  for help, 4 ready to surrender if the party has not attacked her lair yet.'
+source: campaigns/13-automatron#clocks

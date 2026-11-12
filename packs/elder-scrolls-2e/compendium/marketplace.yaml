@@ -1,0 +1,844 @@
+# The Marketplace (players-guide/marketplace): prices in Septims. Grouped rows ("Dagger,
+# hatchet, club, staff, etc.") become one entry per named item so `inv add freya Sword` finds
+# the book's stats; body armor carries `suit` (one suit at a time).
+id: "shield"
+type: "item"
+name: "Shield"
+price: 10
+armor: 1
+source: "players-guide/marketplace#armor"
+---
+id: "helmet"
+type: "item"
+name: "Helmet"
+price: 10
+armor: 1
+source: "players-guide/marketplace#armor"
+---
+id: "light-armor"
+type: "item"
+name: "Light armor"
+price: 15
+armor: 1
+suit: 1
+note: "fur jerkin, hide, leather, or studded"
+source: "players-guide/marketplace#armor"
+---
+id: "fur-jerkin"
+type: "item"
+name: "Fur jerkin"
+price: 15
+armor: 1
+suit: 1
+note: "light armor"
+source: "players-guide/marketplace#armor"
+---
+id: "hide-armor"
+type: "item"
+name: "Hide armor"
+price: 15
+armor: 1
+suit: 1
+note: "light armor"
+source: "players-guide/marketplace#armor"
+---
+id: "leather-armor"
+type: "item"
+name: "Leather armor"
+price: 15
+armor: 1
+suit: 1
+note: "light armor"
+source: "players-guide/marketplace#armor"
+---
+id: "studded-leather-armor"
+type: "item"
+name: "Studded leather armor"
+price: 15
+armor: 1
+suit: 1
+note: "light armor"
+source: "players-guide/marketplace#armor"
+---
+id: "mail"
+type: "item"
+name: "Mail"
+price: 40
+armor: 2
+suit: 2
+size: "bulky"
+note: "chain, scale, or a banded steel cuirass"
+source: "players-guide/marketplace#armor"
+---
+id: "chain-mail"
+type: "item"
+name: "Chain mail"
+price: 40
+armor: 2
+suit: 2
+size: "bulky"
+note: "mail"
+source: "players-guide/marketplace#armor"
+---
+id: "scale-mail"
+type: "item"
+name: "Scale mail"
+price: 40
+armor: 2
+suit: 2
+size: "bulky"
+note: "mail"
+source: "players-guide/marketplace#armor"
+---
+id: "banded-steel-cuirass"
+type: "item"
+name: "Banded steel cuirass"
+price: 40
+armor: 2
+suit: 2
+size: "bulky"
+note: "mail"
+source: "players-guide/marketplace#armor"
+---
+id: "plate"
+type: "item"
+name: "Plate"
+price: 60
+armor: 3
+suit: 3
+size: "bulky"
+note: "a full suit of iron or steel plate"
+source: "players-guide/marketplace#armor"
+---
+id: "dagger"
+type: "item"
+name: "Dagger"
+price: 5
+damage: "d6"
+source: "players-guide/marketplace#weapons"
+---
+id: "hatchet"
+type: "item"
+name: "Hatchet"
+price: 5
+damage: "d6"
+source: "players-guide/marketplace#weapons"
+---
+id: "club"
+type: "item"
+name: "Club"
+price: 5
+damage: "d6"
+source: "players-guide/marketplace#weapons"
+---
+id: "staff"
+type: "item"
+name: "Staff"
+price: 5
+damage: "d6"
+source: "players-guide/marketplace#weapons"
+---
+id: "sword"
+type: "item"
+name: "Sword"
+price: 10
+damage: "d8"
+source: "players-guide/marketplace#weapons"
+---
+id: "mace"
+type: "item"
+name: "Mace"
+price: 10
+damage: "d8"
+source: "players-guide/marketplace#weapons"
+---
+id: "war-axe"
+type: "item"
+name: "War axe"
+price: 10
+damage: "d8"
+source: "players-guide/marketplace#weapons"
+---
+id: "spear"
+type: "item"
+name: "Spear"
+price: 10
+damage: "d8"
+source: "players-guide/marketplace#weapons"
+---
+id: "greatsword"
+type: "item"
+name: "Greatsword"
+price: 20
+damage: "d10"
+size: "bulky"
+qualities:
+  - "two-handed"
+source: "players-guide/marketplace#weapons"
+---
+id: "battleaxe"
+type: "item"
+name: "Battleaxe"
+price: 20
+damage: "d10"
+size: "bulky"
+qualities:
+  - "two-handed"
+source: "players-guide/marketplace#weapons"
+---
+id: "warhammer"
+type: "item"
+name: "Warhammer"
+price: 20
+damage: "d10"
+size: "bulky"
+qualities:
+  - "two-handed"
+source: "players-guide/marketplace#weapons"
+---
+id: "sling"
+type: "item"
+name: "Sling"
+price: 5
+damage: "d6"
+source: "players-guide/marketplace#weapons"
+---
+id: "bow"
+type: "item"
+name: "Bow"
+price: 20
+damage: "d6"
+size: "bulky"
+source: "players-guide/marketplace#weapons"
+---
+id: "crossbow"
+type: "item"
+name: "Crossbow"
+price: 30
+damage: "d8"
+size: "bulky"
+source: "players-guide/marketplace#weapons"
+---
+id: "quiver-of-arrows-or-bolts"
+type: "item"
+name: "Quiver of arrows or bolts"
+price: 5
+size: "petty"
+source: "players-guide/marketplace#weapons"
+---
+id: "cart"
+type: "vehicle"
+name: "Cart"
+price: 30
+slots: 4
+size: "bulky"
+source: "players-guide/marketplace#transport--mounts"
+---
+id: "wagon"
+type: "vehicle"
+name: "Wagon"
+price: 200
+slots: 8
+qualities:
+  - "slow"
+source: "players-guide/marketplace#transport--mounts"
+---
+id: "horse"
+type: "companion"
+name: "Horse"
+price: 75
+slots: 4
+source: "players-guide/marketplace#transport--mounts"
+hp: 6
+STR: 14
+DEX: 10
+WIL: 4
+attacks:
+  - {name: "hooves", damage: "d8"}
+note: "a riding horse: the party ignores one watch of Path or Terrain penalty on a journey"
+---
+id: "skyrim-horse"
+type: "companion"
+name: "Skyrim horse"
+price: 150
+slots: 4
+source: "players-guide/marketplace#transport--mounts"
+hp: 6
+STR: 14
+DEX: 10
+WIL: 4
+attacks:
+  - {name: "hooves", damage: "d8"}
+note: "sure-footed in snow and mountain: treats snow, ice and mountain (Perilous) terrain as one step easier"
+---
+id: "mule"
+type: "companion"
+name: "Mule"
+price: 30
+slots: 6
+qualities:
+  - "slow"
+source: "players-guide/marketplace#transport--mounts"
+---
+id: "carriage-seat"
+type: "service"
+name: "Carriage seat"
+price: 5
+note: "between Holds"
+source: "players-guide/marketplace#transport--mounts"
+---
+id: "ships-passage"
+type: "service"
+name: "Ship's passage"
+price: 10
+source: "players-guide/marketplace#transport--mounts"
+---
+id: "room-and-board-at-an-inn"
+type: "service"
+name: "Room & board at an inn"
+price: 10
+note: "per night"
+source: "players-guide/marketplace#upkeep--recovery"
+---
+id: "private-room-and-board"
+type: "service"
+name: "Private room & board"
+price: 35
+note: "fits 4"
+source: "players-guide/marketplace#upkeep--recovery"
+---
+id: "stable-and-feed"
+type: "service"
+name: "Stable & feed"
+price: 5
+note: "per night"
+source: "players-guide/marketplace#upkeep--recovery"
+---
+id: "temple-healing"
+type: "service"
+name: "Temple healing"
+price: 50
+note: "restoration of an Attribute"
+source: "players-guide/marketplace#upkeep--recovery"
+---
+id: "rations"
+type: "item"
+name: "Rations"
+price: 10
+uses: 3
+source: "players-guide/marketplace#upkeep--recovery"
+---
+id: "animal-feed"
+type: "item"
+name: "Animal feed"
+price: 5
+size: "bulky"
+uses: 3
+source: "players-guide/marketplace#upkeep--recovery"
+---
+id: "hire-alchemist"
+type: "service"
+name: "Alchemist (hireling)"
+price: 30
+note: "per day"
+role: "Alchemist"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-court-scholar-sage"
+type: "service"
+name: "Court scholar / sage (hireling)"
+price: 20
+note: "per day"
+role: "Court scholar / sage"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-mage-for-hire"
+type: "service"
+name: "Mage-for-hire (hireling)"
+price: 20
+note: "per day"
+role: "Mage-for-hire"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-blacksmith"
+type: "service"
+name: "Blacksmith (hireling)"
+price: 15
+note: "per day"
+role: "Blacksmith"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-sellsword"
+type: "service"
+name: "Sellsword (hireling)"
+price: 10
+note: "per day"
+role: "Sellsword (bodyguard)"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-lockpick"
+type: "service"
+name: "Lockpick (hireling)"
+price: 10
+note: "per day"
+role: "Lockpick (thief)"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-navigator"
+type: "service"
+name: "Navigator (hireling)"
+price: 10
+note: "per day"
+role: "Navigator"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-veteran-housecarl"
+type: "service"
+name: "Veteran housecarl (hireling)"
+price: 20
+note: "per day"
+role: "Veteran housecarl (veteran bodyguard)"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-local-guide"
+type: "service"
+name: "Local guide (hireling)"
+price: 5
+note: "per day"
+role: "Local guide"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-stablehand"
+type: "service"
+name: "Stablehand (hireling)"
+price: 5
+note: "per day"
+role: "Stablehand (animal handler)"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-sailor"
+type: "service"
+name: "Sailor (hireling)"
+price: 5
+note: "per day"
+role: "Sailor"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-tracker-hunter"
+type: "service"
+name: "Tracker / hunter (hireling)"
+price: 5
+note: "per day"
+role: "Tracker / hunter"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "hire-trapper"
+type: "service"
+name: "Trapper (hireling)"
+price: 5
+note: "per day"
+role: "Trapper"
+source: "players-guide/marketplace#hirelings-per-day"
+---
+id: "antitoxin"
+type: "item"
+name: "Antitoxin"
+price: 20
+uses: 1
+note: "cures one venom"
+source: "players-guide/marketplace#gear"
+---
+id: "bandages"
+type: "item"
+name: "Bandages"
+price: 30
+uses: 3
+source: "players-guide/marketplace#gear"
+---
+id: "bathing-goods"
+type: "item"
+name: "Bathing goods"
+price: 5
+note: "soap, perfume, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "bedroll-and-outdoor-comfort"
+type: "item"
+name: "Bedroll & outdoor comfort"
+price: 10
+note: "blanket, hammock, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "book"
+type: "item"
+name: "Book"
+price: 50
+note: "blank or mundane"
+source: "players-guide/marketplace#gear"
+---
+id: "caltrops"
+type: "item"
+name: "Caltrops"
+price: 10
+source: "players-guide/marketplace#gear"
+---
+id: "chain"
+type: "item"
+name: "Chain"
+price: 10
+note: "10 ft"
+source: "players-guide/marketplace#gear"
+---
+id: "chalk"
+type: "item"
+name: "Chalk"
+price: 1
+size: "petty"
+source: "players-guide/marketplace#gear"
+---
+id: "chest"
+type: "item"
+name: "Chest"
+price: 25
+source: "players-guide/marketplace#gear"
+---
+id: "chisel"
+type: "item"
+name: "Chisel"
+price: 5
+source: "players-guide/marketplace#gear"
+---
+id: "climbing-gear"
+type: "item"
+name: "Climbing gear"
+price: 10
+note: "spikes, pulley, pitons"
+source: "players-guide/marketplace#gear"
+---
+id: "common-agents"
+type: "item"
+name: "Common agents"
+price: 10
+note: "glue, grease, pitch, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "common-tools"
+type: "item"
+name: "Common tools"
+price: 10
+note: "hammer, shovel, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "containers"
+type: "item"
+name: "Containers"
+price: 10
+note: "sack, waterskin, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "cooking-gear"
+type: "item"
+name: "Cooking gear"
+price: 10
+note: "pots, utensils, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "costume-gear"
+type: "item"
+name: "Costume gear"
+price: 15
+note: "face paint, disguise"
+source: "players-guide/marketplace#gear"
+---
+id: "fishing-rod"
+type: "item"
+name: "Fishing rod"
+price: 10
+source: "players-guide/marketplace#gear"
+---
+id: "grappling-hook"
+type: "item"
+name: "Grappling hook"
+price: 25
+source: "players-guide/marketplace#gear"
+---
+id: "lantern"
+type: "item"
+name: "Lantern"
+price: 10
+source: "players-guide/marketplace#gear"
+---
+id: "lockpicks"
+type: "item"
+name: "Lockpicks"
+price: 25
+note: "thieving tools; picks, metal file, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "lute"
+type: "item"
+name: "Lute"
+price: 10
+note: "simple instrument"
+source: "players-guide/marketplace#gear"
+---
+id: "drum"
+type: "item"
+name: "Drum"
+price: 10
+note: "simple instrument"
+source: "players-guide/marketplace#gear"
+---
+id: "flute"
+type: "item"
+name: "Flute"
+price: 10
+note: "simple instrument"
+source: "players-guide/marketplace#gear"
+---
+id: "mirror"
+type: "item"
+name: "Mirror"
+price: 5
+source: "players-guide/marketplace#gear"
+---
+id: "net"
+type: "item"
+name: "Net"
+price: 10
+source: "players-guide/marketplace#gear"
+---
+id: "oil-flask"
+type: "item"
+name: "Oil flask"
+price: 10
+uses: 6
+note: "refills a lantern"
+source: "players-guide/marketplace#gear"
+---
+id: "parchment-and-ink"
+type: "item"
+name: "Parchment & ink"
+price: 10
+uses: 3
+source: "players-guide/marketplace#gear"
+---
+id: "pole"
+type: "item"
+name: "Pole"
+price: 5
+note: "10 ft"
+source: "players-guide/marketplace#gear"
+---
+id: "repellent"
+type: "item"
+name: "Repellent"
+price: 10
+note: "frostbite-spider ward, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "rope"
+type: "item"
+name: "Rope"
+price: 5
+note: "25 ft"
+source: "players-guide/marketplace#gear"
+---
+id: "sedative"
+type: "item"
+name: "Sedative"
+price: 30
+source: "players-guide/marketplace#gear"
+---
+id: "sewing-kit"
+type: "item"
+name: "Sewing kit"
+price: 20
+source: "players-guide/marketplace#gear"
+---
+id: "spiked-boots"
+type: "item"
+name: "Spiked boots"
+price: 15
+note: "for ice"
+source: "players-guide/marketplace#gear"
+---
+id: "spyglass"
+type: "item"
+name: "Spyglass"
+price: 40
+source: "players-guide/marketplace#gear"
+---
+id: "tent"
+type: "item"
+name: "Tent"
+price: 20
+size: "bulky"
+note: "fits 2"
+source: "players-guide/marketplace#gear"
+---
+id: "torch"
+type: "item"
+name: "Torch"
+price: 5
+uses: 3
+source: "players-guide/marketplace#gear"
+---
+id: "trap"
+type: "item"
+name: "Trap"
+price: 35
+note: "d6 STR damage"
+damage: "d6"
+source: "players-guide/marketplace#gear"
+---
+id: "whistle"
+type: "item"
+name: "Whistle"
+price: 15
+size: "petty"
+source: "players-guide/marketplace#gear"
+---
+id: "wilderness-clothes"
+type: "item"
+name: "Wilderness clothes"
+price: 15
+size: "petty"
+note: "cloak, fur hood, etc."
+source: "players-guide/marketplace#gear"
+---
+id: "common-reagent"
+type: "item"
+name: "Common reagent"
+price: 5
+size: "petty"
+note: "blue mountain flower, lavender, mudcrab chitin, etc."
+source: "players-guide/marketplace#alchemy--soul-gems"
+---
+id: "uncommon-reagent"
+type: "item"
+name: "Uncommon reagent"
+price: 15
+size: "petty"
+note: "nightshade, deathbell, frost mirriam, etc."
+source: "players-guide/marketplace#alchemy--soul-gems"
+---
+id: "prized-reagent"
+type: "item"
+name: "Prized reagent"
+price: 50
+size: "petty"
+note: "giant's toe, salmon roe, daedra heart, etc."
+source: "players-guide/marketplace#alchemy--soul-gems"
+---
+id: "potion-of-healing"
+type: "item"
+name: "Potion of Healing"
+price: 30
+size: "petty"
+uses: 1
+note: "restores 1d6 STR"
+source: "players-guide/marketplace#alchemy--soul-gems"
+---
+id: "potion-of-greater-healing"
+type: "item"
+name: "Potion of Greater Healing"
+price: 80
+size: "petty"
+uses: 1
+note: "restores all lost STR"
+source: "players-guide/marketplace#alchemy--soul-gems"
+---
+id: "potion-of-cure-disease"
+type: "item"
+name: "Potion of Cure Disease"
+price: 20
+size: "petty"
+uses: 1
+note: "cures all mundane disease"
+source: "players-guide/marketplace#alchemy--soul-gems"
+---
+id: "potion-of-resist-fire"
+type: "item"
+name: "Potion of Resist Fire"
+price: 25
+size: "petty"
+uses: 1
+note: "for the rest of the scene, fire attacks against you are Impaired"
+source: "players-guide/marketplace#alchemy--soul-gems"
+---
+id: "potion-of-resist-frost"
+type: "item"
+name: "Potion of Resist Frost"
+price: 25
+size: "petty"
+uses: 1
+note: "for the rest of the scene, frost attacks against you are Impaired"
+source: "players-guide/marketplace#alchemy--soul-gems"
+---
+id: "potion-of-resist-shock"
+type: "item"
+name: "Potion of Resist Shock"
+price: 25
+size: "petty"
+uses: 1
+note: "for the rest of the scene, shock attacks against you are Impaired"
+source: "players-guide/marketplace#alchemy--soul-gems"
+---
+id: "coating-poison"
+type: "item"
+name: "Coating poison"
+price: 30
+uses: 3
+note: "the next hit with a coated weapon forces a STR save or 1d6 STR"
+source: "players-guide/marketplace#alchemy--soul-gems"
+---
+id: "empty-bottle"
+type: "item"
+name: "Empty bottle"
+price: 1
+size: "petty"
+source: "players-guide/marketplace#alchemy--soul-gems"
+---
+id: "petty-soul-gem"
+type: "item"
+name: "Petty soul gem"
+price: 40
+size: "petty"
+source: "players-guide/marketplace#alchemy--soul-gems"
+---
+id: "lesser-soul-gem"
+type: "item"
+name: "Lesser soul gem"
+price: 80
+size: "petty"
+source: "players-guide/marketplace#alchemy--soul-gems"
+---
+id: "common-soul-gem"
+type: "item"
+name: "Common soul gem"
+price: 150
+size: "petty"
+source: "players-guide/marketplace#alchemy--soul-gems"
+---
+id: "greater-soul-gem"
+type: "item"
+name: "Greater soul gem"
+price: 350
+size: "petty"
+source: "players-guide/marketplace#alchemy--soul-gems"
+---
+id: "grand-soul-gem"
+type: "item"
+name: "Grand soul gem"
+price: 500
+size: "petty"
+source: "players-guide/marketplace#alchemy--soul-gems"
+---
+id: "black-soul-gem"
+type: "item"
+name: "Black soul gem"
+price: 750
+size: "petty"
+note: "holds a sapient soul; taboo"
+source: "players-guide/marketplace#alchemy--soul-gems"

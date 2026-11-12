@@ -1,0 +1,7 @@
+id: role-lite
+name: Roles (test pack)
+kind: system
+version: 0.1.0
+description: A system whose people have a role of its own, beside core's role in the world.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

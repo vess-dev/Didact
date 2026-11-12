@@ -1,0 +1,141 @@
+# The lands of the frames, as lore: each comes up when play names it (hand-written from each
+# frame's own tone and place text; `source:` says where).
+lore: capital-wasteland
+keys: [capital wasteland, washington, d.c., potomac, wasteland of dc]
+content: >-
+  The ruins of Washington, D.C., two centuries on: bombed-out suburbs, dead monuments, the
+  Washington Monument visible from twenty miles off and missing half its capstone. Ghouls in
+  business suits, super mutants bellowing from the Mall, Galaxy News Radio the only good news.
+  Everything smells like iron and dust.
+source: campaigns/01-fallout-3#tone--touchstones; campaigns/01-fallout-3#the-place--capital-wasteland
+---
+lore: the-mojave
+keys: [mojave, new vegas, the strip, vegas]
+content: >-
+  A post-apocalyptic Western with a neon spine: big, dry, full of people with opinions about their
+  neighbors. The Strip is a pre-war casino still lit up like the bombs never fell. Every faction
+  thinks it's the reasonable one, and each should get to make its case.
+source: campaigns/02-fallout-new-vegas#tone--touchstones
+---
+lore: the-commonwealth
+keys: [commonwealth, boston, diamond city, goodneighbor, glowing sea]
+content: >-
+  Ruined Boston: colonial New England, red brick and sea-spray, the Green Monster still standing
+  over Diamond City in Fenway Park. Four factions fight over the scraps: the Minutemen, the
+  Brotherhood of Steel, the Railroad and the Institute. The Glowing Sea is its most radioactive
+  place.
+source: campaigns/03-fallout-4#tone--touchstones; campaigns/03-fallout-4#pitch; campaigns/03-fallout-4#plot-beats
+---
+lore: appalachia
+keys: [appalachia, west virginia, savage divide, ash heap, the mire, cranberry bog, toxic valley]
+content: >-
+  West Virginia's hills came through the bombs better than most places; the people did not come
+  through what came after. Six regions: the Forest, the Toxic Valley, the Savage Divide, the Ash
+  Heap, the Mire and the Cranberry Bog. By Reclamation Day its factions are all dead; a year later
+  strangers come over the mountains.
+source: campaigns/17-fallout-76#pitch; campaigns/17-fallout-76#the-place--appalachia; campaigns/18-wastelanders#pitch
+---
+lore: the-pitt
+keys: [the pitt, pittsburgh]
+content: >-
+  Pittsburgh survived the war and wishes it hadn't: a walled steel city run by raiders, where slaves
+  forge the weapons that keep them enslaved and slowly become trogs. Lord Ashur rules from Haven;
+  the way in is a one-way rail tunnel from the Capital Wasteland.
+source: campaigns/05-the-pitt#pitch; campaigns/05-the-pitt#tone--touchstones; campaigns/05-the-pitt#arrival
+---
+lore: point-lookout
+keys: [point lookout, punga]
+content: >-
+  A half-sunken Maryland swamp resort: punga farmers, swampfolk, a ghoul spy and a pre-war brain
+  in a jar locked in a two-hundred-year feud. Humidity, rot, pollen that coats everything, and
+  every drink is drugged. The ferry is the Duchess Gambit.
+source: campaigns/07-point-lookout#pitch; campaigns/07-point-lookout#tone--touchstones
+---
+lore: anchorage
+keys: [anchorage, operation anchorage, crimson dragoons]
+content: >-
+  The liberation of Alaska in 2077, reconstructed as a pre-war combat simulation in a Brotherhood
+  Outcast bunker: jingoistic propaganda slowly coming apart at the seams, a sky that never clouds,
+  an enemy who speaks villain-lines. Wounds in the sim are not real.
+source: campaigns/04-operation-anchorage#tone--touchstones; campaigns/04-operation-anchorage#the-place--anchorage-reclamation
+---
+lore: mothership-zeta
+keys: [mothership zeta, zeta]
+content: >-
+  An alien cruiser in low orbit whose beam takes the curious from a crash site in the Capital
+  Wasteland: a single-direction dungeon of blinking consoles and cold blue light, where humans
+  from five centuries wake angry and don't understand each other either.
+source: campaigns/08-mothership-zeta#pitch; campaigns/08-mothership-zeta#tone--touchstones
+---
+lore: sierra-madre
+keys: [sierra madre, the cloud, red cloud, ghost people]
+content: >-
+  A casino that never opened, its grand gala still scheduled, holograms patrolling the red fog,
+  gold the weight of a dead man in its vault. Its theme is letting go: every soul there is
+  strangled by something it can't release.
+source: campaigns/09-dead-money#pitch; campaigns/09-dead-money#tone--touchstones
+---
+lore: zion
+keys: [zion, zion canyon]
+content: >-
+  The most beautiful place in the wasteland: sky, silence, red rock. A western parable with
+  scripture running through it, where a missionary and a burned soldier fight different wars for
+  the same tribes.
+source: campaigns/10-honest-hearts#pitch; campaigns/10-honest-hearts#tone--touchstones
+---
+lore: big-mt
+keys: [big mt, big mountain, think tank]
+content: >-
+  A pre-war science crater full of labs, robotic horrors and experimental weapons, run by the Think
+  Tank, five floating brain-panels who have forgotten they are dead. Absurdist retrofuturist horror
+  played for laughs until it isn't.
+source: campaigns/11-old-world-blues#pitch; campaigns/11-old-world-blues#tone--touchstones
+---
+lore: the-divide
+keys: [the divide, divide, marked men]
+content: >-
+  A cracked, dust-choked no-man's-land west of the Mojave, built on the bones of a community a
+  courier buried without knowing it: a brown sky, wind that never stops, a radio that never stops
+  broadcasting, and two more missiles waiting for a target.
+source: campaigns/12-lonesome-road#pitch; campaigns/12-lonesome-road#tone--touchstones; campaigns/12-lonesome-road#the-place--the-divide
+---
+lore: far-harbor-island
+keys: [far harbor, the island, the fog]
+content: >-
+  An island off the Maine coast, north of the Commonwealth, bathed in a radioactive fog that crawls
+  off the sea and rewrites the land. Fishermen, a hidden synth refuge and a Children of Atom
+  fortress hate each other, and the fog is winning.
+source: campaigns/14-far-harbor#pitch; campaigns/14-far-harbor#tone--touchstones
+---
+lore: vault-88
+keys: [vault 88]
+content: >-
+  Vault-Tec's unfinished vault on the south edge of the Commonwealth, never sealed and never
+  populated: an unfinished concrete cathedral where its pre-war Overseer, two centuries a ghoul,
+  waits to run her overdue experiments on living subjects.
+source: campaigns/15-vault-tec-workshop#pitch; campaigns/15-vault-tec-workshop#arrival
+---
+lore: nuka-world
+keys: [nuka-world, nuka world]
+content: >-
+  A pre-war Nuka-Cola family resort run by three raider gangs: neon and gore, a place built to
+  sell sugar water to children, still playing the jingles. The Overboss's seat is about to be
+  vacant.
+source: campaigns/16-nuka-world#pitch; campaigns/16-nuka-world#tone--touchstones
+---
+lore: skyline-valley
+keys: [skyline valley, the storm, shenandoah]
+content: >-
+  Shenandoah National Park under a storm that never clears, south of the Savage Divide: lightning
+  on the ridges, the Lost on the overlooks, and a blind overseer who learned to see by lightning
+  beneath the manor on the hill. Southern Gothic in a thunderstorm.
+source: campaigns/20-skyline-valley#pitch; campaigns/20-skyline-valley#tone--touchstones
+---
+lore: atlantic-city
+keys: [atlantic city, acee, pine barrens, casino quarter, boardwalk]
+content: >-
+  "Acee", the boardwalk town on the Jersey shore the war spared from a direct hit. The floods
+  drowned its center to the second floor, but the Casino Quarter stayed dry, and three powers hold
+  each other off by treaty. Mob noir on a drowned boardwalk; the Jersey Devil nests in the Pine
+  Barrens.
+source: campaigns/21-atlantic-city#pitch; campaigns/21-atlantic-city#tone--touchstones

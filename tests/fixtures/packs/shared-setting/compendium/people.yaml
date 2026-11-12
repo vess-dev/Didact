@@ -1,0 +1,22 @@
+# A top-level key goes where `set` puts it: a field of the system's sheet if it has one. What an
+# entry's own block says stands, and then the top-level key keeps its core meaning.
+- id: bram
+  type: npc
+  name: Bram
+  tags: [park, cast]
+  role: head of the dockers
+  mechanics:
+    role-lite: {role: brute, hp: 4}
+    mini-system: {hp: "roll 1d6", STR: 12}
+- id: nell
+  type: npc
+  name: Nell
+  tags: [park, cast]
+  role: tactician
+- id: gil
+  type: npc
+  name: Gil
+  tags: [dam, cast]
+  fields: {role: "the mayor's right hand"}
+  mechanics:
+    absent-lite: {hp: 2}

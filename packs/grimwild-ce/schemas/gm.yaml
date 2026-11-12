@@ -1,0 +1,27 @@
+# The GM's kit: arcana (magic items, pp. 39-43, 196-201) and combat roles (p. 110-111).
+type: arcana
+label: Arcana
+fields:
+  tier: {kind: enum, values: [trivial, minor, major, mythic], help: "Trivial is only for expendables (a single minor effect)."}
+  expendable: {kind: flag, default: false, help: "Used once (potions, scrolls): its effect is a tier higher (p. 40)."}
+  palette: {kind: list, help: "Its colors."}
+  touchstones: {kind: list, help: "A function (attack, enhance, hinder, influence, protect, restore, reveal, summon, transform, traverse) and two themed words."}
+  pool: {kind: int, min: 0, help: "Its power pool in dice, if it has one (reset each session)."}
+  sensories: {kind: list, help: "What its magic looks, sounds and feels like, then how it comes into the scene."}
+  activation: {kind: text, help: "How it's used."}
+guidance: >-
+  Arcana: an idea and its origin, a function plus two touchstones, a tier by magical impact
+  (minor: small effects, often a 2d pool; major: potent, often a 4d pool or one potent effect
+  a session; mythic: quest-worthy, 6d pools, all functions), a form that fits, and a
+  description of how the magic shows in the fiction. Expendables (potions, scrolls) work once
+  at a tier higher: trivial gives a single minor effect, minor a single potent effect, major
+  a ritual's effects, mythic is a plot device.
+---
+type: role
+label: Combat role
+fields:
+  traits: {kind: list, help: "Two strengths and a weakness."}
+  moves: {kind: list, help: "One offensive, one defensive, one utility."}
+  trigger: {kind: text, help: "The worst case the role meets: 'When its cover is blown, it…'"}
+  table: {kind: text, help: "The id of its d6 table of responses."}
+guidance: "A role (brute, lurker, …) plus a tier tells a foe how to fight."

@@ -1,0 +1,276 @@
+# Rule reminders: they come up when play mentions their keys (system scope, every Fallout 2e game).
+# The first 26 replace the parent's of the same ids, so no Cairn reminder speaks in a Fallout game;
+# the rest are Fallout's own.
+lore: warden-principles
+title: Principles for Overseers
+kind: preference
+constant: true
+priority: 90
+content: >-
+  Fallout 2e Overseer: information is free (no rolls to notice the obvious; answer honestly: if
+  the barrel is ticking, say so); default to realism and context over numbers; saves only when
+  risky and uncertain, and fail-forward is always valid; telegraph every danger (a minefield is
+  described before it's crossed, a hot zone reads on a Geiger counter); NPCs remember every favor
+  and insult, and nobody wants to die (even raiders flee, even mutants bargain); loot tells a
+  story; force the choice ("So — A or B?"); death is never a gotcha. When a rule and the fiction
+  disagree, the fiction usually wins.
+source: players-guide/overview-and-principles#principles-for-overseers
+---
+lore: saves-reminder
+keys: [save, risky, risk]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e saves: d20 at or under STR, DEX or WIL; 1 always succeeds, 20 always fails (`didact do save who=… attr=…`). Pass/fail only: no steps easier or harder, but \"save counts as attribute +N\" (bonus=N), a re-roll, an automatic pass or fail. The side more at risk rolls; a group, the worst attribute. Untrained in power armor, every DEX save fails."
+source: players-guide/core-rules#saves
+---
+lore: first-round
+keys: [ambush, combat starts, fight breaks out, initiative]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e's first round: each PC saves DEX to act (failure loses the turn; items, abilities, Turbo or the fiction may bypass it; a Panicked PC doesn't act); then enemies act. After that sides alternate, PCs first, each side's results simultaneous. A turn is about 40 ft of movement and one action."
+source: players-guide/core-rules#rounds
+---
+lore: attack-reminder
+keys: [attack, strike, stab, shoot, hit, fire at]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e attacks always hit: the weapon die, minus Armor, off HP (`didact do attack` / `combat hit`). Several attackers or two weapons (the book's d8+d8): weapon='{d8, d8}kh1'. Impaired: d4 whatever the weapon (bad cover, long range, called shots, unbraced heavy weapons, a Panicked attacker); Enhanced: d12, never worse than the weapon's own dice; both cancel. Unarmed is d4. Blast rolls per target. Ignoring Armor: pierce=N."
+source: players-guide/core-rules#attacking--damage
+---
+lore: armor-cap
+keys: [armor, helmet, shield, combat armor, leather]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e Armor never goes above 3. Helmets and shields add +1 only while worn or held: stowed in the backpack they don't count (`didact inv move <pc> 'Riot shield' backpack`). Power armor is always 3, bulky, loud."
+source: players-guide/core-rules#armor
+---
+lore: critical-reminder
+keys: [critical damage, dying, bleeding out, bandage, bandages, stimpak]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e Critical Damage: damage past 0 HP comes off STR, then a STR save at the new score. A PC who fails can only crawl and gasp; Bandages or a Stimpak stabilize them (`didact do stabilize who=…`), untreated they die within the hour. NPCs who fail die at the Overseer's discretion; the attacker's own Critical Damage effect happens too. Buffout makes a PC immune for a scene."
+source: players-guide/core-rules#critical-damage
+---
+lore: scar-reminder
+keys: [scar, scars]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e Scars: when an attack takes a PC to exactly 0 HP, the HP lost picks the Scar (Close Shave … Doomed) and it applies at once (the attack runs `didact do scar who=… lost=N`). Wounds that heal later are conditions: `didact do scar-heal who=… scar=broken-leg` when they do (a long rest heals Flung Clear, Crippled and Bleeding Out). Deathclaws never take Severed or Bleeding Out."
+source: players-guide/core-rules#scars
+---
+lore: inventory-reminder
+keys: [inventory, slots, bulky, petty, backpack, carry, caps, purse]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e inventory: 10 slots (an Eyebot 6): about four at hand (body), the Backpack's six. Bulky items take 2, petty none; Rads, Fatigue and Scrap (5 a slot) fill slots too. A full inventory drops HP to 0, and no one carries more. Caps under 100 are petty: after they change, `didact do coins who=…`. A pack brahmin or vehicle carries its own load."
+source: players-guide/character-creation#4-inventory
+---
+lore: fatigue-reminder
+keys: [fatigue, exhausted, exhaustion, tired]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e Fatigue is strain that isn't radiological: it fills a slot until a full night's safe sleep (a robot's hour of diagnostics) (`didact do fatigue who=…`). No free slot? Drop an item first. It comes from Super Stimpaks, addiction and alcohol mornings, lost sleep, foul weather, long deprivation. It never clears Rads, and Rads never clear it."
+source: players-guide/core-rules#fatigue
+---
+lore: deprivation-reminder
+keys: [deprived, hungry, starving, thirsty, sleepless, no sleep]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e deprivation: missing food, clean water or sleep makes a character Deprived: no HP or attributes recovered, no Rads or Fatigue cleared, by any means, chems and clinics included (a Stimpak or a bandage still stabilizes), and a Fatigue for each day past the first. Count each day with `didact do deprive who=… need=food`; `didact do relieve who=…` when it's met. Robots are never Deprived of food, water or sleep."
+source: players-guide/core-rules#deprivation--rads
+---
+lore: light-reminder
+keys: [torch, flashlight, lantern, light, darkness, dark]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e light: flashlights, torches and helmet lamps light about 40 ft. A torch has 3 uses; a flashlight or lantern runs on a fusion cell or oil flask (6 uses). Without light a character may panic until it's remedied."
+source: players-guide/procedures#light
+---
+lore: panic-reminder
+keys: [panic, panicked, surrounded, terrified]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e panic: surrounded, cornered, pitch dark, face to face with a deathclaw: a WIL save (`didact do panic who=…`) or Panicked: 0 HP, no action in the first round, every attack Impaired. Shaking it off takes a WIL save as an action (`didact do steady who=…`)."
+source: players-guide/procedures#panic
+---
+lore: spell-reminder
+keys: [spell, spellbook, cast, casting, magazine, perk, perks]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e has no spells. Perk Magazines are its perks: a magazine takes a slot; reading it takes a turn somewhere safe and quiet (not in combat, not Deprived) and consumes the copy for its one reader, who gains the perk in one of five Perk Slots, swapping one out when full (`didact do read-magazine who=… magazine=… swap=…`)."
+source: overseers-guide/perk-magazines#rules
+---
+lore: relic-reminder
+keys: [relic, relics, charges, recharge, bobblehead]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e relics are unique pre-war items: using one costs nothing (no Fatigue, no Rads) unless its entry says so; most have charges and a Recharge condition (`didact inv use` / `inv recharge`). At most one a session. A PC carries one bobblehead at a time."
+source: overseers-guide/relics#pre-war-relics
+---
+lore: morale-reminder
+keys: [flee, morale, rout, surrender, casualty]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e Morale: enemies save WIL at their first casualty and when half their number is down (`didact do morale who=… leader=… or wil=…` for groups that use a leader's WIL); lone enemies at 0 HP. PCs never test Morale; hirelings do (a well-paid gunhand still flees a deathclaw)."
+source: players-guide/core-rules#morale
+---
+lore: travel-reminder
+keys: [travel, journey, highway, trail, wastes, lost]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e travel: three watches a day. Old highway +0 (never lost), beaten trail +1 (lost 2-in-6), open wastes +2 (lost 3-in-6); distance short +1, medium +2, long +3; tough terrain +1, perilous +2; very vast stretches up to +2; sleepless, the terrain a step harder; vehicles erase penalties per fuel use (`didact do travel-time … speed=Fast fuel=1`). A Pip-Boy's wearer never gets lost on ground they've walked."
+source: players-guide/procedures#travel-time
+---
+lore: weather-reminder
+keys: [weather, storm, rad storm, rad-rain, dust storm, blizzard]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e weather: roll each day for the season (`didact do weather season=… hot_zone=…`); Extreme twice in a row turns Catastrophic. Dusty or Harsh: a Fatigue or +1 watch; Stormy: the same and terrain a step harder; Extreme: both. Stormy or worse over a hot zone is rad weather: its Fatigue is a Rad instead. Cold or Hot without shelter: Deprived after a watch (`didact do exposure`)."
+source: players-guide/procedures#weather
+---
+lore: camp-reminder
+keys: [camp, make camp, sleep, night watch]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e camp: the last watch of the day. Each PC (and mount) eats a Ration; a watch rotation is set; a full night's safe sleep clears all Fatigue, never Rads (`didact do make-camp who=…`). Skipping sleep: a Fatigue each and Deprived, and terrain a step harder (`didact do skip-camp who=…`). Robots run an hour of diagnostics instead."
+source: players-guide/procedures#make-camp
+---
+lore: hireling-reminder
+keys: [hireling, hirelings, hire, mercenary, gunhand]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e hirelings are paid help (Marketplace rates, 4–30 caps a day) who walk away when the pay stops: 3d6 attributes, 1d6 HP, gear for their trade, some traits (`didact char new hireling`, or `hireling-background`). They take Morale saves; no Loyalty, no Command, no growth."
+source: players-guide/core-rules#hirelings
+---
+lore: detachment-reminder
+keys: [detachment, horde, gang, warband, squad]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e detachments: a large group of similar fighters as one stat block. Individuals' attacks against it are Impaired (blast excepted); its attacks against individuals are Enhanced and blast. Critical Damage routs or breaks it; 0 STR destroys it. Groups of three or more raiders, ferals or mole rats usually are one."
+source: players-guide/core-rules#detachments
+---
+lore: retreat-reminder
+keys: [retreat, run away, escape, flee the fight]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e retreat: breaking off a fight takes a DEX save and a direction to run toward; no save, no escape (`didact do retreat who=…`)."
+source: players-guide/core-rules#retreat
+---
+lore: rest-reminder
+keys: [rest, catch their breath, short rest, long rest, recover, doctor, clinic]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e rest: a short rest (a few minutes, clean water) restores all HP (`didact do rest who=…`), unless Deprived, Panicked or carrying a full load. A long rest (a week, usually with a doc, a chem or an auto-doc) restores attributes and brings the ghoulification roll at three Rad Scars (`didact do recover who=…`). A clinic visit (80 caps) restores STR and flushes every Rad (`didact do clinic`). No rest ever clears Rads."
+source: players-guide/core-rules#time-units--rest
+---
+lore: growth-reminder
+keys: [growth, grow, advance, level up, experience, xp, training]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e growth: no XP, no levels. Characters grow through Scars (the attack applies them), Training (a technique from a Master at a Cost, in Downtime: `didact char advance <pc> how=training`) and Acquisition (every relic, perk, item and ally kept). Every session should give a chance to come out with something new."
+source: overseers-guide/growth#three-paths-of-growth
+---
+lore: bonds-omens-reminder
+keys: [bond, bonds, omen, omens, resolve]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e Bonds and Omens are threads (`didact quest list`). A Bond implies a place, a person or faction and a timer: untouched for three sessions, activate it. An Omen is the campaign's slow pulse: show one small piece of evidence every session. `didact do resolve-bond who=… bond=<thread>`, `didact do resolve-omen omen=<thread>`."
+source: overseers-guide/bonds-and-omens#bonds
+---
+lore: downtime-reminder
+keys: [downtime, research, milestone, milestones, between sessions, scavenge]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e downtime: one action at a time, somewhere safe, not in recovery. Research, training, strengthening ties (`didact do downtime who=… action=… goal=… caps=… size=<1-5>`: the goal's Milestones tracker is made the first time), scavenging a mapped ruin (`didact do scavenge`), crafting a recipe (`didact do craft`), curing an addiction (`didact do cure-addiction`). Milestones 1–5, each with a Cost."
+source: players-guide/procedures#downtime
+---
+lore: mount-reminder
+keys: [brahmin, horse, wagon, cart, mount, pack animal, motorbike, vehicle, car]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e transport: a pack brahmin carries 6 slots (Slow), a brahmin wagon 4 passengers and 8 slots, a riding horse a rider and 4 slots (Standard), a motorbike a rider, a pillion and 3 slots (Fast, gasoline). Each is a record holding its own load (`didact spawn pack-brahmin`, then `didact inv add <it> Rope`). Vehicles: Frame HP / Armor / Capacity / Fuel / Speed Tier (`didact do drive`, `crash`, `field-patch`)."
+source: players-guide/vehicles#vehicle-list
+---
+lore: rads-reminder
+keys: [rad, rads, radiation, irradiated, hot zone, glowing, radaway, rad-x]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e Rads: each fills a slot and calls for a Rad Scar save (1d20 at or under 20 − current Rads; several at once are added first, then saved one by one); the sheet rolls it by itself (`didact do rad who=… source=…`). Ambient zones: 1 Rad a watch; hot zones +1 a scene (`didact do rad-zone`). Only RadAway, clinics, purifiers and specific chems, meals, perks, relics or abilities clear them (`didact do clear-rads`), never rest. NPCs lose 1 STR instead; robots and super mutants take none."
+source: players-guide/core-rules#deprivation--rads
+---
+lore: ghoul-reminder
+keys: [ghoul, ghoulify, ghoulification, feral, rad scar, rad scars]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e Rad Scars are permanent (1–10 Minor, 11–20 Major). At three (Ghoul-Kissed counts two), the next long rest rolls 1d6: 1–3 ghoulify, 4–5 resist (the next one sticks), 6 break bad, feral (`didact do ghoulify who=…`; choose=true from two). Ghouls roll no Rad Scars, but a full day at six or more Rads risks ferality at the next watch (`didact do feral-check`)."
+source: players-guide/core-rules#rad-scars--ghoulification
+---
+lore: addiction-reminder
+keys: [addicted, addiction, withdrawal, chem, chems, jet, psycho, buffout, mentats, med-x]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e chems are petty, consumed on use, never cause Rads (`didact do chem who=… chem=…`). Every dose of an addictive one forces a STR save (Ultrajet's at STR −2): fail, addicted, and a Fatigue each morning until the next dose; addictions stack. Cures: Addictol / Fixer, or the Cure an Addiction Downtime (50 caps at a clinic, or a week with a companion; then a WIL save). Robots get nothing from chems; super mutants never get hooked. While Deprived a chem heals nothing; a Stimpak still stabilizes."
+source: players-guide/core-rules#addiction
+---
+lore: power-armor-reminder
+keys: [power armor, t-45, t-51, t-60, x-01, fusion core]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e power armor: 3 Armor, bulky, loud, a fusion core (a week of light wear, a day of combat). Untrained (all but Brotherhood Initiates, Outcasts and Enclave Defectors, or Downtime training), every DEX save fails. No sneaking, sprinting, climbing or swimming; the servos brace heavy weapons; sealed and powered it halves ambient Rads (X-01 negates them). Robots never wear it."
+source: players-guide/core-rules#power-armor
+---
+lore: heavy-weapons-reminder
+keys: [heavy weapon, minigun, missile launcher, fat man, gatling, flamer, braced, brace]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e heavy weapons must be braced (a wall, the ground, a bipod, power armor servos): fired unbraced or on the move they're Impaired (`didact do attack … heavy=true braced=true`). The Heavy Gunner perk, the Gunner's Heavy Weapons Cert, a super mutant and a trained wearer in a fueled suit need no brace. Called shots are Impaired, and the narrative effect applies on a hit (called=true)."
+source: players-guide/core-rules#heavy-weapons
+---
+lore: scrap-reminder
+keys: [scrap, salvage, craft, crafting, workbench, mod, mods]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e Scrap is a number on the sheet, 5 to a slot (`didact do scrap who=… source=scavenge|heap|wreck|breakdown|buy|sell`). Crafting is one recipe a Downtime Action at its station, paid in Scrap and caps (`didact do craft who=… recipe=…`; `didact table show recipes`); repairs are 1 Scrap and half the item's value (`didact do repair`)."
+source: players-guide/crafting#scrap
+---
+lore: companion-reminder
+keys: [companion, companions, loyalty, command, dog, dogmeat]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e companions travel for reasons beyond caps: one active per PC. Loyalty 1 Wary to 5 True, 3 to start (`didact do loyalty companion=… shift=±1`); a robot has a Directive instead. Once per combat its PC may spend their action on Command: a clean action with Enhanced damage or a re-rolled save (`didact do command who=… companion=…`). A dying companion saves Critical Damage like a PC."
+source: players-guide/companions#companions
+---
+lore: reputation-reminder
+keys: [reputation, faction, brotherhood, ncr, legion, enclave, institute, railroad, minutemen]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e faction reputation runs −2 Vilified to +2 Idolized for the party, one step at a time when an action is witnessed, reported or proven (`didact do reputation who=<faction> shift=±1 why='…'`). Opposed pairs move together: NCR ↔ Legion, Brotherhood ↔ Enclave, Railroad ↔ Institute, Minutemen ↔ Raiders. Idolized gives one meaningful favor a session."
+source: overseers-guide/faction-reputation#the-ladder
+---
+lore: karma-reminder
+keys: [karma, reputation with strangers, infamous, honored, messiah]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e Party Karma runs −3 Hated to +3 Messiah: at most one step a session, for public acts only; fights with ferals, raiders, slavers and bandits don't count (`didact do karma party=… shift=±1 why='…'`). Strangers' Reaction rolls add it (`didact do reaction who=… party=…`)."
+source: overseers-guide/party-karma#the-ladder
+---
+lore: settlement-reminder
+keys: [settlement, settlements, raid, building, buildings, population, defense, industry]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e settlements: Population, Defense, Industry, 1 to 5 (a new one 1/1/1), and eight building slots (`didact gen run fallout-2e.settlement`; `didact do build`, 200–600 caps and a Downtime Action each). Filled slots past Population × 2 go dark each season (`didact do upkeep`). Raids come about once a season at Defense 1, once a year at Defense 5 (`didact do raid`)."
+source: overseers-guide/settlements#settlements
+---
+lore: hazard-reminder
+keys: [fall, falling, drown, drowning, fire, burning, electrocution, gas, venom, poison, explosion]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e hazards hit an attribute, not HP: falling 1d6 STR per full 10 ft (DEX save halves: `didact do fall`), drowning after three rounds (`drown`), fire 1d4 STR a round (`fire`), electrocution 1d6 STR and a DEX save (`electrocution`), venom (`venom`), gas 1 WIL a round (`gas`), a near explosion (`explosion`). Armor helps only when it would. Call a hazard save only when the fiction raised the stakes, and telegraph it first."
+source: players-guide/hazards#hazards
+---
+lore: unusual-reminder
+keys: [robot, super mutant, synth, deathclaw, zetan, unusual pc]
+kind: rule-reminder
+recursive: false
+content: "Fallout 2e unusual PCs: robots need no food, water, sleep or breath, take no Rads and no chems, and are fixed by mechanics, not doctors; super mutants take no Rads, can't be addicted, heal 1d4 from a Stimpak; ghouls roll no Rad Scars; deathclaws have 2 natural Armor, no Stimpaks, no Severed or Bleeding Out; Zetans' first meetings go a step worse. The sheet's `kind` and `immunities` say which; put the edge and the cost on the table equally often."
+source: players-guide/unusual-pcs#playing-unusual-pcs

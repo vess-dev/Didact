@@ -1,0 +1,14 @@
+procedure: level-up
+title: Level up
+help: One more level; roll the class's hit die for more max HP.
+params: {who: ref}
+steps:
+  - roll: "if(@who.class == 'fighter', 1d10, 1d6)"
+    as: gain
+  - set: who.level
+    op: "+="
+    value: 1
+  - set: who.hp.max
+    op: "+="
+    value: "@gain"
+  - message: "{@who.name} reaches level {@who.level}: +{@gain} max HP."

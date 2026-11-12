@@ -1,0 +1,67 @@
+# --- Python / uv -------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# --- Tool caches -------------------------------------------------------------
+.mypy_cache/
+.pyright/
+.ruff_cache/
+.pytest_cache/
+.hypothesis/
+.coverage
+.coverage.*
+htmlcov/
+
+# --- Editors / OS ------------------------------------------------------------
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# --- Local secrets and machine-specific settings -----------------------------
+.env
+.env.*
+.claude/settings.local.json
+
+# --- Didact runtime data -----------------------------------------------------
+# Play data lives in $DIDACT_HOME (default ~/Documents/DidactLibrary) and the
+# search index in the OS cache dir; these guard against a data home or index
+# created inside the repo by accident.
+/library/
+/.didact/
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+*.didactpack
+# `didact pack build` output, rebuilt on demand
+.build/
+
+# --- Scratch work (never part of Didact) -------------------------------------
+/Temp/
+
+# --- Packs: private unless listed ---------------------------------------------
+# A pack folder is only published when it's listed here. Packs made from books
+# you own, or anything else not licensed for sharing, stay local.
+/packs/*
+!/packs/core/
+!/packs/cairn-2e/
+!/packs/cairn-2e-vald/
+!/packs/elder-scrolls-2e/
+!/packs/elder-scrolls-skyrim/
+!/packs/fallout-2e/
+!/packs/fallout-wasteland/
+!/packs/grimwild-ce/
+!/packs/grimfall/
+!/packs/grimscrolls/
+# their .didactpack files, installed from the Library page (`make packs` rebuilds them)
+!/packs/*.didactpack
+!/packs/index.json
+# a private pack's tests stay private with it
+/tests/test_mythic.py

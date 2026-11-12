@@ -1,0 +1,12 @@
+chargen: pc
+title: Year Zero character (point buy)
+creates: pc
+modes: [random, guided]
+steps:
+  - point_buy:
+      fields: [strength, agility]
+      budget: 7
+      costs: {1: 1, 2: 2, 3: 3, 4: 4, 5: 5}
+      default: [4, 3]
+      as: attributes
+  - name: {from: [Bea, Hask, Oden, Rune, Tove]}

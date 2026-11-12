@@ -1,0 +1,20 @@
+table: trinket-kinds
+title: Trinket kinds
+dice: d4
+entries:
+  1-2: {text: "A ring: roll on Rings", data: {kind: rings}, then: [{table: rings}]}
+  3-4: {text: "An amulet: roll on Amulets", data: {kind: amulets}, then: [{table: amulets}]}
+---
+table: rings
+title: Rings
+dice: d2
+entries:
+  1: {text: Ring of the Hunt, data: {id: ring-of-the-hunt}}
+  2: {text: Ring of the Moon, data: {id: ring-of-the-moon}}
+---
+table: amulets
+title: Amulets
+dice: d2
+entries:
+  1: {text: Amulet of Kings, data: {id: amulet-of-kings}}
+  2: {text: Stamina Amulet, data: {id: stamina-amulet}}

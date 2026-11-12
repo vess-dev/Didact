@@ -1,0 +1,11 @@
+oracle: yes-no
+title: Yes/no oracle
+help: >-
+  Ask a question the fiction can't answer yet. The answer is yes or no, and sometimes
+  "and" (more so) or "but" (with a catch). One time in six, something unexpected comes too.
+ask: yes-no
+odds: [very-unlikely, unlikely, even, likely, very-likely]
+meaning: [action, theme]
+prompt: >-
+  Read the answer in the fiction: what does it mean right now, for whom? If a twist came up,
+  fold the meaning words into it.

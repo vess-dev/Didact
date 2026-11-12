@@ -1,0 +1,26 @@
+# A random potion (Potions and Other Expendables, p. 202): three words from the touchstones grid,
+# two of them kept, a fitting function as the last touchstone, and four qualities (4d, one die
+# for each column). It's a minor, single-use arcana: used once, it produces a single potent effect
+# (expendables work a tier higher, p. 40).
+generator: potion
+title: A potion
+help: >-
+  A random potion, step by step: three words from the touchstones grid (keep two, discard the
+  third), a fitting function as the last touchstone, its qualities ("It's a ___ ___ with ___
+  ___ inside") and a name. A minor, single-use arcana: used once, a single potent effect.
+  Prefill by name: words, touchstones, function, qualities, name.
+source: "p. 202"
+creates: arcana
+steps:
+  - if: "@option.magic == 'none'"
+    then:
+      - stop: "No magic (an option): there's no arcana in this world."
+  - choose_or_roll: {table: potion-touchstones, as: words, prompt: "three words from the grid"}
+  - choose_or_roll: {from: "@words.words", as: touchstones, count: 2, field: touchstones, prompt: "keep two as its touchstones, discarding the third"}
+  - choose_or_roll: {table: potion-functions, as: function, prompt: "a fitting function: its last touchstone"}
+  - add: {field: touchstones, value: "@function.id"}
+  - table: potion-qualities
+    as: qualities
+  - apply: {tier: minor, expendable: true, sensories: ["@qualities"]}
+  - name: {prompt: "a name for the potion ({@function.id}: {@touchstones})"}
+  - prompt: "What does its single potent effect do in the fiction? Its touchstones are {@touchstones}."

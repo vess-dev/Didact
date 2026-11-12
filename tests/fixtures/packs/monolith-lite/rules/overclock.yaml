@@ -1,0 +1,15 @@
+action: overclock
+title: Overclocked shot
+help: Fire an overclocked weapon. On its highest face, the die steps up for good (d6 → d8 → d10 → d12).
+params: {wielder: ref, weapon: ref, target: ref}
+steps:
+  - roll: "step(d6, @weapon.steps)"
+    as: shot
+  - if: "'max' in @shot.flags and @weapon.steps < 3"
+    then:
+      - set: weapon.steps
+        op: "+="
+        value: 1
+      - message: "{@weapon.name} overclocks: its die steps up."
+  - do: attack
+    with: {attacker: "@wielder", target: "@target", weapon: "@shot"}

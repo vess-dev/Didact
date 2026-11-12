@@ -1,0 +1,8 @@
+chargen: pc
+title: A scavenger
+creates: pc
+modes: [random, guided]
+steps:
+  - roll_tables: [blade-cache]
+  - name: {from: [Hal]}
+  - ask: {as: oath, prompt: "an oath", field: goal}

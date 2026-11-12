@@ -1,0 +1,25 @@
+---
+id: faction-reputation-the-tracked-factions
+title: "The Tracked Factions"
+tags: [faction, reputation]
+source: wardens-guide/faction-reputation#the-tracked-factions
+---
+These are the factions worth keeping a ledger on. Most have no formal rank a player climbs — standing is the relationship itself. One line each on what they want and how they treat an outsider who comes knocking.
+
+- **The Companions** — warriors-for-hire out of Jorrvaskr in Whiterun, heirs to Ysgramor's old band; they want honest work, a good fight, and to keep the secret that their inner Circle runs with wolves. They take all comers who can swing a blade, and judge you by your nerve, not your name.
+- **The College of Winterhold** — Skyrim's lone sanctuary for the magical arts, resolutely independent, tolerating even necromancy in the name of study; they want knowledge and to be left alone by the Nords who hate them. They welcome anyone who can prove a spell, and care nothing for race or politics.
+- **The Thieves Guild** — the Children of the Shadows under the Ragged Flagon in Riften, a crime-ring in long decline; they want coin, leverage, and their cut of every illicit trade in Skyrim. They recruit the light-fingered through a tryout and trust no one who has not done a job, but a proven earner is family.
+- **The Dark Brotherhood** — assassins-for-hire sworn to the Dread Father Sithis, nearly extinct and hiding in the Falkreath Sanctuary; they want contracts honored, the Five Tenets kept, and the old fear of their name restored. Outsiders meet them only by spilling blood for them; they treat a recruit as kin and a betrayer as carrion.
+- **The Stormcloaks** — the Sons and Daughters of Skyrim under Ulfric out of Windhelm; they want the Empire gone, Skyrim free, and Talos worshipped in the open. They warm to Nords and to anyone who'll fight the Legion, and look hard at elves and Imperials.
+- **The Imperial Legion** — the Empire's army under General Tullius out of Castle Dour in Solitude; they want the rebellion crushed and the province held together under law. They take any able recruit regardless of blood, prize discipline, and distrust open Talos zealots.
+- **The Greybeards** — the silent masters of the Voice atop High Hrothgar; they want peace and the Way of the Voice kept. They are reverent toward one marked by destiny and cold toward the merely curious.
+- **The Blades** — the dwindled dragonslayers regrouping at Sky Haven Temple; they want every dragon dead, the Greybeards' master Paarthurnax among them. They will follow a Dragonborn anywhere and have little time for anyone else.
+- **The Dawnguard** — Isran's reformed vampire-hunters out of Fort Dawnguard in the Rift; they want the Volkihar stopped before they blot out the sun. They arm any willing hand against the undead, but a vampire among the party will be smelled out and turned on.
+- **The Volkihar** — Lord Harkon's ancient vampire court on its island off Haafingar; they want the sun darkened forever and Tamriel theirs by night. They are contemptuous of mortals and of thin-blooded vampires alike, and open their gates only to one offered the gift of a Vampire Lord.
+- **The Vigil of Stendarr** — warrior-priests of the Divine of mercy out of the Hall of the Vigilant near Dawnstar; they want every Daedra, vampire, werewolf, and witch in Skyrim destroyed, and they cure disease for free. They are friendly to the clean and the faithful and quick to suspect anyone who reeks of the beast or the bargain.
+- **The Bards College** — the institute of song and history in Solitude; they want their craft kept alive, the Poetic Edda preserved, and a place at every noble's table. Studiously neutral in the war, they welcome anyone with a tale to tell or a service to render.
+- **The Forsworn** — the Madmen of the Reach, native Reachfolk under the imprisoned King Madanach; they want the Nords and the Empire driven from the Reach and their old kingdom restored. They are hostile on sight to nearly everyone, revere their hagravens, and trust only one who has bled for their cause in the dark of Cidhna Mine.
+- **The Thalmor** — the High Elf supremacists of the Aldmeri Dominion under First Emissary Elenwen, with their embassy above Solitude; they want Mer ascendant over Man, the worship of Talos stamped out, and the Civil War kept burning to bleed both sides. They are not joinable, they distrust nearly everyone, and pleasing them costs you almost everywhere else.
+- **The Skaal** — the All-Maker-worshipping Nord tribe of Solstheim under Chief Fanari Strong-Voice; they want to live in harmony with the land, guard the secret of forging Stalhrim, and be left in peace by Hircine and Herma-Mora alike. They are wary of all outsiders and slow to trust, but loyal beyond measure once a stranger proves a friend to the village.
+
+> *Tracking every faction at once is busywork. In play, keep a ledger only for the two or three groups the party is actually entangled with this arc, and let the rest sit at Unknown until the party gives them a reason to care.*

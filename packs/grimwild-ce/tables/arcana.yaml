@@ -1,0 +1,643 @@
+# Grimwild: Community Edition (Preview 5.3): rituals, treasure and arcana (Gameplay, pp. 34-43) and
+# the random potion generator (Extras, Potions and Other Expendables, p. 202). CC0 1.0.
+# The ritual anchor crucibles (Rituals, p. 34), the treasure crucible, the arcana pick-lists, the
+# five arcana crucibles (arcana-crucible rolls a random theme), the potion generator, and the book's
+# example arcana by tier (minor-arcana, major-arcana, mythic-arcana, expendable-arcana). The arcana
+# themselves are in compendium/arcana.yaml (List of Arcana, pp. 196-201; expendables, p. 203).
+#
+# Crucibles are d66 read both ways (`both_ways`, p. 5): the row die is the tens digit and the column
+# die the units, and 31 also gives 13; pick the one that grabs you. A table printed in three columns
+# uses the other die's 1-2, 3-4 and 5-6 for the column (keys 11-12, 13-14, 15-16, ...).
+# Pick-lists (functions, effects, additions) are lists: choose, or roll for one.
+table: ritual-anchors-tangible
+title: "Tangible anchor examples"
+description: "Anchors for the ritual, binding the physical and metaphysical realms, are chosen by the GM and players together; each ritual should have two or three. Check out the crucibles for anchor ideas. Three columns: one die picks the row, the other the column (1-2, 3-4, 5-6), read both ways."
+dice: d66
+both_ways: true
+source: "p. 34"
+entries:
+  11-12: "dangerous relic"
+  13-14: "circle of casters"
+  15-16: "leyline"
+  21-22: "home cooked meal"
+  23-24: "new moon"
+  25-26: "planar essence"
+  31-32: "exotic ingredients"
+  33-34: "spilled blood"
+  35-36: "planet's alignment"
+  41-42: "unbroken circle"
+  43-44: "holy grounds"
+  45-46: "light rain"
+  51-52: "lost key"
+  53-54: "gold and jewels"
+  55-56: "top of a mountain"
+  61-62: "predator's tooth"
+  63-64: "piece of art"
+  65-66: "murder weapon"
+---
+table: ritual-anchors-intangible
+title: "Intangible anchor examples"
+description: "Anchors for the ritual, binding the physical and metaphysical realms, are chosen by the GM and players together; each ritual should have two or three. Check out the crucibles for anchor ideas. Three columns: one die picks the row, the other the column (1-2, 3-4, 5-6), read both ways."
+dice: d66
+both_ways: true
+source: "p. 34"
+entries:
+  11-12: "ancient knowledge"
+  13-14: "deep chanting"
+  15-16: "unexpected betrayal"
+  21-22: "first light"
+  23-24: "sacred dance"
+  25-26: "fond memory"
+  31-32: "A true name"
+  33-34: "waking dream"
+  35-36: "child's laughter"
+  41-42: "divine guidance"
+  43-44: "true love"
+  45-46: "binding vow"
+  51-52: "shared secret"
+  53-54: "utter silence"
+  55-56: "fun melody"
+  61-62: "a place like home"
+  63-64: "festive holiday"
+  65-66: "indulged vice"
+---
+table: treasure-crucible
+title: "Finding treasures"
+description: "When unsure about what exactly is found, use a story roll and the crucible below to help. Three columns: one die picks the row, the other the column (1-2, 3-4, 5-6), read both ways."
+dice: d66
+both_ways: true
+source: "p. 39"
+entries:
+  11-12: "favor"
+  13-14: "gold"
+  15-16: "lucrative rumor"
+  21-22: "jewels"
+  23-24: "arcana"
+  25-26: "deed"
+  31-32: "gear"
+  33-34: "information"
+  35-36: "service"
+  41-42: "vehicle"
+  43-44: "spell cast"
+  45-46: "contact"
+  51-52: "rare reagent"
+  53-54: "art piece"
+  55-56: "title or rank"
+  61-62: "beast or companion"
+  63-64: "trade goods"
+  65-66: "blessing"
+---
+table: treasure-tiers
+title: "Treasure tiers"
+description: "What you might get in trade for a minor, major or mythic treasure (the book's examples); a treasure is only truly as valuable as what someone will give you for it. Read it by tier: --with tier=major."
+lookup: tier
+source: "p. 39"
+entries:
+  minor: "trained horse, a few jewels, noble clothing, a few mercenaries, minor arcana."
+  major: "an estate, artistic masterpiece, help from a city, sailing ship, major arcana."
+  mythic: "castle, an army, complex ritual, the royal treasury, spirit bound to service."
+---
+table: arcana-minor-effects
+title: "Minor arcana effects"
+description: "Minor arcana: Limited effects based on the touchstones, such as:"
+source: "p. 40"
+entries:
+  - "Set dressing vantage"
+  - "Once per session effect"
+  - {text: "2d Power Pool for an effect", data: {pool: 2}}
+  - "Using a different stat for actions"
+---
+table: arcana-major-effects
+title: "Major arcana effects"
+description: "Major arcana: Powerful effects based on their touchstones, such as:"
+source: "p. 40"
+entries:
+  - "Expanded vantage"
+  - "Once per session potent effect"
+  - {text: "4d Power Pool for an effect", data: {pool: 4}}
+  - "Setup or secondary effect"
+---
+table: arcana-mythic-additions
+title: "Mythic arcana: optional additions"
+description: "Mythic arcana are more likely to have extra qualities and limitations, such as those below."
+source: "p. 41"
+entries:
+  - "Heavy Cost: The item’s magic has an upfront cost to use, such as pushing yourself, taking harm, vex, or a temporary condition."
+  - "Unique Reset: The power pool doesn't reset every session, instead requiring an act, event, in-game resources, or meta-currency (such as spark or thread)."
+  - "Ritual ability: Given time, or with an 8d timer pool the arcana can produce a ritual-level effect. This may be once only, or have special recharge conditions."
+  - "Sentient: It can communicate, and has its own thoughts, goals, and wises."
+  - "Curse: The item has a secret drawback, ranging from making it very costly to use, to twisting the user towards its own dark desires. Using its magic could bestow a condition, give the GM suspense, or subvert the user's wishes."
+---
+table: arcana-functions
+title: "Arcana functions"
+description: "Pick a function from the list below. This describes the general effect, and acts as a touchstone."
+source: "p. 42"
+entries:
+  - {text: "Attack: lash out to deal direct harm or destruction.", data: {id: attack}}
+  - {text: "Enhance: temporarily boost senses, ability, or bestow something new.", data: {id: enhance}}
+  - {text: "Hinder: impede or debilitate others or areas.", data: {id: hinder}}
+  - {text: "Influence: alter thoughts, emotions, or perceptions.", data: {id: influence}}
+  - {text: "Protect: defend yourself and others from outside harm or influence.", data: {id: protect}}
+  - {text: "Restore: heal wounds, cleanse maladies, and mend materials.", data: {id: restore}}
+  - {text: "Reveal: sense and reveal the hidden, and uncover new information.", data: {id: reveal}}
+  - {text: "Summon: manifest objects, creatures, or forces themselves.", data: {id: summon}}
+  - {text: "Transform: change the nature or form of the subject.", data: {id: transform}}
+  - {text: "Traverse: move across space, through barriers, or in a new way.", data: {id: traverse}}
+---
+table: arcana-arcane
+title: "Arcana crucible: Arcane"
+description: "Use the following crucibles for touchstone inspiration, or pick 1 or 2 tables and roll randomly to generate two touchstones of a specific theme, then assign a function (arcana-functions). A d66 read both ways."
+dice: d66
+both_ways: true
+source: "p. 43"
+entries:
+  11: "adapt"
+  12: "curiosity"
+  13: "unstable"
+  14: "mind"
+  15: "water"
+  16: "rune"
+  21: "plane"
+  22: "memory"
+  23: "bubble"
+  24: "ethereal"
+  25: "phase"
+  26: "emotion"
+  31: "force"
+  32: "scribe"
+  33: "blink"
+  34: "focus"
+  35: "hand"
+  36: "explosion"
+  41: "flame"
+  42: "echo"
+  43: "rift"
+  44: "acid"
+  45: "word"
+  46: "float"
+  51: "identity"
+  52: "lore"
+  53: "attune"
+  54: "dazzle"
+  55: "thought"
+  56: "sight"
+  61: "phantom"
+  62: "vortex"
+  63: "vanish"
+  64: "air"
+  65: "gate"
+  66: "color"
+---
+table: arcana-divine
+title: "Arcana crucible: Divine"
+description: "Use the following crucibles for touchstone inspiration, or pick 1 or 2 tables and roll randomly to generate two touchstones of a specific theme, then assign a function (arcana-functions). A d66 read both ways."
+dice: d66
+both_ways: true
+source: "p. 43"
+entries:
+  11: "soothe"
+  12: "melody"
+  13: "eternal"
+  14: "plague"
+  15: "justice"
+  16: "heal"
+  21: "life"
+  22: "bind"
+  23: "sun"
+  24: "shield"
+  25: "vigor"
+  26: "halo"
+  31: "luck"
+  32: "truth"
+  33: "sentinel"
+  34: "rainbow"
+  35: "moon"
+  36: "spirit"
+  41: "virtue"
+  42: "sacrifice"
+  43: "wrath"
+  44: "purify"
+  45: "pierce"
+  46: "dead"
+  51: "blood"
+  52: "stars"
+  53: "light"
+  54: "blind"
+  55: "reflect"
+  56: "fate"
+  61: "beauty"
+  62: "ward"
+  63: "bravery"
+  64: "sorrow"
+  65: "renew"
+  66: "radiant"
+---
+table: arcana-eldritch
+title: "Arcana crucible: Eldritch"
+description: "Use the following crucibles for touchstone inspiration, or pick 1 or 2 tables and roll randomly to generate two touchstones of a specific theme, then assign a function (arcana-functions). A d66 read both ways."
+dice: d66
+both_ways: true
+source: "p. 43"
+entries:
+  11: "shred"
+  12: "lock"
+  13: "warp"
+  14: "scream"
+  15: "tendril"
+  16: "mask"
+  21: "charm"
+  22: "shift"
+  23: "skull"
+  24: "trick"
+  25: "figment"
+  26: "darkness"
+  31: "bind"
+  32: "false"
+  33: "cold"
+  34: "void"
+  35: "enthrall"
+  36: "chain"
+  41: "impulse"
+  42: "curse"
+  43: "shadow"
+  44: "steal"
+  45: "whisper"
+  46: "drain"
+  51: "dream"
+  52: "sick"
+  53: "confuse"
+  54: "desire"
+  55: "eye"
+  56: "shroud"
+  61: "face"
+  62: "grasp"
+  63: "flesh"
+  64: "silence"
+  65: "madness"
+  66: "lurk"
+---
+table: arcana-primal
+title: "Arcana crucible: Primal"
+description: "Use the following crucibles for touchstone inspiration, or pick 1 or 2 tables and roll randomly to generate two touchstones of a specific theme, then assign a function (arcana-functions). A d66 read both ways."
+dice: d66
+both_ways: true
+source: "p. 43"
+entries:
+  11: "lush"
+  12: "claw"
+  13: "grow"
+  14: "breeze"
+  15: "shell"
+  16: "ember"
+  21: "storm"
+  22: "stone"
+  23: "rot"
+  24: "stone"
+  25: "thorn"
+  26: "blight"
+  31: "river"
+  32: "fragrant"
+  33: "frenzy"
+  34: "howl"
+  35: "freeze"
+  36: "beast"
+  41: "thunder"
+  42: "horn"
+  43: "flight"
+  44: "tail"
+  45: "lightning"
+  46: "spore"
+  51: "poison"
+  52: "swarm"
+  53: "root"
+  54: "bloom"
+  55: "earth"
+  56: "death"
+  61: "wither"
+  62: "rain"
+  63: "bone"
+  64: "sting"
+  65: "tree"
+  66: "gust"
+---
+table: arcana-technology
+title: "Arcana crucible: Technology"
+description: "Use the following crucibles for touchstone inspiration, or pick 1 or 2 tables and roll randomly to generate two touchstones of a specific theme, then assign a function (arcana-functions). A d66 read both ways."
+dice: d66
+both_ways: true
+source: "p. 43"
+entries:
+  11: "fuse"
+  12: "disk"
+  13: "creativity"
+  14: "song"
+  15: "oil"
+  16: "stasis"
+  21: "crystal"
+  22: "cog"
+  23: "keen"
+  24: "smoke"
+  25: "mirror"
+  26: "servant"
+  31: "ornate"
+  32: "stitch"
+  33: "slime"
+  34: "pressure"
+  35: "quick"
+  36: "gravity"
+  41: "gold"
+  42: "shrapnel"
+  43: "wall"
+  44: "spark"
+  45: "bind"
+  46: "message"
+  51: "haven"
+  52: "duty"
+  53: "clock"
+  54: "command"
+  55: "glass"
+  56: "greed"
+  61: "dance"
+  62: "ring"
+  63: "guide"
+  64: "shatter"
+  65: "plasma"
+  66: "beacon"
+---
+table: arcana-crucible
+title: "Arcana crucibles"
+description: "Pick 1 or 2 tables and roll randomly to generate two touchstones of a specific theme, then assign a function (arcana-functions). This rolls a random theme; to pick one, roll arcana-arcane, arcana-divine, arcana-eldritch, arcana-primal or arcana-technology. Each reads both ways, so one roll gives two touchstones."
+refs:
+  arcane: "arcana-arcane"
+  divine: "arcana-divine"
+  eldritch: "arcana-eldritch"
+  primal: "arcana-primal"
+  technology: "arcana-technology"
+entries:
+  - "Arcane: {arcane}"
+  - "Divine: {divine}"
+  - "Eldritch: {eldritch}"
+  - "Primal: {primal}"
+  - "Technology: {technology}"
+source: "p. 43"
+---
+table: potion-touchstones
+title: "Potion touchstones"
+description: "To generate a random potion, roll 2d, taking the three words in the column and row, then choose two as the touchstones, discarding the third. Decide on a fitting function (potion-functions) as the last touchstone, then roll 4d for the potion qualities (potion-qualities). As a minor, single-use arcana, it produces a single potent effect when used. Each cell holds three words. A d66: the row die is the tens digit and the column die the units, read both ways (p. 5). `potion` rolls the whole potion."
+dice: d66
+both_ways: true
+source: "p. 202"
+entries:
+  11: {text: "wither / fungus / servant", data: {words: ["wither", "fungus", "servant"]}}
+  12: {text: "explode / fire / cascade", data: {words: ["explode", "fire", "cascade"]}}
+  13: {text: "ooze / oil / bubble", data: {words: ["ooze", "oil", "bubble"]}}
+  14: {text: "confuse / hex / whispers", data: {words: ["confuse", "hex", "whispers"]}}
+  15: {text: "speak / spirit / shroud", data: {words: ["speak", "spirit", "shroud"]}}
+  16: {text: "pierce / bone / mask", data: {words: ["pierce", "bone", "mask"]}}
+  21: {text: "cryptic / light / beauty", data: {words: ["cryptic", "light", "beauty"]}}
+  22: {text: "shadow / doom / skull", data: {words: ["shadow", "doom", "skull"]}}
+  23: {text: "glimmer / air / fog", data: {words: ["glimmer", "air", "fog"]}}
+  24: {text: "quick / barrier / grow", data: {words: ["quick", "barrier", "grow"]}}
+  25: {text: "venom / vine / claw", data: {words: ["venom", "vine", "claw"]}}
+  26: {text: "sense / life / guide", data: {words: ["sense", "life", "guide"]}}
+  31: {text: "spread / ash / blind", data: {words: ["spread", "ash", "blind"]}}
+  32: {text: "sticky / slime / slick", data: {words: ["sticky", "slime", "slick"]}}
+  33: {text: "adapt / water / frost", data: {words: ["adapt", "water", "frost"]}}
+  34: {text: "shield / mind / vigor", data: {words: ["shield", "mind", "vigor"]}}
+  35: {text: "body / thorn / fang", data: {words: ["body", "thorn", "fang"]}}
+  36: {text: "break / wound / stitch", data: {words: ["break", "wound", "stitch"]}}
+  41: {text: "phantom / mist / eye", data: {words: ["phantom", "mist", "eye"]}}
+  42: {text: "wild / vermin / web", data: {words: ["wild", "vermin", "web"]}}
+  43: {text: "rattle / earth / hand", data: {words: ["rattle", "earth", "hand"]}}
+  44: {text: "truth / sight / gate", data: {words: ["truth", "sight", "gate"]}}
+  45: {text: "friend / feeling / false", data: {words: ["friend", "feeling", "false"]}}
+  46: {text: "silence / lightning / dark", data: {words: ["silence", "lightning", "dark"]}}
+  51: {text: "dream / smoke / beacon", data: {words: ["dream", "smoke", "beacon"]}}
+  52: {text: "slow / pull / swirl", data: {words: ["slow", "pull", "swirl"]}}
+  53: {text: "wander / poison / crown", data: {words: ["wander", "poison", "crown"]}}
+  54: {text: "prismatic / stasis / flash", data: {words: ["prismatic", "stasis", "flash"]}}
+  55: {text: "blight / energy / sap", data: {words: ["blight", "energy", "sap"]}}
+  56: {text: "stupor / sound / trance", data: {words: ["stupor", "sound", "trance"]}}
+  61: {text: "drift / wing / anchor", data: {words: ["drift", "wing", "anchor"]}}
+  62: {text: "unseen / nature / quiet", data: {words: ["unseen", "nature", "quiet"]}}
+  63: {text: "sleep / bugs / plague", data: {words: ["sleep", "bugs", "plague"]}}
+  64: {text: "curious / lore / hide", data: {words: ["curious", "lore", "hide"]}}
+  65: {text: "might / ward / shatter", data: {words: ["might", "ward", "shatter"]}}
+  66: {text: "shock / terror / heart", data: {words: ["shock", "terror", "heart"]}}
+---
+table: potion-functions
+title: "Potion functions"
+description: "Decide on a fitting function below as the potion's last touchstone (after its two touchstones from potion-touchstones)."
+source: "p. 202"
+entries:
+  - {text: "Attack: deals direct harm.", data: {id: attack}}
+  - {text: "Enhance: temporarily boost or bestow.", data: {id: enhance}}
+  - {text: "Hinder: impede others or areas.", data: {id: hinder}}
+  - {text: "Influence: alter thoughts or perceptions.", data: {id: influence}}
+  - {text: "Protect: defend from outside forces.", data: {id: protect}}
+  - {text: "Restore: heal, cleanse, and mend.", data: {id: restore}}
+  - {text: "Reveal: sense and reveal the hidden.", data: {id: reveal}}
+  - {text: "Summon: call objects, creatures, or forces.", data: {id: summon}}
+  - {text: "Transform: change the subject's form.", data: {id: transform}}
+  - {text: "Traverse: move quickly, or in a new way.", data: {id: traverse}}
+---
+table: potion-qualities
+title: "Potion qualities"
+description: "Roll 4d for the potion qualities, one die for each column, and read them as \"It's a ___ ___ with ___ ___ inside.\""
+dice: d6
+columns: ["first", "second", "third", "fourth"]
+read: "It's a {first} {second} with {third} {fourth} inside."
+source: "p. 202"
+entries:
+  1: ["foggy", "flask", "colorful", "mist"]
+  2: ["opaque", "bottle", "faint", "bubbles"]
+  3: ["thin", "vial", "drifting", "glitter"]
+  4: ["round", "jug", "living", "sludge"]
+  5: ["square", "draft", "viscous", "reagent"]
+  6: ["tapered", "glass", "strange", "oil"]
+---
+table: potion
+title: "Random potion"
+description: "To generate a random potion, roll 2d, taking the three words in the column and row, then choose two as the touchstones, discarding the third. Decide on a fitting function (potion-functions) as the last touchstone, then roll 4d for the potion qualities (potion-qualities). As a minor, single-use arcana, it produces a single potent effect when used. This rolls the touchstones (2d, read both ways) and the qualities (4d); you choose two of the three words and the function."
+refs:
+  touchstones: "potion-touchstones"
+  qualities: "potion-qualities"
+entries:
+  - "Touchstones: {touchstones} (choose two, discard the third, and add a fitting function). {qualities}"
+source: "p. 202"
+---
+table: minor-arcana
+title: "Minor arcana"
+description: "Minor arcana are capable of adding set dressing effects, producing a magical effect once per session, and similar limited abilities. The book's example minor arcana; each entry's data holds its compendium id (didact compendium show <id>)."
+source: "pp. 196-197"
+entries:
+  - text: "Everflame Glove"
+    data:
+      id: everflame-glove
+  - text: "Axe of the Silent Grave"
+    data:
+      id: axe-of-the-silent-grave
+  - text: "Chitterfang Pendant"
+    data:
+      id: chitterfang-pendant
+  - text: "Loyal Spear"
+    data:
+      id: loyal-spear
+  - text: "Magebane Shield"
+    data:
+      id: magebane-shield
+  - text: "Mask of the Changeling"
+    data:
+      id: mask-of-the-changeling
+  - text: "Poisonheart Choker"
+    data:
+      id: poisonheart-choker
+  - text: "Springheel Jumpers"
+    data:
+      id: springheel-jumpers
+  - text: "Starlight Flask"
+    data:
+      id: starlight-flask
+  - text: "Lupine Cloak"
+    data:
+      id: lupine-cloak
+  - text: "Cozy Ring"
+    data:
+      id: cozy-ring
+  - text: "Whisperknife"
+    data:
+      id: whisperknife
+---
+table: major-arcana
+title: "Major arcana"
+description: "Major arcana wield the power to bestow potent effects, or otherwise shape reality in grand ways with their magic. The book's example major arcana; each entry's data holds its compendium id (didact compendium show <id>)."
+source: "pp. 198-199"
+entries:
+  - text: "1000 Eye Circlet"
+    data:
+      id: "1000-eye-circlet"
+  - text: "Basilisk Eye Charm"
+    data:
+      id: basilisk-eye-charm
+  - text: "Coin of the Roads"
+    data:
+      id: coin-of-the-roads
+  - text: "Crystalshard Sprig"
+    data:
+      id: crystalshard-sprig
+  - text: "Emberfang"
+    data:
+      id: emberfang
+  - text: "Hovelsack"
+    data:
+      id: hovelsack
+  - text: "Robe of Pockets"
+    data:
+      id: robe-of-pockets
+  - text: "Seeker's Compass"
+    data:
+      id: seekers-compass
+  - text: "Siphon Whip"
+    data:
+      id: siphon-whip
+  - text: "Spiderfriend Wand"
+    data:
+      id: spiderfriend-wand
+  - text: "Shimmershot Bow"
+    data:
+      id: shimmershot-bow
+  - text: "Verdant Shield"
+    data:
+      id: verdant-shield
+  - text: "Wavewalkers"
+    data:
+      id: wavewalkers
+  - text: "Knockers"
+    data:
+      id: knockers
+---
+table: mythic-arcana
+title: "Mythic arcana"
+description: "Mythic arcana are capable of unleashing grand, often ritual-level effects with devastating power. The book's example mythic arcana; each entry's data holds its compendium id (didact compendium show <id>)."
+source: "pp. 200-201"
+entries:
+  - text: "Bracelet of Blasting"
+    data:
+      id: bracelet-of-blasting
+  - text: "Bugsnax"
+    data:
+      id: bugsnax
+  - text: "Crown of Stars"
+    data:
+      id: crown-of-stars
+  - text: "Discordant Flute"
+    data:
+      id: discordant-flute
+  - text: "Fortune Ring"
+    data:
+      id: fortune-ring
+  - text: "Gauntlets of the Storm"
+    data:
+      id: gauntlets-of-the-storm
+  - text: "Gnarlstaff"
+    data:
+      id: gnarlstaff
+  - text: "Kaleidoscope Rod"
+    data:
+      id: kaleidoscope-rod
+  - text: "Lich Skull"
+    data:
+      id: lich-skull
+  - text: "Ship in a Bottle"
+    data:
+      id: ship-in-a-bottle
+  - text: "Spiritbinding Box"
+    data:
+      id: spiritbinding-box
+  - text: "Staff of Mischief"
+    data:
+      id: staff-of-mischief
+  - text: "Angelblade"
+    data:
+      id: angelblade
+  - text: "Mirror Gaol"
+    data:
+      id: mirror-gaol
+---
+table: expendable-arcana
+title: "Expendable arcana"
+description: "Limited use items such as potions and scrolls can only be used once, and because of that limitation, have an effect one tier higher (p. 40). The book's example expendables, with their tier; each entry's data holds its compendium id."
+source: "p. 203"
+entries:
+  - text: "Jar of Mischief (trivial)"
+    data:
+      id: jar-of-mischief
+      tier: trivial
+  - text: "Twilight Candle (trivial)"
+    data:
+      id: twilight-candle
+      tier: trivial
+  - text: "Healing Potion (minor)"
+    data:
+      id: healing-potion
+      tier: minor
+  - text: "Portalscope (minor)"
+    data:
+      id: portalscope
+      tier: minor
+  - text: "Aetheric Elixir (major)"
+    data:
+      id: aetheric-elixir
+      tier: major
+  - text: "Simulacrum Seed (major)"
+    data:
+      id: simulacrum-seed
+      tier: major
+  - text: "Rune of Destruction (major)"
+    data:
+      id: rune-of-destruction
+      tier: major
+  - text: "Bottled Wish (mythic)"
+    data:
+      id: bottled-wish
+      tier: mythic

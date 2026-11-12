@@ -1,0 +1,145 @@
+# The vaults, to pick one, what the `vault` generator drafts for each, and the catalog's
+# own roll table: written by fw_compendium.py, don't edit by hand.
+table: vaults
+title: The vaults (pick one)
+source: vaults/00-intro#how-to-use-this-chapter
+entries:
+- text: Vault 8
+  data: {id: vault-8, catalog: Vaults of Fallout 1 & 2, threats: 0}
+- text: Vault 12
+  data: {id: vault-12, catalog: Vaults of Fallout 1 & 2, threats: 0}
+- text: Vault 13
+  data: {id: vault-13, catalog: Vaults of Fallout 1 & 2, threats: 0}
+- text: Vault 15
+  data: {id: vault-15, catalog: Vaults of Fallout 1 & 2, threats: 0}
+- text: Vault 87
+  data: {id: vault-87, catalog: Vaults of Fallout 3, threats: 0}
+- text: Vault 92
+  data: {id: vault-92, catalog: Vaults of Fallout 3, threats: 0}
+- text: Vault 101
+  data: {id: vault-101, catalog: Vaults of Fallout 3, threats: 0}
+- text: Vault 106
+  data: {id: vault-106, catalog: Vaults of Fallout 3, threats: 0}
+- text: Vault 108
+  data: {id: vault-108, catalog: Vaults of Fallout 3, threats: 0}
+- text: Vault 112
+  data: {id: vault-112, catalog: Vaults of Fallout 3, threats: 0}
+- text: Vault 3
+  data: {id: vault-3, catalog: 'Vaults of Fallout: New Vegas', threats: 0}
+- text: Vault 11
+  data: {id: vault-11, catalog: 'Vaults of Fallout: New Vegas', threats: 0}
+- text: Vault 19
+  data: {id: vault-19, catalog: 'Vaults of Fallout: New Vegas', threats: 0}
+- text: Vault 21
+  data: {id: vault-21, catalog: 'Vaults of Fallout: New Vegas', threats: 0}
+- text: Vault 22
+  data: {id: vault-22, catalog: 'Vaults of Fallout: New Vegas', threats: 0}
+- text: Vault 34
+  data: {id: vault-34, catalog: 'Vaults of Fallout: New Vegas', threats: 0}
+- text: Vault 36
+  data: {id: vault-36, catalog: 'Vaults of Fallout: New Vegas', threats: 0}
+- text: Vault 75
+  data: {id: vault-75, catalog: Vaults of Fallout 4, threats: 0}
+- text: Vault 81
+  data: {id: vault-81, catalog: Vaults of Fallout 4, threats: 0}
+- text: Vault 95
+  data: {id: vault-95, catalog: Vaults of Fallout 4, threats: 0}
+- text: Vault 111
+  data: {id: vault-111, catalog: Vaults of Fallout 4, threats: 0}
+- text: Vault 114
+  data: {id: vault-114, catalog: Vaults of Fallout 4, threats: 0}
+- text: Vault 118
+  data: {id: vault-118, catalog: Vaults of Fallout 4, threats: 0}
+- text: Vault 63
+  data: {id: vault-63, catalog: Vaults of Fallout 76, threats: 1}
+- text: Vault 76
+  data: {id: vault-76, catalog: Vaults of Fallout 76, threats: 0}
+- text: Vault 79
+  data: {id: vault-79, catalog: Vaults of Fallout 76, threats: 1}
+- text: Vault 94
+  data: {id: vault-94, catalog: Vaults of Fallout 76, threats: 1}
+- text: Vault 96
+  data: {id: vault-96, catalog: Vaults of Fallout 76, threats: 0}
+- text: Vault 27
+  data: {id: vault-27, catalog: Classified Vault Experiments, threats: 1}
+- text: Vault 29
+  data: {id: vault-29, catalog: Classified Vault Experiments, threats: 1}
+- text: Vault 42
+  data: {id: vault-42, catalog: Classified Vault Experiments, threats: 1}
+- text: Vault 43
+  data: {id: vault-43, catalog: Classified Vault Experiments, threats: 2}
+- text: Vault 53
+  data: {id: vault-53, catalog: Classified Vault Experiments, threats: 1}
+- text: Vault 55
+  data: {id: vault-55, catalog: Classified Vault Experiments, threats: 0}
+- text: Vault 56
+  data: {id: vault-56, catalog: Classified Vault Experiments, threats: 1}
+- text: Vault 68
+  data: {id: vault-68, catalog: Classified Vault Experiments, threats: 1}
+- text: Vault 69
+  data: {id: vault-69, catalog: Classified Vault Experiments, threats: 0}
+- text: Vault 70
+  data: {id: vault-70, catalog: Classified Vault Experiments, threats: 0}
+- text: Vault 77
+  data: {id: vault-77, catalog: Classified Vault Experiments, threats: 0}
+---
+table: vault-threats
+title: A vault's inhabitants with a stat line, by number (the vault generator)
+lookup: [vault, n]
+source: vaults/00-intro#how-to-use-this-chapter
+entries:
+  vault-63:
+    1:
+      text: The Lost
+      data: {id: vault-63-the-lost}
+  vault-79:
+    1:
+      text: Vault 79 Turret Network
+      data: {id: vault-79-turret-network}
+  vault-94:
+    1:
+      text: Commune Ghoul
+      data: {id: vault-94-commune-ghoul}
+  vault-27:
+    1:
+      text: Vault 27 Ghouls
+      data: {id: vault-27-ghouls}
+  vault-29:
+    1:
+      text: Child Ghoul
+      data: {id: vault-29-child-ghoul}
+  vault-42:
+    1:
+      text: Pale Ghoul
+      data: {id: vault-42-pale-ghoul}
+  vault-43:
+    1:
+      text: The Panther
+      data: {id: vault-43-the-panther}
+    2:
+      text: Ghoulified Keeper
+      data: {id: vault-43-ghoulified-keeper}
+  vault-53:
+    1:
+      text: The Tinker Ghoul
+      data: {id: vault-53-the-tinker-ghoul}
+  vault-56:
+    1:
+      text: The Comedian
+      data: {id: vault-56-the-comedian}
+  vault-68:
+    1:
+      text: The Overseer's Assistant
+      data: {id: vault-68-the-overseers-assistant}
+---
+table: vault-96-mutations
+title: "Vault 96: an escaped specimen's quota mutation"
+dice: d6
+source: vaults/05-fallout-76#vault-96
+entries:
+  1: electrogenesis (shock — attacks step up one damage die)
+  2: venom (a hit forces a STR save or d4 STR damage)
+  3: regeneration (heals 1 HP a round)
+  4: chameleonization (attacks from hiding are Enhanced)
+  5: pyrokinesis (breathes fire, d6 blast)
+  6: cryokinesis (a hit forces a DEX save or the target loses their next action)

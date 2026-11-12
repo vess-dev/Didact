@@ -1,0 +1,24 @@
+# Stormcloak Soldier (backgrounds/stormcloak-soldier): the background's two d6 tables.
+table: stormcloak-soldier-1
+title: "Why did you take up arms for the rebellion?"
+dice: d6
+source: backgrounds/stormcloak-soldier#why-did-you-take-up-arms-for-the-rebellion-roll-1d6
+entries:
+  1: {text: "The Thalmor dragged the priest of Talos out of your village square in chains, and you watched. You have killed every Justiciar you could find since. Take the dossier (petty) you cut from the last one's satchel: the name of every Talos-worshipper in your Hold, and of the neighbors who informed on them.", data: {gear: [{name: "Dossier", size: "petty"}]}}
+  2: {text: "Your grandfather bled for the Empire in the Great War and came home to find his god outlawed by the peace he had won. He died angry, and left you his ancient Nord helmet (+1 Armor), an heirloom older than the Empire itself.", data: {gear: [{name: "Ancient Nord helmet", armor: 1}]}}
+  3: {text: "Your brother took the Empire's coin, and you have not spoken since; the war split your hall down the middle. Take the letter he sent after Helgen (petty), still unopened. If the Legion ever takes you prisoner, he can get you out once, and it will cost him everything.", data: {gear: [{name: "Letter", size: "petty", note: "your brother's, sent after Helgen; still unopened"}]}}
+  4: "You have marched every road, pass, and hot spring between Windhelm and the Pale. Leading the party through Eastmarch or the Pale, you treat Tough terrain as Easy."
+  5: {text: "You earned the battle-name Ice-Veins at the taking of an Imperial fort. Take the steel war axe (d8) you won there and the fort's captured Imperial standard (bulky). Any Stormcloak captain would pay 50 Septims to hang it in his hall, and any legionnaire would kill you for it.", data: {gear: [{name: "Steel war axe", damage: "d8"}, {name: "Imperial standard", size: "bulky"}]}}
+  6: {text: "You were Unblooded, bound on the carts at Helgen with Ulfric himself, when the dragon came. You got out alive, which is more than the headsman did. Your maximum HP is 1 higher, and you will know the shape of that black dragon anywhere.", data: {extra_hp: true}}
+---
+table: stormcloak-soldier-2
+title: "What does your shield-line know you for?"
+dice: d6
+source: backgrounds/stormcloak-soldier#what-does-your-shield-line-know-you-for-roll-1d6
+entries:
+  1: {text: "Galmar's Word: A folded, wax-sealed dispatch (petty) in Galmar Stone-Fist's own hand. Any Stormcloak camp will billet, feed, and arm you on the strength of it — once.", data: {gear: [{name: "Galmar's Word", size: "petty"}]}}
+  2: "The Bear's Roar: A battle-cry that has broken Imperial lines. Once per day, lead a charge roaring Ulfric's name: your foes must make a Morale save at once, as though their leader had fallen."
+  3: {text: "Snow-Hammer: The steel warhammer (d10, bulky, two-handed) with which you earned the rank. You swing it like a man splitting cordwood.", data: {gear: [{name: "Snow-Hammer", damage: "d10", size: "bulky", qualities: ["two-handed"]}]}}
+  4: {text: "Free Talos: A carved Talos-charm (petty) and the faith behind it. Once per day, re-roll any one failed save — but only by calling the Ninth Divine's name aloud, which the Thalmor hang men for.", data: {gear: [{name: "Talos-charm", size: "petty"}]}}
+  5: {text: "Officer's Armor: A Stormcloak officer's heavy cuirass of steel and blue-dyed hide (2 Armor, bulky), clasped with a bear's head. Soldiers of both sides take you for someone who gives orders.", data: {gear: [{name: "Officer's Armor", armor: 2, suit: 2, size: "bulky"}]}}
+  6: {text: "Hold-Brother: A round shield (+1 Armor) painted in your Hold's colors, and a shield-brother in the ranks who owes you his life. Send word, and he will come, once.", data: {gear: [{name: "Round shield", armor: 1, note: "painted in your Hold's colors"}]}}

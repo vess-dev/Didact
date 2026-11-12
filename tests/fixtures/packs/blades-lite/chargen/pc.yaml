@@ -1,0 +1,13 @@
+chargen: pc
+title: Scoundrel (playbook and heritage)
+creates: pc
+modes: [random, guided]
+steps:
+  - choose_or_roll: {table: playbooks, as: playbook, field: playbook}
+  - apply:
+      hunt: "@playbook.hunt"
+      finesse: "@playbook.finesse"
+      prowl: "@playbook.prowl"
+      skirmish: "@playbook.skirmish"
+  - choose: {from: [Akoros, Iruvia, Skovlan, Tycheros], as: heritage, field: heritage}
+  - name: {from: [Arcy, Canter, Haig, Kelyr, Rye, Slane]}

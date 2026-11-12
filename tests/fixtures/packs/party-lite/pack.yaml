@@ -1,0 +1,7 @@
+id: party-lite
+name: Party (test pack)
+kind: system
+version: 0.1.0
+description: Rules of every kind that loop over the party and repeat steps.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

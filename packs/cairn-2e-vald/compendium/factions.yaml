@@ -1,0 +1,73 @@
+# Vald's factions and faiths (wardens-guide/vald): `didact compendium import cairn-2e-vald`.
+id: house-of-burgesses
+type: faction
+name: The House of Burgesses
+agenda: Power and prestige for its wealthy, land-owning lords and ladies.
+obstacle: Individual squabbles, petty disputes, and a never-ending lust for power undermine them.
+advantages: [land, wealth, "great things when acting as one body"]
+tags: [faction, vald]
+body: >-
+  An assembly of wealthy, land-owning lords and ladies. Cunning, assertive, and convinced of
+  their own superiority. A Burgess rarely speaks ill of the Order of Nine in public, though
+  the House distrusts it. Openly friendly with the Tideborn, though uneasy at their rise.
+source: wardens-guide/vald#the-house-of-burgesses
+---
+id: order-of-nine
+type: faction
+name: The Order of Nine
+agenda: Discover, identify and regulate Relics; find the Gates to the Roots, where Relics come from.
+obstacle: Its founders' names are secret and it keeps out of open politics, working through spies.
+advantages: [wealth, "a vast network of spies in nearly every faction", scholars]
+tags: [faction, vald, relics]
+body: >-
+  A consortium of merchants, scholars, and the very powerful. It pays handsomely for any
+  information about Gates, and detests Spellbooks and those who carry them. Ranks, in order of
+  primacy: Lector (Junior, then High; only High Lectors may use Relics), Keeper (protector of a
+  Gate), Archivist (led by the Grand Archivist), Chamberlain (master of Relics), and Inquisitor
+  (the Three, answering only to the Nine).
+source: wardens-guide/vald#the-order-of-nine
+---
+id: marchguard
+type: faction
+name: The Marchguard
+agenda: Protect the realm from incursions across its ever-shifting borders, and stop anyone crossing without guidance.
+obstacle: Its ranks are ex-thugs, disgraced scholars and neglected knights bound by an inescapable Blood Oath, with no central leadership.
+advantages: [the Blood Oath, "Bloodhounds who hunt oath-breakers", "an uneasy friendship with the Wood"]
+tags: [faction, vald, border]
+body: >-
+  The Guard bends to no kings, knows no religion, and obeys no laws but their own. A masked
+  volunteer speaks for them. Bloodhounds (members with special commendations) enforce the
+  Oath through spies and informants: those who escape return or die.
+source: wardens-guide/vald#the-marchguard
+---
+id: tideborn
+type: faction
+name: The Tideborn
+agenda: Worship Rivulus, a petty god of rivers and lakes, and spread the faith through rural villages near water.
+obstacle: Their zealotry has made enemies; their clergy never travel alone through wooded areas.
+advantages: [growing rural following, "the respect of the House of Burgesses"]
+tags: [faith, vald, water]
+body: >-
+  Initiates are ritually drowned (some die); survivors take water names (Carp, Reed, Oxbow).
+  Little hierarchy within the clergy, save the Aqua Primaris, whom all obey without question.
+source: wardens-guide/vald#tideborn
+---
+id: white-raven
+type: faction
+name: The White Raven (the Flock)
+agenda: Keep the Wood's forests and creatures healthy, and obey the will of the Wood.
+obstacle: They distrust organized religion; every settlement keeps its own Flock.
+advantages: ["awe of the Woodwose", "communities close to the Wood"]
+tags: [faith, vald, wood]
+body: Followers bear tattoos of a white bird on their wrists, necks or backs.
+source: wardens-guide/vald#the-white-raven
+---
+id: five-pointed-star
+type: faction
+name: The Five-Pointed Star
+agenda: Uphold the old faith of the realm's first peoples, who mapped the stars in stone.
+obstacle: Its prominence is waning as other faiths rise; some members have turned to the reactionary Bleeding Star.
+advantages: ["temples in every major settlement", services for the poor]
+tags: [faith, vald, stars]
+body: Its worshipers deny the legitimacy of all other beliefs; local history is marked by its wars and forced conversions.
+source: wardens-guide/vald#the-five-pointed-star

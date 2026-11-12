@@ -1,0 +1,250 @@
+# Grimwild: Community Edition (Preview 5.3), Chapter 3: GM Toolkit, Combat Kit (pp. 109-111). CC0 1.0.
+# Tier + role: the four enemy tiers, the ten roles, and each role's d6 table of ideas for spending
+# suspense when it meets its worst case (`role-<id>`; the roles themselves are in
+# compendium/roles.yaml). Each response continues its heading: "When their cover is blown, it…
+# flees into the shadows, looking for new cover."
+table: combat-tiers
+title: "Enemy tiers"
+description: "Tier is an opponent's threat level. Use it together with a role (Tier + Role) to inform how these combatants act in the heat of battle. Each entry's data holds the book's examples, and how a battleground lists one: a group as a pool (4d), one that is a challenge of its own with a | after its pool (6d |)."
+source: "p. 109"
+entries:
+  - text: "Mook: These are mostly just set dressing, especially if encountered alone. One action roll can take out several at once, though a large group can be treated as a task pool."
+    data:
+      id: mook
+      dice: "4d"
+      foes: foes
+      examples: ["drunken patrons (a few)", "4d goblins (a bunch)", "annoying imp (one)"]
+  - text: "Tough: A typical, fairly dangerous enemy. One action roll can take one of them out of the scene, while a small group can be treated as a task pool."
+    data:
+      id: tough
+      dice: "4d"
+      foes: foes
+      examples: ["lizardfolk warrior (one)", "4d bandits (a few)", "8d zombies (a lot)"]
+  - text: "Elite: A dangerous foe with strong scene presence, often leading a group of lesser enemies. These are typically a challenge themselves."
+    data:
+      id: elite
+      dice: "6d |"
+      foes: foe
+      examples: ["6d | minotaur (one)", "4d | treant (one)", "6d | pirate captain (one)"]
+  - text: "Boss: These are grand foes that command the scene. They're powerful, often acting as a large or linked challenge alone."
+    data:
+      id: boss
+      dice: "8d |"
+      foes: foe
+      examples: ["8d+4d | lich (one)", "4d+4d+6d+8d | dragon (one)", "8d | high devil (one)"]
+---
+table: combat-roles
+title: "Enemy roles"
+description: "Role is a keyword used to guide an enemy's behavior in battle to vary its tactics (compendium: the role's id; its d6 table: role-<id>)."
+source: "pp. 110-111"
+entries:
+  - text: "Blaster: Ranged foes who unleash overwhelming power from afar, raining chaos on the battlefield. They crumble when the fight gets too close."
+    data:
+      id: blaster
+      table: role-blaster
+      traits: ["devastating power", "wide impact", "fragile under fire"]
+      moves: ["Barrage", "Shockwave", "Shock and Awe"]
+      trigger: "As a last ditch defense, it…"
+    source: "p. 110"
+  - text: "Brute: Brutal raiders who thrive in chaos, striking with sudden overwhelming strength. Each strike shakes the ground, leaving few standing."
+    data:
+      id: brute
+      table: role-brute
+      traits: ["unstoppable force", "towering resilience", "impulsive"]
+      moves: ["Wild Smash", "Mad Dash", "Wreak Havoc"]
+      trigger: "When challenged or taunted, it…"
+    source: "p. 110"
+  - text: "Lurker: Stealthy stalkers who strike from concealment, waiting patiently for the perfect moment. They falter when exposed or when in prolonged fights."
+    data:
+      id: lurker
+      table: role-lurker
+      traits: ["perfectly silent", "watchful", "fragile when revealed"]
+      moves: ["Ambush", "Vanish", "Misdirect"]
+      trigger: "When their cover is blown, it…"
+    source: "p. 110"
+  - text: "Marksman: Sharpshooters who excel at picking off targets from a distance. They are vulnerable when caught in melee, or forced to move quickly."
+    data:
+      id: marksman
+      table: role-marksman
+      traits: ["lethal precision", "exceptional range", "panics close up"]
+      moves: ["Piercing Shot", "Take Cover", "Spot Weakness"]
+      trigger: "When under pressure, it…"
+    source: "p. 110"
+  - text: "Predator: Persistent hunters who stalk their prey, waiting for the perfect moment to strike. They falter if their prey is tenacious."
+    data:
+      id: predator
+      table: role-predator
+      traits: ["relentless pursuit", "overwhelming strike", "overcommits"]
+      moves: ["Ambush", "Evasive Leap", "Track Down"]
+      trigger: "When prey slips away, it…"
+    source: "p. 111"
+  - text: "Protector: Unyielding guardians who shield allies and endure attacks meant for others. They struggle when separated from those they protect."
+    data:
+      id: protector
+      table: role-protector
+      traits: ["grand resilience", "exceptional tactics", "limited offense"]
+      moves: ["Setup Ally", "Interpose", "Rally Cry"]
+      trigger: "When an ally is in danger, it…"
+    source: "p. 111"
+  - text: "Skirmisher: Agile combatants who excel at hit-and-run tactics, harassing foes and striking from unexpected angles. They falter when pinned down."
+    data:
+      id: skirmisher
+      table: role-skirmisher
+      traits: ["great mobility", "quick reflexes", "fragile"]
+      moves: ["Strike & Move", "Dodging Roll", "Force Back"]
+      trigger: "When it loses the advantage, it…"
+    source: "p. 111"
+  - text: "Swarmer: Relentless attackers who overwhelm enemies with sheer numbers, striking from all sides to wear them down. They falter when isolated."
+    data:
+      id: swarmer
+      table: role-swarmer
+      traits: ["never ending attacks", "overwhelming", "weak individually"]
+      moves: ["Swarm, Swarm!", "Scatter!", "Surround 'Em!"]
+      trigger: "When their numbers thin, they…"
+    source: "p. 111"
+  - text: "Tactician: Clever strategists who manipulate the battlefield, exploit every weakness they find, and command those around them. They struggle when their plan fails."
+    data:
+      id: tactician
+      table: role-tactician
+      traits: ["always prepared", "good under pressure", "relies on allies"]
+      moves: ["Flanking Strike", "Tactical Rally", "Create Weakness"]
+      trigger: "When its plan fails, it…"
+    source: "p. 111"
+  - text: "Trickster: Cunning deceivers who thrive on confusion, turning the tide of battle with guile. They crumble when their tricks are exposed or fail."
+    data:
+      id: trickster
+      table: role-trickster
+      traits: ["master of deception", "unpredictable", "fragile"]
+      moves: ["Deceptive Strike", "Bait and Switch", "Snatch Weapon"]
+      trigger: "When its tricks fail, it…"
+    source: "p. 111"
+---
+table: role-blaster
+title: "Blaster: As a last ditch defense, it…"
+description: "Ideas on how to spend suspense when a blaster meets a common worst-case scenario."
+dice: d6
+source: "p. 110"
+entries:
+  1: "unleashes a sudden shockwave to clear space."
+  2: "scrambles to higher ground."
+  3: "detonates an explosives burst in all directions."
+  4: "drags their enemy into mutual destruction."
+  5: "goes all in with their full power in a final strike."
+  6: "fires wildly to distract and disorient."
+---
+table: role-brute
+title: "Brute: When challenged or taunted, it…"
+description: "Ideas on how to spend suspense when a brute meets a common worst-case scenario."
+dice: d6
+source: "p. 110"
+entries:
+  1: "charges forward recklessly, ignoring safety."
+  2: "lashes out at the closest enemy in frustration."
+  3: "circles their foes, looking for a weak spot."
+  4: "smashes the environment to create new chaos."
+  5: "rallies allies with a furious roar."
+  6: "hurls something with crushing force."
+---
+table: role-lurker
+title: "Lurker: When their cover is blown, it…"
+description: "Ideas on how to spend suspense when a lurker meets a common worst-case scenario."
+dice: d6
+source: "p. 110"
+entries:
+  1: "strikes quickly to silence the nearest threat."
+  2: "flees into the shadows, looking for new cover."
+  3: "throws debris or objects to create a distraction."
+  4: "slinks behind an ally or stronger creature."
+  5: "unleashes a flurry of wild attacks."
+  6: "abandons the fight entirely, escaping to safety."
+---
+table: role-marksman
+title: "Marksman: When under pressure, it…"
+description: "Ideas on how to spend suspense when a marksman meets a common worst-case scenario."
+dice: d6
+source: "p. 110"
+entries:
+  1: "focuses on the closest threat for a critical shot."
+  2: "dives into cover to avoid incoming attacks."
+  3: "signals allies to draw enemy attention."
+  4: "shifts to higher ground for a better vantage point."
+  5: "takes a rapid, less accurate shot to disrupt foes."
+  6: "retreats to reposition for the next attack."
+---
+table: role-predator
+title: "Predator: When prey slips away, it…"
+description: "Ideas on how to spend suspense when a predator meets a common worst-case scenario."
+dice: d6
+source: "p. 111"
+entries:
+  1: "maneuvers to cut off the target's escape."
+  2: "refuses to give up no matter what."
+  3: "roars, forcing a mistake."
+  4: "circles, creating a trap to regain control."
+  5: "strikes wildly in frustration, hitting all around."
+  6: "vanishes, retreating to wait for another chance."
+---
+table: role-protector
+title: "Protector: When an ally is in danger, it…"
+description: "Ideas on how to spend suspense when a protector meets a common worst-case scenario."
+dice: d6
+source: "p. 111"
+entries:
+  1: "steps in to block an incoming attack."
+  2: "draws enemy attention with a loud challenge."
+  3: "shoves the ally out of harm's way."
+  4: "counters with a heavy blow to create space."
+  5: "raises a protective barrier to buy time."
+  6: "sacrifices their position to shield an ally."
+---
+table: role-skirmisher
+title: "Skirmisher: When it loses the advantage, it…"
+description: "Ideas on how to spend suspense when a skirmisher meets a common worst-case scenario."
+dice: d6
+source: "p. 111"
+entries:
+  1: "retreats quickly to regroup and reassess."
+  2: "strikes recklessly, hoping to create an opening."
+  3: "dodges wildly to avoid being hit."
+  4: "circles, searching for a weak point to exploit."
+  5: "taunts, trying to bait enemies into a mistake."
+  6: "disengages, vanishing into the fray."
+---
+table: role-swarmer
+title: "Swarmer: When their numbers thin, they…"
+description: "Ideas on how to spend suspense when a swarmer meets a common worst-case scenario."
+dice: d6
+source: "p. 111"
+entries:
+  1: "press harder, with reckless desperation."
+  2: "retreat momentarily to regroup."
+  3: "call for reinforcement with frantic signals."
+  4: "regroup, pulling forces into a defensive cluster."
+  5: "scatter, trying to avoid further losses."
+  6: "break, abandoning the fight entirely."
+---
+table: role-tactician
+title: "Tactician: When its plan fails, it…"
+description: "Ideas on how to spend suspense when a tactician meets a common worst-case scenario."
+dice: d6
+source: "p. 111"
+entries:
+  1: "redirects allies to regroup and recover."
+  2: "focuses on a single target to salvage the situation."
+  3: "orders a retreat to reevaluate the fight."
+  4: "shifts their attention to a new opportunity."
+  5: "sacrifices weaker assets to regain momentum."
+  6: "lashes out in frustration, acting recklessly."
+---
+table: role-trickster
+title: "Trickster: When its tricks fail, it…"
+description: "Ideas on how to spend suspense when a trickster meets a common worst-case scenario."
+dice: d6
+source: "p. 111"
+entries:
+  1: "feigns weakness, to lure enemies closer."
+  2: "dodges frantically, hoping to regain control."
+  3: "mocks enemies to draw attention away."
+  4: "escapes, leaving a decoy in its place."
+  5: "reverses their position, to surprise opponents."
+  6: "lashes out in desperation, to cover failure."

@@ -1,0 +1,41 @@
+# What pack.yaml hides of grimwild-ce stays out of a Grimscrolls world: a Grimwild path, its
+# talents and monsters, its arcana, its tables, its rules text and glossary, the rules with no place
+# here; what Grimscrolls inherits still runs.
+test: grimwild-hidden
+help: "A Grimscrolls world shows Grimscrolls, not Grimwild: the parent's paths, talents, monsters and arcana are gone from the compendium, its tables from the table list, its rules text from lookup and its terms from define; its twist, vigor pool and random potion don't run; what Grimscrolls inherits (the story roll, a faction's turn, tokens, tick pools) is listed and runs."
+script:
+  - world new t --system {pack} --seed hidden
+  - campaign new c --seed hidden
+  - new pc Hero --set wits=2
+  - run: compendium find owlbear
+    expect: "nothing in the compendium matches"
+    expect_not: grimwild-ce.owlbear
+  - run: compendium find psion
+    expect_not: grimwild-ce.psion
+  - run: compendium find "Arcane Training"
+    expect_not: grimwild-ce.fighter-arcane-training
+  - run: compendium find "Bottled Wish"
+    expect_not: grimwild-ce.bottled-wish
+  - run: compendium find troll
+    expect: "grimscrolls.troll"
+  - run: table list
+    expect: ["grimscrolls.gm-crucible", "grimscrolls.bestiary"]
+    expect_not: "grimwild-ce."
+  - run: rules list --detail full
+    expect: ["grimwild-ce.story-roll", "grimwild-ce.faction-turn", "grimwild-ce.tokens", "grimwild-ce.tick", "grimscrolls.suspense-move", "grimscrolls.supplies-day"]
+    expect_not: ["grimwild-ce.twist ·", "grimwild-ce.vigor ·", "grimwild-ce.reset ·", "grimwild-ce.suspense-move ·", "grimwild-ce.supplies-day ·", "grimwild-ce.scene-end-noblebright ·"]
+  - run: do vigor who=hero
+    fails: true
+  - run: do grimwild-ce.twist who=hero
+    fails: true
+  - run: gen run grimwild-ce.potion --auto
+    fails: true
+  - run: rules lookup "hex flower"
+    expect: "no rules text about 'hex flower'"
+  - run: define "vigor pool"
+    fails: true
+    expect: "no glossary term 'vigor pool'"
+  - run: define mook
+    expect: "(grimscrolls): A threat's presence"
+  - run: do tokens who=hero take=3
+    expect: "Hero's exploration tokens: 3."

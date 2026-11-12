@@ -1,0 +1,3 @@
+table: weather
+dice: d2
+entries: {1: ash, 2: hail}

@@ -1,0 +1,20 @@
+# Vald's tables land, and a new day in Vald rolls its weather: the season's own, and Cairn's for
+# travel by the season it matches (Harvest is fall; Dead winter, Dry spring, Wet summer).
+test: every-table
+table: all
+times: 5
+---
+test: a-day-in-vald
+script:
+  - world new vald --system cairn-2e --seed vald
+  - pack enable cairn-2e-vald
+  - campaign new first --seed vald
+  - run: time advance 1 day
+    expect: ["Garden Day, 2 Mourning 7728 (Harvest)", "vald-weather-harvest", "weather-fall", "In Vald's Harvest season"]
+  - run: do vald-weather season=Dead
+    expect: ["vald-weather-dead", "weather-winter", "Weather:"]
+  - new pc Cobb --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set burden=1
+  - run: time advance 10 days
+    expect: "12 Mourning 7728"
+  - run: time advance 13 days
+    expect: ["1 Silence 7728", "Stone Heart grows heavier: it takes 2 slots now"]

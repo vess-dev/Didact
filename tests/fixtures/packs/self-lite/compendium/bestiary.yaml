@@ -1,0 +1,1 @@
+- {id: wolf, type: monster, name: Wolf, mechanics: {self-lite: {hp: 3}}}

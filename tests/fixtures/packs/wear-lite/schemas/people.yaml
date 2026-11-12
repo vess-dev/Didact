@@ -1,0 +1,8 @@
+type: character
+fields:
+  hp: {kind: resource, min: 0}
+  conditions: {kind: conditions}
+  marks: {kind: tags, allowed: [brand, scar]}
+---
+type: pc
+extends: character

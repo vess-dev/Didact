@@ -1,0 +1,693 @@
+# Grimwild CE terms, for `didact define <term>`: the book's index (pp. 204-216) and key
+# terms from the rules text. Grimwild: Community Edition text is CC0 1.0.
+- term: "Action Roll"
+  definition: "The core way to resolve a PC attempting something risky or dramatic: roll d6s equal to the stat and read the highest. Perfect achieves the goal, messy achieves the goal with a consequence, a grim doesn't, and there's a consequence."
+  aliases: ["action rolls"]
+  see: [action]
+- term: "Perfect"
+  definition: "A good result on a roll, when your highest die is a single 6. On an action roll, you get what you wanted without any trouble. On a defense roll, you fully avoid the danger."
+  see: [action, defense, story-roll]
+- term: "Messy"
+  definition: "A mixed result on a roll, when your highest die is 4 or 5. On an action roll, you get what you want, but there's also a consequence. On a defense roll, you partially avoid the danger, reducing it to a lower level (bloodied could become a mark to Brawn or Agility)."
+  see: [action, defense, story-roll]
+- term: "Grim"
+  definition: "A bad result on a roll, when your highest die is a 1, 2, or 3. On an action roll, you don't get what you want, and there's a problem. On a defense roll, you fail to avoid the danger, taking the full brunt of it."
+  see: [action, defense, story-roll]
+- term: "Disaster"
+  definition: "The worst result from rolling the dice, achieved by getting a grim result cut by a thorn. Disasters result in the worst case scenario, often about twice as bad as a grim, and the PC takes spark."
+  aliases: ["disasters"]
+  see: [action, take-spark]
+- term: "Critical"
+  definition: "A perfect result with multiple 6s, giving a bonus: greater effect, secondary effect, or setup (or take spark if nothing comes to mind). Thorns can't cut a critical."
+  aliases: ["crit", "crits", "criticals"]
+  see: [action, defense, pool-action]
+- term: "Greater Effect"
+  definition: "Critical option that intensifies success. If a task pool is rolled as part of the action, it drops 1d before being rolled."
+  see: [action]
+- term: "Secondary Effect"
+  definition: "Critical effect option giving the PC the effects of a perfect on a different, but related roll."
+  see: [action]
+- term: "Setup"
+  definition: "Whenever a previous action would make a follow-up easier or more effective, the follow-up gets +1d from whoever did the previous action (but without sharing the risk). Setup can be granted as a critical bonus or as a result of a normal action roll."
+  aliases: ["set up"]
+  see: [action]
+- term: "Thorn"
+  definition: "Eight-sided dice used to represent danger or difficulty on a roll, notated t (1t, 3t). When a thorn comes up 7 or 8, it cuts the overall result down a level (perfect → messy → grim → disaster)."
+  aliases: ["thorns", "t", "d8"]
+  see: [action]
+- term: "Cut"
+  definition: "A thorn showing 7 or 8 lowers the result one step (perfect → messy → grim → disaster); each such thorn cuts once. Criticals can't be cut."
+  aliases: ["cuts"]
+  see: [action]
+- term: "d"
+  definition: "Six-sided dice, notated d (2d, 4d). A pool's size is written in front of its name (4d Barroom Brawl)."
+  aliases: ["d6", "dice"]
+- term: "Risk"
+  definition: "If something interesting could happen if the players fail a roll, then they should roll; otherwise, they just do it. Spells without risk have no resource cost, unless potent."
+  aliases: ["risky"]
+  see: [action]
+- term: "Defense Roll"
+  definition: "How to resolve a PC reflexively avoiding danger: the GM picks the stat. A perfect avoids the danger, a messy partially avoids it, and a grim takes the full hit. PCs get defense rolls if and only if the danger didn't come as a consequence of their own action rolls."
+  aliases: ["defense", "defense rolls"]
+  see: [defense]
+- term: "Story Roll"
+  definition: "A roll resulting in a grim, messy, or perfect, made to resolve anything not covered by a more specific rule (luck, magic items, NPC reactions, doubtful details). The GM chooses 1d, 2d, or 3d based on how good they feel the odds are."
+  aliases: ["story rolls"]
+  see: [story-roll]
+- term: "Montage Roll"
+  definition: "If you don't want to play out a scene in detail, everyone rolls 2d, using the highest of everyone's results for the final result for the group. Individual failures may still result in impact moves."
+  aliases: ["montage", "montages", "montage rolls"]
+  see: [montage]
+- term: "Assist"
+  definition: "The PC who helps rolls 1d and combines their result with the PC taking the action, sharing the risk and the consequences."
+  aliases: ["assists", "assisting"]
+  see: [action]
+- term: "Outside Help"
+  definition: "When an NPC or environmental element would provide a clear help to a PC, the GM rolls 1d and adds it to the PC's result, as a normal assist."
+  see: [action]
+- term: "Teamwork"
+  definition: "When PCs work together, one rolls while the others assist. The whole group shares the consequences."
+  see: [action]
+- term: "Protecting Others"
+  definition: "Make a 1d defense roll for an ally hit with an impact move from their own action. On a perfect, you both avoid it; on a grim, you both take it; on a messy, it's lightened for both of you, or the protector takes the move instead."
+  aliases: ["protect", "protecting"]
+  see: [defense]
+- term: "Forward Momentum"
+  definition: "If a grim threatens to grind the story to a halt, the GM can let the PC get what they want in a way that makes things worse; a roll with no effect gives new info or a setup instead."
+  see: [action]
+- term: "Spark"
+  definition: "A resource every PC has, spent before any roll for +1d per spark. It has a max of 2, and carries from session to session. Take it for a tangle, a disaster, a resolved story arc, a quarrel, or an ally's bond with you changing."
+  aliases: ["sparks"]
+  see: [take-spark, action]
+- term: "Thread"
+  definition: "Resource available to all PCs: 2 each session. It can be spent by a player to add a story detail beyond set dressing. Depending on how reasonable it feels, the GM can make it true, call for a story roll, or veto it."
+  see: [pre-session]
+- term: "Suspense"
+  definition: "Resource for the GM used to prompt impact moves. It's gained by forgoing an impact move on a messy or worse on a player's action, by some suspense moves, at pre-session, and when starting a challenge, which grants 2 free suspense."
+  see: [suspense, suspense-move]
+
+- term: "Vantage"
+  definition: "The sum of everything that's true about a character in the fiction—everything on your sheet, and everything in the current scene. The GM uses it to judge the difficulty of actions (and so the amount of thorns) and how reasonable story details a player adds might be."
+  see: [action]
+- term: "Certain"
+  definition: "Highest vantage: things that are on the character sheet or directly implied. A certain action is an automatic success without a roll."
+  aliases: ["certain (vantage)"]
+- term: "Reasonable"
+  definition: "It fits the character and the situation, but isn't guaranteed: actions usually require a roll, often with no thorns, sometimes with one."
+  aliases: ["reasonable (vantage)"]
+  see: [action]
+- term: "Doubtful"
+  definition: "Second to lowest on the vantage scale. Rolls often have 2+ thorns, and establishing details may require a story roll."
+  aliases: ["doubtful (vantage)"]
+  see: [action]
+- term: "Impossible"
+  definition: "The lowest on the vantage scale. Rolls can't be attempted, and details can't be established."
+  aliases: ["impossible (vantage)"]
+- term: "Vantage Scale"
+  definition: "Certain (automatic success), reasonable (+0 or 1t), doubtful (+2t or more), impossible (no roll)."
+  see: [action]
+- term: "Tools of the Trade"
+  definition: "The tools and equipment characters have, determined by their vantage. Players may have to spend thread or make a story roll for items that are doubtful."
+- term: "Potency"
+  definition: "The ability to do things beyond your normal limitations, granted by certain talents. Potency lets a character do something that would normally take a group of people working together, or something with a comparable narrative impact."
+  aliases: ["potent", "potent action"]
+- term: "Set Dressing"
+  definition: "Anything that's just flavor and doesn't have an impact on the narrative, like how you describe a detail. It can be added freely."
+- term: "Tangle"
+  definition: "A player-introduced narrative beat that's bad for their PC, like their past coming back to haunt them, mistakes, or unwise decisions. It must stem from their vantage, and the player gains spark."
+  aliases: ["tangles"]
+  see: [take-spark]
+- term: "Stat"
+  definition: "Stats define the core capabilities of a character, rated 1 (poor) to 3 (great). The four stats are Brawn, Agility, Wits, and Presence."
+  aliases: ["stats"]
+  see: [action, defense]
+- term: "Brawn"
+  definition: "One of the four stats: power, menace, and toughness. A physical stat."
+  see: [action, defense]
+- term: "Agility"
+  definition: "One of the four stats: precision, athleticism, and reflexes. A physical stat."
+  see: [action, defense]
+- term: "Wits"
+  definition: "One of the four stats: cleverness and observation—smarts, trickery, and the ability to read situations. A mental stat."
+  see: [action, defense]
+- term: "Presence"
+  definition: "One of the four stats: charisma and force of personality—influence, willpower, and the ability to read people. A mental stat."
+  see: [action, defense]
+- term: "Background"
+  definition: "A significant piece of a PC's backstory (heritage, upbringing, profession): the core of your vantage. You choose two, and a background grants three relevant wises."
+  aliases: ["backgrounds"]
+- term: "Wise"
+  definition: "A character's areas of knowledge or expertise: evocative phrases that expand your vantage, most often used when adding details to the story and determining thorns."
+  aliases: ["wises"]
+- term: "Heritage"
+  definition: "Your character's ancestry and culture, represented by three wises, and optionally a heritage talent."
+- term: "Trait"
+  definition: "Descriptors of a character's personality. Choose 2 you are, and 1 you are not. They're part of your vantage and can introduce tangles."
+  aliases: ["traits"]
+- term: "Desire"
+  definition: "What a PC wants. Choose 2 you want, and 1 you definitely don't. They're part of your vantage and can introduce tangles."
+  aliases: ["desires"]
+- term: "Distinctive Features"
+  definition: "The first 2 or 3 things others notice about a PC."
+  aliases: ["features", "distinctive feature"]
+- term: "Bond"
+  definition: "A short phrase that defines a PC's relationship to another PC: an intensity and a nature (tense doubts). When your bond with an ally changes, they take spark."
+  aliases: ["bonds"]
+  see: [change-bond, take-spark]
+- term: "Story Arc"
+  definition: "An overarching goal or storyline for a character or group, spanning multiple sessions. Resolving one with a meaningful moment gives spark."
+  aliases: ["story arcs", "arc", "arcs", "group arc", "character arc"]
+  see: [resolve-arc, take-spark]
+- term: "Adventuring Party Concepts"
+  definition: "Descriptors for the group. Choose 2 you all are, and 1 you definitely aren't."
+  aliases: ["party concept", "adventuring party"]
+- term: "Group-Building Questions"
+  definition: "Useful questions for players to ask each other about their characters to flesh out their relationship."
+- term: "Quarrel"
+  definition: "A way to resolve disputes between PCs: state the stakes, each rolls 2d, and the highest wins. The winner narrates, the loser has the last word, and everyone who took part takes spark."
+  aliases: ["quarrels"]
+  see: [quarrel, take-spark]
+- term: "Talent"
+  definition: "Special abilities granted to PCs when created and when they gain a level. Talents let you do things you couldn't otherwise, and they increase your vantage when relevant, even when you're not directly using them."
+  aliases: ["talents"]
+  see: [level-up, switch-talent]
+
+- term: "Path"
+  definition: "The collection of a core talent and 7 path talents around a central theme. Players choose 1 path at character creation; the path name alone doesn't expand vantage."
+  aliases: ["paths"]
+- term: "Growth"
+  definition: "The increasing power of a PC's core talent. Growth happens every 2 levels (2, 4, 6) or 3 levels (3, 6)."
+  aliases: ["core talent growth"]
+  see: [level-up, experience]
+- term: "Thematic Path Talent"
+  definition: "A temporary path talent that should fit the trappings of its source."
+  see: [level-up]
+
+- term: "Bonus Dice"
+  definition: "Dice pools that are usually added before a roll: special power pools rolled in addition to the original roll."
+  aliases: ["bonus dice pool"]
+- term: "Given Time"
+  definition: "An action that can be taken with an undefined amount of time, usually ranging from a few minutes to hours."
+- term: "Interrupt"
+  definition: "An ability granted by certain talents that allows a player to stop an impact move with an action roll of their own. A messy on an interrupt gives the GM suspense (or lets them keep it if spent)."
+  aliases: ["interrupts"]
+  see: [action]
+- term: "Push Yourself"
+  definition: "Take a mark (choose a stat to mark). Pushing yourself is required to activate certain talents, and drops 1d from a task pool that dropped 0d when rolled."
+  aliases: ["push", "pushing yourself"]
+  see: [push, mark]
+- term: "Pivot"
+  definition: "When a task pool roll drops no dice, take a secondary effect (the effects of a perfect on a different, but related roll) instead of pushing."
+- term: "Level"
+  definition: "A measure of a character's progression, from 1 to 7. Each session grants XP; when you fill boxes equal to the next level, you gain it, with a new talent, and every few levels your core talent grows."
+  aliases: ["levels", "level up"]
+  see: [level-up, experience]
+- term: "Experience"
+  definition: "When a PC completes a session, they gain an XP, which they mark in the XP track on the character sheet; the GM can give 1 bonus XP for a standout session. Filling boxes equal to the next level grants it."
+  aliases: ["xp"]
+  see: [experience, session-experience]
+- term: "Pre-Session"
+  definition: "Before each session after the first: recall the last session and share your PC's best moment; each player takes spark and resets thread and per-session talents; the GM takes suspense and recaps."
+  aliases: ["pre session"]
+  see: [pre-session]
+- term: "Pre-cap"
+  definition: "The retelling of the story so far, focusing on the last session before a game: a proper 'Previously on...'."
+  aliases: ["previously on", "recap"]
+  see: [pre-session]
+- term: "Per-Session Talents"
+  definition: "Talents with a set number of uses per session, balanced around 3 hours of play. They reset before each new session (or during rests, with the Rest Resets optional rule)."
+  aliases: ["per-session"]
+  see: [pre-session, talent-resets, refresh]
+- term: "Damage"
+  definition: "Marks, harm, vex, and conditions."
+  see: [mark, harm]
+- term: "Mark"
+  definition: "A temporary hindrance tied to a specific stat. The next time you roll that stat, take a thorn and clear the mark. A second mark on a marked stat is harm instead."
+  aliases: ["marks", "marked"]
+  see: [mark]
+- term: "Harm"
+  definition: "The standard weight of damage when an impact move hurts a PC, leaving them bloodied or rattled (then desperate). Harm is cleared with treatment or rest."
+  see: [harm]
+- term: "Bloodied"
+  definition: "Harm: pressing physical damage or stacked marks on Brawn or Agility. +1t on rolls with those stats."
+  see: [harm]
+- term: "Rattled"
+  definition: "Harm: pressing mental damage, or stacked marks to Wits or Presence. +1t on rolls with those stats."
+  see: [harm]
+- term: "Desperate"
+  definition: "Harm that puts you on the brink, taken upon a second bloodied or rattled: +1t on all rolls. Harm that would leave you desperate a second time drops you instead."
+  see: [harm]
+- term: "Dropped"
+  definition: "Additional harm while desperate, or an impact move with dire stakes, can leave a PC dropped: out of the scene. They make a story roll (usually 2d) to see how bad the consequences are."
+  aliases: ["drop"]
+  see: [dropped, end-story]
+- term: "Sacrifice"
+  definition: "An end to a PC's story after being dropped. They make a single, automatically successful action for whatever effect feels appropriate, then die."
+  see: [dropped]
+- term: "Retirement"
+  definition: "An end to a PC's story after being dropped: alive but deeply scarred, they retire soon. If dropped again before leaving, the PC dies."
+  see: [end-story, dropped]
+- term: "Another End"
+  definition: "Craft an interesting end to a character's story after they're dropped: an ignoble demise, an ambiguous fate, a turn to antagonist, or a death without fanfare."
+  see: [dropped]
+- term: "Vex"
+  definition: "An instinctual, emotional response often inflicted as an impact move. When a PC takes vex, the player chooses if they fight, take flight, freeze, or freak out."
+  see: [vex]
+
+- term: "Condition"
+  definition: "A specific injury or malady (urgent, short-term, long-term or permanent) that impacts only relevant situations. Conditions inflict +1t on a roll when relevant, and can reduce vantage."
+  aliases: ["conditions"]
+- term: "Healing"
+  definition: "Marks are too minor to heal, harm needs treatment, and conditions heal when it makes sense. Only potent spells heal harm directly."
+  aliases: ["heal"]
+  see: [rest]
+- term: "Treatment"
+  definition: "Required to heal harm and some conditions. Treatment requires time, tools, and training, and is almost always successful."
+- term: "Rest"
+  definition: "A significant stretch of time between action (a night's camp, a week's travel). This clears all marks and harm."
+  aliases: ["resting"]
+  see: [rest, reset]
+- term: "Downtime"
+  definition: "An extended break in the fiction, such as a month or season, in which PCs fully heal and pursue their own goals, while the world moves forward: the GM rolls faction pools."
+  see: [downtime]
+- term: "Downtime Actions"
+  definition: "When time passes, each PC picks one: rest, plan ahead, pursue a goal, unwind or venture (two if they sell off treasure)."
+  aliases: ["downtime action"]
+  see: [downtime, downtime-action]
+- term: "Diminishing Pools"
+  definition: "Sets of d6s that act as trackers. When prompted, all dice are rolled, with those resulting in 1-3 dropping from the pool. At 0d, the event it's tracking is triggered. Usually 2d (short), 4d (medium) or 8d (long)."
+  aliases: ["pool", "pools", "diminishing pool"]
+  see: [push]
+- term: "Task Pool"
+  definition: "Tracks the effort to overcome a complicated task, usually rolled with a successful PC action to bring the goal of the scene closer. Nothing dropped? Push or pivot."
+  aliases: ["task pools"]
+  see: [push]
+- term: "Pressure Pool"
+  definition: "Tracks imminent threats getting closer. Often rolled as an impact move."
+  aliases: ["pressure pools"]
+- term: "Timer Pool"
+  definition: "Tracks events happening in the background. Rolled occasionally as an impact move, or as time passes."
+  aliases: ["timer pools", "timer"]
+- term: "Resource Pool"
+  definition: "Tracks something precious, rolled when the resource sees significant usage. When it drops to 0d, the resource runs out."
+  aliases: ["resource pools"]
+- term: "Power Pool"
+  definition: "Special resource pool that tracks limited abilities. When rolled, it's also treated as an action—take the highest die as the result."
+  aliases: ["power pools"]
+  see: [pool-action]
+
+- term: "Linked Pools"
+  definition: "A sequence of 2+ pools used to track extra 'phases' or more complex events; the next isn't unlocked until the previous reaches 0d."
+  aliases: ["linked pool"]
+- term: "Campaign Pools"
+  definition: "Special long-term timer pools that track faction goals, seasons, and adversarial actions, rolled during downtime."
+  aliases: ["campaign pool", "campaign timer"]
+- term: "Faction Pool"
+  definition: "A timer tracking a faction's goal, rolled between sessions or when triggered by events. When it depletes, the goal is accomplished or the faction moves against another, with a story roll in their favor."
+  aliases: ["faction pools"]
+  see: [faction-turn, faction-goal]
+- term: "Tick Pool"
+  definition: "Optional rule for special pools (usually 2d-4d) that drop exactly 1d when triggered, instead of being rolled."
+  aliases: ["tick pools"]
+  see: [tick]
+
+- term: "GM Moves"
+  definition: "The framework that guides GMs, letting them earn and spend suspense while moving the story forward: four suspense moves and four impact moves."
+  aliases: ["gm move", "moves"]
+- term: "Suspense Move"
+  definition: "GM moves that lead to more intense scenes, giving suspense or prompting impact moves later: Build Up, Clue In, Foreshadow, Resolve."
+  aliases: ["suspense moves"]
+  see: [suspense-move]
+- term: "Impact Move"
+  definition: "GM actions that introduce trouble for the PCs: Complicate Things, Counter, Hit Hard, Lock Down. They must be prompted, by a messy, grim, or disaster on an action roll, by an unaddressed foreshadow, or by spending suspense."
+  aliases: ["impact moves"]
+  see: [defense]
+- term: "Prompt"
+  definition: "What the GM needs to use an impact move: a messy, grim, or disaster on an action roll, a relevant depleted pool, an unaddressed foreshadow, or spending suspense."
+- term: "Build Up"
+  definition: "Suspense move: focus on scenes with greater importance, giving a vignette with players taking spark, and the GM taking suspense."
+  aliases: ["buildup"]
+  see: [suspense-move, take-spark]
+- term: "Clue In"
+  definition: "Suspense move: the players are given details on the bigger narrative that their PCs don't know, and the GM takes suspense."
+  see: [suspense-move]
+- term: "Foreshadow"
+  definition: "Suspense move: the GM clearly states an impending danger, giving the PCs a chance to react. If they don't, the danger comes to pass, prompting an impact move."
+  see: [suspense-move]
+- term: "Resolve"
+  definition: "Suspense move: the GM gives a quick out on a problem to move the story forward, then takes suspense."
+  see: [suspense-move]
+- term: "Complicate Things"
+  definition: "Impact move: the GM adds a new obstacle, twist, or threat, or develops one."
+- term: "Counter"
+  definition: "Impact move: the GM stops a PC action, or denies their permissions. It can never stop defense rolls or criticals."
+- term: "Hit Hard"
+  definition: "Impact move: the GM inflicts damage on a PC, giving them a mark, harm, vex, or a condition."
+  aliases: ["hit 'em hard"]
+  see: [mark, harm]
+- term: "Lock Down"
+  definition: "Impact move: the GM declares something, cutting off options or forcing the story in a certain direction, with no opportunity to change it."
+  aliases: ["lockdown"]
+- term: "Stakes"
+  definition: "The danger of a scene or action. Low stakes impact moves have the weight of a mark; regular stakes (the default) of a harm; high stakes impact moves give desperate harm; and dire stakes can immediately drop you."
+  aliases: ["low stakes", "regular stakes", "high stakes", "dire stakes"]
+  see: [impact, dropped]
+- term: "Consequences"
+  definition: "What happens when things go wrong—from failed rolls, timers, or impact moves. They can be split into smaller ones or spread over several characters (each other PC hit gets a defense roll)."
+  aliases: ["consequence"]
+  see: [defense]
+- term: "Spotlight"
+  definition: "The GM's way to prompt players into action and ensure that no one is left out. There's no turn order, but there is screen time."
+- term: "Scene"
+  definition: "A continuous period of action: a few linked story beats, usually started in medias res."
+  aliases: ["scenes"]
+- term: "Challenge"
+  definition: "A complex task that takes an active role in the scene, represented by a task pool, defined by its traits and moves (and a fail state), and which grants 2 bonus suspense to the GM."
+  aliases: ["challenges"]
+  see: [suspense, push]
+- term: "Fail State"
+  definition: "A trigger that signals a challenge (or quest) failed, like a competing timer pool or a specific event. A Lock Down can also trigger it."
+  aliases: ["fail states"]
+- term: "Linked Challenge"
+  definition: "A greater, more complex challenge made of several parts, each with its own pool and proactive presence in the scene (a dragon's claws, body, tail and wings)."
+  aliases: ["linked challenges"]
+  see: [suspense]
+
+- term: "Battleground"
+  definition: "A special kind of challenge in an important location. It includes features (affecting vantage) and threats (acting with 2 free suspense or a timer pool)."
+  aliases: ["battlegrounds"]
+- term: "Vigilance"
+  definition: "The assumed alertness of PCs. When dealing with hidden dangers, PCs get a reveal, hint, or strike depending on their vantage."
+- term: "Reveal"
+  definition: "Vigilance: when something is hidden but a character has relevant vantage that would make it clear to them, the GM tells that player the hidden thing that they detect."
+- term: "Hint"
+  definition: "Vigilance: when a character has a chance to notice something hidden (but it's not guaranteed), the GM provides a hint, giving the player one chance to act on it. A reasonable response reveals the hidden thing."
+- term: "Strike"
+  definition: "Vigilance: when no character has vantage to get even a hint, the GM can choose to strike—the players run into a trap or ambush, or fail to spot something helpful. It costs suspense like any impact move."
+- term: "Tier"
+  definition: "The individual power of a foe. There are 4 tiers of increasing power: mook, tough, elite, and boss. (Treasure and arcana have tiers too: minor, major, mythic.)"
+  aliases: ["tiers"]
+- term: "Mook"
+  definition: "The lowest tier of enemy, posing little threat. Mooks can be defeated in a group with a single action roll, or sometimes not require a roll at all."
+  aliases: ["mooks"]
+  see: [action]
+- term: "Tough"
+  definition: "The standard tier of enemy, a reasonably challenging foe. Toughs can be defeated with a single successful action roll."
+  aliases: ["toughs"]
+  see: [action]
+- term: "Elite"
+  definition: "A tier of enemy representing someone or something very dangerous that requires multiple actions to take down, usually a challenge itself. Above toughs and below bosses."
+  aliases: ["elites"]
+- term: "Boss"
+  definition: "The highest tier of enemy: a powerful foe that commands the scene, usually represented with a large or linked challenge."
+  aliases: ["bosses"]
+- term: "Role"
+  definition: "A keyword that defines how a foe acts in combat: blaster, brute, lurker, marksman, predator, protector, skirmisher, swarmer, tactician or trickster. Use it with a tier."
+  aliases: ["roles", "combat role"]
+- term: "Blaster"
+  definition: "Combat role: ranged foes who unleash overwhelming power from afar."
+- term: "Brute"
+  definition: "Combat role: raiders and titans that strike with overwhelming strength."
+- term: "Lurker"
+  definition: "Combat role: monsters that stalk and strike from concealment."
+- term: "Marksman"
+  definition: "Combat role: a sharpshooter who excels at picking off targets from a distance."
+- term: "Predator"
+  definition: "Combat role: persistent hunters who wait for the perfect moment to strike."
+- term: "Protector"
+  definition: "Combat role: guardians who shield allies and endure attacks."
+- term: "Skirmisher"
+  definition: "Combat role: agile foes who use hit-and-run tactics."
+- term: "Swarmer"
+  definition: "Combat role: monsters that overwhelm with numbers."
+- term: "Tactician"
+  definition: "Combat role: clever strategists and commanding leaders."
+- term: "Trickster"
+  definition: "Combat role: foes that thrive on confusion, turning the tide of battle with their guile."
+- term: "Attacking Multiple"
+  definition: "Often difficult or impossible, depending on the foe's tier: it needs vantage (sweeping weapons, battle experience, martial skill) and adds thorns or higher stakes."
+- term: "Movement"
+  definition: "Usually handwaved as part of actions, unless there's an interesting obstacle in the way, which needs an action roll."
+- term: "Vulnerabilities"
+  definition: "Exploiting a vulnerability can lower thorns, drop 1d before rolling a pool, or bypass the need for a roll; sometimes finding one is required to attack at all."
+  aliases: ["vulnerability"]
+- term: "Enemy Magic"
+  definition: "Enemy magic doesn't follow the same rules as PC magic. It manifests through GM moves and is constrained only by the fiction."
+- term: "Factions"
+  definition: "Groups of NPCs with a strong presence in the world, tracked off-screen with resources and goals (faction pools). Keep 4-6 active."
+  aliases: ["faction"]
+- term: "Crucible"
+  definition: "A table of random options, usually 6x6. Roll 2d6 to determine the row and column, checking both results (31 or 13), and interpret the most evocative."
+  aliases: ["crucibles"]
+- term: "Spellcasting"
+  definition: "The ability of characters to produce magical effects, granted by certain talents (or arcana), each of which specifies the source of your power, how you cast, and the touchstones that define and limit your magic."
+  aliases: ["spellcasting ability", "magic"]
+  see: [action]
+- term: "Spell"
+  definition: "The default level of magic produced by PCs: narrative impact similar to what could be achieved with a normal action roll, but with specialized vantage from the spell's touchstones."
+  aliases: ["spells"]
+  see: [action]
+- term: "Potent Spell"
+  definition: "Similar in scope to a potent action. It greatly expands vantage, or gives a normal spell effect with another bonus, such as a critical effect, lasting longer or affecting a group."
+  aliases: ["potent spells"]
+  see: [action]
+- term: "Ritual"
+  definition: "A complex operation creating incredibly powerful magical effects, beyond what is possible with characters' normal abilities. It requires a source of magic, anchors, and the completion of a challenge (the invocation)."
+  aliases: ["rituals"]
+- term: "Anchor"
+  definition: "Two or three components that bind magic for the end effect of a ritual. They may be tangible, such as a hag tongue, or intangible, such as a broken promise."
+  aliases: ["anchors"]
+- term: "Invocation"
+  definition: "The challenge that must be completed to enact a ritual, usually a task pool."
+- term: "Touchstone"
+  definition: "Evocative words that define the capabilities and limitations of magical effects, namely spells and arcana. Both can be used in creative and freeform ways; touchstones help judge what's reasonable."
+  aliases: ["touchstones"]
+- term: "Magnitude"
+  definition: "How big magic is: spells (like an action roll), potent spells (like a group effort or a single potent effort) and rituals (plot-changing)."
+  aliases: ["magnitudes"]
+- term: "Magic Duration"
+  definition: "Spells often last a few moments, while potent spells last for a scene or more."
+- term: "Magic Trappings"
+  definition: "What a character's spellcasting looks like: always obvious in some way, and usually requiring implements, which if lost make casting difficult or impossible."
+  aliases: ["spellcasting trappings", "trappings"]
+- term: "Detecting Magic"
+  definition: "With a relevant touchstone you easily recognize magic; without one it's harder; without training the magic must be very obvious to be noticed."
+- term: "Dispelling Magic"
+  definition: "Anyone aware that something is magic can try to dispel it: counter it with a spell with relevant touchstones, disturb it enough, or outsmart its logic."
+  aliases: ["dispel"]
+- term: "Magical Buffs"
+  definition: "Expand vantage, or set up related actions. Potent spells last for the scene, or affect multiple."
+  aliases: ["buff spells"]
+- term: "Magical Damage"
+  definition: "Harms others like other actions, though touchstones may make the action more or less difficult. Potent spells are more intense or target an area."
+  aliases: ["damage spells"]
+- term: "Magical Defense"
+  definition: "Defend yourself with a spell (your casting stat on a defense roll, with time and warning), or allies with a potent spell."
+  aliases: ["defense spells"]
+  see: [defense]
+- term: "Magical Healing"
+  definition: "Spells heal marks, vex and minor conditions. Potent spells heal harm. Rituals heal extreme conditions."
+  aliases: ["healing spells"]
+- term: "Magical Information Gathering"
+  definition: "Spells learn sought or vague information; potent spells give detailed or unprompted information; rituals scry."
+  aliases: ["information spells"]
+- term: "Magical Summoning"
+  definition: "Call allies to your side. Spells often give a single action or a 2d power pool. Potent spells often use story rolls or a 4d power pool."
+  aliases: ["summoning spells"]
+- term: "Treasure"
+  definition: "Items and other valuables found or given to the PCs, used in trade. Treasure comes in three tiers: minor, major, and mythic, and is shared by the party."
+  aliases: ["treasures"]
+- term: "Carouse"
+  definition: "In a settlement, sell off a minor treasure and spend your leisure time as you like: a montage roll, and everyone takes spark regardless of the roll."
+  aliases: ["carousing"]
+  see: [montage, take-spark]
+- term: "Arcana"
+  definition: "Magical items, which can be minor, major, or mythic, depending on their capabilities. Each has a description, touchstones, limitations and a tier."
+  aliases: ["magic item", "magic items"]
+- term: "Expendable Arcana"
+  definition: "Single-use arcana such as potions and scrolls, with an effect one tier higher than their tier."
+  aliases: ["expendable"]
+- term: "Trivial Arcana"
+  definition: "A tier exclusive to expendable arcana, allowing a single minor effect (as an action or spell)."
+  aliases: ["trivial"]
+- term: "Mythic Arcana"
+  definition: "Quest-worthy artifacts: they count as having all functions and any 3+ touchstones, count as having all anchors for rituals, and allow potent effects by dropping 1d from their power pools."
+  aliases: ["mythic"]
+- term: "Function (Arcana)"
+  definition: "The last touchstone for minor and major arcana that defines its use: attack, enhance, hinder, influence, protect, restore, reveal, summon, transform or traverse."
+  aliases: ["function", "functions"]
+- term: "Potion"
+  definition: "A consumable arcana which grants a magical effect to whoever drinks it."
+  aliases: ["potions"]
+- term: "The Grimwild"
+  definition: "An optional campaign setting and exploration system: a borderland shattered by a cataclysm, where three realities—the Remnants, the Wilds, and the Ruins—collided, surrounded by an impassable fog."
+  aliases: ["grimwild", "three realities", "remnants", "wilds", "ruins"]
+- term: "Expand the Map"
+  definition: "The GM can call for this, giving everyone (GM included) 3 exploration tokens to spend on map features."
+  see: [tokens]
+- term: "Exploration Token"
+  definition: "Tokens spent by the GM and players to add points of interest and paths or roads to a map. A thread tied to a wise or story arc can be spent as one."
+  aliases: ["exploration tokens", "tokens"]
+  see: [tokens]
+- term: "Point of Interest"
+  definition: "Sites, dangers, settlements, buildings, and other points with narrative potential on a map (minor or major)."
+  aliases: ["points of interest", "point", "points"]
+- term: "Path (Exploration)"
+  definition: "A line on a map connecting points or leading off into unexplored territory: major (2 tokens), minor (1) or rough (free), with free passes and GM-placed waypoints."
+  aliases: ["major path", "minor path", "rough path"]
+- term: "Waypoint"
+  definition: "A mark the GM adds along a map path: 1 day of travel on horseback."
+  aliases: ["waypoints"]
+- term: "Pass"
+  definition: "A bridge, tunnel or the like, added free along a path or road so it can cross terrain, barriers and areas."
+  aliases: ["passes"]
+- term: "Curiosity"
+  definition: "A special map location (3 tokens, or free for the GM): unclear but intriguing signs or information waiting to be explored."
+  aliases: ["curiosities"]
+- term: "Barrier"
+  definition: "A special map location: an obstacle to travel (rivers, mountains, cliffs, walls), crossable only via rough paths or passes."
+  aliases: ["barriers"]
+- term: "Area"
+  definition: "A special map location: a large space with a single theme (lakes, swamps, deserts, city districts)."
+  aliases: ["areas"]
+- term: "Region Map"
+  definition: "The Grimwild's pointcrawl map, bordered by mountains, coast, forest and swamp, and fog; filled with points of interest, paths and special locations."
+- term: "Settlement Map"
+  definition: "A map of a town drawn with Expand the Map: an outline, roads (1 token) and minor or major buildings (2-3 tokens)."
+- term: "Site Map"
+  definition: "A 5-Point Site: entrance, puzzle, hitch, showdown and reward, placed with exploration tokens (the GM places the reward first)."
+  aliases: ["5-point site"]
+- term: "Time Passes"
+  definition: "The GM declares that time passes, moving the game forward, usually to the next month or season; the PCs take downtime actions."
+  aliases: ["passage of time", "seasons"]
+- term: "Stronghold"
+  definition: "A place of respite, built by the players: their community, funded with stockpile."
+  aliases: ["community", "communities"]
+- term: "Stockpile"
+  definition: "Stronghold resources: a special resource pool of materials, manpower, and gold. Rolled when time passes, its dropped dice pay for the next asset."
+- term: "Assets"
+  definition: "Stronghold features: structures, events or underlings that expand vantage. Minor assets cost 4 stockpile, major 8."
+  aliases: ["asset"]
+- term: "Magic Setting Dial"
+  definition: "Game setting that changes how magical the world feels: rare, none, common or dangerous magic."
+  aliases: ["magic dial"]
+- term: "Scale Setting Dial"
+  definition: "Game setting that changes the power of the PCs and the problems that they face."
+  aliases: ["scale dial", "scale"]
+- term: "Lethality Setting Dial"
+  definition: "Game setting that changes how deadly play is for the PCs (a 1d or 3d dropped roll, among others)."
+  aliases: ["lethality dial", "lethality"]
+  see: [dropped]
+- term: "Token Initiative"
+  definition: "Optional rule to give intense moments a framework: each player gets 2 tokens, spent before each story beat, and all regain them once all are spent."
+- term: "Rest Resets"
+  definition: "Optional rule to reset talents during narrative breaks, not at the start of a new session. A reset also gives spark, heals 1 harm, resets thread and gives the GM 2 suspense."
+  see: [rest]
+- term: "Stat Progression"
+  definition: "Optional rule: when a PC levels up, they can forgo a talent to raise a stat by 1 (max 3), once per character."
+  see: [experience]
+- term: "Vigor Pool"
+  definition: "Optional rule giving the PCs a way to heal their own wounds: a 3d resource pool rolled to clear 1 harm."
+- term: "Armor"
+  definition: "Optional rule to give armor choice more mechanical weight: light armor gives a 1d Armor pool, heavy a 2d one, rolled to lessen a physical consequence. Otherwise armor is vantage and set dressing."
+  aliases: ["armor pool"]
+- term: "Supplies"
+  definition: "Optional rule to track party resources: a 4d Supplies resource pool per PC."
+- term: "Encumbrance"
+  definition: "Optional rule for tracking space for equipment: 2 + Brawn slots."
+- term: "Wealth"
+  definition: "Optional rule to abstractly track money: a 4d Coins power pool per PC."
+  aliases: ["coins"]
+- term: "Weapon Style"
+  definition: "Two descriptors for a weapon or fighting style (quick, sweeping), a quick reference for vantage."
+  aliases: ["weapon styles"]
+- term: "Level 0"
+  definition: "Optional rule for beginner PCs: no core talent and 3 extra stat points until they gain 1 experience."
+  aliases: ["level zero"]
+  see: [experience]
+- term: "Milestone Levels"
+  definition: "An optional rule allowing PCs to level up after big story moments (a major group arc) instead of XP."
+  aliases: ["milestones"]
+- term: "Focused Growth"
+  definition: "An optional advancement rule that puts focus on the theme of the game: slow XP plus a chance at a themed bonus XP each session."
+  see: [experience]
+- term: "Active Vigilance"
+  definition: "Optional rule: vigilance by a story roll—perfect gives a reveal, messy a hint, grim a strike."
+  see: [story-roll]
+- term: "Writers' Room"
+  definition: "Optional rule to give more freedom when PCs add story details: tangles and thread needn't connect to vantage, and only details that benefit the party cost thread."
+  aliases: ["writers room"]
+- term: "Flavors of Fantasy"
+  definition: "Guidance, rules tweaks and setting dials for sub-genres: heroic fantasy, grimdark, low fantasy, sword & sorcery, noblebright, high fantasy and cozy fantasy."
+  aliases: ["flavor", "flavors"]
+- term: "Heroic Fantasy"
+  definition: "The default tone for Grimwild, centered on stories about the hero's journey and resolve."
+  aliases: ["heroic"]
+- term: "Grimdark"
+  definition: "A flavor of fantasy centered on moral ambiguity and an uncaring world."
+- term: "Low Fantasy"
+  definition: "A flavor of fantasy about small-scale, realistic stories."
+- term: "Sword & Sorcery"
+  definition: "A flavor of fantasy centered on high-action adventures about greed, nerve, and luck."
+  aliases: ["sword and sorcery"]
+- term: "Noblebright"
+  definition: "A flavor of fantasy centered on stories of hope and courage to change the world."
+- term: "High Fantasy"
+  definition: "A flavor of fantasy about grand stories of destiny and wonder."
+- term: "Cozy Fantasy"
+  definition: "A flavor of fantasy focused on small stories about belonging and growth."
+  aliases: ["cozy"]
+- term: "Fiction Pillars"
+  definition: "A GM tool for preparing 7 'blocks of fiction' before a session, dropped into the game as anchors for improv storytelling."
+  aliases: ["fiction pillar"]
+- term: "Hex Flowers"
+  definition: "A GM tool that acts like a random table, but with results that depend on the past: move across 7 hexes with a 1d roll."
+  aliases: ["hex flower"]
+- term: "Story Kit"
+  definition: "A one-page, dynamic scenario: hooks, intro, pressure pools, useful pieces, set it up, example challenges, GM notes, mix it up."
+  aliases: ["story kits"]
+- term: "Solo Rules"
+  definition: "Guidance and guardrails for playing without a GM: montage and story rolls, crucibles, quests, factions, and questions to answer on a messy."
+  aliases: ["solo", "solo play"]
+  see: [story-roll, montage]
+- term: "Quest"
+  definition: "Solo play: a string of story arcs and goals (linked task pools, 4d up to 4d+4d+6d+6d+8d), acted on while antagonists push their own perils."
+  aliases: ["quests"]
+  see: [experience]
+- term: "Peril"
+  definition: "Solo play: a quest's linked pressure pools (one fewer than the quest's), representing the antagonists' plans; if they empty, the quest ends their way."
+- term: "Solo Party Mode"
+  definition: "Simplified rules for running secondary PCs: one path talent, no arcs, spark, thread or marks (a mark becomes harm), and bonds only with the main PC. `didact char new grimwild-ce.side-character`."
+  see: [mark, harm, experience]
+- term: "Slow Progression"
+  definition: "For a slower pace, slash each XP box before filling it: each level takes twice the XP. An option of its own; low fantasy, sword & sorcery and cozy fantasy use it, and focused growth builds on it."
+  aliases: ["slow xp progression", "slow progression"]
+  see: [experience, level-up]
+- term: "Half Core Talent"
+  definition: "A path talent that grants a lesser version of another path's core talent (Arcane Training, Divine Blessing, Eldritch Affinity, Natural Moxie, Warcry), marked [Prohibited: …] for that path. At level 0 it can be taken, then replaced with the core at level 1."
+  aliases: ["half core talents", "half-core talent", "prohibited talent"]
+  see: [level-up, switch-talent]
+- term: "Legacy Talent"
+  definition: "A talent from Grimwild v1.4 or an earlier Community Edition, dropped for balance or theme. Ask your GM before taking one."
+  aliases: ["legacy talents"]
+  see: [level-up]
+- term: "Background Talent"
+  definition: "A talent that fits a background or heritage more thematically, available to every path; the second talent at character creation can be linked to your heritage."
+  aliases: ["background talents", "heritage talent"]
+  see: [level-up]
+- term: "Magical Twist"
+  definition: "A sorcerer's spell with two or more 1s (thorns included) twists as their twists manifest: a wild surge (a 2d story roll for the effect), take vex, or a curse (+1 suspense). With dangerous magic any spell can twist: a wild surge (a 1d story roll), a dark omen (+1 suspense) or a 6d Corruption pool."
+  aliases: ["twist", "twists", "wild surge", "dark omen", "corruption pool"]
+  see: [twist, action]
+- term: "Side Character"
+  definition: "In solo party mode, a streamlined party member: no path or core talent but one path talent, 1 trait and 1 desire (and the negatives), no story arcs, bonds only with the main PC, backgrounds without wises, no spark or thread, no XP or levels, and harm instead of marks."
+  aliases: ["side characters"]
+  see: [mark, experience]
+- term: "Words of Power"
+  definition: "A witch's touchstones: any 2 cast a spell, and a used word burns until the next session. A witch begins with 6 from the crucible and gains 2 at levels 2, 4 and 6."
+  aliases: ["word of power", "words"]
+  see: [level-up]
+- term: "Eldritch Talent"
+  definition: "A warlock's patron's gift: a changeable path talent manifesting with the patron's trappings, changed given time to commune (rolling Patience). +1 at levels 3 and 6."
+  aliases: ["eldritch talents"]
+  see: [level-up, switch-talent]

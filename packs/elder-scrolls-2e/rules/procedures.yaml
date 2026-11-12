@@ -1,0 +1,96 @@
+# The dungeon turn and the wilderness watch (players-guide/procedures): cairn-2e's, in this
+# book's words (Septims, the oil flask, the wildcrawl, Skyrim's locations and features). Same
+# ids: they replace cairn-2e's; the cycle and its dice are unchanged.
+procedure: dungeon-turn
+title: Dungeon turn
+help: >-
+  One turn of the dungeon cycle: the Warden describes, the players act, then resources and
+  conditions are recorded. Roll an event when the party lingers (more than one cycle in a place),
+  hurries, enters a new area, or makes a loud disturbance. In a wildcrawl (place=forest) the
+  Wilderness Events table replaces the Dungeon Events, and going off-trail always rolls one
+  (trigger=off-trail).
+params:
+  trigger: {enum: [none, lingered, hurried, new-area, loud, off-trail], default: none}
+  place: {enum: [dungeon, forest], default: dungeon, help: "forest: a wildcrawl (wardens-guide/wilderness-seeds)"}
+steps:
+  - let: {where: "if(@trigger == 'off-trail', 'forest', @place)"}
+  - if: "@trigger == 'none'"
+    then: [No event this turn.]
+    else:
+      - if: "@where == 'forest'"
+        then:
+          - table: wilderness-events
+            as: event
+          - if: "@trigger == 'off-trail'"
+            then: ["Off the trail: the Warden named its price up front (extra watches, toil, gear such as climbing irons, a boat or snowshoes, plain dangers)."]
+          - if: "@event.kind == 'exhaustion'"
+            then: ["A barrier: spend extra time (another action) or add a Fatigue each (`didact do fatigue who=…`)."]
+        else:
+          - table: dungeon-events
+            as: event
+          - if: "@event.kind == 'exhaustion'"
+            then: ["The party rests (roll again: `didact do dungeon-turn trigger=lingered`), adds a Fatigue each (`didact do fatigue who=…`), or eats a ration (`didact inv use <who> Rations`)."]
+          - if: "@event.kind == 'loss'"
+            then: ["Relighting spends a use: `didact inv use <who> torch` (3 lightings; a lantern relights 6 times per oil flask)."]
+      - if: "@event.kind == 'encounter'"
+        then: ["Possibly hostile: roll their reaction (`didact do reaction who=… party=<party> toward=<pc>`)."]
+  - reminder: "Record torches, rations and other uses spent, and any new conditions."
+  - reminder: "A turn has passed: `didact time advance 1 turn`."
+source: players-guide/procedures#dungeon-exploration-cycle
+---
+procedure: watch
+title: Wilderness watch
+help: >-
+  One watch of the wilderness cycle. Everyone picks one Wilderness Action: travel (roll to get
+  lost; shift=-1 or 1 makes it a step less or more likely), explore (find a location or
+  feature), supply (1d4 Rations, a step bigger per extra helper and per bonus for experience or
+  equipment, up to 1d12; who=<pc> carries them) or make camp (every PC, as `make-camp` has it).
+  Then the Warden rolls Wilderness Events, twice at night (the clock's night watch counts by
+  itself).
+params:
+  action: {enum: [travel, explore, supply, make-camp], default: travel}
+  path: {enum: [road, trail, wilderness], default: trail}
+  shift: {kind: int, default: 0, help: "Travel: getting lost a step more (+) or less (-) likely"}
+  helpers: {kind: int, default: 0, help: "Supply: how many more party members help"}
+  bonus: {kind: int, default: 0, help: "Supply: steps for relevant experience or equipment"}
+  who: {kind: ref, optional: true, help: "Supply: who carries the Rations gathered"}
+  night: {kind: flag, default: false, help: "A night watch (the clock's night watch counts by itself)"}
+steps:
+  - let: {at_night: "@night or default(@time.watch, '') == 'night'"}
+  - if: "@action == 'travel'"
+    then:
+      - check: lost
+        with: {path: "@path", shift: "@shift"}
+        as: way
+  - if: "@action == 'supply'"
+    then:
+      - roll: "step(d4, max(0, min(@helpers + @bonus, 4)))"
+        as: rations
+      - message: "The party gathers {@rations} Rations (3 uses each). (Farmsteads and small villages along the way resupply for Septims and a full watch.)"
+      - if: "default(@who, '') <> ''"
+        then:
+          - give: Rations
+            to: "@who"
+            count: "@rations"
+        else: ["Who carries them? `didact do watch action=supply who=<pc>` hands them over, or `didact inv add <pc> Rations --count {@rations}`."]
+  - if: "@action == 'explore'"
+    then: ["Exploring reveals a Location (a shelter, a village, a cave, an abandoned mine) or a Feature (a hot spring, an ice-locked river, a beached longship, a standing stone). Leaving still takes a Travel action."]
+  - if: "@action == 'make-camp'"
+    then:
+      - for: pcs
+        steps:
+          - do: make-camp
+            with: {who: "@member"}
+            go_on: true
+      - message: "A PC whose sleep is broken: `didact do make-camp who=<pc> interrupted=true` in their place; one who keeps going instead: `didact do skip-camp who=<pc>`."
+  - table: wilderness-events
+    as: event
+  - if: "@event.kind == 'encounter'"
+    then: ["Roll their reaction if it matters: `didact do reaction who=… party=<party> toward=<pc>`."]
+  - if: "@at_night"
+    then:
+      - message: "At night, the Warden rolls twice:"
+      - table: wilderness-events
+        as: second
+  - reminder: "A watch has passed: `didact time advance 1 watch`."
+source: players-guide/procedures#wilderness-exploration-cycle

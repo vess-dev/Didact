@@ -1,0 +1,11 @@
+type: character
+fields:
+  strength: {kind: int, min: 1, max: 5, default: 3}
+  agility: {kind: int, min: 1, max: 5, default: 3}
+  stress: {kind: counter, min: 0}
+---
+type: pc
+extends: character
+---
+type: npc
+extends: character

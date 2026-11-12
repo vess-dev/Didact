@@ -1,0 +1,164 @@
+# Chems, food, addiction and perk magazines. Seeded.
+test: chems-food-and-perks
+help: >-
+  Each part plays in a world of its own: chems-and-addiction, food-and-drink, perk-magazines,
+  second-dose. A Stimpak heals STR (1d4 for a super mutant, none for a deathclaw), and a
+  background's medkit heals as a Stimpak does (a ghoul as anyone, a robot nothing, Deprived
+  nobody); the dose or the kit's use is spent from the inventory; an addictive chem forces a STR
+  save; addicted, a Fatigue each morning until a dose; Addictol / Fixer and the Downtime cure;
+  robots get nothing; what's spent is what the rule names (a Stimpak is never a Super Stimpak,
+  Fixer is the Addictol / Fixer carried). A Ration's use is spent when it's eaten, two for a
+  deathclaw. Reading
+  takes a turn somewhere safe, not Deprived and not in a fight, and spends the copy (the
+  reader's, or a lender's); the perk comes from the magazine's table; five Perk Slots, a swap
+  when full. With a session open, a second dose of the same chem in it is
+  counted: a warning, or with the second-dose option addiction, no save; a new session forgets.
+script:
+  - world new chems-and-addiction --system {pack} --seed chems
+  - campaign new chems-and-addiction --seed chems
+  - new pc Jet --set STR=4 --set DEX=12 --set WIL=12 --set hp=4 --set caps=100
+  - set jet STR.max=12
+  - inv add jet Stimpak
+  - run: do chem who=jet chem=Stimpak
+    expect: ["1d6", "Stimpak heals", "pc:jet uses Stimpak (Stimpak is used up and gone)"]
+  - new pc Ox --set STR=4 --set DEX=10 --set WIL=8 --set hp=4 --set kind=super-mutant --set stimpak_heal=1d4
+  - set ox STR.max=16
+  - run: do chem who=ox chem=Stimpak
+    expect: "1d4"
+  - run: do chem who=ox chem=Psycho
+    expect: "Ox cannot become addicted"
+  - new pc Grell --set STR=10 --set DEX=10 --set WIL=8 --set hp=4 --set kind=deathclaw
+  - run: do chem who=grell chem=Stimpak
+    expect: "stop: No Stimpaks for Grell"
+  - new pc Codsworth --set STR=10 --set DEX=10 --set WIL=10 --set hp=4 --set kind=robot
+  - run: do chem who=codsworth chem=Jet
+    expect: "stop: Chems don't affect Codsworth"
+  - run: >-
+      inv add jet Medi-Kit --data '{"uses": 3}'
+    expect: "Jet gets Medi-Kit (1/10 slots"
+  - run: do chem who=jet chem=Medi-Kit
+    expect: ["1d6", "Medi-Kit heals", "pc:jet uses Medi-Kit (Medi-Kit: 2 uses left)"]
+  - run: do chem who=ox chem='Followers Medical Kit'
+    expect: ["1d4", "Followers Medical Kit heals"]
+  - run: do chem who=grell chem='Combat Medkit'
+    expect: "stop: No Stimpaks for Grell, nor anything that heals as one"
+  - run: do chem who=codsworth chem=Medi-Kit
+    expect: "stop: Chems don't affect Codsworth"
+  - new pc Hap --set STR=4 --set DEX=10 --set WIL=10 --set hp=4 --set kind=ghoul
+  - set hap STR.max=12
+  - run: do chem who=hap chem=Medi-Kit by=jet
+    expect: ["1d6", "Medi-Kit heals", "pc:jet uses Medi-Kit (Medi-Kit: 1 use left)"]
+    expect_not: "1d4"
+  - run: do chem who=jet chem=Ultrajet
+    expect: ["1d20", "an extra action this round and the next"]
+  - set jet addictions+=Jet
+  - run: do chem who=jet chem=Jet
+    expect: "already addicted to Jet"
+  - run: time advance 1 day
+    expect: ["Morning withdrawal for Jet", "fatigue +="]
+  - set jet conditions+=deprived
+  - run: do chem who=jet chem=Stimpak
+    expect: "Jet is Deprived: the Stimpak heals nothing until the lack is remedied"
+  - run: do chem who=jet chem=Medi-Kit
+    expect: ["Jet is Deprived: the Medi-Kit heals nothing until the lack is remedied", "pc:jet uses Medi-Kit (Medi-Kit is used up and gone)"]
+    expect_not: "STR +="
+  - run: do chem who=jet chem=Jet
+    expect: "already addicted to Jet, but Deprived: the dose can't clear that addiction's Fatigue"
+  - set jet conditions-=deprived
+  - run: do chem who=jet chem=Fixer addiction=Jet
+    expect: ["addictions -= Jet", "Fixer breaks Jet's addiction to Jet"]
+  - set jet addictions+=Psycho
+  - run: do cure-addiction who=jet addiction=Psycho method=clinic
+    expect: ["caps -= 50", "1d20"]
+  - run: do chem who=jet chem='Super Stimpak'
+    expect: ["STR is back to", "adds 1 Fatigue after use"]
+  - run: do chem who=jet chem='Berry Mentats'
+    expect: ["cannot fail WIL saves against deception or confusion for one scene", "1d20"]
+  - world new food-and-drink --system {pack} --seed food
+  - campaign new food-and-drink --seed food
+  - new pc Hal --set STR=10 --set DEX=10 --set WIL=10 --set hp=6
+  - set hal hp=2
+  - run: do consume who=hal food=Nuka-Cherry
+    expect: ["Nuka-Cherry heals 2 HP", "Hal is at 4/6"]
+  - run: do consume who=hal food=Whiskey
+    expect: ["hangover += 1", "a Fatigue the next morning"]
+  - set hal rads=1
+  - run: do consume who=hal food='Mirelurk Cakes'
+    expect: ["full HP", "Mirelurk Cakes clears 1 Rad(s) from Hal"]
+  - run: do consume who=hal food='Dirty water'
+    expect: ["rads += 1", "rad-scar-save"]
+  - run: time advance 1 day
+    expect: ["The morning after: 1 Fatigue for Hal's drinking", "fatigue += 1"]
+  - set hal hp=3
+  - run: do consume who=hal food='Nuka-Cola Orange'
+    expect: ["Nuka-Cola Orange heals 1 HP: Hal is at 4/", "may re-roll one failed WIL save this scene"]
+  - set hal conditions+=deprived
+  - run: do consume who=hal food='Wasteland tequila'
+    expect: ["Hal is Deprived: Wasteland tequila heals nothing", "hangover += 1"]
+  - run: do consume who=hal food='Vault-Tec ration pack' meets_need=true
+    expect: ["conditions -= deprived", "Hal is no longer Deprived"]
+  - world new perk-magazines --system {pack} --seed perks
+  - campaign new perk-magazines --seed perks
+  - new pc Kit --set STR=10 --set DEX=10 --set WIL=10 --set hp=4
+  - run: >-
+      inv add kit 'Guns and Bullets 3: Pistol Grip'
+    expect: "Kit gets Guns and Bullets 3: Pistol Grip"
+  - run: >-
+      do read-magazine who=kit magazine='Guns and Bullets 3: Pistol Grip'
+    expect: ["perks += Gunslinger", "1 of 5 Perk Slots", "Your first pistol attack in any combat is Enhanced", "pc:kit: - Guns and Bullets 3: Pistol Grip"]
+  - run: >-
+      do read-magazine who=kit magazine='Guns and Bullets 3: Pistol Grip'
+    expect: "stop: Kit already knows Gunslinger"
+  - run: >-
+      do read-magazine who=kit magazine='Guns and Bullets 1: Hold Steady' fighting=true
+    expect: "stop: Reading a magazine takes a turn in a safe, quiet space"
+  - spawn radroach
+  - combat start --party radroach
+  - run: >-
+      do read-magazine who=kit magazine='Guns and Bullets 1: Hold Steady'
+    expect: "stop: Reading a magazine takes a turn in a safe, quiet space: not in combat"
+  - combat end
+  - set kit perks+=Commando perks+=Rifleman perks+=Cowboy perks+=Grunt
+  - new pc Lender --set STR=10 --set DEX=10 --set WIL=10 --set hp=4
+  - inv add lender guns-and-bullets-11
+  - run: >-
+      do read-magazine who=kit magazine='Guns and Bullets 11: Big Iron'
+    expect: "five Perk Slots are full"
+  - run: >-
+      do read-magazine who=kit magazine='Guns and Bullets 11: Big Iron' swap=Cowboy by=lender
+    expect: ["perks -= Cowboy", "perks += Heavy Gunner", "Kit forgets Cowboy", "pc:lender: - Guns and Bullets 11: Big Iron"]
+  - spawn super-mutant-brute
+  - run: do attack attacker=kit target=super-mutant-brute weapon=d12 heavy=true
+    expect: ["1d12", "Kit deals"]
+  - world new second-dose --system {pack} --seed dose
+  - campaign new second-dose --seed dose
+  - new pc Doc --set STR=20 --set DEX=10 --set WIL=10 --set hp=3
+  - session start
+  - run: do chem who=doc chem=Jet
+    expect: "session_doses += Jet"
+    expect_not: "tempts fate"
+  - run: do chem who=doc chem=Jet
+    expect: "A second dose of the same chem in one session tempts fate"
+  - campaign profile second-dose=on
+  - run: do chem who=doc chem=Jet
+    expect: "A second dose of Jet this session: Doc is addicted, no save (the second-dose option)"
+  - session end
+  - run: session start
+    expect: "pc:doc: session_doses = []"
+  - inv add doc Rations
+  - run: do consume who=doc food=Ration
+    expect: "pc:doc uses Rations (Rations: 2 uses left)"
+  - new pc Maw --set STR=14 --set DEX=10 --set WIL=8 --set hp=4 --set kind=deathclaw
+  - inv add maw Rations
+  - run: do consume who=maw food=Ration
+    expect: ["pc:maw uses Rations (Rations: 2 uses left)", "pc:maw uses Rations (Rations: 1 use left)"]
+  - run: do chem who=maw chem=Medi-Kit
+    expect: "stop: No Stimpaks for Maw, nor anything that heals as one"
+  - run: do chem who=doc chem=Medi-Kit
+    expect: ["Medi-Kit heals", "Doc carries no Medi-Kit: nothing is spent"]
+  - inv add doc 'Super Stimpak' 'Addictol / Fixer'
+  - run: do chem who=doc chem=Stimpak
+    expect: "Doc carries no Stimpak: nothing is spent"
+    expect_not: "uses Super Stimpak"
+  - run: do chem who=doc chem=Fixer addiction=Jet
+    expect: ["Fixer breaks Doc's addiction to Jet", "pc:doc uses Addictol / Fixer"]

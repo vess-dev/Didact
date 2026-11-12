@@ -1,0 +1,68 @@
+# The world: places, factions and settlements (overseers-guide/setting-seeds, wasteland-seeds,
+# vault-seeds, pointcrawls, faction-reputation, settlements). The place and faction types repeat
+# Cairn's (a hack's type replaces its parent's whole) with Fallout's additions.
+type: loc
+label: Place
+fields:
+  kind: {kind: text, help: "Where it sits on the map: region, wasteland, poi, vault, ruin, room."}
+  terrain: {kind: text, help: "Ruined suburb, pre-war highway, glowing crater, …"}
+  difficulty: {kind: enum, values: [easy, tough, perilous], help: "Travel: tough +1 watch, perilous +2."}
+  landmark: {kind: text, help: "A visible landmark: a reference point, best seen from high ground."}
+  poi: {kind: text, help: "What kind of point it is: settlement, ruin, vault, encounter site, caravan hub, oddity; in a vault, monster, lore, special or trap."}
+  feature: {kind: text, help: "What it is and its detail, e.g. 'Armory, Footprints'."}
+  culture: {kind: text, help: "The region's character (setting seed)."}
+  threat: {kind: text, help: "The region's biggest threat."}
+  opportunity: {kind: text, help: "The region's biggest opportunity."}
+  inhabitants: {kind: list, help: "Who lives or passes through here (wasteland seed)."}
+  rumor: {kind: text, help: "A rumor or legend told about it."}
+  hot_zone: {kind: flag, help: "Holds a hot zone: Stormy or worse weather here is rad-rain or a rad storm (Rads instead of Fatigue)."}
+  rad_zone: {kind: enum, values: [none, ambient, hot], help: "Radiation: ambient (1 Rad per watch of travel) or hot (+1 Rad per scene)."}
+  weather: {kind: map, help: "Average weather by season, if the region has its own."}
+  traits: {kind: map, help: "The attitude of a vault's or ruin's denizens: {virtue, vice}."}
+  agenda: {kind: text, help: "What its people want."}
+  obstacle: {kind: text, help: "What stands in the way."}
+  heart: {kind: flag, help: "A region's Heart: its most dangerous and most valuable ruin."}
+  scavenged: {kind: counter, min: 0, help: "Times a mapped ruin has been scavenged as a Downtime Action: twice and it's empty."}
+guidance: >-
+  A region is about a week's walk across: a dozen points (at least two settlements, two ruins,
+  a vault or sealed facility, an encounter site, a caravan hub, two or three oddities), joined by
+  paths (old highway, beaten trail or open wastes; short, medium or long). Vaults and ruins are
+  regions of their own: their rooms sit inside them (`region`).
+---
+type: faction
+label: Faction
+fields:
+  kind: {kind: text, help: "Its identity: a caravan company, a Brotherhood chapter, a ghoul community, …"}
+  agenda: {kind: text, help: "What it wants."}
+  obstacle: {kind: text, help: "What stands in its way."}
+  reputation: {kind: int, min: -2, max: 2, default: 0, help: "The party's standing: −2 Vilified, −1 Hostile, 0 Neutral, +1 Liked, +2 Idolized (`didact do reputation`)."}
+  opposed: {kind: ref, to: faction, help: "Its opposite: gaining a step with one loses one with the other (NCR ↔ Legion, Brotherhood ↔ Enclave, Railroad ↔ Institute, Minutemen ↔ Raiders)."}
+  goals: {kind: list}
+  progress: {kind: counter, min: 0}
+  traits: {kind: list}
+  agents: {kind: refs, to: npc}
+  WIL: {kind: int, min: 0, max: 20, default: 10, help: "Its highest-ranking agent's WIL, for opposed saves."}
+  resources: {kind: list}
+  leader: {kind: ref, to: npc}
+  secret: {kind: text, secret: true}
+guidance: >-
+  At least three factions should want something in a region, and at least two should disagree.
+  Each has an identity and an agenda (the d12 faction generator), an agent the party can meet,
+  and a reputation track for the party from −2 to +2, starting at Neutral.
+---
+type: settlement
+extends: loc
+label: Settlement
+fields:
+  population: {kind: int, min: 1, max: 5, default: 1, help: "1 a handful of farmers; 5 a town that fields a militia."}
+  defense: {kind: int, min: 1, max: 5, default: 1, help: "1 \"we have a gate\"; 5 \"we hold off a Brotherhood patrol\"."}
+  industry: {kind: int, min: 1, max: 5, default: 1, help: "1 \"we have clean water\"; 5 \"our name is on a trade route\"."}
+  buildings: {kind: list, help: "The filled building slots (petty buildings don't take one)."}
+  petty_buildings: {kind: list, help: "Petty buildings: jukeboxes, streetlamps, gardens, memorials."}
+  building_slots: {kind: int, min: 0, default: 8, help: "Eight by default, with room to grow."}
+  standing: {kind: text, help: "How it stands with the party."}
+guidance: >-
+  Three attributes from 1 to 5 (Population, Defense, Industry; a new settlement is 1/1/1) and up
+  to eight building slots. Filling one costs 200–600 caps and a Downtime Action (`didact do
+  build`). More filled slots than Population × 2 and a building goes dark each season. Raids come
+  once a season at Defense 1, once a year at Defense 5 (`didact do raid`).

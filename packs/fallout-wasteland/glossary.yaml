@@ -1,0 +1,73 @@
+# The setting's terms, for `didact define <term>` (hand-written from the campaigns and vaults).
+# Rules terms stay the systems': none of these is a term or an alias in fallout-2e's or grimfall's
+# glossary (Pip-Boy, Overseer, The Before, Caps, Chems and the like are theirs), but for `Vault`,
+# which Grimfall's 5-point site takes as an alias for running one: `didact define vault` shows both.
+# fw_count.py checks.
+- term: Great War
+  aliases: [the war]
+  definition: "The nuclear war of 23 October 2077 that ended the old world. The frames run from Reclamation Day, 2102, to 2287."
+- term: Vault-Tec
+  aliases: [Vault-Tec Corporation]
+  definition: "The company that built the vaults and sold them as shelters. Nearly every vault was an experiment on its residents, run by an Overseer reporting to a central database that no longer exists."
+- term: Vault
+  aliases: [vaults]
+  definition: "A Vault-Tec shelter, numbered (Vault 101): blast door, greeting hall, cabins, clinic, school, Overseer's office, reactor, water treatment. Most were experiments; seventeen were control vaults."
+- term: Control vault
+  definition: "A vault run as a shelter: a standard one was sealed on schedule and opened on schedule (Vault 8; Vault 76 was one of seventeen). Vault 13 was to stay sealed two centuries; Vault 101 was one too, and secretly a permanent sealing; Vault 68 only wore it as a cover story."
+- term: Vault Overseer
+  definition: "The Vault-Tec employee who ran a vault and its experiment and reported on it. The final log in the Overseer's office terminal is almost always the key to what happened there."
+- term: Water chip
+  definition: "The circuit board that runs a vault's water purification. Vault 13's failed in 2161 and sent the Vault Dweller out to find another."
+- term: Reclamation Day
+  definition: "The day a vault opens on its pre-war schedule; for Vault 76, 23 October 2102, twenty-five years to the day after the bombs."
+- term: G.E.C.K.
+  aliases: [GECK, Garden of Eden Creation Kit]
+  definition: "A pre-war terraforming device in a case. Vaults were issued them, two as a rule; Vault 70 used three to found New Jerusalem, and Project Purity needs Vault 87's."
+- term: FEV
+  aliases: [Forced Evolutionary Virus]
+  definition: "The pre-war forced-mutation agent that makes super mutants: tested on Vault 87, loose in Huntersville's water by way of West Tek. The Enclave's modified strain kills mutants instead."
+- term: Super mutant
+  aliases: [super mutants]
+  definition: "A human made into a hulk by FEV. Most are hostile; a few are lucid, like Fawkes, Marcus's people at Jacobstown, or Gail."
+- term: Nightkin
+  definition: "A kind of super mutant: Dead Money's Dog / God, two minds in one body; Jacobstown's grandmother Lily Bowen, confused about the century."
+- term: Ghoul
+  aliases: [ghouls]
+  definition: "A person changed by radiation and living on for centuries; some lose their minds and go feral. Vault 12's residents all became ghouls within a year."
+- term: Synth
+  aliases: [synths, Gen-1, Gen-2, Gen-3]
+  definition: "A synthetic person made by the Institute. Gen-3 replacements can't be told from people, sometimes not even by themselves."
+- term: Courser
+  aliases: [Coursers]
+  definition: "An Institute agent who moves in black leather and speaks softly, dispatched when the Institute decides to act."
+- term: Scorched
+  aliases: [Scorched Plague]
+  definition: "Appalachians taken by the plague the scorchbeasts spread: they still carry rifles and mutter fragments of their old lives, ultracite splitting through their skin."
+- term: Scorchbeast
+  aliases: [scorchbeasts]
+  definition: "A bat-winged beast that boils out of the fissures of the Cranberry Bog and spreads the Scorched Plague; a queen leads their chorus."
+- term: Ultracite
+  definition: "The alien crystal of Appalachia's fissure sites, splitting through the skin of the Scorched. Hank Madigan's depleted-ultracite rounds strike Scorched and scorchbeasts harder."
+- term: Frumentarii
+  aliases: [frumentarius]
+  definition: "Caesar's Legion's spies, led by Vulpes Inculta, who work inside the NCR itself."
+- term: Trog
+  aliases: [trogs]
+  definition: "What the Pitt's slaves slowly become in the rad-saturated haze of the mills."
+- term: Punga
+  aliases: [punga pollen, Mother Punga]
+  definition: "Point Lookout's swamp plant, farmed by the Brethren of the Punga; its pollen drugs, dreams and shows visions. Mother Punga is the vast old one in the Sacred Bog."
+- term: Ghost People
+  definition: "The Sierra Madre's hunters in the red Cloud: a Ghost Person who looks dead is not dead."
+- term: The Cloud
+  aliases: [red cloud]
+  definition: "The Sierra Madre's red fog, which damages anything exposed to it."
+- term: Lost
+  aliases: [the Lost]
+  definition: "Vault 63's ghouls remade by Hugo Stolz's weather machine: psychotic, crackling with static, still able to use a weapon."
+- term: Nuka-Cola
+  aliases: [Nuka-Cola Quantum, Quantum, Nuka-Cola Dark]
+  definition: "The pre-war soft drink, found beside skeletons in every ruin. Quantum glows; Nuka-Cola Dark is the rum-strength one, brewed only from the original formula."
+- term: Campaign frame
+  aliases: [frame]
+  definition: "One of the book's 21 short campaigns: a pitch, tone and touchstones, an arrival, plot beats, a pointcrawl of places, a cast, clocks, threats, rewards and a climax with several endings, for four to ten sessions."

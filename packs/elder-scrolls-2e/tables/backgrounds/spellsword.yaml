@@ -1,0 +1,24 @@
+# Spellsword (backgrounds/spellsword): the background's two d6 tables.
+table: spellsword-1
+title: "Where did you learn to fight with a spell and a blade?"
+dice: d6
+source: backgrounds/spellsword#where-did-you-learn-to-fight-with-a-spell-and-a-blade-roll-1d6
+entries:
+  1: {text: "In the Arena of the Imperial City, a crowd-pleasing spell-blade of the Blue Team, until you won a bout you were paid to lose. Take the victor's purse (40 Septims) and the bookmaker's grudge: his collectors have followed you all the way to Skyrim.", data: {add: {gold: 40}}}
+  2: {text: "From a fencing master who scorned conjured steel until you beat him with it. Take his Elven sword (d8), light and keen, and his standing offer: in any town where he is found, he will board and train you.", data: {gear: [{name: "Elven sword", damage: "d8"}]}}
+  3: {text: "As a Thalmor Justiciar's bodyguard, until the night you saw what they do to Talos-worshippers. Take your Thalmor robes (petty), which will carry you through the Embassy's gate past anyone who doesn't know your face. The Thalmor want you back, alive.", data: {gear: [{name: "Thalmor robes", size: "petty"}]}}
+  4: {text: "With a hedge-wizard's caravan, warding the wagons between ambushes. Take a Scroll of Oakflesh (petty, 1 use), and a traveler's stride: while you are unarmored and unburdened, Tough terrain costs you no extra watches.", data: {gear: [{name: "Scroll of Oakflesh", size: "petty", uses: 1}]}}
+  5: {text: "From a Redoran blademaster of Raven Rock, who taught that a sword should be summoned, never sheathed. Take a Dunmer bonemold shield (+1 Armor), and a welcome among the Redoran of Solstheim.", data: {gear: [{name: "Bonemold shield", armor: 1}]}}
+  6: "From no one. You taught yourself in back-alley duels, from a stolen tome you had to learn by heart before its owner came looking. Once per day, conjure your bound weapon from memory, without the tome in your hands (you still add a Fatigue)."
+---
+table: spellsword-2
+title: "What is your trademark in a fight?"
+dice: d6
+source: backgrounds/spellsword#what-is-your-trademark-in-a-fight-roll-1d6
+entries:
+  1: "Parry and Riposte: Once per combat, after a foe's melee attack deals you no damage, your next attack against that foe is Enhanced."
+  2: "Quick Footwork: You are never where the blow lands. You need not save to break away from a single foe in melee."
+  3: "The Flickering Blade: Your bound blade answers faster than thought. Once per day, conjure a bound weapon and strike with it in the same turn."
+  4: {text: "Mage-Bane Blade: A pale glass sword (d8, 1 charge) that rings like a bell when it cuts magic. Spend the charge as you strike to end one ongoing spell on your target — a ward, a cloak, a summoning. Recharge: a filled soul gem.", data: {gear: [{name: "Mage-Bane Blade", damage: "d8", charges: 1, recharge: "a filled soul gem"}]}}
+  5: {text: "Warding Scrolls: Two Scrolls of Lesser Ward (petty, 1 use each), bought with your first real pay, and never yet needed.", data: {gear: [{name: "Scroll of Lesser Ward", size: "petty", uses: 1}, {name: "Scroll of Lesser Ward", size: "petty", uses: 1}]}}
+  6: "Dancer's Grace: You fight as others dance. While you wear nothing heavier than light armor, you can run along a wall-top, a rope, or a rooftop ridge as easily as a road."

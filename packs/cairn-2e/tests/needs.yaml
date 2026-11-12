@@ -1,0 +1,94 @@
+# Deprivation, Fatigue, rest, camp, magic and coin weight, as the book counts them.
+test: deprivation
+help: Deprived one day adds nothing; each day past the first adds a Fatigue (2 days in, 1; 3 days in, 2).
+script:
+  - world new vale --system {pack} --seed needs
+  - campaign new first --seed needs
+  - new pc Lyra --set STR=10 --set DEX=12 --set WIL=11 --set hp=4
+  - run: do deprive who=lyra need=food
+    expect: ["conditions += deprived", "deprived of food (day 1)"]
+  - run: do deprive who=lyra need=food
+    expect: ["(day 2)", "fatigue += 1"]
+  - run: do deprive who=lyra need=food
+    expect: ["(day 3)", "fatigue += 1"]
+  - run: show lyra
+    expect: ["fatigue 2", "deprived_days 3"]
+  - run: do rest who=lyra
+    expect: "stop: Lyra is deprived and can't recover HP"
+  - run: do relieve who=lyra
+    expect: ["conditions -= deprived", "deprived_days = 0"]
+  - run: do relieve who=lyra
+    expect: "stop: Lyra isn't deprived."
+  - run: do deprive who=lyra need=water days=3
+    expect: ["(day 3)", "fatigue += 2"]
+  - run: show lyra
+    expect: "fatigue 4"
+  - do relieve who=lyra
+  - run: do make-camp who=lyra
+    expect: ["Each character (and each mount) eats a Ration", "fatigue = 0", "Fatigue cleared, HP restored"]
+  - run: do skip-camp who=lyra
+    expect: ["fatigue += 1", "deprived of sleep (day 1)", "sleepless=true"]
+  - run: do make-camp who=lyra
+    expect: "stop: Lyra is deprived"
+---
+test: fatigue-and-magic
+help: Fatigue needs a free slot (drop an item first); casting adds one, a scroll doesn't, and danger or deprivation calls for a WIL save.
+script:
+  - world new vale --system {pack} --seed magic
+  - campaign new first --seed magic
+  - new pc Hazel --set STR=10 --set DEX=12 --set WIL=13 --set hp=4
+  - inv add hazel Rope Rope Rope Rope Rope Rope Rope Rope Rope
+  - run: do fatigue who=hazel amount=2
+    expect: "stop: Hazel has 1 free slot(s) for 2 Fatigue: drop an item first"
+  - run: do cast who=hazel spell='Control Plants' danger=true
+    expect: ["reads Control Plants aloud", "1d20", "fatigue += 1", "inventory is full (10/10): hp = 0"]
+  - run: do rest who=hazel
+    expect: "stop: Hazel carries a full inventory (10 slots)"
+  - run: do cast who=hazel spell='Control Plants'
+    expect: "stop: Hazel has 0 free slot(s) for 1 Fatigue"
+  - run: do cast who=hazel spell='Scroll of Arcane Eye' scroll=true enhance=true
+    expect: ["no Fatigue, and disappears after this one use", "inv use pc:hazel 'Scroll of Arcane Eye'", "enhanced (more targets, more power) at no extra cost"]
+  - inv drop hazel Rope --count 3
+  - set hazel conditions+=deprived
+  - run: do cast who=hazel spell=Sniff
+    expect: ["1d20", "fatigue += 1"]
+  - run: do rest who=hazel danger=true
+    expect: "stop: Present or oncoming danger makes rest impossible."
+  - set hazel conditions-=deprived
+  - run: do rest who=hazel turn=true
+    expect: ["HP back to 4", "dungeon-turn trigger=lingered"]
+---
+test: panic
+help: A failed WIL save panics (0 HP); bond 13's wounded beast stops it when acting alone.
+script:
+  - world new vale --system {pack} --seed panic
+  - campaign new first --seed panic
+  - new pc Nyx --set STR=10 --set DEX=12 --set WIL=1 --set hp=4
+  - run: >-
+      set nyx 'bond+=You found a wounded beast in the forest but chose to ignore it. You see it
+      everywhere now, but only when you'"'"'re alone. It looks sad but not angry. You cannot become
+      panicked when acting alone.'
+    expect: bond
+  - run: do panic who=nyx alone=true
+    expect: "The wounded beast is there"
+  - run: do panic who=nyx
+    expect: ["conditions += panicked", "hp = 0"]
+  - run: do rest who=nyx
+    expect: "stop: Nyx is panicked"
+---
+test: coins
+help: Coins under 100gp are petty; more takes a slot (one, or one per 100gp with the option).
+script:
+  - world new vale --system {pack} --seed coins
+  - campaign new first --seed coins
+  - new pc Midas --set STR=10 --set DEX=12 --set WIL=11 --set hp=4 --set gold=99
+  - run: do coins who=midas
+    expect: "Midas's 99gp is petty: no slot."
+  - set midas gold=250
+  - run: do coins who=midas
+    expect: ["purse = 1", "takes 1 slot(s)"]
+  - campaign profile coin-weight=per-100
+  - run: do coins who=midas
+    expect: ["purse = 2", "takes 2 slot(s)"]
+  - run: show midas
+    expect: "purse 2"

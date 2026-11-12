@@ -1,0 +1,54 @@
+# The smoke play: from an empty home, a PC made at random and committed, a region, a vault, a
+# ruin cycle, a day in the wastes with its weather and Rads, a camp, and a fight with a bestiary
+# creature to a Scar and Critical Damage; the faction turn and the session's end. Seeded, so it
+# plays the same every time.
+test: smoke-play
+script:
+  - world new wastes --system {pack} --seed smoke
+  - campaign new first --seed smoke
+  - run: >-
+      char new --mode random
+      --prefill '{"name": "Wren", "background": "Wastelander", "youngest": "no", "hp": 3, "STR": 4}'
+    expect: "pc Wren: background: Wastelander"
+  - run: char commit c1
+    expect: "pc:wren"
+  - run: gen run fallout-2e.setting-seed --auto
+    expect: "map:"
+  - run: gen commit g2
+    expect: committed
+  - run: gen run fallout-2e.vault-seed --auto
+    expect: ", room 1"
+  - run: gen commit g3
+    expect: committed
+  - session start
+  - run: do save who=wren attr=DEX
+    expect: "→"
+  - run: do dungeon-turn trigger=new-area
+    expect: "dungeon-events:"
+  - time advance 1 turn
+  - run: do weather season=summer
+    expect: "Weather:"
+  - run: do watch action=travel path=trail
+    expect: "wilderness-events:"
+  - run: do rad-zone who=wren watches=1
+    expect: ["rads += 1", "rad-scar-save"]
+  - time advance 1 watch
+  - run: do watch action=make-camp night=true
+    expect: "At night, the Overseer rolls twice"
+  - do make-camp who=wren
+  - run: spawn mongrel-dog
+    expect: "monster:mongrel-dog"
+  - run: combat start --party mongrel-dog
+    expect: "round 1"
+  - run: do attack attacker=mongrel-dog target=wren weapon=4
+    expect: "Wren gets a Scar"
+  - run: do attack attacker=mongrel-dog target=wren weapon=4
+    expect: "Wren takes Critical Damage"
+  - run: show wren
+    expect: ["STR 1/4", "HP 0/3", "critical"]
+  - run: do stabilize who=wren
+    expect: "Wren stabilizes"
+  - combat end
+  - run: faction turn
+    expect: ["prompt: What did", "toward its agenda"]
+  - session end --summary 'Wren survived the dog, barely.'

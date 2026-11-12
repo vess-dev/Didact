@@ -1,0 +1,24 @@
+# Bounty Hunter (backgrounds/bounty-hunter): the background's two d6 tables.
+table: bounty-hunter-1
+title: "What kind of quarry made your name?"
+dice: d6
+source: backgrounds/bounty-hunter#what-kind-of-quarry-made-your-name-roll-1d6
+entries:
+  1: "A bandit chief with a price on his head in three Holds. You ran him to ground over a hard winter and learned to read sign in deep snow. When you study a fresh trail, the Warden tells you truthfully how old it is, how many made it, and where they were bound."
+  2: {text: "A man-eating sabre cat the Jarl of Falkreath wanted dead. Take its fangs (petty), worth 20 Septims to any alchemist, and a healed gut-wound; once per day, re-roll a failed STR save made to grapple, hold, or wrestle something down.", data: {gear: [{name: "Sabre cat fangs", size: "petty", note: "worth 20 Septims to any alchemist"}]}}
+  3: {text: "A Forsworn raider you brought back alive across the whole of the Reach. Take a coil of strong rope (30 ft) and a second pair of manacles: no captive you bind slips free without a tool or outside help.", data: {gear: [{name: "Strong rope", note: "30 ft"}, {name: "Manacles", note: "a second pair"}]}}
+  4: {text: "A skooma-runner who nearly poisoned you with a coated blade before you collared him. Take antitoxin (2 uses; each cures one poison or venom) and a wary eye for tainted drink and oiled steel.", data: {gear: [{name: "Antitoxin", uses: 2, note: "each cures one poison or venom"}]}}
+  5: {text: "A deserter wanted by both armies; you sold him to whichever paid more. Start with 40 extra Septims, and a face the city guards know — they tolerate you armed, but the losing side has not forgotten.", data: {add: {gold: 40}}}
+  6: {text: "A werewolf that emptied a steading under the full moon. You ran it down with silver and fire. Take the silver sword (d8, silver) that finished it, and the question that keeps you up at night: who was it, by day?", data: {gear: [{name: "Silver sword", damage: "d8", qualities: ["silver"]}]}}
+---
+table: bounty-hunter-2
+title: "What is the secret of your trade?"
+dice: d6
+source: backgrounds/bounty-hunter#what-is-the-secret-of-your-trade-roll-1d6
+entries:
+  1: "Tracker's Eye: You never lose a trail once you have cut it, and pursuing a quarry you are tracking through the wilds costs you no watches for the terrain."
+  2: {text: "Snare Net: A weighted throwing net of knotted cord (3 uses). Hurl it to foul one foe no bigger than a man or a wolf: it must pass a STR save or be held fast, its attacks Impaired, until it tears free.", data: {gear: [{name: "Snare Net", uses: 3}]}}
+  3: {text: "Bounty Ledger: A battered book of names, faces, and prices (petty). Spend a turn with it in any town and you learn who here is wanted, who is hunted, and which official quietly pays for proof of death.", data: {gear: [{name: "Bounty Ledger", size: "petty"}]}}
+  4: {text: "Sleeping Draught: A vial of thick poppy-and-nightshade syrup for bringing them back alive (2 uses). Slipped into a drink or smeared on a blade, it forces a STR save: on a failure, the quarry sleeps like the dead for an hour.", data: {gear: [{name: "Sleeping Draught", uses: 2}]}}
+  5: {text: "Hunter's Whistle: A carved bone whistle pitched for beasts (petty). Blown once, it calls off a tracking hound or steadies a spooked horse; blown thrice, it draws a single curious beast into the open.", data: {gear: [{name: "Hunter's Whistle", size: "petty"}]}}
+  6: {text: "Manhunter's Brand: An iron seal stamped with a chain (petty). Pressed to a captive's writ, it claims a Jarl's bounty without a quarrel, and gate guards wave you through with a prisoner in chains and never ask whose.", data: {gear: [{name: "Manhunter's Brand", size: "petty"}]}}

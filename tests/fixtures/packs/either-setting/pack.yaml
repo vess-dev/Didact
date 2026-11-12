@@ -1,0 +1,7 @@
+id: either-setting
+name: Either Setting (fixture)
+kind: setting
+version: 0.1.0
+description: A setting that requires only core, played under either of two systems.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

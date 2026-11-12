@@ -1,0 +1,65 @@
+# A rule changes a carried item's own keys as `set` does, and gives or takes items as `inv add`
+# and `inv drop` do: the room and the field's hooks are checked the same way.
+action: temper
+title: Temper a blade
+params: {who: ref, item: text, die: {kind: text, default: d10}}
+steps:
+  - set: who.inventory.$item.damage
+    value: "$die"
+  - set: who.inventory.$item.tempered
+    value: true
+---
+action: charge
+title: Charge a relic, up to its maximum
+params: {who: ref, item: text, charges: {kind: int, default: 2}}
+steps:
+  - set: who.inventory.$item.charges
+    op: "+="
+    value: "@charges"
+---
+action: forge
+title: The smith hands over a tempered sword
+params: {who: ref}
+steps:
+  - give: Steel sword
+    to: "@who"
+    data: {damage: d10, tempered: true}
+---
+action: brew
+title: Brew potions
+params: {who: ref}
+steps:
+  - roll: 1d4
+    as: doses
+  - give: Potion of Healing
+    to: "@who"
+    count: "@doses"
+---
+action: spend
+title: Spend a soul gem
+params: {who: ref}
+steps:
+  - take: soul gem
+    from: "@who"
+    count: 1
+---
+action: haul
+title: Haul an anvil
+params: {who: ref}
+steps:
+  - give: Anvil
+    to: "@who"
+---
+action: miscount
+title: A count that isn't one
+params: {who: ref}
+steps:
+  - give: Rope
+    to: "@who"
+    count: 0
+---
+trigger: overburdened
+on: manual
+params: {who: ref}
+steps:
+  - "{@who.name} staggers under the load."

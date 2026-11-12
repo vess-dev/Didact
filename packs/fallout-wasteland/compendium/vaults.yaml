@@ -1,0 +1,1671 @@
+# The vault catalog (vaults/*.md): written by fw_compendium.py, don't edit by hand. Each vault a
+# place (the Overseer's text in its GM notes, the Hidden note its secret), and each inhabitant the
+# catalog gives a stat line a threat.
+id: vault-8
+type: loc
+name: Vault 8
+tags: [vault, vaults-fallout-1-and-2]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** A standard control vault — sealed on schedule, opened on schedule. Its residents emerged to found **Vault City**, a high-tech settlement in northern Nevada known for its advanced medical technology. Vault-Tec's records list it as "nominal."
+
+  **Layout.**
+
+  - **Entry Hall.** The blast door stands open. A worn footpath leads away from it, uphill.
+  - **Residential Block.** Cabins picked clean, walls lined with old family photos never taken down.
+  - **Overseer's Office.** A pristine terminal still boots. The last log entry thanks the residents "for their service to the future."
+  - **Hydroponics.** Still running. A second, hidden hydroponics bay lies behind a maintenance panel — this one grows something with eyes.
+  - **The Garden of Observers.** A deeper chamber the Overseer never documented. Rows of glass cylinders, each with a pre-war volunteer suspended in brown preservative. They are labeled by job title.
+
+  **Inhabitants.** The surface settlement descended from Vault 8 — friendly, proud, and wary of outsiders. The thing in the hidden hydroponics, which watches with every eye it has grown (build it with **Creating Monsters**, or use a SPORE CARRIER ELITE that never leaves its bed).
+
+  **Reward.** A **Pre-war Medical Ledger** (Relic, _petty_) — reading it in downtime yields one true name of a person now alive in the wasteland. A single intact **Stealth Boy Mk II**.
+
+  In each system's catalog: Pre-war Medical Ledger (grimfall.pre-war-medical-ledger); Stealth Boy Mk II (fallout-2e.stealth-boy-mk-ii).
+
+  **Hook.** A settler from Vault 8's descendant town dies at dinner, leaving a single sentence to the party: *"The Garden is still feeding."*
+
+  ## Secrets
+
+  - The Overseer's terminal has a buried maintenance log — a single line about the Garden of Observers reference-numbered to an unfinished Vault-Tec project called ARBOR-4. The name is not mentioned anywhere else in this book. An Overseer who wants a thread that leads out of this vault should follow it.
+source: vaults/01-fallout-1-and-2#vault-8
+---
+id: vault-12
+type: loc
+name: Vault 12
+tags: [vault, vaults-fallout-1-and-2]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** Vault 12's door was designed to not fully close, so Vault-Tec could observe how a community survived direct exposure to radiation. Everyone ghoulified within a year. The survivors became the ghoul city of **Necropolis**, built into the ruins of Bakersfield above.
+
+  **Layout.**
+
+  - **Entry Hall.** The door is fused half-open. A pre-war wind moves through it constantly. A Rad storm haunts the threshold — anyone entering takes 1 Rad immediately.
+  - **The Welcoming Chamber.** Skeletons in vault jumpsuits cluster around the door, their bones so old they crumble to ash when touched.
+  - **Residential Block.** Still inhabited by a small ghoul community. They remember the day the door wouldn't close.
+  - **Overseer's Office.** Sealed. Inside, a ghoul who was the Overseer's intern, still at his desk, still filing reports nobody will ever read.
+  - **Reactor Room.** The reactor is failing. A GLOWING ONE lives in the coolant pool.
+
+  **Inhabitants.** FERAL GHOUL PACK (outer levels), GHOUL COMMUNITY (residential), GLOWING ONE (reactor).
+
+  **Reward.** An **Overseer's Holotape** detailing the deliberate sabotage of the door. The intern-ghoul will hand it over if someone listens to his whole story first. A **Pre-war Medical Kit** (3 Stimpaks, 1 RadAway).
+
+  **Hook.** A caravaneer asks the party to escort a young scribe who wants to interview a ghoul who remembers the war. The ghoul lives in Vault 12.
+
+  ## Secrets
+
+  - Behind the reactor room's failing coolant pool, welded to the underside of the shielding, is a small lead-lined box containing the original Vault 12 door schematic with the sabotage marked in red. Worth 600 caps to a Brotherhood scribe; worth more to the ghouls of Necropolis, who always suspected and never had proof.
+source: vaults/01-fallout-1-and-2#vault-12
+---
+id: vault-13
+type: loc
+name: Vault 13
+tags: [vault, vaults-fallout-1-and-2]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** The most famous vault in the West: a control vault meant to stay sealed for two centuries, until its water chip failed in 2161 and the Overseer sent a single volunteer out to find another. The Vault Dweller brought back a chip from Vault 12, killed the Master, and was exiled at the blast door for his trouble. The dwellers who were disgusted by that left to follow him north and founded Arroyo; the ones who stayed tried the Overseer, sentenced him to death, and abolished his office. In 2241, the Enclave broadcast a false all-clear, the door opened, and vertibird assault squads shot three dwellers on the threshold and carried the rest off for their experiments. They left behind a pack of intelligent deathclaws, who made the vault a home — until Frank Horrigan's squad came back and killed them all. Arroyo's descendants still call it the Vault of the Holy 13.
+
+  **Layout.**
+
+  - **Blast Door.** Open since 2241. Three skeletons in blue-and-gold jumpsuits lie where the Enclave shot them, the day the door finally opened.
+  - **Greeting Hall.** A projector still loops the pre-war *Leaving the Vault* training film the vault's spokesman played for the dwellers that morning, to an audience of dust.
+  - **Residential Block.** Deathclaw nests built out of vault mattresses. On the walls, children's crayon drawings of deathclaws and people holding hands — the refugees who lived here with the pack.
+  - **The Mainframe.** A computer the Brotherhood installed to run the vault after its last Overseer was executed. It answered to voice commands, and it still waits to hear the pack leader's. It will talk to anyone who fixes its damaged boards.
+  - **Overseer's Office.** Stripped. The last Overseer's trial transcript is still in the desk.
+  - **Water Treatment.** The chip the Vault Dweller carried home from Vault 12 still sits in the purifier, long dead.
+  - **The Kill Room.** The atrium where Horrigan's squad trapped the pack. Plasma scoring on every wall, and the great bones of the pack leader, Gruthar.
+
+  **Inhabitants.** A DEATHCLAW, YOUNG nest in the residential block — ordinary animals, drawn by the smell of their own kind. A **Brotherhood scribe** team cataloguing the mainframe, who would prefer no witnesses. **Arroyo pilgrims** at the door, some years, come to see where their tribe began.
+
+  **Reward.** The **Vault 13 Archive** (Relic, _petty_) — a holotape copy of the mainframe's records: the Vault Dweller's reports, the pack's lessons in human speech, the Enclave's all-clear code. Worth 800 caps to the Followers of the Apocalypse or the Brotherhood, and the reason both want the party dead once they learn someone else has it. A **Vault 13 jumpsuit**, which every NCR citizen recognizes.
+
+  **Hook.** An NCR historian hires the party to recover the Vault Dweller's original report from the mainframe before the Brotherhood's scribes wipe it. On the road, a traveler swears a deathclaw asked him, very politely, for directions.
+
+  ## Secrets
+
+  - Behind the mainframe, a deathclaw-sized reading nook: stacks of books whose margins are annotated in careful scratches of claw. It was the library of Goris, the pack leader's scholarly son, who was out of the vault the day Horrigan came. Someone has been back here recently, and put the books in order.
+source: vaults/01-fallout-1-and-2#vault-13
+---
+id: vault-15
+type: loc
+name: Vault 15
+tags: [vault, vaults-fallout-1-and-2]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** An experiment in forced diversity — Vault 15 packed a thousand people of wildly different cultures, languages, and values into a single vault and sealed it. When overcrowding forced the door open, four groups walked out in different directions. Three became raider gangs — the **Khans**, the **Vipers**, and the **Jackals**. The fourth, under a man named Aradesh, founded **Shady Sands**, the village that became the capital of the New California Republic.
+
+  **Layout.**
+
+  - **Entry Hall.** A collapse has cut the vault into two halves. The upper half is raider-held. The lower half has been sealed off for most of two hundred years.
+  - **Upper Residential (Raider-held).** Khan raiders use the old cabins as flophouses.
+  - **Lower Residential.** Untouched. Diaries in four languages. A child's drawing showing four different houses under four different flags.
+  - **Overseer's Office.** Collapsed ceiling, but the terminal on the desk still has one unread message from 2077.
+  - **Deep Armory.** A sealed vault-door at the bottom. Pre-war riot gear, ten pipe rifles, and a single working .308 hunting rifle.
+
+  **Inhabitants.** KHAN RAIDERS (upper — treat as THUGS with a CREW BOSS), MOLE RAT DETACHMENT (lower, around the armory), a lone half-feral ghoul who mutters in four languages (a survivor from the original sealing).
+
+  **Reward.** The **Overseer's Message** — a holotape in four languages simultaneously, none of them quite translating the others. A **cached .308 hunting rifle**.
+
+  **Hook.** A Khan defector wants revenge on the raider chief in the upper vault. She knows a back way in, through the lower levels, and needs someone who isn't a Khan to walk point.
+
+  ## Secrets
+
+  - The deep armory has a false back. Pry the rear wall's metal plating and find a Vault-Tec surveyor's map showing the original four-faction sealing plan — including a fifth, unmarked exit tunnel that none of the factions ever found. It leads to the surface a mile east of the raider camp.
+source: vaults/01-fallout-1-and-2#vault-15
+---
+id: vault-87
+type: loc
+name: Vault 87
+tags: [vault, vaults-fallout-3, fallout-3]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** A bioweapon testing site. The residents were exposed to a forced-mutation agent developed before the war. The survivors became the first super mutants of the region.
+
+  **Layout.**
+
+  - **Entry Hall.** Radiation pours from the door. Anyone entering by it adds 2 Rads immediately, and 1 more for every round they linger on the threshold. The quieter way in is through the caverns under Little Lamplight, if the children there can be talked into opening their gate.
+  - **Containment Chambers.** Glass cylinders, shattered outward, each labeled with a vault resident's name and a date.
+  - **Holding Pens.** Where the super mutants are now born. The FEV vats still run, and the mutants still haul in captives from across the Capital Wasteland to be dipped.
+  - **The Isolation Cell.** Behind a force field sits a lucid super mutant who reads everything the vault's library holds and remembers being a man. The mutants call him Fawkes; he would like very much to leave.
+  - **The G.E.C.K. Chamber.** So irradiated that no human can walk in and walk out — anyone inside takes 1 Rad every round. The vault's Garden of Eden Creation Kit waited here for two centuries.
+  - **Overseer's Office.** Caved in. A holotape in the rubble names the scientists who signed the order.
+  - **Reactor Room.** Hot. A GLOWING ONE and several CENTAURS patrol it.
+
+  **Inhabitants.** SUPER MUTANT GRUNTS, SUPER MUTANT MASTER (leader), CENTAURS and a GLOWING ONE (reactor level).
+
+  **Reward.** A **Sealed Sample of the FEV** (Relic, 1 use — see the FEV Sample entry in the Relics chapter). An **Overseer's Terminal Dump** revealing the sister sites to Vault 87.
+
+  In each system's catalog: Sealed Sample of the FEV (fallout-2e.fev-sample · grimfall.fev-sample); Overseer's Terminal Dump (fallout-2e.overseers-terminal-dump-vault-87 · grimfall.vault-87-terminal-dump).
+
+  **Hook.** A super mutant who remembers being human is living in a nearby ruin. She wants someone to end the cycle by destroying the vats.
+
+  **In the Fallout 3 frame.** Super mutant origin site. The G.E.C.K. is on the lowest level; Fawkes is in a cell.
+
+  ## Secrets
+
+  - The oldest containment chamber has a single cylinder whose label reads SUBJECT 00 — a Vault-Tec scientist who volunteered for the first dose. His name is still on a lanyard. The cylinder is empty. If the party is paying attention, they can match the name to one of the original super mutant Masters still alive in the wasteland, and the encounter changes.
+source: vaults/02-fallout-3#vault-87
+---
+id: vault-92
+type: loc
+name: Vault 92
+tags: [vault, vaults-fallout-3]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** Advertised as a refuge for the country's finest musicians. Its real purpose: testing combat-priming audio broadcasts that induced aggressive behavior through white-noise signals.
+
+  **Layout.**
+
+  - **Recording Studios.** Still intact. Pre-war instruments hanging on the walls, a sound booth with a microphone labeled with a famous pre-war name — and, on a desk, the **Soil Stradivarius**, the most valuable violin in the world.
+  - **Sound Testing Wing.** Sealed soundproof rooms where the experiments ran. Dried blood on the soundproofing. The living-quarters terminals still offer a **Noise Flush** command that blasts the white noise at full power: it kills every bloatfly and mirelurk in earshot, and anyone else who hears it must make a WIL save or take d12 WIL damage.
+  - **Residential Block.** Picked over by raiders years ago, and flooded on the lowest level where an underground spring broke through the wall.
+  - **Overseer's Office.** A holotape of the final testing session. The Overseer begs the broadcast to stop. It does not stop.
+  - **Reactor Room.** The reactor is still running the broadcast faintly. Anyone in the vault for more than an hour must make a WIL save or attack a companion.
+
+  **Inhabitants.** BLOATFLY swarms in the upper levels and MIRELURKS in the flooded lower levels — up to a MIRELURK KING in the deepest water — all maddened by the lingering broadcast.
+
+  **Reward.** The **Soil Stradivarius** (Relic — see Relics), worth 400 caps to any pre-war music collector and far more to **Agatha**, the violinist whose radio station plays across the Capital Wasteland. A **Soundproofed Holotape** that plays a clean pre-war recording — once per session, the holder may use it to calm a single hostile crowd; each NPC in the group makes a WIL save or stands down for the scene.
+
+  In each system's catalog: Soil Stradivarius (fallout-2e.soil-stradivarius-vault-92 · grimfall.vault-92-violin); Soundproofed Holotape (fallout-2e.soundproofed-holotape-vault-92 · grimfall.soundproofed-holotape-v92); The Soil Stradivarius (fallout-2e.soil-stradivarius-vault-92 · grimfall.vault-92-violin).
+
+  **Hook.** A Followers of the Apocalypse medic has been tracking the broadcast signal. It's been getting stronger. She needs the party to find the source and shut it off before a nearby settlement snaps.
+
+  ## Secrets
+
+  - One of the soundproofed rooms has a scratched message on the inside of the door, below the hinge, in the Overseer's handwriting: the broadcast is not from us. The signal has an upstream source the experiment was only relaying. An Overseer may tie it to a separate pre-war installation if the campaign needs one.
+source: vaults/02-fallout-3#vault-92
+---
+id: vault-101
+type: loc
+name: Vault 101
+tags: [vault, vaults-fallout-3, fallout-3]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** A control vault that was also, secretly, a permanent sealing experiment: the Overseer was instructed to never allow residents to leave. The door was meant to stay shut forever.
+
+  **Layout.**
+
+  - **Blast Door.** Fully sealed. Requires a Pip-Boy override, an inside ally, or a long siege to open.
+  - **Greeting Hall.** Intact. A pre-war welcome recording plays every morning at 0600.
+  - **Residential Block.** A living community of about a hundred people. They believe the outside world is radioactive ash and that their Overseer is their shepherd.
+  - **The Garden.** A secret hydroponics bay the Overseer keeps locked. Growing here: clean pre-war apple trees from seeds sealed in 2077 — fruit nobody outside has tasted in two hundred years.
+  - **Overseer's Office.** The current Overseer is a direct descendant of the original, still receiving sealed messages from a dead pre-war chain of command. They are not an evil person. They believe every order they follow.
+
+  **Inhabitants.** VAULT COMMUNITY with a small security detail (treat as SETTLER MILITIAMEN with police batons, d6, and 10mm pistols, d8). A single SECURITY OFFICER (treat as SETTLEMENT SHERIFF) with a baton at the door.
+
+  **Reward.** A packet of the garden's seeds (Relic, _petty_ — see **Pre-war Mutfruit Seeds** in Relics). One functional **Pip-Boy 3000**.
+
+  In each system's catalog: Pre-war Mutfruit Seeds (fallout-2e.pre-war-mutfruit-seeds-vault-101 · grimfall.pre-war-mutfruit-seeds); Pip-Boy 3000 (fallout-2e.pip-boy-3000-functional · grimfall.pip-boy-3000).
+
+  **Hook.** The Overseer of Vault 101 has sent a messenger to the nearest settlement with a sealed letter and a bag of caps. The letter offers a contract: retrieve a stolen data module taken by a rogue resident who fled into the Wastes. The Overseer does not mention that the "rogue resident" is their own child, or that the data module contains evidence of the vault's true purpose.
+
+  **In the Fallout 3 frame.** Sealed until it isn't. The Overseer's office terminal holds James's goodbye holotape.
+
+  ## Secrets
+
+  - In the Overseer's private quarters, behind a false panel in the wardrobe, is a small stack of outside-world letters the original Overseer received from Vault-Tec after the war. The dates go up to 2079. Somebody was still writing to Vault 101 for two years after the bombs fell. The return address is redacted on all of them.
+source: vaults/02-fallout-3#vault-101
+---
+id: vault-106
+type: loc
+name: Vault 106
+tags: [vault, vaults-fallout-3]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** Psychoactive agents were pumped into the vault's air ten days after sealing. The residents suffered mass hallucinations for the rest of their lives.
+
+  **Layout.**
+
+  - **Entry Hall.** The air is still thick. A thin chemical haze clings to the ceiling. Any PC without a gas mask must make a WIL save each hour or begin to hallucinate.
+  - **Residential Block.** The residents are long dead, but the vault is filled with their lingering hallucinations — a PC breathing the air hears voices, footsteps, and half-remembered conversations that belonged to the dead. What shambles the halls now are feral ghouls — later scavengers, ghoulified by the vault's leaking reactor, which has soaked the lower levels in Rads for a century. They share the same hallucinations.
+  - **The Painted Hall.** A corridor hung end to end with stitched bedsheets, on which someone has painted an entire pre-war skyline from memory, in blood. The skyline is of a city that does not exist.
+  - **Overseer's Office.** The Overseer is still alive, ghoulified, still hallucinating. She thinks the party are her children.
+  - **Reactor Room.** The chemical dispenser is still running. Shutting it off clears the vault — and wakes up the Overseer.
+
+  **Inhabitants.** HALLUCINATING GHOULS (treat as FERAL GHOUL PACK with occasional WIL saves on PCs), GHOUL OVERSEER (treat as FERAL GHOUL REAVER with a story).
+
+  **Reward.** A **Chemical Formula** recovered from the dispenser — a recipe for a controlled psychoactive that, in chem form, lets the user automatically pass WIL saves against fear, charm, or compulsion for one scene; _addictive_ (each dose forces an addiction save). The **Skyline Painting** itself, cut down from the Painted Hall (_bulky_, 500 caps to a collector — see **Vault 106 Skyline Painting** in Relics).
+
+  In each system's catalog: Chemical Formula (grimfall.vault-106-psychoactive-formula); Skyline Painting (grimfall.vault-106-skyline-painting); Vault 106 Skyline Painting (fallout-2e.vault-106-skyline-painting · grimfall.vault-106-skyline-painting).
+
+  **Hook.** A Followers scholar has been studying the vault's chemical and wants the formula — for her own research, she insists.
+
+  ## Secrets
+
+  - The painted hall's skyline is not imaginary — a PC who spends a turn studying it recognizes the faint outline of a real pre-war city the residents could not possibly have seen from inside the vault. The skyline is accurate to a satellite-photo level of detail. Someone in this vault was receiving visions from somewhere.
+source: vaults/02-fallout-3#vault-106
+---
+id: vault-108
+type: loc
+name: Vault 108
+tags: [vault, vaults-fallout-3]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** Cloning research. A single resident, Gary, was selected for genetic duplication. Dozens of Garys were produced before the vault ate itself.
+
+  **Layout.**
+
+  - **Entry Hall.** A single hand-lettered sign reads *GARY*.
+  - **Cloning Lab.** The vats are empty but still running. A pre-war terminal logs the batches — Gary 12, Gary 17, Gary 23, Gary 43 — for pages, and notes that every Gary turned on the staff the moment he was decanted.
+  - **Residential Block.** Every cabin's name tag reads GARY. Every diary entry reads GARY. Every photograph is of the same face.
+  - **Overseer's Office.** Overseer Brody Jones is gone. He was chosen because the scientists knew a cancer would kill him within forty months, and the vault's main power was rigged to fail after twenty; his last logs describe the cloning experiment spiraling out of control — the scientists' duplicates of a single resident, every one of them named Gary, multiplying until the identical clones overran the staff.
+  - **Reactor Room.** The oldest Gary lives here now, grey and enormous and angrier than any of his brothers.
+
+  **Inhabitants.** GARY CLONES — identical, hostile to anyone who is not a Gary, and able to say exactly one word (treat as a WILD FOLK detachment). Nobody else: the original Gary is long dead, and his diary is the only sympathetic voice left in the vault.
+
+  **Reward.** A **Genetic Sample Cylinder** (Relic, 1 use) — plugged into an auto-doc, it restores a dying PC to full HP and STR one final time. **The Original Gary's Diary** — a holotape, the only sympathetic voice in the vault.
+
+  In each system's catalog: Genetic Sample Cylinder (fallout-2e.genetic-sample-cylinder-vault-108 · grimfall.genetic-sample-cylinder-v108); The Original Gary's Diary (fallout-2e.the-original-garys-diary-vault-108 · grimfall.the-original-garys-diary).
+
+  **Hook.** A medic in a nearby settlement has a patient dying of a blood disorder. The auto-doc needs genetic material it cannot synthesize. A clean sample from Vault 108 would save her.
+
+  ## Secrets
+
+  - One of the vats — the only one with no number on its label — is still sealed, still running, and still cycling. Inside: a clone that never decanted, now the size of a full-grown man, still breathing through the cable. A PC who touches the glass hears a heartbeat. A PC who breaks the glass faces an Overseer-decided consequence the party will remember for the rest of the campaign.
+source: vaults/02-fallout-3#vault-108
+---
+id: vault-112
+type: loc
+name: Vault 112
+tags: [vault, vaults-fallout-3, fallout-3]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** A virtual-reality simulation experiment. The residents were placed in VR stasis loungers and their minds fed into a shared dream world run by the vault's founder, a pre-war scientist. The sim was supposed to last a decade. It ran for two centuries.
+
+  **Layout.**
+
+  - **Entry Hall.** Still powered. A robotic assistant greets any visitor and politely requests they proceed to the pod chamber.
+  - **Pod Chamber.** Twelve VR stasis loungers in a circle, ten of them occupied by the long-lived residents, still dreaming. One lounger is empty. One lounger is open and its occupant is a withered corpse.
+  - **The Dream.** A PC who enters an open pod is pulled into **Tranquility Lane** — a pre-war suburban simulation where everyone is smiling, everyone is cheerful, everyone is watched. Inside the sim, a child with too much authority commands the dead. To exit: either succeed at a difficult WIL-based quest inside the sim, or have an outside ally interrupt the simulation through the external terminal.
+  - **Control Room.** The external terminal. Anyone reading the logs learns the founder's name and the original ten residents' names. Shutting off the sim kills all ten, peacefully. Waking them one at a time is possible but slow.
+  - **Reactor Room.** The reactor has enough power for another fifty years.
+
+  **Inhabitants.** The DREAMING RESIDENTS (non-combat, moral weight only). The CHILD OVERSEER inside the simulation (treat as a WIL-based encounter, not a combat one).
+
+  **Reward.** A **Functional Pip-Boy 3000** (from the corpse in the open pod). A **Holotape of Tranquility Lane's Original Recording** — the founder's voice, gentle and inviting, explaining the experiment.
+
+  In each system's catalog: Functional Pip-Boy 3000 (fallout-2e.pip-boy-3000-functional · grimfall.pip-boy-3000); Holotape of Tranquility Lane's Original Recording (grimfall.tranquility-lane-recording).
+
+  **Hook.** A caravaneer in a nearby settlement is the grandchild of the man in the open pod — a wanderer who went looking for the vault's rumored paradise forty years ago and never came out. She has his last letter, written the night before he climbed in. She wants answers.
+
+  **In the Fallout 3 frame.** Under Smith Casey's garage, a Tranquility Lounger rig full of pre-war elderly who never woke up. Dr. Stanislaus Braun runs it as a simulated neighborhood where he has been the god for 200 years.
+
+  ## Secrets
+
+  - The control room has a second terminal behind a slid-aside mural — an admin console that lets a user rewrite the simulation's physics rather than just shut it down. With it, a PC may enter Tranquility Lane as a god-moded visitor for one session only. The cost: the interface pushes too hard — take 1d4 WIL damage.
+source: vaults/02-fallout-3#vault-112
+---
+id: vault-3
+type: loc
+name: Vault 3
+tags: [vault, vaults-fallout-new-vegas]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** A control vault. A water leak forced the residents to open the door to find help, and for a short while they traded peacefully with local caravans — until a chem-addled raider gang conned their way in, slaughtered the dwellers, and claimed the vault for themselves.
+
+  **Layout.**
+
+  - **Entry Hall.** The blast door stands open. Fresh bullet holes in the walls.
+  - **Residential Block.** The original fixtures are still here, but every room has been converted into a drug den, a weapons stash, or a squalid bunkroom.
+  - **Water Treatment.** Still functional. The raiders charge passing caravans a hundred caps a gallon.
+  - **Overseer's Office.** Now a raider chief's den. Four bodies hung from the ceiling as warnings.
+  - **Reactor Room.** Unchanged. The raiders don't know what it is, only that the lights still work.
+
+  **Inhabitants.** FIEND RAIDER CREW (CHEM FIENDS and THUGS) with a chem-addled CREW BOSS — **Motor-Runner** himself, if he still lives — and a CHAINED CAPTIVE somewhere in the back. An NCR Ranger sent in alone to kill Motor-Runner is holed up near the residential block with a bullet in his leg.
+
+  **Reward.** The **Vault 3 Water Valve** — controlling it gives the party leverage over every caravan on the route. A stash of **Psycho**, **Jet**, and **Mentats** in the raider chief's footlocker.
+
+  In each system's catalog: Psycho (fallout-2e.psycho); Jet (fallout-2e.jet); Mentats (fallout-2e.mentats).
+
+  **Hook.** A caravan master will pay 500 caps to anyone who frees the water supply from the raiders' control, *without* killing the chained captive they use as a hostage.
+
+  ## Secrets
+
+  - A PC who searches the water treatment's filter housing finds a pre-war wedding ring wedged deep in the intake grate. The inscription matches one of the original residents' names on the Overseer's terminal. The captive chained in the back room is their descendant and does not know.
+source: vaults/03-fallout-new-vegas#vault-3
+---
+id: vault-11
+type: loc
+name: Vault 11
+tags: [vault, vaults-fallout-new-vegas]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** The residents were told that one of them must be sacrificed each year, or the entire population would be terminated. They made it an election: whoever won became Overseer, and at the end of the term walked into the sacrificial chamber. The vault ran this election for sixteen years, until a rigged vote set off a civil war that left five survivors.
+
+  **Layout.**
+
+  - **Entry Hall.** Murals painted by the residents list the name of every Overseer sacrificed, year by year; the last mural has an abrupt unfinished line. Against the wall by the door sit four skeletons with four guns — the last survivors, who could not live with what they had learned. A fifth gun lies on the floor, unfired.
+  - **The Bloc Halls.** Corridors papered with the propaganda of the vault's six voting blocs, each poster explaining why someone else should die.
+  - **Voting Hall.** A grand chamber with one podium and a sealed ballot box. Votes from the final election are still inside.
+  - **The Sacrifice Chamber.** A single chair with wrist restraints. A pre-war automated recording describes the honor and necessity of the sacrifice. Bloodstains on the floor are very old.
+  - **Overseer's Office.** The office of the last elected Overseer, who knew exactly what the title meant. A handwritten note is still on the desk.
+  - **The Terminal Room.** The vault's central computer. A pre-war recording plays if the computer is accessed: it reveals that the entire experiment was a bluff. Any population that refused to sacrifice anyone would have been praised and set free. Only the last five survivors ever refused, after the civil war had killed everyone else.
+
+  **Inhabitants.** SECURITY TURRETS in the voting hall (treat as two TURRET, MACHINEGUN). GIANT RADSCORPIONS in the lower maintenance levels.
+
+  **Reward.** The **Vault 11 Ballot Box** — evidence of pre-war psychological manipulation, worth 800 caps to a Followers researcher. The **Survivors' Holotape**, recorded at the door by the five who refused, so that others might learn from what they did.
+
+  **Hook.** A pre-war historian among the Followers has been writing a book about the vault experiments. She needs the voting records to finish her chapter on Vault 11. She is willing to pay.
+
+  ## Secrets
+
+  - One of the murals has a small painted cross next to a Sacrifice's name — a resident who had been erased from every other record. A PC who pokes at the wall beneath the cross finds a second, hidden ballot box with the actual unrigged votes from the first election. Reading them reveals that the residents had tried to refuse the whole game once.
+source: vaults/03-fallout-new-vegas#vault-11
+---
+id: vault-19
+type: loc
+name: Vault 19
+tags: [vault, vaults-fallout-new-vegas]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** The vault was split into two color-coded halves — a Red Sector and a Blue Sector — each with its own Overseer, and the experiment was paranoia. Strange noises in the vents, drafts from nowhere, lights blinking in patterns: each sector blamed the other, and some blamed the doctor in the middle. None of them guessed that the two Overseers were staging every incident on Vault-Tec's orders. What finally became of the residents is a mystery. By the time escaped convicts found the vault, it was empty.
+
+  **Layout.**
+
+  - **Entry Hall.** Faded Red and Blue paint divides the walls.
+  - **Red Residential.** Now the flophouse of **Samuel Cooke**'s Powder Gangers — escaped NCR convicts who split from the main gang after the prison breakout.
+  - **Blue Residential.** Collapsed in a fire decades ago, and cut off from the rest of the vault. A lone ghoul still lives here, nursing a grudge older than the NCR — the only witness to what happened, if anyone can get him to tell it.
+  - **The Sulfur Caves.** A second way in, through caves northwest of the Whittaker farmstead that reek of rotten eggs.
+  - **Overseer's Office.** Two offices, one per sector, mirror each other across the vault. A holotape recovered from the Red Sector office explains the experiment, including that Overseer's private suspicion that the two of them were also being manipulated.
+  - **The Shared Cafeteria.** The one room in the vault where residents from both sectors were forced to eat together. The walls are scratched to the concrete.
+
+  **Inhabitants.** POWDER GANGER detachment under Samuel Cooke (Red), LONE GHOUL with a grudge (Blue).
+
+  **Reward.** **Dynamite Charges** — 2d6 sticks (each d10, _blast_, 1 use), a holdover from the Powder Ganger occupation. The Overseer's **Final Report** — a holotape confessing the psychological experiment in detail.
+
+  **Hook.** Two strangers claim descent from the vault's vanished residents — one from Red Sector, one from Blue — and want to know what happened to their families. Samuel Cooke's convicts hold the vault. The pair need escorts past the Powder Gangers to the shared cafeteria, where the answer is carved into a table.
+
+  ## Secrets
+
+  - The shared cafeteria has a single long table with names carved into its underside — a list of residents from both sectors who had secretly been meeting under it for years, passing notes and sharing food. The final name carved is the Overseer's own.
+source: vaults/03-fallout-new-vegas#vault-19
+---
+id: vault-21
+type: loc
+name: Vault 21
+tags: [vault, vaults-fallout-new-vegas]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** Every decision in the vault — including the decision to open the door — was made by gambling. Residents resolved all disputes, assignments, and elections through games of chance, and the experiment worked: Vault 21 kept its people safe and equal. In 2274 Mr. House offered to bring it into New Vegas; those in favor won the right to accept in a blackjack game that lasted for hours. House stripped the vault and filled most of it with concrete. Two vault-born residents, **Sarah Weintraub** and her brother, talked him into sparing half the upper level, and Sarah runs it now as the **Vault 21 Hotel**.
+
+  **Layout.**
+
+  - **Casino Floor.** The vault's old gambling atrium, spared from the concrete — slot machines, a roulette wheel, a blackjack table, and a craps pit. All still partly operational.
+  - **The Dealer's Booth.** A pre-war dealer robot (broken) still sits in the booth with a deck of cards in its manipulator.
+  - **Residential Block.** Small cabins, each decorated with a playing card suit.
+  - **Overseer's Office.** The Overseer left a holotape explaining that the experiment worked — the vault stayed peaceful for generations.
+  - **The Vault.** A locked storage room with a pre-war card deck that has a star on the back of every card.
+
+  **Inhabitants.** Sarah Weintraub, her hotel staff, and the handful of former dwellers who stayed on. They still resolve disputes with dice. They are friendly, shrewd, and happy to gamble with the party.
+
+  **Reward.** **The Pre-war Card Deck** — a _petty_ relic that, once per session, shifts the next Reaction roll two steps better when presented with a flourish. A **Pip-Boy 3000** that House's strippers missed, in a drawer of the Overseer's desk.
+
+  In each system's catalog: The Pre-war Card Deck (grimfall.pre-war-card-deck); Pip-Boy 3000 (fallout-2e.pip-boy-3000-functional · grimfall.pip-boy-3000).
+
+  **Hook.** A caravaneer has lost his caravan's profits to the residents in a poker game. He wants the party to win them back for him — or to cheat.
+
+  ## Secrets
+
+  - The roulette wheel has a slight mechanical bias toward red 17 — an engineering flaw the Overseer discovered and decided not to fix because it gave her a secret edge on the vault's own experiment. A PC who figures this out may claim an edge at any roulette table for the rest of the campaign.
+source: vaults/03-fallout-new-vegas#vault-21
+---
+id: vault-22
+type: loc
+name: Vault 22
+tags: [vault, vaults-fallout-new-vegas]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** A botanical experiment: the vault's scientists were working to end world hunger. A defense contractor donated a pest-control fungus, *Beauveria mordicana*, bred in Big MT's X-22 botanical garden. It turned out to infect people as easily as insects. The residents were gradually consumed by their own crop.
+
+  **Layout.**
+
+  - **Entry Hall.** Vines have grown through the blast door and cover the walls.
+  - **Hydroponics Bay.** A jungle. Giant mutated plants grow along the ceiling, some still in rows from their planters.
+  - **Spore-Infested Residential Block.** Bodies of the original residents, covered in vines and spore pods. Some of them are still moving — SPORE CARRIERS.
+  - **Overseer's Office.** Sealed against the spores. Inside, the Overseer's final log, delivered as her office slowly filled with green.
+  - **The Seed Vault.** A locked cold-room at the lowest level containing every preserved pre-war plant seed for the region. Still viable, if someone can crack the lock.
+
+  **Inhabitants.** - **SPORE CARRIER** — use the bestiary entry. The original residents, hollowed out by the crop.
+  - **GIANT MANTIS** — detachment in the upper tunnels; use the bestiary entry.
+
+  **Reward.** **Vault 22 Seed Packets** — a cache of pre-war plant seeds. Delivered to a settlement with at least one Farm Plot, they grant **+1 Industry** (to the usual cap of 5). A **Spore-Resistance Inoculant** (1 dose, grants immunity to spore attacks for one session).
+
+  In each system's catalog: Vault 22 Seed Packets (grimfall.vault-22-seed-packets); Spore-Resistance Inoculant (grimfall.spore-resistance-inoculant).
+
+  **Hook.** A farmer in a nearby settlement is losing crops to a blight. An NCR agriculture corps rep offers caps for any Vault 22 seed he can get.
+
+  ## Secrets
+
+  - At the heart of the hydroponics bay, deep under the tangle of vines, is a single Mother Plant — older, slower, and aware enough to respond to voices. It does not attack. It is trying to communicate. A PC who spends a scene with it and passes a WIL save learns something no bestiary can tell them about the vault.
+source: vaults/03-fallout-new-vegas#vault-22
+---
+id: vault-34
+type: loc
+name: Vault 34
+tags: [vault, vaults-fallout-new-vegas]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** The armory was overstocked with guns and the living quarters were not built for the crowd. When overpopulation came, the Overseer locked the armory. One group of dissidents grabbed every gun they could carry and stormed out — their descendants are the **Boomers** of Nellis. Years later, a second revolt tried for the armory and wrecked the reactor's cooling vents instead. The radiation that followed trapped the rest inside and ghoulified most of them.
+
+  **Layout.**
+
+  - **Entry Hall.** The main door has not opened since the second revolt.
+  - **Residential Block.** Ghoulified residents still walk here — some of them are armed.
+  - **The Armory.** A massive pre-war arsenal. Locked behind a keyed door the original Overseer sealed during the riot.
+  - **Flooded Lower Levels.** Radioactive water has filled the bottom two floors. Any PC entering adds 1 Rad per watch.
+  - **Overseer's Office.** Drowned. The terminal still runs, but the holotape inside is water-damaged and contains only the final two minutes of the Overseer's last entry.
+
+  **Inhabitants.** FERAL GHOUL WITH ASSAULT RIFLE (multiple), GLOWING ONE in the flooded level. A handful of survivors are barricaded in a sealed wing, dying of the radiation and still hoping someone will open the door.
+
+  **Reward.** **The Armory** — on gaining access, roll twice on the Loot Roll Tables' *Random Weapon* and take both results. A **Pre-war Riot Shotgun** (d10, _blast_, _bulky_) pulled from an Overseer's desk. Two sealed crates at the back hold the **All-American** and the **YK42B Pulse Rifle** (see Unique Weapons), if the Overseer wants them found here.
+
+  In each system's catalog: All-American (fallout-2e.all-american · grimfall.all-american); YK42B Pulse Rifle (fallout-2e.yk42b-pulse-rifle · grimfall.yk42b-pulse-rifle).
+
+  **Hook.** A scavver company has been trying to crack the Vault 34 armory for two years. They'll split the haul 50/50 with any crew willing to go in first.
+
+  ## Secrets
+
+  - At the back of the armory, mounted in a display case behind a smashed glass pane, is a pre-war ceremonial rifle — engraved, polished, absurdly heavy. It was meant as a retirement gift for the Overseer, delivered the week before the bombs. Worth 1000 caps to the right collector. Worth far more as a symbol of what pre-war life almost looked like.
+source: vaults/03-fallout-new-vegas#vault-34
+---
+id: vault-36
+type: loc
+name: Vault 36
+tags: [vault, vaults-fallout-new-vegas]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** The residents were given food processors rigged to produce thin, flavorless gruel with barely enough nutrition. The experiment was to measure how long a community would tolerate a diet with no joy. Vault-Tec's records never gave its location; this book puts it in the Mojave.
+
+  **Layout.**
+
+  - **Entry Hall.** The blast door stands ajar. A small wooden sign in the greeting hall reads, in crude letters, *NO MORE GRUEL*.
+  - **Cafeteria.** The food processors are still running, still producing their beige slurry. A pre-war cookbook, untouched, sits next to them.
+  - **Residential Block.** Empty. The residents left years ago.
+  - **Overseer's Office.** A holotape — the Overseer's final entry — describes the day her community finally walked out, together, without a word.
+  - **Reactor Room.** Fine. The reactor is in perfect shape.
+
+  **Inhabitants.** A lone MISTER HANDY (treat as friendly unless provoked) still running the cafeteria kitchen.
+
+  **Reward.** **The Pre-war Cookbook** (Relic, _petty_) — a PC at a Cooking Station who consults it may produce a day's rations that let the eaters automatically pass the next WIL save against fear or despair. **The Food Processors** can be stripped for a Cooking Station building at a settlement at half the usual cost.
+
+  In each system's catalog: The Pre-war Cookbook (grimfall.pre-war-cookbook).
+
+  **Hook.** A settler has heard rumors of a vault full of working kitchen equipment. Her community is desperate for a functional cooker. She has 300 caps and a good bottle of whiskey.
+
+  ## Secrets
+
+  - One of the cafeteria tables has a resident's journal welded to the underside with a salvaged magnet — a secret diary of every meal the writer imagined eating. Four hundred entries. The final one is a full Thanksgiving dinner the writer describes down to the gravy. The Mr. Handy knows the writer's name.
+source: vaults/03-fallout-new-vegas#vault-36
+---
+id: vault-75
+type: loc
+name: Vault 75
+tags: [vault, vaults-fallout-4]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** Built beneath Malden Middle School and sold as a safe shelter for its students, Vault 75 was a genetics program. The children were separated from their families on arrival; the parents and teachers were led off to "orientation" and shot by security. The children were raised to fear "Uptopland" and told that graduation would make them strong enough to save it. At eighteen, the finest were "harvested" for their genes, the clever and obedient joined the science staff, and the rest were executed after a graduation ceremony.
+
+  **Layout.**
+
+  - **Entry Hall.** A pre-war elementary school façade. Posters on the walls.
+  - **Classrooms.** A pre-war curriculum still loops on the terminals, to rows of empty desks. The chalkboards count down the days to graduation.
+  - **Residential Block (Children's Wing).** Small cabins arranged like a summer camp.
+  - **The Testing Labs.** The dark heart of the vault. Dissection tables, gene sequencers, a wall of cryogenic samples labeled by student number.
+  - **Overseer's Office.** The Overseer left a holotape confessing the experiment and asking for forgiveness. The Gunners who took the vault use the office as a mess hall and have never played it.
+
+  **Inhabitants.** GUNNER squad with a GUNNER SERGEANT (upper floors and classrooms), SENTRY BOT in the testing labs.
+
+  **Reward.** A **Genetic Sequencer Chip** (Relic) — installed in a friendly auto-doc, it identifies any PC's hidden bloodline (Overseer's choice). **Classroom Holotapes** containing real pre-war educational material — worth 300 caps to a Followers scholar.
+
+  In each system's catalog: Genetic Sequencer Chip (grimfall.genetic-sequencer-chip).
+
+  **Hook.** A Gunner deserter wants to destroy the testing labs before his former crew gets the chance to weaponize them. He has a map but not the nerve.
+
+  ## Secrets
+
+  - Deep in the testing labs, behind a wall of cryogenic samples, is a single small sample drawer that the Gunners never found — marked TEACHER 01. A genetic record of one of the original adults who was "eliminated." Delivered to an Institute scientist, it is worth 1000 caps. The Gunners will know if the party takes it.
+source: vaults/04-fallout-4#vault-75
+---
+id: vault-81
+type: loc
+name: Vault 81
+tags: [vault, vaults-fallout-4]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** Vault-Tec built Vault 81 to develop a cure for every disease, using its residents as unknowing test subjects: nozzles hidden in every room were meant to release the pathogens, and to incinerate everyone if the vault were ever evacuated. The first Overseer, Dr. Olivette, refused. On the morning of the war she sabotaged the call list so most of the scientists never arrived, disabled the delivery system, and sealed the three who came into the secret wing. The residents were never infected. Two centuries later, Vault 81 is one of the few vaults that still works as a vault.
+
+  **Layout.**
+
+  - **Entry Hall.** Indistinguishable from a standard vault. The community here is welcoming — they believe their vault is an honest one.
+  - **Residential Block.** A living community of about 50 people. They farm, they trade with nearby settlements, they are among the last intact vault populations in the region.
+  - **The Sealed Wing.** Vault 81-B, behind a locked door the residents never open: disease labs still stocked and still hot with pre-war pathogens, diseased test mole rats loose in the halls, and **Curie**, a Miss Nanny the scientists left running, who has spent two hundred years trying to finish their cure.
+  - **The Hidden Cure.** A small refrigerated cabinet contains **Vault 81 Cure** — a universal antiviral, stable in sealed dose form. See the Relics chapter.
+  - **Overseer's Office.** The current Overseer knows there is a sealed wing, and not what is in it. Her predecessors kept that secret for generations.
+
+  **Inhabitants.** VAULT COMMUNITY (friendly, trading), MOLE RATS in the sealed wing (diseased — any bite forces a STR save or the victim contracts mole rat fever, a slow wasting sickness: lose 1 STR per day until cured), and Curie, who would very much like to meet a human being.
+
+  **Reward.** The single dose of **Vault 81 Cure** (Relic, 1 use — see Relics chapter). **Pre-war Disease Samples** (1 slot, dangerous in the wrong hands, 600 caps to certain collectors).
+
+  In each system's catalog: Vault 81 Cure (fallout-2e.vault-81-cure · grimfall.vault-81-cure); The single dose of Vault 81 Cure (fallout-2e.vault-81-cure · grimfall.vault-81-cure).
+
+  **Hook.** A child in Vault 81 has fallen ill with a disease nothing in the settlement can identify. The current Overseer asks the party to look through the one wing she's never entered.
+
+  ## Secrets
+
+  - The former Overseer's terminal, forgotten in the generator room, records exactly what Dr. Olivette did and why every resident is alive. It also records that the nozzles in their bedrooms are still connected to the incinerator system, and that the evacuation protocol has never been disarmed. A PC who reads it and doesn't tell the community walks out with a secret that will weigh on them every time they pass through Vault 81 again.
+source: vaults/04-fallout-4#vault-81
+---
+id: vault-95
+type: loc
+name: Vault 95
+tags: [vault, vaults-fallout-4]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** A treatment program for chem addicts. The vault offered counseling, clean accommodations, a yearly elected Overseer to run the support meetings, and abstinence support — and a large hidden stash of every chem the residents had ever used. On the fifth anniversary of the sealing, a Vault-Tec agent posing as a resident opened it while everyone slept, and took notes on what happened next. The Gunners hold the vault now, at the edge of the Glowing Sea.
+
+  **Layout.**
+
+  - **Entry Hall.** A pre-war rehabilitation clinic façade. Encouraging posters everywhere.
+  - **Counseling Wing.** Still running. Terminals contain pre-war addiction profiles of every original resident.
+  - **Group Therapy Room.** A circle of chairs, a pre-war coffee urn, a chalkboard with the twelve-step pre-war program written out in chalk.
+  - **The Hidden Stash.** The chamber the agent opened on October 23, 2082. Thousands of doses of Med-X, Psycho, Buffout, Jet, and Mentats, spilled across the floor.
+  - **The Detox Chamber.** The program's one honest promise: a clean room and an extractor chair built to purge a patient's system of chem dependency. Restored to power, it clears every addiction a PC carries in a single treatment, at the cost of a fusion core and a day of agony (1 Fatigue).
+  - **Overseer's Office.** The final holotape is the last elected Overseer describing her own relapse.
+
+  **Inhabitants.** GUNNER squad in the upper levels, with a GUNNER, HEAVY in salvaged power armor at the door (3 Armor; if he dies in it the suit is broken — see **Crafting → Repairs** — and its core is nearly spent) and a GUNNER SERGEANT guarding the clean room. GHOUL JUNKIES (treat as FERAL GHOULS; each still clutches one dose of a random chem) deeper down. A lone lucid ghoul who has been clean for forty years.
+
+  **Reward.** **Up to 12 doses of mixed chems** (Overseer's call — roll on the Chem Stash table). **A Pre-war Addiction Recovery Manual** (_petty_, 1 use — the pages do not survive a second reading) — the PC who works through it automatically passes the WIL save on their next **Cure an Addiction** attempt.
+
+  In each system's catalog: A Pre-war Addiction Recovery Manual (grimfall.addiction-recovery-manual).
+
+  **Hook.** A settlement's most valuable medic has fallen off the wagon. Their apprentice will pay the party to find them a clean source of chems — or a reason to stop.
+
+  ## Secrets
+
+  - The group therapy room has a large ring of chairs around a small circular rug. Under the rug, stuck to the underside of the concrete with old chewing gum, is a single pre-war photograph of the Vault-Tec intake director standing with the chief counselor, smiling, each holding a matching keycard. The director was in on the trap the counselor wasn't told about.
+source: vaults/04-fallout-4#vault-95
+---
+id: vault-111
+type: loc
+name: Vault 111
+tags: [vault, vaults-fallout-4]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** A cryogenic suspension experiment. Residents lured from Sanctuary Hills and Concord were told the pods were for decontamination, then frozen without their knowledge or consent. The staff were hired short-term. When the mandatory 180 days passed with no all-clear, the Overseer refused to open the door, and the security and support staff mutinied; the logs end there. The pods' life support failed one by one. In 2227, the Institute found the vault, opened a single pod, shot one parent, and took an infant named Shaun. In 2287 the last working pod thawed, and its occupant walked out alone.
+
+  **Layout.**
+
+  - **The Elevator.** The vault's front door: a great round platform on the hill above Sanctuary Hills. It still rises and falls on command. The only other way in is the mole rats' — their tunnels behind the reactor surface somewhere on the hillside.
+  - **Entry Hall.** Racks of blue jumpsuits with 111 on the back, handed out that last morning. A sign cheerfully explains decontamination. By the vault door, a scientist's skeleton still wears a Pip-Boy — the one piece of Vault-Tec kit anyone ever carried out.
+  - **The Pod Chamber.** Rows of frosted cryo pods, every occupant dead in place when the life support failed. One pod's glass is starred by a single bullet hole. One pod is open and empty.
+  - **Staff Quarters & Cafeteria.** Skeletons in lab coats and security armor, where the mutiny ended. The last meals are still on the trays.
+  - **Overseer's Office.** The Overseer's skeleton and a terminal whose logs stop mid-lockdown. A locked display case holds a pre-war **Cryolator**.
+  - **Cryo Control.** The terminal that ran the pods, and the reactor room that still powers them.
+
+  **Inhabitants.** RADROACHES in every room and a MOLE RAT DETACHMENT in the tunnels behind the reactor; their MOLE RAT BROOD MOTHER has denned in the staff quarters. Nothing else lives here. The vault's only voices are its terminals.
+
+  **Reward.** A **Pip-Boy 3000** from the skeleton by the door — unless the last survivor already took it. The **Cryolator** from the Overseer's case (see Marketplace). A working **Cryo Storage Cylinder** (Relic). A **Photograph** of a pre-war family taken on the day they entered the vault.
+
+  In each system's catalog: Pip-Boy 3000 (fallout-2e.pip-boy-3000-functional · grimfall.pip-boy-3000); Cryolator (fallout-2e.cryolator); Cryo Storage Cylinder (fallout-2e.cryo-storage-cylinder).
+
+  **Hook.** A Diamond City journalist wants the staff's last logs for a story on what Vault-Tec did to Sanctuary Hills. The elevator still works. Something has been sleeping in the staff quarters since the last person left.
+
+  ## Secrets
+
+  - Cryo Control's automated log recorded everything the staff never lived to see: the door cycling open in 2227, a pod's seal broken, a single infant's vital signs leaving the building — and, sixty years later, the last pod reporting occupant revived. Anyone who reads it knows exactly how old Shaun would be now.
+source: vaults/04-fallout-4#vault-111
+---
+id: vault-114
+type: loc
+name: Vault 114
+tags: [vault, vaults-fallout-4]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** Boston's elite — state officials, luminaries, and money — were promised a luxury vault beneath Park Street Station. They would have been packed several families to a room, sharing baths and meals, under an Overseer Vault-Tec picked for having no experience and a hatred of authority: a homeless man known only as "Soup Can Harry." The vault was never finished, and the experiment never ran. Now **Skinny Malone**'s Triggermen use it as a hideout.
+
+  **Layout.**
+
+  - **Entry Hall.** Marble veneer over pre-war concrete. A receptionist's desk is still piled with registration forms.
+  - **The Unfinished Wing.** The residential block was never completed. Exposed rebar, unfinished drywall, concrete floors where carpet was promised.
+  - **Security Bunker.** The overseer staff's barracks, better appointed than the residents'.
+  - **The Lounge.** A pre-war lounge with a jukebox, a bar, and a half-full champagne bottle that has somehow not evaporated. Skinny Malone holds court here with his girl, Darla, and a crooner's idea of how a mobster talks.
+  - **Overseer's Office.** Never used. On the desk, a Vault-Tec personnel file: Soup Can Harry's interview transcript, and the note that he "ain't wearing no goddamn tie."
+  - **The Cell.** The Triggermen keep their prisoners in the vault's unfinished security block. Lately, a detective.
+
+  **Inhabitants.** TRIGGERMEN (treat as THUG detachments with a CREW BOSS — Skinny Malone). A lone MISTER HANDY working as a bartender at the lounge.
+
+  **Reward.** **A Pre-war Tuxedo / Cocktail Dress** (uses the rules for Dean's Tuxedo — see Unique Armors — though nobody famous ever wore this one). **The Champagne Bottle** (_bulky_, 300 caps, a curiosity).
+
+  **Hook.** A detective went into Park Street Station a week ago looking for a runaway girl and never came out. His secretary will pay the party to get him back. A ghoul in Goodneighbor who ran with the Triggermen before the war wants something specific from the lounge, and will pay in caps not to say what.
+
+  ## Secrets
+
+  - Behind the bar, under a floorboard the bartender Mr. Handy was specifically ordered never to reveal to anyone, is a leather-bound ledger listing every favor the Triggermen have called in across the Commonwealth — names, dates, amounts. Half the names belong to people in Diamond City and Goodneighbor who would pay to see it burn. Useful, dangerous, or both.
+source: vaults/04-fallout-4#vault-114
+---
+id: vault-118
+type: loc
+name: Vault 118
+tags: [vault, vaults-fallout-4]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** An ultra-luxury vault hidden beneath the Cliff's Edge Hotel on the Island. Ten of the richest people in Maine were to live like royalty, above the law, while up to three hundred working-class locals were packed into a cramped second wing to serve and suffer under their judgment. The money ran out before the second wing was built. Instead, a General Atomics robotics designer, Dr. Bert Riggs, convinced his fellow guests to have their brains placed in Robobrain chassis to outlast the war. Their robot staff has kept them in luxury ever since.
+
+  **Layout.**
+
+  - **Entry Hall.** A chandelier, carpet, a bellhop's abandoned podium.
+  - **Luxury Suites.** Ornate cabins, most still occupied — by Robobrains with very human voices, very old opinions, and nothing but time.
+  - **The Grand Dining Room.** Every evening at six, a pre-war meal is served by automated dumbwaiters to the nine surviving Robobrain residents. None of them can eat. None of them miss a meal.
+  - **The Second Wing.** Bare concrete and rebar where three hundred people were meant to be crammed. Construction stopped when the money did.
+  - **The Brain Lab.** The transplant chamber itself. One empty jar.
+  - **Overseer's Office.** Never used by an Overseer — the vault was never finished. The hotel's owner kept it for himself.
+
+  **Inhabitants.** NINE ROBOBRAINS with elegant manners, long grudges, and a murder mystery — one of them killed the hotel's owner, **Ezra Parker**, within the past week, and none of them will admit who. A Mister Handy butler named **Maxwell** runs the investigation's paperwork, a Miss Nanny named **Pearl** runs the gift shop, and PROTECTRONS keep order. FERAL GHOULS, fog-soaked, fill the hotel above. The Robobrains will parley first.
+
+  **Reward.** A **Robobrain Chassis Schematic** — a tinker with this plan can build a Robobrain from a corpse, given a brain and a Power Generator. A **Pre-war Luxury Watch** (400 caps).
+
+  **Hook.** Pearl, the hotel's Miss Nanny, has been asking around Far Harbor for a police detective: there has been a terrible murder at Cliff's Edge, and the residents are offering significant caps to anyone who can solve it.
+
+  ## Secrets
+
+  - The Overseer's office holds Ezra Parker's real ledgers: the hotel's owner took every guest's fortune and quietly stopped paying for the vault the moment their brains were in jars. Someone found them the day before he died. A PC who raises the ledgers at the dinner table triggers a chain of accusations that crack the mystery open.
+source: vaults/04-fallout-4#vault-118
+---
+id: vault-63
+type: loc
+name: Vault 63
+tags: [vault, vaults-fallout-76, skyline-valley]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** A research vault beneath Shenandoah National Park, in the Skyline Valley south of the Savage Divide, built to the specifications of **Hugo Stolz** — a blind, German-speaking magnate on Vault-Tec's board of directors, and the vault's Overseer. Stolz bought his chair with research: weather control built from the military's shuttered ATLAS Program, and guardian robots built from stolen Pentagon plans. The vault's only door in the north is in the Ash Heap, the head of an underground railway that runs south under the mountains. The vault was far from finished when the bombs fell. Radiation poured in and ghoulified nearly everyone, and the ghouls began to go feral. In 2095, Hugo ran the weather machine at full power to save his wife and created the **Lost**, lightning-charged ghouls driven psychotic by the energy trapped inside them. In 2105 he ran it again and created the Storm. See the **Skyline Valley** campaign frame.
+
+  **Layout.**
+
+  - **Transit Hub.** The Ash Heap entrance. Its blast door was torn loose by the Storm's first surge and came down in a field north of Sutton. Beyond the empty frame, a railway platform leads south.
+  - **Dark Hollow Manor.** The Stolz mansion above the vault. The real entrance lies under its front hall, behind a hand scanner that opens only for a vault dweller's hand — living, dead, or Lost.
+  - **The Atrium.** The only finished sector, sealed off by the survivors. A clinic, a mess, and Hugo Stolz's quarters — austere, organized by touch, with a terminal that logs every experiment, every death, every compromise.
+  - **Organics Sector.** Hilda Stolz's laboratory: Serum Omega, and three Lost test subjects, one of them her own father.
+  - **Meteorology Sector.** The weather machine, a pre-war device capable of manipulating regional weather, under the Hawksbill weather station on the park's highest peak.
+  - **Engineering Sector.** Where the vault's three Storm Goliaths were built, and where the machines still build a new one whenever one is destroyed.
+  - **The Garden Sector.** A waterfall under a painted sky, where Cassidy Stolz used to sit and pretend the war never happened.
+
+  **Inhabitants.** - **The Lost** — 5 HP, 12 STR, 13 DEX, 5 WIL, shock baton (d6) or laser pistol (d8). Ghouls charged with lightning from the weather machine, driven psychotic. During a lightning storm their attacks step up one damage die (shock baton d8, laser pistol d10) and the charge burns them for 1 damage a round. They perceive the world as pulses and wavelengths.
+  - **The Atrium Survivors** — Hilda Stolz, her cousin Audrey, security chief James Oberlin, and a handful of lucid ghouls. Friendly but guarded. Many remember the day the vault sealed unfinished.
+  - **Storm Goliath** — see the Skyline Valley campaign frame.
+
+  **Reward.** **The Weather Machine Schematic** (Relic) — a blueprint for a settlement-scale weather condenser. Grants +1 Industry to a settlement at the cost of occasional electrical storms. **Hugo's Cane** (_petty_) — a blind man's walking stick, weighted with lead. d6 melee, Enhanced on a surprise attack.
+
+  In each system's catalog: The Weather Machine Schematic (grimfall.weather-machine-schematic); Hugo's Cane (grimfall.hugos-cane).
+
+  **Hook.** A Vault-Tec broadcast is calling Vault Dwellers south: Hilda Stolz needs outsiders — people who aren't charged with lightning — to reach the meteorology sector and shut the machine down. Hugo Stolz, courteous as ever, says the same thing. Only one of them means it.
+
+  **In the Skyline Valley frame.** A vault so large it runs beneath the whole region, split into sectors — atrium, organics, meteorology, engineering, a garden with a waterfall. Only the atrium was finished, and only the atrium is safe.
+
+  ## Secrets
+
+  - Deep in the engineering sector, behind a bulkhead the survivors never opened, one cryo pod is labeled differently from anything else in the vault — not a ghoul resident, but a pre-war Vault-Tec observer placed here before the war to monitor Stolz. The observer is still alive, still frozen, and still employed. Waking them changes the vault's politics overnight.
+source: vaults/05-fallout-76#vault-63
+---
+id: vault-63-the-lost
+type: monster
+name: The Lost
+knowledge: secret
+tags: [vault, vault-63, threat]
+mechanics:
+  fallout-2e:
+    category: 'Vault: Vault 63'
+    hp: 5
+    STR: 12
+    DEX: 13
+    WIL: 5
+    rad_immune: true
+    attacks:
+    - {name: shock baton, damage: d6}
+    - {name: laser pistol, damage: d8}
+    abilities:
+    - Ghouls charged with lightning from the weather machine, driven psychotic.
+    - During a lightning storm their attacks step up one damage die (shock baton d8, laser pistol 
+      d10) and the charge burns them for 1 damage a round.
+    - They perceive the world as pulses and wavelengths.
+  grimfall:
+    tier: tough
+    role: blaster
+    category: The Factions Under Arms
+    senses: [arc-light crawling under skin, thunder with no clouds, ozone and burnt hair]
+    traits: [wreathed in discharge, 'perceive wavelengths, not faces']
+    moves: [Lightning Strike, Arc Discharge (everyone close)]
+    wants: the hum of the machine that made them — approach it and they converge
+    note: A 6d pool near their vault; metal armor is an invitation. The lucid ghouls who share their
+      halls mourn them by name.
+body: |-
+  ## GM notes
+
+  **The Lost** — 5 HP, 12 STR, 13 DEX, 5 WIL, shock baton (d6) or laser pistol (d8). Ghouls charged with lightning from the weather machine, driven psychotic. During a lightning storm their attacks step up one damage die (shock baton d8, laser pistol d10) and the charge burns them for 1 damage a round. They perceive the world as pulses and wavelengths.
+
+  Fallout 2e: 5 HP, 12 STR, 13 DEX, 5 WIL, shock baton (d6) or laser pistol (d8).
+
+  Grimfall: its card is `grimfall.the-lost` (The Lost), in this record's grimfall block.
+source: vaults/05-fallout-76#vault-63
+---
+id: vault-76
+type: loc
+name: Vault 76
+tags: [vault, vaults-fallout-76, fallout-76]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** Vault-Tec's "Official Vault of the Tricentennial" — one of the seventeen control vaults, stocked with some of America's finest and meant to open twenty years after the war so its people could rebuild. It opened after twenty-five, on **Reclamation Day**, October 23, 2102, and its residents walked out into Appalachia. The Overseer left a few hours ahead of them. See the **Fallout 76** main campaign frame.
+
+  **Layout.**
+
+  - **Entry Hall.** Clean. Genuinely. The pre-war cleaning cycle is still running.
+  - **Residential Block.** Every cabin has been emptied. The residents left on the opening day and did not come back.
+  - **The Opening Day Hall.** A commemorative hall with portraits of every original resident, Reclamation Day banners, and Vault Boy cutouts still pointing the way out. The Reclamation Day cake, baked from the vault's pre-war stores, sits intact under a glass dome on a plinth.
+  - **Overseer's Office.** The Overseer's holotape contains no confession. She says goodbye to the residents, explains that she has gone ahead on a mission of her own, and walks out into the morning.
+  - **Reactor Room.** Untouched.
+
+  **Inhabitants.** The vault is nearly empty. A handful of MISTER HANDYS still running maintenance. A single feral RADROACH nest in the reactor cooling line.
+
+  **Reward.** **The Reclamation Day Cake** (_bulky_, 400 caps to a collector — or eat it for a single scene of nostalgia: you cannot be Panicked for the rest of the session as the taste of the Before hits like a freight train). A **Full Vault 76 Jumpsuit** in pristine condition (_petty_, 200 caps, confuses any faction that knows the vault program).
+
+  In each system's catalog: The Reclamation Day Cake (grimfall.pre-war-cake-intact); Full Vault 76 Jumpsuit (grimfall.vault-jumpsuit-vacuum-sealed).
+
+  **Hook.** A historian wants to document Vault 76 before the Crater Raiders strip it for scrap and paint over the opening-day mural. He has a week's pay for a safe escort.
+
+  **In the Fallout 76 frame.** The Forest, north of Flatwoods. The door stays open. A Mister Handy keeps the lights on.
+
+  ## Secrets
+
+  - Behind the commemorative cake's plinth, tucked into a gap in the glass dome's base, is a small folded napkin someone wrote on during the opening-day ceremony: a resident's handwritten confession of having loved another resident in silence for years. The cake was their last meal together. The name is one the party has seen before on a gravestone.
+source: vaults/05-fallout-76#vault-76
+---
+id: vault-79
+type: loc
+name: Vault 79
+tags: [vault, vaults-fallout-76, wastelanders]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** A secure depository for the pre-war United States gold reserve, built in secret from 2072 in the Savage Divide — its number is the atomic number of gold. Army teams moved the entire Fort Knox reserve inside. Not technically an experiment; this was the real thing. When the bombs fell, the Secret Service detail guarding it was sealed in, and a reactor accident trapped the survivors in their own barracks. See the **Wastelanders** campaign frame.
+
+  **Layout.**
+
+  - **Entry Hall.** The heaviest blast door in the Vault-Tec catalog.
+  - **Security Wing.** Automated pre-war turrets, still functional.
+  - **The Gold Processing Room.** A thousand bars of bullion on pallets — a suspiciously small share of a national reserve.
+  - **The Main Vaults.** Sealed behind doors nobody has opened since 2077. The rest of the gold is in there.
+  - **The Barracks.** Where the surviving Secret Service agents — **AC**, **Slick**, **Regs**, and **Mercy** — have been locked down since the reactor failed, and where their ghoulified reactor tech, **Digger**, waits outside the door.
+  - **Overseer's Office.** Tiny. The watch officer's desk still holds the standing orders: treat all intruders as hostile agents; stay out of sight.
+  - **Reactor Room.** Fusion-powered, sealed.
+
+  **Inhabitants.** - **Vault 79 Turret Network** — detachment. 8 HP, 2 Armor, 12 STR, 14 DEX, 3 WIL, heavy laser (d10, _blast_). Locked to the vault's IFF grid; the right keycard shuts them off.
+  - **Sentry Bot** — see Bestiary. Guards the main chamber.
+
+  **Reward.** **Gold bullion** — the Fort Knox reserve, cast in bars: each trades for 20 caps with anyone who believes the Overseer's new currency will hold, and ten fill a slot; nobody in Appalachia can change more than ten bars a week into caps or goods. The vault holds more than any party can carry or spend in a lifetime; the real reward is choosing what to do about it. A **Pre-war Bank Seal** — a heavy brass-and-glass token stamped with the old U.S. Treasury crest. Presenting it to any still-running pre-war automated bank, vending cluster, or corporate credit kiosk unlocks one transaction of the Overseer's choosing (a withdrawal, a safe deposit, a forgotten pre-war account). The first faction to hear a party is carrying it will try to take it.
+
+  In each system's catalog: Pre-war Bank Seal (grimfall.pre-war-bank-seal).
+
+  **Hook.** Every major faction in the region wants Vault 79's gold. A caravaneer knows the code. She needs someone to walk her in, and she needs the vault's existence kept quiet afterwards — though she knows it won't be.
+
+  **In the Wastelanders frame.** Hidden in the Savage Divide behind an elevator in a "mysterious cave." Built from 2072 on, for 120 dwellers — its number chosen for the atomic number of gold.
+
+  ## Secrets
+
+  - One of the gold pallets near the back of the chamber has a single bar that is not gold — painted lead, carved with a glyph. It was a smuggler's flag, left here by one of the vault's original guards to mark the location of a pre-war courier drop outside the vault. Following the coordinates leads to a buried footlocker in the Wastes.
+source: vaults/05-fallout-76#vault-79
+---
+id: vault-79-turret-network
+type: monster
+name: Vault 79 Turret Network
+knowledge: secret
+tags: [vault, vault-79, threat]
+mechanics:
+  fallout-2e:
+    category: 'Vault: Vault 79'
+    hp: 8
+    armor: 2
+    STR: 12
+    DEX: 14
+    WIL: 3
+    rad_immune: true
+    attacks:
+    - name: heavy laser
+      damage: d10
+      qualities: [blast]
+    abilities: [Detachment. ., Locked to the vault's IFF grid; the right keycard shuts them off.]
+  grimfall:
+    tier: mook
+    upto: elite
+    role: marksman
+    category: Machines of the Old World
+    senses: [a servo whine tracking your steps, a red acquisition chirp, cordite and dust]
+    traits: ['never sleeps, never moves', dumb as its last order]
+    moves: [Interlocking Fire, Missile Salvo (the big ones)]
+    wants: the corridor denied — it has no other opinions
+    note: A gun nest is a 4d pool; laser mounts put +1t on anything you try in their open field of 
+      fire, and missile pods strike at high stakes. The terminal down the hall is worth more than 
+      any grenade. Zetan wall-pods play the same, but track motion and never face away. Vault 
+      networks (like 79's) run on an IFF grid — the right keycard shuts the whole grid off politely.
+body: |-
+  ## GM notes
+
+  **Vault 79 Turret Network** — detachment. 8 HP, 2 Armor, 12 STR, 14 DEX, 3 WIL, heavy laser (d10, blast). Locked to the vault's IFF grid; the right keycard shuts them off.
+
+  Fallout 2e: 8 HP, 2 Armor, 12 STR, 14 DEX, 3 WIL, heavy laser (d10, blast).
+
+  Grimfall: its card is `grimfall.automated-turrets` (Automated Turrets), in this record's grimfall block.
+source: vaults/05-fallout-76#vault-79
+---
+id: vault-94
+type: loc
+name: Vault 94
+tags: [vault, vaults-fallout-76]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** An experiment testing how a non-violent ideological group would fare when confronted with post-apocalyptic realities. The vault was populated by an agrarian religious community led by **Pastor Gabriella Salavar**. After a mandatory one-year shelter period, the vault opened and its residents sent ambassadors into Appalachia as missionaries, offering food and aid. Outsiders from Harpers Ferry, mistaking the vault dwellers' hospitality for a trap, massacred the Community Council — then, sure the vault's **G.E.C.K.** was a mind-control machine, shot it with a minigun. Its fusion generator melted down in a nuclear blast, and the fog that poured from the vault mutated the surrounding swamp into the worst of **the Mire**.
+
+  **Layout.**
+
+  - **Entry Hall.** Decorated with pre-war pacifist art and posters about reconciliation. The cog door answers only to an ambassador's access code, and none of the ambassadors' bodies scattered across Appalachia still carry one. It stayed sealed until 2103; mirelurks have nested in the flooded halls since.
+  - **Residential Commune.** Open-plan dormitories with no personal spaces. A communal kitchen. A single shared toolkit. Everything designed for collective living.
+  - **The G.E.C.K. Chamber.** The heart of the vault. The Garden of Eden Creation Kit is here — damaged, leaking mutagenic material into the groundwater. The surrounding walls are choked with strangler vines that knot into a single pulsing mass the Vault 76 raiders called the **Strangler Heart**. They killed it once. It is growing back.
+  - **Meditation Garden.** A pre-war Zen-style garden with a dry fountain, somehow mostly intact despite the Mire creeping in from outside.
+  - **The Council Room.** Vault 94 had no Overseer, only a Community Council, and this is where the outsiders killed it. Pastor Salavar's terminal holds her final entries: the day the outsiders came, and the moment she realized the G.E.C.K. had broken. In a room off the atrium, a second terminal holds the reports of **Tyrone Hayes**, the maintenance engineer who was secretly Vault-Tec's observer.
+
+  **Inhabitants.** - **Mirelurks** — see Bestiary. They came in through the flooded entrance.
+  - **Strangler Vines** — the Mire is alive in here. Treat vines as an environmental hazard (not a combatant): any PC moving through a vine-choked room makes a DEX save or takes d4 direct STR damage from constriction. This bypasses HP — the vines squeeze, not strike.
+  - **Commune Ghoul** — 5 HP, 8 STR, 9 DEX, 14 WIL, open palms (no damage). The last of the original residents. They will beg the party to leave before the vines get worse.
+
+  **Reward.** **The Meditation Garden Stone** (_petty_ relic) — a PC carrying it may, once per session, automatically pass a single WIL save. **A G.E.C.K. Component** — damaged but recoverable. Worth 1500 caps to a Brotherhood scribe or an Institute scientist. Using it on a settlement is an Overseer decision with permanent consequences.
+
+  In each system's catalog: The Meditation Garden Stone (grimfall.meditation-garden-stone).
+
+  **Hook.** A ghoul resident has walked out of Vault 94 and is living in a nearby settlement, preaching a pacifism so old nobody knows what to do with it. He wants someone to go back with him for a reason he won't explain until they get there.
+
+  ## Secrets
+
+  - The G.E.C.K. chamber's control terminal has a buried log — the final transmission from the outsiders who attacked the vault. They didn't know what a G.E.C.K. was. They thought it was a mind-control machine. The log ends mid-sentence. An Overseer who wants to tie Vault 94 to the Mire's ongoing ecology should follow this thread.
+source: vaults/05-fallout-76#vault-94
+---
+id: vault-94-commune-ghoul
+type: monster
+name: Commune Ghoul
+knowledge: secret
+tags: [vault, vault-94, threat]
+mechanics:
+  fallout-2e:
+    category: 'Vault: Vault 94'
+    hp: 5
+    STR: 8
+    DEX: 9
+    WIL: 14
+    rad_immune: true
+    attacks:
+    - {name: open palms, note: no damage}
+    abilities:
+    - The last of the original residents.
+    - They will beg the party to leave before the vines get worse.
+body: |-
+  ## GM notes
+
+  **Commune Ghoul** — 5 HP, 8 STR, 9 DEX, 14 WIL, open palms (no damage). The last of the original residents. They will beg the party to leave before the vines get worse.
+
+  Fallout 2e: 5 HP, 8 STR, 9 DEX, 14 WIL, open palms (no damage).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: vaults/05-fallout-76#vault-94
+---
+id: vault-96
+type: loc
+name: Vault 96
+tags: [vault, vaults-fallout-76, steel-dawn]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** "An Ark for the Atomic Age": one of the largest cryogenic animal banks in the world, ten thousand frozen specimens meant to restock the wasteland after the war. Once the door sealed, its five residents — all brilliant, all specialists — learned their real mission: breed mutations to weekly quotas set by the vault's mainframe, and transmit the results. The quotas rose. In week 148, the mainframe killed a biologist who missed hers. The Overseer, Erik DeMarcos, was as much its prisoner as anyone, and had spent two years building a Defense Intelligence Agency virus called **SERAPH** to kill it. On the day of the escape, the mainframe resealed the vault and killed every resident. SERAPH killed the mainframe a moment later. The door opened, the animals got out, and the vault froze over. In 2104, Dr. Edgar Blackburn made it his laboratory — see the **Steel Dawn** campaign frame.
+
+  **Layout.**
+
+  - **The Helipad.** A raised platform over the entrance, with a freight elevator stalled halfway up.
+  - **Entry Hall.** Ice on every surface. Four monitoring terminals still blink, still waiting for quota reports.
+  - **The Atrium.** Frozen catwalks between the mainframe wing, the research wing, and the Overseer's chambers.
+  - **The Research Wing.** The quota labs: fighting pits where mutated specimens were set against each other, and racks of petri dishes labeled electrogenesis, venom, regeneration, chameleonization, pyrokinesis, cryokinesis.
+  - **The Cryo Bank.** Ten thousand animals on ice in endless rows of pods. Some are cracked from the inside.
+  - **Mainframe Wing.** The dead mainframe, with SERAPH still coiled in its memory.
+  - **Overseer's Chambers.** Erik DeMarcos' office, with his escape plan still on the terminal, and whatever Blackburn left behind.
+
+  **Inhabitants.** Escaped specimens — use Bestiary animals (mole rats, radstags, wolves, yao guai, and worse) with one quota mutation each (d6): 1 electrogenesis (shock — attacks step up one damage die), 2 venom (a hit forces a STR save or d4 STR damage), 3 regeneration (heals 1 HP a round), 4 chameleonization (attacks from hiding are Enhanced), 5 pyrokinesis (breathes fire, d6 _blast_), 6 cryokinesis (a hit forces a DEX save or the target loses their next action). A BLOOD EAGLE crew (see the **Wastelanders** campaign frame) locked inside after chasing Hellcat mercenaries in, and the Hellcats' frozen bodies.
+
+  **Reward.** **Pre-war Animal Samples** — a small cold-storage crate that, delivered to a Brotherhood or Institute scientist, is worth 1200 caps. **SERAPH** (_petty_, 1 use) — DeMarcos' virus on a holotape. Loaded into any pre-war mainframe or artificial intelligence (a vault computer, MODUS, SODUS), it shuts the system down for good.
+
+  **Hook.** Vault 96's Emergency Management System has been calling for assistance for twenty years. Somebody finally answered: a Blood Eagle crew went in last month and has not come back out. Their boss wants to know why, and wants whatever they found.
+
+  **In the Steel Dawn frame.** At the end of Route 103, south of Foundation. Advertised as an ark for Appalachia's plants and animals, secretly a genetics experiment whose residents died trying to escape. Now Blackburn's lab.
+
+  ## Secrets
+
+  - The biologists' records end with Specimen X-001, whose DNA, placed in a single dish, spread to every other sample in the lab and mimicked each one perfectly. They never learned what it was. Its pod in the cryo bank is empty, and its door was opened from the inside.
+source: vaults/05-fallout-76#vault-96
+---
+id: vault-27
+type: loc
+name: Vault 27
+tags: [vault, vaults-classified-experiments]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** Deliberately overpopulated. The vault was designed for 1,000 residents and its Overseer was instructed to admit an additional 1,000 on opening day — double the sustainable population.
+
+  **Layout.**
+
+  - **Entry Hall.** Graffiti from the original occupation covers the walls, most of it angry.
+  - **Residential Block.** Every cabin is a triple-bunk room. Shared closets. Shared bathrooms. A single cabin marked *OVERSEER* stands alone.
+  - **The Collapsed Wing.** An entire residential block caved in under its own weight years ago. A mass grave is still identifiable underneath.
+  - **Overseer's Office.** The Overseer's final holotape is a sustained, weeping apology.
+  - **Reactor Room.** The reactor is undersized for the population. Still running, but barely.
+
+  **Inhabitants.** - **Vault 27 Ghouls** — small, resentful community. Treat as lucid ghoul (3 HP, 9 STR, 10 DEX, 11 WIL, pipe pistol (d6)). They will parley but remember every slight.
+  - **Radroach Swarm** — detachment in the collapsed wing. See Bestiary.
+
+  **Reward.** A **Mass Grave Ledger** — a pre-war notebook listing every resident who died in the collapse. Worth 400 caps to a pre-war historian. An **Intact Reactor Regulator** (Relic component for a settlement Power Generator).
+
+  In each system's catalog: Intact Reactor Regulator (grimfall.reactor-regulator).
+
+  **Hook.** A descendant of a Vault 27 survivor has asked the party to recover a specific name from the ledger — her grandmother.
+
+  ## Secrets
+
+  - Under one of the collapsed wing's crushed bunks, sealed in a waterproof tin, is a child's drawing of the collapse — made before it happened. The child had drawn it a week prior and given it to her mother. Nobody had understood it at the time.
+source: vaults/06-classified-experiments#vault-27
+---
+id: vault-27-ghouls
+type: monster
+name: Vault 27 Ghouls
+knowledge: secret
+tags: [vault, vault-27, threat]
+mechanics:
+  fallout-2e:
+    category: 'Vault: Vault 27'
+    hp: 3
+    STR: 9
+    DEX: 10
+    WIL: 11
+    rad_immune: true
+    attacks:
+    - {name: pipe pistol, damage: d6}
+    abilities: ['Small, resentful community.', They will parley but remember every slight.]
+body: |-
+  ## GM notes
+
+  **Vault 27 Ghouls** — small, resentful community. Treat as lucid ghoul (3 HP, 9 STR, 10 DEX, 11 WIL, pipe pistol (d6)). They will parley but remember every slight.
+
+  Fallout 2e: 3 HP, 9 STR, 10 DEX, 11 WIL, pipe pistol (d6).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: vaults/06-classified-experiments#vault-27
+---
+id: vault-29
+type: loc
+name: Vault 29
+tags: [vault, vaults-classified-experiments]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** No resident over the age of fifteen. The vault was populated with children only, to see how a community of minors would self-organize.
+
+  **Layout.**
+
+  - **Entry Hall.** Crayon drawings of families the residents remembered from before.
+  - **The Schoolhouse.** Somehow still mostly intact. The children ran it themselves after the doors sealed.
+  - **The Nursery.** The youngest residents lived here. Bottles, small beds, a stuffed bear with a Vault-Tec tag.
+  - **Overseer's Office.** The Overseer's role was filled by rotating fifteen-year-olds, each for exactly a week. The final holotape is from a child who knew her week would be her last, since there was no one left to replace her.
+  - **Reactor Room.** Maintained by a child prodigy who left a handwritten schematic on the wall.
+
+  **Inhabitants.** - **Child Ghoul** — detachment. 2 HP, 6 STR, 12 DEX, 4 WIL, small teeth and nails (d4). Half the HP of a feral adult, still lethal in numbers. The Overseer should handle this encounter with care or skip it entirely.
+
+  **Reward.** **The Child Prodigy's Schematic** (Relic) — a technician studying it may install a Power Generator for half the usual cost. **A Stuffed Bear** (counts as Teddy Bear — see Relics).
+
+  In each system's catalog: The Child Prodigy's Schematic (grimfall.child-prodigys-schematic); A Stuffed Bear (fallout-2e.teddy-bear · grimfall.teddy-bear).
+
+  **Hook.** An old ghoul in a settlement was an original Vault 29 resident. She has asked the party not to disturb the vault. She will pay to make sure nobody else does either.
+
+  ## Secrets
+
+  - The nursery has a single crib with the name plate pried off. Under the mattress: a hand-written election poster — the children had apparently voted for a permanent Overseer at some point, and the winner's name matches the old ghoul the party may have spoken to before entering. She has been lying about leaving.
+source: vaults/06-classified-experiments#vault-29
+---
+id: vault-29-child-ghoul
+type: monster
+name: Child Ghoul
+knowledge: secret
+tags: [vault, vault-29, threat]
+mechanics:
+  fallout-2e:
+    category: 'Vault: Vault 29'
+    hp: 2
+    STR: 6
+    DEX: 12
+    WIL: 4
+    rad_immune: true
+    attacks:
+    - {name: small teeth and nails, damage: d4}
+    abilities:
+    - Detachment. .
+    - Half the HP of a feral adult, still lethal in numbers.
+    - The Overseer should handle this encounter with care or skip it entirely.
+body: |-
+  ## GM notes
+
+  **Child Ghoul** — detachment. 2 HP, 6 STR, 12 DEX, 4 WIL, small teeth and nails (d4). Half the HP of a feral adult, still lethal in numbers. The Overseer should handle this encounter with care or skip it entirely.
+
+  Fallout 2e: 2 HP, 6 STR, 12 DEX, 4 WIL, small teeth and nails (d4).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: vaults/06-classified-experiments#vault-29
+---
+id: vault-42
+type: loc
+name: Vault 42
+tags: [vault, vaults-classified-experiments]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** All light bulbs in the vault were limited to 40 watts, creating a permanent low-light environment. The experiment measured the psychological effect of extended visual deprivation.
+
+  **Layout.**
+
+  - **Entry Hall.** Dim. Every corner is in shadow regardless of how hard you look.
+  - **Residential Block.** The residents grew larger, paler eyes over generations. Their descendants, if any, will be sensitive to surface light.
+  - **The Darkroom Wing.** A sealed area where the experiment was most intense. Any PC entering must make a DEX save to navigate by feel; on a fail they blunder into something loud — roll on the Ruin Events table. Light sources are dimmed to one-third strength here by an unknown pre-war effect.
+  - **Overseer's Office.** The Overseer's final holotape is whispered — the Overseer herself could not stand loud sound after years of dim light.
+  - **Reactor Room.** Fine.
+
+  **Inhabitants.** - **Pale Ghoul** — detachment. 5 HP, 12 STR, 14 DEX, 4 WIL, claws (d6). Attacks are **Enhanced** in darkness and **Impaired** in any strong light source. A bright flare or an open blast door shuts them down fast.
+
+  **Reward.** **A Pale Ghoul Eye Lens** (_petty_ relic) — a PC wearing it sees normally in darkness at a distance of 20 ft but is blinded by full daylight — ranged attacks in direct sun are Impaired. **A Pre-war Low-Light Lantern** — runs for twice as long as a normal lantern.
+
+  In each system's catalog: A Pale Ghoul Eye Lens (grimfall.pale-ghoul-eye-lens).
+
+  **Hook.** A settler's child has gone missing into Vault 42. She can see in the dark now, and she doesn't want to come home.
+
+  ## Secrets
+
+  - The darkroom wing has a pre-war photographer's darkroom at its deepest point — a small red-lit lab the residents had built in secret. On the line: dozens of developed photographs taken with a hidden camera inside the vault itself. The subjects are the Overseer and her private visitors, who should not have been there.
+source: vaults/06-classified-experiments#vault-42
+---
+id: vault-42-pale-ghoul
+type: monster
+name: Pale Ghoul
+knowledge: secret
+tags: [vault, vault-42, threat]
+mechanics:
+  fallout-2e:
+    category: 'Vault: Vault 42'
+    hp: 5
+    STR: 12
+    DEX: 14
+    WIL: 4
+    rad_immune: true
+    attacks:
+    - {name: claws, damage: d6}
+    abilities:
+    - Detachment. .
+    - Attacks are Enhanced in darkness and Impaired in any strong light source.
+    - A bright flare or an open blast door shuts them down fast.
+body: |-
+  ## GM notes
+
+  **Pale Ghoul** — detachment. 5 HP, 12 STR, 14 DEX, 4 WIL, claws (d6). Attacks are Enhanced in darkness and Impaired in any strong light source. A bright flare or an open blast door shuts them down fast.
+
+  Fallout 2e: 5 HP, 12 STR, 14 DEX, 4 WIL, claws (d6).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: vaults/06-classified-experiments#vault-42
+---
+id: vault-43
+type: loc
+name: Vault 43
+tags: [vault, vaults-classified-experiments]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** Populated with twenty men, ten women, and one panther. The experiment's documented purpose was unclear even to the staff.
+
+  **Layout.**
+
+  - **Entry Hall.** Scratch marks on the walls.
+  - **Residential Block.** Half of the rooms have been converted into a den.
+  - **The Hunting Grounds.** An open chamber, originally a gymnasium, where the surviving residents and the panther eventually formed something the Overseer will have to decide the shape of.
+  - **Overseer's Office.** The Overseer's final holotape asks the unseen observers what the point of the experiment could possibly have been.
+  - **Reactor Room.** Fine.
+
+  **Inhabitants.** - **The Panther** — 12 HP, 1 Armor, 15 STR, 17 DEX, 8 WIL, claws (d10), bite (d8). Smaller-framed than a deathclaw but silent: it cannot be heard approaching by normal means.
+  - **Ghoulified Keeper** — 6 HP, 10 STR, 12 DEX, 12 WIL, pre-war hunting rifle (d10, _bulky_). Will not fight to the death if the party spares the panther.
+
+  **Reward.** **The Panther's Hide** — worth 500 caps; wearing it as a cloak counts as 1 Armor and the wearer cannot be detected by scent or sound while moving slowly. **A Resident's Final Letter** — a confession that the writer had learned to love the panther more than the other residents.
+
+  In each system's catalog: The Panther's Hide (grimfall.panthers-hide).
+
+  **Hook.** A big-game hunter has offered a bounty for the Vault 43 panther. The ghoul keeper has offered a counter-bounty to anyone who protects it.
+
+  ## Secrets
+
+  - In the hunting grounds' wall, behind a scratched-open panel, is a Vault-Tec briefing memo addressed to the observing staff. It explains the experiment's purpose: the panther was the control, not the subject. The men and women were being tested on whether they could form a society around a shared predator. They could.
+source: vaults/06-classified-experiments#vault-43
+---
+id: vault-43-the-panther
+type: monster
+name: The Panther
+knowledge: secret
+tags: [vault, vault-43, threat]
+mechanics:
+  fallout-2e:
+    category: 'Vault: Vault 43'
+    hp: 12
+    armor: 1
+    STR: 15
+    DEX: 17
+    WIL: 8
+    attacks:
+    - {name: claws, damage: d10}
+    - {name: bite, damage: d8}
+    abilities:
+    - 'Smaller-framed than a deathclaw but silent: it cannot be heard approaching by normal means.'
+  grimfall:
+    tier: tough
+    role: lurker
+    category: Cryptids & Oddities
+    fact: A big cat bred as a vault experiment's control subject — utterly silent; you hear the 
+      keeper's rifle, never the paws.
+body: |-
+  ## GM notes
+
+  **The Panther** — 12 HP, 1 Armor, 15 STR, 17 DEX, 8 WIL, claws (d10), bite (d8). Smaller-framed than a deathclaw but silent: it cannot be heard approaching by normal means.
+
+  Fallout 2e: 12 HP, 1 Armor, 15 STR, 17 DEX, 8 WIL, claws (d10), bite (d8).
+
+  Grimfall: its card is `grimfall.the-panther` (The Panther), in this record's grimfall block.
+source: vaults/06-classified-experiments#vault-43
+---
+id: vault-43-ghoulified-keeper
+type: monster
+name: Ghoulified Keeper
+knowledge: secret
+tags: [vault, vault-43, threat]
+mechanics:
+  fallout-2e:
+    category: 'Vault: Vault 43'
+    hp: 6
+    STR: 10
+    DEX: 12
+    WIL: 12
+    rad_immune: true
+    attacks:
+    - name: pre-war hunting rifle
+      damage: d10
+      qualities: [bulky]
+    abilities: [Will not fight to the death if the party spares the panther.]
+body: |-
+  ## GM notes
+
+  **Ghoulified Keeper** — 6 HP, 10 STR, 12 DEX, 12 WIL, pre-war hunting rifle (d10, bulky). Will not fight to the death if the party spares the panther.
+
+  Fallout 2e: 6 HP, 10 STR, 12 DEX, 12 WIL, pre-war hunting rifle (d10, bulky).
+
+  Grimfall: its Bestiary has no card for it: frame it as a challenge (Chapter 9) with a tier and a role (Chapter 7).
+source: vaults/06-classified-experiments#vault-43
+---
+id: vault-53
+type: loc
+name: Vault 53
+tags: [vault, vaults-classified-experiments]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** Most of the equipment in the vault was engineered to break down every few months. The experiment measured how long a community could tolerate constantly repairing its own infrastructure.
+
+  **Layout.**
+
+  - **Entry Hall.** A pre-war poster has fallen off the wall, picked up, been re-glued, and fallen again. The residents left it on the floor.
+  - **Maintenance Office.** A wall covered in schematics, none of them complete.
+  - **Residential Block.** Every room has a tool kit. Every kit is missing one tool, a different one each time.
+  - **Overseer's Office.** The Overseer's final holotape is a calm, weary instruction to the next Overseer to burn the place down and walk out. It is unclear whether she was joking.
+  - **Reactor Room.** Still running. The reactor has been hand-patched hundreds of times.
+
+  **Inhabitants.** - **The Tinker Ghoul** — 7 HP, 9 STR, 14 DEX, 15 WIL, wrench (d6); she will not swing first. She knows every pre-war system in the vault by feel. Treats the party as a long-delayed shift change.
+
+  **Reward.** **The Tinker's Tool Kit** (Relic, _bulky_) — a PC using it to install a weapon mod (a **Craft** Downtime Action) pays half the mod's caps cost. **A Hand-Patched Reactor** — the knowledge that it is possible to keep any pre-war machine running forever if you are willing to stop living.
+
+  In each system's catalog: The Tinker's Tool Kit (grimfall.tinkers-tool-kit).
+
+  **Hook.** The Tinker ghoul has agreed to leave the vault if a single person promises to take over the repairs forever. She is serious.
+
+  ## Secrets
+
+  - One of the maintenance office's wall schematics, the only one ever completed, was drawn in invisible pre-war developer ink — a PC holding it under a Pip-Boy's radiation lamp reveals a full map of the vault's hidden subsystems, including a secondary reactor core nobody in the vault ever knew existed. It is still sealed, still full, and can keep a settlement running for a decade.
+source: vaults/06-classified-experiments#vault-53
+---
+id: vault-53-the-tinker-ghoul
+type: monster
+name: The Tinker Ghoul
+knowledge: secret
+tags: [vault, vault-53, threat]
+mechanics:
+  fallout-2e:
+    category: 'Vault: Vault 53'
+    hp: 7
+    STR: 9
+    DEX: 14
+    WIL: 15
+    rad_immune: true
+    attacks:
+    - {name: wrench, damage: d6}
+    abilities:
+    - She will not swing first.
+    - She knows every pre-war system in the vault by feel.
+    - Treats the party as a long-delayed shift change.
+  grimfall:
+    tier: mook
+    upto: tough
+    role: protector
+    category: Faces of the Wasteland
+    fact: Foremen, tinkers, comedians, assistants — two centuries at their posts. Usually a 
+      conversation, always a story.
+body: |-
+  ## GM notes
+
+  **The Tinker Ghoul** — 7 HP, 9 STR, 14 DEX, 15 WIL, wrench (d6); she will not swing first. She knows every pre-war system in the vault by feel. Treats the party as a long-delayed shift change.
+
+  Fallout 2e: 7 HP, 9 STR, 14 DEX, 15 WIL, wrench (d6).
+
+  Grimfall: its card is `grimfall.the-vault-keepers` (The Vault Keepers), in this record's grimfall block.
+source: vaults/06-classified-experiments#vault-53
+---
+id: vault-55
+type: loc
+name: Vault 55
+tags: [vault, vaults-classified-experiments]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** All entertainment tapes were removed from the vault on arrival day — the residents arrived to find every holotape of pre-war music, film, and recorded shows stripped from the shelves. The experiment measured the long-term effect of forced creative deprivation.
+
+  **Layout.**
+
+  - **Entry Hall.** Bare. The Vault-Tec welcome poster was pried off the wall long ago.
+  - **Residential Block.** Each cabin has a carved wooden figure on the nightstand. The residents made them by hand.
+  - **The Gallery.** A large chamber the residents filled with their own art — murals, sculptures from pre-war scrap, a single long poem scratched into the concrete floor.
+  - **Overseer's Office.** The Overseer's final holotape is the Overseer reading her own original poem aloud.
+  - **Reactor Room.** Fine.
+
+  **Inhabitants.** An empty vault. The residents left years ago. One of them, an old ghoul, lives in a nearby settlement and still writes.
+
+  **Reward.** **The Long Poem** (_petty_ relic) — a PC who reads it may, once per session, automatically succeed on a single WIL save against despair, loneliness, or hopelessness. **The Gallery's Wooden Figures** — each worth 40 caps, but the Overseer may decide one of them is an original worth much more.
+
+  In each system's catalog: The Long Poem (grimfall.the-long-poem).
+
+  **Hook.** A ghoul poet in a nearby settlement wants to recover her own handwriting from the vault. She cannot go herself — the memories are too much.
+
+  ## Secrets
+
+  - Under the gallery's longest mural, the poem scratched into the floor continues beneath the wall — the residents kept writing under the concrete after they ran out of room. A PC who pries up the flooring finds fourteen more stanzas that were never seen, ending in the names of everyone who'd lived in the vault.
+source: vaults/06-classified-experiments#vault-55
+---
+id: vault-56
+type: loc
+name: Vault 56
+tags: [vault, vaults-classified-experiments]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** All entertainment holotapes were removed from the vault except those of a single, particularly bad comic actor — and the man himself was given a berth. The experiment measured the residents' tolerance for poorly crafted humor over an extended period — sociologists predicted Vault 56 would fail before Vault 55.
+
+  **Layout.**
+
+  - **Entry Hall.** A pre-war stage with a single spotlight.
+  - **The Theater.** Rows of uncomfortable chairs facing the stage. The audience is still there.
+  - **The Comedian's Dressing Room.** A cracked mirror, a pre-war joke book with every joke crossed out, a note that reads *I know it isn't working*.
+  - **Overseer's Office.** The Overseer's final holotape is her, weeping, describing the comedian's seventh year of the same routine.
+  - **Reactor Room.** Fine.
+
+  **Inhabitants.** - **The Comedian** — 5 HP, 8 STR, 10 DEX, 14 WIL, no weapon. A lucid ghoul who has told the same routine for a century. He will not harm the party.
+  - **Audience Ghouls** — detachment, treat as Feral Ghouls. They will **not** attack while a joke is being told from the stage. Any PC who can hold the mic for a full scene holds the room.
+
+  **Reward.** **The Pre-war Joke Book** (_petty_ relic) — reading it in downtime is genuinely unpleasant, but a PC who endures the full read may, once per session, automatically succeed on a WIL save against boredom, tedium, or sustained psychological pressure (from sheer endurance). A single functional **Stand-Up Spotlight** (_bulky_) — at a settlement with power, it installs as a **Lit Signs & Streetlamps** building at no cost.
+
+  In each system's catalog: The Pre-war Joke Book (grimfall.pre-war-joke-book).
+
+  **Hook.** The Comedian knows he is not funny. He has written a new routine. He wants a real audience one last time — people who came in from outside. He is willing to trade anything in the vault for the chance.
+
+  ## Secrets
+
+  - Under the comedian's dressing room vanity, taped to the bottom of a drawer, is a single handwritten joke that is funny. The comedian wrote it the week before the vault sealed and never told it on stage. It's written in his own hand. He does not remember writing it. If the party reads it to him, he laughs once — and then weeps.
+source: vaults/06-classified-experiments#vault-56
+---
+id: vault-56-the-comedian
+type: monster
+name: The Comedian
+knowledge: secret
+tags: [vault, vault-56, threat]
+mechanics:
+  fallout-2e:
+    category: 'Vault: Vault 56'
+    hp: 5
+    STR: 8
+    DEX: 10
+    WIL: 14
+    rad_immune: true
+    abilities:
+    - A lucid ghoul who has told the same routine for a century.
+    - He will not harm the party.
+  grimfall:
+    tier: mook
+    upto: tough
+    role: protector
+    category: Faces of the Wasteland
+    fact: Foremen, tinkers, comedians, assistants — two centuries at their posts. Usually a 
+      conversation, always a story.
+body: |-
+  ## GM notes
+
+  **The Comedian** — 5 HP, 8 STR, 10 DEX, 14 WIL, no weapon. A lucid ghoul who has told the same routine for a century. He will not harm the party.
+
+  Fallout 2e: 5 HP, 8 STR, 10 DEX, 14 WIL, no weapon.
+
+  Grimfall: its card is `grimfall.the-vault-keepers` (The Vault Keepers), in this record's grimfall block.
+source: vaults/06-classified-experiments#vault-56
+---
+id: vault-68
+type: loc
+name: Vault 68
+tags: [vault, vaults-classified-experiments]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** Populated with 999 men and a single woman, under the cover story of a standard gender-diverse control vault. The purpose was never explained to the residents.
+
+  **Layout.**
+
+  - **Entry Hall.** A pre-war welcome poster shows a generic family. The real resident roster is on a terminal behind the desk.
+  - **Residential Block.** Crowded. Nine hundred and ninety-nine men and one woman, who locked herself in an Overseer-assigned suite and stayed there for the rest of her life.
+  - **The Sealed Suite.** Locked from the inside. Every day, food was delivered to her door. Every day, she took it in. For her entire life.
+  - **Overseer's Office.** The last holotape on the Overseer's desk is hers — the woman in the suite, asking Vault-Tec to send her replacement. She is furious and unheard.
+  - **Reactor Room.** Fine.
+
+  **Inhabitants.** - **Feral Residents** — detachment of Feral Ghouls.
+  - **The Overseer's Assistant** — 4 HP, 8 STR, 10 DEX, 13 WIL, no weapon. A lucid ghoul who still remembers the sealed occupant's name and is willing to say it.
+
+  **Reward.** **The Suite's Collected Diaries** (_bulky_ relic) — a Followers scholar will pay 800 caps for them. A PC who reads the entire set over a long rest gains a free **Bond** tied to the resident's story and, once per session, may automatically pass a WIL save against loneliness, despair, or imprisonment — they have read worse. A **Single Preserved Rose** the resident kept on her bedside table (_petty_).
+
+  In each system's catalog: The Suite's Collected Diaries (grimfall.the-suites-collected-diaries).
+
+  **Hook.** A ghoul who has walked out of Vault 68 into the nearest settlement was the Overseer's assistant. He has a question he never got to ask. He will pay the party to go back down with him and find the answer in the diaries.
+
+  ## Secrets
+
+  - The sealed suite has a small sliding panel in the door used to pass food — and a stack of paper slips from the inside, addressed to a single man whose name isn't in any Vault 68 record. Notes passed daily for decades. The Overseer's assistant knows who he was. He will not say aloud.
+source: vaults/06-classified-experiments#vault-68
+---
+id: vault-68-the-overseers-assistant
+type: monster
+name: The Overseer's Assistant
+knowledge: secret
+tags: [vault, vault-68, threat]
+mechanics:
+  fallout-2e:
+    category: 'Vault: Vault 68'
+    hp: 4
+    STR: 8
+    DEX: 10
+    WIL: 13
+    rad_immune: true
+    abilities:
+    - A lucid ghoul who still remembers the sealed occupant's name and is willing to say it.
+  grimfall:
+    tier: mook
+    upto: tough
+    role: protector
+    category: Faces of the Wasteland
+    fact: Foremen, tinkers, comedians, assistants — two centuries at their posts. Usually a 
+      conversation, always a story.
+body: |-
+  ## GM notes
+
+  **The Overseer's Assistant** — 4 HP, 8 STR, 10 DEX, 13 WIL, no weapon. A lucid ghoul who still remembers the sealed occupant's name and is willing to say it.
+
+  Fallout 2e: 4 HP, 8 STR, 10 DEX, 13 WIL, no weapon.
+
+  Grimfall: its card is `grimfall.the-vault-keepers` (The Vault Keepers), in this record's grimfall block.
+source: vaults/06-classified-experiments#vault-68
+---
+id: vault-69
+type: loc
+name: Vault 69
+tags: [vault, vaults-classified-experiments]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** The inverse of Vault 68 — 999 women and a single man. As with its counterpart, the stated purpose was never explained.
+
+  **Layout.**
+
+  - **Entry Hall.** Intact.
+  - **Residential Block.** Organized into a functional community that survived for generations. The sole male resident became a minor folkloric figure within the vault.
+  - **The Archive.** A room filled with hand-written records, diaries, and community minutes — the vault's residents organized into a functional democracy.
+  - **Overseer's Office.** The Overseer's final holotape thanks her community for keeping faith with each other against the experiment.
+  - **Reactor Room.** Fine.
+
+  **Inhabitants.** A small, proud ghoul matriarchy still living in the vault. They are peaceful but distrustful of newcomers.
+
+  **Reward.** **The Vault 69 Archive** — a working pre-war democratic model in miniature, worth 800 caps to an NCR historian. A **Hand-Written Constitution** (Relic, _petty_) — a settlement that adopts it counts its Defense as 1 higher against its next raid.
+
+  In each system's catalog: Hand-Written Constitution (grimfall.hand-written-constitution).
+
+  **Hook.** The matriarchy's current leader is dying and wants a single outside witness to her final address before she is laid to rest.
+
+  ## Secrets
+
+  - In the archive's deepest drawer, a sealed envelope marked in the handwriting of the original Overseer: a confession that the sole male resident had been her brother, and her private notes on how the community had chosen to protect him anyway. The matriarchy's current leader knows. She has kept the secret her whole life.
+source: vaults/06-classified-experiments#vault-69
+---
+id: vault-70
+type: loc
+name: Vault 70
+tags: [vault, vaults-classified-experiments]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** Located in Salt Lake City, Utah, Vault 70 was populated largely by Mormon congregations. The experiment: all jumpsuit extruders were rigged to fail after six months, leaving the entire population without clothing. The vault opened in 2190; its residents used three G.E.C.K.s to found the city of **New Jerusalem** in the Salt Lake City ruins. After New Jerusalem was sacked, the survivors went north to Ogden and founded **New Canaan**.
+
+  **Layout.**
+
+  - **Entry Hall.** A wall of empty suit dispensers. The extruders are visibly broken — panels torn off, motors burnt out. Someone tried to fix them two hundred years ago and gave up.
+  - **Residential Block.** Intact. The residents adapted — leather, scrap cloth, hand-sewn blankets. A micro-culture of improvised clothing grew from nothing.
+  - **The Tailoring Room.** A pre-war fabrication bay the residents converted into a hand-sewing workshop after the extruders died. The bench is still functional.
+  - **Overseer's Office.** The Overseer's final holotape describes the community's decision to open the door and build something on the surface.
+  - **Reactor Room.** Fine. Three empty G.E.C.K. bays — all used.
+
+  **Inhabitants.** The vault is empty. Its descendants lived on the surface in New Canaan and the settlements it spawned — until the White Legs burned New Canaan in 2281 and the survivors scattered to Zion and beyond. A lone Mr. Handy still runs the tailoring room.
+
+  **Reward.** **A Pristine Vault 70 Jumpsuit** — one of the last vacuum-sealed originals, never worn (_petty_, 200 caps to a collector). **The G.E.C.K. Bay Schematic** — a technical drawing worth 500 caps to a Brotherhood scribe.
+
+  In each system's catalog: A Pristine Vault 70 Jumpsuit (grimfall.vault-jumpsuit-vacuum-sealed).
+
+  **Hook.** A New Canaanite missionary has been asking about the old vault. She wants to recover a family Bible her great-grandmother left behind when the vault opened. She has faith and 400 caps.
+
+  ## Secrets
+
+  - One of the empty G.E.C.K. bays has a false floor. Beneath it: a sealed Vault-Tec memo documenting a bureaucratic G.E.C.K. mix-up. Most vaults were issued two kits; a shipping clerk's error sent Vault 70 a third, and the same clerk's paperwork shows Vault 13 getting a third kit in place of its spare water chips — which went to Vault 8 instead. The memo was never sent. An Overseer who wants to tie Vault 70 to Vault 13 should follow the thread.
+source: vaults/06-classified-experiments#vault-70
+---
+id: vault-77
+type: loc
+name: Vault 77
+tags: [vault, vaults-classified-experiments]
+mechanics:
+  fallout-2e: {kind: vault, poi: vault}
+  grimfall: {kind: vault}
+body: |-
+  ## GM notes
+
+  **Premise.** A single resident was placed in the vault, accompanied only by an enormous crate of government-issue hand puppets. The experiment's purpose was not recorded.
+
+  **Layout.**
+
+  - **Entry Hall.** Empty. One chair facing the door.
+  - **Residential Block.** Empty. A single cabin has been lived in.
+  - **The Puppet Workshop.** A pre-war workshop, still functional. Hand puppets of every description — among them a little old woman, a king, a dog, and a Vault Boy.
+  - **Overseer's Office.** The Overseer never arrived. A holotape in the office was prerecorded and played on a loop for the single resident's entire stay.
+  - **The Stage.** The single resident built a stage and put on shows for the prerecorded Overseer. The shows are still scripted, still filed, in a pre-war script format.
+
+  **Inhabitants.** Nobody. The resident left long ago. Some of the puppets seem to move when you aren't looking directly at them. This may or may not be a trick.
+
+  **Reward.** **A Hand Puppet** (Overseer's choice which one) — _petty_, but a PC who produces the puppet at the right moment during a tense social encounter shifts the Reaction roll two steps better, once per session. **The Resident's Script Collection** — 6 holotapes of his puppet shows, which are unexpectedly brilliant.
+
+  In each system's catalog: A Hand Puppet (grimfall.hand-puppet).
+
+  **Hook.** An old caravaneer remembers watching the Vault 77 resident walk out of the vault years ago, carrying one puppet. He has never forgotten the look on that puppet's face. He wants to know if the rest of them are still there.
+
+  ## Secrets
+
+  - At the back of the stage, inside the prompter's box, is a sealed envelope addressed to Vault-Tec corporate. The resident had been writing them weekly for a year — fan letters, pitching new scripts, asking if anyone was watching. The letters were never collected. The last one ends mid-sentence.
+source: vaults/06-classified-experiments#vault-77

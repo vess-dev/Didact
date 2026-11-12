@@ -1,0 +1,292 @@
+# Diseases and the two curses (players-guide/diseases-and-afflictions, unusual-pcs): catching a
+# disease and curing it, Sanguinare Vampiris turning to Vampirism after three days, and taking
+# on or lifting Vampirism and Lycanthropy.
+check: disease
+title: Exposed to a disease
+help: >-
+  Bitten, scratched or otherwise exposed by a disease's source: a STR save, or the disease takes
+  hold (Diseased until cured) with its one ongoing effect. Argonians never catch ordinary
+  disease; vampires, the beast-blooded, Dremora and draugr revenants never save against the
+  disease table at all (Sanguinare Vampiris can't take root in one already cursed). pass=true:
+  a power makes the save automatic.
+params:
+  who: ref
+  disease: {enum: [rockjoint, ataxia, witbane, brain-rot, bone-break-fever, rattles, brown-rot, droops, greenspore, sanguinare-vampiris]}
+  pass: {kind: flag, default: false, help: "A power passes the save automatically (a healer's training, a ward)"}
+before:
+  - let: {nature: "default(@who.nature, 'mortal')"}
+  - if: "@nature <> 'mortal' and @nature <> 'briarheart'"
+    then:
+      - stop: "{@who.name} is immune to mundane disease ({@nature}): no save against the disease table, and Sanguinare Vampiris finds no purchase."
+  - if: "default(@who.race, '') == 'Argonian' and '$disease' <> 'sanguinare-vampiris'"
+    then:
+      - stop: "Hist-Blooded: ordinary disease never takes hold in {@who.name}."
+  - if: "'$disease' in @who.diseases"
+    then:
+      - stop: "{@who.name} already carries $disease."
+  - if: "@pass"
+    then:
+      - stop: "{@who.name} shrugs it off: the save is automatic."
+  - table: diseases
+    with: {disease: $disease}
+    as: sick
+prompt: "The Warden calls for the save when the source wounds or exposes them."
+roll: d20
+success: "@roll <= @who.STR"
+auto: {1: success, 20: failure}
+on:
+  success: ["{@who.name} shrugs off {@sick.name}."]
+  failure:
+    - set: who.diseases
+      op: "+="
+      value: $disease
+    - message: "{@who.name} is afflicted with {@sick.name} until cured: {@sick.effect}"
+    - if: "'$disease' == 'bone-break-fever'"
+      then:
+        - message: "Bone Break Fever: one Fatigue rest cannot clear (with no free slot, an item must be dropped first)."
+        - do: fatigue
+          with: {who: "@who"}
+          go_on: true
+    - if: "'$disease' == 'sanguinare-vampiris'"
+      then:
+        - set: who.hp
+          value: "min(@who.hp, max(0, @who.hp.max - 1))"
+        - set: who.hp.max
+          op: "-="
+          value: 1
+        - set: who.sanguinare_days
+          value: 0
+        - message: "The vampire's curse takes root: maximum HP is 1 lower while it festers, and if it goes uncured it becomes Vampirism on the third new day (`didact do cure-disease` before then)."
+    - reminder: "Any one cure clears every mundane disease: a night's rest at a temple of the Divines, a Potion of Cure Disease, a shrine blessing, a Vigilant of Stendarr, a Restoration rite or Relic made to cleanse (`didact do cure-disease who={@who.id} how=…`)."
+source: players-guide/diseases-and-afflictions#contracting-a-disease
+---
+action: cure-disease
+title: Cure disease
+help: >-
+  Any one cure clears all the mundane diseases a character carries: a night's rest at a temple of
+  the Divines, a Potion of Cure Disease, a shrine blessing (kneeling at any shrine of the Nine),
+  the attentions of a Vigilant of Stendarr, or a rare Restoration rite or Relic made to cleanse
+  disease. It washes away Sanguinare Vampiris in its first three days, but never Vampirism or
+  Lycanthropy themselves.
+params:
+  who: ref
+  how: {enum: [temple, potion, shrine, vigilant, restoration, other], default: temple}
+steps:
+  - if: "count(@who.diseases) == 0"
+    then:
+      - stop: "{@who.name} carries no disease to cure."
+  - let: {had_sanguinare: "'sanguinare-vampiris' in @who.diseases", gone: "@who.diseases"}
+  - set: who.diseases
+    value: []
+  - if: "@had_sanguinare"
+    then:
+      - set: who.hp.max
+        op: "+="
+        value: 1
+      - set: who.sanguinare_days
+        value: 0
+      - message: "Sanguinare Vampiris is washed away before it could take root: maximum HP is back."
+  - message: "{@who.name} is cured of {@gone} ($how)."
+  - if: "@how == 'potion'"
+    then:
+      - if: "default(@{who.inventory.Potion of Cure Disease.uses}, 0) > 0"
+        then:
+          - use: Potion of Cure Disease
+            from: "@who"
+        else: ["Spend the potion from whoever carries it: `didact inv use <them> 'Potion of Cure Disease'`."]
+  - if: "@how == 'temple'"
+    then: ["A night's rest at a temple of the Divines: `didact time advance 1 day` (it can also restore attributes and tend a Scar, for the faithful or the paying)."]
+  - if: "default(@who.nature, 'mortal') == 'vampire' or default(@who.nature, 'mortal') == 'werewolf' or default(@who.nature, 'mortal') == 'werebear'"
+    then: ["No shrine or cure potion lifts the curse itself: only Falion's rite (`didact do cure-vampirism`) or the rite at Ysgramor's Tomb (`didact do cure-lycanthropy`)."]
+source: players-guide/diseases-and-afflictions#curing-a-disease
+---
+trigger: sanguinare-dawn
+title: Sanguinare Vampiris festers
+help: "Each new day a PC carries Sanguinare Vampiris uncured counts toward the three: at the third it becomes Vampirism (the counter's hook)."
+on: time
+for: pcs
+params: {who: ref}
+when: "@time.day > (@time.seconds - @time.passed) // 86400 + 1 and 'sanguinare-vampiris' in @who.diseases and @who.status <> 'dead'"
+steps:
+  - let: {days: "(@time.day - 1) - (@time.seconds - @time.passed) // 86400"}
+  - set: who.sanguinare_days
+    op: "+="
+    value: "@days"
+  - if: "@who.sanguinare_days < 3 and 'sanguinare-vampiris' in @who.diseases"
+    then: ["Sanguinare Vampiris festers in {@who.name}: {@who.sanguinare_days} of three days uncured (`didact do cure-disease who={@who.id}`)."]
+source: players-guide/diseases-and-afflictions#vampirism
+---
+trigger: become-vampire
+title: Vampirism
+help: >-
+  Sanguinare Vampiris left uncured three days blossoms into Vampirism (the sanguinare_days
+  hook runs this), or a character is turned in the fiction. They are a vampire now: immune to
+  mundane disease, fire attacks against them Enhanced, the sun their bane, the hunger every day;
+  they count as Volkihar +1 and Dawnguard and Vigil of Stendarr −1. A werewolf's or werebear's
+  Beast Blood is gone: the two curses cannot share one body.
+on: manual
+params: {who: ref}
+steps:
+  - if: "default(@who.nature, 'mortal') == 'vampire'"
+    then:
+      - stop: "{@who.name} is already a vampire."
+  - if: "default(@who.nature, 'mortal') == 'dremora' or default(@who.nature, 'mortal') == 'draugr-revenant'"
+    then:
+      - stop: "The curses of Mundus find no purchase in {@who.name}."
+  - let: {was: "default(@who.nature, 'mortal')", had: "'sanguinare-vampiris' in @who.diseases", others: "count(@who.diseases) - if('sanguinare-vampiris' in @who.diseases, 1, 0)"}
+  - if: "@had"
+    then:
+      - set: who.hp.max
+        op: "+="
+        value: 1
+  - if: "@others > 0"
+    then: ["Undying, immune to all mundane disease: the diseases {@who.name} carried no longer hold."]
+  - set: who.diseases
+    value: []
+  - set: who.sanguinare_days
+    value: 0
+  - set: who.nature
+    value: vampire
+  - if: "@was == 'werewolf' or @was == 'werebear'"
+    then:
+      - if: "'silver' in @who.enhanced_by"
+        then:
+          - set: who.enhanced_by
+            op: "-="
+            value: silver
+      - if: "@was == 'werebear'"
+        then:
+          - set: who.hp
+            value: "min(@who.hp, max(0, @who.hp.max - 1))"
+          - set: who.hp.max
+            op: "-="
+            value: 1
+      - message: "The Beast Blood is gone: the two curses cannot share one body."
+  - set: who.enhanced_by
+    op: "+="
+    value: fire
+  - if: "@who.type == 'pc'"
+    then:
+      - set: who.rep_volkihar
+        value: "max(default(@who.rep_volkihar, 0), 1)"
+      - set: who.rep_dawnguard
+        value: "min(default(@who.rep_dawnguard, 0), -1)"
+      - set: who.rep_vigil
+        value: "min(default(@who.rep_vigil, 0), -1)"
+  - message: "{@who.name} is a vampire now: Molag Bal's curse in place of blood. They don't age or sicken; fire attacks against them are Enhanced; direct sunlight leaves them Deprived (`didact do sunlight`); a full day without feeding leaves them Deprived until they do (`didact do feed`); their bite drains (`didact do drain`)."
+  - prompt: "If their nature is known, mortals' Reactions shift one step worse, and the Dawnguard and the Vigil drop to Hunted the moment they learn of it. Ordinary cures no longer work: only Falion's rite in Morthal, or taking on Lycanthropy."
+source: players-guide/unusual-pcs#vampire-volkihar
+---
+action: cure-vampirism
+title: Falion's rite
+help: "Vampirism can no longer be cured by ordinary means: only the rite sought from Falion in Morthal lifts it (or taking on Lycanthropy: `didact do become-werewolf`)."
+params: {who: ref}
+steps:
+  - if: "default(@who.nature, 'mortal') <> 'vampire'"
+    then:
+      - stop: "{@who.name} isn't a vampire."
+  - set: who.nature
+    value: mortal
+  - if: "'fire' in @who.enhanced_by"
+    then:
+      - set: who.enhanced_by
+        op: "-="
+        value: fire
+  - if: "'sunlit' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: sunlit
+  - message: "Falion's rite is done: {@who.name} is mortal again, with all a mortal's needs, and open to disease once more."
+source: players-guide/diseases-and-afflictions#vampirism
+---
+action: become-werewolf
+title: Take on the Beast Blood
+help: >-
+  Lycanthropy is not caught like a disease: it is taken on willingly, by drinking a werewolf's
+  blood in ritual (strain=werewolf), or a werebear's among the Skaal or Solstheim's beast-cults
+  (strain=werebear). Permanent once taken: immune to mundane disease, Beast Form once a day,
+  silver Enhanced against them in any form; the Companions count them as kin. A werebear also
+  gains +1 max HP for good. A vampire who takes it is a vampire no more.
+params:
+  who: ref
+  strain: {enum: [werewolf, werebear], default: werewolf}
+steps:
+  - let: {was: "default(@who.nature, 'mortal')"}
+  - if: "@was == 'werewolf' or @was == 'werebear'"
+    then:
+      - stop: "{@who.name} already carries the Beast Blood."
+  - if: "@was == 'dremora' or @was == 'draugr-revenant'"
+    then:
+      - stop: "The curses of Mundus find no purchase in {@who.name}."
+  - if: "@was == 'vampire'"
+    then:
+      - if: "'fire' in @who.enhanced_by"
+        then:
+          - set: who.enhanced_by
+            op: "-="
+            value: fire
+      - message: "Vampirism is lifted: the two curses cannot share one body."
+  - if: "'sanguinare-vampiris' in @who.diseases"
+    then:
+      - set: who.hp.max
+        op: "+="
+        value: 1
+  - if: "count(@who.diseases) > 0"
+    then: ["Beast Blood, immune to all mundane disease: the diseases {@who.name} carried no longer hold."]
+  - set: who.diseases
+    value: []
+  - set: who.sanguinare_days
+    value: 0
+  - set: who.nature
+    value: $strain
+  - set: who.enhanced_by
+    op: "+="
+    value: silver
+  - if: "'$strain' == 'werebear'"
+    then:
+      - set: who.hp.max
+        op: "+="
+        value: 1
+      - set: who.hp
+        op: "+="
+        value: 1
+      - message: "The bear's vigor: +1 max HP, even in mortal form."
+  - if: "@who.type == 'pc'"
+    then:
+      - set: who.rep_companions
+        value: "max(default(@who.rep_companions, 0), 1)"
+  - message: "{@who.name} carries the Beast Blood of Hircine: immune to mundane disease, Beast Form once a day (`didact do transform`), silver Enhanced against them in any form."
+  - prompt: "Where the curse is recognized, mortals' Reactions shift one step worse; the Silver Hand and most steadings would see them put down."
+source: players-guide/diseases-and-afflictions#lycanthropy
+---
+action: cure-lycanthropy
+title: The rite at Ysgramor's Tomb
+help: "Lycanthropy ends only by the deliberate rite at Ysgramor's Tomb (or by contracting Vampirism)."
+params: {who: ref}
+steps:
+  - let: {was: "default(@who.nature, 'mortal')"}
+  - if: "@was <> 'werewolf' and @was <> 'werebear'"
+    then:
+      - stop: "{@who.name} carries no Beast Blood."
+  - set: who.nature
+    value: mortal
+  - if: "'silver' in @who.enhanced_by"
+    then:
+      - set: who.enhanced_by
+        op: "-="
+        value: silver
+  - if: "@was == 'werebear'"
+    then:
+      - set: who.hp
+        value: "min(@who.hp, max(0, @who.hp.max - 1))"
+      - set: who.hp.max
+        op: "-="
+        value: 1
+  - if: "'transformed' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: transformed
+  - message: "The wolf is cut out at Ysgramor's Tomb: {@who.name} is mortal again."
+source: players-guide/diseases-and-afflictions#lycanthropy

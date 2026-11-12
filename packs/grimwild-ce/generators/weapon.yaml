@@ -1,0 +1,17 @@
+# A weapon with its weapon styles (optional rule, p. 176): two descriptors that set it apart from
+# others of its kind (a dagger may be hidden and quick, a battleaxe huge and sweeping), and, for
+# one with a story, where it came from (the fighter's weapon crucible, p. 64). Shields, bare
+# knuckles and even capes can have styles too.
+generator: weapon
+title: A weapon
+help: >-
+  A weapon, step by step: its two weapon styles (choose them, or let the dice), where it came
+  from (the weapon crucible) and a name: what it is. Prefill by name: styles, origin, name.
+source: "p. 176"
+creates: item
+steps:
+  - choose_or_roll: {table: weapon-styles, as: styles, count: 2, field: styles, prompt: "two weapon styles: how it affects the fiction"}
+  - choose_or_roll: {table: fighter-weapon-origin, as: origin, prompt: "its own small story"}
+  - apply: {kind: weapon, origin: "@origin"}
+  - name: {prompt: "what it is: a short sword, a maul, a longbow, bare knuckles (its styles: {@styles})"}
+  - prompt: "Describe using its styles ({@styles}) when you fight: they shape vantage. Its story: {@origin}."

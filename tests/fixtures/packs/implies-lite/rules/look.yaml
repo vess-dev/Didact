@@ -1,0 +1,5 @@
+action: look
+title: Look around
+steps:
+  - "lethality {@option.lethality}; potions {@option.potions}; torches {@option.torches}; dark {@option.dark}"
+  - "sky {@option.sky}; mood {@option.mood}; tides {@option.tides}; moons {@option.moons}"

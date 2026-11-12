@@ -1,0 +1,86 @@
+# Growth, step by step (`char advance`): the trigger test, reroll and raise that change the
+# attribute (max first, then value), HP rerolls, abilities with a cost, and bonds and omens
+# resolving into growth. Seeded, so it plays the same every time.
+test: growth
+script:
+  - world new vale --system {pack} --seed growth
+  - campaign new first --seed growth
+  - new pc Ox --set STR=10 --set DEX=9 --set WIL=5 --set hp=3
+  - set ox STR=7/10
+  - run: char advance ox
+    expect: ["advancing by cairn-2e.growth", "waiting for source"]
+  - run: char choose c1 fiction
+    expect: "waiting for pattern"
+  - run: char choose c1 yes
+    expect: "waiting for risk"
+  - run: char choose c1 yes
+    expect: "waiting for unique"
+  - run: char choose c1 yes
+    expect: "waiting for trigger"
+  - run: char choose c1 "Drank the murderer's spirit through the Spirit Siphon"
+    expect: "waiting for how"
+  - run: char choose c1 reroll
+    expect: "waiting for attr"
+  - run: char choose c1 WIL
+    expect: ["3d6", "waiting for cost"]
+  - run: char choose c1 'a WIL save when a foe is weak and at his mercy'
+    expect: ["Ox grows: WIL rerolled", "Flaw: a WIL save when a foe is weak and at his mercy"]
+  - run: char commit c1
+    expect: ["pc:ox advanced", "growth [] → [Drank the murderer's spirit through the Spirit Siphon (fiction: pattern yes, risk yes, unique yes): WIL rerolled"]
+  - run: >-
+      char advance ox source=downtime how=raise attr=STR amount=1 cost=none
+      trigger='Trained with a Protector of the Order'
+    expect: ["STR raised 1: max 10 → 11", "Ox grows"]
+  - run: char commit c2
+    expect: "pc:ox advanced: STR"
+  - run: show ox
+    expect: ["STR 8/11", "Trained with a Protector of the Order (Downtime work): STR raised 1: max 10 → 11"]
+  - run: >-
+      char advance ox source=fiction pattern=yes risk=no unique=yes how=reroll attr=HP amount=3d6
+      cost=none trigger='Swallowed the Heartseed'
+    expect: ["3d6", "HP rerolled"]
+  - run: char commit c3
+    expect: "pc:ox advanced"
+  - run: >-
+      char advance ox source=omen how=ability ability='Hears the words of the Wood'
+      cost='eats no rations: only sunlight and water' trigger='Bound to the Wood'
+    expect: "Ox grows: Hears the words of the Wood; cost: eats no rations: only sunlight and water."
+  - run: char commit c4
+    expect: "abilities"
+  - run: show ox
+    expect: ["Hears the words of the Wood; cost: eats no rations: only sunlight and water", "Bound to the Wood (a resolved omen)"]
+---
+test: bonds-and-omens
+help: Character creation makes a thread for each bond and omen; resolving one takes it off the sheet and leads to growth, which can roll a new bond.
+script:
+  - world new vale --system {pack} --seed bonds
+  - campaign new first --seed bonds
+  - run: >-
+      char new --mode random
+      --prefill '{"background": "Fieldwarden", "name": "Cobb", "youngest": "yes", "bond": "You crossed a creature of the Wood, and it cursed you with a Stone Heart. With each passing month, the stone grows heavier by one slot. Until your debt is lifted, you cannot truly die."}'
+    expect: ["+ thread Bond: Stone Heart", "+ thread Bond: ", "+ thread Omen: ", "burden: 1"]
+  - run: char commit c1
+    expect: ["thread:bond-stone-heart", "thread:omen-"]
+  - run: quest list
+    expect: ["Bond: Stone Heart", "Omen: "]
+  - run: do resolve-bond who=cobb bond=bond-stone-heart
+    expect: ["bond -= You crossed a creature of the Wood", "status = done", "burden = 0", "didact char advance pc:cobb source=bond"]
+  - run: >-
+      char advance cobb source=bond how=ability ability='A Boon of the Woodwose' cost=none
+      trigger='The Woodwose lifted the curse' new_bond=yes
+    expect: "waiting for next_bond (or roll on bonds)"
+  - run: char roll c2
+    expect: ["bonds:", "+ thread Bond: "]
+  - run: char commit c2
+    expect: ["pc:cobb advanced", "bond [", "thread:bond-"]
+  - run: quest list
+    expect: "Bond: "
+---
+test: growth-trigger-too-weak
+help: One of three is not a trigger (the draft stops at the second no).
+script:
+  - world new vale --system {pack} --seed weak
+  - campaign new first --seed weak
+  - new pc Julius --set STR=6 --set DEX=8 --set WIL=12 --set hp=2
+  - run: char advance julius source=fiction pattern=no unique=yes
+    expect: "waiting for risk"

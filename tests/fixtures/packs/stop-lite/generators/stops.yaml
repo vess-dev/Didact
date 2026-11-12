@@ -1,0 +1,17 @@
+generator: spellbook
+title: A spellbook
+steps:
+  - if: "not @option.magic"
+    then:
+      - stop: "No magic (an option): there are no spellbooks here."
+  - entity: {key: book, type: item, name: A spellbook}
+---
+generator: dungeon
+title: A dungeon (the parent's)
+steps:
+  - stop: "This game's dungeons are vaults: `didact gen run stop-lite.vault`."
+---
+generator: vault
+title: A vault
+steps:
+  - entity: {key: vault, type: loc, name: The Vault}

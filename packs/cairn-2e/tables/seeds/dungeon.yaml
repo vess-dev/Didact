@@ -1,0 +1,480 @@
+# Dungeon Seeds tables (wardens-guide/dungeon-seeds), Cairn Second Edition by Yochai Gal, CC-BY-SA 4.0.
+# One table per rolled column. See PROCEDURES.md for the order the book rolls them in.
+table: dungeon-purpose-original-use
+title: "Dungeon Purpose: Original Use"
+dice: d20
+source: wardens-guide/dungeon-seeds#purpose
+entries:
+  1: "Ancestral Rites"
+  2: "Arcane Library"
+  3: "Astral Trading Hub"
+  4: "Bestial Creations"
+  5: "Breeding Grounds"
+  6: "Burial Site"
+  7: "Celestial Observations"
+  8: "Covert Experiments"
+  9: "Forbidden Trysts"
+  10: "Forge for a Great Weapon"
+  11: "Hideout"
+  12: "Impenetrable Vault"
+  13: "Invasion of Dreams"
+  14: "Isolated Refuge"
+  15: "Military Outpost"
+  16: "Observatory"
+  17: "Pilgrimage Site"
+  18: "Protection of Rare Artifacts"
+  19: "Secret Meeting Place"
+  20: "Treasure Horde"  # sic: the book's spelling
+---
+table: dungeon-purpose-built-by
+title: "Dungeon Purpose: Built By"
+dice: d20
+source: wardens-guide/dungeon-seeds#purpose
+entries:
+  1: "A Fallen Hero"
+  2: "A Fanatical Cult"
+  3: "A Forgotten Empire"
+  4: "A Long-Dead Poet"
+  5: "A Militant Order"
+  6: "A Renowned Alchemist"
+  7: "A Royal Dynasty"
+  8: "A Secret Society"
+  9: "A Tyrannical Ruler"
+  10: "A Warrior Tribe"
+  11: "A Wealthy Recluse"
+  12: "Desperate Rebels"
+  13: "Heretical Alchemists"
+  14: "Heretical Monks"
+  15: "Immoral Sorcerers"
+  16: "Inverted Astrologers"
+  17: "Mob Families"
+  18: "Opulent Merchants"
+  19: "Pilgrims to a Dead God"
+  20: "Rogue Scholars"
+---
+table: dungeon-construction-entrance
+title: "Dungeon Construction: Entrance"
+dice: d20
+source: wardens-guide/dungeon-seeds#construction
+entries:
+  1: "A Creature's Lair"
+  2: "A Dream"
+  3: "A Massive Tree"
+  4: "A Well"
+  5: "An Enormous Grave"
+  6: "Behind a Waterfall"
+  7: "Between Menhirs"
+  8: "Cave"
+  9: "Center of a Maze"
+  10: "Cliff door"
+  11: "Hollow Statue"
+  12: "Illusory Wall"
+  13: "Mine Shaft"
+  14: "Sinking Sand"
+  15: "Skyward Beam of Light"
+  16: "Starlight Path"
+  17: "Through a Painting"
+  18: "Under a Bridge"
+  19: "Underwater Tunnel"
+  20: "Veil of Mist"
+---
+table: dungeon-construction-composition
+title: "Dungeon Construction: Composition"
+dice: d20
+source: wardens-guide/dungeon-seeds#construction
+entries:
+  1: "Bone"
+  2: "Coral"
+  3: "Crystal"
+  4: "Earth"
+  5: "Ethereal Fabric"
+  6: "Flesh"
+  7: "Floating Platforms"
+  8: "Fungi"
+  9: "Glass"
+  10: "Ice"
+  11: "Living Plants"
+  12: "Marble"
+  13: "Metal"
+  14: "Obsidian"
+  15: "Petrified Wood"
+  16: "Sand"
+  17: "Shadow Material"
+  18: "Stone"
+  19: "Webs"
+  20: "Wood"
+---
+table: dungeon-ruination-condition
+title: "Dungeon Ruination: Condition"
+dice: d20
+source: wardens-guide/dungeon-seeds#ruination
+entries:
+  1: "Corpse"
+  2: "Crumbling"
+  3: "Cursed"
+  4: "Desecrated"
+  5: "Devoured"
+  6: "Displaced"
+  7: "Divided"
+  8: "Frozen"
+  9: "Haunted"
+  10: "Infested"
+  11: "Overgrown"
+  12: "Overpopulated"
+  13: "Petrified"
+  14: "Plundered"
+  15: "Poisoned"
+  16: "Scorched"
+  17: "Shrouded in Mist"
+  18: "Submerged"
+  19: "Unending"
+  20: "Warped"
+---
+table: dungeon-ruination-cause
+title: "Dungeon Ruination: Cause"
+dice: d20
+source: wardens-guide/dungeon-seeds#ruination
+entries:
+  1: "Alchemical Accident"
+  2: "Ancient Curse"
+  3: "Cataclysmic Flood"
+  4: "Civil War"
+  5: "Competing Rituals"
+  6: "Consumed by a Beast"
+  7: "Disease"
+  8: "Hedonism"
+  9: "Invasion"
+  10: "Long-Term Abandonment"
+  11: "Magic Gone Awry"
+  12: "Magical Seal"
+  13: "Natural Disaster"
+  14: "Natural Erosion"
+  15: "Obfuscation"
+  16: "Overrun with Monsters"
+  17: "Sudden Change in Climate"
+  18: "Teleported to Another Realm"
+  19: "Turned to Stone"
+  20: "Unresolved Spirits"
+---
+table: dungeon-traits-virtue
+title: "Dungeon Traits: Virtues"
+dice: d20
+source: wardens-guide/dungeon-seeds#traits
+entries:
+  1: "Compassionate"
+  2: "Courageous"
+  3: "Creative"
+  4: "Deductive"
+  5: "Honest"
+  6: "Incisive"
+  7: "Incorruptible"
+  8: "Individualistic"
+  9: "Loyal"
+  10: "Methodical"
+  11: "Polite"
+  12: "Practical"
+  13: "Resilient"
+  14: "Scholarly"
+  15: "Self-Sufficient"
+  16: "Solid"
+  17: "Studious"
+  18: "Suave"
+  19: "Unwavering"
+  20: "Witty"
+---
+table: dungeon-traits-vice
+title: "Dungeon Traits: Vices"
+dice: d20
+source: wardens-guide/dungeon-seeds#traits
+entries:
+  1: "Absent-Minded"
+  2: "Aloof"
+  3: "Critical"
+  4: "Cynical"
+  5: "Greedy"
+  6: "Impulsive"
+  7: "Inflexible"
+  8: "Naive"
+  9: "Obstinate"
+  10: "Passive"
+  11: "Pedantic"
+  12: "Perfectionist"
+  13: "Sarcastic"
+  14: "Selfish"
+  15: "Skeptical"
+  16: "Stubborn"
+  17: "Superficial"
+  18: "Unfocused"
+  19: "Unimaginative"
+  20: "Vain"
+---
+table: dungeon-agenda-goal
+title: "Dungeon Faction Agendas: Goal"
+dice: d20
+source: wardens-guide/dungeon-seeds#agendas
+entries:
+  1: "Ascension"
+  2: "Creation"
+  3: "Destruction"
+  4: "Dominion"
+  5: "Enlightenment"
+  6: "Exploration"
+  7: "Growth"
+  8: "Innovation"
+  9: "Justice"
+  10: "Knowledge"
+  11: "Liberation"
+  12: "Peace"
+  13: "Power"
+  14: "Preservation"
+  15: "Protection"
+  16: "Redemption"
+  17: "Revenge"
+  18: "Survival"
+  19: "Transformation"
+  20: "Wealth"
+---
+table: dungeon-agenda-obstacle
+title: "Dungeon Faction Agendas: Obstacle"
+dice: d20
+source: wardens-guide/dungeon-seeds#agendas
+entries:
+  1: "Conflict"
+  2: "Corruption"
+  3: "Cost"
+  4: "Danger"
+  5: "Decay"
+  6: "Discord"
+  7: "Division"
+  8: "Dogma"
+  9: "Exposure"
+  10: "Factionalism"
+  11: "Fear"
+  12: "Ignorance"
+  13: "Incompetence"
+  14: "Injustice"
+  15: "Isolation"
+  16: "Opposition"
+  17: "Sacrifice"
+  18: "Stagnation"
+  19: "Tradition"
+  20: "Weakness"
+---
+table: dungeon-die-drop
+title: "Dungeon Die Drop Table"
+description: "The face of each room die dropped on the dungeon map. Then roll that room type's two tables."
+dice: d6
+source: wardens-guide/dungeon-seeds#dungeon-die-drop-table
+entries:
+  1: {text: "Monster", data: {room: monster, what: dungeon-monster-group, detail: dungeon-monster-activity}}
+  2-3: {text: "Lore", data: {room: lore, what: dungeon-lore-room-type, detail: dungeon-lore-clue}}
+  4: {text: "Special", data: {room: special, what: dungeon-special, detail: dungeon-special-feature}}
+  5-6: {text: "Trap", data: {room: trap, what: dungeon-trap, detail: dungeon-trap-trigger}}
+---
+table: dungeon-monster-group
+title: "Dungeon Monster: Group"
+dice: d20
+source: wardens-guide/dungeon-seeds#monster
+entries:
+  1: "Avian"
+  2: "Beast"
+  3: "Behemoth"
+  4: "Construct"
+  5: "Demon"
+  6: "Extraplanar"
+  7: "Fey"
+  8: "Giant"
+  9: "Goblinoid"
+  10: "Humanoid"
+  11: "Hybrid"
+  12: "Incorporeal"
+  13: "Insectoid"
+  14: "Lizard"
+  15: "Magical"
+  16: "Mythical"
+  17: "Plant"
+  18: "Shape Shifter"
+  19: "Undead"
+  20: "Unusual"
+---
+table: dungeon-monster-activity
+title: "Dungeon Monster: Activity"
+dice: d20
+source: wardens-guide/dungeon-seeds#monster
+entries:
+  1: "Building"
+  2: "Devouring"
+  3: "Dying"
+  4: "Fighting"
+  5: "Growing"
+  6: "Haunting"
+  7: "Hiding"
+  8: "Killing"
+  9: "Mating"
+  10: "Mourning"
+  11: "Patrolling"
+  12: "Praying"
+  13: "Protecting"
+  14: "Recuperating"
+  15: "Scheming"
+  16: "Sleeping"
+  17: "Stalking"
+  18: "Torturing"
+  19: "Training"
+  20: "Trapped"
+---
+table: dungeon-lore-room-type
+title: "Dungeon Lore: Room Type"
+dice: d20
+source: wardens-guide/dungeon-seeds#lore
+entries:
+  1: "Armory"
+  2: "Barracks"
+  3: "Bath"
+  4: "Cistern"
+  5: "Court"
+  6: "Crypt"
+  7: "Den"
+  8: "Dining Hall"
+  9: "Guard Post"
+  10: "Infirmary"
+  11: "Kitchen"
+  12: "Latrine"
+  13: "Library"
+  14: "Shrine"
+  15: "Smith"
+  16: "Stable"
+  17: "Storage"
+  18: "Study"
+  19: "Vault"
+  20: "Workshop"
+---
+table: dungeon-lore-clue
+title: "Dungeon Lore: Clue"
+dice: d20
+source: wardens-guide/dungeon-seeds#lore
+entries:
+  1: "Decay"
+  2: "Decor"
+  3: "Draft"
+  4: "Echoes"
+  5: "Footprints"
+  6: "Leavings"
+  7: "Light"
+  8: "Markings"
+  9: "Moisture"
+  10: "Noise"
+  11: "Paraphernalia"
+  12: "Residue"
+  13: "Scurrying"
+  14: "Signs"
+  15: "Smell"
+  16: "Stains"
+  17: "Tapping"
+  18: "Temperature"
+  19: "Vibrations"
+  20: "Writing"
+---
+table: dungeon-special
+title: "Dungeon Special"
+dice: d20
+source: wardens-guide/dungeon-seeds#special
+entries:
+  1: "Books"
+  2: "Bridge"
+  3: "Contraption"
+  4: "Creature"
+  5: "Door"
+  6: "Flames"
+  7: "Furniture"
+  8: "Hole"
+  9: "Liquid"
+  10: "Mirror"
+  11: "Mural"
+  12: "Pool"
+  13: "Shadows"
+  14: "Smoke"
+  15: "Statue"
+  16: "Surface"
+  17: "Treasure"
+  18: "Voices"
+  19: "Wheel"
+  20: "Writing"
+---
+table: dungeon-special-feature
+title: "Dungeon Special: Feature"
+dice: d20
+source: wardens-guide/dungeon-seeds#special
+entries:
+  1: "Ages"
+  2: "Alarms"
+  3: "Animates"
+  4: "Attracts"
+  5: "Charges"
+  6: "Closes"
+  7: "Falls"
+  8: "Glows"
+  9: "Grows"
+  10: "Illusion"
+  11: "Levitates"
+  12: "Locks"
+  13: "Opens"
+  14: "Reflects"
+  15: "Repels"
+  16: "Reveals"
+  17: "Shifts"
+  18: "Silences"
+  19: "Teleport"
+  20: "Transforms"
+---
+table: dungeon-trap
+title: "Dungeon Trap"
+dice: d20
+source: wardens-guide/dungeon-seeds#trap
+entries:
+  1: "Ages"
+  2: "Burns"
+  3: "Captures"
+  4: "Carries"
+  5: "Confuses"
+  6: "Crushes"
+  7: "Curses"
+  8: "Cuts"
+  9: "Deafens"
+  10: "Drops"
+  11: "Drowns"
+  12: "Freezes"
+  13: "Glues"
+  14: "Hypnotizes"
+  15: "Impales"
+  16: "Infects"
+  17: "Lifts"
+  18: "Poisons"
+  19: "Shocks"
+  20: "Shoots"
+---
+table: dungeon-trap-trigger
+title: "Dungeon Trap: Trigger"
+dice: d20
+source: wardens-guide/dungeon-seeds#trap
+entries:
+  1: "Activating"
+  2: "Breaking"
+  3: "Crossing"
+  4: "Disturbing"
+  5: "Entering"
+  6: "Extinguishing"
+  7: "Focusing"
+  8: "Interacting"
+  9: "Lighting"
+  10: "Moving"
+  11: "Opening"
+  12: "Pulling"
+  13: "Pushing"
+  14: "Reading"
+  15: "Speaking"
+  16: "Stepping"
+  17: "Taking"
+  18: "Talking"
+  19: "Touching"
+  20: "Tripping"

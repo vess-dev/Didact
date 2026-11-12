@@ -1,0 +1,104 @@
+# Every generator runs and commits: the pack's own (relic, spellbook, skill-book, unique weapon
+# and armor, NPC, the job of the week, encounter, hoard, wilderness seed, homestead) and
+# cairn-2e's that roll this pack's tables (setting, dungeon, faction, realm). Seeded.
+test: treasure-generators
+script:
+  - world new holds --system {pack} --seed treasure
+  - campaign new first --seed treasure
+  - run: >-
+      gen run {pack}.relic --auto --prefill '{"relic": "Ring of the Hunt"}'
+    expect: ["+ relic Ring of the Hunt", "category: Ring"]
+  - run: gen commit g1
+    expect: "relic:ring-of-the-hunt"
+  - run: gen run {pack}.relic daedric=true --auto
+    expect: ["relics-daedric", "+ relic "]
+  - run: gen commit g2
+    expect: "relic:"
+  - run: >-
+      gen run {pack}.relic --auto --prefill '{"relic": "A ring — roll on Rings"}'
+    expect: ["relics (chosen): A ring — roll on Rings", "then elder-scrolls-2e.relics-rings", "+ relic "]
+  - run: >-
+      gen run {pack}.spellbook --auto --prefill '{"spell": "Flames"}'
+    expect: ["+ spellbook Flames", "school: Destruction", "rank: Novice"]
+  - run: gen commit g4
+    expect: "spellbook:flames"
+  - run: >-
+      gen run {pack}.spellbook --auto --prefill '{"spell": "Soul Trap"}'
+    expect: "+ spellbook Soul Trap"
+  - run: gen commit g5
+    expect: "spellbook:soul-trap"
+  - run: >-
+      gen run {pack}.spellbook --auto --prefill '{"spell": "A Scroll instead — roll again for its spell"}'
+    expect: ["+ spellbook Scroll of ", "size: petty", "uses: 1"]
+  - run: gen commit g6
+    expect: "spellbook:scroll-of-"
+  - run: >-
+      gen run {pack}.spellbook scroll=true --auto --prefill '{"spell": "Ice Storm"}'
+    expect: ["+ spellbook Scroll of Ice Storm", "size: petty", "uses: 1"]
+  - run: >-
+      gen run {pack}.spellbook --auto --prefill '{"spell": "Destruction"}'
+    expect: ["spellbooks (chosen): Destruction", "then elder-scrolls-2e.spell-tomes-destruction", "+ spellbook "]
+  - run: gen run {pack}.spellbook
+    expect: "waiting for spell (or roll on spellbooks): Destruction, Restoration, Alteration"
+  - run: >-
+      gen run {pack}.skill-book --auto --prefill '{"book": "Steel"}'
+    expect: ["skill-books (chosen): Steel", "then elder-scrolls-2e.skill-books-steel", "+ skill-book "]
+  - run: >-
+      gen run {pack}.skill-book --auto --prefill '{"book": "Mace Etiquette"}'
+    expect: ["+ skill-book Mace Etiquette", "perk: Once per combat, one of your attacks with a mace or club is Enhanced."]
+  - run: gen commit g11
+    expect: "skill-book:mace-etiquette"
+  - run: gen run {pack}.unique-weapon --auto
+    expect: ["unique-weapons-", "+ relic "]
+  - run: gen commit g12
+    expect: "relic:"
+  - run: gen run {pack}.unique-armor --auto
+    expect: ["unique-armors-", "+ relic "]
+  - run: gen commit g13
+    expect: "relic:"
+---
+test: people-and-places
+script:
+  - world new holds --system {pack} --seed places
+  - campaign new first --seed places
+  - run: >-
+      gen run {pack}.npc --auto --prefill '{"race": "Dunmer"}'
+    expect: ["names-dunmer", "race: Dunmer", "STR: 10", "hp: 3", "disposition:"]
+  - run: gen commit g1
+    expect: "npc:"
+  - run: >-
+      gen run {pack}.npc --auto --prefill '{"race": "Warden'"'"'s pick", "picked": "khajiit"}'
+    expect: ["The Warden's pick: khajiit", "names-khajiit", "race: Khajiit"]
+  - run: gen commit g2
+    expect: "npc:"
+  - run: gen run {pack}.adventure-hook --auto
+    expect: ["hook-patron", "hook-task", "hook-complication", "hook-location", "hook-reward", "+ thread Job: "]
+  - run: gen commit g3
+    expect: "thread:"
+  - run: >-
+      gen run {pack}.encounter --auto --prefill '{"tier": "encounters-low", "encounter": "Wolf (lone, scouting)"}'
+    expect: "+ monster Wolf"
+  - run: gen commit g4
+    expect: "monster:wolf"
+  - run: >-
+      gen run {pack}.encounter --auto --prefill '{"tier": "encounters-high", "encounter": "Flame, Frost, or Storm Atronach (Warden picks the element)"}'
+    expect: ["The row names several:", "the Warden's pick", "+ monster "]
+  - run: gen run {pack}.encounter --auto
+    expect: "encounters-"
+  - run: >-
+      gen run {pack}.loot --auto --prefill '{"find": "Common gear. Roll once on Random Gear."}'
+    expect: ["random-gear", "+ note Hoard: Common gear."]
+  - run: >-
+      gen run {pack}.loot --auto --prefill '{"find": "A handful of Septims. Roll 2d10 × 5 Septims."}'
+    expect: ["2d10", "Septims (`didact set <pc> gold+="]
+  - run: gen run {pack}.forest-seed --auto
+    expect: ["forest-description-1", "forest-die-drop", "forest-trail-type", "the wild's own d6 encounter table", "Name the wild last"]
+  - run: >-
+      gen run {pack}.homestead --auto --prefill '{"plot": "Lakeview Manor"}'
+    expect: ["+ settlement Lakeview Manor", "hold: Falkreath Hold"]
+  - run: gen run cairn-2e.setting-seed --auto
+    expect: ["place-names", "setting-culture-character", "setting-terrain-die-drop", "+ faction "]
+  - run: gen run cairn-2e.dungeon-seed --auto
+    expect: "dungeon-"
+  - run: gen run cairn-2e.realm --auto
+    expect: "realm-names"

@@ -1,0 +1,66 @@
+# Combat with the Bestiary and cairn-2e's attack, as this game changes it: the attack kinds a
+# creature resists or dreads (impaired_by, enhanced_by), the Impaired-and-Enhanced cancel, a
+# Khajiit's claws, the disease and venom a blow carries, a Dremora banished at 0 STR, a draugr
+# immune to fear. Seeded, so it plays the same every time.
+test: bestiary-fight
+script:
+  - world new holds --system {pack} --seed combat
+  - campaign new first --seed combat
+  - new pc Ulfgar --set STR=12 --set DEX=12 --set WIL=12 --set hp=6 --set race=Nord --set impaired_by=frost
+  - new pc Jzargo --set STR=10 --set DEX=14 --set WIL=12 --set hp=4 --set race=Khajiit
+  - run: spawn wolf
+    expect: "monster:wolf"
+  - spawn ghost
+  - spawn frost-troll
+  - run: spawn dragon
+    expect: "detachment:dragon"
+  - spawn vampire
+  - spawn frostbite-spider
+  - run: do attack attacker=ulfgar target=wolf weapon=d8
+    expect: ["1d8", "Ulfgar deals"]
+  - run: do attack attacker=ulfgar target=ghost weapon=d8
+    expect: ["1d4kh1", "The attack is impaired (Ulfgar → Ghost)"]
+  - run: do attack attacker=ulfgar target=ghost weapon=d8 kind=silver
+    expect: ["#r3 1d8", "Ulfgar deals"]
+  - run: do attack attacker=frost-troll target=ulfgar weapon=2d8kh1 kind=frost
+    expect: ["2d4kh1", "The attack is impaired (Frost Troll → Ulfgar)"]
+  - run: do attack attacker=ulfgar target=dragon weapon=d10 mode=enhanced
+    expect: ["1d10", "Impaired and Enhanced cancel: the weapon's own die (Ulfgar → Dragon)"]
+  - run: do attack attacker=ulfgar target=vampire weapon=d6 kind=fire
+    expect: ["1d12kh1", "The attack is enhanced (Ulfgar → Vampire)"]
+  - run: do attack attacker=jzargo target=wolf mode=unarmed
+    expect: ["1d6", "Jzargo deals"]
+  - run: do attack attacker=wolf target=jzargo weapon=d6
+    expect: "The blow may carry rockjoint"
+  - run: do attack attacker=frostbite-spider target=jzargo weapon=d8
+    expect: ["venom (1d4, lingering)", "amount=1d4 lingering=true"]
+  - run: show ulfgar
+    expect: ["race Nord", "Impaired by frost"]
+  - run: do attack attacker=frost-troll target=ulfgar weapon=d8 "kind=Kyne's frost"
+    expect: "The attack is impaired (Frost Troll → Ulfgar)"
+---
+test: detachments-and-dremora
+help: A detachment's attack on an individual is Enhanced; a Dremora at 0 STR is banished, and returns after a season; a draugr revenant never panics.
+script:
+  - world new holds --system {pack} --seed dremora
+  - campaign new first --seed dremora
+  - new pc Kyn --set STR=2 --set DEX=10 --set WIL=10 --set hp=1 --set race=Imperial --set nature=dremora
+  - new pc Hrolf --set STR=14 --set DEX=8 --set WIL=3 --set hp=4 --set race=Nord --set nature=draugr-revenant --set natural_armor=1
+  - new detachment Bandits --set hp=6 --set STR=12 --set WIL=9 --set count=6
+  - run: do attack attacker=bandits target=kyn weapon=d6
+    expect: ["1d12kh1", "The attack is enhanced (Bandits → Kyn)", "status = banished", "cast back to Oblivion"]
+  - run: show kyn
+    expect: "banished"
+  - run: do reform who=kyn
+    expect: ["status = active", "re-forms and crosses the Barrier again"]
+  - run: do panic who=hrolf
+    expect: "stop: Hrolf is immune to fear"
+  - run: show hrolf
+    expect: "armor 1"
+  - set hrolf DEX=5
+  - run: do recover who=hrolf barrow=true
+    expect: ["DEX = 8", "lost Attributes return"]
+  - run: inv add hrolf 'Leather armor'
+    expect: "Leather armor"
+  - run: show hrolf
+    expect: "armor 1"

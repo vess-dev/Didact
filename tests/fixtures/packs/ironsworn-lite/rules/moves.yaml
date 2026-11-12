@@ -1,0 +1,37 @@
+check: action-roll
+help: Action die plus stat plus adds against two challenge dice.
+params: {who: ref, stat: {enum: [edge, heart, iron, shadow, wits]}, adds: {kind: int, default: 0}}
+roll: {action: "d6 + @who.$stat + @adds", challenge: 2d10}
+bands:
+  strong-hit: "@action > @challenge.0 and @action > @challenge.1"
+  weak-hit: "@action > @challenge.0 or @action > @challenge.1"
+  miss: else
+flags: {match: "@challenge.0 == @challenge.1"}
+options:
+  burn:
+    label: "Burn momentum ({@who.momentum}) instead of {@action}"
+    when: "@who.momentum > @action"
+    steps:
+      - let: {action: "@who.momentum"}
+      - set: who.momentum
+        op: "="
+        value: 2
+---
+action: mark-progress
+help: Mark progress on a vow; its rank sets how much.
+params: {vow: ref, rank: {enum: [troublesome, dangerous, formidable, extreme, epic]}}
+steps:
+  - let: {ticks: "if(@rank == 'troublesome', 12, if(@rank == 'dangerous', 8, if(@rank == 'formidable', 4, if(@rank == 'extreme', 2, 1))))"}
+  - set: vow.progress
+    op: "+="
+    value: "@ticks"
+  - message: "{@vow.name}: {floor(@vow.progress / 4)} boxes filled."
+---
+check: progress-roll
+help: Progress score (filled boxes) against the challenge dice; no momentum burn.
+params: {vow: ref}
+roll: {challenge: 2d10}
+bands:
+  strong-hit: "floor(@vow.progress / 4) > @challenge.0 and floor(@vow.progress / 4) > @challenge.1"
+  weak-hit: "floor(@vow.progress / 4) > @challenge.0 or floor(@vow.progress / 4) > @challenge.1"
+  miss: else

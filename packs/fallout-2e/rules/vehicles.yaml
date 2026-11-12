@@ -1,0 +1,252 @@
+# Vehicles (players-guide/vehicles): driving under pressure, damage to the frame, crashes,
+# ramming, and the three kinds of repair. Frame HP never rests back; travel speed is
+# `travel-time speed=… fuel=…` (procedures.yaml); fighting from a vehicle is the attack rule
+# (a moving passenger's own shots: mode=impaired; a passenger inside: cover=N).
+check: drive
+title: Driving under pressure
+help: >-
+  Normal driving on a road or known route needs no roll. Under pressure (a chase, a swerve, a
+  collapsed overpass, an incoming missile) the driver saves DEX; in a rad storm, through a hot zone
+  or across broken terrain, STR (attr=STR). On a fail the vehicle takes damage (1d6 a graze, 1d12
+  a real crash: `vehicle-damage`), loses a turn of forward motion, or both. A Deprived driver
+  can't avoid hazards: any DEX save to swerve or brake fails.
+params:
+  who: ref
+  attr: {enum: [DEX, STR], default: DEX}
+  vehicle: {kind: ref, optional: true}
+prompt: State the hazard before rolling.
+before:
+  - let: {stuck: "'$attr' == 'DEX' and 'deprived' in default(@who.conditions, '')"}
+roll: d20
+success: "not @stuck and (@roll == 1 or (@roll < 20 and @roll <= @who.$attr))"
+on:
+  success: ["{@who.name} keeps it on the road."]
+  failure:
+    - if: "@stuck"
+      then: ["{@who.name} is Deprived: they can't avoid the hazard."]
+    - message: "The vehicle takes damage (the Overseer's call: 1d6 for a graze, 1d12 for a real crash: `didact do vehicle-damage vehicle=… amount=1d6`), loses a turn of forward motion, or both. A raider dune buggy on a natural 20 loses a component."
+source: players-guide/vehicles#driving
+---
+action: vehicle-damage
+title: Damage to a vehicle
+help: >-
+  Damage to a vehicle's frame, less its Armor. At 0 Frame HP: reduced to 0 in a single impact it
+  crashes (crash=true runs it, or the Overseer rules; a frame taken from full to 0 by one impact
+  crashes by itself); worn down over several hits it's broken, not crashed: it stops, the frame
+  holds, and a mechanic can fix it.
+params:
+  vehicle: ref
+  amount: {kind: dice, default: d6}
+  crash: {kind: flag, default: false, help: "This impact is a crash (the Overseer rules)"}
+  driver: {kind: ref, optional: true, help: "Who was driving, for the crash"}
+steps:
+  - roll: $amount
+    as: hit
+  - let: {dealt: "max(0, @hit - default(@vehicle.armor, 0))", before: "@vehicle.hp", top: "@vehicle.hp.max"}
+  - set: vehicle.hp
+    op: "-="
+    value: "@dealt"
+  - message: "{@vehicle.name}'s frame takes {@dealt} ({@vehicle.hp}/{@top} Frame HP)."
+  - if: "@vehicle.hp == 0 and @before > 0"
+    then:
+      - if: "@crash or @before == @top"
+        then:
+          - if: "default(@driver, '') <> ''"
+            then:
+              - do: crash
+                with: {vehicle: "@vehicle", driver: "@driver"}
+            else: ["Reduced to 0 in a single impact: a crash. `didact do crash vehicle={@vehicle.id} driver=<who>`."]
+        else:
+          - set: vehicle.conditions
+            op: "+="
+            value: broken
+          - message: "Worn down to 0 over several hits, {@vehicle.name} is broken, not crashed: it stops running, the frame holds (`didact do frame-rebuild`)."
+  - if: "@vehicle.hp > 0 and @vehicle.hp <= @top // 2"
+    then: ["At half Frame HP or less {@vehicle.name} is visibly rough: the engine stutters, a wheel wobbles, something inside smells burned."]
+source: players-guide/vehicles#crashes
+---
+action: crash
+title: Crash
+help: >-
+  A vehicle reduced to 0 Frame HP in a single impact crashes: the driver rolls on the Scars table
+  at HP lost 2d6 (the wheel and the windshield are right there), every passenger at 1d6 (the
+  Overseer's call: belted, braced, or in the back; `didact do crash-passenger who=<pc>`). A Shock
+  Absorber mod halves the HP lost (one noted on the driver's worn armor counts by itself). The vehicle is a wreck: 2d6 Scrap and 2d6 × 10 caps of loose
+  salvage, plus the fuel source if intact.
+params:
+  vehicle: ref
+  driver: ref
+  absorber: {kind: flag, default: false, help: "The driver's armor has a Shock Absorber not noted on it"}
+steps:
+  - set: vehicle.conditions
+    op: "+="
+    value: wrecked
+  - roll: 2d6
+    as: impact
+  - let: {absorbing: "@absorber or ('Shock Absorber' in default(@driver.inventory.mods, '') and not ('Shock Absorber' in default(@driver.inventory.backpack.mods, '')))"}
+  - let: {lost: "if(@absorbing, @impact // 2, @impact)"}
+  - message: "{@vehicle.name} crashes. {@driver.name}, at the wheel, takes a Scar at {@lost} HP lost."
+  - if: "@driver.type == 'pc'"
+    then:
+      - do: scar
+        with: {who: "@driver", lost: "max(1, @lost)"}
+    else: ["{@driver.name} isn't a PC: the Overseer says what the crash does to them."]
+  - reminder: "Each passenger: `didact do crash-passenger who=<pc>` (1d6 HP lost on the Scars table). The wreck can be stripped: 2d6 Scrap (`didact do scrap who=<pc> source=wreck`) and 2d6 × 10 caps of loose salvage (`didact roll '2d6*10'`), plus the fuel source if intact."
+source: players-guide/vehicles#crashes
+---
+action: crash-passenger
+title: A passenger in a crash
+help: "Every passenger of a crashed vehicle rolls on the Scars table at HP lost 1d6 (halved with a Shock Absorber: one noted on their worn armor counts by itself)."
+params:
+  who: ref
+  absorber: {kind: flag, default: false, help: "Their armor has a Shock Absorber not noted on it"}
+steps:
+  - roll: 1d6
+    as: impact
+  - let: {absorbing: "@absorber or ('Shock Absorber' in default(@who.inventory.mods, '') and not ('Shock Absorber' in default(@who.inventory.backpack.mods, '')))"}
+  - let: {lost: "max(1, if(@absorbing, @impact // 2, @impact))"}
+  - do: scar
+    with: {who: "@who", lost: "@lost"}
+source: players-guide/vehicles#crashes
+---
+action: ram
+title: Ramming
+help: >-
+  Ramming deals the vehicle's Frame HP / 4 (round up) as damage to the target, and the same back to
+  the vehicle. Against a creature larger than the vehicle (a deathclaw matriarch, a mirelurk
+  queen), ramming is a bad idea.
+params:
+  vehicle: ref
+  driver: ref
+  target: ref
+steps:
+  - let: {force: "(@vehicle.hp + 3) // 4"}
+  - message: "{@vehicle.name} rams {@target.name}: {@force} damage each way."
+  - do: attack
+    with: {attacker: "@driver", target: "@target", weapon: "@force"}
+  - do: vehicle-damage
+    with: {vehicle: "@vehicle", amount: "@force", driver: "@driver"}
+source: players-guide/vehicles#fighting-from-a-vehicle
+---
+action: field-patch
+title: Field patch
+help: >-
+  No station: one full Wilderness Action, 1 Scrap and 25 caps of junk restore 1 Frame HP. At most
+  one field patch a watch, and field patches can't take the frame past half its max: the frame
+  stays kinked until a real workshop gets at it.
+params:
+  vehicle: ref
+  who: {kind: ref, help: "The PC or mechanic doing it (and paying)"}
+steps:
+  - if: "'wrecked' in @vehicle.conditions or 'broken' in @vehicle.conditions"
+    then:
+      - stop: "{@vehicle.name} is past patching: a broken vehicle needs a frame rebuild (`didact do frame-rebuild`)."
+  - if: "@vehicle.hp >= @vehicle.hp.max // 2"
+    then:
+      - stop: "Field patches can't take {@vehicle.name} past half its Frame HP ({@vehicle.hp.max // 2}): it needs a workshop (`didact do vehicle-repair`)."
+  - if: "default(@who.scrap, 0) < 1 or default(@who.caps, 0) < 25"
+    then:
+      - stop: "A field patch takes 1 Scrap and 25 caps; {@who.name} has {default(@who.scrap, 0)} Scrap and {default(@who.caps, 0)} caps."
+  - set: who.caps
+    op: "-="
+    value: 25
+  - do: scrap
+    with: {who: "@who", source: spend, amount: 1}
+  - set: vehicle.hp
+    op: "+="
+    value: 1
+  - message: "{@who.name} patches {@vehicle.name} in the field: +1 Frame HP ({@vehicle.hp}/{@vehicle.hp.max}). That's the watch's Wilderness Action; one patch a watch."
+source: players-guide/vehicles#maintenance
+---
+action: vehicle-repair
+title: Workshop repair
+help: >-
+  At a settlement or outpost with a Workshop / Scrap Bench, a mechanic restores Frame HP: a
+  Downtime Action, 2 Scrap and 1d6 × 20 caps for each point (points=n). A PC who isn't a Tinker,
+  with no hired mechanic, may still do the work, but the caps cost doubles (mechanic=false). A
+  garaged vehicle in a settlement with a Power Generator and a Workshop restores 1 Frame HP a week
+  at no Scrap cost while the party is away (no roll: `didact set <vehicle> hp+=1`).
+params:
+  vehicle: ref
+  who: {kind: ref, help: "Who pays"}
+  points: {kind: int, default: 1}
+  mechanic: {kind: flag, default: true, help: "A Tinker or a hired mechanic does the work"}
+steps:
+  - if: "'broken' in @vehicle.conditions or 'wrecked' in @vehicle.conditions"
+    then:
+      - stop: "{@vehicle.name} is broken: it needs a full frame rebuild (`didact do frame-rebuild`)."
+  - let: {points: "min(@points, @vehicle.hp.max - @vehicle.hp)"}
+  - if: "@points <= 0"
+    then:
+      - stop: "{@vehicle.name} is at full Frame HP."
+  - roll: "(@points)d6"
+    as: cost_dice
+  - let: {scrap_cost: "2 * @points", caps_cost: "@cost_dice * 20 * if(@mechanic, 1, 2)"}
+  - if: "@scrap_cost > default(@who.scrap, 0) or @caps_cost > default(@who.caps, 0)"
+    then:
+      - stop: "{@points} Frame HP takes {@scrap_cost} Scrap and {@caps_cost} caps; {@who.name} has {default(@who.scrap, 0)} Scrap and {default(@who.caps, 0)} caps."
+  - set: who.caps
+    op: "-="
+    value: "@caps_cost"
+  - do: scrap
+    with: {who: "@who", source: spend, amount: "@scrap_cost"}
+  - set: vehicle.hp
+    op: "+="
+    value: "@points"
+  - message: "The workshop restores {@points} Frame HP to {@vehicle.name} ({@vehicle.hp}/{@vehicle.hp.max}): {@scrap_cost} Scrap, {@caps_cost} caps, and a Downtime Action."
+  - do: coins
+    with: {who: "@who"}
+    go_on: true
+source: players-guide/vehicles#maintenance
+---
+action: frame-rebuild
+title: Frame rebuild
+help: >-
+  A broken vehicle (0 Frame HP over several hits) needs a full rebuild: two Downtime Actions, 10
+  Scrap and 1d6 × 100 caps, plus a WIL save from the mechanic. On a failure the rebuild works, but
+  the vehicle's max Frame HP is 1 lower for good, until a proper pre-war parts cache is found.
+params:
+  vehicle: ref
+  who: {kind: ref, help: "Who pays"}
+  mechanic: {kind: ref, optional: true, help: "Who does the work (their WIL save); default: who pays"}
+steps:
+  - if: "'wrecked' in @vehicle.conditions"
+    then:
+      - stop: "{@vehicle.name} crashed: a wreck is stripped for parts, not rebuilt."
+  - roll: 1d6
+    as: cost_dice
+  - let: {caps_cost: "@cost_dice * 100"}
+  - if: "default(@who.scrap, 0) < 10 or @caps_cost > default(@who.caps, 0)"
+    then:
+      - stop: "A frame rebuild takes 10 Scrap and {@caps_cost} caps; {@who.name} has {default(@who.scrap, 0)} Scrap and {default(@who.caps, 0)} caps."
+  - set: who.caps
+    op: "-="
+    value: "@caps_cost"
+  - do: scrap
+    with: {who: "@who", source: spend, amount: 10}
+  - if: "default(@mechanic, '') <> ''"
+    then:
+      - check: save
+        with: {who: "@mechanic", attr: WIL}
+        as: skill
+    else:
+      - check: save
+        with: {who: "@who", attr: WIL}
+        as: skill
+  - if: "'broken' in @vehicle.conditions"
+    then:
+      - set: vehicle.conditions
+        op: "-="
+        value: broken
+  - if: "@skill == 'failure'"
+    then:
+      - set: vehicle.hp.max
+        value: "max(1, @vehicle.hp.max - 1)"
+      - message: "The rebuild works, but {@vehicle.name}'s frame comes out weaker: max Frame HP {@vehicle.hp.max}, until a proper pre-war parts cache is found."
+  - set: vehicle.hp
+    value: "@vehicle.hp.max"
+  - message: "{@vehicle.name} is rebuilt ({@caps_cost} caps, 10 Scrap, two Downtime Actions): {@vehicle.hp}/{@vehicle.hp.max} Frame HP."
+  - do: coins
+    with: {who: "@who"}
+    go_on: true
+source: players-guide/vehicles#maintenance

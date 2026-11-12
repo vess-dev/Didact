@@ -1,0 +1,15 @@
+id: hide-hack
+name: Hide Hack (fixture)
+kind: system
+version: 0.1.0
+description: A hack that replaces some of its base's items and hides others.
+requires: {packs: [core, hide-base]}
+extends: [hide-base]
+hides:
+  table: ["spell-*", "!spell-ice", places]
+  entry: ["*", "!rope"]
+  reference: [magic]
+  term: [spell]
+license: {spdx: CC0-1.0}
+settings:
+  names: {npc: names}

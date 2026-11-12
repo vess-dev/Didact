@@ -1,0 +1,4 @@
+generator: chronicle
+title: A chronicle
+steps:
+  - entity: {key: notes, type: note, name: "Session {@session}, day {@time.day}"}

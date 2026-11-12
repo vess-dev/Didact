@@ -1,0 +1,7 @@
+id: onward-lite
+name: Onward (test pack)
+kind: system
+version: 0.1.0
+description: Tables that go on with `then:` (a first step that says what it is; three levels of spells, with a ring).
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

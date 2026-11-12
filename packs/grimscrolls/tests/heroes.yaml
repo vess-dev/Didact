@@ -1,0 +1,136 @@
+# Every class at random, all the way to records: Chapter 3's steps with the dice deciding what
+# the prefill doesn't (race, background, birthsign, stats, traits and desires, the Core Talent's
+# choices, its well or pool, potions and coin). Seeded, so it plays the same every time.
+test: every-class-at-random
+help: A hero of each of the twenty-three classes, made at random and committed, then one levelled up.
+script:
+  - world new tam --system {pack} --seed classes
+  - campaign new first --seed classes
+  - run: >-
+      char new --mode random --prefill '{"name": "Ulfgar", "class": "Armorer"}'
+    expect: ["class: Armorer (given)", "pc Ulfgar: level: 1"]
+  - run: char commit c1
+    expect: ["pc:ulfgar", "track:ulfgar-s-coin"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Brynja", "class": "Athletics"}'
+    expect: ["class: Athletics (given)", "pc Brynja: level: 1"]
+  - run: char commit c2
+    expect: ["pc:brynja", "pc:brynja"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Sigrid", "class": "Blade"}'
+    expect: ["class: Blade (given)", "pc Sigrid: level: 1"]
+  - run: char commit c3
+    expect: ["pc:sigrid", "pc:sigrid"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Torvald", "class": "Block"}'
+    expect: ["class: Block (given)", "pc Torvald: level: 1"]
+  - run: char commit c4
+    expect: ["pc:torvald", "pc:torvald"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Uzgash", "class": "Blunt"}'
+    expect: ["class: Blunt (given)", "pc Uzgash: level: 1"]
+  - run: char commit c5
+    expect: ["pc:uzgash", "pc:uzgash"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Vilja", "class": "Hand to Hand"}'
+    expect: ["class: Hand to Hand (given)", "pc Vilja: level: 1"]
+  - run: char commit c6
+    expect: ["pc:vilja", "pc:vilja"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Ragnvald", "class": "Heavy Armor"}'
+    expect: ["class: Heavy Armor (given)", "pc Ragnvald: level: 1"]
+  - run: char commit c7
+    expect: ["pc:ragnvald", "track:ragnvald-s-plate"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Ilmeni", "class": "Alchemy"}'
+    expect: ["class: Alchemy (given)", "pc Ilmeni: level: 1"]
+  - run: char commit c8
+    expect: ["pc:ilmeni", "pc:ilmeni"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Vel", "class": "Alteration"}'
+    expect: ["class: Alteration (given)", "pc Vel: level: 1"]
+  - run: char commit c9
+    expect: ["pc:vel", "pc:vel"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Teldryn", "class": "Conjuration"}'
+    expect: ["class: Conjuration (given)", "pc Teldryn: level: 1"]
+  - run: char commit c10
+    expect: ["pc:teldryn", "track:teldryn-s-thrall"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Brelyna", "class": "Destruction"}'
+    expect: ["class: Destruction (given)", "pc Brelyna: level: 1"]
+  - run: char commit c11
+    expect: ["pc:brelyna", "pc:brelyna"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Sorine", "class": "Illusion"}'
+    expect: ["class: Illusion (given)", "pc Sorine: level: 1"]
+  - run: char commit c12
+    expect: ["pc:sorine", "pc:sorine"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Faralda", "class": "Mysticism"}'
+    expect: ["class: Mysticism (given)", "pc Faralda: level: 1"]
+  - run: char commit c13
+    expect: ["pc:faralda", "pc:faralda"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Erandur", "class": "Restoration"}'
+    expect: ["class: Restoration (given)", "pc Erandur: level: 1"]
+  - run: char commit c14
+    expect: ["pc:erandur", "-rite"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Inigo", "class": "Acrobatics"}'
+    expect: ["class: Acrobatics (given)", "pc Inigo: level: 1"]
+  - run: char commit c15
+    expect: ["pc:inigo", "pc:inigo"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Aela", "class": "Light Armor"}'
+    expect: ["class: Light Armor (given)", "pc Aela: level: 1"]
+  - run: char commit c16
+    expect: ["pc:aela", "pc:aela"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Kazari", "class": "Marksman"}'
+    expect: ["class: Marksman (given)", "pc Kazari: level: 1"]
+  - run: char commit c17
+    expect: ["pc:kazari", "pc:kazari"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Belethor", "class": "Mercantile"}'
+    expect: ["class: Mercantile (given)", "pc Belethor: level: 1"]
+  - run: char commit c18
+    expect: ["pc:belethor", "pc:belethor"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Delvin", "class": "Security"}'
+    expect: ["class: Security (given)", "pc Delvin: level: 1"]
+  - run: char commit c19
+    expect: ["pc:delvin", "track:delvin-s-picks"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Brynjolf", "class": "Sneak"}'
+    expect: ["class: Sneak (given)", "pc Brynjolf: level: 1"]
+  - run: char commit c20
+    expect: ["pc:brynjolf", "track:brynjolf-s-shadow"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Hrefna", "class": "Speechcraft"}'
+    expect: ["class: Speechcraft (given)", "pc Hrefna: level: 1"]
+  - run: char commit c21
+    expect: ["pc:hrefna", "pc:hrefna"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Serana", "class": "Vampire"}'
+    expect: ["class: Vampire (given)", "pc Serana: level: 1"]
+  - run: char commit c22
+    expect: ["pc:serana", "track:serana-s-blood"]
+  - run: >-
+      char new --mode random --prefill '{"name": "Farkas", "class": "Werewolf"}'
+    expect: ["class: Werewolf (given)", "pc Farkas: level: 1"]
+  - run: char commit c23
+    expect: ["pc:farkas", "track:farkas-s-bloodlust"]
+  - run: char check kazari
+    expect: "checks out"
+  - run: do experience who=kazari bonus
+    expect: "Kazari takes a bonus XP"
+  - run: do experience who=kazari bonus
+    expect: "level 2 is ready"
+  - run: >-
+      char advance kazari --prefill '{"talent_list": "Marksman"}'
+    expect: ["level: 1 → 2", "waiting for talent"]
+  - run: char roll c24
+    expect: "talents: "
+  - run: char commit c24
+    expect: ["pc:kazari advanced", "level 1 → 2"]

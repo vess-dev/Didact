@@ -1,0 +1,346 @@
+# Unique Armors (wardens-guide/unique-armors): the Daedric Artifacts, the Dragon Priest masks and
+# the named armor and wearables. `armor` is what it gives while worn or held (a helmet or shield
+# +1); body armor also carries `suit`.
+id: "spellbreaker"
+type: "relic"
+name: "Spellbreaker"
+category: "Daedric Artifact"
+armor: 1
+charges: 3
+effect: "The great Dwarven ward-shield of Peryite, Prince of Pestilence and Order, won in The Only Cure by cutting down Orchendor, the Bosmer sorcerer who led Peryite's Afflicted astray in Bthardamz. A shield. While you hold it, magical attacks against you are Impaired. Spend a charge as a spell strikes you to raise the ward: the spell fizzles against it entirely."
+recharge: "stand a full watch in vigil at a Daedric shrine, or quench the shield in the blood of a plague-beast."
+source: "wardens-guide/unique-armors#spellbreaker-1-armor-3-charges"
+---
+id: "ebony-mail"
+type: "relic"
+name: "Ebony Mail"
+category: "Daedric Artifact"
+armor: 3
+suit: 3
+size: "bulky"
+effect: "The black cuirass of Boethiah, Prince of Plots and rightful murder, given to the last one standing in Boethiah's Calling. Heavy armor that makes no sound: you need not save to move quietly in it. A shroud of venom clings to it, too — any foe who strikes you in melee must pass a STR save or take 1d6 poison, ignoring Armor."
+source: "wardens-guide/unique-armors#ebony-mail-3-armor-bulky"
+---
+id: "saviors-hide"
+type: "relic"
+name: "Savior's Hide"
+category: "Daedric Artifact"
+armor: 2
+suit: 2
+effect: "The flayed pelt of a great beast, the blessing of Hircine, Prince of the Hunt — the reward of the hunter who ran Sinding the werewolf to ground in Ill Met by Moonlight. Light armor. Magical attacks against you are Impaired, and so are poison and venom (roll 1d4 for the STR they cost you)."
+source: "wardens-guide/unique-armors#saviors-hide-2-armor"
+---
+id: "masque-of-clavicus-vile"
+type: "relic"
+name: "Masque of Clavicus Vile"
+category: "Daedric Artifact"
+armor: 1
+effect: "The grinning helm of Clavicus Vile, Prince of Bargains and Wishes, gained by bringing him back the Rueful Axe — and settling his quarrel with his dog Barbas — in A Daedra's Best Friend. A helmet. Strangers' first Reaction toward you shifts one step better, and merchants treat you as a favored customer."
+source: "wardens-guide/unique-armors#masque-of-clavicus-vile-1-armor"
+---
+id: "ring-of-hircine"
+type: "relic"
+name: "Ring of Hircine"
+category: "Daedric Artifact"
+size: "petty"
+effect: "A bone ring carrying the favor of Hircine, Lord of the Hunt — the prize of the hunter who spared Sinding in Ill Met by Moonlight and turned on the hunting party instead. Until the Prince is satisfied, it forces the change on its wearer at the worst possible moments. Once its curse is lifted, a werewolf or werebear wearing it may take Beast Form as often as they choose, without the once-per-day limit. For anyone else it is an unsettling trinket."
+source: "wardens-guide/unique-armors#ring-of-hircine-petty"
+---
+id: "ring-of-namira"
+type: "relic"
+name: "Ring of Namira"
+category: "Daedric Artifact"
+size: "petty"
+effect: "The ring of Namira, Lady of Decay and all things dark and repulsive, claimed in The Taste of Death at her cannibal coven's table in Reachcliff Cave, east of Markarth. Once per day, feeding on a fresh humanoid corpse grants Namira's boon: restore 1d6 STR and clear one Fatigue. The deed is abhorrent; being seen at it costs Renown, and worse."
+source: "wardens-guide/unique-armors#ring-of-namira-petty"
+---
+id: "hevnoraak"
+type: "relic"
+name: "Hevnoraak"
+category: "Dragon Priest mask"
+armor: 1
+effect: "The iron mask of the priest sealed in Valthume, who bled his servants dry to cheat death. You are immune to mundane disease and to poison: you need not save against either."
+source: "wardens-guide/unique-armors#hevnoraak-1-armor"
+---
+id: "krosis"
+type: "relic"
+name: "Krosis"
+category: "Dragon Priest mask"
+armor: 1
+effect: "A keen bronze mask whose name means \"sorrow,\" waiting atop Shearpoint where a dragon keeps its perch. Once per day, automatically pass one save made to pick a lock, disarm a trap, or brew in haste."
+source: "wardens-guide/unique-armors#krosis-1-armor"
+---
+id: "morokei"
+type: "relic"
+name: "Morokei"
+category: "Dragon Priest mask"
+armor: 1
+effect: "The pale mask of Morokei, \"glorious,\" the priest who holds the Staff of Magnus in the depths of Labyrinthian. Once per day, channel a Spell Tome without adding Fatigue."
+source: "wardens-guide/unique-armors#morokei-1-armor"
+---
+id: "nahkriin"
+type: "relic"
+name: "Nahkriin"
+category: "Dragon Priest mask"
+armor: 1
+effect: "The mask of \"vengeance,\" worn by the priest who guards Alduin's portal at Skuldafn. Loot it before stepping through the portal, or it is lost forever. Once per day, re-roll a failed WIL save made to cast a spell under duress."
+source: "wardens-guide/unique-armors#nahkriin-1-armor"
+---
+id: "otar"
+type: "relic"
+name: "Otar"
+category: "Dragon Priest mask"
+armor: 1
+effect: "The mask of Otar the Mad, sealed in his sarcophagus in Ragnvald behind two skull-keyed locks. Fire, frost, and shock attacks against you are Impaired."
+source: "wardens-guide/unique-armors#otar-1-armor"
+---
+id: "rahgot"
+type: "relic"
+name: "Rahgot"
+category: "Dragon Priest mask"
+armor: 1
+effect: "The mask of \"anger,\" worn by the priest whose last cultists poisoned themselves rather than surrender Forelhost. While worn, it grants +1 max HP."
+source: "wardens-guide/unique-armors#rahgot-1-armor"
+---
+id: "vokun"
+type: "relic"
+name: "Vokun"
+category: "Dragon Priest mask"
+armor: 1
+effect: "The mask of \"shadow,\" lord of High Gate Ruins. Once per day, re-roll a failed WIL save made to resist a charm, a fear, or any spell that works upon the mind."
+source: "wardens-guide/unique-armors#vokun-1-armor"
+---
+id: "volsung"
+type: "relic"
+name: "Volsung"
+category: "Dragon Priest mask"
+armor: 1
+effect: "The mask of \"horror,\" entombed in Volskygge — the most comfortable and the most avaricious of the masks. You breathe water freely, one bulky item you carry takes only one slot, and merchants treat you one step better on the Reaction ladder."
+source: "wardens-guide/unique-armors#volsung-1-armor"
+---
+id: "konahrik"
+type: "relic"
+name: "Konahrik"
+category: "Dragon Priest mask"
+armor: 1
+charges: 1
+effect: "The golden mask of the \"warlord,\" the ninth, revealed in Bromjunaar Sanctuary only to one who gathers all eight others and the Wooden Mask. When a blow would take you to 0 HP, spend the charge: it is turned aside in a burst of flame and healing light — you take no damage from it, and every foe beside you takes d6 fire."
+recharge: "the next dawn."
+source: "wardens-guide/unique-armors#konahrik-1-armor-1-charge"
+---
+id: "wooden-mask"
+type: "relic"
+name: "Wooden Mask"
+category: "Dragon Priest mask"
+size: "petty"
+effect: "A plain, ancient mask on the steps of Labyrinthian that is older than it has any right to be. Worn within the ruined hall of Bromjunaar, it slips the wearer back through time to the sanctuary as it once stood — the only key to claiming Konahrik. It stops nothing and aids no fight."
+source: "wardens-guide/unique-armors#wooden-mask-petty"
+---
+id: "zahkriisos"
+type: "relic"
+name: "Zahkriisos"
+category: "Dragon Priest mask"
+armor: 1
+effect: "A Dragon Priest mask of Solstheim, \"bloody sword,\" taken from its priest in the depths of Raven Rock Mine. Shock attacks against you are Impaired, and once per day one shock spell you cast is Enhanced."
+source: "wardens-guide/unique-armors#zahkriisos-1-armor"
+---
+id: "dukaan"
+type: "relic"
+name: "Dukaan"
+category: "Dragon Priest mask"
+armor: 1
+effect: "A Solstheim priest's mask, \"dishonor,\" sealed in the White Ridge Sanctum. Frost attacks against you are Impaired, and once per day one frost spell you cast is Enhanced."
+source: "wardens-guide/unique-armors#dukaan-1-armor"
+---
+id: "ahzidal"
+type: "relic"
+name: "Ahzidal"
+category: "Dragon Priest mask"
+armor: 1
+effect: "The mask of Ahzidal, \"embittered destroyer,\" greatest of the ancient Nord enchanters, won in Kolbjorn Barrow. Fire attacks against you are Impaired, and once per day one fire spell you cast is Enhanced."
+source: "wardens-guide/unique-armors#ahzidal-1-armor"
+---
+id: "miraaks-mask"
+type: "relic"
+name: "Miraak's Mask"
+category: "Dragon Priest mask"
+armor: 1
+charges: 1
+effect: "The tentacled mask of Miraak, the First Dragonborn, taken from his body in Apocrypha. While worn, it grants +1 max HP. Spend the charge as a spell strikes you: the mask drinks it, and it fizzles."
+recharge: "read a passage from a Black Book. A trophy that marks its wearer as a slayer of legends."
+source: "wardens-guide/unique-armors#miraaks-mask-1-armor-1-charge"
+---
+id: "nightingale-armor"
+type: "relic"
+name: "Nightingale Armor"
+category: "Unique armor"
+armor: 2
+suit: 2
+effect: "The shadow-bound black armor of Nocturnal's sworn thieves, granted at the oath in Trinity Restored. Light armor that drinks the dark: while you stand in shadow or dim light, you need not save to stay unseen."
+source: "wardens-guide/unique-armors#nightingale-armor-2-armor"
+---
+id: "nightingale-hood"
+type: "relic"
+name: "Nightingale Hood"
+category: "Unique armor"
+armor: 1
+effect: "The cowl of the Nightingale panoply, hiding its wearer's face beneath Nocturnal's blessing. A helmet. No one who sees you in it can afterward describe your face or recognize you by it."
+source: "wardens-guide/unique-armors#nightingale-hood-1-armor"
+---
+id: "shrouded-armor"
+type: "relic"
+name: "Shrouded Armor"
+category: "Unique armor"
+armor: 2
+suit: 2
+effect: "The black-and-red garb of the Dark Brotherhood's assassins, issued from the Sanctuary's wardrobe. Light armor. Poison and venom against you are Impaired (roll 1d4 for the STR they cost you)."
+source: "wardens-guide/unique-armors#shrouded-armor-2-armor"
+---
+id: "ancient-shrouded-armor"
+type: "relic"
+name: "Ancient Shrouded Armor"
+category: "Unique armor"
+armor: 2
+suit: 2
+effect: "The original assassin's garb of the Brotherhood's golden age, recovered with Olava's Token from Hag's End — finer than the modern issue. Light armor. You are immune to poison and venom: you need not save against them."
+source: "wardens-guide/unique-armors#ancient-shrouded-armor-2-armor"
+---
+id: "guild-masters-armor"
+type: "relic"
+name: "Guild Master's Armor"
+category: "Unique armor"
+armor: 2
+suit: 2
+effect: "The finest leathers the Guild's fence Tonilia ever cut, made for the Guild Master alone and handed over in the Cistern when the Guild's luck returns. Light armor, not bulky. Once per day, re-roll a failed DEX save to pick a lock, lift a purse, or slip a hand into a pocket."
+source: "wardens-guide/unique-armors#guild-masters-armor-2-armor"
+---
+id: "archmages-robes"
+type: "relic"
+name: "Archmage's Robes"
+category: "Unique armor"
+size: "petty"
+effect: "The robes of the Arch-Mage of the College of Winterhold, worn by the one who ends the crisis of the Eye of Magnus. Clothing, no Armor. The College's mages defer to you, and once per day you may channel a Spell Tome without adding Fatigue."
+source: "wardens-guide/unique-armors#archmages-robes-petty"
+---
+id: "deathbrand-armor"
+type: "relic"
+name: "Deathbrand Armor"
+category: "Unique armor"
+armor: 2
+suit: 2
+effect: "The Stalhrim panoply of the pirate-king Haknir Death-Brand, dug from the sea-chests he buried around Solstheim's shores in Deathbrand. Light armor of ice-bound crystal. Frost attacks against you are Impaired, and cold never leaves you Deprived."
+source: "wardens-guide/unique-armors#deathbrand-armor-2-armor"
+---
+id: "deathbrand-helm"
+type: "relic"
+name: "Deathbrand Helm"
+category: "Unique armor"
+armor: 1
+effect: "The crowning piece of Haknir's hoard, buried apart from him in a sea-chest on Solstheim's shore. A helmet. You breathe water freely while it is worn; the drowning rules do not apply to you."
+source: "wardens-guide/unique-armors#deathbrand-helm-1-armor"
+---
+id: "visage-of-mzund"
+type: "relic"
+name: "Visage of Mzund"
+category: "Unique armor"
+armor: 1
+charges: 1
+effect: "A great Dwarven war-helm recovered from the steam-wreathed depths of Fahlbtharz. A helmet. Spend the charge to exhale a scalding blast of steam — the Breath of Nchuak — at foes before you (d8, blast)."
+recharge: "stoke it at a working Dwemer steam-vent or a forge."
+source: "wardens-guide/unique-armors#visage-of-mzund-1-armor-1-charge"
+---
+id: "ahzidals-armor-of-retribution"
+type: "relic"
+name: "Ahzidal's Armor of Retribution"
+category: "Unique armor"
+armor: 3
+suit: 3
+size: "bulky"
+effect: "A piece of the relic panoply of Ahzidal the enchanter, unearthed in Kolbjorn Barrow. Heavy armor. Once per combat, a foe who strikes you in melee must pass a STR save or be held rigid, unable to act, for a round."
+source: "wardens-guide/unique-armors#ahzidals-armor-of-retribution-3-armor-bulky"
+---
+id: "aetherial-crown"
+type: "relic"
+name: "Aetherial Crown"
+category: "Unique armor"
+size: "petty"
+effect: "A circlet forged from refined aetherium, the lost Dwemer wonder, at the Aetherium Forge in Lost to the Ages. A circlet, no Armor. It holds the light of a second Standing Stone: while worn, you benefit from two Standing Stone blessings at once instead of one."
+source: "wardens-guide/unique-armors#aetherial-crown-petty"
+---
+id: "aetherial-shield"
+type: "relic"
+name: "Aetherial Shield"
+category: "Unique armor"
+armor: 1
+charges: 1
+effect: "A Dwarven shield of aetherium that turns flesh to ghost-stuff, forged in Lost to the Ages. A shield. Spend the charge as you shove a foe with it: for a round it turns ethereal — it can neither harm nor be harmed."
+recharge: "leave it overnight in moonlight."
+source: "wardens-guide/unique-armors#aetherial-shield-1-armor-1-charge"
+---
+id: "auriels-shield"
+type: "relic"
+name: "Auriel's Shield"
+category: "Unique armor"
+armor: 1
+charges: 3
+effect: "The sun-blessed shield of Auri-El's chantry, taken from the Forgotten Vale where the last Knight-Paladin keeps the god's relics. A shield. Spend a charge when you bash a foe with it: the stored sunlight bursts out, and the foe must pass a STR save or be hurled back and lose its next action."
+recharge: "hold it up to the first light of dawn."
+source: "wardens-guide/unique-armors#auriels-shield-1-armor-3-charges"
+---
+id: "shield-of-solitude"
+type: "relic"
+name: "Shield of Solitude"
+category: "Unique armor"
+armor: 1
+effect: "The heirloom shield of the Jarls of Solitude, awarded for laying Potema's spirit to rest in The Wolf Queen Awakened. A shield. While you hold it, magical attacks against you are Impaired."
+source: "wardens-guide/unique-armors#shield-of-solitude-1-armor"
+---
+id: "targe-of-the-blooded"
+type: "relic"
+name: "Targe of the Blooded"
+category: "Unique armor"
+armor: 1
+effect: "A steel buckler rimmed with cruel spikes, carried into Alftand by Umana, a delver who did not come out. A shield. When you shove or bash a foe with it, the foe also takes 1d4, ignoring Armor, as the spikes bite."
+source: "wardens-guide/unique-armors#targe-of-the-blooded-1-armor"
+---
+id: "shield-of-ysgramor"
+type: "relic"
+name: "Shield of Ysgramor"
+category: "Unique armor"
+armor: 1
+effect: "The round shield of Ysgramor, founder of the Companions, laid beside him in his tomb in Winterhold and won only by those who reach the Flame of the Harbinger. A shield. While you carry it, your maximum HP is 1 higher, and once per day a spell that strikes you spends itself against the old iron rim and is absorbed harmlessly."
+source: "wardens-guide/unique-armors#shield-of-ysgramor-1-armor"
+---
+id: "kynes-token"
+type: "relic"
+name: "Kyne's Token"
+category: "Unique armor"
+size: "petty"
+effect: "An amulet blessed by Kyne, the Nord goddess of the hunt and the storm, given by the old hunter Froki Whetted-Blade for keeping the balance of the wild. An amulet, no Armor. The attacks of wild beasts against you are Impaired."
+source: "wardens-guide/unique-armors#kynes-token-petty"
+---
+id: "movarths-boots"
+type: "relic"
+name: "Movarth's Boots"
+category: "Unique armor"
+size: "petty"
+effect: "The soft boots of the master vampire Movarth Piquine, taken from his lair near Morthal in Laid to Rest. Footwear, no Armor. You need not save to move silently."
+source: "wardens-guide/unique-armors#movarths-boots-petty"
+---
+id: "miraaks-robes"
+type: "relic"
+name: "Miraak's Robes"
+category: "Unique armor"
+size: "petty"
+charges: 1
+effect: "The tentacled robes of Miraak, the First Dragonborn, steeped in the ink and influence of Apocrypha. Clothing, no Armor. Spend the charge to channel a Spell Tome without adding Fatigue."
+recharge: "read a passage from a Black Book, and lose an hour you will never remember."
+source: "wardens-guide/unique-armors#miraaks-robes-petty-1-charge"
+---
+id: "ahzidals-boots-of-waterwalking"
+type: "relic"
+name: "Ahzidal's Boots of Waterwalking"
+category: "Unique armor"
+size: "petty"
+effect: "A pair of the relic boots of Ahzidal the enchanter, unearthed in Kolbjorn Barrow on Solstheim. Footwear, no Armor. You walk on water — river, lake, or the swell off the Sea of Ghosts — as on hard ground."
+source: "wardens-guide/unique-armors#ahzidals-boots-of-waterwalking-petty"

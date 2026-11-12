@@ -1,0 +1,16 @@
+id: mini-system
+name: Mini System (fixture)
+kind: system
+version: 0.1.0
+description: A tiny system to test sheets.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}
+settings:
+  names: {npc: [first-names, surnames]}
+  watches: [morning, afternoon, night]
+  time_units: {turn: 600}
+  combat:
+    mode: sides
+    first: party
+    round_one: "Each PC makes a DEX save to act: `didact do save who=<pc> attr=DEX`."
+    attack: attack

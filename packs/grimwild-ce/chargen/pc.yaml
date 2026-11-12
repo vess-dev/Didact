@@ -1,0 +1,655 @@
+# Character creation (Adventurers, pp. 44-51, and the path pages, pp. 54-86) and leveling up
+# (Experience and Levels, p. 31; talents, pp. 20, 52; the options, pp. 172-187), step by step,
+# random or guided. Both share their steps through YAML anchors, so they can't drift apart:
+# - `&core-choices`: what the core talent has you choose, and its pools: made at creation, or at
+#   level 1 for a level 0 PC (the core talent comes then);
+# - `&talent-picks`: what a talent brings with it (a half core talent's theorems, rite or magic);
+# - `&gain-a-level`: a level's talent (or stat) and the core talent's growth. A PC who starts above
+#   level 1 (larger scale and high fantasy at level 3, noblebright at level 2) gains each level at
+#   creation with the very steps leveling up uses.
+- chargen: pc
+  title: A Grimwild adventurer
+  help: >-
+    Two backgrounds (three wises each; one can be your heritage), traits and desires (two yes,
+    one no), a path with its core talent and one more talent (from your path's list, a non-core
+    talent from another path's, or a background talent), what the path's page has you decide (a
+    bard's songs, a paladin's tenet, a warlock's patron, …), stats (1 each plus 4 points, at most
+    3), a name, what the core talent has you choose and its pools (a rogue's skills, a sorcerer's
+    magic and twists, a warlock's Eldritch Talent and Patience, a witch's 6 words of power, a
+    wizard's theorems, a cleric's rites, …), the levels a campaign starts above 1 with, the pools
+    the options give, then features, arcs and bonds with the table (crucibles rolled for ideas).
+  creates: pc
+  modes: [random, guided]
+  steps:
+    # The options (session zero) set the starting level: level 0 (an option, p. 176), larger scale
+    # and high fantasy start at level 3 (pp. 173, 186), noblebright at level 2 (p. 185).
+    - let:
+        from_zero: false
+        creating: true
+        start: >-
+          if(@option.level_zero, 0, max(if(@option.scale == 'larger' or @option.flavor == 'high', 3, 1),
+          if(@option.flavor == 'noblebright', 2, 1)))
+    - apply: {level: 1, xp: 0}  # on the sheet from the start: experience fills the XP boxes (p. 31)
+    - choose_or_roll: {table: backgrounds, as: first_background}
+    - add: {field: backgrounds, value: "@first_background"}
+    - add: {field: wises, value: "@first_background.wises"}
+    - choose_or_roll: {table: backgrounds, as: second_background, exclude: "@first_background", prompt: "a second background"}
+    - add: {field: backgrounds, value: "@second_background"}
+    - add: {field: wises, value: "@second_background.wises"}
+    - choose: {from: [brave, caring, confident, curious, gentle, honest, honorable, persistent, protective, quiet, rash, stubborn], as: traits, count: 2, field: traits, prompt: "two you very much are"}
+    - choose: {from: [brave, caring, confident, curious, gentle, honest, honorable, persistent, protective, quiet, rash, stubborn], as: not_trait, exclude: "@traits", prompt: "one you definitely aren't"}
+    - add: {field: traits, value: "not {@not_trait}"}
+    - choose: {from: [belonging, glory, harmony, honor, justice, knowledge, love, power, renown, thrills, wealth, wisdom], as: desires, count: 2, field: desires, prompt: "two you truly desire"}
+    - choose: {from: [belonging, glory, harmony, honor, justice, knowledge, love, power, renown, thrills, wealth, wisdom], as: not_desire, exclude: "@desires", prompt: "one you definitely don't"}
+    - add: {field: desires, value: "not {@not_desire}"}
+
+    # Path (p. 46): choose a path, gain its core talent, and pick either another talent from your
+    # path's list or a non-core talent from another path. The background talents are open to every
+    # path, and the second talent can be linked to your heritage (p. 88). No magic keeps the
+    # magical paths out (their talents too); level 0 has no core talent yet, and so may take its
+    # path's half core talent (Arcane Training for a wizard), replaced with the core at level 1.
+    - if: "@option.magic == 'none'"
+      then:
+        - choose_or_roll: {table: paths, as: path, field: path, exclude: [Artificer, Cleric, Druid, Psion, Sorcerer, Summoner, Warlock, Witch, Wizard], prompt: "a path (no magic: the magical paths are out)"}
+      else:
+        - choose_or_roll: {table: paths, as: path, field: path}
+    - if: "not @option.level_zero"
+      then:
+        - add: {field: talents, value: "@path.core"}
+    - if: "@option.magic == 'none'"
+      then:
+        - choose_or_roll: {table: talent-lists, as: talent_list, exclude: [Artificer, Cleric, Druid, Psion, Sorcerer, Summoner, Warlock, Witch, Wizard], prompt: "your second talent's list: your own path's ({@path}), another path's (a non-core talent), or the background talents (to link it to your heritage, p. 88); a legacy talent needs your GM's OK"}
+      else:
+        - choose_or_roll: {table: talent-lists, as: talent_list, prompt: "your second talent's list: your own path's ({@path}), another path's (a non-core talent), or the background talents (to link it to your heritage, p. 88); a legacy talent needs your GM's OK"}
+    - choose: {from: "@talent_list.talents", records: talent, as: talent, exclude: ["{default(@character.talents, '')}", "{if(@option.level_zero, '', default(@path.prohibited, ''))}", "{if(@option.magic == 'none', default(@talent_list.magical_talents, ''), '')}"], prompt: "your second talent ({@talent_list}; one made with the GM counts too: `didact gen run grimwild-ce.talent`)"}
+    - add: {field: talents, value: "@talent"}
+    - let: {blessed_at_creation: "@talent == 'paladin-divine-blessing' and (@path.id <> 'cleric' or @option.level_zero)"}
+    - repeat: 1
+      steps: &talent-picks  # talents that bring choices of their own (pp. 57, 65, 69, 75, 81); a
+        # path's own half core talent only at level 0, before the core talent it stands in for
+        - if: "@talent == 'fighter-arcane-training' and (@path.id <> 'wizard' or @option.level_zero)"
+          then:
+            - repeat: 3
+              steps:
+                - choose_or_roll: {table: wizard-spell-style, as: spell_style, prompt: "Arcane Training: you know 3 spell theorems from the spell crucible: a theorem's style"}
+                - choose_or_roll: {table: wizard-spell-essence, as: spell_essence, prompt: "its essence"}
+                - choose_or_roll: {table: wizard-spell-form, as: spell_form, prompt: "its form"}
+                - choose_or_roll: {table: wizard-schools, as: school, prompt: "its school, for its general function"}
+                - add: {field: path_notes, value: "theorem: {@spell_style} · {@spell_essence} · {@spell_form} (two of them name it), {@school}"}
+        - if: "@talent == 'paladin-divine-blessing' and (@path.id <> 'cleric' or @option.level_zero)"
+          then:
+            - choose_or_roll: {table: cleric-rites, as: blessing_rite, prompt: "Divine Blessing: detail your god and choose 1 rite, a 4d power pool (per session)"}
+            - add: {field: path_notes, value: "Divine Blessing: the {@blessing_rite} rite (a 4d power pool, per session; drop 1d and roll it for a potent spell)"}
+            - if: "default(@pc_name, '') <> ''"  # named already: a level's talent (at creation, after the name)
+              then:
+                - entity:
+                    key: pool
+                    type: track
+                    name: "{@pc_name}'s {@blessing_rite} rite"
+                    fields: {kind: pool, pool: power, value: {value: 4, max: 4}, note: "Divine Blessing: a rite, a power pool rolled to cast (drop 1d first for a potent spell); it replenishes each session."}
+                    links: [{rel: of, to: character}]
+        - if: "@talent == 'rogue-eldritch-affinity' and (@path.id <> 'sorcerer' or @option.level_zero)"
+          then:
+            - choose_or_roll: {from: [blood, decay, flame, frost, lux, shadow, stone, tempest, attack, create, defend, enhance, hinder, influence, transform, traverse], as: affinity_magic, count: 3, exclude: "{default(@character.magic, '')}", prompt: "Eldritch Affinity: choose 3 from the magic paths and techniques (you roll Presence to cast; no potent spells, and no magical twists)"}
+            - add: {field: magic, value: "@affinity_magic"}
+        - if: "@talent == 'bard-bardic-lore'"
+          then:
+            - choose_or_roll: {table: expanded-wises, as: lore_wises, count: 3, exclude: "{default(@character.wises, '')}", prompt: "Bardic Lore: you gain any 3 wises (the expanded wises offer these; or write your own later)"}
+            - add: {field: wises, value: "@lore_wises"}
+        - if: "@talent == 'swashbuckler-natural-moxie' and (@path.id <> 'rogue' or @option.level_zero)"
+          then:
+            - choose_or_roll: {from: [blend in, charm, investigate, negotiate, network, parkour, ambush, deception, dismantle, provoke, sleight of hand, stealth], as: moxie_skills, count: 2, exclude: "{default(@character.skills, '')}", prompt: "Natural Moxie: two skills from the Expertise talent (+1d when you use them)"}
+            - add: {field: skills, value: "@moxie_skills"}
+        - let: {pool_talent: "@talent"}
+        - repeat: 1
+          steps: &talent-pool  # the per-session pool a talent grants (pp. 55-89, 179), once named
+            - let: {tp_dice: 0}
+            - if: "@pool_talent == 'artificer-grenades'"
+              then: [let: {tp_name: Grenades, tp_dice: 3, tp_kind: resource}]
+            - if: "@pool_talent == 'cleric-iron-will'"
+              then: [let: {tp_name: Iron Will, tp_dice: 2, tp_kind: resource}]
+            - if: "@pool_talent == 'fighter-bulwark' and not @option.armor"  # the armor option reworks it: +2d armor
+              then: [let: {tp_name: Bulwark, tp_dice: 2, tp_kind: resource}]
+            - if: "@pool_talent == 'psion-shift-form'"
+              then: [let: {tp_name: Shifter, tp_dice: 2, tp_kind: resource}]
+            - if: "@pool_talent == 'rogue-poisoner'"
+              then: [let: {tp_name: Poisons, tp_dice: 4, tp_kind: resource}]
+            - if: "@pool_talent == 'sorcerer-spelleater'"
+              then: [let: {tp_name: Spelleater, tp_dice: 2, tp_kind: resource}]
+            - if: "@pool_talent == 'swashbuckler-lucky'"
+              then: [let: {tp_name: Luck, tp_dice: 1, tp_kind: power}]
+            - if: "@pool_talent == 'wizard-alchemist'"
+              then: [let: {tp_name: Potions, tp_dice: 4, tp_kind: resource}]
+            - if: "@pool_talent == 'wizard-component-pouch'"
+              then: [let: {tp_name: Components, tp_dice: 2, tp_kind: resource}]
+            - if: "@pool_talent == 'wizard-countermagic'"
+              then: [let: {tp_name: Countermagic, tp_dice: 2, tp_kind: power}]
+            - if: "@pool_talent == 'background-clout'"
+              then: [let: {tp_name: Favor, tp_dice: 3, tp_kind: resource}]
+            - if: "@pool_talent == 'legacy-steamhammer'"
+              then: [let: {tp_name: Steamhammer, tp_dice: 6, tp_kind: power}]
+            - if: "@tp_dice > 0 and default(@pc_name, '') <> ''"
+              then:
+                - entity:
+                    key: pool
+                    type: track
+                    name: "{@pc_name}'s {@tp_name}"
+                    fields: {kind: pool, pool: "@tp_kind", value: {value: "@tp_dice", max: "@tp_dice"}, note: "{@tp_name} ({@pool_talent}): a per-session pool; it comes back each session (`didact do refresh`)."}
+                    links: [{rel: of, to: character}]
+    - if: "@option.magic == 'rare' or @option.flavor == 'low'"
+      then:
+        - if: "@path.magical or @talent == 'fighter-arcane-training' or @talent == 'paladin-divine-blessing' or @talent == 'rogue-eldritch-affinity'"
+          then:
+            - prompt: "{if(@option.flavor == 'low', 'Low fantasy', 'Rare magic')} limits the party to one magic user, if any (pp. 172, 183): if another PC already wields magic, choose again (`didact char edit`), or settle it with the table."
+
+    # The path's own page (pp. 54-86): what it has you decide about who you are, kept in
+    # path_notes (a druid's tell is one of their features). The core talent's own choices come
+    # after the name, with its pools.
+    - if: "@path.id == 'artificer'"
+      then:
+        - choose_or_roll: {table: artificer-magitechnobabble-prefix, as: babble_first, prompt: "magitechnobabble for your gizmos: a first half"}
+        - choose_or_roll: {table: artificer-magitechnobabble-suffix, as: babble_second, prompt: "and an ending: smash them together, and ramble on"}
+        - add: {field: path_notes, value: "gizmo buzzword: {@babble_first} + {@babble_second}"}
+    - if: "@path.id == 'bard'"
+      then:
+        - choose_or_roll: {table: bard-inspiration-methods, as: methods, count: 2, prompt: "where your power to influence others comes from: two you know"}
+        - choose_or_roll: {table: bard-inspiration-methods, as: learning, exclude: "@methods", prompt: "and one you're learning"}
+        - add: {field: path_notes, value: "inspiration: {@methods}; learning {@learning}"}
+        - choose_or_roll: {table: bard-song-style, as: song_style, prompt: "a song you know: its style, how you feel performing it"}
+        - choose_or_roll: {table: bard-song-tune, as: song_tune, prompt: "its tune, the familiar form anyone will recognize"}
+        - choose_or_roll: {table: bard-song-impact, as: song_impact, prompt: "its impact, how it magically influences others"}
+        - add: {field: path_notes, value: "song: {@song_style} {@song_tune} of {@song_impact}"}
+    - if: "@path.id == 'berserker'"
+      then:
+        - choose_or_roll: {table: berserker-frenzy-sources, as: sources, count: 2, prompt: "where your frenzy comes from: two to smash together"}
+        - choose_or_roll: {table: berserker-frenzy-sources, as: disdain, exclude: "@sources", prompt: "and one you have a disdain for"}
+        - add: {field: path_notes, value: "frenzy source: {@sources}; a disdain for: {@disdain}"}
+        - choose_or_roll: {table: berserker-scars, as: scars, count: 3, prompt: "three scars you show off"}
+        - add: {field: path_notes, value: "scars: {@scars}"}
+    - if: "@path.id == 'cleric'"
+      then:
+        - choose_or_roll: {table: cleric-domains, as: domain, prompt: "your god's domain of influence"}
+        - add: {field: path_notes, value: "god's domain: {@domain}"}
+        - prompt: "Name your god and give them an epithet (Zerenda, Goddess of {@domain}), and write down three tenets, the guidance you're expected to follow while spreading their word: `didact set <pc> path_notes+='…'`. Your god's title and the rite pool you roll are your spells' touchstones."
+    - if: "@path.id == 'druid'"
+      then:
+        - choose_or_roll: {table: druid-tells, as: tell, prompt: "a tell of your deep connection with nature: one of your features"}
+        - add: {field: features, value: "a druidic tell: {@tell}"}
+    - if: "@path.id == 'fighter'"
+      then:
+        - choose_or_roll: {table: fighter-weapon-origin, as: origin, count: 2, prompt: "your weapon's own small story: two of these"}
+        - add: {field: path_notes, value: "my weapon: {@origin}"}
+    - if: "@path.id == 'monk'"
+      then:
+        - choose_or_roll: {table: monk-style-concept, as: concept, prompt: "your martial arts style is based on the concept of…"}
+        - choose_or_roll: {table: monk-style-moves, as: moves, count: 3, prompt: "it features stances and moves like…"}
+        - choose_or_roll: {table: monk-style-weapons, as: style_weapons, count: 2, prompt: "it often makes use of weapons like…"}
+        - add: {field: path_notes, value: "martial arts style: based on the concept of {@concept}; stances and moves like {@moves}; weapons like {@style_weapons}"}
+    - if: "@path.id == 'paladin'"
+      then:
+        - choose_or_roll: {table: paladin-tenet-bring, as: bring, prompt: "a tenet of your oath: I swear to bring…"}
+        - choose_or_roll: {table: paladin-tenet-to-for, as: to_for, prompt: "to (or for) the…"}
+        - choose_or_roll: {table: paladin-tenet-despite, as: despite, prompt: "despite (or because of)…"}
+        - add: {field: path_notes, value: "tenet: I swear to bring {@bring} to (or for) the {@to_for}, despite (or because of) {@despite}"}
+        - prompt: "Choose one side of each dash and rewrite your tenet for clarity. Detail your other two tenets now or over the first few sessions, and rank all three: if they conflict, following a higher one avoids violating a lower one."
+    - if: "@path.id == 'ranger'"
+      then:
+        - repeat: 3
+          steps:
+            - choose_or_roll: {table: ranger-trap-effect, as: trap_effect, prompt: "a trap you commonly use: its effect"}
+            - choose_or_roll: {table: ranger-trap-trigger, as: trap_trigger, prompt: "and its trigger"}
+            - add: {field: path_notes, value: "favorite trap: {@trap_effect} {@trap_trigger} trap"}
+    - if: "@path.id == 'rogue'"
+      then:
+        - choose_or_roll: {table: rogue-guild, as: guild, count: 2, prompt: "the thieves' guild you learned from: two that describe it"}
+        - choose_or_roll: {table: rogue-guild, as: not_guild, exclude: "@guild", prompt: "and one that really doesn't"}
+        - add: {field: path_notes, value: "guild: {@guild}; not {@not_guild}"}
+        - choose_or_roll: {table: rogue-crime-severity, as: severity, prompt: "a past crime: its severity"}
+        - choose_or_roll: {table: rogue-crime-nature, as: crime, prompt: "its nature"}
+        - choose_or_roll: {table: rogue-crime-reputation, as: reputation, prompt: "your reputation from it"}
+        - choose_or_roll: {table: rogue-crime-reactions, as: reaction, prompt: "and your own reaction to it"}
+        - add: {field: path_notes, value: "crime: {@severity} {@crime}, {@reputation} (\"{@reaction}\")"}
+    - if: "@path.id == 'summoner'"
+      then:
+        - choose_or_roll: {table: summoner-vassal-form, as: vassal_form, prompt: "your vassal: it's a ___ …"}
+        - choose_or_roll: {table: summoner-vassal-creature, as: vassal_creature, prompt: "…-like creature"}
+        - choose_or_roll: {table: summoner-vassal-movement, as: vassal_movement, prompt: "that you send ___ing toward your enemies"}
+        - add: {field: path_notes, value: "vassal: {@vassal_form} {@vassal_creature}-like creature I send {default(@vassal_movement.ing, @vassal_movement)} toward my enemies"}
+    - if: "@path.id == 'swashbuckler'"
+      then:
+        - repeat: 2
+          steps:
+            - choose_or_roll: {table: swashbuckler-entanglement-kind, as: entangled_kind, prompt: "someone important in your tales"}
+            - choose_or_roll: {table: swashbuckler-entanglement-person, as: entangled_person, prompt: "who they are"}
+            - add: {field: path_notes, value: "entanglement: {@entangled_kind} {@entangled_person}"}
+        - choose_or_roll: {table: swashbuckler-creeds, as: creed, prompt: "your creed (up to two, or your own)"}
+        - add: {field: path_notes, value: "creed: {@creed}"}
+        - choose_or_roll: {table: swashbuckler-legend-first, as: legend_first, prompt: "what people have taken to calling you: a first word"}
+        - choose_or_roll: {table: swashbuckler-legend-second, as: legend_second, prompt: "and a second"}
+        - add: {field: path_notes, value: "legend: the {@legend_first} {@legend_second}"}
+        - prompt: "One more person vital to your story, whom you don't know yet: leave a place for them."
+    - if: "@path.id == 'warlock'"
+      then:
+        - choose_or_roll: {table: warlock-patron-nature, as: natures, count: 2, prompt: "your patron: two natures"}
+        - choose_or_roll: {table: warlock-patron-desires, as: patron_desires, count: 2, prompt: "and two desires"}
+        - add: {field: path_notes, value: "patron: {@natures}; desires {@patron_desires}"}
+        - prompt: "Give your patron a distinct color or visual signature (its trappings), how it communicates (telepathy, signs, projection), how many followers it has (many, few, one), a name and what you know of it, and the bond between you."
+    - if: "@path.id == 'witch'"
+      then:
+        - choose_or_roll: {table: witch-afflictions, as: affliction, prompt: "your strange affliction (and how did you get it?)"}
+        - add: {field: path_notes, value: "affliction: {@affliction}"}
+        - choose_or_roll: {table: witch-hovel-descriptor, as: hovel_descriptor, prompt: "your hovel: what it's like"}
+        - choose_or_roll: {table: witch-hovel-place, as: hovel_place, prompt: "and what it is"}
+        - add: {field: path_notes, value: "hovel: {@hovel_descriptor} {@hovel_place}"}
+
+    # Stats (p. 46): 1 in each, then 4 more points (3 under level 0), at most 3 in any.
+    - if: "@option.level_zero"
+      then:
+        - point_buy:
+            fields: [brawn, agility, wits, presence]
+            budget: 3
+            costs: {1: 0, 2: 1, 3: 2}
+            default: random
+            as: stats
+      else:
+        - point_buy:
+            fields: [brawn, agility, wits, presence]
+            budget: 4
+            costs: {1: 0, 2: 1, 3: 2}
+            default: random
+            as: stats
+    - name: {prompt: "a name for your adventurer (the book has no name tables)"}
+    - let: {pc_name: "@name", pool_talent: "@talent"}
+    - repeat: 1
+      steps: *talent-pool
+    - if: "@blessed_at_creation"
+      then:
+        - entity:
+            key: pool
+            type: track
+            name: "{@pc_name}'s {@blessing_rite} rite"
+            fields: {kind: pool, pool: power, value: {value: 4, max: 4}, note: "Divine Blessing: a rite, a power pool rolled to cast (drop 1d first for a potent spell); it replenishes each session."}
+            links: [{rel: of, to: character}]
+
+    # The core talent's own choices and pools (pp. 54-86): now, or at level 1 under level 0.
+    - if: "not @option.level_zero"
+      then: &core-choices
+        - if: "@path.id == 'artificer'"  # Infusion (p. 54)
+          then:
+            - choose_or_roll: {from: [arcane, divine, eldritch, primal, technology], as: touchstone_theme, prompt: "Infusion: you know 6 touchstones from the arcana crucibles (and all functions): the crucible they come from"}
+            - choose_or_roll: {table: "arcana-{@touchstone_theme}", as: new_touchstones, count: 6, prompt: "your 6 touchstones"}
+            - add: {field: touchstones, value: "@new_touchstones"}
+            - prompt: "Infusion: you've created 3 major arcana using your touchstones and any function: design each with the arcana generator (`didact gen run grimwild-ce.arcana`: tier major, theme {@touchstone_theme}, two of your touchstones), then `didact set <pc> arcana+=<arcana>`."
+        - if: "@path.id == 'cleric'"  # Channel Divinity (p. 60)
+          then:
+            - choose_or_roll: {table: cleric-rites, as: major_rite, prompt: "Channel Divinity: your mission's major rite (a 6d power pool)"}
+            - choose_or_roll: {table: cleric-rites, as: minor_rite_1, exclude: "@major_rite", prompt: "a minor rite (a 4d power pool)"}
+            - choose_or_roll: {table: cleric-rites, as: minor_rite_2, exclude: ["@major_rite", "@minor_rite_1"], prompt: "and a second minor rite (a 4d power pool)"}
+            - add: {field: path_notes, value: "rites: major {@major_rite}; minor {@minor_rite_1}, {@minor_rite_2}"}
+            - entity:
+                key: pool
+                type: track
+                name: "{@pc_name}'s {@major_rite} rite"
+                fields: {kind: pool, pool: power, value: {value: 6, max: 6}, note: "Channel Divinity: the major rite, a power pool rolled to cast (drop 1d first for a potent spell); it replenishes each session."}
+                links: [{rel: of, to: character}]
+            - entity:
+                key: pool
+                type: track
+                name: "{@pc_name}'s {@minor_rite_1} rite"
+                fields: {kind: pool, pool: power, value: {value: 4, max: 4}, note: "Channel Divinity: a minor rite, a power pool rolled to cast (drop 1d first for a potent spell); it replenishes each session."}
+                links: [{rel: of, to: character}]
+            - entity:
+                key: pool
+                type: track
+                name: "{@pc_name}'s {@minor_rite_2} rite"
+                fields: {kind: pool, pool: power, value: {value: 4, max: 4}, note: "Channel Divinity: a minor rite, a power pool rolled to cast (drop 1d first for a potent spell); it replenishes each session."}
+                links: [{rel: of, to: character}]
+        - if: "@path.id == 'druid'"  # Wild Shape (p. 62)
+          then:
+            - entity:
+                key: pool
+                type: track
+                name: "{@pc_name}'s Wild Shape"
+                fields: {kind: pool, pool: resource, value: {value: 2, max: 2}, note: "Wild Shape: roll it to shift into a familiar beast form, dropping 1d first for each wild talent; it replenishes each scene."}
+                links: [{rel: of, to: character}]
+        - if: "@path.id == 'fighter'"  # Weapon Mastery (p. 64)
+          then:
+            - choose_or_roll: {from: [brawling, dual-wielding, one-handed, ranged, two-handed], as: fighting_style, prompt: "Weapon Mastery: a fighting style you have mastered (+1d when you fight, defend or assist in it)"}
+            - add: {field: path_notes, value: "fighting style: {@fighting_style}"}
+        - if: "@path.id == 'psion'"  # Awakened Mind (p. 70)
+          then:
+            - choose_or_roll: {table: psion-bastions, as: new_bastions, count: 2, prompt: "Awakened Mind: two bastions of psionic power, the touchstones of your psionic magic"}
+            - add: {field: bastions, value: "@new_bastions"}
+        - if: "@path.id == 'rogue'"  # Expertise (p. 74)
+          then:
+            - choose_or_roll: {from: [blend in, charm, investigate, negotiate, network, parkour, ambush, deception, dismantle, provoke, sleight of hand, stealth], as: new_skills, count: 3, exclude: "{default(@character.skills, '')}", prompt: "Expertise: three skills as your skill set, +1d when you use one (above board: blend in, charm, investigate, negotiate, network, parkour; below table: ambush, deception, dismantle, provoke, sleight of hand, stealth)"}
+            - add: {field: skills, value: "@new_skills"}
+        - if: "@path.id == 'sorcerer'"  # Sorcery (p. 76)
+          then:
+            - choose_or_roll: {from: [blood, decay, flame, frost, lux, shadow, stone, tempest], as: magic_path, exclude: "{default(@character.magic, '')}", prompt: "Sorcery: any 4 magic paths and techniques, with at least 1 of each; first a magic path"}
+            - choose_or_roll: {from: [attack, create, defend, enhance, hinder, influence, transform, traverse], as: technique, exclude: "{default(@character.magic, '')}", prompt: "then a technique"}
+            - choose_or_roll: {from: [blood, decay, flame, frost, lux, shadow, stone, tempest, attack, create, defend, enhance, hinder, influence, transform, traverse], as: more_magic, count: 2, exclude: ["@magic_path", "@technique", "{default(@character.magic, '')}"], prompt: "and 2 more, magic paths or techniques"}
+            - add: {field: magic, value: "@magic_path"}
+            - add: {field: magic, value: "@technique"}
+            - add: {field: magic, value: "@more_magic"}
+            - choose_or_roll: {from: [wild surge, take vex, curse], as: twists, prompt: "how your magical twists manifest (two or more 1s when casting, thorns included): a wild surge (a 2d story roll for the effect), take vex, or a curse (the GM takes +1 suspense); or make your own with the GM"}
+            - add: {field: path_notes, value: "twists: {@twists}"}
+        - if: "@path.id == 'summoner'"  # Vassal (p. 78)
+          then:
+            - repeat: 1
+              steps: &vassal-aspect  # an aspect, a strange trait defining it; +1 at levels 3 and 6
+                - choose_or_roll: {from: [big enough to ride, telepathic, a thematic path talent], as: aspect, exclude: "{default(@character.aspects, '')}", prompt: "your vassal's aspect, a strange trait defining it (such as these; or make your own with the GM)"}
+                - if: "@aspect == 'a thematic path talent'"
+                  then:
+                    - choose_or_roll: {table: talent-lists, as: aspect_list, exclude: [Legacy talents (ask your GM)], prompt: "the list its thematic path talent comes from"}
+                    - choose: {from: "@aspect_list.talents", records: talent, as: aspect_talent, prompt: "the vassal's thematic path talent, with its trappings (no \"one time only\" features, p. 53)"}
+                    - add: {field: aspects, value: "thematic path talent: {@aspect_talent}"}
+                  else:
+                    - add: {field: aspects, value: "@aspect"}
+            - entity:
+                key: pool
+                type: track
+                name: "{@pc_name}'s vassal"
+                fields: {kind: pool, pool: power, value: {value: 4, max: 4}, note: "Vassal: roll it to call upon and direct your vassal; it returns to its max once at 0d, or when you push yourself (`didact do refresh`)."}
+                links: [{rel: of, to: character}]
+        - if: "@path.id == 'warlock'"  # Pact (p. 82)
+          then:
+            - repeat: 1
+              steps: &eldritch-talent  # the patron's gift, a changeable path talent; +1 at levels 3 and 6
+                - choose_or_roll: {table: talent-lists, as: eldritch_list, exclude: [Legacy talents (ask your GM)], prompt: "Pact: your patron gifts you an Eldritch Talent, a changeable path talent with its trappings: the list it comes from"}
+                - choose: {from: "@eldritch_list.talents", records: talent, as: eldritch, exclude: "{default(@character.talents, '')}", prompt: "the Eldritch Talent (no \"one time only\" features, p. 53; given time to commune, you can change it: roll Patience)"}
+                - add: {field: talents, value: "@eldritch"}
+                - add: {field: path_notes, value: "Eldritch Talent: {@eldritch} (the patron's gift, changeable)"}
+                - let: {pool_talent: "@eldritch"}
+                - repeat: 1
+                  steps: *talent-pool
+            - entity:
+                key: pool
+                type: track
+                name: "{@pc_name}'s Patience"
+                fields: {kind: pool, pool: pressure, value: {value: 8, max: 8}, note: "Pact: your patron's patience. Roll it when you ask for a potent magical effect, change an Eldritch Talent, or otherwise displease them. At 0d your patron visits to clear up the issue, then it resets (`didact do refresh`)."}
+                links: [{rel: of, to: character}]
+        - if: "@path.id == 'witch'"  # Hidden Magic (p. 84)
+          then:
+            - choose_or_roll: {table: witch-words-of-power-1, as: words_1, count: 3, exclude: "{default(@character.words, '')}", prompt: "Hidden Magic: you begin with 6 words of power from the crucible: three from its first table"}
+            - choose_or_roll: {table: witch-words-of-power-2, as: words_2, count: 3, exclude: "{default(@character.words, '')}", prompt: "and three from its second (any 2 words are a spell's touchstones)"}
+            - add: {field: words, value: "@words_1"}
+            - add: {field: words, value: "@words_2"}
+        - if: "@path.id == 'wizard'"  # Spellcraft (p. 86)
+          then:
+            - repeat: 4
+              steps:
+                - choose_or_roll: {table: wizard-spell-style, as: spell_style, prompt: "Spellcraft: a spell theorem in your spellbook: its style"}
+                - choose_or_roll: {table: wizard-spell-essence, as: spell_essence, prompt: "its essence"}
+                - choose_or_roll: {table: wizard-spell-form, as: spell_form, prompt: "its form"}
+                - choose_or_roll: {table: wizard-schools, as: school, prompt: "its school, for its general function"}
+                - add: {field: path_notes, value: "theorem: {@spell_style} · {@spell_essence} · {@spell_form} (two of them name it), {@school}"}
+
+    # A campaign that starts above level 1 gains each level after the first here, as leveling up
+    # gains it (the steps below are the level-up's too): a new talent (or, with stat progression,
+    # +1 to a stat once), and the core talent's growth when the level brings it.
+    - repeat: "max(0, @start - 1)"
+      as: gained
+      steps:
+        - let: {next: "@gained + 1"}
+        - repeat: 1
+          steps: &gain-a-level
+            # Level 0 (an option, p. 176): level 1 brings the core talent (with its choices and
+            # pools) and the last stat point; a half core talent taken at level 0 is replaced with
+            # the core, and a different path talent chosen in its place. Otherwise a new talent
+            # from any list, or with stat progression (an option, p. 174) +1 to a stat instead (to
+            # at most 3), once per character.
+            - let: {half_core: "@from_zero and default(@path.prohibited, '') <> '' and default(@path.prohibited, '') in @character.talents"}
+            - if: "@from_zero"
+              then:
+                - add: {field: talents, value: "@path.core"}
+                - if: "@half_core"
+                  then:
+                    - remove: {field: talents, value: "@path.prohibited"}
+                    - message: "Level 0 (p. 176): {@path.core} replaces the half core talent {@path.prohibited}, and a different path talent takes its place; what the half core had you choose stays on the sheet (keep what still fits)."
+                - repeat: 1
+                  steps: *core-choices
+                - let: {growth: stat}
+              else:
+                - choose: {from: [talent, stat], as: growth, answer: "{if(@option.stat_progression and not default(@character.stat_raised, false), '', 'talent')}", prompt: "stat progression (an option): a new talent, or +1 to a stat instead (once per character)"}
+            - if: "@growth == 'stat'"
+              then:
+                - choose: {from: [brawn, agility, wits, presence], as: stat, exclude: ["{if(@character.brawn >= 3, 'brawn', '')}", "{if(@character.agility >= 3, 'agility', '')}", "{if(@character.wits >= 3, 'wits', '')}", "{if(@character.presence >= 3, 'presence', '')}"], prompt: "{if(@from_zero, 'your last stat point (level 0 reaches level 1)', 'the stat to raise by 1')}: at most 3"}
+                - if: "@stat == 'brawn'"
+                  then: [apply: {brawn: "{@character.brawn + 1}"}]
+                - if: "@stat == 'agility'"
+                  then: [apply: {agility: "{@character.agility + 1}"}]
+                - if: "@stat == 'wits'"
+                  then: [apply: {wits: "{@character.wits + 1}"}]
+                - if: "@stat == 'presence'"
+                  then: [apply: {presence: "{@character.presence + 1}"}]
+                - if: "not @from_zero"
+                  then: [apply: {stat_raised: true}]
+            - if: "@growth == 'talent' or @half_core"
+              then:
+                # Every path talent is open to every path (p. 52), but not another path's core; the
+                # background talents are open to all (p. 88); legacy talents need the GM's OK
+                # (p. 178); a path can't take its own half core talent ([Prohibited: …]). No magic
+                # keeps the magical paths' lists out.
+                - if: "@option.magic == 'none'"
+                  then:
+                    - choose_or_roll: {table: talent-lists, as: talent_list, exclude: [Artificer, Cleric, Druid, Psion, Sorcerer, Summoner, Warlock, Witch, Wizard], prompt: "level {@next}: the list to take the new talent from: {@path}'s, any other path's, or the background talents (no magic: the magical paths are out); a legacy talent needs your GM's OK"}
+                  else:
+                    - choose_or_roll: {table: talent-lists, as: talent_list, prompt: "level {@next}: the list to take the new talent from: {@path}'s, any other path's (every path talent is open to every path, p. 52), or the background talents; a legacy talent needs your GM's OK"}
+                - choose: {from: "@talent_list.talents", records: talent, as: talent, exclude: ["{default(@character.talents, '')}", "{default(@path.prohibited, '')}", "{if(@option.magic == 'none', default(@talent_list.magical_talents, ''), '')}"], prompt: "the new talent ({@talent_list}; not a core talent; one made with the GM counts too)"}
+                - add: {field: talents, value: "@talent"}
+                - repeat: 1
+                  steps: *talent-picks
+            # The core talent grows at some levels (2, 4 and 6, or 3 and 6: each path's page).
+            - if: "@next in @path.growth"
+              then:
+                - add: {field: path_notes, value: "level {@next}: {@path.core} grows ({@path.grows})"}
+                - prompt: "Level {@next}: the core talent grows. {@path.grows}"
+                - if: "@path.id == 'artificer'"
+                  then:
+                    - choose_or_roll: {from: [arcane, divine, eldritch, primal, technology], as: touchstone_theme, prompt: "Infusion grows: learn 2 touchstones, from the arcana crucible of…"}
+                    - choose_or_roll: {table: "arcana-{@touchstone_theme}", as: new_touchstones, count: 2, exclude: "{default(@character.touchstones, '')}", prompt: "your 2 new touchstones"}
+                    - add: {field: touchstones, value: "@new_touchstones"}
+                    - prompt: "Infusion grows: you can create +1 major arcana with your touchstones; design it with the arcana generator (`didact gen run grimwild-ce.arcana`: tier major), then `didact set <pc> arcana+=<arcana>`."
+                - if: "@path.id == 'cleric'"
+                  then:
+                    - prompt: "Channel Divinity grows: +1d to each of the rite pools you have: `didact do grow-pool pool=<rite>` for each, once this level is committed."
+                - if: "@path.id == 'druid'"
+                  then:
+                    - prompt: "Wild Shape grows: +1d to your Wild Shape pool: `didact do grow-pool pool=<wild shape>`, once this level is committed."
+                - if: "@path.id == 'psion'"
+                  then:
+                    - choose_or_roll: {table: psion-bastions, as: new_bastion, exclude: "{default(@character.bastions, '')}", prompt: "Awakened Mind grows: +1 bastion (and +1 instability slot at 0t)"}
+                    - add: {field: bastions, value: "@new_bastion"}
+                - if: "@path.id == 'rogue'"
+                  then:
+                    - choose_or_roll: {from: [blend in, charm, investigate, negotiate, network, parkour, ambush, deception, dismantle, provoke, sleight of hand, stealth], as: new_skill, exclude: "{default(@character.skills, '')}", prompt: "Expertise grows: +1 skill (and +1 Competence per session)"}
+                    - add: {field: skills, value: "@new_skill"}
+                - if: "@path.id == 'sorcerer'"
+                  then:
+                    - choose_or_roll: {from: [blood, decay, flame, frost, lux, shadow, stone, tempest, attack, create, defend, enhance, hinder, influence, transform, traverse], as: new_magic, exclude: "{default(@character.magic, '')}", prompt: "Sorcery grows: a new magic path or technique"}
+                    - add: {field: magic, value: "@new_magic"}
+                - if: "@path.id == 'summoner'"
+                  then:
+                    - repeat: 1
+                      steps: *vassal-aspect
+                - if: "@path.id == 'warlock'"
+                  then:
+                    - repeat: 1
+                      steps: *eldritch-talent
+                - if: "@path.id == 'witch'"
+                  then:
+                    - choose_or_roll: {table: witch-words-of-power-1, as: new_word_1, exclude: "{default(@character.words, '')}", prompt: "Hidden Magic grows: +2 words of power: one from the crucible's first table"}
+                    - choose_or_roll: {table: witch-words-of-power-2, as: new_word_2, exclude: "{default(@character.words, '')}", prompt: "and one from its second"}
+                    - add: {field: words, value: "@new_word_1"}
+                    - add: {field: words, value: "@new_word_2"}
+                - if: "@path.id == 'wizard'"
+                  then:
+                    - choose_or_roll: {table: wizard-spell-style, as: spell_style, prompt: "Spellcraft grows: +1 spell theorem: its style"}
+                    - choose_or_roll: {table: wizard-spell-essence, as: spell_essence, prompt: "its essence"}
+                    - choose_or_roll: {table: wizard-spell-form, as: spell_form, prompt: "its form"}
+                    - choose_or_roll: {table: wizard-schools, as: school, prompt: "its school, for its general function"}
+                    - add: {field: path_notes, value: "theorem: {@spell_style} · {@spell_essence} · {@spell_form} (two of them name it), {@school}"}
+    - apply: {level: "@start"}
+    - if: "@start > 1"
+      then:
+        - prompt: "This campaign starts PCs at level {@start} ({if(@option.flavor == 'noblebright' and @start == 2, 'noblebright', if(@option.flavor == 'high', 'high fantasy', 'larger scale'))}): the levels above 1 are gained above, as leveling up gains them."
+    - if: "@option.level_zero"
+      then:
+        - prompt: "Level 0 (an option): no core talent yet, and 3 stat points; after 1 experience you reach level 1 (`didact char advance <pc>`), with your core talent, its choices and pools, and your last stat point."
+
+    # The options' and flavors' pools (pp. 174-176, 184).
+    - if: "@option.vigor_pool"
+      then:
+        - entity:
+            key: pool
+            type: track
+            name: "{@pc_name}'s vigor"
+            fields: {kind: pool, pool: resource, value: {value: 3, max: 3}, note: "Vigor (an option): roll it when you catch your breath to clear 1 harm (`didact do vigor`); it refreshes after an extended rest or downtime."}
+            links: [{rel: of, to: character}]
+    - if: "@option.supplies"
+      then:
+        - entity:
+            key: pool
+            type: track
+            name: "{@pc_name}'s supplies"
+            fields: {kind: pool, pool: resource, value: {value: 4, max: 4}, note: "Supplies (an option): common items and rations; roll it with heavy use, and as time passes outside of civilization."}
+            links: [{rel: of, to: character}]
+    - if: "@option.wealth"
+      then:
+        - entity:
+            key: pool
+            type: track
+            name: "{@pc_name}'s coins"
+            fields: {kind: pool, pool: power, value: {value: 4, max: 4}, note: "Wealth (an option): roll it for larger purchases, or drop 1d then roll for huge expenses (`didact track roll <coins> --drop 1`); carousing by selling off treasure adds +2d (max 8d)."}
+            links: [{rel: of, to: character}]
+    - if: "@option.armor"
+      then:
+        - choose_or_roll: {from: [none, light, heavy], as: armor, prompt: "Armor (an option): the protective gear you wear (light gives a 1d Armor pool each session and Lightly Armored, heavy 2d and Heavily Armored)"}
+        - let: {armor_dice: "if(@armor == 'heavy', 2, if(@armor == 'light', 1, 0)) + if('fighter-bulwark' in @character.talents, 2, 0)"}
+        - if: "@armor == 'light'"
+          then: [add: {field: conditions, value: Lightly Armored}]
+        - if: "@armor == 'heavy'"
+          then: [add: {field: conditions, value: Heavily Armored}]
+        - if: "@armor_dice > 0"
+          then:
+            - entity:
+                key: pool
+                type: track
+                name: "{@pc_name}'s armor"
+                fields: {kind: pool, pool: resource, value: {value: "@armor_dice", max: "@armor_dice"}, note: "Armor (an option): after a physical consequence, roll it to lessen the consequence, as a messy defense roll (Bulwark: to avoid it); it comes back each session (`didact do armor`)."}
+                links: [{rel: of, to: character}]
+    - if: "@option.flavor == 'sword-and-sorcery'"
+      then:
+        - entity:
+            key: pool
+            type: track
+            name: "{@pc_name}'s renown"
+            fields: {kind: pool, pool: campaign, value: {value: 4, max: 4}, note: "Renown (sword & sorcery): a campaign timer spreading your legend; at 0d those in the greater world know your name."}
+            links: [{rel: of, to: character}]
+    - if: "@option.encumbrance"
+      then:
+        - prompt: "Encumbrance (an option): room for 2 + Brawn slots of gear ({2 + @character.brawn}), main armor and weapons aside: small items ½, most gear 1, large or bulky 2 or more."
+    - if: "@option.weapon_styles"
+      then:
+        - prompt: "Weapon styles (an option): give each of your weapons two styles: `didact gen run grimwild-ce.weapon`."
+
+    # Starting arcana (no magic: none at all): high fantasy gives 2 minor or 1 major (p. 186),
+    # noblebright (p. 185) and common magic (p. 172) 1 minor; each with the story of where it
+    # came from.
+    - if: "@option.magic <> 'none' and @option.flavor == 'high'"
+      then:
+        - choose_or_roll: {from: [2 minor arcana, 1 major arcana], as: arcana_start, prompt: "high fantasy: you begin with 2 minor arcana or 1 major arcana"}
+        - if: "@arcana_start == '1 major arcana'"
+          then:
+            - choose_or_roll: {table: major-arcana, as: starting_arcana, prompt: "your major arcana"}
+            - entity: {key: arcana, from: "@starting_arcana.id"}
+            - add: {field: arcana, value: "@arcana"}
+          else:
+            - repeat: 2
+              steps:
+                - choose_or_roll: {table: minor-arcana, as: starting_arcana, exclude: "{default(@starting_arcana, '')}", prompt: "a minor arcana"}
+                - entity: {key: arcana, from: "@starting_arcana.id"}
+                - add: {field: arcana, value: "@arcana"}
+        - prompt: "High fantasy: tell the story of where your arcana came from."
+    - if: "@option.magic <> 'none' and @option.flavor <> 'high' and (@option.magic == 'common' or @option.flavor == 'noblebright')"
+      then:
+        - choose_or_roll: {table: minor-arcana, as: starting_arcana, prompt: "{if(@option.flavor == 'noblebright', 'noblebright', 'common magic')}: you start with a minor arcana"}
+        - entity: {key: arcana, from: "@starting_arcana.id"}
+        - add: {field: arcana, value: "@arcana"}
+        - prompt: "Where did your {@starting_arcana} come from? Tell its story."
+
+    # What the table decides together (pp. 22-26, 46-51): crucibles rolled for ideas.
+    - table: heritage-folk
+      as: folk
+    - table: heritage-mood
+      as: mood
+    - table: heritage-land
+      as: land
+    - prompt: "Heritage (p. 49), if one background is your people: the crucible offers {@folk}; {@mood}; {@land}. Pick two or three words, interpret them, and give it three wises: `didact set <pc> heritage='…'`."
+    - table: character-body
+      as: body
+    - table: character-eyes
+      as: eyes
+    - table: character-voice
+      as: voice
+    - table: character-clothing
+      as: clothing
+    - prompt: "Three distinctive features others soon notice (p. 51 offers body {@body}; eyes {@eyes}; voice {@voice}; clothing {@clothing}): `didact set <pc> features+='…'`."
+    - table: story-arcs
+      as: arcs
+    - prompt: "One or two character arcs to explore (p. 26 offers {@arcs}), beside the party's group arc (`didact gen run grimwild-ce.party`): `didact set <pc> arcs+='…'`."
+    - table: bonds
+      as: bond
+    - if: "@option.random_bonds"
+      then:
+        - prompt: "Bonds are rolled randomly (grimdark): a bond towards each PC, rolled: this one is {@bond}; roll one for each other PC (`didact table roll bonds`): `didact set <pc> bonds+='… with <PC>'`."
+      else:
+        - prompt: "A bond towards each PC, matching an intensity and a nature (p. 22 offers {@bond}): `didact set <pc> bonds+='… with <PC>'`."
+    - prompt: "A montage of the party's last adventure together: `didact do montage who=<pc>` for each PC (2d each; the best is the outcome)."
+  source: "pp. 44-51, 54-86, 172-187"
+
+- chargen: level-up
+  title: Level up
+  help: >-
+    When the XP boxes filled equal the next level (level 4 to 5: 5 boxes; twice that with slow
+    progression or focused growth), the character gains it: a new talent from any path's list
+    (every path talent is open to every path, but not another core, nor the path's own half core
+    talent), the background talents, or with the GM's OK a legacy talent; and at some levels the
+    core talent grows (every path's page says which), with what that growth has you choose. With
+    stat progression a stat can rise instead of the talent, once; with milestone levels the level
+    comes with a major group arc instead of XP. A level 0 PC reaching level 1 gains the core
+    talent, its choices and pools, and the last stat point, and a half core talent taken at level
+    0 gives way to another talent. The level cap is 3 at smaller scale and in low or cozy fantasy,
+    else 7. Side characters don't advance.
+  advances: pc
+  modes: [guided, random]
+  params:
+    who: ref
+  steps:
+    - if: "@who.side"
+      then:
+        - stop: "{@who.name} is a side character (solo party mode, p. 195): side characters don't add XP or advance."
+    - let:
+        cap: "if(@option.scale == 'smaller' or @option.flavor == 'low' or @option.flavor == 'cozy', 3, 7)"
+        boxes: "if(@who.level == 0, 1, @who.level + 1)"
+        next: "@who.level + 1"
+        from_zero: "@who.level == 0"
+        creating: false
+        pc_name: "@who.name"
+    - let: {need: "@boxes * if(@option.slow_progression or @option.focused_growth, 2, 1)"}
+    - if: "@who.level >= @cap"
+      then:
+        - stop: "{@who.name} is at the highest level this game allows ({@cap}): talents can be switched out after in-game milestones instead (`didact do switch-talent`, pp. 52, 173, 187)."
+    - if: "not @option.milestone_levels and @who.xp < @need"
+      then:
+        - stop: "{@who.name} has {@who.xp} of {@need} XP: the next level comes when the boxes filled equal it{if(@option.slow_progression or @option.focused_growth, ', each slashed before it is filled', '')} (p. 31)."
+    - if: "not @option.milestone_levels"
+      then:
+        - apply: {xp: "{@who.xp - @need}"}
+    - apply: {level: "@next"}
+    - choose: {table: paths, as: path, answer: "@who.path", prompt: "the character's path"}
+    - repeat: 1
+      steps: *gain-a-level  # defined in character creation above
+    - message: "{@who.name} reaches level {@next}!"
+  source: "pp. 20, 31, 52, 172-177, 183-187"

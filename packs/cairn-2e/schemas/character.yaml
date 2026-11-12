@@ -1,0 +1,66 @@
+# Characters: PCs, NPCs and hirelings share Cairn's sheet (players-guide/character-creation).
+# Attributes run 0-20: growth and scars can raise one past 18 (the book sets no ceiling; a save
+# of 20 always fails, so 19 and 20 read the same).
+type: character
+label: Character
+fields:
+  STR: {kind: stat, range: [0, 20], roll: 3d6, on_zero: {trigger: death}, help: "Strength: physical power, resisting poison. At 0 you die."}
+  DEX: {kind: stat, range: [0, 20], roll: 3d6, on_zero: {condition: paralyzed}, help: "Dexterity: poise, speed, reflexes, sneaking. At 0 you're paralyzed."}
+  WIL: {kind: stat, range: [0, 20], roll: 3d6, on_zero: {condition: delirious}, help: "Willpower: persuade, deceive, intimidate, cast spells. At 0 you're delirious."}
+  hp: {kind: resource, min: 0, roll: 1d6, label: HP, help: "Hit Protection: the ability to avoid damage. Rest restores it."}
+  armor:
+    kind: derived
+    expr: "min(3, sum(@inventory.armor) - sum(@inventory.backpack.armor))"
+    help: >-
+      The armor worn or held, never more than 3: armor stowed in the backpack doesn't count (items
+      not yet in a group, like those a new character starts with, count as carried).
+  inventory:
+    kind: slots
+    capacity: 10
+    groups: {body: 4, backpack: 6}
+    sizes: {petty: 0, normal: 1, bulky: 2}
+    when_full: {set: {hp: 0}}
+    help: >-
+      10 slots: four or five items carried comfortably (body), the backpack's six. Petty items
+      take none, bulky ones two. Fatigue fills slots too. A full inventory drops HP to 0.
+  fatigue: {kind: counter, min: 0, occupies: inventory, help: "Each Fatigue fills a slot until a full night's rest in safety."}
+  burden: {kind: counter, min: 0, occupies: inventory, help: "Slots a growing curse takes: the Stone Heart (bond 15) grows one slot heavier each month."}
+  purse: {kind: counter, min: 0, occupies: inventory, help: "Slots the coins take: under 100gp they're petty (`didact do coins who=…`)."}
+  conditions:
+    kind: conditions
+    help: >-
+      deprived, panicked, paralyzed, delirious, critical (dying), stabilized (in recovery),
+      doomed, and scars still healing: walloped, broken-leg/arm/rib/skull, diseased, hamstrung,
+      deafened, mortal-wound.
+  deprived_days: {kind: counter, min: 0, help: "Days deprived so far: each one past the first adds a Fatigue."}
+  gold: {kind: int, min: 0, default: 0, label: Gold, help: "Gold pieces; a bag under 100gp is petty."}
+  background: {kind: enum, values: [Aurifex, Barber-Surgeon, Beast Handler, Bonekeeper, Cutpurse, Fieldwarden, Fletchwind, Foundling, Fungal Forager, Greenwise, Half-Witch, Hexenbane, Jongleur, Kettlewright, Marchguard, Mountebank, Outrider, Prowler, Rill Runner, Scrivener]}
+  age: {kind: int, min: 0, roll: 2d20+10}
+  bond: {kind: list, label: Bonds, help: "The character's bonds (a Fieldwarden has two); each is also a thread to resolve: `didact do resolve-bond`."}
+  omen: {kind: text, help: "The omen the party's youngest rolled and read aloud."}
+  abilities: {kind: list, help: "What experience taught them (growth, training), with any cost."}
+  growth: {kind: list, help: "Each growth: what triggered it and what changed (`didact char advance`)."}
+  scars: {kind: list, help: "Each scar: what happened and what it changed."}
+guidance: >-
+  A new character has a background (with its names, gear and two tables), STR, DEX and WIL of
+  3d6 each (swap any two), 1d6 HP, traits, a bond and an age of 2d20+10; the party's youngest
+  rolls an omen. Use `didact char new`. Growth changes them later: `didact char advance`.
+---
+type: pc
+extends: character
+label: Player character
+---
+type: npc
+extends: character
+label: Non-player character
+fields:
+  role: {kind: text, help: "Their place in the world."}
+  disposition: {kind: enum, values: [Hostile, Wary, Curious, Kind, Helpful], help: "From a reaction roll (2d6)."}
+---
+type: hireling
+extends: character
+label: Hireling
+fields:
+  role: {kind: enum, values: [Alchemist, Animal Handler, Blacksmith, Bodyguard, Local Guide, Lockpick, Navigator, Sailor, Scholar, Tracker, Trapper, Veteran Bodyguard]}
+  wage: {kind: int, min: 0, help: "Gold pieces per day (see the Marketplace)."}
+guidance: "A hireling: a role and its daily wage, 3d6 for each attribute, 1d6 HP, gear fit for their station, all eight trait tables (`didact char new hireling`); or a background, a name and its tables (`didact char new hireling-background`)."

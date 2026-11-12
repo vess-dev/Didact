@@ -1,0 +1,795 @@
+# What the hack changes in cairn-2e's core rules (players-guide/core-rules, procedures, hazards,
+# diseases-and-afflictions, unusual-pcs, mounts). Each rule here replaces cairn-2e's of the same
+# id; the rest (saves, morale, retreat, scars, stabilize, fatigue, the dungeon and wilderness
+# procedures, weather) are cairn-2e's, unchanged.
+action: attack
+title: Attack
+help: >-
+  Attacks always hit. Roll the weapon die (impaired: d4; enhanced: d12; unarmed: always d4),
+  subtract armor, and take it from HP. An attack that would be both Impaired and Enhanced is
+  neither: the two cancel and the weapon's own die is rolled. Impaired: mode=impaired (cover,
+  bound hands, a very distant target), a panicked attacker, an individual against a detachment
+  (unless blast), or an attack of a kind the target resists (its `impaired_by`: a Nord's frost, a
+  Resist Fire potion, a ghost's mundane blades). Enhanced: mode=enhanced (a helpless foe, a
+  daring move), a detachment against an individual, or a kind the target dreads (its
+  `enhanced_by`: fire against a vampire, silver against the beast-blooded). kind= names the
+  attack's kinds: mundane (the default), fire, frost, shock, poison, magic, silver, sun, or
+  several ('magic,fire'). pierce=n ignores n Armor (3: all of it). A Khajiit's unarmed claws
+  (mode=unarmed) deal d6, not d4. HP to exactly 0 gives a PC a
+  scar; damage past 0 comes off STR and forces a critical damage save with the new STR (a PC who
+  fails is dying, an NPC dead, a detachment routed; the attacker's own critical effect follows).
+  Two weapons or several attackers: weapon='{d8, d6}kh1' (keep the highest; two of a kind,
+  a beast's d8+d8: weapon=2d8kh1). A helpless or unaware target: direct=true sends the damage
+  to STR.
+params:
+  attacker: ref
+  target: ref
+  weapon: {kind: dice, default: d6, help: "The damage die; two weapons or several attackers: '{d8, d6}kh1'"}
+  dice: {kind: int, optional: true, help: "How many dice the weapon combines, for impaired and enhanced attacks (default: 2 for a group like '{d6, d6}kh1', else 1)"}
+  mode: {enum: [normal, impaired, enhanced, unarmed], default: normal}
+  kind: {kind: text, default: mundane, help: "The attack's kinds: mundane, fire, frost, shock, poison, magic, silver, sun (several: 'magic,fire')"}
+  pierce: {kind: int, default: 0, help: "Armor it ignores (an acid spit, a Dwarven bolt: 1; a vampire's drain: 3)"}
+  blast: {kind: flag, default: false, help: "A blast attack: run it once for each target"}
+  direct: {kind: flag, default: false, help: "A helpless or unaware target: the damage skips HP and goes to STR"}
+steps:
+  - let:
+      on_unit: "@target.type == 'detachment' and @attacker.type <> 'detachment' and not @blast"
+      by_unit: "@attacker.type == 'detachment' and @target.type <> 'detachment'"
+      panicked: "'panicked' in default(@attacker.conditions, '')"
+      count: "default(@dice, if(',' in '$weapon' or ('2d' in '$weapon' and 'kh' in '$weapon'), 2, 1))"
+      resists: "default(@target.impaired_by, '')"
+      dreads: "default(@target.enhanced_by, '')"
+      tconds: "default(@target.conditions, '')"
+  - let:
+      resisted: >-
+        ('fire' in @kind and ('fire' in @resists or 'resist-fire' in @tconds))
+        or ('frost' in @kind and ('frost' in @resists or 'resist-frost' in @tconds))
+        or ('shock' in @kind and ('shock' in @resists or 'resist-shock' in @tconds))
+        or ('poison' in @kind and 'poison' in @resists) or ('magic' in @kind and 'magic' in @resists)
+        or ('mundane' in @kind and 'mundane' in @resists) or ('silver' in @kind and 'silver' in @resists)
+        or ('sun' in @kind and 'sun' in @resists)
+      dreaded: >-
+        ('fire' in @kind and 'fire' in @dreads) or ('frost' in @kind and 'frost' in @dreads)
+        or ('shock' in @kind and 'shock' in @dreads) or ('poison' in @kind and 'poison' in @dreads)
+        or ('magic' in @kind and 'magic' in @dreads) or ('mundane' in @kind and 'mundane' in @dreads)
+        or ('silver' in @kind and 'silver' in @dreads) or ('sun' in @kind and 'sun' in @dreads)
+  - let:
+      impaired: "@mode == 'impaired' or @on_unit or @panicked or @resisted"
+      enhanced: "@mode == 'enhanced' or @by_unit or @dreaded"
+      claws: "@mode == 'unarmed' and default(@attacker.race, '') == 'Khajiit' and not ('transformed' in default(@attacker.conditions, ''))"
+  - let: {how: "if(@mode == 'unarmed' and not @claws, 'unarmed', if(@impaired and @enhanced, 'cancelled', if(@impaired, 'impaired', if(@enhanced, 'enhanced', 'normal'))))"}
+  - if: "@how == 'unarmed'"
+    then: [{roll: d4, as: damage}]
+    else:
+      - if: "@how == 'impaired'"
+        then: [{roll: "(@count)d4kh1", as: damage}]
+        else:
+          - if: "@how == 'enhanced'"
+            then: [{roll: "(@count)d12kh1", as: damage}]
+            else:
+              - if: "@claws"
+                then: [{roll: d6, as: damage}]
+                else: [{roll: $weapon, as: damage}]
+  - let: {dealt: "max(0, @damage - max(0, default(@target.armor, 0) - @pierce))", before: "default(@target.hp, 0)"}
+  - if: "@direct"
+    then:
+      - let: {overflow: "@dealt"}
+      - message: "{@target.name} can't rely on HP: the damage goes straight to STR."
+    else:
+      - let: {overflow: "max(0, @dealt - @before)"}
+      - set: target.hp
+        op: "-="
+        value: "@dealt"
+      - if: "@before > 0 and @dealt == @before and @target.type == 'pc'"
+        then:
+          - do: scar
+            with: {who: "@target", lost: "@dealt"}
+  - if: "@overflow > 0"
+    then:
+      - set: target.STR
+        op: "-="
+        value: "@overflow"
+      - if: "@target.STR > 0"
+        then:
+          - check: save
+            with: {who: "@target", attr: STR}
+            as: critical
+          - if: "'doomed' in default(@target.conditions, '')"
+            then:
+              - set: target.conditions
+                op: "-="
+                value: doomed
+              - if: "@critical == 'failure'"
+                then:
+                  - message: "{@target.name} was doomed, and fails the critical damage save: they die horribly."
+                  - do: death
+                    with: {who: "@target"}
+                else:
+                  - message: "{@target.name} was doomed, and passes: the doom lifts."
+                  - do: attribute-reroll
+                    with: {who: "@target", attr: hp, dice: 3d6, value: stays}
+                    as: reroll
+                  - set: target.scars
+                    op: "+="
+                    value: "Doomed, survived: {@reroll.changed}"
+            else:
+              - if: "@critical == 'failure'"
+                then:
+                  - if: "@target.type == 'pc'"
+                    then:
+                      - set: target.conditions
+                        op: "+="
+                        value: critical
+                      - message: "{@target.name} takes critical damage: they can only crawl weakly, grasping for life. Given aid (bandages, a healing potion, a restoration spell) they stabilize: `didact do stabilize who={@target.id}`; untreated, they die within the hour."
+                      - remind: "{@target.name} dies of critical damage unless stabilized (`didact do stabilize who={@target.id}`)"
+                        in: 1 hour
+                    else:
+                      - if: "@target.type == 'detachment'"
+                        then:
+                          - set: target.status
+                            value: routed
+                          - message: "{@target.name} takes critical damage: the detachment is routed or badly weakened. At 0 STR it is destroyed."
+                        else:
+                          - message: "{@target.name} fails the critical damage save (dead, at the Warden's discretion: a dying one can still be stabilized)."
+                          - do: death
+                            with: {who: "@target"}
+          - if: "@critical == 'failure' and default(@attacker.critical, '') <> ''"
+            then:
+              - message: "{@attacker.name}'s critical damage: {@attacker.critical}"
+  - if: "@how == 'cancelled'"
+    then: ["Impaired and Enhanced cancel: the weapon's own die ({@attacker.name} → {@target.name})."]
+  - if: "@how <> 'normal' and @how <> 'cancelled'"
+    then: ["The attack is {@how} ({@attacker.name} → {@target.name})."]
+  - message: "{@attacker.name} deals {@dealt} damage to {@target.name}."
+  - if: "@dealt > 0 and default(@attacker.disease, '') <> '' and (@target.type == 'pc' or @target.type == 'npc' or @target.type == 'hireling')"
+    then:
+      - prompt: "The blow may carry {@attacker.disease}: if it wounded or exposed {@target.name}, a STR save or contract it (`didact do disease who={@target.id} disease={@attacker.disease}`)."
+  - if: "@dealt > 0 and default(@attacker.venom, '') <> ''"
+    then:
+      - prompt: "{@attacker.name}'s venom ({@attacker.venom}): the first time it hits a creature in a fight, a STR save or lose that STR (`didact do venom who={@target.id} amount={if('1d6' in @attacker.venom, '1d6', if('1d8' in @attacker.venom, '1d8', '1d4'))}{if('lingering' in @attacker.venom, ' lingering=true', '')}`)."
+  - if: "'rockjoint' in default(@attacker.diseases, '')"
+    then: ["Rockjoint: in the first round of a fight, {@attacker.name}'s attacks are Impaired (mode=impaired)."]
+  - if: "'droops' in default(@attacker.diseases, '')"
+    then: ["Droops: {@attacker.name}'s attacks with a bulky weapon are Impaired (mode=impaired)."]
+source: players-guide/core-rules#attacking--damage
+---
+trigger: death
+title: Death
+help: >-
+  Runs when STR reaches 0 (the STR field's on_zero hook), or when a critical damage save kills.
+  A Dremora isn't killed: its vestige is banished to Oblivion, to re-form there and return after
+  a season (`didact do reform`).
+on: manual
+params: {who: ref}
+steps:
+  - if: "@who.type == 'detachment'"
+    then:
+      - set: who.status
+        value: destroyed
+      - message: "{@who.name} is destroyed."
+    else:
+      - if: "default(@who.nature, 'mortal') == 'dremora'"
+        then:
+          - set: who.status
+            value: banished
+          - message: "{@who.name} is not killed: their vestige is cast back to Oblivion. They re-form there and may return to play after a season, a new arc, at the Warden's leave (`didact do reform who={@who.id}`)."
+        else:
+          - set: who.status
+            value: dead
+          - message: "{@who.name} is dead."
+          - if: "@who.type == 'pc'"
+            then:
+              - prompt: "A player whose character dies makes a new one (`didact char new`) or takes over a hireling; they join the party at once."
+            else:
+              - if: "@who.type == 'monster' or @who.type == 'npc'"
+                then:
+                  - prompt: "If it fought the party, it's a casualty: at the enemies' first, and again when they're down to half their number, those left save morale (`didact do morale who=<one of them>`; a group that uses its leader's WIL: leader=<them> or wil=<n>)."
+source: players-guide/core-rules#character-death
+---
+trigger: fight-over
+title: The fight is over
+help: >-
+  When a fight ends (`didact combat end`), the once-per-combat uses (the Command action, a
+  vampire's restoring drain) are fresh again on every PC.
+on: combat_end
+for: pcs
+params: {who: ref}
+when: "count(@who.once_per_combat) > 0"
+steps:
+  - set: who.once_per_combat
+    value: []
+source: players-guide/companions#the-command-action
+---
+trigger: scene-over
+title: The scene is over
+help: >-
+  When a scene ends, what lasts one scene comes off every PC: a resist potion's ward (resist-fire,
+  resist-frost, resist-shock) and the Shadow's invisibility, and a form taken (Beast Form, the
+  Vampire Lord) ends: the PC reverts, a beast with its hunger after the hunt.
+on: scene_end
+for: pcs
+params: {who: ref}
+when: "'transformed' in @who.conditions or 'resist-fire' in @who.conditions or 'resist-frost' in @who.conditions or 'resist-shock' in @who.conditions or 'invisible' in @who.conditions"
+steps:
+  - if: "'resist-fire' in @who.conditions or 'resist-frost' in @who.conditions or 'resist-shock' in @who.conditions"
+    then:
+      - if: "'resist-fire' in @who.conditions"
+        then:
+          - set: who.conditions
+            op: "-="
+            value: resist-fire
+      - if: "'resist-frost' in @who.conditions"
+        then:
+          - set: who.conditions
+            op: "-="
+            value: resist-frost
+      - if: "'resist-shock' in @who.conditions"
+        then:
+          - set: who.conditions
+            op: "-="
+            value: resist-shock
+      - message: "The scene is over: {@who.name}'s resist potion wears off."
+  - if: "'invisible' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: invisible
+      - message: "The scene is over: {@who.name} is seen again."
+  - if: "'transformed' in @who.conditions"
+    then:
+      - message: "The scene is over, and with it {@who.name}'s form:"
+      - do: revert
+        with: {who: "@who"}
+source: players-guide/unusual-pcs#a-note-before-you-begin
+---
+check: panic
+title: Panic
+help: >-
+  Surrounded, in darkness, or facing their greatest fear, a character saves WIL or panics. A
+  panicked character has 0 HP, doesn't act in the first round, and their attacks are impaired.
+  A draugr revenant is never frightened: there is nothing living left to sway.
+params: {who: ref}
+before:
+  - if: "default(@who.nature, 'mortal') == 'draugr-revenant'"
+    then:
+      - stop: "{@who.name} is immune to fear (Cold and tireless): no save, no panic."
+roll: d20
+success: "@roll <= @who.WIL"
+auto: {1: success, 20: failure}
+on:
+  failure:
+    - set: who.conditions
+      op: "+="
+      value: panicked
+    - set: who.hp
+      value: 0
+    - message: "{@who.name} panics: 0 HP, no action in the first round, attacks impaired. Overcoming it takes an action: `didact do steady who={@who.id}`."
+source: players-guide/procedures#panic
+---
+action: cast
+title: Channel a Spell Tome
+help: >-
+  Hold the Spell Tome in both hands and read it aloud, then add a Fatigue. Deprived or in danger,
+  a WIL save: failure brings consequences on par with the spell (more Fatigue, a destroyed tome,
+  injury, even death). Given time and safety, enhance=true makes it stronger at no extra cost. A
+  Scroll is petty, causes no Fatigue and is gone after one use: one the caster carries is known
+  by its one use and spent (scroll=true for one no sheet holds). free=<power>
+  channels it without Fatigue by a named, limited power, spent for the day: highborn (Altmer), the
+  Mage stone, the Apprentice stone (twice a day), or a background's or perk's own. Witbane: a WIL
+  save before any Spell Tome, even in safety. Brain Rot: a WIL save after, or a Fatigue more.
+  Transformed, there's no casting.
+params:
+  who: ref
+  spell: {kind: text, optional: true, help: "The Spell Tome or Scroll"}
+  danger: {kind: flag, default: false, help: "In danger (combat, duress); a fight the tracker runs counts by itself"}
+  enhance: {kind: flag, default: false, help: "Enhance it: more targets, more power"}
+  scroll: {kind: flag, default: false, help: "Read from a Scroll (one the caster carries is known by its use)"}
+  free: {kind: text, optional: true, help: "A once-per-day power that spares the Fatigue: highborn, the-mage, the-apprentice, …"}
+steps:
+  - if: "'transformed' in @who.conditions"
+    then:
+      - stop: "{@who.name} is Transformed: no gear and no spellcasting until they revert (`didact do revert who={@who.id}`)."
+  - let: {held_uses: "if(default(@spell, '') == '', 0, default(@{who.inventory.$spell.uses}, 0))"}
+  - let: {from_scroll: "@scroll or @held_uses > 0", power: "default(@free, '')"}
+  - let: {tome: "not @from_scroll"}
+  - if: "@power <> '' and not @from_scroll"
+    then:
+      - if: "@power == 'the-apprentice' and count(@who.used_today, 'the-apprentice') >= 2"
+        then:
+          - stop: "{@who.name} has channelled twice by the Apprentice stone today: the next dawn renews it."
+      - if: "@power <> 'the-apprentice' and @power in @who.used_today"
+        then:
+          - stop: "{@who.name} has already used {@power} today: the next dawn renews it."
+      - if: "@power == 'highborn' and default(@who.race, '') <> 'Altmer'"
+        then:
+          - stop: "Highborn is the Altmer's trait."
+      - if: "(@power == 'the-mage' or @power == 'the-apprentice') and default(@who.standing_stone, '') <> if(@power == 'the-mage', 'The Mage', 'The Apprentice')"
+        then:
+          - stop: "{@who.name} isn't marked by that Standing Stone."
+  - if: "@tome and 'witbane' in @who.diseases"
+    then:
+      - check: save
+        with: {who: "@who", attr: WIL}
+        as: witbane
+      - if: "@witbane == 'failure'"
+        then:
+          - stop: "Witbane clouds {@who.name}'s mind: they can't channel the Spell Tome this time."
+  - if: "default(@spell, '') <> ''"
+    then: ["{@who.name} reads {@spell} aloud, both hands on it."]
+    else: ["{@who.name} reads the spell aloud, both hands on it."]
+  - let: {in_danger: "@danger or default(@combat.round, 0) > 0"}
+  - if: "@in_danger or 'deprived' in @who.conditions"
+    then:
+      - check: save
+        with: {who: "@who", attr: WIL}
+        as: control
+      - if: "@control == 'failure'"
+        then: ["The spell slips out of {@who.name}'s control: consequences on par with its effect (more Fatigue, the Spell Tome destroyed, injury, even death). Magicka is not a tame thing."]
+  - if: "@enhance"
+    then:
+      - if: "@in_danger"
+        then: ["Enhancing a spell takes time and safety: under duress, it's a risk the Warden weighs (the WIL save above)."]
+        else: ["Given time and safety, the spell is enhanced (more targets, more power) at no extra cost."]
+  - if: "@from_scroll"
+    then:
+      - message: "A Scroll causes no Fatigue, and disappears after this one use."
+      - if: "@held_uses > 0"
+        then:
+          - use: $spell
+            from: "@who"
+        else: ["It's gone: `didact inv use <its carrier> '{default(@spell, 'the scroll')}'` (or `inv drop`)."]
+    else:
+      - if: "@power <> ''"
+        then:
+          - set: who.used_today
+            op: "+="
+            value: "@power"
+          - message: "By {@power}, the casting adds no Fatigue (spent until the next dawn)."
+        else:
+          - message: "The spell is cast; its Fatigue goes into a free slot (with none free, an item must be dropped first)."
+          - do: fatigue
+            with: {who: "@who"}
+  - if: "@tome and 'brain-rot' in @who.diseases"
+    then:
+      - check: save
+        with: {who: "@who", attr: WIL}
+        as: rot
+      - if: "@rot == 'failure'"
+        then:
+          - message: "Brain Rot festers: the effort costs {@who.name} an extra Fatigue."
+          - do: fatigue
+            with: {who: "@who"}
+source: players-guide/core-rules#casting-spells
+---
+action: rest
+title: Rest a moment
+help: >-
+  A few moments' rest and a drink of water (or mead) restores all HP, but may leave the party
+  exposed; in a dungeon, resting takes a turn (turn=true) and needs a light and a safe spot.
+  Danger makes rest impossible. It can't bring HP back while deprived, panicked or carrying a
+  full inventory, nor with Rattles (only a full night's rest does then), nor Transformed. It
+  restores no Fatigue, except the Lady stone's once a day.
+params:
+  who: ref
+  danger: {kind: flag, default: false, help: "Present or oncoming danger (a fight the tracker runs counts by itself)"}
+  turn: {kind: flag, default: false, help: "A dungeon turn spent resting"}
+steps:
+  - if: "@danger or default(@combat.round, 0) > 0"
+    then:
+      - stop: "Present or oncoming danger makes rest impossible."
+  - if: "'transformed' in @who.conditions"
+    then:
+      - stop: "{@who.name} is Transformed: no rest as a beast, the change is for the hunt."
+  - if: "'deprived' in @who.conditions"
+    then:
+      - stop: "{@who.name} is deprived and can't recover HP until the need is met."
+  - if: "'panicked' in @who.conditions"
+    then:
+      - stop: "{@who.name} is panicked and has 0 HP until they overcome it: `didact do steady who={@who.id}`."
+  - if: "@who.inventory.free <= 0"
+    then:
+      - stop: "{@who.name} carries a full inventory (10 slots): HP stays at 0 until they lighten the load."
+  - if: "'rattles' in @who.diseases"
+    then:
+      - stop: "The Rattles: a short rest no longer restores {@who.name}'s HP; only a full night's rest does (`didact do make-camp who={@who.id}`)."
+  - set: who.hp
+    value: "@who.hp.max"
+  - message: "{@who.name} catches their breath: HP back to {@who.hp.max}."
+  - if: "default(@who.standing_stone, '') == 'The Lady' and @option.standing_stones and not ('the-lady' in @who.used_today) and @who.fatigue > 0"
+    then:
+      - set: who.fatigue
+        op: "-="
+        value: 1
+      - set: who.used_today
+        op: "+="
+        value: the-lady
+      - message: "The Lady's blessing: the rest also clears a Fatigue (once a day)."
+  - if: "@turn"
+    then:
+      - reminder: "Resting took a turn: it needs a light source and a safe location, and restores no Fatigue (no one can safely make camp in a barrow or ruin). Resting in place is lingering: `didact do dungeon-turn trigger=lingered`, then `didact time advance 1 turn`."
+source: players-guide/core-rules#healing--recovery
+---
+action: make-camp
+title: Make camp
+help: >-
+  The last watch of the day: each character (and mount) eats a Ration, a lookout rotation is
+  set, and those who rest safely remove all Fatigue (and HP comes back). An interrupted night,
+  or a deprived character, recovers nothing. Bone Break Fever keeps one Fatigue that rest can't
+  clear. Dremora and draugr revenants need no food, and they and Briarhearts no sleep.
+params:
+  who: ref
+  interrupted: {kind: flag, default: false, help: "More than a minor interruption: no benefit"}
+steps:
+  - if: "'transformed' in @who.conditions"
+    then:
+      - stop: "{@who.name} is Transformed: no rest as a beast (`didact do revert who={@who.id}` first)."
+  - if: "default(@who.nature, 'mortal') == 'dremora' or default(@who.nature, 'mortal') == 'draugr-revenant'"
+    then: ["{@who.name} needs no Ration and no sleep; the night's rest in safety still clears Fatigue."]
+    else:
+      - if: "default(@{who.inventory.Rations.uses}, 0) > 0"
+        then:
+          - use: Rations
+            from: "@who"
+        else: ["{@who.name} has no Ration to eat: hungry tonight (a day without food leaves them deprived: `didact do deprive who={@who.id} need=food`)."]
+      - reminder: "Each mount eats a Ration too. Set a lookout rotation; a small party risks sleeping unguarded or trades off over several nights."
+  - if: "@interrupted"
+    then:
+      - stop: "{@who.name}'s sleep was interrupted: no Fatigue comes off tonight. (A night without real sleep can leave them deprived: `didact do deprive who={@who.id} need=sleep`.)"
+  - if: "'deprived' in @who.conditions"
+    then:
+      - stop: "{@who.name} is deprived: no Fatigue comes off and no HP comes back tonight. (Deprived only of sleep? This camp meets the need: `didact do relieve who={@who.id}` first.)"
+  - set: who.fatigue
+    value: "if('bone-break-fever' in @who.diseases, min(1, @who.fatigue), 0)"
+  - if: "'bone-break-fever' in @who.diseases and @who.fatigue > 0"
+    then: ["Bone Break Fever: one Fatigue stays that rest cannot clear."]
+  - if: "@who.inventory.free > 0 and not ('panicked' in @who.conditions)"
+    then:
+      - set: who.hp
+        value: "@who.hp.max"
+      - message: "{@who.name} sleeps safely: Fatigue cleared, HP restored."
+    else: ["{@who.name} sleeps safely: Fatigue cleared (HP stays at 0: a full inventory or panic)."]
+source: players-guide/procedures#make-camp
+---
+action: deprive
+title: Deprived
+help: >-
+  A character lacking a crucial need (food, water, rest, warmth) is deprived: they can't recover
+  HP, attributes or slots taken by Fatigue. Deprived for more than a day, they add a Fatigue for
+  each day. Run it once for each day the need goes unmet (or days=n for several). Dremora and
+  draugr revenants are never deprived by hunger, thirst, exhaustion or drowning; Briarhearts
+  never by exhaustion; cold and snow alone never deprive a Nord or a vampire, nor heat, smoke and
+  ash a Dunmer.
+params:
+  who: ref
+  need: {kind: text, default: food, help: "food, water, sleep, warmth, air, blood (a vampire's hunger), …"}
+  days: {kind: int, default: 1, help: "Days of deprivation this counts"}
+steps:
+  - let: {nature: "default(@who.nature, 'mortal')", race: "default(@who.race, '')"}
+  - if: "(@nature == 'dremora' or @nature == 'draugr-revenant') and (@need == 'food' or @need == 'water' or @need == 'sleep' or @need == 'rest' or @need == 'air')"
+    then:
+      - stop: "{@who.name} needs no $need: the {if(@nature == 'dremora', 'Dremora', 'draugr')} cannot be deprived of it."
+  - if: "@nature == 'briarheart' and (@need == 'sleep' or @need == 'rest')"
+    then:
+      - stop: "{@who.name} needs no sleep: a Briarheart is never deprived by exhaustion."
+  - if: "(@need == 'warmth' or @need == 'cold') and (@race == 'Nord' or @nature == 'vampire')"
+    then:
+      - stop: "Cold and snow alone never leave {@who.name} deprived ({if(@race == 'Nord', 'Frost-Hardy', 'the Long Cold')})."
+  - if: "(@need == 'heat' or @need == 'smoke' or @need == 'ash') and @race == 'Dunmer'"
+    then:
+      - stop: "Heat, smoke and ash alone never leave {@who.name} deprived (Ancestor's Blood)."
+  - let: {was: "if('deprived' in @who.conditions, default(@who.deprived_days, 0), 0)"}
+  - let: {now: "@was + @days"}
+  - let: {owed: "max(0, @now - 1) - max(0, @was - 1)"}
+  - if: "not ('deprived' in @who.conditions)"
+    then:
+      - set: who.conditions
+        op: "+="
+        value: deprived
+  - set: who.deprived_days
+    value: "@now"
+  - message: "{@who.name} is deprived of $need (day {@now})."
+  - reminder: "Each further day: `didact do deprive who={@who.id} need=$need` (a Fatigue each day past the first). When the need is met: `didact do relieve who={@who.id}`."
+  - if: "@owed > 0"
+    then:
+      - do: fatigue
+        with: {who: "@who", amount: "@owed"}
+source: players-guide/core-rules#deprivation--fatigue
+---
+action: recover
+title: Recover attributes
+help: >-
+  Attribute loss (critical damage and the like) is restored by a week's rest facilitated by a
+  healer, a temple of the Divines or another source of expertise: temple healing costs 50
+  Septims (cost=0 when it's free). It restores STR, DEX and WIL, ends critical damage,
+  paralysis and delirium, and brings the scars that heal "after recovery" to their end. A
+  deprived character can't recover. Restoration meant for mortals doesn't mend a Dremora (a
+  binding-master's craft does: `didact do binding-mend`; or a full season's reconstitution in
+  Oblivion, oblivion=true), and nothing a healer does mends a draugr revenant: only a full week
+  within a Nordic barrow (barrow=true), which restores all its lost Attributes.
+params:
+  who: ref
+  cost: {kind: int, default: 50, help: "Septims paid (0 if free)"}
+  barrow: {kind: flag, default: false, help: "A draugr revenant's week of rest within a Nordic barrow"}
+  oblivion: {kind: flag, default: false, help: "A Dremora's full season of reconstitution in Oblivion"}
+steps:
+  - if: "@who.status == 'dead'"
+    then:
+      - stop: "{@who.name} is dead."
+  - let: {nature: "default(@who.nature, 'mortal')"}
+  - if: "@barrow and @nature <> 'draugr-revenant'"
+    then:
+      - stop: "Only a draugr revenant mends in a barrow: {@who.name} recovers with a healer or a temple (`didact do recover who={@who.id}`)."
+  - if: "@oblivion and @nature <> 'dremora'"
+    then:
+      - stop: "Only a Dremora reconstitutes in Oblivion."
+  - if: "@nature == 'dremora' and not @oblivion"
+    then:
+      - stop: "Restoration meant for mortals does not mend {@who.name}: no temple, potion or healer. A binding-master's craft does (a Downtime Action with a willing conjurer: `didact do binding-mend who={@who.id}`), or a full season's reconstitution in Oblivion (`didact do recover who={@who.id} oblivion=true`)."
+  - if: "@nature == 'draugr-revenant' and not @barrow"
+    then:
+      - stop: "No Restoration, potion, temple or healer can knit {@who.name}: they are already dead. A full week resting within a Nordic barrow restores their lost Attributes (`didact do recover who={@who.id} barrow=true`), or absorbing a slain creature's life (`didact do absorb-life who={@who.id}`)."
+  - let: {cost_now: "if(@barrow or @oblivion, 0, @cost)"}
+  - if: "'deprived' in @who.conditions and not ('walloped' in @who.conditions) and not ('mortal-wound' in @who.conditions)"
+    then:
+      - stop: "{@who.name} is deprived and can't recover until the need is met (`didact do relieve who={@who.id}`)."
+  - if: "@cost_now > @who.gold"
+    then:
+      - stop: "{@who.name} has {@who.gold} Septims; the healing costs {@cost_now}."
+  - if: "@cost_now > 0"
+    then:
+      - set: who.gold
+        op: "-="
+        value: "@cost_now"
+  - if: "'mortal-wound' in @who.conditions"
+    then:
+      - do: scar-heal
+        with: {who: "@who", scar: mortal-wound}
+  - if: "'walloped' in @who.conditions"
+    then:
+      - do: scar-heal
+        with: {who: "@who", scar: walloped}
+  - if: "'hamstrung' in @who.conditions"
+    then:
+      - do: scar-heal
+        with: {who: "@who", scar: hamstrung}
+  - set: who.STR
+    value: "@who.STR.max"
+  - set: who.DEX
+    value: "@who.DEX.max"
+  - set: who.WIL
+    value: "@who.WIL.max"
+  - if: "'critical' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: critical
+  - if: "'stabilized' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: stabilized
+  - if: "'paralyzed' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: paralyzed
+  - if: "'delirious' in @who.conditions"
+    then:
+      - set: who.conditions
+        op: "-="
+        value: delirious
+  - if: "@barrow"
+    then: ["A week within the barrow, where the death-magic pools: {@who.name}'s lost Attributes return."]
+    else:
+      - if: "@oblivion"
+        then:
+          - message: "A full season reconstituting in Oblivion: {@who.name} crosses the Barrier again, whole."
+          - reminder: "A season has passed for them: `didact time advance …` if the party waited, or let the fiction bring them back."
+        else: ["After a week's rest, {@who.name}'s attributes are restored ({@cost_now} Septims)."]
+  - if: "'broken-leg' in @who.conditions or 'broken-arm' in @who.conditions or 'broken-rib' in @who.conditions or 'broken-skull' in @who.conditions or 'diseased' in @who.conditions or 'deafened' in @who.conditions"
+    then: ["Scars that heal when the fiction says (a limb mended, an infection got over, extraordinary aid for deafness): `didact do scar-heal who={@who.id} scar=…` (conditions: {@who.conditions})."]
+  - reminder: "A week has passed: `didact time advance 1 week`."
+  - do: coins
+    with: {who: "@who"}
+    go_on: true
+source: players-guide/core-rules#healing--recovery
+---
+action: coins
+title: Coin weight
+help: >-
+  A pouch of coins worth fewer than 100 Septims is petty and takes no slot. At 100 or more the
+  coins take room (the coin-weight option: one slot, or a slot for each full 100). Run it after
+  the Septims change; the pack's own rules that spend them do.
+params: {who: ref}
+steps:
+  - let:
+      slots: "if(@option.coin_weight == 'off', 0, if(@option.coin_weight == 'per-100', @who.gold // 100, if(@who.gold >= 100, 1, 0)))"
+      had: "default(@who.purse, 0)"
+  - if: "@slots - @had > @who.inventory.free"
+    then:
+      - stop: "{@who.name}'s {@who.gold} Septims need {@slots} slot(s) and there is no room: drop an item (`didact inv drop {@who.id} <item>`), leave some coin behind, then `didact do coins who={@who.id}`."
+  - if: "@slots <> @had"
+    then:
+      - set: who.purse
+        value: "@slots"
+  - if: "@slots == 0"
+    then: ["{@who.name}'s {@who.gold} Septims are petty: no slot."]
+    else: ["{@who.name}'s {@who.gold} Septims take {@slots} slot(s)."]
+source: players-guide/character-creation#inventory-slots
+---
+procedure: downtime
+title: Downtime action
+help: >-
+  Between sessions, somewhere safe and not in recovery, a PC takes one Downtime Action at a time:
+  research (a question and a Source), training (a skill and a Master), strengthening ties (an
+  NPC or faction and an intent), crafting (`didact do temper`, `brew`, `enchant`), or another
+  the Warden allows. The Warden sets 1–5 Milestones, each with a Cost (Septims, resources,
+  reputation or a loss); each action completes one by paying its Cost (size=1–5 makes the goal's
+  tracker the first time, and each action ticks it; milestones=<tracker> ticks one made by
+  hand). A PC may lean on force of personality: the Warden states the risk, then a WIL save
+  (abate=true) reduces or avoids the cost.
+params:
+  who: ref
+  action: {enum: [research, training, ties, other], default: research}
+  goal: {kind: text, help: "The question, skill or relationship; it must come from play"}
+  gold: {kind: int, default: 0, help: "The Milestone's cost in Septims"}
+  cost: {kind: text, optional: true, help: "A cost that isn't Septims: resources, reputation, a loss"}
+  abate: {kind: flag, default: false, help: "Try to reduce or avoid the cost by force of will"}
+  safe: {kind: flag, default: true, help: "Is it safe? Downtime can't happen in unsafe conditions"}
+  milestones: {kind: ref, optional: true, help: "A Milestones tracker of the goal's, made earlier"}
+  size: {kind: int, optional: true, help: "The Milestones the Warden sets for the goal (1–5): the goal's tracker is made the first time, found again later"}
+steps:
+  - if: "not @safe"
+    then:
+      - stop: "Downtime Actions can't be undertaken in unsafe conditions, or at a risk to {@who.name}'s safety."
+  - if: "'critical' in @who.conditions or 'stabilized' in @who.conditions or 'mortal-wound' in @who.conditions"
+    then:
+      - stop: "{@who.name} is in recovery: no Downtime Actions until they heal (`didact do recover who={@who.id}`)."
+  - if: "default(@size, 0) < 0 or default(@size, 0) > 5"
+    then:
+      - stop: "The Warden sets 1 to 5 Milestones for a goal that came from play (size=1 to 5)."
+  - let: {owed: "@gold", abated: false}
+  - if: "@abate"
+    then:
+      - check: save
+        with: {who: "@who", attr: WIL}
+        as: will
+      - if: "@will == 'success'"
+        then:
+          - let: {owed: 0, abated: true}
+          - message: "{@who.name}'s force of will carries it: the cost is reduced or avoided."
+        else: ["The risk comes to pass (the Warden stated it), and the cost stands."]
+  - if: "@owed > 0 and @owed > @who.gold"
+    then:
+      - stop: "{@who.name} has {@who.gold} Septims and the Milestone costs {@owed}: find another way."
+  - if: "@owed > 0"
+    then:
+      - set: who.gold
+        op: "-="
+        value: "@owed"
+      - do: coins
+        with: {who: "@who"}
+        go_on: true
+  - if: "default(@cost, '') <> '' and not @abated"
+    then: ["The Milestone's cost is paid: {@cost}."]
+  - message: "{@who.name} spends a Downtime Action on $action: $goal."
+  - if: "default(@milestones, '') == '' and default(@size, 0) > 0"
+    then:
+      - entity:
+          key: goal_track
+          type: track
+          name: "{@who.name}: $goal"
+          fields: {kind: track, size: "@size", value: {value: 0, size: "@size"}}
+          links: [{rel: of, to: "@who"}]
+        as: goal_track
+      - do: milestone-done
+        with: {tracker: "@goal_track", who: "@who", action: $action}
+  - if: "default(@milestones, '') <> ''"
+    then:
+      - do: milestone-done
+        with: {tracker: "@milestones", who: "@who", action: $action}
+  - if: "default(@milestones, '') == '' and default(@size, 0) == 0"
+    then:
+      - reminder: "Milestones: the first action on a goal names how many the Warden sets (size=1 to 5) and makes its tracker ({@who.name}: $goal); each action on it completes one (size= again finds the same tracker)."
+  - reminder: "Growth may follow when the work comes from play: `didact char advance {@who.id} source=downtime`."
+source: players-guide/procedures#downtime
+---
+action: milestone-done
+title: A Milestone complete
+help: "A Downtime Action pays a Milestone's Cost: the goal's tracker moves one on (`downtime` runs this)."
+params:
+  tracker: ref
+  who: {kind: ref, optional: true}
+  action: {kind: text, default: downtime}
+steps:
+  - if: "default(@tracker.value.size, 0) == 0"
+    then:
+      - stop: "A Milestone is complete: `didact track tick {@tracker}`."
+  - if: "@tracker.value.value >= @tracker.value.size"
+    then:
+      - stop: "Every Milestone of {@tracker.name} was already complete."
+  - set: tracker.value.value
+    op: "+="
+    value: 1
+  - message: "A Milestone is complete: {@tracker.value.value} of {@tracker.value.size} ({@tracker.name})."
+  - if: "@tracker.value.value == @tracker.value.size"
+    then: ["Every Milestone is complete: the goal is reached ({@who.name}'s $action pays off)."]
+  - reminder: "The Warden may add or drop Milestones as play unfolds (`didact track tick {@tracker} --by -1` takes one back)."
+source: players-guide/procedures#milestones
+---
+procedure: travel-time
+title: Travel time
+help: >-
+  How many watches a journey between two points takes: the path (roads none, trails +1, the
+  wilds +2), its length (short +1, medium +2, long +3), the terrain (tough +1, perilous +2) and
+  the weather (unpleasant or inclement: +1 watch or a Fatigue; extreme: both; inclement and
+  extreme also make the terrain a step harder). Especially vast stretches add up to +2 (vast=1
+  or 2); traveling sleep-deprived makes the terrain a step harder (sleepless=true). A party that
+  rides, every member mounted (mount=horse), ignores one watch of Path or Terrain penalty; a
+  Skyrim horse (mount=skyrim-horse) also treats Perilous terrain (snow, ice, mountain) as one
+  step easier; a mule, cart or wagon gives no relief. bonus=n for other savings (guides, maps).
+params:
+  path: {enum: [road, trail, wilderness], default: trail}
+  distance: {enum: [short, medium, long], default: medium}
+  terrain: {enum: [easy, tough, perilous], default: easy}
+  weather: {enum: [Nice, Fair, Unpleasant, Inclement, Extreme, Catastrophic], default: Fair}
+  vast: {kind: int, default: 0, help: "Especially vast terrain: +0 to +2 watches"}
+  sleepless: {kind: flag, default: false, help: "Sleep-deprived: the terrain is a step harder"}
+  mount: {enum: [none, horse, skyrim-horse], default: none, help: "Every member mounted on a riding horse or a Skyrim horse"}
+  bonus: {kind: int, default: 0, help: "Watches saved by guides or maps"}
+steps:
+  - if: "@weather == 'Catastrophic'"
+    then:
+      - stop: "Catastrophic weather: most parties cannot travel at all."
+  - if: "@vast < 0 or @vast > 2"
+    then:
+      - stop: "Vast terrain adds up to +2 watches: vast=0, 1 or 2."
+  - let:
+      path_cost: "if(@path == 'road', 0, if(@path == 'trail', 1, 2))"
+      distance_cost: "if(@distance == 'short', 1, if(@distance == 'medium', 2, 3))"
+      steps: "if(@weather == 'Inclement' or @weather == 'Extreme', 1, 0) + if(@sleepless, 1, 0)"
+      sure_footed: "if(@mount == 'skyrim-horse' and @terrain == 'perilous', 1, 0)"
+  - let: {terrain_cost: "max(0, min(2, if(@terrain == 'easy', 0, if(@terrain == 'tough', 1, 2)) + @steps) - @sure_footed)"}
+  - let: {ridden: "if(@mount <> 'none' and @path_cost + @terrain_cost > 0, 1, 0)"}
+  - let: {weather_cost: "if(@weather == 'Unpleasant' or @weather == 'Inclement' or @weather == 'Extreme', 1, 0)"}
+  - let: {total: "@path_cost + @distance_cost + @terrain_cost + @weather_cost + @vast - @ridden"}
+  - let: {watches: "max(@distance_cost, @total - @bonus)"}
+  - message: "The journey takes {@watches} watches (path {@path_cost}, distance {@distance_cost}, terrain {@terrain_cost}, weather {@weather_cost}, vast {@vast}, mounted -{@ridden}, saved {@total - @watches})."
+  - if: "@weather == 'Unpleasant' or @weather == 'Inclement'"
+    then: ["The party may instead add a Fatigue each to save the weather's extra watch."]
+  - if: "@weather == 'Extreme'"
+    then: ["Extreme weather: each character also adds a Fatigue, and anyone without shelter is Deprived from the cold at once (`didact do exposure who=<pc> extreme=true`)."]
+  - if: "@mount <> 'none'"
+    then: ["A mount eases hardship, not the miles: the journey can never drop below the distance's own watches. Weather bites horse and rider alike."]
+  - reminder: "Mixed terrain or weather along the way: run it for each leg and add them up (two watches of travel and a night's camp make a day)."
+source: players-guide/procedures#travel-duration
+---
+procedure: attribute-raise
+title: Raise an attribute or HP
+help: >-
+  The book's "increase your max WIL by 1d4" (a scar) and "raise an attribute by 1d4 (to 18)"
+  (growth, the Oghma Infinium, Racial Phylogeny): the maximum rises by the amount, then the
+  current score by as much (unless only the maximum changes). cap=18 where the book says "to
+  18"; otherwise attributes stop at the sheet's 20 (cairn-2e's reading: the book gives no
+  ceiling there).
+params:
+  who: ref
+  attr: {enum: [STR, DEX, WIL, hp]}
+  amount: {kind: dice, default: "1"}
+  value: {enum: [rises, stays], default: rises, help: "stays: only the maximum changes"}
+  cap: {kind: int, default: 20, help: "The ceiling: 18 where the book says \"to 18\""}
+steps:
+  - roll: $amount
+    as: gain
+  - let: {top: "@who.$attr.max", ceiling: "if('$attr' == 'hp', 999, @cap)", label: "if('$attr' == 'hp', 'HP', '$attr')"}
+  - let: {took: "max(@top, min(@top + @gain, @ceiling))"}
+  - set: who.$attr.max
+    value: "@took"
+  - if: "@value == 'rises'"
+    then:
+      - set: who.$attr
+        op: "+="
+        value: "@took - @top"
+  - let: {changed: "+{@gain}: max {@label} {@top} → {@took}{if(@took < @top + @gain, ' (stops at ', '')}{if(@took < @top + @gain, @ceiling, '')}{if(@took < @top + @gain, ')', '')}"}
+  - message: "{@who.name}: {@changed}."
+source: players-guide/core-rules#scars

@@ -1,0 +1,10 @@
+check: skill
+help: Build a pool of symbol dice; successes cancel failures, advantages cancel threats.
+params: {ability: {kind: int, default: 2}, difficulty: {kind: int, default: 2}, boost: {kind: int, default: 0}, setback: {kind: int, default: 0}}
+roll: "(@ability)d[ability] + (@difficulty)d[difficulty] + (@boost)d[boost] + (@setback)d[setback]"
+bands:
+  success: "@roll.symbols.success - @roll.symbols.failure >= 1"
+  failure: else
+flags:
+  advantage: "@roll.symbols.advantage > @roll.symbols.threat"
+  threat: "@roll.symbols.threat > @roll.symbols.advantage"

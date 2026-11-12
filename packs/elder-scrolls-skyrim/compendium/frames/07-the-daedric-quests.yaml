@@ -1,0 +1,1202 @@
+# The Daedric Quests (campaigns/07-the-daedric-quests): written by es_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Elder Scrolls 2e's numbers, and Grimscrolls'
+# card where its Bestiary or its Faces has the threat) and clocks.
+id: the-daedric-quests
+type: quest
+name: The Daedric Quests
+tags: [the-daedric-quests, frame, side-arc]
+goal: |-
+  The Daedric Princes are the lords of Oblivion — immortal, unbound by the rules of the mortal world, and endlessly curious about those who must live by them. They cannot create, only meddle. So they meddle: they whisper through locked doors, slip pacts into a beggar's babble, leave a wonder on a shrine for whoever will earn it. What they want, always, is to be entertained — and to see what a mortal will do when the price of power is somebody else's soul.
+
+  This module is a sandbox, not a campaign. It is fifteen self-contained quest frames, one per Daedric Prince, and between them they hand out sixteen Daedric Artifacts (Hircine's frame holds two). Drop them anywhere. A party hears a rumor, finds a beacon, reads a strange pamphlet, or simply wanders past a roadside shrine — and one of the Princes takes an interest. Each frame is built to run in a single session.
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  *"The Princes do not love you. They are bored, and you are amusing."* — a Vigilant of Stendarr, before the inn burned
+
+  ## GM notes
+
+  **Date.** Sundas, 17 Last Seed 4E 201: 4E 201, the book's moment; a sandbox: each Prince's quest whenever a Prince takes an interest. It is the calendar's start: a new campaign opens on it.
+
+  **The frame's text:** `didact rules lookup the daedric quests how the princes meddle with mortals` (and `nocturnal`, `the vigil of stendarr`, `quick reference`).
+
+  **The Princes' quests** (each a quest of its own, brought in by the `daedric-quest` generator): Mehrunes Dagon: *Pieces of the Past* → Mehrunes' Razor (`the-daedric-quests-pieces-of-the-past`); Molag Bal: *The House of Horrors* → Mace of Molag Bal (`the-daedric-quests-the-house-of-horrors`); Sanguine: *A Night to Remember* → Sanguine Rose (`the-daedric-quests-a-night-to-remember`); Vaermina: *Waking Nightmare* → Skull of Corruption (`the-daedric-quests-waking-nightmare`); Hermaeus Mora: *Discerning the Transmundane* → Oghma Infinium (`the-daedric-quests-discerning-the-transmundane`); Sheogorath: *The Mind of Madness* → Wabbajack (`the-daedric-quests-the-mind-of-madness`); Malacath: *The Cursed Tribe* → Volendrung (`the-daedric-quests-the-cursed-tribe`); Peryite: *The Only Cure* → Spellbreaker (`the-daedric-quests-the-only-cure`); Hircine: *Ill Met by Moonlight* → Savior's Hide or Ring of Hircine (`the-daedric-quests-ill-met-by-moonlight`); Namira: *The Taste of Death* → Ring of Namira (`the-daedric-quests-the-taste-of-death`); Clavicus Vile: *A Daedra's Best Friend* → Masque of Clavicus Vile (`the-daedric-quests-a-daedras-best-friend`); Boethiah: *Boethiah's Calling* → Ebony Mail (`the-daedric-quests-boethiahs-calling`); Mephala: *The Whispering Door* → Ebony Blade (`the-daedric-quests-the-whispering-door`); Meridia: *The Break of Dawn* → Dawnbreaker (`the-daedric-quests-the-break-of-dawn`); Azura: *The Black Star* → Azura's Star or The Black Star (`the-daedric-quests-the-black-star`).
+
+  **Also in the frame:** How the Princes Meddle With Mortals; Nocturnal — the Skeleton Key (cross-reference); The Vigil of Stendarr (foe & complication); Quick Reference — Prince, Quest, Artifact (`didact rules lookup the daedric quests …`).
+
+  **The frame's records.** `didact gen run elder-scrolls-skyrim.frame --prefill '{"frame": "The Daedric Quests"}' --auto` drafts its threat (the Vigilant of Stendarr); each Prince's quest comes in on its own, for the world's system; `gen commit` writes them. A Prince's quest and its people: `didact gen run elder-scrolls-skyrim.daedric-quest --prefill '{"quest": "Pieces of the Past"}' --auto` (or let `--auto` pick).
+
+  **Rewards in each system's catalog:** Mehrunes' Razor (elder-scrolls-2e.mehrunes-razor · grimscrolls.mehrunes-razor); Mace of Molag Bal (elder-scrolls-2e.mace-of-molag-bal · grimscrolls.mace-of-molag-bal); Sanguine Rose (elder-scrolls-2e.sanguine-rose · grimscrolls.sanguine-rose); Skull of Corruption (elder-scrolls-2e.skull-of-corruption · grimscrolls.skull-of-corruption); Oghma Infinium (elder-scrolls-2e.oghma-infinium · grimscrolls.oghma-infinium); Wabbajack (elder-scrolls-2e.wabbajack · grimscrolls.wabbajack); Volendrung (elder-scrolls-2e.volendrung · grimscrolls.volendrung); Spellbreaker (elder-scrolls-2e.spellbreaker · grimscrolls.spellbreaker); Savior's Hide (elder-scrolls-2e.saviors-hide · grimscrolls.saviors-hide); Ring of Hircine (elder-scrolls-2e.ring-of-hircine · grimscrolls.ring-of-hircine); Ring of Namira (elder-scrolls-2e.ring-of-namira · grimscrolls.ring-of-namira); Masque of Clavicus Vile (elder-scrolls-2e.masque-of-clavicus-vile · grimscrolls.masque-of-clavicus-vile); Ebony Mail (elder-scrolls-2e.ebony-mail · grimscrolls.ebony-mail); Ebony Blade (elder-scrolls-2e.ebony-blade · grimscrolls.ebony-blade); Dawnbreaker (elder-scrolls-2e.dawnbreaker · grimscrolls.dawnbreaker); Azura's Star (elder-scrolls-2e.azuras-star · grimscrolls.azuras-star); The Black Star (elder-scrolls-2e.the-black-star).
+source: campaigns/07-the-daedric-quests#the-daedric-quests
+---
+id: the-daedric-quests-vigilant-of-stendarr
+type: monster
+name: Vigilant of Stendarr
+knowledge: secret
+tags: [the-daedric-quests, threat]
+mechanics:
+  elder-scrolls-2e:
+    category: 'Campaign: The Daedric Quests'
+    hp: 6
+    armor: 1
+    STR: 13
+    DEX: 11
+    WIL: 13
+    attacks:
+    - {name: steel mace, damage: d8}
+    - name: Sun Fire
+      damage: d6
+      qualities: [ranged]
+      note: undead only
+    abilities:
+    - Against Daedra, the undead, and lycanthropes, a Vigilant's attacks are Enhanced. They will not
+      be bargained with by anyone they have seen carrying a Daedric Artifact.
+    critical: a burst of holy fire sears the target for an extra d4 damage and, against the undead 
+      or Daedra, forces a WIL save or they flee.
+  grimscrolls:
+    category: The Night's Children
+    tier: tough
+    role: protector
+    sights: robes over steel gauntlets
+    sounds: a blessing like a warning
+    smells: lamp oil and salve
+    traits: [heal between blows, can smell a Daedric bargain]
+    moves: [Ward the Line and Advance, Mace the Abomination]
+    wants: Daedric relics destroyed, their keepers repentant — mercy is offered once, before the 
+      mace
+    note: A patrol is a 6d pool that gets a die back each scene unless its healer falls. A **Keeper 
+      of the Vigil** leads each province. Surrender the relic or submit to questioning and no one 
+      bleeds; vampires and the unrepentant get no terms.
+body: |-
+  ## GM notes
+
+  A grim, robed hunter of the abominable, marked with Stendarr's hammer, who shows no mercy to Daedra, undead, or those who serve them. Patrols in pairs; four or more fight as a detachment.
+
+  Elder Scrolls 2e: 6 HP, 1 Armor, 13 STR, 11 DEX, 13 WIL, steel mace (d8), Sun Fire (d6, ranged, undead only).
+
+  Grimscrolls: its card is `grimscrolls.vigilants-of-stendarr` (Vigilants of Stendarr), in this record's grimscrolls block.
+source: campaigns/07-the-daedric-quests#vigilant-of-stendarr
+---
+id: the-daedric-quests-silus-vesuius
+type: npc
+name: Silus Vesuius
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-pieces-of-the-past]
+fields: {role: 'earnest, deluded collector'}
+body: |-
+  ## GM notes
+
+  *Mehrunes Dagon — Pieces of the Past.* Silus Vesuius — earnest, deluded collector; non-combatant unless cornered. Run as a Bandit if he fights (4 HP, sword d8).
+
+  Fights as `elder-scrolls-2e.bandit` (Grimscrolls: `grimscrolls.bandits`) if it comes to blows.
+source: campaigns/07-the-daedric-quests#mehrunes-dagon--pieces-of-the-past--mehrunes-razor
+---
+id: the-daedric-quests-drascua
+type: npc
+name: Drascua
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-pieces-of-the-past]
+fields: {role: hagraven of Dead Crone Rock; run as a Hagraven}
+body: |-
+  ## GM notes
+
+  *Mehrunes Dagon — Pieces of the Past.* Drascua, hagraven of Dead Crone Rock — run as a Hagraven. Her guard is a small detachment of Forsworn.
+
+  Fights as `elder-scrolls-2e.hagraven` (Grimscrolls: `grimscrolls.hagraven`), `elder-scrolls-2e.forsworn` (Grimscrolls: `grimscrolls.forsworn`) if it comes to blows.
+source: campaigns/07-the-daedric-quests#mehrunes-dagon--pieces-of-the-past--mehrunes-razor
+---
+id: the-daedric-quests-ghunzul
+type: npc
+name: Ghunzul
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-pieces-of-the-past]
+fields:
+  role: 'chief of Cracked Tusk Keep; run as a Bandit detachment leader (the leader variant: 2 Armor, greatsword
+    d10)'
+body: |-
+  ## GM notes
+
+  *Mehrunes Dagon — Pieces of the Past.* Ghunzul, chief of Cracked Tusk Keep — run as a Bandit detachment leader (the leader variant: 2 Armor, greatsword d10).
+
+  Fights as `elder-scrolls-2e.bandit` (Grimscrolls: `grimscrolls.bandits`) if it comes to blows.
+source: campaigns/07-the-daedric-quests#mehrunes-dagon--pieces-of-the-past--mehrunes-razor
+---
+id: the-daedric-quests-pieces-of-the-past
+type: quest
+name: Pieces of the Past
+aliases: [Mehrunes Dagon's quest]
+tags: [the-daedric-quests, daedric-quest, mehrunes-dagon]
+goal: "A courier presses a pamphlet on the party: the Museum of the Mythic Dawn has opened in Dawnstar,
+  admission free. Its keeper, Silus Vesuius, is the last scion of the cult that murdered an Emperor, and
+  he has built a shrine to his family's shame. He wants the three scattered shards of his ancestors' relic
+  — Mehrunes' Razor — and will pay finders' gold for each."
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  ## GM notes
+
+  **Mehrunes Dagon** — *Pieces of the Past* → **Mehrunes' Razor**. Sphere: destruction, change, ambition, revolution.
+
+  **Date.** Sundas, 17 Last Seed 4E 201, or whenever Mehrunes Dagon takes an interest. It is the calendar's start: a new campaign opens on it.
+
+  **The bargain & the twist.** Silus thinks the Razor is an heirloom to be displayed. The shards reforge only at the **Shrine of Mehrunes Dagon**, and there the Prince's voice fills every skull present: the blade will be made whole only in blood, and the blood Dagon wants is **Silus's own**. Kill the man who hired you on his own family's altar, and the Razor is yours. Spare him, and he flees with the pieces — no prize, only a Prince's contempt. (Silus may beg, offering 500 Septims for his life. Dagon does not care either way.)
+
+  **Beats.**
+
+  1. **The three shards.** A pommel at **Dead Crone Rock** (a hagraven's perch), a blade-shard vaulted in **Cracked Tusk Keep** (an Orc bandit-chief's hoard), a hilt in a locked chest in **Jorgen's house** in Morthal. Three small delves or heists.
+  2. **The museum.** Return the pieces; Silus invites the party to the shrine for the "unveiling."
+  3. **The shrine speaks.** Dagon manifests; the demand is made. The party chooses.
+  4. **Blood or contempt.** Strike Silus down to claim the Razor — or refuse and watch the chance crumble.
+
+  **Key NPCs & foes.**
+
+  - **Silus Vesuius** — earnest, deluded collector; non-combatant unless cornered. *Run as a* **Bandit** *if he fights (4 HP, sword d8).*
+  - **Drascua**, hagraven of Dead Crone Rock — run as a **Hagraven**. Her guard is a small _detachment_ of **Forsworn**.
+  - **Ghunzul**, chief of Cracked Tusk Keep — run as a **Bandit** detachment leader (the leader variant: 2 Armor, greatsword d10).
+
+  **Reward.** **Mehrunes' Razor** — see its card in *Unique Weapons*. The black dagger that whispers of ruin; spend its single charge, and the foe it strikes must pass a STR save or die.
+
+  In each system's catalog: Mehrunes' Razor (elder-scrolls-2e.mehrunes-razor · grimscrolls.mehrunes-razor).
+
+  Under Grimscrolls, Mehrunes Dagon is `grimscrolls.mehrunes-dagon-prince` (the Prince's sphere, wants and pay); accepting the task starts an 8d Patience pool (`didact do prince-task who=<pc> prince='Mehrunes Dagon'`).
+
+  The frame: `didact show quest:the-daedric-quests --gm`; the text: `didact rules lookup daedric quests mehrunes dagon`.
+source: campaigns/07-the-daedric-quests#mehrunes-dagon--pieces-of-the-past--mehrunes-razor
+---
+id: the-daedric-quests-vigilant-tyranus
+type: npc
+name: Vigilant Tyranus
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-the-house-of-horrors]
+fields: {role: 'devout, doomed'}
+body: |-
+  ## GM notes
+
+  *Molag Bal — The House of Horrors.* Vigilant Tyranus — devout, doomed; combatant. Run as a Vigilant of Stendarr (stat block below).
+
+  Fights as this pack's `elder-scrolls-skyrim.the-daedric-quests-vigilant-of-stendarr` if it comes to blows.
+source: campaigns/07-the-daedric-quests#molag-bal--the-house-of-horrors--mace-of-molag-bal
+---
+id: the-daedric-quests-logrolf-the-willful
+type: npc
+name: Logrolf the Willful
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-the-house-of-horrors]
+fields: {role: 'an old, stubborn priest of Boethiah'}
+body: |-
+  ## GM notes
+
+  *Molag Bal — The House of Horrors.* Logrolf the Willful — an old, stubborn priest of Boethiah; a captive, not a threat. If he is forced to fight, run as a Necromancer (6 HP). The horror is that he cannot win.
+
+  Fights as `elder-scrolls-2e.necromancer` (Grimscrolls: `grimscrolls.necromancer-coven`) if it comes to blows.
+source: campaigns/07-the-daedric-quests#molag-bal--the-house-of-horrors--mace-of-molag-bal
+---
+id: the-daedric-quests-the-house-of-horrors
+type: quest
+name: The House of Horrors
+aliases: [Molag Bal's quest]
+tags: [the-daedric-quests, daedric-quest, molag-bal]
+goal: Outside a long-abandoned house in Markarth, a Vigilant of Stendarr, Tyranus, is investigating 
+  Daedric activity and wants a second pair of hands. He is right to be afraid.
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  ## GM notes
+
+  **Molag Bal** — *The House of Horrors* → **Mace of Molag Bal**. Sphere: domination, enslavement, brutality; Harvester of Souls.
+
+  **Date.** Sundas, 17 Last Seed 4E 201, or whenever Molag Bal takes an interest. It is the calendar's start: a new campaign opens on it.
+
+  **The bargain & the twist.** The door seals behind the party. The Lord of Domination has them now, and his first lesson in helplessness is Tyranus himself: Molag Bal turns the Vigilant against the party (or drives him to despair), and he must be put down inside that house. A rusted, worthless mace waits on the altar — the Prince's promise. To make it the **Mace of Molag Bal**, the party must hunt down an old priest, **Logrolf the Willful**, drag him back to the altar, and **break him** — beat a defenseless man until his proud will shatters and he pledges his soul, then kill him. This is the cruelest frame in the book. A party that refuses keeps only a rusty club and its conscience; that is a perfectly good ending, and the Warden should offer it plainly.
+
+  **Beats.**
+
+  1. **The trap.** Enter with Tyranus; the door locks; the Prince speaks. Deal with Tyranus.
+  2. **The errand of cruelty.** Molag Bal sends the party to free Logrolf from a Forsworn cell (a short delve).
+  3. **The altar.** Bring Logrolf back. Submission, then the killing blow — or walk away.
+
+  **Key NPCs & foes.**
+
+  - **Vigilant Tyranus** — devout, doomed; combatant. *Run as a* **Vigilant of Stendarr** *(stat block below).*
+  - **Logrolf the Willful** — an old, stubborn priest of Boethiah; a captive, not a threat. *If he is forced to fight, run as a* **Necromancer** *(6 HP).* The horror is that he cannot win.
+  - The cell that holds Logrolf is guarded by a small _detachment_ of **Forsworn** (or Bandits, by location).
+
+  **Reward.** **Mace of Molag Bal** — see its card in *Unique Weapons*. On a hit, a WIL save or have will drained into the mace.
+
+  In each system's catalog: Mace of Molag Bal (elder-scrolls-2e.mace-of-molag-bal · grimscrolls.mace-of-molag-bal).
+
+  Under Grimscrolls, Molag Bal is `grimscrolls.molag-bal` (the Prince's sphere, wants and pay); accepting the task starts an 8d Patience pool (`didact do prince-task who=<pc> prince='Molag Bal'`).
+
+  The frame: `didact show quest:the-daedric-quests --gm`; the text: `didact rules lookup daedric quests molag bal`.
+source: campaigns/07-the-daedric-quests#molag-bal--the-house-of-horrors--mace-of-molag-bal
+---
+id: the-daedric-quests-sam-guevenne
+type: npc
+name: Sam Guevenne
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-a-night-to-remember]
+fields: {role: 'with Sanguine: the Prince in disguise'}
+body: |-
+  ## GM notes
+
+  *Sanguine — A Night to Remember.* Sam Guevenne / Sanguine — the Prince in disguise; never fights.
+source: campaigns/07-the-daedric-quests#sanguine--a-night-to-remember--sanguine-rose
+---
+id: the-daedric-quests-sanguine
+type: npc
+name: Sanguine
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-a-night-to-remember]
+fields: {role: 'with Sam Guevenne: the Prince in disguise'}
+body: |-
+  ## GM notes
+
+  *Sanguine — A Night to Remember.* Sam Guevenne / Sanguine — the Prince in disguise; never fights.
+source: campaigns/07-the-daedric-quests#sanguine--a-night-to-remember--sanguine-rose
+---
+id: the-daedric-quests-moira
+type: npc
+name: Moira
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-a-night-to-remember]
+fields: {role: a Hagraven}
+body: |-
+  ## GM notes
+
+  *Sanguine — A Night to Remember.* Moira — a Hagraven; Grok the giant (run as a Giant) is friendly if not provoked.
+
+  Fights as `elder-scrolls-2e.hagraven` (Grimscrolls: `grimscrolls.hagraven`), `elder-scrolls-2e.giant` (Grimscrolls: `grimscrolls.giant`) if it comes to blows.
+source: campaigns/07-the-daedric-quests#sanguine--a-night-to-remember--sanguine-rose
+---
+id: the-daedric-quests-a-night-to-remember
+type: quest
+name: A Night to Remember
+aliases: [Sanguine's quest]
+tags: [the-daedric-quests, daedric-quest, sanguine]
+goal: In any tavern, a jovial stranger named Sam Guevenne challenges the party to a drinking 
+  contest, staff in hand, grinning too widely. Win, and the world goes black.
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  ## GM notes
+
+  **Sanguine** — *A Night to Remember* → **Sanguine Rose**. Sphere: hedonism, debauchery, revelry, excess.
+
+  **Date.** Sundas, 17 Last Seed 4E 201, or whenever Sanguine takes an interest. It is the calendar's start: a new campaign opens on it.
+
+  **The bargain & the twist.** The party wakes scattered, hungover, and amnesiac — one of them face-down in the **Temple of Dibella** in Markarth, having apparently *redecorated* it. The "quest" is to retrace a night of glorious ruin and find Sam: a stolen goat to return to a furious farmer in **Rorikstead** (a giant named **Grok** is its new owner), a wedding ring bought on credit from **Ysolda** in Whiterun, to be recovered from the **hagraven** Moira, to whom one of the party proposed in her grove. The twist is the whole shape of it — Sam is **Sanguine**, the Prince of Debauchery, who has used the party as the instrument of a glorious mess and finds the cleanup hilarious. There is no betrayal demanded here, only embarrassment; the reward is genuinely, freely given, because to Sanguine the party already *earned* it by the chaos they (don't remember they) caused.
+
+  **Beats.**
+
+  1. **The morning after.** Talk (or grovel) your way out of the temple; gather the clues left by your own ruined night.
+  2. **Goat, ring, and a hagraven's heart.** Three comedic errands across the Holds. **Moira** the hagraven (run as a **Hagraven**) will not give the ring back kindly.
+  3. **The stormed tower.** The trail ends at **Morvunskar**, a fort thick with hostile mages; a portal at its heart opens to **Misty Grove**.
+  4. **The party.** Sam reveals himself as Sanguine, laughs, and hands over the Rose.
+
+  **Key NPCs & foes.**
+
+  - **Sam Guevenne / Sanguine** — the Prince in disguise; never fights.
+  - **Morvunskar's mages** — a warband of **Conjurer** and **Necromancer** types; a real fight.
+  - **Moira** — a **Hagraven**; **Grok** the giant (run as a **Giant**) is friendly if not provoked.
+
+  **Reward.** **Sanguine Rose** — see its card in *Unique Weapons*. A staff that tears a rift and summons a Dremora to fight for you.
+
+  In each system's catalog: Sanguine Rose (elder-scrolls-2e.sanguine-rose · grimscrolls.sanguine-rose).
+
+  Under Grimscrolls, Sanguine is `grimscrolls.sanguine` (the Prince's sphere, wants and pay); accepting the task starts an 8d Patience pool (`didact do prince-task who=<pc> prince='Sanguine'`).
+
+  The frame: `didact show quest:the-daedric-quests --gm`; the text: `didact rules lookup daedric quests sanguine`.
+source: campaigns/07-the-daedric-quests#sanguine--a-night-to-remember--sanguine-rose
+---
+id: the-daedric-quests-erandur
+type: npc
+name: Erandur
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-waking-nightmare]
+fields: {role: 'with Casimir: penitent priest'}
+body: |-
+  ## GM notes
+
+  *Vaermina — Waking Nightmare.* Erandur / Casimir — penitent priest; a follower if spared, a victim if not. Run as a Conjurer if it comes to blows (6 HP).
+
+  Fights as `elder-scrolls-2e.conjurer` (Grimscrolls: `grimscrolls.hedge-wizards`) if it comes to blows.
+source: campaigns/07-the-daedric-quests#vaermina--waking-nightmare--skull-of-corruption
+---
+id: the-daedric-quests-casimir
+type: npc
+name: Casimir
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-waking-nightmare]
+fields: {role: 'with Erandur: penitent priest'}
+body: |-
+  ## GM notes
+
+  *Vaermina — Waking Nightmare.* Erandur / Casimir — penitent priest; a follower if spared, a victim if not. Run as a Conjurer if it comes to blows (6 HP).
+
+  Fights as `elder-scrolls-2e.conjurer` (Grimscrolls: `grimscrolls.hedge-wizards`) if it comes to blows.
+source: campaigns/07-the-daedric-quests#vaermina--waking-nightmare--skull-of-corruption
+---
+id: the-daedric-quests-veren
+type: npc
+name: Veren
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-waking-nightmare]
+fields: {role: 'with Thorek: broken Vaermina devotees'}
+body: |-
+  ## GM notes
+
+  *Vaermina — Waking Nightmare.* Veren and Thorek — broken Vaermina devotees; run as Necromancers.
+
+  Fights as `elder-scrolls-2e.necromancer` (Grimscrolls: `grimscrolls.necromancer-coven`) if it comes to blows.
+source: campaigns/07-the-daedric-quests#vaermina--waking-nightmare--skull-of-corruption
+---
+id: the-daedric-quests-thorek
+type: npc
+name: Thorek
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-waking-nightmare]
+fields: {role: 'with Veren: broken Vaermina devotees'}
+body: |-
+  ## GM notes
+
+  *Vaermina — Waking Nightmare.* Veren and Thorek — broken Vaermina devotees; run as Necromancers.
+
+  Fights as `elder-scrolls-2e.necromancer` (Grimscrolls: `grimscrolls.necromancer-coven`) if it comes to blows.
+source: campaigns/07-the-daedric-quests#vaermina--waking-nightmare--skull-of-corruption
+---
+id: the-daedric-quests-waking-nightmare
+type: quest
+name: Waking Nightmare
+aliases: [Vaermina's quest]
+tags: [the-daedric-quests, daedric-quest, vaermina]
+goal: "The whole town of Dawnstar cannot sleep — a plague of shared nightmares. At the Windpeak Inn, a
+  priest of Mara named Erandur says he knows the cause and offers to end it: the Skull of Corruption,
+  a relic of Vaermina, drinks the townsfolk's dreams from inside the clifftop ruin of Nightcaller Temple."
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  ## GM notes
+
+  **Vaermina** — *Waking Nightmare* → **Skull of Corruption**. Sphere: dreams and nightmares; omens, corruption.
+
+  **Date.** Sundas, 17 Last Seed 4E 201, or whenever Vaermina takes an interest. It is the calendar's start: a new campaign opens on it.
+
+  **The bargain & the twist.** Erandur's secret is that he *was* one of Vaermina's priests — once called Casimir — who fled long ago when his order gassed everyone in the temple (their own brothers included) with a sleeping Miasma to repel an Orc raid. He means to destroy the Skull and atone. But Vaermina's voice tempts the party: the priest will betray you the moment the Skull is in reach; strike first, kill Erandur, and take the Skull for yourselves. The twist is the gut-check — Erandur is almost certainly telling the truth. Kill him on the Prince's word and you gain a Daedric artifact and lose an honest ally. Let him finish the rite and you destroy the Skull forever, gaining a steadfast companion instead.
+
+  **Beats.**
+
+  1. **Into the temple.** Fight through to a sealed library; find the book *The Dreamstride*.
+  2. **The Dreamstride.** Drink **Vaermina's Torpor** and walk Casimir's memory of the Miasma — the quest's haunted heart — to open the way forward.
+  3. **Old comrades.** Two surviving priests, **Veren** and **Thorek**, wait near the Skull, half-mad.
+  4. **The Skull's altar.** Vaermina speaks. Kill Erandur and take the Skull — or let him shatter it.
+
+  **Key NPCs & foes.**
+
+  - **Erandur / Casimir** — penitent priest; a follower if spared, a victim if not. *Run as a* **Conjurer** *if it comes to blows (6 HP).*
+  - **Veren** and **Thorek** — broken Vaermina devotees; run as **Necromancers**.
+  - Long-sleeping **Orc** raiders may still stir in the depths — run as **Bandits**.
+
+  **Reward.** **Skull of Corruption** — see its card in *Unique Weapons*. A staff that hurls stolen nightmares as living terror. *(Spare Erandur instead and the Skull is destroyed — the reward is the companion, not the relic.)*
+
+  In each system's catalog: Skull of Corruption (elder-scrolls-2e.skull-of-corruption · grimscrolls.skull-of-corruption).
+
+  Under Grimscrolls, Vaermina is `grimscrolls.vaermina` (the Prince's sphere, wants and pay); accepting the task starts an 8d Patience pool (`didact do prince-task who=<pc> prince='Vaermina'`).
+
+  The frame: `didact show quest:the-daedric-quests --gm`; the text: `didact rules lookup daedric quests vaermina`.
+source: campaigns/07-the-daedric-quests#vaermina--waking-nightmare--skull-of-corruption
+---
+id: the-daedric-quests-septimus-signus
+type: npc
+name: Septimus Signus
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-discerning-the-transmundane]
+fields: {role: 'eccentric, gentle, doomed'}
+body: |-
+  ## GM notes
+
+  *Hermaeus Mora — Discerning the Transmundane.* Septimus Signus — eccentric, gentle, doomed; not a combatant.
+source: campaigns/07-the-daedric-quests#hermaeus-mora--discerning-the-transmundane--oghma-infinium
+---
+id: the-daedric-quests-hermaeus-mora
+type: npc
+name: Hermaeus Mora
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-discerning-the-transmundane]
+fields: {role: a voice from a churning black abyss}
+body: |-
+  ## GM notes
+
+  *Hermaeus Mora — Discerning the Transmundane.* Hermaeus Mora — a voice from a churning black abyss; never fought directly here.
+source: campaigns/07-the-daedric-quests#hermaeus-mora--discerning-the-transmundane--oghma-infinium
+---
+id: the-daedric-quests-discerning-the-transmundane
+type: quest
+name: Discerning the Transmundane
+aliases: [Hermaeus Mora's quest]
+tags: [the-daedric-quests, daedric-quest, hermaeus-mora]
+goal: In a frozen cave north of Winterhold, a brilliant, half-mad scholar named Septimus Signus is 
+  bent over a sealed Dwemer lockbox he believes holds the heart of a god. He needs an Elder Scroll 
+  to read it, and sends the party to carry a Blank Lexicon and an Attunement Sphere into the deep 
+  places of the earth.
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  ## GM notes
+
+  **Hermaeus Mora** — *Discerning the Transmundane* → **Oghma Infinium**. Sphere: forbidden knowledge, memory, fate, secrets.
+
+  **Date.** Sundas, 17 Last Seed 4E 201, or whenever Hermaeus Mora takes an interest. It is the calendar's start: a new campaign opens on it.
+
+  **The bargain & the twist.** The true master of this errand is **Hermaeus Mora**, Prince of forbidden lore, who uses the party (and poor Septimus) to crack open a secret he himself once sealed away. The bargain: Mora's voice demands the party draw **blood from the five kindreds of mer** — Altmer, Bosmer, Dunmer, Orsimer, and the debased Falmer — to open the box. The twist is what becomes of the help: the instant the box yields the **Oghma Infinium**, Mora burns Septimus to ash for having "outlived his usefulness," and offers the party his vacant place as a pawn of Apocrypha. Knowledge has a price, and you watch someone else pay it in front of you.
+
+  **Beats.**
+
+  1. **The deep descent.** Through the Dwemer ruin of **Alftand** into the vast underground twilight of **Blackreach**.
+  2. **The Oculory.** In the **Tower of Mzark**, solve the great light-lens to claim an Elder Scroll and a runed Lexicon. (It is the same Scroll the Main Quest needs — there is only one.)
+  3. **Blood of the mer.** Mora's price — collect blood of the five elven races (from corpses, foes, or willing donors; the Falmer's is the dangerous one).
+  4. **The box opens.** Septimus is consumed; the Oghma Infinium is yours.
+
+  **Key NPCs & foes.**
+
+  - **Septimus Signus** — eccentric, gentle, doomed; not a combatant.
+  - **Hermaeus Mora** — a voice from a churning black abyss; never fought directly here.
+  - The depths swarm with **Falmer** (and their **Chaurus**), **Dwarven Spider** and **Dwarven Sphere** automatons, and a **Dwarven Centurion** as a deep guardian.
+
+  **Reward.** **Oghma Infinium** — see its card in *Relics*. Read it once for a permanent boon, then it vanishes forever.
+
+  In each system's catalog: Oghma Infinium (elder-scrolls-2e.oghma-infinium · grimscrolls.oghma-infinium).
+
+  Under Grimscrolls, Hermaeus Mora is `grimscrolls.hermaeus-mora` (the Prince's sphere, wants and pay); accepting the task starts an 8d Patience pool (`didact do prince-task who=<pc> prince='Hermaeus Mora'`).
+
+  The frame: `didact show quest:the-daedric-quests --gm`; the text: `didact rules lookup daedric quests hermaeus mora`.
+source: campaigns/07-the-daedric-quests#hermaeus-mora--discerning-the-transmundane--oghma-infinium
+---
+id: the-daedric-quests-sheogorath
+type: npc
+name: Sheogorath
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-the-mind-of-madness]
+fields: {role: 'the Mad God, gracious and lethal-whimsical'}
+body: |-
+  ## GM notes
+
+  *Sheogorath — The Mind of Madness.* Sheogorath — the Mad God, gracious and lethal-whimsical; not a foe.
+source: campaigns/07-the-daedric-quests#sheogorath--the-mind-of-madness--wabbajack
+---
+id: the-daedric-quests-dervenin
+type: npc
+name: Dervenin
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-the-mind-of-madness]
+fields: {role: the abandoned servant}
+body: |-
+  ## GM notes
+
+  *Sheogorath — The Mind of Madness.* Dervenin — the abandoned servant; harmless.
+source: campaigns/07-the-daedric-quests#sheogorath--the-mind-of-madness--wabbajack
+---
+id: the-daedric-quests-the-mind-of-madness
+type: quest
+name: The Mind of Madness
+aliases: [Sheogorath's quest]
+tags: [the-daedric-quests, daedric-quest, sheogorath]
+goal: A filthy, raving beggar named Dervenin haunts the streets of Solitude, weeping that his master
+  has gone on holiday and won't come home. His master is in the sealed Pelagius Wing of the Blue 
+  Palace — and Dervenin presses a yellowed hip bone on the party and begs them to fetch him.
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  ## GM notes
+
+  **Sheogorath** — *The Mind of Madness* → **Wabbajack**. Sphere: madness and creativity.
+
+  **Date.** Sundas, 17 Last Seed 4E 201, or whenever Sheogorath takes an interest. It is the calendar's start: a new campaign opens on it.
+
+  **The bargain & the twist.** Behind the sealed door, the party falls **into the fractured mind of the long-dead mad Emperor Pelagius III**, where **Sheogorath** himself is enjoying a private dinner inside another man's insanity. The Prince of Madness will only leave (and free Dervenin) if the party becomes Pelagius's *therapist* — using the **Wabbajack** to wrangle the Emperor's personified neuroses into something like health. The twist is pure Sheogorath: there is no betrayal, no soul to sell, only the surreal obligation to fix a dead madman's mind so a god can take a vacation. Refuse, and Sheogorath shrugs and shows you the door — no Wabbajack, and Dervenin stays abandoned; the only "cost" of playing along is your dignity.
+
+  **Beats.**
+
+  1. **The locked wing.** Get the wing's key (from the palace staff or steward) and step through into Pelagius's mind.
+  2. **The Wabbajack.** Sheogorath, dining grandly, hands over the staff and sets three trials. Inside Pelagius's mind the staff costs no charges and does whatever the dream needs; its card applies once the party walks out.
+  3. **Three madnesses.** Shrink the Emperor's monstrous **Anger** and feed his cowering **Confidence**; transform his **Night Terrors** into harmless shapes; win his **Paranoia** by turning a "rival's" bodyguards into wolves. Each is a Wabbajack puzzle, not a slog.
+  4. **The Prince departs.** Pelagius soothed, Sheogorath leaves; the party walks out of the wing, Wabbajack in hand, Dervenin restored.
+
+  **Key NPCs & foes.**
+
+  - **Sheogorath** — the Mad God, gracious and lethal-whimsical; not a foe.
+  - **Dervenin** — the abandoned servant; harmless.
+  - The "foes" inside the mind are figments — run any needed clash as **Bandits** or wild beasts, and lean on the Wabbajack's transform effect over damage.
+
+  **Reward.** **Wabbajack** — see its card in *Unique Weapons*. No two strikes do the same thing twice.
+
+  In each system's catalog: Wabbajack (elder-scrolls-2e.wabbajack · grimscrolls.wabbajack).
+
+  Under Grimscrolls, Sheogorath is `grimscrolls.sheogorath` (the Prince's sphere, wants and pay); accepting the task starts an 8d Patience pool (`didact do prince-task who=<pc> prince='Sheogorath'`).
+
+  The frame: `didact show quest:the-daedric-quests --gm`; the text: `didact rules lookup daedric quests sheogorath`.
+source: campaigns/07-the-daedric-quests#sheogorath--the-mind-of-madness--wabbajack
+---
+id: the-daedric-quests-atub
+type: npc
+name: Atub
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-the-cursed-tribe]
+fields: {role: Orc wise-woman}
+body: |-
+  ## GM notes
+
+  *Malacath — The Cursed Tribe.* Atub — Orc wise-woman; ally, not a fighter.
+source: campaigns/07-the-daedric-quests#malacath--the-cursed-tribe--volendrung
+---
+id: the-daedric-quests-chief-yamarz
+type: npc
+name: Chief Yamarz
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-the-cursed-tribe]
+fields: {role: proud and craven}
+body: |-
+  ## GM notes
+
+  *Malacath — The Cursed Tribe.* Chief Yamarz — proud and craven; run as a Forsworn Briarheart (8 HP) if he fights, though he is doomed regardless.
+
+  Fights as `elder-scrolls-2e.forsworn-briarheart` if it comes to blows.
+source: campaigns/07-the-daedric-quests#malacath--the-cursed-tribe--volendrung
+---
+id: the-daedric-quests-the-cursed-tribe
+type: quest
+name: The Cursed Tribe
+aliases: [Malacath's quest]
+tags: [the-daedric-quests, daedric-quest, malacath]
+goal: "The Orc stronghold of Largashbur, in the Rift, is under siege by giants — a plague no stronghold
+  should suffer. The wise-woman Atub begs the party's aid and reveals the truth: the tribe is cursed,
+  abandoned by their god, because their chief is weak."
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  ## GM notes
+
+  **Malacath** — *The Cursed Tribe* → **Volendrung**. Sphere: the spurned and ostracized; the sworn oath, the bloody curse; patron of Orcs.
+
+  **Date.** Sundas, 17 Last Seed 4E 201, or whenever Malacath takes an interest. It is the calendar's start: a new campaign opens on it.
+
+  **The bargain & the twist.** **Malacath**, the spurned Prince and patron of Orcs, will lift the curse — but only through a proof of strength. The ritual (a daedra heart and troll fat) summons his furious voice; he orders **Chief Yamarz** to journey to a giant's sacred grove and slay its champion with his own hands, returning the giant's club as tribute. The twist is Yamarz's cowardice: he will try to bribe the party to do his killing and let him claim the glory — and Malacath despises him for it. Yamarz dies in that grove no matter what (the giant kills him if you won't, or you may end his treachery yourself), and Malacath gladly accepts a worthier order. Here the "victim" is a craven leader, and the moral question is whether you let a coward steal a god's regard or expose him.
+
+  **Beats.**
+
+  1. **The siege.** Help drive off the giant assault on Largashbur; gather troll fat and a daedra heart for the rite.
+  2. **The rite.** Atub's ritual; Malacath's wrathful demand; Yamarz's shameful offer.
+  3. **Fallowstone Cave & the Giant's Grove.** Escort (or be used by) Yamarz to the sacred grove; the giant champion falls; Yamarz does too.
+  4. **The hammer transformed.** Lay the giant's club on Largashbur's shrine; it becomes **Volendrung**, and Malacath names a new chief.
+
+  **Key NPCs & foes.**
+
+  - **Atub** — Orc wise-woman; ally, not a fighter.
+  - **Chief Yamarz** — proud and craven; *run as a* **Forsworn Briarheart** *(8 HP) if he fights, though he is doomed regardless.*
+  - The **giant champion** of the Grove — run as a **Giant**; **Fallowstone Cave** holds **Bear**s and **Troll**s.
+
+  **Reward.** **Volendrung** — see its card in *Unique Weapons*. The Hammer of Might, which hurls a struck foe back and drinks its vigor. (Lifting the curse also makes the party **Blood-Kin** to the Orcs: in any stronghold, Orcs who hear of it start at Kind.)
+
+  In each system's catalog: Volendrung (elder-scrolls-2e.volendrung · grimscrolls.volendrung).
+
+  Under Grimscrolls, Malacath is `grimscrolls.malacath` (the Prince's sphere, wants and pay); accepting the task starts an 8d Patience pool (`didact do prince-task who=<pc> prince='Malacath'`).
+
+  The frame: `didact show quest:the-daedric-quests --gm`; the text: `didact rules lookup daedric quests malacath`.
+source: campaigns/07-the-daedric-quests#malacath--the-cursed-tribe--volendrung
+---
+id: the-daedric-quests-kesh-the-clean
+type: npc
+name: Kesh the Clean
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-the-only-cure]
+fields: {role: Khajiit incense-brewer}
+body: |-
+  ## GM notes
+
+  *Peryite — The Only Cure.* Kesh the Clean — Khajiit incense-brewer; ally.
+source: campaigns/07-the-daedric-quests#peryite--the-only-cure--spellbreaker
+---
+id: the-daedric-quests-orchendor
+type: npc
+name: Orchendor
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-the-only-cure]
+fields: {role: a Bosmer spellsword and apostate}
+body: |-
+  ## GM notes
+
+  *Peryite — The Only Cure.* Orchendor — a Bosmer spellsword and apostate; run as a Conjurer (but tougher: 8 HP, immune to fire, frost, and shock, and able to turn briefly invisible to reposition). A real boss.
+
+  Fights as `elder-scrolls-2e.conjurer` (Grimscrolls: `grimscrolls.hedge-wizards`) if it comes to blows.
+source: campaigns/07-the-daedric-quests#peryite--the-only-cure--spellbreaker
+---
+id: the-daedric-quests-the-only-cure
+type: quest
+name: The Only Cure
+aliases: [Peryite's quest]
+tags: [the-daedric-quests, daedric-quest, peryite]
+goal: A wretched, plague-rotted wanderer — one of the Afflicted — directs the party to Kesh the 
+  Clean, a devotee tending the small Shrine to Peryite in the wild Reach, who can let them speak 
+  with his Prince.
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  ## GM notes
+
+  **Peryite** — *The Only Cure* → **Spellbreaker**. Sphere: pestilence, contamination, tasks, the natural order.
+
+  **Date.** Sundas, 17 Last Seed 4E 201, or whenever Peryite takes an interest. It is the calendar's start: a new campaign opens on it.
+
+  **The bargain & the twist.** Peryite, the lowest of the Princes — Lord of pestilence and dull order — has a grievance. One of his own monks, **Orchendor**, gathered the plague-touched faithful into the Dwemer ruin of **Bthardamz** and then "lost his way," defying the natural order Peryite embodies. The task: kill Orchendor in the Prince's name. The twist is the awful devotion of it all — the Afflicted *worship* the disease that is rotting them alive, calling their agony a blessing; Orchendor promised them comfort and delivered only deeper misery; and the party is sent to execute him not for that cruelty but simply because he stopped obeying. To brew the incense that summons Peryite, the party must first gather grim reagents (vampire dust, a silver ingot, a flawless ruby, deathbell).
+
+  **Beats.**
+
+  1. **The incense.** Gather the four reagents across Skyrim; bring them to Kesh.
+  2. **The Prince's voice.** Inhale the fumes at the shrine; Peryite names Orchendor and his crime (disobedience).
+  3. **Bthardamz.** Descend the plague-ridden Dwemer ruin — the Afflicted, and Dwarven automatons — to the Arcanex.
+  4. **The execution.** Slay Orchendor; return to the shrine and breathe the fumes once more to claim the prize.
+
+  **Key NPCs & foes.**
+
+  - **Kesh the Clean** — Khajiit incense-brewer; ally.
+  - **Orchendor** — a Bosmer spellsword and apostate; *run as a* **Conjurer** *(but tougher: 8 HP, immune to fire, frost, and shock, and able to turn briefly invisible to reposition).* A real boss.
+  - The ruin teems with **Afflicted** (run as **Bandits**) and **Dwarven Spider**/**Sphere** automatons.
+
+  **Reward.** **Spellbreaker** — see its card in *Unique Armors*. The great ward-shield that turns hostile magic aside.
+
+  In each system's catalog: Spellbreaker (elder-scrolls-2e.spellbreaker · grimscrolls.spellbreaker).
+
+  Under Grimscrolls, Peryite is `grimscrolls.peryite` (the Prince's sphere, wants and pay); accepting the task starts an 8d Patience pool (`didact do prince-task who=<pc> prince='Peryite'`).
+
+  The frame: `didact show quest:the-daedric-quests --gm`; the text: `didact rules lookup daedric quests peryite`.
+source: campaigns/07-the-daedric-quests#peryite--the-only-cure--spellbreaker
+---
+id: the-daedric-quests-sinding
+type: npc
+name: Sinding
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-ill-met-by-moonlight]
+fields: {role: 'a haunted, sincere werewolf'}
+body: |-
+  ## GM notes
+
+  *Hircine — Ill Met by Moonlight.* Sinding — a haunted, sincere werewolf; run as a Werewolf in beast form. Foe or desperate ally, by the party's choice.
+
+  Fights as `elder-scrolls-2e.werewolf` (Grimscrolls: `grimscrolls.werewolf-pack`) if it comes to blows.
+source: 
+  campaigns/07-the-daedric-quests#hircine--ill-met-by-moonlight--saviors-hide-or-ring-of-hircine
+---
+id: the-daedric-quests-the-aspect-of-hircine
+type: npc
+name: The Aspect of Hircine
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-ill-met-by-moonlight]
+fields: {role: a spectral stag}
+body: |-
+  ## GM notes
+
+  *Hircine — Ill Met by Moonlight.* The Aspect of Hircine — a spectral stag; voice and omen, not a fight.
+source: 
+  campaigns/07-the-daedric-quests#hircine--ill-met-by-moonlight--saviors-hide-or-ring-of-hircine
+---
+id: the-daedric-quests-ill-met-by-moonlight
+type: quest
+name: Ill Met by Moonlight
+aliases: [Hircine's quest]
+tags: [the-daedric-quests, daedric-quest, hircine]
+goal: A child has been murdered in Falkreath, and a man named Sinding sits in the town jail — a 
+  werewolf who killed without meaning to, because he stole the Ring of Hircine, which Hircine cursed
+  to force the change on him at the worst moments. He begs the party to help him make it right.
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  ## GM notes
+
+  **Hircine** — *Ill Met by Moonlight* → **Savior's Hide or Ring of Hircine**. Sphere: the Hunt and the chase; progenitor of lycanthropy.
+
+  **Date.** Sundas, 17 Last Seed 4E 201, or whenever Hircine takes an interest. It is the calendar's start: a new campaign opens on it.
+
+  **The bargain & the twist.** Sinding stole from Hircine, and the Prince of the Hunt has made him prey. Sinding gives the party the cursed ring before he breaks out of his cell; soon after, a great white stag — the **Aspect of Hircine** — bids them hunt him through **Bloated Man's Grotto**. Here the moral fork is sharp and clean: **hunt Sinding down** and skin him for the Prince (Hircine makes his pelt into the **Savior's Hide**, the reward of the hunter who brought down the quarry), or **spare Sinding** and turn your blades with him on the other hunters Hircine sent (Hircine, amused, lifts the curse from the **Ring of Hircine** and lets you keep it). Murder and mercy each have a reward; the Prince enjoys the chase either way.
+
+  **Beats.**
+
+  1. **The jail.** Hear Sinding's story; he hands over the cursed Ring and slips away.
+  2. **The white stag.** In the wilds, the Aspect of Hircine appears and names the hunt: find Sinding in the Grotto.
+  3. **Bloated Man's Grotto.** Hircine's other hunters are already there, after the same quarry.
+  4. **The choice.** Kill Sinding (→ Savior's Hide), or side with Sinding against the hunters (→ Ring of Hircine, its curse lifted).
+
+  **Key NPCs & foes.**
+
+  - **Sinding** — a haunted, sincere werewolf; *run as a* **Werewolf** *in beast form.* Foe or desperate ally, by the party's choice.
+  - **Hircine's Hunters** — a band sent to claim Sinding; run as a _detachment_ of **Bandit**s (or Silver Hand, if you prefer hunters of monsters).
+  - The **Aspect of Hircine** — a spectral stag; voice and omen, not a fight.
+
+  **Reward.** Hunt Sinding → **Savior's Hide** (*Unique Armors*). Spare Sinding → **Ring of Hircine** (*Unique Armors*). One quest, two artifacts, one decision.
+
+  In each system's catalog: Savior's Hide (elder-scrolls-2e.saviors-hide · grimscrolls.saviors-hide); Ring of Hircine (elder-scrolls-2e.ring-of-hircine · grimscrolls.ring-of-hircine).
+
+  Under Grimscrolls, Hircine is `grimscrolls.hircine` (the Prince's sphere, wants and pay); accepting the task starts an 8d Patience pool (`didact do prince-task who=<pc> prince='Hircine'`).
+
+  The frame: `didact show quest:the-daedric-quests --gm`; the text: `didact rules lookup daedric quests hircine`.
+source: 
+  campaigns/07-the-daedric-quests#hircine--ill-met-by-moonlight--saviors-hide-or-ring-of-hircine
+---
+id: the-daedric-quests-brother-verulus
+type: npc
+name: Brother Verulus
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-the-taste-of-death]
+fields: {role: gentle priest of Arkay}
+body: |-
+  ## GM notes
+
+  *Namira — The Taste of Death.* Brother Verulus — gentle priest of Arkay; the trusting victim. Run as a Necromancer (6 HP) only if somehow provoked.
+
+  Fights as `elder-scrolls-2e.necromancer` (Grimscrolls: `grimscrolls.necromancer-coven`) if it comes to blows.
+source: campaigns/07-the-daedric-quests#namira--the-taste-of-death--ring-of-namira
+---
+id: the-daedric-quests-eola
+type: npc
+name: Eola
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-the-taste-of-death]
+fields:
+  role: 'and the coven (Markarth folk: Lisbet, Banning, Hogni, and others); run as Bandits if a fight
+    breaks out, e.g. if the party turns on the cult instead'
+body: |-
+  ## GM notes
+
+  *Namira — The Taste of Death.* Eola and the coven (Markarth folk: Lisbet, Banning, Hogni, and others) — run as Bandits if a fight breaks out, e.g. if the party turns on the cult instead.
+
+  Fights as `elder-scrolls-2e.bandit` (Grimscrolls: `grimscrolls.bandits`) if it comes to blows.
+source: campaigns/07-the-daedric-quests#namira--the-taste-of-death--ring-of-namira
+---
+id: the-daedric-quests-the-taste-of-death
+type: quest
+name: The Taste of Death
+aliases: [Namira's quest]
+tags: [the-daedric-quests, daedric-quest, namira]
+goal: 'In Markarth, the Hall of the Dead has been sealed and its keeper, Brother Verulus, is frightened:
+  something has been eating the corpses. Persuade him to let the party investigate.'
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  ## GM notes
+
+  **Namira** — *The Taste of Death* → **Ring of Namira**. Sphere: hunger, decay, death, revulsion.
+
+  **Date.** Sundas, 17 Last Seed 4E 201, or whenever Namira takes an interest. It is the calendar's start: a new campaign opens on it.
+
+  **The bargain & the twist.** The trail leads to **Reachcliff Cave** and to **Eola**, a charming cannibal who serves **Namira**, Prince of the repulsive and the devouring. Eola invites the party to clear the cave of its draugr — and then to join her coven's feast. The price of Namira's ring is the meal: the party must lure the kindly, trusting **Brother Verulus** to the shrine and **sacrifice him**, then sit down with the cult and **eat him**. This is a quiet, intimate horror — no army to fight, only a good man led to slaughter by his own faith in you, and a circle of well-dressed Markarth citizens waiting with the cutlery. Walking away leaves the coven hungry and the party clean.
+
+  **Beats.**
+
+  1. **The defiled hall.** Investigate the Hall of the Dead; follow the desecration to Reachcliff Cave.
+  2. **Eola's coven.** Clear the cave (draugr); Eola reveals the cult and the feast.
+  3. **The lure.** Coax Brother Verulus to follow you to the shrine.
+  4. **The feast.** Sacrifice and consume him at Namira's altar — or refuse.
+
+  **Key NPCs & foes.**
+
+  - **Brother Verulus** — gentle priest of Arkay; the trusting victim. *Run as a* **Necromancer** *(6 HP) only if somehow provoked.*
+  - **Eola** and the coven (Markarth folk: Lisbet, Banning, Hogni, and others) — *run as* **Bandit**s if a fight breaks out, e.g. if the party turns on the cult instead.
+  - **Reachcliff Cave** is full of **Draugr** (and perhaps a **Draugr Overlord**).
+
+  **Reward.** **Ring of Namira** — see its card in *Unique Armors*. Feeding on a fresh corpse heals STR and clears Fatigue — at a cost to Renown.
+
+  In each system's catalog: Ring of Namira (elder-scrolls-2e.ring-of-namira · grimscrolls.ring-of-namira).
+
+  Under Grimscrolls, Namira is `grimscrolls.namira` (the Prince's sphere, wants and pay); accepting the task starts an 8d Patience pool (`didact do prince-task who=<pc> prince='Namira'`).
+
+  The frame: `didact show quest:the-daedric-quests --gm`; the text: `didact rules lookup daedric quests namira`.
+source: campaigns/07-the-daedric-quests#namira--the-taste-of-death--ring-of-namira
+---
+id: the-daedric-quests-barbas
+type: npc
+name: Barbas
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-a-daedras-best-friend]
+fields: {role: the immortal hound}
+mechanics:
+  grimscrolls:
+    tier: tough
+    role: trickster
+    fact: Clavicus Vile's hound and half his power, usually a large gray dog that talks, harmed by 
+      nothing but the Rueful Axe. He warns mortals off his master's bargains, then walks them to the
+      shrine anyway.
+body: |-
+  ## GM notes
+
+  *Clavicus Vile — A Daedra's Best Friend.* Barbas — the immortal hound; cannot be killed in the wild (only "dismissed" by the Prince at the shrine); a wry, exasperating companion.
+
+  Grimscrolls: its Face is `grimscrolls.barbas` (Barbas), in this record's grimscrolls block.
+source: 
+  campaigns/07-the-daedric-quests#clavicus-vile--a-daedras-best-friend--masque-of-clavicus-vile
+---
+id: the-daedric-quests-clavicus-vile
+type: npc
+name: Clavicus Vile
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-a-daedras-best-friend]
+fields: {role: a languid voice from the shrine}
+body: |-
+  ## GM notes
+
+  *Clavicus Vile — A Daedra's Best Friend.* Clavicus Vile — a languid voice from the shrine; never fought.
+source: 
+  campaigns/07-the-daedric-quests#clavicus-vile--a-daedras-best-friend--masque-of-clavicus-vile
+---
+id: the-daedric-quests-sebastian-lort
+type: npc
+name: Sebastian Lort
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-a-daedras-best-friend]
+fields: {role: a grief-mad conjurer guarding the Axe}
+body: |-
+  ## GM notes
+
+  *Clavicus Vile — A Daedra's Best Friend.* Sebastian Lort — a grief-mad conjurer guarding the Axe; run as a Conjurer, with a summoned Flame Atronach or Frost Atronach at his side. Haemar's Shame holds a nest of Vampires and Death Hounds.
+
+  Fights as `elder-scrolls-2e.conjurer` (Grimscrolls: `grimscrolls.hedge-wizards`), `elder-scrolls-2e.flame-atronach` (Grimscrolls: `grimscrolls.flame-atronach`), `elder-scrolls-2e.frost-atronach` (Grimscrolls: `grimscrolls.frost-atronach`), `elder-scrolls-2e.vampire` (Grimscrolls: `grimscrolls.vampire-clan`), `elder-scrolls-2e.death-hound` (Grimscrolls: `grimscrolls.vampire-clan`) if it comes to blows.
+source: 
+  campaigns/07-the-daedric-quests#clavicus-vile--a-daedras-best-friend--masque-of-clavicus-vile
+---
+id: the-daedric-quests-a-daedras-best-friend
+type: quest
+name: A Daedra's Best Friend
+aliases: [Clavicus Vile's quest]
+tags: [the-daedric-quests, daedric-quest, clavicus-vile]
+goal: Outside Falkreath, the smith Lod is hunting a stray dog. The dog finds the party first — and 
+  talks. He is Barbas, the immortal hound and other half of Clavicus Vile, and he has quarreled with
+  his master and wants the party to broker a reconciliation.
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  ## GM notes
+
+  **Clavicus Vile** — *A Daedra's Best Friend* → **Masque of Clavicus Vile**. Sphere: power and wishes through pacts and bargains; trickery.
+
+  **Date.** Sundas, 17 Last Seed 4E 201, or whenever Clavicus Vile takes an interest. It is the calendar's start: a new campaign opens on it.
+
+  **The bargain & the twist.** Barbas leads the party the long road to **Haemar's Shame**, where Clavicus Vile's shrine sits among vampire cultists. The Prince, bored and cruel, will only take Barbas back if the party first fetches him a toy: the **Rueful Axe**, a great axe Vile once handed a wizard who begged him to cure his daughter's lycanthropy. The twist is the final pact at the shrine — **keep the Rueful Axe** (which means striking Barbas down to be rid of the talking dog's pestering, exactly the petty cruelty Vile hoped to provoke), or **surrender the Axe** to the Prince and walk away with the **Masque of Clavicus Vile** instead, having chosen the harder, kinder thing. Vile profits from your choice either way; that is the whole joke.
+
+  **Beats.**
+
+  1. **The talking dog.** Meet Barbas; agree (or be pestered into) the long walk to the shrine.
+  2. **Haemar's Shame.** Reach the shrine through its vampire cultists; speak to Clavicus Vile.
+  3. **Rimerock Burrow.** Retrieve the Rueful Axe from the frozen lair of the mad conjurer **Sebastian Lort**, who guards it.
+  4. **The pact.** Back at the shrine — keep the Axe (kill Barbas) or give it up (take the Masque).
+
+  **Key NPCs & foes.**
+
+  - **Barbas** — the immortal hound; cannot be killed in the wild (only "dismissed" by the Prince at the shrine); a wry, exasperating companion.
+  - **Clavicus Vile** — a languid voice from the shrine; never fought.
+  - **Sebastian Lort** — a grief-mad conjurer guarding the Axe; *run as a* **Conjurer**, with a summoned **Flame Atronach** or **Frost Atronach** at his side. **Haemar's Shame** holds a nest of **Vampire**s and **Death Hound**s.
+
+  **Reward.** **Masque of Clavicus Vile** — see its card in *Unique Armors*. The grinning helm that softens a stranger's first Reaction and sweetens every price. *(Keeping the Rueful Axe forecloses the Masque; the Axe has a card of its own in Unique Weapons, but the Masque is the true Daedric prize.)*
+
+  In each system's catalog: Masque of Clavicus Vile (elder-scrolls-2e.masque-of-clavicus-vile · grimscrolls.masque-of-clavicus-vile).
+
+  Under Grimscrolls, Clavicus Vile is `grimscrolls.clavicus-vile` (the Prince's sphere, wants and pay); accepting the task starts an 8d Patience pool (`didact do prince-task who=<pc> prince='Clavicus Vile'`).
+
+  The frame: `didact show quest:the-daedric-quests --gm`; the text: `didact rules lookup daedric quests clavicus vile`.
+source: 
+  campaigns/07-the-daedric-quests#clavicus-vile--a-daedras-best-friend--masque-of-clavicus-vile
+---
+id: the-daedric-quests-priestess-of-boethiah
+type: npc
+name: Priestess of Boethiah
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-boethiahs-calling]
+fields: {role: zealous cult-leader}
+body: |-
+  ## GM notes
+
+  *Boethiah — Boethiah's Calling.* Priestess of Boethiah — zealous cult-leader; run as a Conjurer.
+
+  Fights as `elder-scrolls-2e.conjurer` (Grimscrolls: `grimscrolls.hedge-wizards`) if it comes to blows.
+source: campaigns/07-the-daedric-quests#boethiah--boethiahs-calling--ebony-mail
+---
+id: the-daedric-quests-boethiahs-old-champion
+type: npc
+name: Boethiah's old Champion
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-boethiahs-calling]
+fields:
+  role: at Knifepoint Ridge; run as a Wight (12 HP, 3 Armor, ebony greatsword d10), with a small 
+    detachment of Bandits
+body: |-
+  ## GM notes
+
+  *Boethiah — Boethiah's Calling.* Boethiah's old Champion at Knifepoint Ridge — run as a Wight (12 HP, 3 Armor, ebony greatsword d10), with a small detachment of Bandits.
+
+  Fights as `elder-scrolls-2e.wight` (Grimscrolls: `grimscrolls.daedric-champion`), `elder-scrolls-2e.bandit` (Grimscrolls: `grimscrolls.bandits`) if it comes to blows.
+source: campaigns/07-the-daedric-quests#boethiah--boethiahs-calling--ebony-mail
+---
+id: the-daedric-quests-boethiahs-calling
+type: quest
+name: Boethiah's Calling
+aliases: [Boethiah's quest]
+tags: [the-daedric-quests, daedric-quest, boethiah]
+goal: A black book, Boethiah's Proving, falls into the party's hands (or a seasoned party simply 
+  hears of the Sacellum of Boethiah, a mountaintop shrine east of Windhelm where a cult gathers). 
+  The Priestess of Boethiah offers a path to the Prince's favor.
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  ## GM notes
+
+  **Boethiah** — *Boethiah's Calling* → **Ebony Mail**. Sphere: plots, deceit, conspiracy, secret murder, treason.
+
+  **Date.** Sundas, 17 Last Seed 4E 201, or whenever Boethiah takes an interest. It is the calendar's start: a new campaign opens on it.
+
+  **The bargain & the twist.** Boethiah, Prince of treachery and "rightful" murder, demands proof that a tongue can wield a lie. The party must lead one of their own **trusted companions** to the shrine's **Pillar of Sacrifice** and kill them there — betrayal made into worship. Then the cult turns on itself in Boethiah's arena (each cultist a rival for the Prince's eye), and the last survivor must hunt down Boethiah's **old, failing champion** at **Knifepoint Ridge** and take his place. The twist is that the entire faith is built on betrayal: there are no innocents here, only conspirators, and the price of the Ebony Mail is the murder of someone who trusted you. A party with no follower to spare — or no stomach for it — simply has no entry, and that is answer enough.
+
+  **Beats.**
+
+  1. **The Sacellum.** Reach the shrine; the Priestess names the price — a sacrificed friend.
+  2. **The betrayal.** Lure a trusting follower to the Pillar; the deed opens the way.
+  3. **The arena.** The cultists fight one another (and the party) for the honor; survive.
+  4. **Knifepoint Ridge.** Slay the old champion; Boethiah names a new one and the Mail is yours.
+
+  **Key NPCs & foes.**
+
+  - **Priestess of Boethiah** — zealous cult-leader; *run as a* **Conjurer**.
+  - The **Sacellum cultists** — a melee of fanatics; run as **Bandit**s (a chaotic, every-side fight).
+  - **Boethiah's old Champion** at Knifepoint Ridge — *run as a* **Wight** *(12 HP, 3 Armor, ebony greatsword d10)*, with a small _detachment_ of **Bandit**s.
+
+  **Reward.** **Ebony Mail** — see its card in *Unique Armors*. Move in unnatural silence inside a shroud of venom.
+
+  In each system's catalog: Ebony Mail (elder-scrolls-2e.ebony-mail · grimscrolls.ebony-mail).
+
+  Under Grimscrolls, Boethiah is `grimscrolls.boethiah` (the Prince's sphere, wants and pay); accepting the task starts an 8d Patience pool (`didact do prince-task who=<pc> prince='Boethiah'`).
+
+  The frame: `didact show quest:the-daedric-quests --gm`; the text: `didact rules lookup daedric quests boethiah`.
+source: campaigns/07-the-daedric-quests#boethiah--boethiahs-calling--ebony-mail
+---
+id: the-daedric-quests-nelkir
+type: npc
+name: Nelkir
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-the-whispering-door]
+fields: {role: a corrupted child}
+body: |-
+  ## GM notes
+
+  *Mephala — The Whispering Door.* Nelkir — a corrupted child; harmless, unsettling.
+source: campaigns/07-the-daedric-quests#mephala--the-whispering-door--ebony-blade
+---
+id: the-daedric-quests-jarl-balgruuf
+type: npc
+name: Jarl Balgruuf
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-the-whispering-door]
+fields:
+  role: 'with Farengar Secret-Fire: obstacles, not foes (unless the party makes them so'
+body: |-
+  ## GM notes
+
+  *Mephala — The Whispering Door.* Jarl Balgruuf and Farengar Secret-Fire — obstacles, not foes (unless the party makes them so; Farengar runs as a Conjurer, and turning Dragonsreach hostile is a Hold-level catastrophe).
+
+  Fights as `elder-scrolls-2e.conjurer` (Grimscrolls: `grimscrolls.hedge-wizards`) if it comes to blows.
+source: campaigns/07-the-daedric-quests#mephala--the-whispering-door--ebony-blade
+---
+id: the-daedric-quests-farengar-secret-fire
+type: npc
+name: Farengar Secret-Fire
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-the-whispering-door]
+fields: {role: 'with Jarl Balgruuf: obstacles, not foes (unless the party makes them so'}
+body: |-
+  ## GM notes
+
+  *Mephala — The Whispering Door.* Jarl Balgruuf and Farengar Secret-Fire — obstacles, not foes (unless the party makes them so; Farengar runs as a Conjurer, and turning Dragonsreach hostile is a Hold-level catastrophe).
+
+  Fights as `elder-scrolls-2e.conjurer` (Grimscrolls: `grimscrolls.hedge-wizards`) if it comes to blows.
+source: campaigns/07-the-daedric-quests#mephala--the-whispering-door--ebony-blade
+---
+id: the-daedric-quests-mephala
+type: npc
+name: Mephala
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-the-whispering-door]
+fields: {role: a silken voice behind the door}
+body: |-
+  ## GM notes
+
+  *Mephala — The Whispering Door.* Mephala — a silken voice behind the door.
+source: campaigns/07-the-daedric-quests#mephala--the-whispering-door--ebony-blade
+---
+id: the-daedric-quests-the-whispering-door
+type: quest
+name: The Whispering Door
+aliases: [Mephala's quest]
+tags: [the-daedric-quests, daedric-quest, mephala]
+goal: Gossip in Whiterun's Bannered Mare turns to the Jarl's troubled youngest son, Nelkir. The boy 
+  is sullen and secretive, and when the party speaks with him he confides that a Whispering Lady 
+  talks to him through a sealed door in the cellars of Dragonsreach.
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  ## GM notes
+
+  **Mephala** — *The Whispering Door* → **Ebony Blade**. Sphere: murder, lies, sex and secrets; the Webspinner.
+
+  **Date.** Sundas, 17 Last Seed 4E 201, or whenever Mephala takes an interest. It is the calendar's start: a new campaign opens on it.
+
+  **The bargain & the twist.** The voice is **Mephala**, Prince of secrets and quiet murder, and behind that door lies the **Ebony Blade**. Mephala will give it freely — that is the trap. The Blade is a dull, weak thing until it is **fed on betrayal**: it grows keen only as its wielder murders the people who *trust* them. Mephala's true gift is not the sword but the appetite it breeds. The twist plays out after the quest, every time the party is tempted to sharpen the Blade on a friend, an ally, a trusting stranger. Getting the Blade is easy; the moral cost is paid slowly, in everyone who ever believed in you. (To open the door the party needs the Jarl's key — pickpocketed from **Balgruuf**, or taken from his wizard **Farengar**, whom Nelkir slyly notes "won't be missed.")
+
+  **Beats.**
+
+  1. **The brooding boy.** Learn of the Whispering Lady from Nelkir.
+  2. **The door.** Mephala speaks; she wants her Blade carried out into the world.
+  3. **The key.** Lift it from Balgruuf or Farengar (theft, guile, or worse).
+  4. **The Blade.** Open the door and take the Ebony Blade — its hunger comes with it.
+
+  **Key NPCs & foes.**
+
+  - **Nelkir** — a corrupted child; harmless, unsettling.
+  - **Jarl Balgruuf** and **Farengar Secret-Fire** — obstacles, not foes (unless the party makes them so; Farengar runs as a **Conjurer**, and turning Dragonsreach hostile is a Hold-level catastrophe).
+  - **Mephala** — a silken voice behind the door.
+
+  **Reward.** **Ebony Blade** — see its card in *Unique Weapons*. It heals its wielder, and grows keener with every trusting soul it slays.
+
+  In each system's catalog: Ebony Blade (elder-scrolls-2e.ebony-blade · grimscrolls.ebony-blade).
+
+  Under Grimscrolls, Mephala is `grimscrolls.mephala` (the Prince's sphere, wants and pay); accepting the task starts an 8d Patience pool (`didact do prince-task who=<pc> prince='Mephala'`).
+
+  The frame: `didact show quest:the-daedric-quests --gm`; the text: `didact rules lookup daedric quests mephala`.
+source: campaigns/07-the-daedric-quests#mephala--the-whispering-door--ebony-blade
+---
+id: the-daedric-quests-meridia
+type: npc
+name: Meridia
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-the-break-of-dawn]
+fields: {role: a pillar of intolerable light}
+body: |-
+  ## GM notes
+
+  *Meridia — The Break of Dawn.* Meridia — a pillar of intolerable light; patron and taskmaster.
+source: campaigns/07-the-daedric-quests#meridia--the-break-of-dawn--dawnbreaker
+---
+id: the-daedric-quests-malkoran
+type: npc
+name: Malkoran
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-the-break-of-dawn]
+fields: {role: a powerful frost-mage necromancer}
+body: |-
+  ## GM notes
+
+  *Meridia — The Break of Dawn.* Malkoran — a powerful frost-mage necromancer; run as a Necromancer (but a boss: 10 HP, and on death he rises once as a "Shade of Malkoran," a Ghost with his spells).
+
+  Fights as `elder-scrolls-2e.necromancer` (Grimscrolls: `grimscrolls.necromancer-coven`), `elder-scrolls-2e.ghost` (Grimscrolls: `grimscrolls.ghost-and-wraith`) if it comes to blows.
+source: campaigns/07-the-daedric-quests#meridia--the-break-of-dawn--dawnbreaker
+---
+id: the-daedric-quests-the-break-of-dawn
+type: quest
+name: The Break of Dawn
+aliases: [Meridia's quest]
+tags: [the-daedric-quests, daedric-quest, meridia]
+goal: The party finds Meridia's Beacon, a glowing crystal (looted from a corpse, or pressed on them 
+  by fate), and a radiant voice commands them to carry it to the Statue of Meridia atop Mount 
+  Kilkreath, near Solitude.
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  ## GM notes
+
+  **Meridia** — *The Break of Dawn* → **Dawnbreaker**. Sphere: life and light; hatred of the undead.
+
+  **Date.** Sundas, 17 Last Seed 4E 201, or whenever Meridia takes an interest. It is the calendar's start: a new campaign opens on it.
+
+  **The bargain & the twist.** Meridia, Lady of Light, is one of the few Princes with a cause a hero can love — she *despises* the undead. A necromancer, **Malkoran**, has defiled her temple, twisting her own light to raise corrupted shades and bind tormented souls. She lifts the party bodily into the air and names them her champion: cleanse the temple, destroy the defiler, reclaim her sword. The "twist" is gentler than her siblings' but real — Meridia is imperious and absolute, brooks no refusal, and will press her crusade against the undead onto the party as a standing demand; her favor is a command, not a gift, and she does not care what it costs *you*. (She will even take a vampire as her champion, the better to set a monster against monsters.)
+
+  **Beats.**
+
+  1. **The beacon.** Place it at the statue; behold Meridia's blinding true form and take her commission.
+  2. **The temple of light.** Inside **Kilkreath Temple**, guide Meridia's ray from pedestal to pedestal, burning back the **Corrupted Shades**.
+  3. **The catacombs.** Press to the depths and wake Malkoran.
+  4. **Dawnbreaker.** Defeat Malkoran and his shade; take the radiant sword from its pedestal.
+
+  **Key NPCs & foes.**
+
+  - **Meridia** — a pillar of intolerable light; patron and taskmaster.
+  - **Malkoran** — a powerful frost-mage necromancer; *run as a* **Necromancer** *(but a boss: 10 HP, and on death he rises once as a "Shade of Malkoran," a* **Ghost** *with his spells).*
+  - The temple is thick with **Corrupted Shades** — run as **Ghost**s — and reanimated **Draugr**.
+
+  **Reward.** **Dawnbreaker** — see its card in *Unique Weapons*. The sword of caged daylight; it bursts in holy fire among the undead.
+
+  In each system's catalog: Dawnbreaker (elder-scrolls-2e.dawnbreaker · grimscrolls.dawnbreaker).
+
+  Under Grimscrolls, Meridia is `grimscrolls.meridia` (the Prince's sphere, wants and pay); accepting the task starts an 8d Patience pool (`didact do prince-task who=<pc> prince='Meridia'`).
+
+  The frame: `didact show quest:the-daedric-quests --gm`; the text: `didact rules lookup daedric quests meridia`.
+source: campaigns/07-the-daedric-quests#meridia--the-break-of-dawn--dawnbreaker
+---
+id: the-daedric-quests-aranea-ienith
+type: npc
+name: Aranea Ienith
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-the-black-star]
+fields: {role: devoted priestess}
+body: |-
+  ## GM notes
+
+  *Azura — The Black Star.* Aranea Ienith — devoted priestess; a Conjurer-type follower if you side with Azura.
+
+  Fights as `elder-scrolls-2e.conjurer` (Grimscrolls: `grimscrolls.hedge-wizards`) if it comes to blows.
+source: campaigns/07-the-daedric-quests#azura--the-black-star--azuras-star-or-the-black-star
+---
+id: the-daedric-quests-nelacar
+type: npc
+name: Nelacar
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-the-black-star]
+fields: {role: 'a guarded, world-weary Altmer'}
+body: |-
+  ## GM notes
+
+  *Azura — The Black Star.* Nelacar — a guarded, world-weary Altmer; informant, and the other path.
+source: campaigns/07-the-daedric-quests#azura--the-black-star--azuras-star-or-the-black-star
+---
+id: the-daedric-quests-malyn-varen
+type: npc
+name: Malyn Varen
+knowledge: secret
+tags: [the-daedric-quests, cast, the-daedric-quests-the-black-star]
+fields: {role: a dead master necromancer fought as a spirit inside the Star}
+body: |-
+  ## GM notes
+
+  *Azura — The Black Star.* Malyn Varen — a dead master necromancer fought as a spirit inside the Star; run as a Wight (no followers may enter with the party). Two of his surviving Necromancer disciples may later hunt the party for revenge.
+
+  Fights as `elder-scrolls-2e.wight` (Grimscrolls: `grimscrolls.draugr`), `elder-scrolls-2e.necromancer` (Grimscrolls: `grimscrolls.necromancer-coven`) if it comes to blows.
+source: campaigns/07-the-daedric-quests#azura--the-black-star--azuras-star-or-the-black-star
+---
+id: the-daedric-quests-the-black-star
+type: quest
+name: The Black Star
+aliases: [Azura's quest]
+tags: [the-daedric-quests, daedric-quest, azura]
+goal: "At the Shrine of Azura south of Winterhold — a great statue raised by Dunmer exiles — the lone
+  priestess Aranea Ienith has received a vision from her mistress: a fortress the sea threatens yet has
+  never touched, and an elven mage who can \"turn the brightest star black.\" Her vision points to Nelacar,
+  an exiled wizard at Winterhold's Frozen Hearth inn."
+date: Sundas, 17 Last Seed 4E 201
+body: |-
+  ## GM notes
+
+  **Azura** — *The Black Star* → **Azura's Star or The Black Star**. Sphere: dusk and dawn; twilight, fate, prophecy, mystery.
+
+  **Date.** Sundas, 17 Last Seed 4E 201, or whenever Azura takes an interest. It is the calendar's start: a new campaign opens on it.
+
+  **The bargain & the twist.** Azura's Star is a reusable soul gem of legend, but it was **corrupted** by the necromancer **Malyn Varen**, who fed innocents (including a student) into it chasing immortality, and now haunts its crystalline interior. The party recovers the broken Star from the sunken ruin of **Ilinalta's Deep** and faces a clean, defining fork: return it to **Azura** to be **purified** (it will hold only the **white souls** of beasts — the holy, harder path, and Aranea joins as a grateful follower), or side with **Nelacar** to keep it **corrupted** as **The Black Star** (which greedily takes the **black souls** of the sapient — more power, and a taboo crime). Azura's bargain is the rare one that asks the party to choose *purity over power* — and lets them refuse it.
+
+  **Beats.**
+
+  1. **The vision.** Aranea's cryptic clue sends the party to Nelacar in Winterhold.
+  2. **The mage's tale.** Coax Malyn Varen's history and the Star's resting place from Nelacar.
+  3. **Ilinalta's Deep.** Delve the flooded fortress; fight necromancers and undead; recover the broken Star.
+  4. **The choice — and the duel within.** Side with Aranea or Nelacar, then step *inside* the Star to destroy Malyn Varen's lingering spirit. Emerge with Azura's Star (white) or the Black Star (black).
+
+  **Key NPCs & foes.**
+
+  - **Aranea Ienith** — devoted priestess; a **Conjurer**-type follower if you side with Azura.
+  - **Nelacar** — a guarded, world-weary Altmer; informant, and the other path.
+  - **Malyn Varen** — a dead master necromancer fought as a spirit inside the Star; *run as a* **Wight** *(no followers may enter with the party).* Two of his surviving **Necromancer** disciples may later hunt the party for revenge.
+  - **Ilinalta's Deep** is full of **Necromancer**s, **Skeleton**s, and **Draugr**.
+
+  **Reward.** Side with Azura → **Azura's Star** (white souls). Side with Nelacar → **The Black Star** (black souls). Both in *Relics*. One ruin, two artifacts, one conscience.
+
+  In each system's catalog: Azura's Star (elder-scrolls-2e.azuras-star · grimscrolls.azuras-star); The Black Star (elder-scrolls-2e.the-black-star).
+
+  Under Grimscrolls, Azura is `grimscrolls.azura` (the Prince's sphere, wants and pay); accepting the task starts an 8d Patience pool (`didact do prince-task who=<pc> prince='Azura'`).
+
+  The frame: `didact show quest:the-daedric-quests --gm`; the text: `didact rules lookup daedric quests azura`.
+source: campaigns/07-the-daedric-quests#azura--the-black-star--azuras-star-or-the-black-star

@@ -1,0 +1,44 @@
+# Adventure hooks and settlements (overseers-guide/adventure-hooks, settlements): the
+# mission-of-the-week generator, and a new settlement the party claims.
+generator: adventure-hook
+title: An adventure hook
+help: >-
+  The mission-of-the-week: a Mission Type (d6), the Specific Hook from that mission's d20 table
+  (who's asking, and why), a Complication (d10) and a Reward (d10, a bonus on top of base pay of
+  2d6 × 25 caps for the whole party), written as a quest. Combine and run; if the rolls don't
+  resonate, roll again or pick. Prefill by name: mission, hook, complication, reward.
+source: overseers-guide/adventure-hooks
+steps:
+  - choose_or_roll: {table: hook-mission, as: mission}
+  - choose_or_roll: {table: "{@mission.table}", as: hook}
+  - choose_or_roll: {table: hook-complication, as: complication}
+  - choose_or_roll: {table: hook-reward, as: reward}
+  - roll: 2d6
+    as: pay_dice
+  - let: {pay: "@pay_dice * 25"}
+  - entity:
+      key: job
+      type: quest
+      name: "Job: {@hook}"
+      fields:
+        goal: "@hook"
+        status_note: "Complication: {@complication}. Reward: {@pay} caps base pay, and {@reward}."
+      body: |
+        Mission: {@mission}
+        Hook: {@hook}
+        Complication: {@complication}
+        Reward: base pay {@pay} caps for the party (2d6 × 25: more from a rich client, less from a desperate one), plus {@reward}
+  - prompt: "Sit with the four rolls for two minutes: who is the client, what's the real story, what's the choice at the end? A rolled adventure is a starting point, not a script."
+---
+generator: settlement
+title: A new settlement
+help: >-
+  A settlement the party claims: a name (descriptor + noun), Population, Defense and Industry at
+  1/1/1, and eight empty building slots. Fill them with `didact do build`. Prefill by name: name.
+creates: settlement
+source: overseers-guide/settlements#attributes
+steps:
+  - name: {table: place-names}
+  - apply: {kind: poi, poi: settlement, population: 1, defense: 1, industry: 1, building_slots: 8}
+  - prompt: "What is it: a ruin the party cleared, a crossroads they defended, a homestead inherited from a dying farmer? What does it make that others want (Industry 1 is 'we have clean water')?"
+  - prompt: "Fill its slots with `didact do build settlement=<it> building='Walls & Gate' who=<pc> caps=<200-600>` (`didact table show settlement-buildings`). Filled slots beyond Population × 2 go dark each season."

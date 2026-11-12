@@ -1,0 +1,561 @@
+# Nuka-World (campaigns/16-nuka-world): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: nuka-world
+type: quest
+name: Nuka-World
+tags: [nuka-world, frame, side-arc]
+goal: A radio signal from a pre-war Nuka-Cola family vacation resort invites the party to 
+  Nuka-World, the world-famous amusement park — now open! The broadcast omits that the park is run 
+  by the Pack, the Disciples, and the Operators — three raider gangs — whose lieutenants have rigged
+  the Gauntlet to rid themselves of their own Overboss. The park's pre-war management AI, Nuka-Cola 
+  Family Spokesbot "Nick Nuka," still runs rides and vending machines. The Overboss's seat is about 
+  to be vacant. Guess who's auditioning.
+date: Sunday, 23 October 2287
+body: |-
+  *A pre-war theme park run by three raider gangs. The reigning Overboss is one rigged fight from dying in the Gauntlet. The park is a candy-colored meat grinder and it is waiting for someone to take the throne.*
+
+  ## GM notes
+
+  **Date.** Sunday, 23 October 2287: a Fallout 4 side arc: that frame's date, or whenever the park's signal is heard. Open a campaign on it with `didact campaign new <id> --date 'Sunday, 23 October 2287'`, or move one there with `didact time set 'Sunday, 23 October 2287'` before its first session.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup Nuka-World tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** A traveling Preston Garvey type (or any do-gooder NPC from the party's network) cannot warn the party in time: the Gauntlet has already been rebuilt. The party arrives at the front gate, the monorail pulls up, and the Gauntlet — a deadly pre-war attraction converted into a deathrun — flings them at the throne.
+
+  **Plot beats.**
+
+  1. The Gauntlet. The drop-in. A themed kill-corridor of traps, mutants, and raider hecklers on catwalks. Every PC takes d6 damage here no matter what. At the end, Colter waits in his power armor, announced as the Overboss. The fight is riggable — the Overseer should give the party a clever environmental cue to exploit (a loose cable, a water spout, a dangling cage).
+  2. Meeting Gage. The moment Colter falls, Porter Gage steps out of the shadows with a handshake and a pitch. Gage rigged the Gauntlet on purpose. He will serve whoever wears the crown next. He explains the three gangs, the open seat, and the short window before the gangs install their own Overboss. The Crown Clock starts ticking.
+  3. Nuka-Town USA. The hub. Market stalls run by gang quartermasters, a slave pen (choose to free or ignore — freeing is the first step of the Liberate climax), the Overboss's residence standing vacant. Sierra Petrovita, a Nuka-Cola superfan on pilgrimage, is here and will guide the party to the bottling plant if asked.
+  4. Touring the Gangs. The party visits Mags and William Black (Operators), Mason (Pack), and Nisha (Disciples). Each pitches their own vision for the park. Each offers the party a loyalty test — a job in one of the four themed zones that proves the party can work with them.
+  5. The Zones. Dry Rock Gulch, Galactic Zone, Kiddie Kingdom, Safari Adventure, and the Nuka-Cola Bottling Plant — five zones in all, the last one threaded by the World of Refreshment's river of glowing Quantum. Each zone is a pointcrawl dungeon with one iconic pre-war attraction and one iconic postwar inhabitant. The party should explore at least two; they will learn the park's pre-war weight only by walking through it.
+  6. The Power Plant. Beneath the park. Powering it on re-activates rides, vending machines, and the security grid. A dozen sentry bots and eyebots swarm the zones when the lights come up. A WIL save (or the right terminal password) flips the grid to the party's side — the single biggest lever in the campaign.
+  7. The Gala Decision. Gage presses the party for an answer: who wears the crown? The party can take the throne, play the gangs against each other in staged duels, ally with Mackenzie and liberate the park, or walk out and leave Nuka-World to fester. Each path reshapes the climactic fights.
+  8. The Crown. Whatever the party chose, a final scene resolves the park's rule. Taking the throne means dividing the park's five zones among the three gangs (see Climax below); liberating means a single bloody day. See the Climax section for all four resolutions.
+
+  **Climax.**
+
+  The Overboss seat is empty. Gage is asking who sits. Resolutions:
+
+  - **Take the throne.** The party becomes the Overboss. They must then divide the park's **five zones** among the three gangs — satisfying any two gangs and disappointing the third will trigger a civil war the party must suppress. Succeeding makes the park the party's permanent base.
+  - **Liberate the park.** Ally with Mackenzie, free the slaves, and use the power plant's security grid against the raider gangs. The three gangs die in a single bloody day. The park becomes a trade-hub settlement.
+  - **Play the gangs against each other.** Sequential duels with each gang leader, staged as park spectacles. The party walks out with the three bosses' own weapons and a reputation that follows them forever. The park dies behind them.
+  - **Walk out.** Monorail back to the Commonwealth and never look back. Gage leaves in disgust. The park becomes an enemy stronghold for a later campaign.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "Nuka-World"}' --auto` drafts the region, 9 places, 9 people, 5 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Bestiary** (Fallout 2e / Grimfall): Thug → `thug` / `raider`; Crew Boss → `crew-boss` / `raider`; Protectron → `protectron` / `protectron`; Gatorclaw → `gatorclaw` / `gatorclaw`; Bloodworm → `bloodworm` / `bloodworm`.
+
+  **Rewards in each system's catalog:** Thirst Zapper (fallout-2e.thirst-zapper · grimfall.thirst-zapper); Splattercannon (fallout-2e.splattercannon · grimfall.splattercannon); Western Revolver (grimfall.western-revolver); Nuka-Cola Quantum (fallout-2e.nuka-cola-quantum · grimfall.nuka-cola-quantum); Nuka-Dark Rum Recipe (grimfall.nuka-dark-rum-recipe); Nuka-Cola Dark (fallout-2e.nuka-cola-dark); Gatorclaw Gauntlet (fallout-2e.gatorclaw-gauntlet · grimfall.gatorclaw-gauntlet); Nuka-Girl Rocketsuit Costume (fallout-2e.nuka-girl-rocketsuit-costume · grimfall.nuka-girl-rocketsuit); Sealed Nuka-Cola Factory Crate (fallout-2e.sealed-nuka-cola-factory-crate); Quantum X-01 (grimfall.quantum-x-01).
+source: campaigns/16-nuka-world#pitch
+---
+id: nuka-world-region
+type: loc
+name: Nuka-World
+tags: [nuka-world, region]
+mechanics:
+  fallout-2e: {kind: region}
+  grimfall: {kind: region}
+body: |-
+  ## GM notes
+
+  The park is a true open sandbox of themed zones, each with its own hook.
+source: campaigns/16-nuka-world#the-place--nuka-world
+---
+id: nuka-world-the-gauntlet
+type: loc
+name: The Gauntlet
+tags: [nuka-world, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The drop-in. A themed kill-corridor of traps, mutants, and one raider boss at the end, Colter (power-armored). Every PC takes d6 damage here regardless of skill.
+source: campaigns/16-nuka-world#the-place--nuka-world
+---
+id: nuka-world-nuka-town-usa
+type: loc
+name: Nuka-Town USA
+tags: [nuka-world, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The hub. Market stalls, a slave pen (choose to free or ignore), the Overboss's residence.
+source: campaigns/16-nuka-world#the-place--nuka-world
+---
+id: nuka-world-dry-rock-gulch
+type: loc
+name: Dry Rock Gulch
+tags: [nuka-world, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Western theme. Bloatflies and bloodworms. A pre-war gunslinger protectron, One-Eyed Ike, challenges strangers to a duel.
+source: campaigns/16-nuka-world#the-place--nuka-world
+---
+id: nuka-world-galactic-zone
+type: loc
+name: Galactic Zone
+tags: [nuka-world, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Sci-fi theme. Robots, a star-map terminal, a pre-war Star Core hunt for caps.
+source: campaigns/16-nuka-world#the-place--nuka-world
+---
+id: nuka-world-kiddie-kingdom
+type: loc
+name: Kiddie Kingdom
+tags: [nuka-world, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A fairytale theme. Ghouls. Oswald the Outrageous, a pre-war stage magician turned glowing ghoul, holds court over his feral troupe from the rides.
+source: campaigns/16-nuka-world#the-place--nuka-world
+---
+id: nuka-world-safari-adventure
+type: loc
+name: Safari Adventure
+tags: [nuka-world, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Jungle theme. Gatorclaws, spawned without end by a runaway pre-war cloning replicator. Cito, a wild man raised by the park's ghoulrillas, protects his family from them.
+source: campaigns/16-nuka-world#the-place--nuka-world
+---
+id: nuka-world-nuka-world-transit-center
+type: loc
+name: Nuka-World Transit Center
+tags: [nuka-world, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  The far end of the Nuka-Express monorail, back in the Commonwealth: the way in, and the only fast way out.
+source: campaigns/16-nuka-world#the-place--nuka-world
+---
+id: nuka-world-nuka-cola-bottling-plant
+type: loc
+name: Nuka-Cola Bottling Plant
+tags: [nuka-world, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  A river of glowing Quantum. Pre-war recipe terminals. A hidden Cola-Nut holotape carries the original formula for Nuka-Dark — the rum-strength Nuka-Cola Dark the wasteland still buys bottled, though no one alive can brew it fresh.
+source: campaigns/16-nuka-world#the-place--nuka-world
+---
+id: nuka-world-the-power-plant
+type: loc
+name: The Power Plant
+tags: [nuka-world, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Beneath the park. Powering it on re-activates rides, vending machines, and the security grid — a dozen sentry bots and eyebots swarm the zones. A WIL save flips the grid to the party's side.
+source: campaigns/16-nuka-world#the-place--nuka-world
+---
+id: nuka-world-pack-warrior
+type: monster
+name: Pack Warrior
+knowledge: secret
+tags: [nuka-world, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Nuka-World'
+    hp: 8
+    armor: 1
+    STR: 14
+    DEX: 13
+    WIL: 9
+    attacks:
+    - name: deathclaw gauntlet
+      damage: d10
+      qualities: [bulky]
+    - {name: bite-chain, damage: d6}
+    abilities: ['Ferocious: Enhanced on any turn the Pack Warrior took damage the previous round.']
+  grimfall:
+    tier: mook
+    role: brute
+    category: The Factions Under Arms
+    senses:
+    - face paint, blood paint, or pressed tactical rigs
+    - howls, silence, or radio clicks
+    - cotton candy gone to vinegar
+    traits: [each gang fights its own way, all three watch the others]
+    moves:
+    - Pack — Frenzied Rush
+    - Disciples — Blades from Nowhere
+    - Operators — Disciplined Crossfire
+    wants: tribute, territory, and the Overboss's chair — never to bleed for another gang's claim
+    note: "Each gang runs as a 4d/6d pool with its own flavor: the Pack's moves come at high stakes once
+      its pool is half gone, Disciples strike from stealth, and while their boss stands, the Operators'
+      pool can't drop below 1d. Overboss Colter duels in the arena as a 6d elite in electrified power
+      armor — the crowd, and the park's plumbing, are legal weapons. One-Eyed Ike, the dueling lawman
+      protectron, is the politest gunfight in the wastes."
+body: |-
+  ## GM notes
+
+  Face-painted raider of the Pack. Dressed in hides and teeth. Howls during combat.
+
+  Fallout 2e: 8 HP, 1 Armor, 14 STR, 13 DEX, 9 WIL, deathclaw gauntlet (d10, bulky), bite-chain (d6).
+
+  Grimfall: its card is `grimfall.nuka-world-gangs` (Nuka-World Gangs), in this record's grimfall block.
+source: campaigns/16-nuka-world#pack-warrior
+---
+id: nuka-world-disciple-blade
+type: monster
+name: Disciple Blade
+knowledge: secret
+tags: [nuka-world, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Nuka-World'
+    hp: 6
+    STR: 12
+    DEX: 16
+    WIL: 10
+    attacks:
+    - {name: Disciples blade, damage: d8}
+    - {name: surgical knife, damage: d6}
+    abilities:
+    - 'Silent Cut: Enhanced from stealth. On a Critical Damage result, the target also cannot cry out
+      that round.'
+  grimfall:
+    tier: mook
+    role: brute
+    category: The Factions Under Arms
+    senses:
+    - face paint, blood paint, or pressed tactical rigs
+    - howls, silence, or radio clicks
+    - cotton candy gone to vinegar
+    traits: [each gang fights its own way, all three watch the others]
+    moves:
+    - Pack — Frenzied Rush
+    - Disciples — Blades from Nowhere
+    - Operators — Disciplined Crossfire
+    wants: tribute, territory, and the Overboss's chair — never to bleed for another gang's claim
+    note: "Each gang runs as a 4d/6d pool with its own flavor: the Pack's moves come at high stakes once
+      its pool is half gone, Disciples strike from stealth, and while their boss stands, the Operators'
+      pool can't drop below 1d. Overboss Colter duels in the arena as a 6d elite in electrified power
+      armor — the crowd, and the park's plumbing, are legal weapons. One-Eyed Ike, the dueling lawman
+      protectron, is the politest gunfight in the wastes."
+body: |-
+  ## GM notes
+
+  The quiet gang. Blood paint, ritual scars, a hundred blades between them.
+
+  Fallout 2e: 6 HP, 12 STR, 16 DEX, 10 WIL, Disciples blade (d8), surgical knife (d6).
+
+  Grimfall: its card is `grimfall.nuka-world-gangs` (Nuka-World Gangs), in this record's grimfall block.
+source: campaigns/16-nuka-world#disciple-blade
+---
+id: nuka-world-operator-enforcer
+type: monster
+name: Operator Enforcer
+knowledge: secret
+tags: [nuka-world, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Nuka-World'
+    hp: 10
+    armor: 2
+    STR: 13
+    DEX: 14
+    WIL: 12
+    attacks:
+    - name: combat rifle
+      damage: d10
+      qualities: [bulky]
+    - {name: combat knife, damage: d6}
+    abilities: ['Discipline: Automatically passes Morale saves while their leader lives.']
+  grimfall:
+    tier: mook
+    role: brute
+    category: The Factions Under Arms
+    senses:
+    - face paint, blood paint, or pressed tactical rigs
+    - howls, silence, or radio clicks
+    - cotton candy gone to vinegar
+    traits: [each gang fights its own way, all three watch the others]
+    moves:
+    - Pack — Frenzied Rush
+    - Disciples — Blades from Nowhere
+    - Operators — Disciplined Crossfire
+    wants: tribute, territory, and the Overboss's chair — never to bleed for another gang's claim
+    note: "Each gang runs as a 4d/6d pool with its own flavor: the Pack's moves come at high stakes once
+      its pool is half gone, Disciples strike from stealth, and while their boss stands, the Operators'
+      pool can't drop below 1d. Overboss Colter duels in the arena as a 6d elite in electrified power
+      armor — the crowd, and the park's plumbing, are legal weapons. One-Eyed Ike, the dueling lawman
+      protectron, is the politest gunfight in the wastes."
+body: |-
+  ## GM notes
+
+  The business gang. Tactical gear, comms, discipline.
+
+  Fallout 2e: 10 HP, 2 Armor, 13 STR, 14 DEX, 12 WIL, combat rifle (d10, bulky), combat knife (d6).
+
+  Grimfall: its card is `grimfall.nuka-world-gangs` (Nuka-World Gangs), in this record's grimfall block.
+source: campaigns/16-nuka-world#operator-enforcer
+---
+id: nuka-world-mechanical-gunslinger
+type: monster
+name: Mechanical Gunslinger
+knowledge: secret
+tags: [nuka-world, threat]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Nuka-World'
+    hp: 10
+    armor: 1
+    STR: 12
+    DEX: 15
+    WIL: 10
+    rad_immune: true
+    attacks:
+    - {name: western revolver, damage: d10}
+    - {name: spin-kick, damage: d6}
+    abilities:
+    - 'High Noon: In the first round only, its revolver shot is Enhanced. The targeted PC makes a DEX
+      save; on a success they act before the shot, on a failure the Gunslinger fires first.'
+  grimfall:
+    tier: mook
+    role: brute
+    category: The Factions Under Arms
+    senses:
+    - face paint, blood paint, or pressed tactical rigs
+    - howls, silence, or radio clicks
+    - cotton candy gone to vinegar
+    traits: [each gang fights its own way, all three watch the others]
+    moves:
+    - Pack — Frenzied Rush
+    - Disciples — Blades from Nowhere
+    - Operators — Disciplined Crossfire
+    wants: tribute, territory, and the Overboss's chair — never to bleed for another gang's claim
+    note: "Each gang runs as a 4d/6d pool with its own flavor: the Pack's moves come at high stakes once
+      its pool is half gone, Disciples strike from stealth, and while their boss stands, the Operators'
+      pool can't drop below 1d. Overboss Colter duels in the arena as a 6d elite in electrified power
+      armor — the crowd, and the park's plumbing, are legal weapons. One-Eyed Ike, the dueling lawman
+      protectron, is the politest gunfight in the wastes."
+body: |-
+  ## GM notes
+
+  Pre-war Dry Rock Gulch lawman protectron — One-Eyed Ike to the locals. Challenges strangers to a duel.
+
+  Fallout 2e: 10 HP, 1 Armor, 12 STR, 15 DEX, 10 WIL, western revolver (d10), spin-kick (d6).
+
+  Grimfall: its card is `grimfall.nuka-world-gangs` (Nuka-World Gangs), in this record's grimfall block.
+source: campaigns/16-nuka-world#mechanical-gunslinger
+---
+id: nuka-world-colter
+type: monster
+name: Colter
+aliases: [Overboss Colter, Overboss Colter (in Power Armor)]
+knowledge: secret
+tags: [nuka-world, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Nuka-World'
+    hp: 15
+    armor: 3
+    STR: 16
+    DEX: 12
+    WIL: 13
+    attacks:
+    - {name: electrified gauntlet, damage: d10}
+    abilities:
+    - 'Shock Field: On a hit, the target makes a STR save or loses their next action.'
+    - 'Chair Above the Gauntlet: The fight happens in the arena — the Overseer may give the party environmental
+      aid (a water spout, a loose cable) for a clever DEX save; on a success the suit shorts out, and
+      attacks against him ignore his Armor until the end of the next round.'
+  grimfall:
+    tier: elite
+    role: brute
+    category: Faces of the Wasteland
+    fact: Power armor fed by the arena's grid; the crowd — and the plumbing — are how you beat him.
+body: |-
+  ## GM notes
+
+  **Colter** — the outgoing Overboss. Dead in the Gauntlet by round three.
+
+  The outgoing Overboss. Power-armored, overconfident, already ashamed.
+
+  Fallout 2e: 15 HP, 3 Armor, 16 STR, 12 DEX, 13 WIL, electrified gauntlet (d10).
+
+  Grimfall: its card is `grimfall.overboss-colter` (Overboss Colter), in this record's grimfall block.
+source: campaigns/16-nuka-world#overboss-colter-in-power-armor
+---
+id: nuka-world-mags-black
+type: npc
+name: Mags Black
+knowledge: secret
+tags: [nuka-world, cast]
+fields: {role: 'with William Black: the Operators, the business gang'}
+body: |-
+  ## GM notes
+
+  **Mags and William Black** — the Operators, the business gang. Efficient, greedy, reasonable.
+source: campaigns/16-nuka-world#cast
+---
+id: nuka-world-william-black
+type: npc
+name: William Black
+knowledge: secret
+tags: [nuka-world, cast]
+fields: {role: 'with Mags Black: the Operators, the business gang'}
+body: |-
+  ## GM notes
+
+  **Mags and William Black** — the Operators, the business gang. Efficient, greedy, reasonable.
+source: campaigns/16-nuka-world#cast
+---
+id: nuka-world-mason
+type: npc
+name: Mason
+knowledge: secret
+tags: [nuka-world, cast]
+fields: {role: 'alpha of the Pack, dressed in deathclaw hide'}
+body: |-
+  ## GM notes
+
+  **Mason** — alpha of the Pack, dressed in deathclaw hide. Animal theatrics, genuine kindness to his own.
+source: campaigns/16-nuka-world#cast
+---
+id: nuka-world-nisha
+type: npc
+name: Nisha
+knowledge: secret
+tags: [nuka-world, cast]
+fields: {role: 'leader of the Disciples, a quiet blood cult'}
+body: |-
+  ## GM notes
+
+  **Nisha** — leader of the Disciples, a quiet blood cult. Terrifies even her own people.
+source: campaigns/16-nuka-world#cast
+---
+id: nuka-world-gage
+type: npc
+name: Gage
+knowledge: secret
+tags: [nuka-world, cast]
+fields: {role: Colter's former right hand}
+body: |-
+  ## GM notes
+
+  **Gage** — Colter's former right hand. Offers himself as the party's guide. Loyal to whoever wears the crown.
+source: campaigns/16-nuka-world#cast
+---
+id: nuka-world-shank
+type: npc
+name: Shank
+knowledge: secret
+tags: [nuka-world, cast]
+fields: {role: the gangs' logistics man}
+body: |-
+  ## GM notes
+
+  **Shank** — the gangs' logistics man. Hands out side contracts.
+source: campaigns/16-nuka-world#cast
+---
+id: nuka-world-mackenzie-bridgeman
+type: npc
+name: Mackenzie Bridgeman
+knowledge: secret
+tags: [nuka-world, cast]
+fields: {role: a trader-doctor the raiders have not yet killed}
+body: |-
+  ## GM notes
+
+  **Mackenzie Bridgeman** — a trader-doctor the raiders have not yet killed. Contact for Commonwealth parties.
+source: campaigns/16-nuka-world#cast
+---
+id: nuka-world-nuka-cola-family-spokesbot-nick-nuka
+type: npc
+name: Nuka-Cola Family Spokesbot ("Nick Nuka")
+knowledge: secret
+tags: [nuka-world, cast]
+fields: {role: a pre-war Mr. Handy in a Nuka-Cola suit}
+body: |-
+  ## GM notes
+
+  **Nuka-Cola Family Spokesbot ("Nick Nuka")** — a pre-war Mr. Handy in a Nuka-Cola suit. Scripts, cheer, hidden violence.
+source: campaigns/16-nuka-world#cast
+---
+id: nuka-world-sierra-petrovita
+type: npc
+name: Sierra Petrovita
+knowledge: secret
+tags: [nuka-world, cast]
+fields: {role: a Nuka-Cola superfan on pilgrimage from the Capital Wasteland}
+body: |-
+  ## GM notes
+
+  **Sierra Petrovita** — a Nuka-Cola superfan on pilgrimage from the Capital Wasteland. Already in the park. Already too far in.
+source: campaigns/16-nuka-world#cast
+---
+id: nuka-world-crown-clock
+type: track
+name: Crown Clock
+knowledge: secret
+tags: [nuka-world, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4) Gage's patience with the party's indecision about the Overboss seat. Ticks when the party
+  declines a gang's direct petition, refuses to hold court in Fizztop Grille, or pointedly helps a 
+  caged trader in view of a gang boss. At 4, one of the three gangs installs its own Overboss and 
+  treats the party as enemies.
+source: campaigns/16-nuka-world#clocks
+---
+id: nuka-world-slave-clock
+type: track
+name: Slave Clock
+knowledge: secret
+tags: [nuka-world, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4) The traders caged in Nuka-Town USA. Ticks when the party walks past the cages without 
+  acting, when a gang boss orders a public execution for sport, and when the party takes on an 
+  Overboss task without negotiating for a prisoner's life first. Each tick is a death. The caged 
+  traders are a named roster — Chip Morse, Mackenzie Bridgeman, Aaron Corbett, and others. At 4, 
+  Mackenzie is among the dead, and the Liberate the park ending loses its ally.
+source: campaigns/16-nuka-world#clocks
+---
+id: nuka-world-commonwealth-clock
+type: track
+name: Commonwealth Clock
+knowledge: secret
+tags: [nuka-world, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: (d6) If the party sides with the raiders. Ticks on each Commonwealth settlement raided, 
+  sacked, or surrendered to a Nuka-World gang. At 6, a Minutemen relief force arrives at the park 
+  gates.
+source: campaigns/16-nuka-world#clocks

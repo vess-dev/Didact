@@ -1,0 +1,173 @@
+# Scrap and crafting, vehicles, companions, reputation, karma and settlements, as the book
+# counts them. Seeded.
+test: world
+help: >-
+  Each part plays in a world of its own: scrap-and-crafting, vehicles, companions,
+  reputation-and-karma, settlements, downtime-and-scavenging. Scrap is a number, 5 to a slot; a
+  recipe pays its Scrap and caps at its station; chems roll reagents and 1d4 doses; repairs are 1
+  Scrap and half the value (the carried item's price); a carried weapon broken down is gone,
+  its size read from it. Driving under pressure, damage to the frame, a crash's Scars,
+  ramming, a field patch, a workshop repair and a frame rebuild.
+script:
+  - world new scrap-and-crafting --system {pack} --seed craft
+  - campaign new scrap-and-crafting --seed craft
+  - new pc Gears --set STR=10 --set DEX=12 --set WIL=12 --set hp=4 --set caps=400
+  - run: do scrap who=gears source=gain amount=6
+    expect: ["scrap = 6", "scrap_load = 2", "Scrap +6 (gain) → 6 (2 slot(s))"]
+  - run: do scrap who=gears source=breakdown item_scrap=4
+    expect: "Scrap +2 (breakdown) → 8"
+  - run: do scrap who=gears source=sell amount=2
+    expect: ["Scrap -2 (sell) → 6", "gets 20 caps for it"]
+  - run: inv add gears 'Hunting rifle'
+    expect: "Gears gets Hunting rifle"
+  - run: do craft who=gears recipe='Long Scope' item='Hunting rifle'
+    expect: ["makes Long Scope at the Weapons Workbench: 2 Scrap, 80 caps", "Long-range shots with this weapon are not Impaired", "mods += Long Scope"]
+  - run: do craft who=gears recipe=Stimpak
+    expect: ["2d6", "brews Stimpak at the Chemistry Station", "1d4", "pc:gears: + Stimpak"]
+  - run: do craft who=gears recipe='Box of shotgun shells' batches=3
+    expect: ["3 Scrap, 18 caps", "pc:gears: + Box of shotgun shells"]
+  - run: do craft who=gears recipe='Pop-Up Turret Kit'
+    expect: "stop: Pop-Up Turret Kit needs 5 Scrap"
+  - run: do craft who=gears recipe=Suppressor station=false
+    expect: "stop: No station, no recipe"
+  - run: do scrap who=gears source=gain amount=1
+    expect: "Scrap +1"
+  - run: do repair who=gears item='Laser rifle' value=380
+    expect: "Laser rifle works again: 1 Scrap and 190 caps"
+  - inv add gears 'Pipe rifle'
+  - run: do repair who=gears item='Pipe rifle'
+    expect: "Pipe rifle works again: 1 Scrap and 10 caps"
+  - run: do scrap who=gears source=breakdown item='Pipe rifle'
+    expect: ["Scrap +2 (breakdown)", "pc:gears: - Pipe rifle"]
+  - world new vehicles --system {pack} --seed cars
+  - campaign new vehicles --seed cars
+  - new pc Max --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set caps=900 --set scrap=20
+  - run: spawn motorbike
+    expect: "vehicle:motorbike"
+  - run: show motorbike
+    expect: ["Frame HP 6/6", "armor 1", "Fast"]
+  - run: do drive who=max vehicle=motorbike
+    expect: ["check fallout-2e.drive", "1d20"]
+  - set max conditions+=deprived
+  - run: do drive who=max
+    expect: ["→ failure", "Max is Deprived: they can't avoid the hazard"]
+  - set max conditions-=deprived
+  - run: do vehicle-damage vehicle=motorbike amount=3
+    expect: "Motorbike's frame takes 2 (4/6 Frame HP)"
+  - run: do field-patch vehicle=motorbike who=max
+    expect: "stop: Field patches can't take Motorbike past half its Frame HP"
+  - run: do vehicle-damage vehicle=motorbike amount=3
+    expect: "Motorbike's frame takes 2 (2/6 Frame HP)"
+  - run: do field-patch vehicle=motorbike who=max
+    expect: ["hp += 1", "patches Motorbike in the field: +1 Frame HP (3/6)"]
+  - run: do vehicle-repair vehicle=motorbike who=max points=2
+    expect: ["restores 2 Frame HP", "4 Scrap"]
+  - spawn raider-dune-buggy
+  - run: do vehicle-damage vehicle=raider-dune-buggy amount=9 driver=max
+    expect: ["Raider Dune Buggy crashes", "Max, at the wheel, takes a Scar", "Scar ("]
+  - spawn pre-war-corvega
+  - spawn feral-ghoul
+  - run: do ram vehicle=pre-war-corvega driver=max target=feral-ghoul
+    expect: ["rams Feral Ghoul: 3 damage each way", "Max deals"]
+  - run: do vehicle-damage vehicle=pre-war-corvega amount=5
+    expect: "Pre-war Corvega's frame takes 3"
+  - run: do vehicle-damage vehicle=pre-war-corvega amount=12
+    expect: "broken, not crashed"
+  - run: do frame-rebuild vehicle=pre-war-corvega who=max
+    expect: ["1d20", "Pre-war Corvega is rebuilt"]
+  - world new companions --system {pack} --seed friends
+  - campaign new companions --seed friends
+  - new pc Lone --set STR=12 --set DEX=12 --set WIL=12 --set hp=4
+  - run: spawn dog
+    expect: "companion:dog"
+  - set dog owner=pc:lone
+  - spawn radroach
+  - run: combat start --party radroach
+    expect: "round 1"
+  - run: do command who=lone companion=dog target=radroach weapon=d6
+    expect: ["once_per_combat += command", "spends their action to command Dog (once per combat)", "1d12", "The attack is enhanced (Dog → Radroach)"]
+  - run: do command who=lone companion=dog
+    expect: "stop: Lone has commanded Dog once this fight already"
+  - run: combat end
+    expect: "fight-over"
+  - run: do command who=lone companion=dog
+    expect: "spends their action to command Dog"
+    expect_not: "once_per_combat"
+  - run: do loyalty companion=dog shift=1
+    expect: ["loyalty = 5", "True: will die for the party"]
+  - run: do loyalty companion=dog shift=1
+    expect: "stop: Dog's Loyalty is already at the ladder's end"
+  - run: do loyalty companion=dog shift=-4
+    expect: ["loyalty = 1", "Wary"]
+  - world new reputation-and-karma --system {pack} --seed rep
+  - campaign new reputation-and-karma --seed rep
+  - new faction NCR
+  - new faction Legion
+  - set ncr opposed=faction:legion
+  - set legion opposed=faction:ncr
+  - run: do reputation who=ncr shift=1 why='delivered the intel'
+    expect: ["NCR: 0 → 1, Liked", "Legion: 0 → -1, Hostile"]
+  - run: do reputation who=ncr shift=1
+    expect: ["NCR: 1 → 2, Idolized", "Legion: -1 → -2, Vilified"]
+  - run: do reputation who=ncr shift=1
+    expect: "already stands at the ladder's end"
+  - new party 'The Party'
+  - run: do karma party=the-party shift=1 why='freed a slaver caravan'
+    expect: ["Party Karma 0 → 1", "Good: small favors offered", "At most one step a session"]
+  - session start
+  - run: do karma party=the-party shift=1 why='stood by the settlers'
+    expect: ["Party Karma 1 → 2", "karma_moved = 1"]
+    expect_not: "At most one step a session"
+  - run: do karma party=the-party shift=-1 why='looted the dead'
+    expect: "stop: Party Karma has moved once this session already (session 1)"
+  - session end
+  - new npc Stranger
+  - run: do reaction who=stranger party=the-party
+    expect: ["reactions:", "Party karma 2 on the roll", "Stranger is"]
+  - run: do reaction who=stranger shift=-2 stranger=false
+    expect: "Stranger is"
+  - world new settlements --system {pack} --seed home
+  - campaign new settlements --seed home
+  - new pc Pres --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set caps=1000
+  - run: >-
+      gen run fallout-2e.settlement --auto --prefill '{"name": "Sanctuary"}'
+    expect: "settlement Sanctuary: kind: poi, poi: settlement, population: 1, defense: 1, industry: 1"
+  - run: gen commit g1
+    expect: "settlement:sanctuary"
+  - run: do build settlement=sanctuary building='Walls & Gate' who=pres caps=300
+    expect: ["buildings += Walls & Gate", "defense += 1", "caps -= 300"]
+  - run: do build settlement=sanctuary building='Jukebox / Radio Set' who=pres
+    expect: ["petty_buildings += Jukebox / Radio Set", "Settlement detachments automatically pass their first Morale save"]
+  - run: do build settlement=sanctuary building='Farm Plots' who=pres caps=200
+    expect: "industry += 1"
+  - run: do upkeep settlement=sanctuary
+    expect: "carries its 2 building(s) (up to 2 at Population 1)"
+  - run: do build settlement=sanctuary building='Guard Post' who=pres caps=200
+    expect: ["defense += 1", "Upkeep: 3 filled slots against Population 1"]
+  - run: do upkeep settlement=sanctuary
+    expect: "one building goes dark this season"
+  - run: do raid settlement=sanctuary rating=2 destroyed='Farm Plots'
+    expect: ["buildings -= Farm Plots", "Population can't drop below 1"]
+  - run: do raid settlement=sanctuary rating=1 won=true
+    expect: "stop: Sanctuary holds"
+  - world new downtime-and-scavenging --system {pack} --seed down
+  - campaign new downtime-and-scavenging --seed down
+  - new pc Sal --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set caps=100
+  - run: do downtime who=sal action=training goal='Field Surgery' caps=40 size=2
+    expect: ["caps -= 40", "+ track Sal: Field Surgery", "A Milestone is complete: 1 of 2", "char advance pc:sal how=training"]
+  - run: do downtime who=sal action=training goal='Field Surgery' size=2
+    expect: ["Sal: Field Surgery [track:sal-field-surgery] is here already", "A Milestone is complete: 2 of 2", "Every Milestone is complete"]
+  - track new 'Old Debts' --kind track --size 3 --for sal
+  - run: do downtime who=sal action=ties goal='Old Debts' milestones=old-debts
+    expect: "A Milestone is complete: 1 of 3"
+  - run: do downtime who=sal action=craft
+    expect: "stop: Crafting is one recipe per Downtime Action"
+  - new loc 'The Burned Mall' --set kind=poi --set poi=ruin
+  - run: do scavenge who=sal ruin=the-burned-mall
+    expect: ["loot-cache", "The risk (Ruin Events)", "scavenged += 1"]
+  - do scavenge who=sal ruin=the-burned-mall find=gear
+  - run: do scavenge who=sal ruin=the-burned-mall
+    expect: "stop: The Burned Mall has been scavenged twice: it's empty."
+  - set sal conditions+=critical
+  - run: do downtime who=sal action=research goal='the Vault 87 access code'
+    expect: "stop: Sal is in recovery"

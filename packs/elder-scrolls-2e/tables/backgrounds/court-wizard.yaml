@@ -1,0 +1,24 @@
+# Court Wizard (backgrounds/court-wizard): the background's two d6 tables.
+table: court-wizard-1
+title: "What service set you at a Jarl's right hand?"
+dice: d6
+source: backgrounds/court-wizard#what-service-set-you-at-a-jarls-right-hand-roll-1d6
+entries:
+  1: {text: "You read the stars and the omens for your Jarl, and were right too often to dismiss. Take a Spell Tome: Clairvoyance, and a Jarl who still sends for you when the sky looks wrong.", data: {gear: [{name: "Spell Tome: Clairvoyance"}]}}
+  2: {text: "You warded the Jarl's hall against assassins and worse. Take a Spell Tome: Lesser Ward and your lord's silver cup (petty), which tarnishes black the moment poison is poured into it.", data: {gear: [{name: "Spell Tome: Lesser Ward"}, {name: "Silver cup", size: "petty"}]}}
+  3: {text: "You catalogued the curios the Hold's delvers dragged home from the barrows. Take a Spell Tome: Soul Trap, and the trained eye to name any enchanted thing on sight — roughly what it does, and what it is worth.", data: {gear: [{name: "Spell Tome: Soul Trap"}]}}
+  4: {text: "You were your Jarl's physician as much as their wizard. Take a Spell Tome: Healing Hands, and a patient's gratitude: someone at court owes you their life, and knows it.", data: {gear: [{name: "Spell Tome: Healing Hands"}]}}
+  5: {text: "You studied the Dwemer ruins beneath the Hold, as Calcelmo does in Markarth. Take a Spell Tome: Magelight, and enough of the Dwarven script to read a warning carved over a door.", data: {gear: [{name: "Spell Tome: Magelight"}]}}
+  6: {text: "You traded a secret with Hermaeus Mora for a secret, and have regretted it since. Take a Spell Tome: Charm, slid across the table by a thing with too many eyes. Once per campaign, ask Mora one question; he answers truly, and takes a secret of yours in payment.", data: {gear: [{name: "Spell Tome: Charm"}]}}
+---
+table: court-wizard-2
+title: "What do you keep closest in your tower study?"
+dice: d6
+source: backgrounds/court-wizard#what-do-you-keep-closest-in-your-tower-study-roll-1d6
+entries:
+  1: {text: "Scrying Bowl: A black obsidian bowl (bulky) you fill with water and starlight. Once per day, add a Fatigue and gaze into it to see a person or place you know, and hear a few words of what passes there now.", data: {gear: [{name: "Scrying Bowl", size: "bulky"}]}}
+  2: {text: "Charged Staff: Your staff of office holds a frost enchantment (2 charges). Spend a charge to hurl a lance of ice (d8) at a foe you can see; it is Slowed on its next turn. Recharge: a filled soul gem set into its head. It is a threat a Court Wizard should rarely need to make good.", data: {upgrade: true, replaces: {name: "Staff of office", damage: "d6", note: "carved with your Jarl's sigil"}, gear: [{name: "Staff of office", damage: "d6", charges: 2, recharge: "a filled soul gem set into its head", note: "carved with your Jarl's sigil; a frost enchantment: spend a charge to hurl a lance of ice (d8) at a foe you can see; it is Slowed on its next turn"}]}}
+  3: {text: "Writ of Office: A sealed commission (petty). Once per session, where your Jarl's word still runs, invoke your office to requisition lodging, a guard escort, an audience, or a look at sealed records.", data: {gear: [{name: "Writ of Office", size: "petty"}]}}
+  4: {text: "Cabinet of Vials: A Potion of Healing and a Potion of Cure Disease (petty, 1 use each), labeled in a cipher only you can read.", data: {gear: [{name: "Potion of Healing", size: "petty", uses: 1, note: "labeled in a cipher only you can read"}, {name: "Potion of Cure Disease", size: "petty", uses: 1, note: "labeled in a cipher only you can read"}]}}
+  5: {text: "Enchanter's Notes: A ledger of the curios you have unmade at the Jarl's arcane enchanter (petty). You already know two enchantments from the samples in the Crafting chapter.", data: {gear: [{name: "Enchanter's Notes", size: "petty"}]}}
+  6: {text: "Eager Apprentice: A gangly apprentice who carries your books and minds your tower — a companion (see Companions) with a dagger (d6) and one trick: they have read every book you own, and can find any fact in them.", data: {companion: "eager-apprentice"}}

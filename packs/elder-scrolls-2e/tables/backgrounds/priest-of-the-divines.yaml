@@ -1,0 +1,24 @@
+# Priest of the Divines (backgrounds/priest-of-the-divines): the background's two d6 tables.
+table: priest-of-the-divines-1
+title: "Which Divine took you into their service?"
+dice: d6
+source: backgrounds/priest-of-the-divines#which-divine-took-you-into-their-service-roll-1d6
+entries:
+  1: "Akatosh, the Dragon God of Time, or Julianos, god of wisdom, law, and logic. Once per session, pray for guidance before you act: the Warden tells you truly, in a word, whether the course you name leads to weal, woe, or both."
+  2: "Arkay, lord of the cycle of birth and death, or Stendarr, god of mercy and the righteous hunt. Once per day, brandish your symbol at an undead or a Daedra within sight: it must pass a WIL save or flee from you for the rest of the scene."
+  3: "Mara, Mother of Love, or Dibella, goddess of beauty. Once per day, lay hands and pray: restore 1d6 STR to a creature (this counts as its magical healing for the day), or shift one person's Reaction toward you one step better with a word of grace."
+  4: "Kynareth, goddess of the heavens, the winds, and the wild. You can read tomorrow's weather truly, and once per day you may re-roll a failed save against a fall, a gale, or the cold."
+  5: {text: "Zenithar, god of work and commerce. The faithful prosper: take 100 extra Septims tithed to your keeping, and merchants who share your faith never cheat you.", data: {add: {gold: 100}}}
+  6: "Talos, the Ninth, whom the elves would erase. You are a hidden priest of the outlawed god: you know every secret shrine of Talos in your Hold and the faithful who tend them, and they will hide you from anyone. If a Thalmor Justiciar ever learns what you are, you are marked for death."
+---
+table: priest-of-the-divines-2
+title: "What relic of your temple do you carry?"
+dice: d6
+source: backgrounds/priest-of-the-divines#what-relic-of-your-temple-do-you-carry-roll-1d6
+entries:
+  1: {text: "Amulet of Your Divine: The graven sigil of the god you serve (petty). Once per day, clasping it and speaking a prayer, re-roll a failed save your Divine would care about: a WIL save against temptation for Mara, a STR save to endure for Stendarr, and so on.", data: {gear: [{name: "Amulet of Your Divine", size: "petty"}]}}
+  2: {text: "Pilgrim's Map: A map of every wayside shrine of the Nine in Skyrim (petty). You always know the way to the nearest one, and a night's prayer there cures any ordinary disease you carry.", data: {gear: [{name: "Pilgrim's Map", size: "petty"}]}}
+  3: {text: "Blessed Warhammer: A warhammer (d10, bulky, two-handed) consecrated on the altar. The dead cannot abide its touch: any undead it strikes must pass a WIL save or flee from you.", data: {gear: [{name: "Blessed Warhammer", damage: "d10", size: "bulky", qualities: ["two-handed"]}]}}
+  4: {text: "Saint's Knucklebone: A relic of Saint Alessia in a silver case (petty). Once per campaign, pray over it when all is lost, and the Divines answer; the Warden decides how. Any temple in Skyrim would pay 500 Septims for it.", data: {gear: [{name: "Saint's Knucklebone", size: "petty"}]}}
+  5: {text: "Varieties of Faith: A worn copy of Varieties of Faith in the Empire (petty), its chapter on Talos not yet torn out. You can name any god's symbol, shrine, or rite in Tamriel, Divine or Daedric, and say what its faithful want.", data: {gear: [{name: "Varieties of Faith", size: "petty"}]}}
+  6: {text: "Talisman of the Eight: A chain of eight small sigils, with a ninth clasp left deliberately empty (petty). Once, when you would take a Scar, roll it twice and keep the kinder result; then the chain snaps.", data: {gear: [{name: "Talisman of the Eight", size: "petty"}]}}

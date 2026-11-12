@@ -1,0 +1,125 @@
+# Places (wardens-guide/wilderness-seeds, settlements): a wildcrawl, replacing cairn-2e's forest
+# seed (same id, same tables: the wild is named last, from what the tables gave), and a
+# homestead. cairn-2e's setting-seed, dungeon-seed, pointcrawl, point-of-interest, realm and
+# faction generators roll this pack's tables of the same ids, unchanged.
+generator: forest-seed
+title: Wilderness seed
+help: >-
+  A wild (a wildcrawl): how travelers perceive the country (two d20 descriptions), its spirit
+  (virtue and vice, agenda and obstacle), 8–12 points of interest (monster, ruins, shelter or
+  hazard, each with a detail) joined by 1–4 paths from an entrance to an exit, some conditional
+  or hidden, and its trails with their type and marker. Then the encounters and, last, the name,
+  taken from what the tables gave. region=<place> puts it inside a place; if the terrain came
+  from a setting seed, weigh its landmark too. Prefill by name: look_1, look_2, virtue, vice,
+  goal, obstacle, pois, wild_name, …
+params:
+  region: {kind: text, default: "", help: "The place it lies in, e.g. loc:the-reach"}
+source: wardens-guide/wilderness-seeds#creating-a-wild
+steps:
+  - table: forest-description-1
+    as: look_1
+  - table: forest-description-2
+    as: look_2
+  - table: forest-traits-virtue
+    as: virtue
+  - table: forest-traits-vice
+    as: vice
+  - table: forest-agenda-goal
+    as: goal
+  - table: forest-agenda-obstacle
+    as: obstacle
+  - entity:
+      key: forest
+      type: loc
+      name: "The {@look_1} {@look_2} Wild"
+      fields:
+        kind: forest
+        feature: "{@look_1}, {@look_2}"
+        traits: {virtue: "@virtue", vice: "@vice"}
+        agenda: "@goal"
+        obstacle: "@obstacle"
+        region: "$region"
+
+  # Points of interest: 8–12 dice on the wilderness die drop.
+  - roll: d5+7
+    as: pois
+  - repeat: "@pois"
+    steps:
+      - table: forest-die-drop
+        as: drop
+      - table: "{@drop.what}"
+        as: what
+      - table: "{@drop.detail}"
+        as: detail
+      - entity:
+          key: poi
+          type: loc
+          name: "{@what}"
+          fields:
+            kind: poi
+            poi: "@drop.poi"
+            feature: "{@what}, {@detail}"
+            region: "@forest"
+
+  # Paths: 1–4 between points, from an entrance to an exit on opposite edges.
+  - map:
+      places: poi
+      paths: {max: 4}
+      conditional: 5
+      hidden: 6
+      entrance: true
+      exit: true
+
+  # Trails: runs of paths linking 3–4 points, each with a type and a marker.
+  - let: {trails: "max(1, @map.paths // 4)"}
+  - repeat: "@trails"
+    steps:
+      - table: forest-trail-type
+        as: trail
+      - table: forest-trail-marker
+        as: marker
+      - add: {to: "@forest", field: trails, value: "{@trail}, marked by {@marker}"}
+
+  - prompt: "Filter every point through the wild's description and spirit. If a contradiction or a tempting pattern turns up, restate or bend any earlier result."
+  - prompt: "Which paths make up each trail (3–4 points linked in an obvious, consistent or interesting way)? Hidden paths and short, isolated routes are not usually part of a trail."
+  - prompt: "Write the wild's own d6 encounter table: two or three of its denizens, a hazard, a sign of the Spirit's agenda, and one oddity (the book's example: `didact table show forest-example-encounters`)."
+  - prompt: "Name the wild last, from what the tables gave you: its description, its Spirit, its best-known point, or whatever the locals fear in it (`gen edit <draft> forest-1.name='…'`; the draft calls it The {@look_1} {@look_2} Wild until then)."
+  - prompt: "Exploring it: the dungeon turn with Wilderness Events (`didact do dungeon-turn place=forest`). Leaving the trail costs extra watches, toil or gear, and always rolls an event."
+---
+generator: homestead
+title: A homestead
+help: >-
+  A settlement the party builds (wardens-guide/settlements): bought land with a small starting
+  steading, the 1/1/1 homestead, one building slot already filled by the main hall; eight slots
+  in all. The three plots commonly offered (Lakeview Manor in Falkreath Hold, Windstad Manor in
+  Hjaalmarch, Heljarchen Hall in the Pale), or one the Warden sites. Each building after is a
+  Downtime Action and Septims (`didact do build`); each season, upkeep and the raid roll
+  (`didact do settlement-season`). Prefill by name: plot, name, hold.
+source: wardens-guide/settlements#homesteading-the-hearthfire-note
+steps:
+  - choose: {from: [Lakeview Manor, Windstad Manor, Heljarchen Hall, another plot], as: plot, prompt: "Which plot: Lakeview Manor (wooded, Falkreath Hold), Windstad Manor (cold marsh, Hjaalmarch), Heljarchen Hall (high tundra, the Pale), or one the Warden sites?"}
+  - if: "@plot == 'another plot'"
+    then:
+      - ask: {as: name, prompt: "The homestead's name"}
+      - ask: {as: hold, prompt: "The Hold it sits in (or Solstheim, under Raven Rock)"}
+    else:
+      - let:
+          name: "@plot"
+          hold: "if(@plot == 'Lakeview Manor', 'Falkreath Hold', if(@plot == 'Windstad Manor', 'Hjaalmarch', 'the Pale'))"
+  - entity:
+      key: settlement
+      type: settlement
+      name: "{@name}"
+      fields:
+        kind: settlement
+        hold: "{@hold}"
+        buildings: [{name: "Main hall", note: "the small starting steading"}]
+        building_slots: 8
+  - if: "@plot == 'Lakeview Manor'"
+    then: ["Wooded land south of Lake Ilinalta: timber and game close at hand."]
+  - if: "@plot == 'Windstad Manor'"
+    then: ["Cold marshland north of Morthal: bleak and fog-bound, but defensible and far from prying eyes."]
+  - if: "@plot == 'Heljarchen Hall'"
+    then: ["High tundra south of Dawnstar: bitter winters; a mine and trade road within reach."]
+  - prompt: "It answers to the Hold's Jarl in taxes, levies and law: where does it stand with them (`gen edit <draft> settlement-1.jarl=…`)? A settlement in the Jarl's favor enjoys real protection."
+  - prompt: "Raise each wing or structure as a Downtime Action plus Septims and materials (`didact do build who=<it> building='…' cost=… by=<pc>`); petty comforts take no slot. One line holds it all: Pop / Def / Prosperity and its slots."

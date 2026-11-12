@@ -1,0 +1,5 @@
+test: play
+script:
+  - world new t --system {pack}
+  - do skill ability=3 difficulty=2 boost=1
+  - do skill ability=1 difficulty=3 setback=2

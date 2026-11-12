@@ -1,0 +1,343 @@
+# Procedures (players-guide/procedures): the ruin cycle, the wasteland watch, weather (and rad
+# weather), travel time (and vehicles' speed tiers), downtime and scavenging. Each replaces the
+# parent's rule of the same id; the parent's `new-day` trigger (the day's weather) is inherited
+# and runs this `weather`.
+procedure: dungeon-turn
+title: Ruin turn
+help: >-
+  One turn of the vault and ruin cycle: the Overseer describes, the players act, then resources
+  and conditions (Rads, Deprivation, item use) are recorded. Roll Ruin Events when the party
+  spends more than one cycle in a room, moves hurriedly, enters a new area, level or zone, or
+  makes a loud disturbance (gunshots, breaking a door, a detonation). In a hot ruin, time costs
+  Rads too (hot=true).
+params:
+  trigger: {enum: [none, lingered, hurried, new-area, loud], default: none}
+  hot: {kind: flag, default: false, help: "A hot ruin: a Rad per scene on top of the ambient"}
+steps:
+  - if: "@trigger == 'none'"
+    then: [No event this turn.]
+    else:
+      - table: dungeon-events
+        as: event
+      - if: "@event.kind == 'exhaustion'"
+        then: ["The party rests (roll again: `didact do dungeon-turn trigger=lingered`), adds a Fatigue each (`didact do fatigue who=…`), or eats a Ration (`didact inv use <who> Rations`)."]
+      - if: "@event.kind == 'loss'"
+        then: ["Resolve it before moving on. Relighting: a torch has 3 uses (`didact inv use <who> Torch`); a flashlight or lantern runs on a fusion cell or oil flask (6 uses)."]
+      - if: "@event.kind == 'encounter'"
+        then: ["Possibly hostile: check Reactions (`didact do reaction who=…`). An encounter table: `didact table list encounters`."]
+  - if: "@hot"
+    then: ["A hot ruin: each scene here adds a Rad on top of the ambient (`didact do rad-zone who=<pc> zone=hot watches=0 scenes=1`)."]
+  - reminder: "Record Rads, Deprivation, torches, cells and other uses spent, and any new conditions."
+  - reminder: "A turn has passed: `didact time advance 1 turn`."
+source: players-guide/procedures#exploration-cycle
+---
+check: lost
+title: Getting lost
+help: >-
+  Travelling, roll 1d6 for getting lost: a beaten trail 2-in-6, the open wastes 3-in-6, an old
+  highway never. shift=-1 makes it a step less likely (a map, a local guide), shift=1 more. A
+  Pip-Boy's wearer can't get lost on ground they've walked before (known=true).
+params:
+  path: {enum: [highway, trail, wastes], default: trail}
+  shift: {kind: int, default: 0, help: "Steps more (+) or less (-) likely"}
+  known: {kind: flag, default: false, help: "Ground the Pip-Boy wearer has walked before"}
+roll: d6
+success: "@known or @roll > max(0, min(6, if(@path == 'highway', 0, if(@path == 'trail', 2, 3)) + @shift))"
+on:
+  failure: ["The party is lost: finding the way may take another Wilderness Action."]
+  success: [The party keeps its way.]
+source: players-guide/procedures#path-difficulty
+---
+procedure: watch
+title: Wasteland watch
+help: >-
+  One watch of the wasteland cycle. Each PC picks one Wilderness Action: travel (roll for getting
+  lost), explore (a Location or Feature), supply (hunt, forage, scavenge: 1d4 Rations, a bigger
+  die for each extra helper and each step of bonus, up to 1d12) or make camp. Then the Overseer
+  rolls Wasteland Events, twice at night.
+params:
+  action: {enum: [travel, explore, supply, make-camp], default: travel}
+  path: {enum: [highway, trail, wastes], default: trail}
+  shift: {kind: int, default: 0, help: "Travel: getting lost a step more (+) or less (-) likely"}
+  known: {kind: flag, default: false, help: "Travel: ground a Pip-Boy wearer has walked before"}
+  helpers: {kind: int, default: 0, help: "Supply: how many more party members help"}
+  bonus: {kind: int, default: 0, help: "Supply: die steps from training or gear (Radsense near clean water)"}
+  who: {kind: ref, optional: true, help: "Supply: who carries the Rations gathered"}
+  night: {kind: flag, default: false, help: "A night watch (the clock's night watch counts by itself)"}
+  truck: {kind: flag, default: false, help: "Make camp: in the back of a pre-war truck, no Ration"}
+steps:
+  - let: {at_night: "@night or default(@time.watch, '') == 'night'"}
+  - if: "@action == 'travel'"
+    then:
+      - check: lost
+        with: {path: "@path", shift: "@shift", known: "@known"}
+        as: way
+  - if: "@action == 'supply'"
+    then:
+      - roll: "step(d4, max(0, min(@helpers + @bonus, 4)))"
+        as: rations
+      - message: "The party gathers {@rations} Rations (3 uses each). (A known settlement on the route resupplies for caps and a full watch.)"
+      - if: "default(@who, '') <> ''"
+        then:
+          - give: Rations
+            to: "@who"
+            count: "@rations"
+        else: ["Who carries them? `didact do watch action=supply who=<pc>` hands them over, or `didact inv add <pc> Rations --count {@rations}`."]
+  - if: "@action == 'explore'"
+    then: ["Exploring reveals a Location (shelter, village, lab, cave) or a Feature (dry well, crashed Vertibird, old checkpoint). Leaving still takes a Travel action."]
+  - if: "@action == 'make-camp'"
+    then:
+      - for: pcs
+        steps:
+          - do: make-camp
+            with: {who: "@member", truck: "@truck"}
+            go_on: true
+      - message: "A PC whose sleep is ruined: `didact do make-camp who=<pc> interrupted=true` in their place; one who keeps going instead: `didact do skip-camp who=<pc>`."
+  - table: wilderness-events
+    as: event
+  - if: "@event.kind == 'encounter'"
+    then: ["Roll the terrain's encounter table (`didact table list encounters`) and use Reactions (`didact do reaction who=…`)."]
+  - if: "@event.kind == 'exhaustion'"
+    then: ["A barrier: spend another Wilderness Action, add a Fatigue each (`didact do fatigue who=…`), or both."]
+  - if: "@at_night"
+    then:
+      - message: "At night, the Overseer rolls twice:"
+      - table: wilderness-events
+        as: second
+  - reminder: "A watch has passed: `didact time advance 1 watch`. In an ambient rad zone, a watch of travel is a Rad each (`didact do rad-zone who=<pc>`)."
+source: players-guide/procedures#wasteland-exploration-cycle
+---
+procedure: weather
+title: Today's weather
+help: >-
+  Each day, roll the season's weather; two Extreme results in a row turn Catastrophic. The
+  result says what it does to travel. Ordinary weather wears travellers down (Fatigue); when
+  Stormy or worse weather hits a region that holds a hot zone (hot_zone=true; most Perilous
+  terrain qualifies), it's rad-rain or a rad storm and the Fatigue it would inflict is a Rad.
+params:
+  season: {enum: [spring, summer, fall, winter], optional: true, help: "Without one: the calendar's season"}
+  hot_zone: {kind: flag, default: false, help: "The region holds a hot zone"}
+steps:
+  - let: {sky_season: "default(@season, default(@time.season, ''))"}
+  - if: "@sky_season == ''"
+    then:
+      - stop: "Which season? `didact do weather season=<spring|summer|fall|winter>` (a calendar with seasons answers by itself)."
+  - table: "weather-{@sky_season}"
+    as: sky
+  - table: weather-effects
+    with: {weather: "@sky"}
+    as: effect
+  - message: "Weather: {@sky}. {@effect}"
+  - if: "@hot_zone and default(@effect.rad_weather, false)"
+    then: ["Rad weather: the storm comes across a hot zone (rad-rain, a rad storm). The Fatigue it would inflict is a Rad instead: say so before the party chooses between the strain and the extra watch."]
+  - if: "default(@effect.exposure, false)"
+    then: ["No effect if sheltered or dressed for it. A watch of Cold or Hot without shelter makes a PC Deprived, each further watch a Fatigue: `didact do exposure who=<pc> weather={@sky}`."]
+  - if: "@sky == 'Extreme'"
+    then: ["Caught without shelter in Extreme weather (blizzard, firestorm, rad storm), a PC is Deprived immediately: `didact do exposure who=<pc> weather=Extreme`."]
+source: players-guide/procedures#weather
+---
+procedure: travel-time
+title: Travel time
+help: >-
+  How many watches a journey between two points takes: the path (old highway none, beaten trail
+  +1, open wastes +2), the distance (short +1, medium +2, long +3), the terrain (tough +1,
+  perilous +2) and the weather (Dusty or Harsh: +1 watch or a Fatigue; Stormy: the same, and the
+  terrain a step harder; Extreme: both, and a step harder). Very vast stretches add up to +2
+  (vast=1 or 2); travelling without sleep makes the terrain a step harder (sleepless=true);
+  mounts, guides and maps save watches (bonus=n). A vehicle: speed=Standard removes one watch of
+  path, terrain or weather penalty per fuel use spent (fuel=n), Fast two, never below the
+  distance's base cost; an airborne one ignores terrain. Rad weather turns the weather's Fatigue
+  into a Rad (rad=true).
+params:
+  path: {enum: [highway, trail, wastes], default: trail}
+  distance: {enum: [short, medium, long], default: medium}
+  terrain: {enum: [easy, tough, perilous], default: easy}
+  weather: {enum: [Clear, Fair, Cold, Hot, Gusty, Dusty, Harsh, Stormy, Extreme, Catastrophic], default: Fair}
+  vast: {kind: int, default: 0, help: "Very vast stretches (the Glowing Sea, the Big Dead): +0 to +2 watches"}
+  sleepless: {kind: flag, default: false, help: "Sleep-deprived: the terrain is a step harder"}
+  bonus: {kind: int, default: 0, help: "Watches saved by mounts, local guides or maps"}
+  speed: {enum: [none, Slow, Standard, Fast], default: none, help: "A vehicle's speed tier"}
+  fuel: {kind: int, default: 0, help: "Fuel uses spent on the journey (Standard and Fast vehicles)"}
+  airborne: {kind: flag, default: false, help: "Flying: terrain penalties ignored"}
+  rad: {kind: flag, default: false, help: "Rad weather (Stormy or worse across a hot zone)"}
+steps:
+  - if: "@weather == 'Catastrophic'"
+    then:
+      - stop: "Catastrophic weather: travel is impossible for most parties."
+  - if: "@vast < 0 or @vast > 2"
+    then:
+      - stop: "Vast stretches add up to +2 watches: vast=0, 1 or 2."
+  - let:
+      path_cost: "if(@path == 'highway', 0, if(@path == 'trail', 1, 2))"
+      distance_cost: "if(@distance == 'short', 1, if(@distance == 'medium', 2, 3))"
+      steps: "if(@weather == 'Stormy' or @weather == 'Extreme', 1, 0) + if(@sleepless, 1, 0)"
+  - let: {terrain_cost: "if(@airborne, 0, min(2, if(@terrain == 'easy', 0, if(@terrain == 'tough', 1, 2)) + @steps))"}
+  - let: {weather_cost: "if(@weather == 'Dusty' or @weather == 'Harsh' or @weather == 'Stormy' or @weather == 'Extreme', 1, 0)"}
+  - let: {total: "@path_cost + @distance_cost + @terrain_cost + @weather_cost + @vast"}
+  - let: {removed: "if(@speed == 'Standard', @fuel, if(@speed == 'Fast', 2 * @fuel, 0))"}
+  - let: {floor: "if(@speed == 'none', 1, @distance_cost)"}
+  - let: {watches: "max(@floor, @total - @removed - @bonus)"}
+  - message: "The journey takes {@watches} watches (path {@path_cost}, distance {@distance_cost}, terrain {@terrain_cost}, weather {@weather_cost}, vast {@vast}; saved {@total - @watches})."
+  - if: "@weather == 'Dusty' or @weather == 'Harsh' or @weather == 'Stormy'"
+    then: ["Each PC may instead add {if(@rad, 'a Rad', 'a Fatigue')} to save the weather's extra watch."]
+  - if: "@weather == 'Extreme'"
+    then: ["Extreme weather: each PC also adds {if(@rad, 'a Rad (rad storm)', 'a Fatigue')}."]
+  - if: "@speed <> 'none'"
+    then: ["Speed erases penalties, not the road: weather, hot-zone and storm effects on the driver and passengers still apply."]
+  - reminder: "Mixed terrain or weather along the way: run it for each leg and add them up (two watches of travel and a night's camp make a day)."
+source: players-guide/procedures#travel-time
+---
+procedure: downtime
+title: Downtime action
+help: >-
+  Between sessions, somewhere safe and not in recovery, a PC takes one Downtime Action at a time:
+  research (a question and a Source), training (a technique and a Master), strengthening ties
+  (an NPC or faction and an intent), scavenging a mapped ruin (`scavenge`), crafting one recipe
+  (`craft`), curing an addiction (`cure-addiction`), or another the Overseer allows. The Overseer
+  sets 1–5 Milestones, each with a Cost (caps, resources, reputation or a loss); each action
+  completes one by paying its Cost (size=1–5 makes the goal's tracker the first time, and each
+  action ticks it; milestones=<tracker> ticks one made by hand). A PC may try to talk their
+  way past a cost: the Overseer states the risk, then a WIL save (abate=true) reduces or avoids
+  it.
+params:
+  who: ref
+  action: {enum: [research, training, ties, scavenge, craft, cure-addiction, other], default: research}
+  goal: {kind: text, default: "", help: "The question, technique or relationship; it must come from play"}
+  caps: {kind: int, default: 0, help: "The Milestone's cost in caps"}
+  cost: {kind: text, optional: true, help: "A cost that isn't caps: resources, reputation, a loss"}
+  abate: {kind: flag, default: false, help: "Try to reduce or avoid the cost by force of will"}
+  safe: {kind: flag, default: true, help: "Is it safe? Downtime can't happen in unsafe conditions"}
+  milestones: {kind: ref, optional: true, help: "A Milestones tracker of the goal's, made earlier"}
+  size: {kind: int, optional: true, help: "The Milestones the Overseer sets for the goal (1–5): the goal's tracker is made the first time, found again later"}
+steps:
+  - if: "not @safe"
+    then:
+      - stop: "Downtime Actions aren't available in unsafe conditions."
+  - if: "'critical' in @who.conditions or 'stabilized' in @who.conditions or 'bleeding-out' in @who.conditions"
+    then:
+      - stop: "{@who.name} is in recovery: no Downtime Actions until they heal (`didact do recover who={@who.id}`)."
+  - if: "@action == 'scavenge'"
+    then:
+      - stop: "Scavenging a ruin is its own Downtime Action: `didact do scavenge who={@who.id} ruin=<place>`."
+  - if: "@action == 'craft'"
+    then:
+      - stop: "Crafting is one recipe per Downtime Action: `didact do craft who={@who.id} recipe=<name>`."
+  - if: "@action == 'cure-addiction'"
+    then:
+      - stop: "Curing an addiction: `didact do cure-addiction who={@who.id} addiction=<chem> method=clinic|week`."
+  - let: {owed: "@caps", abated: false}
+  - if: "@abate"
+    then:
+      - check: save
+        with: {who: "@who", attr: WIL}
+        as: will
+      - if: "@will == 'success'"
+        then:
+          - let: {owed: 0, abated: true}
+          - message: "{@who.name}'s force of will carries it: the cost is reduced or avoided."
+        else: ["The risk comes to pass (the Overseer stated it), and the cost stands."]
+  - if: "@owed > 0 and @owed > default(@who.caps, 0)"
+    then:
+      - stop: "{@who.name} has {default(@who.caps, 0)} caps and the Milestone costs {@owed}: find another way."
+  - if: "@owed > 0"
+    then:
+      - set: who.caps
+        op: "-="
+        value: "@owed"
+      - do: coins
+        with: {who: "@who"}
+        go_on: true
+  - if: "default(@cost, '') <> '' and not @abated"
+    then: ["The Milestone's cost is paid: {@cost}."]
+  - message: "{@who.name} spends a Downtime Action on $action: $goal."
+  - if: "default(@milestones, '') == '' and default(@size, 0) > 0"
+    then:
+      - if: "@size > 5 or @goal == ''"
+        then:
+          - stop: "The Overseer sets 1 to 5 Milestones for a goal that came from play (goal=…, size=1 to 5)."
+      - entity:
+          type: track
+          name: "{@who.name}: $goal"
+          fields: {kind: track, size: "@size", value: {value: 0, size: "@size"}}
+          links: [{rel: of, to: "@who"}]
+        as: goal_track
+      - do: milestone-done
+        with: {tracker: "@goal_track", who: "@who", action: $action}
+  - if: "default(@milestones, '') <> ''"
+    then:
+      - do: milestone-done
+        with: {tracker: "@milestones", who: "@who", action: $action}
+  - if: "default(@milestones, '') == '' and default(@size, 0) == 0"
+    then:
+      - reminder: "Milestones: the first action on a goal names how many the Overseer sets (size=1 to 5) and makes its tracker ({@who.name}: $goal); each action on it completes one (size= again finds the same tracker)."
+  - if: "@action == 'training'"
+    then:
+      - reminder: "Training produces one small, precise mechanical upgrade when it pays off: `didact char advance {@who.id} how=training`."
+source: players-guide/procedures#downtime
+---
+action: milestone-done
+title: A Milestone complete
+help: "A Downtime Action pays a Milestone's Cost: the goal's tracker moves one on (`downtime` runs this)."
+params:
+  tracker: ref
+  who: {kind: ref, optional: true}
+  action: {kind: text, default: downtime}
+steps:
+  - if: "default(@tracker.value.size, 0) == 0"
+    then:
+      - stop: "A Milestone is complete: `didact track tick {@tracker}`."
+  - if: "@tracker.value.value >= @tracker.value.size"
+    then:
+      - stop: "Every Milestone of {@tracker.name} was already complete."
+  - set: tracker.value.value
+    op: "+="
+    value: 1
+  - message: "A Milestone is complete: {@tracker.value.value} of {@tracker.value.size} ({@tracker.name})."
+  - if: "@tracker.value.value == @tracker.value.size"
+    then: ["Every Milestone is complete: the goal is reached ({@who.name}'s $action pays off)."]
+  - reminder: "The Overseer may add or drop Milestones as play develops (`didact track tick {@tracker} --by -1` takes one back)."
+source: players-guide/procedures#milestones
+---
+action: scavenge
+title: Scavenge a ruin
+help: >-
+  A Downtime Action: back to a pre-war ruin the party has already mapped, for a specific target.
+  Roll What's in the Cache? (d100), or Random Weapon, Random Gear or Chem Stash when the target
+  makes it obvious (find=weapon|gear|chems); the risk is one Ruin Events roll, and an event that
+  forces a failed save costs a Scar or a Rad. A ruin scavenged twice is empty. Not a substitute
+  for an expedition.
+params:
+  who: ref
+  ruin: {kind: ref, optional: true, help: "The mapped ruin (it counts the times it's been scavenged)"}
+  find: {enum: [cache, weapon, gear, chems], default: cache, help: "What the target makes it"}
+steps:
+  - if: "default(@ruin, '') <> ''"
+    then:
+      - if: "default(@ruin.scavenged, 0) >= 2"
+        then:
+          - stop: "{@ruin.name} has been scavenged twice: it's empty."
+  - table: "{if(@find == 'cache', 'loot-cache', if(@find == 'weapon', 'loot-weapon', if(@find == 'gear', 'loot-gear', 'loot-chems')))}"
+    as: loot
+  - message: "{@who.name} scavenges: {@loot}"
+  - table: dungeon-events
+    as: risk
+  - message: "The risk (Ruin Events): {@risk}"
+  - prompt: "If the event forces a save and {@who.name} fails it, it costs a Scar or a Rad (`didact do rad who={@who.id}`)."
+  - if: "default(@ruin, '') <> ''"
+    then:
+      - set: ruin.scavenged
+        op: "+="
+        value: 1
+  - reminder: "Scavenging also turns up Scrap: typically 1d6 a location, the Overseer's call (`didact do scrap who={@who.id} source=scavenge`)."
+source: players-guide/procedures#scavenge-a-ruin
+---
+trigger: still-deprived
+title: Still Deprived
+help: "A new day finds a PC still Deprived: the day counts once `deprive` says so (a Fatigue past the first)."
+on: time
+for: pcs
+params: {who: ref}
+when: "@time.day > (@time.seconds - @time.passed) // 86400 + 1 and 'deprived' in @who.conditions and not ('flung-clear' in @who.conditions) and @who.status <> 'dead'"
+steps:
+  - reminder: "A new day, and {@who.name} is still Deprived (day {default(@who.deprived_days, 1)} so far): if the need is still unmet, `didact do deprive who={@who.id} need=…` counts this day (a Fatigue past the first); when it's met, `didact do relieve who={@who.id}`."
+source: players-guide/core-rules#deprivation--rads

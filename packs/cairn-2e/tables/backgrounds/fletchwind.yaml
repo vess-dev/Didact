@@ -1,0 +1,50 @@
+# Fletchwind (backgrounds/fletchwind): the background's two d6 tables.
+table: fletchwind-1
+title: How did you earn your bow?
+dice: d6
+source: backgrounds/fletchwind
+entries:
+  1:
+    text: "War. If you are first to attack, your bow gains the blast property for the first round."
+  2:
+    text: "Falconry. You keep a falcon [3 hp, 5 STR, 16 DEX, 4 WIL, claws (d6+d6), bite (d8)]. It only eats live game."
+    data: {companion: falcon}
+  3:
+    text: "Hunting. When taking the Supply action, your ability to secure Rations increases by one step (e.g. 1d4 becomes 1d6)."
+  4:
+    text: "Tournaments. Attacks with your bow are enhanced if the target is immobile."
+  5:
+    text: "Training. If you are the first to attack, melee attacks against you are impaired until you take STR damage."
+  6:
+    text: "Scouting. When taking the Travel action, your presence decreases the chance of getting lost by one step (e.g. 4-in-6 becomes 3-in-6)."
+---
+table: fletchwind-2
+title: What kind of wood is your bow made from?
+dice: d6
+source: backgrounds/fletchwind
+entries:
+  1:
+    text: "Western Yew (d6, bulky). Can be wielded as a blunt weapon (d6). Noisy."
+    data:
+      gear: [{name: Western Yew Bow, damage: d6, size: bulky}]
+  2:
+    text: "Sessile Oak (d8, bulky). Slams into targets. On Critical Damage something is torn off."
+    data:
+      gear: [{name: Sessile Oak Bow, damage: d8, size: bulky}]
+  3:
+    text: "Stone Pine (d6, bulky). Produces one use of Sticky Sap per day. The sap is highly explosive."
+    data:
+      gear: [{name: Stone Pine Bow, damage: d6, size: bulky}]
+  4:
+    text: "White Ash (d6, bulky). Can be used in place of a shield in melee combat (+1 Armor)."
+    data:
+      gear:
+        - {name: White Ash Bow, damage: d6, armor: 1, size: bulky, note: can be used in place of a shield in melee combat}
+  5:
+    text: "Striped Bamboo (d6). Collapsible, it only requires one slot (but still requires both hands)."
+    data:
+      gear: [{name: Striped Bamboo Bow, damage: d6}]
+  6:
+    text: "Wych Elm (d6, bulky). Protects the bearer from poisons and toxins, so long as they are holding it."
+    data:
+      gear: [{name: Wych Elm Bow, damage: d6, size: bulky}]

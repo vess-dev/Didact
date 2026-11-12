@@ -1,0 +1,159 @@
+# Characters: PCs, NPCs and hirelings share the sheet (players-guide/character-creation,
+# players-guide/unusual-pcs). This replaces cairn-2e's `character` (its `pc`, `npc` and hireling
+# types extend it): Cairn's fields, Septims for gold, the fifty backgrounds, and what the hack
+# adds: race and its trait, the unusual natures, diseases, and what a form, a resistance or a
+# once-per-day power changes. Attributes run 0-20 as in cairn-2e (a save of 20 always fails).
+type: character
+label: Character
+fields:
+  STR: {kind: stat, range: [0, 20], roll: 3d6, on_zero: {trigger: death}, help: "Strength: physical power, resisting poison, disease and the cold. At 0 you die (a Dremora is banished instead)."}
+  DEX: {kind: stat, range: [0, 20], roll: 3d6, on_zero: {condition: paralyzed}, help: "Dexterity: poise, speed, reflexes, dodging, climbing, sneaking. At 0 you're paralyzed."}
+  WIL: {kind: stat, range: [0, 20], roll: 3d6, on_zero: {condition: delirious}, help: "Willpower: persuade, deceive, intimidate, resist fear, channel a Spell Tome under pressure. At 0 you're delirious."}
+  hp: {kind: resource, min: 0, roll: 1d6, label: HP, help: "Hit Protection: luck, skill and near-misses, not flesh. A short rest restores it."}
+  armor:
+    kind: derived
+    expr: >-
+      if('transformed' in @conditions, 1,
+      min(3, max(0, sum(@inventory.armor) - sum(@inventory.backpack.armor)
+      - if('brown-rot' in @diseases and sum(@inventory.suit) - sum(@inventory.backpack.suit) > 0, 1, 0))
+      + if(sum(@inventory.suit) - sum(@inventory.backpack.suit) > 0, 0, @natural_armor)))
+    help: >-
+      The armor worn or held, never more than 3: armor stowed in the backpack doesn't count. Body
+      armor (`suit`) is one suit at a time; a shield and a helmet add +1 each. A draugr
+      revenant's barrow-hardened flesh is 1 Armor when no body armor is worn (worn armor replaces
+      it). Brown Rot takes 1 from body armor. Transformed (beast form, Vampire Lord), gear falls
+      away: the hide gives 1.
+  natural_armor: {kind: int, min: 0, max: 3, default: 0, label: Natural armor, help: "Armor the body gives without body armor: a draugr revenant's 1. Worn body armor replaces it; a shield or helmet still adds."}
+  inventory:
+    kind: slots
+    capacity: 10
+    groups: {body: 4, backpack: 6}
+    sizes: {petty: 0, normal: 1, bulky: 2}
+    when_full: {set: {hp: 0}}
+    help: >-
+      10 slots: four or five items carried comfortably (body), the backpack's six. Petty items
+      take none, bulky ones two. Fatigue fills slots too. A full inventory drops HP to 0.
+  fatigue: {kind: counter, min: 0, occupies: inventory, help: "Each Fatigue fills a slot until a full night's rest in safety."}
+  purse: {kind: counter, min: 0, occupies: inventory, help: "Slots the coins take: under 100 Septims they're petty (`didact do coins who=…`)."}
+  conditions:
+    kind: conditions
+    help: >-
+      deprived, panicked, paralyzed, delirious, critical (dying), stabilized (in recovery),
+      doomed; the scars still healing: walloped, broken-leg/arm/rib/skull, diseased (the Scars
+      table's infection), hamstrung, deafened, mortal-wound; and slowed, ablaze, transformed,
+      resist-fire, resist-frost, resist-shock (a potion, for the scene), invisible, waterbreathing,
+      sunlit (a vampire in direct sunlight).
+  deprived_days: {kind: counter, min: 0, help: "Days deprived so far: each one past the first adds a Fatigue."}
+  cold_watches:
+    kind: counter
+    min: 0
+    thresholds: {1: {condition: deprived}}
+    label: Cold exposure
+    help: "Watches spent in snow or bitter cold without warm clothing, shelter or fire: the first leaves you Deprived, each further one adds a Fatigue (`didact do exposure`)."
+  gold: {kind: int, min: 0, default: 0, label: Septims, help: "Septims (at Cairn's gold-piece values); a pouch of fewer than 100 is petty."}
+  background:
+    kind: enum
+    values: [Companion, Housecarl, Imperial Legionnaire, Stormcloak Soldier, Sellsword, Nord Reaver, "Redguard Alik'r", Orc Stronghold Warrior, Vigilant of Stendarr, Dawnguard Hunter, Blades Agent, Bounty Hunter, Bandit, Forsworn, Thieves Guild Burglar, Cutpurse, Nightingale, Dark Brotherhood Assassin, Khajiit Smuggler, Bard, College Apprentice, Battlemage, Spellsword, Conjurer, Necromancer, Court Wizard, Telvanni Mage, Restoration Healer, Enchanter, Alchemist, Priest of the Divines, Moth Priest, Pilgrim of Kynareth, Sage, Wise Woman, Blacksmith, Hunter, Miner, Sailor, Farmhand, Merchant, Skaal Hunter, Argonian Shadowscale, Dunmer Ashlander, Bosmer Hunter, Briarheart, Vampire Fledgling, Werewolf, Dremora, Draugr Revenant]
+  race: {kind: enum, values: [Nord, Imperial, Breton, Redguard, Altmer, Bosmer, Dunmer, Orsimer, Khajiit, Argonian], help: "One of the ten peoples of Tamriel; it shapes how others treat you, never your calling."}
+  trait: {kind: text, label: Race trait, help: "The race's one minor, lasting gift (Frost-Hardy, Voice of the Emperor, …)."}
+  nature:
+    kind: enum
+    values: [mortal, vampire, werewolf, werebear, dremora, draugr-revenant, briarheart]
+    default: mortal
+    help: >-
+      What the body is made of (players-guide/unusual-pcs). Vampires, the beast-blooded, Dremora
+      and draugr revenants are immune to mundane disease; a Dremora at 0 STR is banished, not
+      killed; a draugr revenant mends only in a barrow or by a kill.
+  impaired_by: {kind: tags, label: Impaired by, help: "Attacks of these kinds against it are Impaired: fire, frost, shock, poison, magic, mundane, ranged, melee (a Nord's frost, a Dunmer's fire)."}
+  enhanced_by: {kind: tags, label: Enhanced by, help: "Attacks of these kinds against it are Enhanced: fire (a vampire, a draugr), silver (the beast-blooded), sun (Restoration turned on the undead), magic, …"}
+  diseases: {kind: list, help: "Mundane diseases carried (rockjoint, ataxia, witbane, brain-rot, bone-break-fever, rattles, brown-rot, droops, greenspore, sanguinare-vampiris): each keeps its effect until cured (`didact do cure-disease`)."}
+  sanguinare_days:
+    kind: counter
+    min: 0
+    thresholds: {3: {trigger: become-vampire}}
+    label: Sanguinare days
+    help: "New days Sanguinare Vampiris has gone uncured: at the third it blossoms into Vampirism."
+  venom_turns: {kind: counter, min: 0, max: 3, on_zero: "The lingering venom has run its course.", label: Lingering venom, help: "Turns a lingering venom still works: a STR save at the start of each, 1 STR on a failure (`didact do venom-tick`)."}
+  used_today: {kind: list, label: Used today, help: "The once-per-day powers already spent since dawn (race traits, Standing Stones, perks, feeding, the change)."}
+  once_per_combat: {kind: tags, label: Once this fight, help: "Once-per-combat uses spent in this fight (the Command action, a vampire's restoring drain); cleared when the fight ends (`didact combat end`)."}
+  healed_today: {kind: flag, default: false, label: Magically mended today, help: "Magic (spell, potion, Relic, blessing) has mended this creature's STR since dawn: more magic today restores HP only."}
+  age: {kind: int, min: 0, roll: 2d20+10}
+  bond: {kind: list, label: Bonds, help: "The character's bonds; each is also a thread to resolve: `didact do resolve-bond`."}
+  omen: {kind: text, help: "The omen the party's youngest rolled and read aloud."}
+  abilities: {kind: list, help: "What experience taught them (growth, training, a background result), with any cost."}
+  growth: {kind: list, help: "Each growth: what triggered it and what changed (`didact char advance`)."}
+  scars: {kind: list, help: "Each scar: what happened and what it changed."}
+guidance: >-
+  A new character has a background (with its names, gear and two tables), a race and its trait,
+  STR, DEX and WIL of 3d6 each (swap any two), 1d6 HP, 3d6 Septims, traits, a bond and an age of
+  2d20+10 (the Mer may be far older); the party's youngest rolls an omen, and with the
+  standing-stones option a Standing Stone. Use `didact char new`. Growth changes them later:
+  `didact char advance`.
+---
+type: pc
+extends: character
+label: Player character
+fields:
+  standing_stone:
+    kind: enum
+    values: [The Warrior, The Mage, The Thief, The Lord, The Lady, The Steed, The Apprentice, The Atronach, The Ritual, The Lover, The Shadow, The Tower, The Serpent]
+    label: Standing Stone
+    help: "With the standing-stones option: one Stone at a time, changed only by visiting another in play (`didact do visit-stone`)."
+  skill_books: {kind: list, label: Skill Books, help: "Five Skill-Book slots: each perk learned from a book fills one (`didact do read-book`); a sixth means forgetting one."}
+  effects_known: {kind: list, label: Enchantments known, help: "Effects learned by unbinding a magic item at an enchanter (`didact do learn-effect`), to bind again (`didact do enchant`)."}
+  rep_companions: {kind: int, min: -2, max: 2, label: The Companions, help: "Faction Reputation: −2 Hunted, −1 Distrusted, 0 Unknown, +1 Trusted, +2 Sworn (`didact do reputation`)."}
+  rep_college: {kind: int, min: -2, max: 2, label: The College of Winterhold}
+  rep_thieves_guild: {kind: int, min: -2, max: 2, label: The Thieves Guild}
+  rep_dark_brotherhood: {kind: int, min: -2, max: 2, label: The Dark Brotherhood}
+  rep_stormcloaks: {kind: int, min: -2, max: 2, label: The Stormcloaks}
+  rep_legion: {kind: int, min: -2, max: 2, label: The Imperial Legion}
+  rep_greybeards: {kind: int, min: -2, max: 2, label: The Greybeards}
+  rep_blades: {kind: int, min: -2, max: 2, label: The Blades}
+  rep_dawnguard: {kind: int, min: -2, max: 2, label: The Dawnguard}
+  rep_volkihar: {kind: int, min: -2, max: 2, label: The Volkihar}
+  rep_vigil: {kind: int, min: -2, max: 2, label: The Vigil of Stendarr}
+  rep_bards_college: {kind: int, min: -2, max: 2, label: The Bards College}
+  rep_forsworn: {kind: int, min: -2, max: 2, label: The Forsworn}
+  rep_thalmor: {kind: int, min: -2, max: 2, label: The Thalmor}
+  rep_skaal: {kind: int, min: -2, max: 2, label: The Skaal}
+  rep_guards: {kind: int, min: -2, max: 2, label: The city guards, help: "The Thieves Guild's natural foe (the opposed pair)."}
+  rep_daedric_cults: {kind: int, min: -2, max: 2, label: The Daedric cults, help: "The Vigil of Stendarr's natural foe (the opposed pair)."}
+  bounty_whiterun: {kind: int, min: 0, label: Bounty in Whiterun Hold, help: "Septims of Bounty in this Hold (`didact do bounty`)."}
+  bounty_haafingar: {kind: int, min: 0, label: Bounty in Haafingar}
+  bounty_eastmarch: {kind: int, min: 0, label: Bounty in Eastmarch}
+  bounty_the_rift: {kind: int, min: 0, label: Bounty in the Rift}
+  bounty_the_reach: {kind: int, min: 0, label: Bounty in the Reach}
+  bounty_falkreath: {kind: int, min: 0, label: Bounty in Falkreath Hold}
+  bounty_hjaalmarch: {kind: int, min: 0, label: Bounty in Hjaalmarch}
+  bounty_the_pale: {kind: int, min: 0, label: Bounty in the Pale}
+  bounty_winterhold: {kind: int, min: 0, label: Bounty in Winterhold}
+  bounty_raven_rock: {kind: int, min: 0, label: Bounty in Raven Rock}
+guidance: >-
+  A player character: the character sheet, plus a Standing Stone (optional), five Skill-Book
+  slots, Faction Reputation for each tracked faction (−2 to +2: a background tie or a curse is
+  the character's own) and a Bounty in Septims for each Hold. Renown is the party's, on the
+  party record. Make one with `didact char new`.
+---
+type: hireling
+extends: character
+label: Hireling
+fields:
+  role: {kind: enum, values: [Alchemist, Court scholar / sage, Mage-for-hire, Blacksmith, Sellsword (bodyguard), Lockpick (thief), Navigator, Veteran housecarl (veteran bodyguard), Local guide, Stablehand (animal handler), Sailor, Tracker / hunter, Trapper]}
+  wage: {kind: int, min: 0, help: "Septims per day (see the Marketplace)."}
+guidance: "A hireling: a role and its daily wage, 3d6 for each attribute, 1d6 HP, gear fit for their station, all eight trait tables (`didact char new hireling`); or a background, a name and its tables (`didact char new hireling-background`). Hirelings take Morale saves and walk away when the coin stops: they are not companions."
+---
+# The party as a whole (wardens-guide/renown-and-infamy): Renown & Infamy is one dial for the
+# group, "a band travels on its collective name", so it lives here, not on each PC.
+type: party
+label: Party
+fields:
+  renown: {kind: int, min: -3, max: 3, default: 0, label: Renown, help: "Renown & Infamy: −3 Reviled, −2 Infamous, −1 Suspect, 0 Unknown, +1 Known, +2 Renowned, +3 Hero of Skyrim (`didact do renown party=<it> step=up deed='…'`)."}
+  renown_session: {kind: int, min: 0, label: Renown last moved, help: "The session in which Renown last moved (`@session`): one step per session at most."}
+  members: {kind: refs, to: pc, help: "Who travels under the name."}
+guidance: >-
+  One record for the party (`didact new party "The Company"`): its Renown, from −3 Reviled to +3
+  Hero of Skyrim, moved one step at most each session, by public deeds only (`didact do renown
+  party=… step=up deed='…'`), drifting a step toward 0 between arcs (`didact do
+  renown-drift party=…`). It sets where a stranger's Reaction starts (`didact do reaction
+  who=<npc> party=… toward=<pc>`). A character who earned fame entirely alone may carry a
+  personal score: give them a party record of their own.

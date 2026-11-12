@@ -1,0 +1,96 @@
+# The setting's terms, for `didact define <term>` (hand-written from the campaigns and the Holds).
+# Rules terms stay the systems': none of these is a term or an alias in elder-scrolls-2e's or
+# grimscrolls' glossary (Septim, Daedric Artifact, Bounty, Standing, Guild and the like are
+# theirs), but for three kept on purpose, since each system lacks what the other defines and the
+# setting must read the same under both: `Hold` and `Jarl` (Elder Scrolls 2e's terms, absent from
+# Grimscrolls) and `Thu'um` (an alias of Grimscrolls' optional talent The Voice, absent from Elder
+# Scrolls 2e). `didact define hold` shows both. es_count.py checks.
+- term: Hold
+  aliases: [Holds]
+  definition: "One of Skyrim's nine regions, each ruled from its capital by a Jarl: Whiterun, Haafingar, Eastmarch, the Rift, the Reach, Falkreath, Hjaalmarch, the Pale and Winterhold. Solstheim answers to Morrowind and House Redoran instead."
+- term: Jarl
+  aliases: [Jarls]
+  definition: "The ruler of a Hold. In 4E 201 each leans toward the Empire or the rebellion; should the other side take the Hold, the Jarl may be deposed and a rival installed."
+- term: Thu'um
+  aliases: [the Voice of the dragons]
+  definition: "The dragons' own speech, used as a weapon: a Shout. The Greybeards spend lifetimes on a single word; the Elder Scrolls 2e book gives player characters none, and treats a quest's Shout as a story device."
+- term: Dovahkiin
+  aliases: [Dragonborn, Last Dragonborn]
+  definition: "A mortal born with the soul of a dragon, who devours the souls of slain dovah and speaks their tongue. The legends say one rises when the World-Eater returns."
+- term: Dovah
+  definition: "A dragon, in the dragons' own tongue."
+- term: Word Wall
+  aliases: [Word Walls]
+  definition: "A carved wall of the dragon-tongue in a barrow or temple, glowing in the dark: ancient and unreadable to the party."
+- term: Dragonrend
+  definition: "The Shout the ancient heroes made to pull a dragon out of the sky and make it mortal and afraid. In the Main Quest the party witnesses it in a vision from an Elder Scroll, and the three heroes of Sovngarde Shout it at the end."
+- term: Elder Scroll
+  aliases: [Elder Scrolls]
+  definition: "A scroll of prophecy and time. Read at the Time-Wound, one lets a mind witness the past; only a Moth Priest can read one safely."
+- term: Moth Priest
+  aliases: [Moth Priests, Cult of the Ancestor Moth]
+  definition: "A priest of the Cult of the Ancestor Moth, come north from the White-Gold Tower: trained to read an Elder Scroll without being unmade. Reading in haste costs him his sight."
+- term: Greybeards
+  definition: "The silent masters of the Voice at High Hrothgar, near the summit of the Throat of the World, led by the dragon Paarthurnax. Only Arngeir speaks freely."
+- term: Blades
+  definition: "A dwindled order of dragonslayers who once served the emperors, awaiting a Dragonborn; their temple is Sky Haven, beyond the Karthspire."
+- term: Sovngarde
+  definition: "The Nordic afterlife of the honored dead: a misted valley, the whale-bone bridge Tsun guards, and the Hall of Valor."
+- term: Talos
+  aliases: [Tiber Septim, the Ninth Divine]
+  definition: "Tiber Septim, the Nord hero-emperor who united Tamriel, raised to godhood as the Ninth Divine. The White-Gold Concordat outlaws his worship."
+- term: White-Gold Concordat
+  aliases: [the Concordat]
+  definition: "The treaty that ended the Great War (4E 171–175) between the Empire and the Aldmeri Dominion, and outlawed the worship of Talos across the Empire."
+- term: Thalmor
+  definition: "The High Elf supremacists who rule the Aldmeri Dominion: they enforce the Talos ban in Skyrim, back the Empire in public, and want the civil war long."
+- term: Aldmeri Dominion
+  aliases: [the Dominion]
+  definition: "The High Elves' empire, ruled by the Thalmor, that fought the Great War against the Empire and won the White-Gold Concordat."
+- term: Stormcloaks
+  aliases: [Sons and Daughters of Skyrim]
+  definition: "The rebels of Ulfric Stormcloak, Jarl of Windhelm, fighting to throw off the Empire and worship Talos openly."
+- term: Thane
+  aliases: [Thaneship]
+  definition: "A title a Jarl grants for great service to the Hold: it comes with a housecarl, a standing welcome in the Jarl's hall, and the right to buy a house."
+- term: Housecarl
+  aliases: [housecarls]
+  definition: "A warrior a Jarl assigns to a Thane, sworn to guard their lord and all they own; Lydia is Whiterun's."
+- term: Daedra
+  aliases: [Daedric]
+  definition: "The beings of Oblivion: the Daedric Princes, immortal lords who cannot create, only meddle, and the lesser Daedra who serve them."
+- term: Oblivion
+  definition: "The realms of the Daedric Princes beyond the mortal world: Hermaeus Mora's Apocrypha, Hircine's Hunting Grounds, the Soul Cairn."
+- term: Dwemer
+  aliases: [Dwarves, Dwarven]
+  definition: "The elves who vanished from the world in a single moment and left their brass cities empty and humming, and their automatons on guard."
+- term: Falmer
+  aliases: [Snow Elves]
+  definition: "Once the Snow Elves: driven underground, enslaved by the Dwemer, and twisted into a blind people of the deep places. The last Snow Elf, Gelebor, keeps the Forgotten Vale."
+- term: Blackreach
+  definition: "The enormous fungal cavern-world beneath Skyrim, lit by glowing motes, reached through the Dwemer ruins of Alftand, Mzinchaleft and Raldbthar."
+- term: Harbinger
+  definition: "The head of the Companions of Jorrvaskr: Kodlak Whitemane in 4E 201, and the party at the end of their frame."
+- term: Listener
+  definition: "The one the Night Mother speaks to: the voice through whom Sithis's will is heard, an office long empty in the Dark Brotherhood."
+- term: Sithis
+  aliases: [the Dread Father, the Void]
+  definition: "The Dark Brotherhood's god, the Dread Father; the Night Mother is his bride."
+- term: Black Sacrament
+  definition: "The forbidden rite that prays for the Dark Brotherhood to kill someone: candles, a flayed effigy, a dagger, and human remains."
+- term: Nightingale
+  aliases: [Nightingales]
+  definition: "One of the Thieves Guild's three sworn agents of Nocturnal, who guard her Twilight Sepulcher in return for her luck."
+- term: Tyranny of the Sun
+  definition: "An old elven prophecy that, fulfilled, would blot the sun from the sky forever: Lord Harkon of the Volkihar means to enact it."
+- term: Black Book
+  aliases: [Black Books]
+  definition: "A tome of Hermaeus Mora that carries its reader bodily into Apocrypha and offers a strange boon, always at a price."
+- term: All-Maker
+  aliases: [All-Maker Stones]
+  definition: "The single nature-spirit the Skaal of Solstheim honor; its standing stones ring the island."
+- term: Stalhrim
+  definition: "The enchanted ice of Solstheim that only Skaal hands, or those they teach, can work: never smelted, cold to the touch forever."
+- term: Fourth Era
+  aliases: [4E]
+  definition: "The age that began when the Third Era ended with the Oblivion Crisis (3E 433). The frames are set in 4E 201."

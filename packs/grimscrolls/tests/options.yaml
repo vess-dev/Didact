@@ -1,0 +1,77 @@
+# Chapter 10's dials at work: a flavor and what it implies (followed all the way: grim north's
+# deadlier lethality brings 2d potions, pulp heroics' softer lethality softer ones), coin off,
+# stones from the start and oaths; the larger scale's level-3 heroes with wild magic and
+# Sheogorath's dial; level 0, the prisoner; the grimmer dial's one pool for the company. Seeded, so
+# it plays the same every time.
+test: the-dials
+help: "Session zero asks Grimscrolls' dials, not the parent's hidden ones; grim north (deadlier, and the 2d potions deadlier implies in turn; supplies), no coin, a stone from the start, Bleeding Out with desperate; pulp heroics (softer, and softer potions; the larger scale); Daedric weird at the larger scale (a level-3 hero, wild magic's Corruption pool made and rolled, the Madgod's crucible); level 0 and the Core Talent arriving with level 1; the company's one shared Potions pool, made when a session starts and poured from."
+script:
+  - world new tam --system {pack} --seed dials
+  - campaign new first --seed dials
+  - run: session zero
+    expect: ["wild-magic: ", "coin: ", "potions: "]
+    expect_not: ["- magic:", "- wealth:", "- vigor-pool:", "- expanded-downtime:", "- lasting-marks:", "- random-vex:", "- random-bonds:"]
+  - run: campaign profile flavor=grim-north coin=off stones-from-the-start=on oaths=on
+    expect: "flavor: grim-north; coin: off; stones-from-the-start: on; oaths: on"
+  - run: >-
+      char new --mode random --prefill '{"name": "Hroki", "race": "Nord", "class": "Blade"}'
+    expect: ["standing-stones: ", "track Hroki's Supplies"]
+  - run: char commit c1
+    expect: "3 records (pc:hroki, track:hroki-s-potions, track:hroki-s-supplies)"
+  - run: track list
+    expect: ["Hroki's Potions 2d", "Hroki's Supplies 4d"]
+  - run: brief
+    expect: ["Option lethality=deadlier", "Option potions=grimmer: Grimmer: 2d.", "Option supplies=on"]
+  - run: do harm who=hroki kind=bloodied
+    expect: "Hroki is bloodied"
+  - run: do harm who=hroki kind=bloodied
+    expect: ["harm += desperate", "+ track Hroki: Bleeding Out", "conditions += 4d Bleeding Out"]
+  - run: do dropped who=hroki
+    expect: "1d6 → "
+  - run: campaign profile flavor=pulp-heroics coin=on
+    expect: "flavor: pulp-heroics"
+  - run: brief
+    expect: ["Option lethality=softer", "Option potions=softer: Softer: 4d", "Option scale=larger"]
+  - campaign new second --seed dials2
+  - run: campaign profile flavor=daedric-weird scale=larger
+    expect: "flavor: daedric-weird; scale: larger"
+  - run: >-
+      char new --mode random --prefill '{"name": "Brelyna", "race": "Dunmer", "class": "Destruction"}'
+    expect: "class: Destruction (given)"
+  - char commit c2
+  - run: show brelyna
+    expect: ["Level 3", "Mastery Apprentice", "touchstones "]
+  - run: do backlash who=brelyna kind=wild how=omen
+    expect: "GM suspense: 1."
+  - run: do backlash who=brelyna kind=wild how=corruption
+    expect: ["+ track Brelyna's Corruption", "pool Brelyna's Corruption"]
+  - run: do madness
+    expect: "madgod-crucible: "
+  - campaign new third --seed dials3
+  - run: campaign profile level-zero=on
+    expect: "level-zero: on"
+  - run: >-
+      char new --mode random --prefill '{"name": "Prisoner", "race": "Imperial", "class": "Alteration"}'
+    expect: "pc Prisoner: level: 0"
+  - char commit c3
+  - run: do experience who=prisoner bonus
+    expect: "level 1 is ready"
+  - run: char advance prisoner
+    expect: ["level: 0 → 1", "alteration-formulae", "waiting for formulae"]
+  - run: char roll c4
+    expect: "formulae: "
+  - run: char commit c4
+    expect: ["pc:prisoner advanced", "level 0 → 1"]
+  - campaign new fourth --seed dials4
+  - run: campaign profile potions=shared
+    expect: "potions: shared"
+  - run: >-
+      char new --mode random --prefill '{"name": "Lydia", "race": "Nord", "class": "Block"}'
+    expect: "a single 3d pool the whole party shares"
+  - run: char commit c5
+    expect: "pc:lydia"
+  - run: session start
+    expect: ["grimscrolls.party-potions-each-session", "+ track The company's Potions", "pc:lydia: potions = track:the-company-s-potions"]
+  - set lydia harm+=bloodied
+  - run: do potion who=lydia
+    expect: ["pool The company's Potions", "bloodied clears"]

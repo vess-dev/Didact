@@ -1,0 +1,157 @@
+# Combat as Fallout 2e runs it, on the parent's attack chain: Impaired is 1d4 whatever the weapon,
+# Enhanced never makes an attack worse, the two cancel, heavy weapons need a brace, called shots,
+# ignoring Armor; a bestiary creature's fight to a Scar and Critical Damage; power armor without
+# training; chems the attack reads; every Scar by Fallout's names. Seeded.
+test: combat
+help: >-
+  Each part plays in a world of its own: attacks, deathclaw-fight, critical-damage-and-stabilize,
+  power-armor-and-chems, scars. A bestiary deathclaw against a PC with the attack rule: its claws
+  keep the highest die, armor off, a Scar at exactly 0, Critical Damage past it with the
+  deathclaw's own effect. Untrained in a power armor suit, every DEX save fails; trained, it
+  doesn't; Buffout stops Critical Damage, Psycho makes attacks Enhanced, Overdrive fails the
+  target's save. Every Scar result, by Fallout's names, applied; the later halves healed; a
+  deathclaw re-rolls Severed and Bleeding Out.
+script:
+  - world new attacks --system {pack} --seed combat
+  - campaign new attacks --seed combat
+  - new pc Ivy --set STR=12 --set DEX=12 --set WIL=12 --set hp=6
+  - new pc Ox --set STR=16 --set DEX=8 --set WIL=8 --set hp=6 --set kind=super-mutant
+  - spawn radroach
+  - spawn super-mutant-brute
+  - new detachment Thugs --set hp=8 --set STR=13 --set WIL=9 --set count=6
+  - run: do attack attacker=ivy target=thugs "weapon={d6, d6}kh1"
+    expect: ["1d4", "The attack is impaired (Ivy → Thugs)"]
+  - run: do attack attacker=thugs target=ivy weapon=d6
+    expect: ["1d12", "The attack is enhanced (Thugs → Ivy)"]
+  - run: do attack attacker=ivy target=super-mutant-brute "weapon={d10, d10}kh1" mode=enhanced
+    expect: ["{1d10, 1d10}kh1", "Enhanced never makes an attack worse"]
+  - run: do attack attacker=ivy target=super-mutant-brute weapon=d12 heavy=true
+    expect: ["1d4", "The attack is impaired (Ivy → Super Mutant, Brute)"]
+  - run: do attack attacker=ivy target=super-mutant-brute weapon=d12 heavy=true braced=true
+    expect: ["1d12", "Ivy deals"]
+  - run: do attack attacker=ox target=super-mutant-brute weapon=d12 heavy=true
+    expect: ["1d12", "Ox deals"]
+  - run: do attack attacker=thugs target=ivy weapon=d8 mode=impaired
+    expect: ["1d8", "Impaired and Enhanced at once cancel out"]
+  - run: do attack attacker=ivy target=radroach weapon=d6 called=true
+    expect: ["1d4", "A called shot: on a hit, the narrative effect applies"]
+  - run: do attack attacker=ivy target=radroach mode=unarmed
+    expect: ["1d4", "The attack is unarmed"]
+  - world new deathclaw-fight --system {pack} --seed claws
+  - campaign new deathclaw-fight --seed claws
+  - new pc Wren --set STR=6 --set DEX=12 --set WIL=12 --set hp=3
+  - run: spawn deathclaw
+    expect: "monster:deathclaw"
+  - run: show deathclaw
+    expect: ["HP 14/14", "armor 2", "STR 18"]
+  - run: combat start --party deathclaw
+    expect: "round 1"
+  - run: do attack attacker=deathclaw target=wren weapon=3
+    expect: ["Wren gets a Scar (3 HP lost: flung-clear)", "Flung Clear (3 HP lost)"]
+  - run: do attack attacker=deathclaw target=wren weapon=4
+    expect: ["STR -= 4", "Wren takes Critical Damage", "Deathclaw's Critical Damage: One sweeping disembowelment"]
+  - run: show wren
+    expect: ["STR 2/6", "HP 0/3", "flung-clear"]
+  - run: do attack attacker=wren target=deathclaw "weapon={d6, d6}kh1"
+    expect: "Wren deals"
+  - combat end
+  - world new critical-damage-and-stabilize --system {pack} --seed crit
+  - campaign new critical-damage-and-stabilize --seed crit
+  - new pc Wren --set STR=4 --set DEX=12 --set WIL=12 --set hp=2
+  - spawn cazador
+  - run: do attack attacker=cazador target=wren weapon=4
+    expect: ["STR -= 2", "Wren takes Critical Damage", "reminder set for", "Cazador's Critical Damage: "]
+  - new pc Medic --set STR=10 --set DEX=10 --set WIL=10 --set hp=3
+  - inv add medic Stimpak
+  - run: do stabilize who=wren aid=Stimpak by=medic
+    expect: ["conditions -= critical", "conditions += stabilized", "With a Stimpak, Wren stabilizes", "pc:medic uses Stimpak (Stimpak is used up and gone)"]
+  - run: do stabilize who=wren
+    expect: "stop: Wren is already stabilized."
+  - world new power-armor-and-chems --system {pack} --seed armor
+  - campaign new power-armor-and-chems --seed armor
+  - new pc Knight --set STR=12 --set DEX=18 --set WIL=12 --set hp=6
+  - run: inv add knight 'T-51 Power Armor'
+    expect: ["Knight gets T-51 Power Armor", "details from fallout-2e.t-51-power-armor"]
+  - run: show knight
+    expect: "armor 3"
+  - run: do save who=knight attr=DEX
+    expect: ["→ failure", "every DEX save fails automatically"]
+  - set knight power_armor_trained=true
+  - run: do save who=knight attr=DEX
+    expect: ["Knight is trained in the power armor: the suit doesn't hold the DEX save back", "1d20"]
+  - run: inv move knight 'T-51 Power Armor' backpack
+    expect: "T-51 Power Armor → backpack"
+  - set knight power_armor_trained=false
+  - run: show knight
+    expect: "armor 0"
+  - run: do save who=knight attr=DEX
+    expect: "1d20"
+    expect_not: ["every DEX save fails automatically", "is trained in the power armor"]
+  - new pc Raze --set STR=4 --set DEX=12 --set WIL=12 --set hp=1
+  - spawn radroach
+  - set raze conditions+=buffout
+  - run: do attack attacker=radroach target=raze weapon=4
+    expect: ["STR -= 3", "on Buffout: immune to Critical Damage"]
+  - run: combat start --party radroach
+    expect: "round 1"
+  - set knight conditions+=psycho
+  - run: do attack attacker=knight target=radroach weapon=d6
+    expect: ["1d12", "The attack is enhanced"]
+  - run: combat end
+    expect: ["fight-over", "Knight's Psycho wears off"]
+  - set knight conditions+=overdrive
+  - spawn mole-rat
+  - run: do attack attacker=knight target=mole-rat weapon=5
+    expect: ["Overdrive: Mole Rat automatically fails the Critical Damage save", "Mole Rat is dead"]
+  - session start
+  - run: scene new
+    expect: "scene"
+  - run: scene end
+    expect: ["chems-wear-off-after-a-scene", "Raze's Buffout wears off"]
+  - world new scars --system {pack} --seed scars
+  - campaign new scars --seed scars
+  - new pc Lucius --set STR=12 --set DEX=12 --set WIL=12 --set hp=4 --set caps=200
+  - run: do scar who=lucius lost=1
+    expect: ["scar-location", "Close Shave ("]
+  - run: do scar who=lucius lost=2
+    expect: ["describe how they shake it off", "Concussed (2 HP lost)"]
+  - run: do scar who=lucius lost=3
+    expect: ["conditions += ['deprived', 'flung-clear']", "Flung Clear (3 HP lost)"]
+  - run: do scar who=lucius lost=4
+    expect: ["broken-limb", "Broken (", "scar=broken-"]
+  - run: do scar who=lucius lost=5
+    expect: ["conditions += rad-necrotic-wound", "Rad-Necrotic Wound (5 HP lost)"]
+  - run: do scar who=lucius lost=6
+    expect: ["head-wound", "3d6", "Scrambled ("]
+  - run: do scar who=lucius lost=7
+    expect: ["conditions += crippled", "Crippled (7 HP lost)"]
+  - run: do scar who=lucius lost=8
+    expect: ["conditions += burst-eardrums", "Burst Eardrums (8 HP lost)"]
+  - run: do scar who=lucius lost=9
+    expect: ["3d6", "Shell-Shocked (9 HP lost)"]
+  - run: do scar who=lucius lost=10
+    expect: ["the Overseer says which", "Severed (10 HP lost"]
+  - run: do scar who=lucius lost=11
+    expect: ["conditions += ['deprived', 'bleeding-out']", "dead in one hour without aid", "reminder set for"]
+  - run: do scar who=lucius lost=12
+    expect: ["conditions += doomed", "Doomed (12 HP lost)"]
+  - run: do scar who=lucius lost=15
+    expect: ["the book's table stops at 12 HP lost", "Doomed (15 HP lost)"]
+  - run: do scar-heal who=lucius scar=rad-necrotic-wound
+    expect: ["conditions -= rad-necrotic-wound", "2d6", "Rad-Necrotic Wound, cleared"]
+  - run: do scar-heal who=lucius scar=burst-eardrums
+    expect: "Lucius can hear again."
+  - run: do stabilize who=lucius
+    expect: "conditions += stabilized"
+  - run: do recover who=lucius cost=50
+    expect: ["conditions -= bleeding-out", "Bleeding Out, recovered", "conditions -= flung-clear", "Flung Clear, rested", "conditions -= crippled", "Crippled, recovered", "After a week's rest, Lucius's attributes are restored (50 caps)"]
+  - run: show lucius
+    expect: ["Caps 150", "doomed"]
+  - new pc Grell --set STR=16 --set DEX=14 --set WIL=10 --set hp=5 --set kind=deathclaw
+  - run: do scar who=grell lost=10
+    expect: ["A deathclaw's Scar rolls never use", "deathclaw-scar"]
+  - set grell conditions+=critical
+  - run: do stabilize who=grell aid=Medi-Kit
+    expect: "stop: No Stimpak works on Grell, nor a kit that heals as one: bandages or an auto-doc stabilize them"
+  - run: do scar who=grell lost=11
+    expect: ["A deathclaw's Scar rolls never use", "deathclaw-scar"]

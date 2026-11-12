@@ -1,0 +1,9 @@
+# The same frame under either system: a clock under one, a pool under the other.
+generator: frame
+title: A frame
+steps:
+  - if: "@system == 'clock-lite'"
+    then:
+      - entity: {key: doom, type: track, name: The Doom, fields: {kind: clock, size: 6}}
+    else:
+      - entity: {key: doom, type: track, name: The Doom, fields: {kind: pool, value: {value: 6, max: 6}}}

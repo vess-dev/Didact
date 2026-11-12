@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "didact": {
+      "command": "/Users/YOU/.local/bin/didact-mcp"
+    }
+  }
+}

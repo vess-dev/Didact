@@ -1,0 +1,13 @@
+# A familiar learns a trick in place of another, and remembers the lesson (a note beside it).
+chargen: familiar-trick
+title: Teach a trick
+advances: familiar
+modes: [guided]
+params:
+  who: ref
+steps:
+  - choose: {from: "@character.tricks", as: old, prompt: "the trick it forgets"}
+  - remove: {field: tricks, value: "@old"}
+  - ask: {as: new, prompt: "the trick it learns"}
+  - add: {field: tricks, value: "@new"}
+  - entity: {key: lesson, type: note, name: "{@who.name} learns {@new}", links: [{rel: about, to: character}]}

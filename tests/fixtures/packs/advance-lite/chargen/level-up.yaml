@@ -1,0 +1,15 @@
+# Levels: level + 1 XP buys the next one, with a new gift (the calling's, or one of your own).
+chargen: level-up
+title: Level up
+advances: pc
+params:
+  who: ref
+steps:
+  - let: {need: "@who.level + 1"}
+  - if: "@who.xp < @need"
+    then:
+      - stop: "{@who.name} has {@who.xp} of {@need} XP"
+  - apply: {xp: "{@who.xp - @need}", level: "{@who.level + 1}"}
+  - choose: {table: callings, as: calling, answer: "@who.calling"}
+  - choose: {from: "@calling.gifts", records: gift, as: gift, exclude: "@character.gifts", prompt: "a new gift: a {@calling}'s, or one of your own"}
+  - add: {field: gifts, value: "@gift"}

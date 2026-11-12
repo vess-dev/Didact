@@ -1,0 +1,369 @@
+# Dead Money (campaigns/09-dead-money): written by fw_compendium.py, don't edit by hand.
+# The frame's quest, region, places, cast, threats (Fallout 2e's numbers, and Grimfall's
+# card where its Bestiary has the threat) and clocks.
+id: dead-money
+type: quest
+name: Dead Money
+tags: [dead-money, frame, side-arc]
+goal: 'A mysterious radio broadcast lures the party to an abandoned Brotherhood bunker in the Mojave.
+  Inside: a knockout gas, a collar around their necks, and the voice of Father Elijah — a Brotherhood
+  elder gone mad. He will detonate the collars unless the party helps him breach the Sierra Madre Casino
+  and open its vault.'
+date: Wednesday, 19 October 2281
+body: |-
+  *The Sierra Madre Casino never opened. Its grand gala is still scheduled, the holograms still patrol the red fog, and the vault in the basement is still full of gold the weight of a dead man. Father Elijah wants it. He will make you want it too.*
+
+  ## GM notes
+
+  **Date.** Wednesday, 19 October 2281: a New Vegas side arc: that frame's date, or whenever the broadcast lures the party. Open a campaign on it with `didact campaign new <id> --date 'Wednesday, 19 October 2281'`, or move one there with `didact time set 'Wednesday, 19 October 2281'` before its first session.
+
+  **Tone & touchstones, arrival, the place, threats:** `didact rules lookup Dead Money tone` (and `arrival`, `cast`, `clocks`, `threats`, `rewards`).
+
+  **Arrival.** Everyone enters Dead Money stripped of all inventory — nothing comes through the bunker door except perks, which are skill memory. The collars are explosive and pair-linked to others in the party; a PC's collar detonates if they stray too far from their teammates or if any radio speaker is within arm's reach. The red cloud damages anything exposed.
+
+  **Plot beats.**
+
+  1. The Fountain Plaza. The party wakes in the Villa, collars on, fog around them. Elijah's voice is already in their ears. A single Ghost Person is visible down the street. The first lesson of Dead Money is that a Ghost Person who looks dead is not dead — the Return rule applies from the first encounter.
+  2. Recovering Dean Domino. The lounge singer ghoul is in the residential district, already working on his own plan to steal the gold. He joins the party only because Elijah's collar threat extends to him too. Dean is oily, funny, and will absolutely turn on the party in the climax unless the Overseer gives him a reason not to.
+  3. Recovering Dog/God. In the police station, the party meets the nightkin with two minds. Dog wants food. God wants control. The party can choose which one to stabilize — the choice matters at the Gala. Holograms patrol the station; each one dies only to its emitter.
+  4. Recovering Christine. The mute Brotherhood survivor in the clinic has been trying to kill Elijah for a long time. She cannot speak but she can fight. A PC who plays a holotape at her earns a hard ally; a PC who condescends to her earns an armed rival.
+  5. The Villa Clinic and the Auto-Doc. A working pre-war auto-doc can re-tune a single party member's collar to give them a narrow window of immunity to one speaker zone. This is the party's one real edge; using it costs a Stimpak and a roll on the Scars table at HP Lost 1d6.
+  6. The Sierra Madre Gala. The casino's front doors open only when all three companions have been met. The Gala was the pre-war event the casino was built for — and it never happened. The party walks in on a hologram-staged opening night: Vera Keyes's voice, the orchestra playing, the red velvet still laid out.
+  7. The Vault. Below the casino. Gold bars, pre-war security systems, and the original tomb. Elijah's voice comes through the PA — he wants the party to unlock it for him. The fight in the vault is not with Elijah directly; it is with whatever the party has brought down here and whatever they cannot bring themselves to walk away from.
+  8. The Walk Out. Dead Money ends with a departure. Either the party seals Elijah inside and leaves with their lives (the "right" ending), walks out with a pocketful of gold (the "wrong" one), or lets the weight of what they're carrying kill them a mile down the road. The Overseer should describe the sunrise.
+
+  **Climax.**
+
+  The vault is open. Elijah is on the radio telling the party to bring the gold. Four endings:
+
+  - **Trap him in the vault.** Lure Elijah down, close the door behind him. The collars deactivate. The gold is his. The party escapes with whatever fits in *one* slot.
+  - **Kill him on the catwalk.** He wears his tattered elder's robes and carries a Gauss rifle. **Father Elijah**: 15 HP, 1 Armor, 12 STR, 14 DEX, 16 WIL, Gauss rifle (d12, _bulky_). On Critical Damage, the party may loot his pack (3 Perk Magazines of the Overseer's choice).
+  - **Join him.** Take the gold together, raise an army, come back in a later campaign as the antagonists of someone else's game. The Overseer writes that down.
+  - **Begin again.** Leave the gold. Shut the vault. Walk out with the collar's disarm code and a lesson. The wasteland forgets nothing, but the party gets to.
+
+  **The frame's records.** `didact gen run fallout-wasteland.frame --prefill '{"frame": "Dead Money"}' --auto` drafts the region, 6 places, 1 people, 4 threats, its factions and its clocks (pools under Grimfall); `gen commit` writes them.
+
+  **Not trackers.** Cloud Clock: under Fallout 2e, no timer: at each new zone, `didact table roll fallout-wasteland.cloud-clock`; under Grimfall, no timer: the Cloud is a hot zone, +1t while you work in it; at each new zone `didact table roll fallout-wasteland.cloud-clock`, and a surge marks Brawn.
+
+  **Bestiary** (Fallout 2e / Grimfall): Ghost Person, Trapper → `ghost-person-trapper` / `ghost-people`; Ghost Person, Hunter → `ghost-person-hunter` / `ghost-people`; Ghost Person, Seeker → `ghost-person-seeker` / `ghost-people`; Sierra Madre Hologram → `sierra-madre-hologram` / `sierra-madre-hologram`.
+
+  **Rewards in each system's catalog:** Holorifle (fallout-2e.holorifle · grimfall.the-holorifle); Bear Trap Fist (fallout-2e.bear-trap-fist · grimfall.bear-trap-fist); Automatic Rifle (fallout-2e.automatic-rifle · grimfall.automatic-rifle); Christine's CoS Silencer Rifle (fallout-2e.christines-cos-silencer-rifle · grimfall.christines-cos-silencer-rifle); Dean's Tuxedo (fallout-2e.deans-tuxedo · grimfall.deans-tuxedo); Sierra Madre Reinforced Armor (fallout-2e.sierra-madre-reinforced-armor); Sierra Madre Gold Bars (fallout-2e.sierra-madre-gold-bar); Sierra Madre Chips (fallout-2e.sierra-madre-voucher · grimfall.sierra-madre-voucher).
+source: campaigns/09-dead-money#pitch
+---
+id: dead-money-region
+type: loc
+name: The Sierra Madre
+tags: [dead-money, region]
+mechanics:
+  fallout-2e: {kind: region}
+  grimfall: {kind: region}
+body: |-
+  ## GM notes
+
+  Four zones arranged around the central casino. The party may need to clear all three companion zones before the casino seals open.
+source: campaigns/09-dead-money#the-place--the-sierra-madre
+---
+id: dead-money-the-villa
+type: loc
+name: The Villa
+tags: [dead-money, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Red-fogged streets, a fountain plaza, Ghost People hunting. A hologram of the starlet Vera Keyes flickers over the fountain, and Father Elijah speaks through it.
+source: campaigns/09-dead-money#the-place--the-sierra-madre
+---
+id: dead-money-the-police-station
+type: loc
+name: The Police Station
+tags: [dead-money, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Dog/God's territory. A nightkin with two minds in one body.
+source: campaigns/09-dead-money#the-place--the-sierra-madre
+---
+id: dead-money-the-clinic
+type: loc
+name: The Clinic
+tags: [dead-money, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Christine's territory. A mute Brotherhood Circle of Steel survivor with a voice-box scar.
+source: campaigns/09-dead-money#the-place--the-sierra-madre
+---
+id: dead-money-the-residential-district
+type: loc
+name: The Residential District
+tags: [dead-money, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Dean Domino's hideout. A pre-war lounge singer turned ghoul, still holding a grudge about opening night.
+source: campaigns/09-dead-money#the-place--the-sierra-madre
+---
+id: dead-money-the-casino
+type: loc
+name: The Casino
+tags: [dead-money, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Locked until all three others are free. A roulette wheel, a baccarat table, and a hologram dealer who won't take a bribe.
+source: campaigns/09-dead-money#the-place--the-sierra-madre
+---
+id: dead-money-the-vault
+type: loc
+name: The Vault
+tags: [dead-money, place]
+mechanics:
+  fallout-2e: {kind: poi}
+  grimfall: {kind: point}
+body: |-
+  ## GM notes
+
+  Below the casino. Thirty-seven gold bars and a sealed tomb behind them.
+source: campaigns/09-dead-money#the-place--the-sierra-madre
+---
+id: dead-money-dog-god
+type: monster
+name: Dog / God
+aliases: [Dog / God (Nightkin)]
+knowledge: secret
+tags: [dead-money, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Dead Money'
+    hp: 12
+    armor: 1
+    STR: 16
+    DEX: 12
+    WIL: 10
+    rad_immune: true
+    attacks:
+    - name: cleaver
+      damage: d10
+      qualities: [bulky]
+    - {name: bite, damage: d6}
+    abilities:
+    - 'Two Minds: At half HP the personality flips — Dog (biting, loyal) becomes God (calm, surgical)
+      or vice versa; clear any mid-combat conditions.'
+  grimfall:
+    tier: elite
+    role: lurker
+    category: Faces of the Wasteland
+    fact: One body, two selves; at the fight's turning point the other one answers. Talk to 
+      whichever will listen.
+body: |-
+  ## GM notes
+
+  **Dog / God** — a nightkin with dissociative identity. Dog is gentle, hungry, loyal. God is cold and sharp.
+
+  A super mutant nightkin with two minds sharing one body. Shifts mid-fight.
+
+  Fallout 2e: 12 HP, 1 Armor, 16 STR, 12 DEX, 10 WIL, cleaver (d10, bulky), bite (d6).
+
+  Grimfall: its card is `grimfall.dog-god` (Dog / God), in this record's grimfall block.
+source: campaigns/09-dead-money#dog--god-nightkin
+---
+id: dead-money-dean-domino
+type: monster
+name: Dean Domino
+aliases: [Dean Domino (Ghoul Singer)]
+knowledge: secret
+tags: [dead-money, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Dead Money'
+    hp: 8
+    STR: 11
+    DEX: 14
+    WIL: 15
+    rad_immune: true
+    attacks:
+    - {name: police pistol, damage: d8}
+    - {name: straight razor, damage: d4}
+    abilities:
+    - 'Showman: Enhanced against a PC who has listened to a Vera Keyes recording this session.'
+  grimfall:
+    tier: tough
+    role: trickster
+    category: Faces of the Wasteland
+    fact: Two hundred years of grudge in a pressed tuxedo; betrays you exactly when it profits him.
+body: |-
+  ## GM notes
+
+  **Dean Domino** — pre-war lounge ghoul. Thinks the heist is still his. Will betray anyone.
+
+  Pre-war lounge ghoul. Betrays anyone. Fights dirty and talks the whole time.
+
+  Fallout 2e: 8 HP, 11 STR, 14 DEX, 15 WIL, police pistol (d8), straight razor (d4).
+
+  Grimfall: its card is `grimfall.dean-domino` (Dean Domino), in this record's grimfall block.
+source: campaigns/09-dead-money#dean-domino-ghoul-singer
+---
+id: dead-money-christine
+type: monster
+name: Christine
+aliases: [Christine (Mute Assassin)]
+knowledge: secret
+tags: [dead-money, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Dead Money'
+    hp: 9
+    armor: 1
+    STR: 13
+    DEX: 15
+    WIL: 12
+    attacks:
+    - name: silenced sniper rifle
+      damage: d10
+      qualities: [bulky]
+    - {name: combat knife, damage: d6}
+    abilities: ['Silent Shot: Attacks from stealth are Enhanced and do not break her concealment.']
+  grimfall:
+    tier: elite
+    role: lurker
+    category: Faces of the Wasteland
+    fact: Circle of Steel, voice taken; from stealth her shots never announce themselves. An ally, 
+      if you earn it.
+body: |-
+  ## GM notes
+
+  **Christine** — mute Brotherhood survivor. Communicates by gesture — the machines that took her voice scrambled her letters too. Christine hates Elijah more than she hates the fog.
+
+  Brotherhood Circle of Steel survivor, voicebox cut out. Hostile only if mistaken for a threat.
+
+  Fallout 2e: 9 HP, 1 Armor, 13 STR, 15 DEX, 12 WIL, silenced sniper rifle (d10, bulky), combat knife (d6).
+
+  Grimfall: its card is `grimfall.christine` (Christine), in this record's grimfall block.
+source: campaigns/09-dead-money#christine-mute-assassin
+---
+id: dead-money-father-elijah
+type: monster
+name: Father Elijah
+aliases: [Father Elijah (via bomb collar)]
+knowledge: secret
+tags: [dead-money, threat, cast]
+mechanics:
+  fallout-2e:
+    category: 'Campaign: Dead Money'
+    hp: 15
+    armor: 1
+    STR: 12
+    DEX: 14
+    WIL: 16
+    attacks:
+    - name: Gauss rifle
+      damage: d12
+      qualities: [bulky]
+  grimfall:
+    tier: elite
+    role: trickster
+    category: Named Threats & Legends
+    senses:
+    - a distant figure on a security monitor
+    - a clipped voice crackling over the Villa speakers
+    - the sweet toxic haze of the Cloud
+    pools:
+    - name: Speakers & Holograms
+      dice: 6
+      traits: Elijah's eyes and hands; he is never present in the flesh
+      moves: Loose the Holograms, Taunt and Misdirect
+    - name: Emitters & Force Fields
+      dice: 6
+      traits: seal the Villa and shield the vault
+      moves: Trigger a Trap, Wall You Off
+    - name: The Vault Door
+      dice: 4
+      traits: the objective, locked behind the rest
+      moves: (crack it to end him)
+    fail: 8d "The Collar" — a shared timer of Cloud and collar-bomb; when it runs dry, your head 
+      comes off.
+    wants: the Sierra Madre's pre-war riches to arm a war — not to let go of an obsession already 
+      doomed
+    note: A remote linked challenge. Beat his systems and the man himself is no fight at all. "Begin
+      again."
+body: |-
+  ## GM notes
+
+  **Father Elijah** — Brotherhood elder, obsessed with Old World tech. Sees the Sierra Madre as the weapon that cracks the Mojave open.
+
+  The collars themselves are the ambient threat: any PC within arm's reach of a working radio speaker makes a DEX save at the top of the next round or takes d6 damage from the collar — any Scar that results is Concussed. The party does not fight Elijah on equal terms unless they reach the vault.
+
+  Fallout 2e: 15 HP, 1 Armor, 12 STR, 14 DEX, 16 WIL, Gauss rifle (d12, bulky).
+
+  Its numbers are in the frame's Climax.
+
+  Grimfall: its card is `grimfall.father-elijah` (Father Elijah), in this record's grimfall block.
+source: campaigns/09-dead-money#father-elijah-via-bomb-collar
+---
+id: dead-money-vera-keyes-voice
+type: npc
+name: Vera Keyes (voice)
+knowledge: secret
+tags: [dead-money, cast]
+fields: {role: dead two centuries}
+body: |-
+  ## GM notes
+
+  **Vera Keyes (voice)** — dead two centuries. Her recordings still run the casino's speakers.
+source: campaigns/09-dead-money#cast
+---
+id: dead-money-collar-clock
+type: track
+name: Collar Clock
+knowledge: secret
+tags: [dead-money, clock]
+kind: clock
+size: 4
+value: {value: 0, size: 4}
+note: (d4) Ticks when the party triggers an interference — entering a zone with an active broadcast 
+  speaker, detonating explosives near the collars, crossing a radio dead zone. At 4, a PC of the 
+  Overseer's choice takes d6 damage from the collar — any Scar that results is Concussed. Reset to 0
+  when the party silences the nearest speaker or leaves the interference.
+source: campaigns/09-dead-money#clocks
+---
+id: dead-money-elijah-clock
+type: track
+name: Elijah Clock
+knowledge: secret
+tags: [dead-money, clock]
+kind: clock
+size: 6
+value: {value: 0, size: 6}
+note: "(d6) Elijah's patience. Ticks when the party mouths off on the radio. At 6, he cuts the party loose:
+  unless someone talks him back from it (a WIL save, and a reason he still needs them), every collar fires
+  in earnest — d12 damage to each PC, ignoring Armor — and the clock resets to 3."
+source: campaigns/09-dead-money#clocks
+---
+id: dead-money-cloud-clock
+type: track
+name: Cloud Clock
+knowledge: secret
+tags: [dead-money, clock]
+kind: counter
+min: 0
+value: 0
+note: '(ambient) At each new zone, roll 1d6: on a 1–2, the fog surges and the whole zone deals 1d4 STR
+  damage to any exposed PC. [under Fallout 2e, no timer: at each new zone, `didact table roll fallout-wasteland.cloud-clock`;
+  under Grimfall, no timer: the Cloud is a hot zone, +1t while you work in it; at each new zone `didact
+  table roll fallout-wasteland.cloud-clock`, and a surge marks Brawn]'
+source: campaigns/09-dead-money#clocks

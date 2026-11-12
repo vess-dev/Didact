@@ -1,0 +1,83 @@
+# Every generator the book's procedures make, all the way to records: each runs with the dice
+# deciding what the prefill doesn't, then commits. Seeded, so it plays the same every time.
+test: generators-and-seeds
+help: >-
+  Each part plays in a world of its own: every-generator, seeds. A region, a stretch of wastes
+  and a vault, to records and a map.
+script:
+  - world new every-generator --system {pack} --seed generators
+  - campaign new every-generator --seed generators
+  - run: >-
+      gen run fallout-2e.npc --auto --prefill '{"name": "Rue Sixpenny", "occupation": "Trader"}'
+    expect: "npc Rue Sixpenny: role: Trader"
+  - run: gen commit g1
+    expect: "npc:rue-sixpenny"
+  - run: >-
+      gen run fallout-2e.faction --auto --prefill '{"faction_name": "The Quiet"}'
+    expect: ["faction The Quiet: kind: ", "reputation: 0"]
+  - run: gen commit g2
+    expect: committed
+  - run: >-
+      gen run fallout-2e.monster --auto
+      --prefill '{"name": "Charge Beetle", "hp": 6, "armor": 2, "STR": 14, "DEX": 6, "WIL": 4, "damage": "d10"}'
+    expect: "monster Charge Beetle"
+  - run: gen commit g3
+    expect: "monster:charge-beetle"
+  - run: >-
+      gen run fallout-2e.companion --auto --prefill '{"name": "Cait", "trick": "picks any lock in a minute"}'
+    expect: ["companion Cait: ", "armor: 1", "loyalty: 3", "trick: picks any lock in a minute"]
+  - run: gen commit g4
+    expect: "companion:cait"
+  - run: >-
+      gen run fallout-2e.encounter --auto --prefill '{"where": "low"}'
+    expect: "encounters-low"
+  - run: >-
+      gen run fallout-2e.weapon --auto --prefill '{"weapon": "Hunting rifle (d10, bulky)"}'
+    expect: "item Hunting rifle: category: Rifles — Ballistic"
+  - run: >-
+      gen run fallout-2e.armor --auto --prefill '{"armor": "Combat armor (2 Armor, bulky)"}'
+    expect: "armor: 2"
+  - run: >-
+      gen run fallout-2e.gear --auto --prefill '{"gear": "Geiger counter"}'
+    expect: "item Geiger counter"
+  - run: >-
+      gen run fallout-2e.relic --auto --prefill '{"rarity": "common", "relic": "Stealth Boy"}'
+    expect: ["relic Stealth Boy", "charges: 3"]
+  - run: >-
+      gen run fallout-2e.perk-magazine --auto --prefill '{"kind": "series", "series": "Grognak the Barbarian (Combat — melee)"}'
+    expect: ["magazine-issue-grognak-the-barbarian", "magazine Grognak the Barbarian"]
+  - run: >-
+      gen run fallout-2e.unique-weapon --auto --prefill '{"kind": "heavy-weapons"}'
+    expect: "unique-weapons-heavy-weapons"
+  - run: >-
+      gen run fallout-2e.unique-armor --auto --prefill '{"kind": "power-armor", "unique": "T-51b Winterized Power Armor"}'
+    expect: ["item T-51b Winterized Power Armor", "power_armor: true"]
+  - run: gen run fallout-2e.adventure-hook --auto
+    expect: ["hook-mission", "hook-complication", "hook-reward", "quest Job: "]
+  - run: >-
+      gen run fallout-2e.settlement --auto --prefill '{"name": "Five-Corners"}'
+    expect: "settlement Five-Corners: kind: poi, poi: settlement, population: 1, defense: 1, industry: 1, building_slots: 8"
+  - run: >-
+      gen run fallout-2e.encounter --auto
+      --prefill '{"where": "category", "group": "Unusual — or, off the main map, DLC Creatures", "creature_id": "tunneler-queen"}'
+    expect: "monster Tunneler Queen: category: DLC Creatures: The Mojave (FNV)"
+  - run: >-
+      gen run fallout-2e.unique-weapon --auto --prefill '{"kind": "submachine-guns"}'
+    expect: ["unique-weapons-submachine-guns", "category: Unique weapons: Submachine Guns"]
+  - run: >-
+      gen run fallout-2e.unique-armor --auto --prefill '{"kind": "accessories-and-add-ons"}'
+    expect: ["unique-armors-accessories-and-add-ons", "category: Unique armors: Accessories & Add-ons"]
+  - world new seeds --system {pack} --seed seeds
+  - campaign new seeds --seed seeds
+  - run: gen run fallout-2e.setting-seed --auto
+    expect: ["kind: region", "the larger settlement", "a hidden ruin", "a vault or sealed facility", "a caravan hub or crossroads", "map:", "a Job (who is hiring and why)"]
+  - run: gen commit g18
+    expect: committed
+  - run: gen run fallout-2e.wasteland-seed --auto
+    expect: ["kind: wasteland", "inhabitants: ["]
+  - run: gen commit g19
+    expect: committed
+  - run: gen run fallout-2e.vault-seed --auto
+    expect: ["kind: vault", ", room 1", "(entrance)"]
+  - run: gen commit g20
+    expect: committed

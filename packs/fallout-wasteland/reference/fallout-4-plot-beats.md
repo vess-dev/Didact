@@ -1,0 +1,18 @@
+---
+id: fallout-4-plot-beats
+title: "Fallout 4: Plot Beats"
+tags: [campaigns, fallout-4, plot, beats]
+source: campaigns/03-fallout-4#plot-beats
+---
+Broad strokes. Six to ten sessions; the Commonwealth is big enough that the first half should feel open and the second half should feel funneled.
+
+1. **Sanctuary and Concord.** Codsworth, the old home, the handful of decaying pre-war houses. In Concord the party finds **Preston Garvey** and a handful of refugees trapped in the **Museum of Freedom** by raiders. Rescuing them earns a T-45 power armor suit from the museum roof (its core nearly spent), a minigun, and the first Minutemen alliance. Sanctuary becomes a buildable settlement.
+2. **Diamond City.** Boston's Fenway Park, turned walled town. **Piper Wright**, a journalist, recognizes an outsider and interviews the party. **Mayor McDonough** has something off about him. **Nick Valentine**, a Gen-2 synth detective, has been missing for a week and the party is hired to find him. The trail leads to **Park Street Station** and **Vault 114** beneath it — a pre-war vault turned gangster den.
+3. **Valentine's Case.** Recovering Nick opens the first real investigation: **Kellogg**, a mercenary who was paid by the Institute to kidnap Shaun. He's left a trail — Diamond City, **Fort Hagen**, a decoy in the Glowing Sea. Chasing him across the Commonwealth is how the party meets every faction.
+4. **The Brotherhood Arrives.** Halfway through the Kellogg chase, the **Prydwen** airship rises over Boston like a new fixed star. **Elder Arthur Maxson** broadcasts the Brotherhood's mandate from its bridge. The party meets **Paladin Danse** at the Cambridge police station, where he and his squad are holding off ferals. He offers the party a place on his squad.
+5. **Fort Hagen and Kellogg's Mind.** The party confronts Kellogg. He dies. They recover his **cybernetic memory implant**. At the **Memory Den** in Goodneighbor, **Doctor Amari** wires the party in; they walk through Kellogg's life and find the only way to reach the Institute is via a rogue Institute scientist named **Virgil**, hiding in the Glowing Sea.
+6. **The Glowing Sea.** The most radioactive place in the Commonwealth — deathclaws, Children of Atom, rad storms. Virgil lives in a cave at the crater's edge, hideous now and knowing it. He gives the party a plan: build a **Signal Interceptor** from specs he smuggled out of the Institute. Assembling it requires help from a faction — Railroad, Brotherhood, or Minutemen. Each has a price.
+7. **The Railroad.** Found via the **Freedom Trail** markers through a dead Boston neighborhood. HQ is a catacomb beneath the **Old North Church**. **Desdemona** leads; **Deacon** recruits the party; **Glory** is the heavy gunner. The Railroad wants synth liberation above all.
+8. **Meeting the Father.** Whichever faction builds the Interceptor, the party rides it into the Institute. They are received not by guards, but by **Father** — a man in his sixties, blue-eyed, calm. *He is Shaun*. He was taken from the vault sixty years ago and grew up here. He is dying of cancer. He wants to hand the Institute to the party.
+9. **The Fracture.** The Institute's existence is a weapon. The Brotherhood wants to destroy it. The Railroad wants to liberate every synth in its labs. The Minutemen want it out of the Commonwealth by any means. The Institute wants to continue, and Father offers the party its directorship. The three outside factions *now cannot coexist* — building the final assault for one burns the others.
+10. **The Nuclear Option.** Whichever side the party sided with escorts them back to the Institute for the endgame. The other factions lose. The Institute is destroyed, seized, or preserved. See **Climax**.

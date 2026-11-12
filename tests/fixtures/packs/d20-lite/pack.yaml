@@ -1,0 +1,7 @@
+id: d20-lite
+name: d20 paper test
+kind: system
+version: 0.1.0
+description: A paper test for point-buy and class character creation, with level-ups.
+requires: {packs: [core]}
+license: {spdx: CC0-1.0}

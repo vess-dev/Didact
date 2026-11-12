@@ -1,0 +1,69 @@
+check: chart-question
+params:
+  question: {kind: text, optional: true}
+  odds: {enum: [unlikely, likely], default: unlikely}
+  oracle: ref
+  as_rule: {kind: flag, default: false}
+before:
+  - let: {chaos: "if(@as_rule, 2, @oracle.chaos)"}
+  - if: "@oracle.method == 'check'"
+    then:
+      - table: check-odds
+        with: {odds: $odds}
+        as: odds_mod
+      - roll: "2d10 + @odds_mod.value"
+        as: roll
+      - let: {is_xyes: "@roll >= 18", is_yes: "@roll >= 11", is_xno: "@roll <= 4"}
+    else:
+      - table: odds-chart
+        with: {odds: $odds, chaos: "@chaos"}
+        as: cell
+      - roll: d100
+        as: roll
+      - let:
+          is_xyes: "@roll <= @cell.exceptional_yes"
+          is_yes: "@roll <= @cell.yes"
+          is_xno: "@roll >= @cell.exceptional_no"
+bands:
+  "Exceptional Yes": "@is_xyes"
+  "Yes": "@is_yes"
+  "Exceptional No": "@is_xno"
+  "No": else
+flags:
+  event: "@roll < 100 and @roll % 11 == 0 and @roll // 11 <= @chaos"
+on:
+  event:
+    - do: event
+      with: {oracle: "@oracle"}
+---
+procedure: event
+params: {oracle: ref}
+steps:
+  - table: focus
+    as: focus
+  - if: "@focus.list == 'characters'"
+    then: [{pick: "@oracle.characters", method: sections, as: about}]
+  - table: pairs
+    as: sense
+  - message: "Event: {@focus} ({@sense})."
+---
+procedure: answer-for
+params:
+  who: {kind: text}
+  deed: {kind: text}
+  oracle: ref
+steps:
+  - check: chart-question
+    with: {question: "Does $who $deed?", odds: likely, oracle: "@oracle"}
+    as: answer
+  - table: answers
+    with: {answer: "@answer"}
+    as: meaning
+  - message: "$who: {@meaning}"
+---
+action: calm
+params: {oracle: ref}
+steps:
+  - set: oracle.chaos
+    value: "max(1, @oracle.chaos - 1)"
+  - message: "Chaos {@oracle.chaos}."
